@@ -9,13 +9,13 @@ import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
 
 export enum ROUTES {
-  APP = "/DevconAgora/",
-  WELCOME1 = "/DevconAgora/welcome1",
-  WELCOME2 = "/DevconAgora/welcome2",
-  WELCOME3 = "/DevconAgora/welcome3",
-  WELCOME4 = "/DevconAgora/welcome4",
-  OPENPROFILE = "/DevconAgora/openprofile",
-  MAINPROFILE = "/DevconAgora/mainprofile",
+  APP = "/",
+  WELCOME1 = "/welcome1",
+  WELCOME2 = "/welcome2",
+  WELCOME3 = "/welcome3",
+  WELCOME4 = "/welcome4",
+  OPENPROFILE = "/openprofile",
+  MAINPROFILE = "/mainprofile",
 }
 
 const MainRouter = (): ReactElement => {
