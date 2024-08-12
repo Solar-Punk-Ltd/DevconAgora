@@ -1,5 +1,5 @@
 import "./AlertIndicator.scss";
-import miniProfileIcon from "../../assets/mini-profile-icon.png";
+// import miniProfileIcon from "../../assets/mini-profile-icon.png";
 
 interface AlertIndicatorProps {
   value: number;
