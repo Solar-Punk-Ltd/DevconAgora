@@ -6,6 +6,7 @@ import Welcome2 from "../src/pages/Welcome2/Welcome2";
 import Welcome3 from "../src/pages/Welcome3/Welcome3";
 import Welcome4 from "../src/pages/Welcome4/Welcome4";
 import OpenProfile from "../src/pages/OpenProfile/OpenProfile";
+import MainProfilePage from "../src/pages/MainProfilePage/MainProfilePage";
 
 export enum ROUTES {
   APP = "/",
@@ -14,6 +15,7 @@ export enum ROUTES {
   WELCOME3 = "/welcome3",
   WELCOME4 = "/welcome4",
   OPENPROFILE = "/openprofile",
+  MAINPROFILE = "/mainprofile",
 }
 
 const MainRouter = (): ReactElement => {
@@ -25,6 +27,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
       <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
       <Route path={ROUTES.OPENPROFILE} element={<OpenProfile />} />
+      <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
     </Routes>
   );
 };

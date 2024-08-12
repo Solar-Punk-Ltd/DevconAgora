@@ -27,7 +27,7 @@ const OpenProfile: React.FC<OpenProfileProps> = () => {
           </div>
         </div>
         <div className="bottom">
-          <Link to="/welcome2">
+          <Link to="/mainprofile">
             <Button>Start Building Your Community</Button>
           </Link>
         </div>
