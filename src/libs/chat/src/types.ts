@@ -1,6 +1,13 @@
-import { HexString } from "@ethersphere/bee-js/dist/types/utils/hex";
 import { Signature } from "ethers";
 import { ETH_ADDRESS_LENGTH } from "./constants";
+
+type FlavoredType<Type, Name> = Type & {
+    __tag__?: Name;
+};
+
+type HexString<Length extends number = number> = FlavoredType<string & {
+    readonly length: Length;
+}, 'HexString'>;
 
 // This is a hex string of specific length (42)
 export type EthAddress = HexString<typeof ETH_ADDRESS_LENGTH>;
