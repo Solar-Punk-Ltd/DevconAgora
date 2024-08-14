@@ -1,9 +1,8 @@
-import RecentItem from "../RecentItem/RecentItem";
+import React from "react";
+import RecentItem from "./RecentItem/RecentItem";
 import "./RecentBox.scss";
 
-interface RecentBoxProps {}
-
-const RecentBox: React.FC<RecentBoxProps> = ({}) => {
+const RecentBox: React.FC = () => {
   return (
     <div>
       <div

@@ -1,12 +1,11 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import profileImage from "../../assets/profile.png";
 import editIconImage from "../../assets/edit-icon.png";
 import "./OpenProfile.scss";
 
-interface OpenProfileProps {}
-
-const OpenProfile: React.FC<OpenProfileProps> = () => {
+const OpenProfile: React.FC = () => {
   return (
     <>
       <div className="welcome-layout welcome-font">

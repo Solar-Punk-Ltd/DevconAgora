@@ -1,10 +1,9 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./Welcome1.scss";
 
-interface Welcome1Props {}
-
-const Welcome1: React.FC<Welcome1Props> = () => {
+const Welcome1: React.FC = () => {
   return (
     <>
       <div className="welcome-layout welcome-font">
