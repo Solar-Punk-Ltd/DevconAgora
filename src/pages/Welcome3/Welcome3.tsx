@@ -25,9 +25,11 @@ const Welcome3: React.FC = () => {
           </Link>
           <div className="bottom-text">
             I know everything{" "}
-            <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
-              SKIP
-            </span>
+            <Link to="/openprofile">
+              <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
+                SKIP
+              </span>
+            </Link>
           </div>
         </div>
       </div>

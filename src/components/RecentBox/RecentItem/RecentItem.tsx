@@ -6,6 +6,7 @@ const RecentItem: React.FC = () => {
     <div
       style={{
         height: "52px",
+        width: "338px",
         borderRadius: "8px",
         backgroundColor: "white",
         marginBottom: "4px",
