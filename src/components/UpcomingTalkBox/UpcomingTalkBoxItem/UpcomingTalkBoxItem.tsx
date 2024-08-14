@@ -1,8 +1,11 @@
 import "./UpcomingTalkBoxItem.scss";
 
-interface UpcomingTalkBoxItemProps {}
+interface UpcomingTalkBoxItemProps {
+  key: string
+  title: string
+}
 
-const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({}) => {
+const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({ title }) => {
   return (
     <div
       style={{
@@ -11,7 +14,9 @@ const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({}) => {
         borderRadius: "8px",
         backgroundColor: "white",
       }}
-    ></div>
+    >
+      <p>{title}</p>
+    </div>
   );
 };
 
