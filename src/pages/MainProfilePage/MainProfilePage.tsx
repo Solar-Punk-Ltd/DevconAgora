@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import BlogPostBox from "../../components/BlogPostBox/BlogPostBox";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentBox from "../../components/RecentBox/RecentBox";
@@ -82,9 +81,7 @@ const MainProfilePage: React.FC = () => {
       }}
     >
       <Header name="Agora"></Header>
-      <Link to="/recent">
-        <DevConMainBox />
-      </Link>
+      <DevConMainBox />
       <RecentBox />
       <UpcomingTalkBox sessions={sessions} />
       <BlogPostBox />
