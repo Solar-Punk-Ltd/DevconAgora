@@ -7,7 +7,7 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
-import Recent from "../src/pages/Recent/Recent";
+import Recent from "./pages/Recent/Recent";
 
 export enum ROUTES {
   APP = "/",
