@@ -6,7 +6,7 @@
     "email": "email",
     "profilePicture": "link-to-profile-picture"
   },
-  "recent": [
+  "recents": [
     {
       "id": 101,
       "title": "Recent Activity 1",
@@ -26,7 +26,7 @@
       "typeOfActivity": "comment"
     }
   ],
-  "blogpost": [
+  "blogposts": [
     {
       "id": 201,
       "title": "Blog Post 1",
