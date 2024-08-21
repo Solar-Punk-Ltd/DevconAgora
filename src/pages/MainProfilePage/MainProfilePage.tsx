@@ -13,6 +13,7 @@ import {
   ADDRESS_HEX_LENGTH,
 } from "../../utils/constants"
 
+
 interface MainProfilePageProps {}
 
 const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {

@@ -1,9 +1,9 @@
-import RecentItem from "../RecentItem/RecentItem";
+import React from "react";
+import RecentItem from "./RecentItem/RecentItem";
 import "./RecentBox.scss";
+import { Link } from "react-router-dom";
 
-interface RecentBoxProps {}
-
-const RecentBox: React.FC<RecentBoxProps> = ({}) => {
+const RecentBox: React.FC = () => {
   return (
     <div>
       <div
@@ -14,7 +14,9 @@ const RecentBox: React.FC<RecentBoxProps> = ({}) => {
         }}
       >
         <div>Recent</div>
-        <div style={{ textDecoration: "underline" }}>All</div>
+        <Link to="/recent">
+          <div style={{ textDecoration: "underline" }}>All</div>
+        </Link>
       </div>
       <RecentItem />
       <RecentItem />

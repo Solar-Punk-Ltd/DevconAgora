@@ -1,3 +1,4 @@
+import React from "react";
 import "./UpcomingTalkBoxItem.scss";
 
 interface UpcomingTalkBoxItemProps {
@@ -9,10 +10,11 @@ const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({ title }) => {
   return (
     <div
       style={{
-        width: "118px",
+        minWidth: "118px",
         height: "92px",
         borderRadius: "8px",
         backgroundColor: "white",
+        marginRight: "8px",
       }}
     >
       <p>{title}</p>

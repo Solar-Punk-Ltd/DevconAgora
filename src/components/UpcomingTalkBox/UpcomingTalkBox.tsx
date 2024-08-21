@@ -20,7 +20,14 @@ const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({ sessions }) => {
         <div>Upcoming talks</div>
         <div style={{ textDecoration: "underline" }}>All</div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          overflowX: "scroll",
+          whiteSpace: "nowrap",
+        }}
+      >
         {sessions.length === 0 ? (
           <UpcomingTalkBoxItem key={"notalk"} title={"No upcoming talks"} />
         ) : (
