@@ -1,10 +1,9 @@
+import React from "react";
 import "./DevConMainBox.scss";
 import rightArrow from "../../assets/right-arrow.png";
 import devConMainBoxLine from "../../assets/devconmainbox-line.png";
 
-interface DevConMainBoxProps {}
-
-const DevConMainBox: React.FC<DevConMainBoxProps> = ({}) => {
+const DevConMainBox: React.FC = () => {
   return (
     <div
       style={{

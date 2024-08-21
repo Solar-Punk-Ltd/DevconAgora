@@ -1,6 +1,7 @@
+import React from "react";
 import "./Header.scss";
-import miniProfileIcon from "../../assets/mini-profile-icon.png";
-import AlertIndicator from "./AlertIndicator/AlertIndicator";
+// import AlertIndicator from "./AlertIndicator/AlertIndicator";
+import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
 
 interface HeaderProps {
   name: string;
@@ -17,8 +18,7 @@ const Header: React.FC<HeaderProps> = ({ name }) => {
     >
       <div style={{ fontSize: "24px", fontWeight: "bold" }}>{name}</div>
       <div style={{ height: "40px" }}>
-        <img src={miniProfileIcon} alt="" width="40px" height="40px" />
-        <AlertIndicator value={10} />
+        <ProfileIndicator alertValue={10} />
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
+import React from "react";
 import "./BlogPostBoxItem.scss";
 
-interface BlogPostBoxItemProps {}
-
-const BlogPostBoxItem: React.FC<BlogPostBoxItemProps> = ({}) => {
+const BlogPostBoxItem: React.FC = () => {
   return (
     <div
       style={{
-        width: "118px",
+        minWidth: "118px",
         height: "92px",
         borderRadius: "8px",
         backgroundColor: "white",
+        marginRight: "8px",
       }}
     ></div>
   );

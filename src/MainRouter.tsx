@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
@@ -7,6 +7,7 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
+import Recent from "./pages/Recent/Recent";
 
 export enum ROUTES {
   APP = "/",
@@ -16,6 +17,7 @@ export enum ROUTES {
   WELCOME4 = "/welcome4",
   OPENPROFILE = "/openprofile",
   MAINPROFILE = "/mainprofile",
+  RECENT = "/recent",
 }
 
 const MainRouter = (): ReactElement => {
@@ -28,6 +30,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
       <Route path={ROUTES.OPENPROFILE} element={<OpenProfile />} />
       <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
+      <Route path={ROUTES.RECENT} element={<Recent />} />
     </Routes>
   );
 };

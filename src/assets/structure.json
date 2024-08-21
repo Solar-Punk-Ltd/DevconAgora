@@ -1,0 +1,100 @@
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "username": "johndoe",
+    "email": "email",
+    "profilePicture": "link-to-profile-picture"
+  },
+  "recents": [
+    {
+      "id": 101,
+      "title": "Recent Activity 1",
+      "description": "Description of recent activity 1",
+      "date": "2023-10-01",
+      "category": "Activity",
+      "time": "10:00 AM",
+      "typeOfActivity": "like"
+    },
+    {
+      "id": 102,
+      "title": "Recent Activity 2",
+      "description": "Description of recent activity 2",
+      "date": "2023-10-02",
+      "category": "Activity",
+      "time": "2:00 PM",
+      "typeOfActivity": "comment"
+    }
+  ],
+  "blogposts": [
+    {
+      "id": 201,
+      "title": "Blog Post 1",
+      "content": "Content of blog post 1",
+      "author": "John Doe",
+      "date": "2023-09-15",
+      "category": "Tech",
+      "time": "10:00 AM",
+      "likeByTheUser": true,
+      "numberOfLikes": 150
+    },
+    {
+      "id": 202,
+      "title": "Blog Post 2",
+      "content": "Content of blog post 2",
+      "author": "Jane Smith",
+      "date": "2023-09-20",
+      "category": "Lifestyle",
+      "time": "2:00 PM",
+      "likeByTheUser": false,
+      "numberOfLikes": 75
+    }
+  ],
+  "upcomingTalks": [
+    {
+      "id": 301,
+      "title": "Upcoming Talk 1",
+      "speaker": "John Doe",
+      "date": "2023-11-01",
+      "location": "Conference Room A",
+      "category": "Conference",
+      "time": "9:00 AM",
+      "likeByTheUser": true,
+      "numberOfLikes": 200
+    },
+    {
+      "id": 302,
+      "title": "Upcoming Talk 2",
+      "speaker": "Jane Smith",
+      "date": "2023-11-05",
+      "location": "Conference Room B",
+      "category": "Workshop",
+      "time": "11:00 AM",
+      "likeByTheUser": false,
+      "numberOfLikes": 120
+    }
+  ],
+  "devconLounge": {
+    "id": 401,
+    "title": "DevCon Lounge",
+    "description": "A place to relax and network with other developers.",
+    "maxAllowedUser": 100,
+    "currentlyActiveUser": 45
+  },
+  "publicNotes": [
+    {
+      "id": 501,
+      "title": "Note 1",
+      "content": "Content of public note 1",
+      "author": "John Doe",
+      "date": "2023-10-10"
+    },
+    {
+      "id": 502,
+      "title": "Note 2",
+      "content": "Content of public note 2",
+      "author": "Jane Smith",
+      "date": "2023-10-12"
+    }
+  ]
+}

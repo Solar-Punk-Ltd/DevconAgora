@@ -1,9 +1,8 @@
+import React from "react";
 import "./UpcomingTalkBox.scss";
 import UpcomingTalkBoxItem from "./UpcomingTalkBoxItem/UpcomingTalkBoxItem";
 
-interface UpcomingTalkBoxProps {}
-
-const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({}) => {
+const UpcomingTalkBox: React.FC = () => {
   return (
     <div>
       <div
@@ -16,7 +15,24 @@ const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({}) => {
         <div>Upcoming talks</div>
         <div style={{ textDecoration: "underline" }}>All</div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          overflowX: "scroll",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
+        <UpcomingTalkBoxItem />
         <UpcomingTalkBoxItem />
         <UpcomingTalkBoxItem />
         <UpcomingTalkBoxItem />

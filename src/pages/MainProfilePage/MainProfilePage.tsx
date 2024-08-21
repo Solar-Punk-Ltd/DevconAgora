@@ -1,3 +1,4 @@
+import React from "react";
 import BlogPostBox from "../../components/BlogPostBox/BlogPostBox";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentBox from "../../components/RecentBox/RecentBox";
@@ -5,9 +6,7 @@ import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
 import Header from "../Header/Header";
 import "./MainProfilePage.scss";
 
-interface MainProfilePageProps {}
-
-const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {
+const MainProfilePage: React.FC = () => {
   return (
     <div
       style={{

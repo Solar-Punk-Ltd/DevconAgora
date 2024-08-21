@@ -1,10 +1,9 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./Welcome1.scss";
 
-interface Welcome1Props {}
-
-const Welcome1: React.FC<Welcome1Props> = () => {
+const Welcome1: React.FC = () => {
   return (
     <>
       <div className="welcome-layout welcome-font">
@@ -25,9 +24,11 @@ const Welcome1: React.FC<Welcome1Props> = () => {
           </Link>
           <div className="bottom-text">
             I know everything{" "}
-            <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
-              SKIP
-            </span>
+            <Link to="/openprofile">
+              <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
+                SKIP
+              </span>
+            </Link>
           </div>
         </div>
       </div>

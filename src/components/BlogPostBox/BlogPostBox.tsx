@@ -1,9 +1,8 @@
+import React from "react";
 import BlogPostBoxItem from "./BlogPostBoxItem/BlogPostBoxItem";
 import "./BlogPostBox.scss";
 
-interface BlogPostBoxProps {}
-
-const BlogPostBox: React.FC<BlogPostBoxProps> = ({}) => {
+const BlogPostBox: React.FC = () => {
   return (
     <div>
       <div
@@ -16,7 +15,20 @@ const BlogPostBox: React.FC<BlogPostBoxProps> = ({}) => {
         <div>Blog Posts</div>
         <div style={{ textDecoration: "underline" }}>All</div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          overflowX: "scroll",
+        }}
+      >
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
+        <BlogPostBoxItem />
         <BlogPostBoxItem />
         <BlogPostBoxItem />
         <BlogPostBoxItem />

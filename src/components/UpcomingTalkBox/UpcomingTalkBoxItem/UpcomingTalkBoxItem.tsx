@@ -1,15 +1,15 @@
+import React from "react";
 import "./UpcomingTalkBoxItem.scss";
 
-interface UpcomingTalkBoxItemProps {}
-
-const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({}) => {
+const UpcomingTalkBoxItem: React.FC = () => {
   return (
     <div
       style={{
-        width: "118px",
+        minWidth: "118px",
         height: "92px",
         borderRadius: "8px",
         backgroundColor: "white",
+        marginRight: "8px",
       }}
     ></div>
   );
