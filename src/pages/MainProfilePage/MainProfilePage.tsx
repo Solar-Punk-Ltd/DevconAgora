@@ -1,13 +1,77 @@
-import BlogPostBox from "../../components/BlogPostBox/BlogPostBox";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentBox from "../../components/RecentBox/RecentBox";
-import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
-import Header from "../Header/Header";
-import "./MainProfilePage.scss";
+import BlogPostBox from "../../components/BlogPostBox/BlogPostBox"
+import DevConMainBox from "../../components/DevConMainBox/DevConMainBox"
+import RecentBox from "../../components/RecentBox/RecentBox"
+import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox"
+import Header from "../Header/Header"
+import "./MainProfilePage.scss"
+import { Session } from "../../types/session"
+import { useEffect, useState } from "react"
+import { Swarm } from "libswarm"
+import {
+  BEE_API_URL,
+  DEVCON6_SESSSIONS_HASH,
+  ADDRESS_HEX_LENGTH,
+} from "../../utils/constants"
 
 interface MainProfilePageProps {}
 
 const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [isBeeRunning, setBeeRunning] = useState(false)
+  const [postageStamp, setPostageStamp] = useState<string>("")
+
+  const swarm = new Swarm({
+    beeApi: BEE_API_URL,
+  })
+
+  async function checkBee() {
+    fetch(BEE_API_URL + "addresses")
+      .then(async () => {
+        if (!isBeeRunning) {
+          setBeeRunning(true)
+          console.log("Bee is running")
+        }
+        if (postageStamp.length === 0) {
+          const stamp = await swarm.getUsableStamp()
+          if (stamp === null) {
+            console.log("No usable postage stamp found")
+          } else {
+            setPostageStamp(stamp)
+            console.log("Usable postage stamp found: " + stamp)
+          }
+        }
+      })
+      .catch(() => {
+        setBeeRunning(false)
+        setPostageStamp("")
+        console.log("Bee stopped running")
+      })
+  }
+
+  async function getSessions(hash: string) {
+    if (hash.length !== ADDRESS_HEX_LENGTH) {
+      console.log("session hash invalid")
+      return
+    }
+
+    try {
+      const data = JSON.parse(
+        (await swarm.downloadRawData(hash, "application/json")).utf8
+      )
+      const s: Session[] = data.data.items
+      setSessions(sessions.concat(s))
+    } catch (e) {
+      console.log("talk " + hash + " download/cast error", e)
+    }
+  }
+
+  useEffect(() => {
+    checkBee()
+    if (sessions.length === 0) {
+      getSessions(DEVCON6_SESSSIONS_HASH)
+    }
+  })
+
   return (
     <div
       style={{
@@ -23,10 +87,10 @@ const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {
       <Header name="Agora"></Header>
       <DevConMainBox />
       <RecentBox />
-      <UpcomingTalkBox />
+      <UpcomingTalkBox sessions={sessions} />
       <BlogPostBox />
     </div>
-  );
-};
+  )
+}
 
-export default MainProfilePage;
+export default MainProfilePage

@@ -15,6 +15,7 @@ export interface Session {
     slot_roomId: string
     sources_ipfsHash: string
     sources_youtubeId: string
+    sources_swarmHash: string
     duration: string
     language: string
 }
