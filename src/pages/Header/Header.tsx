@@ -14,9 +14,13 @@ const Header: React.FC<HeaderProps> = ({ name }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        borderTop: "1px solid #e0e0e0",
+        borderBottom: "1px solid #e0e0e0",
+        padding: "15px",
       }}
     >
-      <div style={{ fontSize: "24px", fontWeight: "bold" }}>{name}</div>
+      <div style={{ fontSize: "24px", fontWeight: "700" }}>{name}</div>
+
       <div style={{ height: "40px" }}>
         <ProfileIndicator alertValue={10} />
       </div>

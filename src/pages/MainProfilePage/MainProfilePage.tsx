@@ -1,7 +1,6 @@
 import React from "react";
-import BlogPostBox from "../../components/BlogPostBox/BlogPostBox";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentBox from "../../components/RecentBox/RecentBox";
+import RecentTalks from "../../components/RecentTalks/RecentTalks";
 import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
 import Header from "../Header/Header";
 import "./MainProfilePage.scss";
@@ -9,6 +8,8 @@ import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
 import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
+import RecentRooms from "../../components/RecentRooms/RecentRooms";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -74,17 +75,18 @@ const MainProfilePage: React.FC = () => {
         height: "100vh",
         boxSizing: "border-box",
         backgroundColor: "#f5f5f5",
-        padding: "20px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
       }}
     >
       <Header name="Agora"></Header>
-      <DevConMainBox />
-      <RecentBox />
-      <UpcomingTalkBox sessions={sessions} />
-      <BlogPostBox />
+      <div style={{ padding: "15px" }}>
+        <DevConMainBox />
+        <RecentTalks />
+        <RecentRooms />
+        <UpcomingTalkBox sessions={sessions} />
+      </div>
+      <NavigationFooter />
     </div>
   );
 };

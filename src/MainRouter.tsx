@@ -8,6 +8,7 @@ import Welcome4 from "./pages/Welcome4/Welcome4";
 import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
 import Recent from "./pages/Recent/Recent";
+import DevconLounge from "./pages/DevconLounge/DevconLounge";
 
 export enum ROUTES {
   APP = "/",
@@ -17,7 +18,8 @@ export enum ROUTES {
   WELCOME4 = "/welcome4",
   OPENPROFILE = "/openprofile",
   MAINPROFILE = "/mainprofile",
-  RECENT = "/recent",
+  RECENT = "/recen",
+  DEVCONLOUNGE = "/devconlounge",
 }
 
 const MainRouter = (): ReactElement => {
@@ -31,6 +33,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.OPENPROFILE} element={<OpenProfile />} />
       <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
       <Route path={ROUTES.RECENT} element={<Recent />} />
+      <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
     </Routes>
   );
 };

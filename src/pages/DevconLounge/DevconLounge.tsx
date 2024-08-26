@@ -1,10 +1,10 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
+import "./DevconLounge.scss";
 import Header from "../Header/Header";
+import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
 
-const Recent: React.FC = () => {
+const DevconLounge: React.FC = () => {
   return (
     <div
       style={{
@@ -27,9 +27,9 @@ const Recent: React.FC = () => {
       <div style={{ margin: "10px" }}>
         <TabPanel />
       </div>
-      <div style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}>
-        <DevConMainBox />
-      </div>
+      <div
+        style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
+      ></div>
       <div>
         <RecentItem />
         <RecentItem />
@@ -39,4 +39,4 @@ const Recent: React.FC = () => {
   );
 };
 
-export default Recent;
+export default DevconLounge;
