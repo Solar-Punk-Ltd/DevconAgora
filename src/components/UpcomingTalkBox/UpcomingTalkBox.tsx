@@ -1,8 +1,13 @@
-import React from "react";
 import "./UpcomingTalkBox.scss";
 import UpcomingTalkBoxItem from "./UpcomingTalkBoxItem/UpcomingTalkBoxItem";
+import React from "react";
+import { Session } from "../../types/session";
 
-const UpcomingTalkBox: React.FC = () => {
+interface UpcomingTalkBoxProps {
+  sessions: Session[];
+}
+
+const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({ sessions }) => {
   return (
     <div>
       <div
@@ -23,19 +28,11 @@ const UpcomingTalkBox: React.FC = () => {
           whiteSpace: "nowrap",
         }}
       >
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
-        <UpcomingTalkBoxItem />
+        {sessions.length === 0 ? (
+          <UpcomingTalkBoxItem key={"notalk"} title={"No upcoming talks"} />
+        ) : (
+          <UpcomingTalkBoxItem key={sessions[0].id} title={sessions[0].title} />
+        )}
       </div>
     </div>
   );
