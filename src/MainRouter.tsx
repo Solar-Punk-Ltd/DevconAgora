@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
