@@ -7,12 +7,7 @@ import "./MainProfilePage.scss"
 import { Session } from "../../types/session"
 import { useEffect, useState } from "react"
 import { Swarm } from "libswarm"
-import {
-  BEE_API_URL,
-  DEVCON6_SESSSIONS_HASH,
-  ADDRESS_HEX_LENGTH,
-} from "../../utils/constants"
-
+import { ADDRESS_HEX_LENGTH } from "../../utils/constants"
 
 interface MainProfilePageProps {}
 
@@ -22,11 +17,11 @@ const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {
   const [postageStamp, setPostageStamp] = useState<string>("")
 
   const swarm = new Swarm({
-    beeApi: BEE_API_URL,
+    beeApi: process.env.BEE_API_URL,
   })
 
   async function checkBee() {
-    fetch(BEE_API_URL + "addresses")
+    fetch(process.env.BEE_API_URL + "addresses")
       .then(async () => {
         if (!isBeeRunning) {
           setBeeRunning(true)
@@ -69,7 +64,7 @@ const MainProfilePage: React.FC<MainProfilePageProps> = ({}) => {
   useEffect(() => {
     checkBee()
     if (sessions.length === 0) {
-      getSessions(DEVCON6_SESSSIONS_HASH)
+      getSessions(process.env.DEVCON6_SESSSIONS_HASH)
     }
   })
 
