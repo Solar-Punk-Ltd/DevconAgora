@@ -2,8 +2,8 @@ import React from "react";
 import "./UpcomingTalkBoxItem.scss";
 
 interface UpcomingTalkBoxItemProps {
-  key: string
-  title: string
+  key: string;
+  title: string;
 }
 
 const UpcomingTalkBoxItem: React.FC<UpcomingTalkBoxItemProps> = ({ title }) => {
