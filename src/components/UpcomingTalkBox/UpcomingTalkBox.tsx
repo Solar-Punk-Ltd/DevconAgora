@@ -1,10 +1,10 @@
-import "./UpcomingTalkBox.scss"
-import UpcomingTalkBoxItem from "./UpcomingTalkBoxItem/UpcomingTalkBoxItem"
-import React from "react"
-import { Session } from "../../types/session"
+import "./UpcomingTalkBox.scss";
+import UpcomingTalkBoxItem from "./UpcomingTalkBoxItem/UpcomingTalkBoxItem";
+import React from "react";
+import { Session } from "../../types/session";
 
 interface UpcomingTalkBoxProps {
-  sessions: Session[]
+  sessions: Session[];
 }
 
 const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({ sessions }) => {
@@ -35,7 +35,7 @@ const UpcomingTalkBox: React.FC<UpcomingTalkBoxProps> = ({ sessions }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UpcomingTalkBox
+export default UpcomingTalkBox;
