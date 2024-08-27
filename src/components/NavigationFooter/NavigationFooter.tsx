@@ -1,9 +1,9 @@
 import React from "react";
 import HomeIcon from "../../assets/home.png";
 import CalendarIcon from "../../assets/calendar.png";
-import TextBubbleIcon from "../../assets/textBubble.png";
+import TextBubbleIcon from "../../assets/text-bubble.png";
 import RoomsIcon from "../../assets/rooms.png";
-import ProfileIcon from "../../assets/profileIcon.png";
+import ProfileIcon from "../../assets/profile-icon.png";
 import "./NavigationFooter.scss";
 
 const NavigationFooter: React.FC = () => {

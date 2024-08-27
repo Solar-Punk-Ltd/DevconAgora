@@ -9,6 +9,8 @@ import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
 import Recent from "./pages/Recent/Recent";
 import DevconLounge from "./pages/DevconLounge/DevconLounge";
+import Profile from "./pages/Profile/Profile";
+import Gamification from "./pages/Gamification/Gamification";
 
 export enum ROUTES {
   APP = "/",
@@ -20,6 +22,8 @@ export enum ROUTES {
   MAINPROFILE = "/mainprofile",
   RECENT = "/recen",
   DEVCONLOUNGE = "/devconlounge",
+  PROFILE = "/profile",
+  GAMIFICATION = "/gamification",
 }
 
 const MainRouter = (): ReactElement => {
@@ -34,6 +38,8 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
       <Route path={ROUTES.RECENT} element={<Recent />} />
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
+      <Route path={ROUTES.PROFILE} element={<Profile />} />
+      <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
     </Routes>
   );
 };

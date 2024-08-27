@@ -2,7 +2,6 @@ import React from "react";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentTalks from "../../components/RecentTalks/RecentTalks";
 import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
-import Header from "../Header/Header";
 import "./MainProfilePage.scss";
 import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+import Header from "../../components/Header/Header";
 
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -81,7 +81,13 @@ const MainProfilePage: React.FC = () => {
     >
       <Header name="Agora"></Header>
       <div style={{ padding: "15px" }}>
-        <DevConMainBox />
+        <DevConMainBox
+          title="Devcon chatroom"
+          content="Share your tought, chat with anybody without moderation and collect the reward."
+          showActiveVisitors={true}
+          activeVisitors={110}
+          furtherInfo="Tell us how are you!"
+        />
         <RecentTalks />
         <RecentRooms />
         <UpcomingTalkBox sessions={sessions} />

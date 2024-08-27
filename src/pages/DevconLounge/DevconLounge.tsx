@@ -1,8 +1,8 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import "./DevconLounge.scss";
-import Header from "../Header/Header";
 import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
+import Header from "../../components/Header/Header";
 
 const DevconLounge: React.FC = () => {
   return (

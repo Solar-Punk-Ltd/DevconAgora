@@ -2,7 +2,21 @@ import React from "react";
 import "./DevConMainBox.scss";
 import { Link } from "react-router-dom";
 
-const DevConMainBox: React.FC = () => {
+interface DevConMainBoxProps {
+  title: string;
+  content?: string;
+  showActiveVisitors?: boolean;
+  activeVisitors?: number;
+  furtherInfo?: string;
+}
+
+const DevConMainBox: React.FC<DevConMainBoxProps> = ({
+  title,
+  content,
+  showActiveVisitors,
+  activeVisitors,
+  furtherInfo,
+}) => {
   return (
     <Link to="/devconlounge">
       <div
@@ -21,15 +35,33 @@ const DevConMainBox: React.FC = () => {
         <div
           style={{ fontSize: "18px", fontWeight: "400", marginBottom: "8px" }}
         >
-          Devcon chatroom
+          {title}
         </div>
-        <div style={{ fontSize: "12px", marginBottom: "8px" }}>
-          Share your tought, chat with anybody without moderation and collect
-          the reward.
-        </div>
-        <div style={{ fontSize: "12px", fontWeight: "700" }}>
-          110 active visitors
-        </div>
+        <div style={{ fontSize: "12px", marginBottom: "8px" }}>{content}</div>
+        {showActiveVisitors ? (
+          <div style={{ fontSize: "12px", fontWeight: "700" }}>
+            {activeVisitors} active visitors
+          </div>
+        ) : null}
+        {furtherInfo ? (
+          <div
+            style={{
+              height: "29px",
+              color: "white",
+              backgroundColor: "#666666",
+              fontSize: "12px",
+              fontWeight: "400",
+              display: "flex",
+              alignItems: "center",
+              borderRadius: "8px",
+              padding: "8px",
+              boxSizing: "border-box",
+              marginTop: "12px",
+            }}
+          >
+            {furtherInfo}
+          </div>
+        ) : null}
       </div>
     </Link>
   );

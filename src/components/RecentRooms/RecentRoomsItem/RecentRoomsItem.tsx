@@ -1,5 +1,5 @@
 import React from "react";
-import rightArrowIcon from "../../../assets/rightArrow.png";
+import rightArrowIcon from "../../../assets/right-arrow-big.png";
 import "./RecentRoomsItem.scss";
 
 interface RecentRoomsItemProps {

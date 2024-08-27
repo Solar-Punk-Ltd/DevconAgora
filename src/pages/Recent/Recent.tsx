@@ -1,8 +1,7 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 
 const Recent: React.FC = () => {
   return (
@@ -27,9 +26,9 @@ const Recent: React.FC = () => {
       <div style={{ margin: "10px" }}>
         <TabPanel />
       </div>
-      <div style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}>
-        <DevConMainBox />
-      </div>
+      <div
+        style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
+      ></div>
       <div>
         <RecentItem />
         <RecentItem />
