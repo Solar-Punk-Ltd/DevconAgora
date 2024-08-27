@@ -51,7 +51,7 @@ export default function SwarmCommentForm({
       return setErrors(errors)
     }
 
-    onSubmit({ user, data })
+    onSubmit({ timestamp: Date.now(), data })
   }
 
   return (

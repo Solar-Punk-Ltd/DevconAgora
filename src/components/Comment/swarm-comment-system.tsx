@@ -65,11 +65,11 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
     try {
       setFormLoading(true);
       console.log("bagoy writeComment private key", props.privateKey);
-      await writeComment(comment, props);
+      const newComment = await writeComment(comment, props);
 
       setComments([
         ...(comments as Comment[]),
-        { ...comment, timestamp: new Date().getTime() },
+        newComment,
       ]);
     } catch (error) {
       // TODO the error should be displayed on page

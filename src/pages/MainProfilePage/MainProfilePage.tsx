@@ -18,6 +18,8 @@ import {
   SwarmCommentSystemProps,
 } from "../../components/Comment/swarm-comment-system";
 // import { SwarmCommentSystemProps } from "swarm-comment-system-ui"
+const TEMP_BEE_API_URL = "http://161.97.125.121:1833/";
+const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
 
 function renderSwarmComments(id: string, props: SwarmCommentSystemProps) {
   ReactDOM.createRoot(document.getElementById(id)!).render(
@@ -36,9 +38,9 @@ const MainProfilePage: React.FC = () => {
   const [feed, setFeed] = useState<string>("");
 
   const wallet = ethers.Wallet.createRandom();
-  const bee = new Bee(process.env.BEE_API_URL || "");
+  const bee = new Bee(TEMP_BEE_API_URL);
   const swarm = new Swarm({
-    beeApi: process.env.BEE_API_URL,
+    beeApi: TEMP_BEE_API_URL,
     // postageBatchId: "todo dummy",
   });
 
@@ -70,14 +72,18 @@ const MainProfilePage: React.FC = () => {
         identifier: bee.makeFeedTopic("bagoytopic"),
         approvedFeedAddress: wallet.address,
         privateKey: wallet.privateKey,
-        beeApiUrl: process.env.BEE_API_URL,
-        beeDebugApiUrl: process.env.BEE_API_URL,
+        beeApiUrl: TEMP_BEE_API_URL,
+        beeDebugApiUrl: TEMP_BEE_API_URL,
       });
     }
   }, [feed]);
 
   async function checkBee() {
-    fetch(process.env.BEE_API_URL + "addresses")
+    setBeeRunning(true);
+    setPostageStamp("59aa39cdd579800d6e68e896746575a82e8afe3cb664b96c297173f9f383b059");
+    return;
+
+    fetch(TEMP_BEE_API_URL + "addresses")
       .then(async () => {
         if (!isBeeRunning) {
           setBeeRunning(true);
@@ -120,7 +126,7 @@ const MainProfilePage: React.FC = () => {
   useEffect(() => {
     checkBee();
     if (sessions.length === 0) {
-      getSessions(process.env.DEVCON6_SESSSIONS_HASH || "");
+      //getSessions(TEMP_DEVCON6_SESSSIONS_HASH);
     }
     createFeed();
   }, [sessions, isBeeRunning, postageStamp]);
