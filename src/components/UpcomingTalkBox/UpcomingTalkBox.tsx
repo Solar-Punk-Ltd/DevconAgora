@@ -1,7 +1,6 @@
 import React from "react";
 import "./UpcomingTalkBox.scss";
 import UpcomingTalkBoxItem from "./UpcomingTalkBoxItem/UpcomingTalkBoxItem";
-import React from "react";
 import { Session } from "../../types/session";
 
 interface UpcomingTalkBoxProps {
