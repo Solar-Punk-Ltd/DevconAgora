@@ -1,0 +1,37 @@
+diff --git a/build/comments.js b/build/comments.js
+index 4acb41a2a6e0ca33cd7f9a62f00700048a66ff9b..926acd0317c0d939df07df98780390b1f8492e22 100644
+--- a/build/comments.js
++++ b/build/comments.js
+@@ -42,15 +42,23 @@ function prepareReadOptions(options = {}) {
+     return prepareOptions(options, false);
+ }
+ export async function writeComment(comment, options) {
+-    const { identifier, stamp, beeApiUrl, beeDebugApiUrl, privateKey: optionsPrivateKey } = await prepareWriteOptions(options);
+-    const privateKey = optionsPrivateKey || getPrivateKeyFromIdentifier(identifier);
+-    const bee = new Bee(beeApiUrl);
+-    const beeDebug = new BeeDebug(beeDebugApiUrl);
+-    const commentObject = Object.assign(Object.assign({}, comment), { user: (await beeDebug.getNodeAddresses()).ethereum, id: comment.id || uuid(), timestamp: typeof comment.timestamp === 'number' ? comment.timestamp : new Date().getTime() });
+-    const { reference } = await bee.uploadData(stamp, JSON.stringify(commentObject));
+-    const feedWriter = bee.makeFeedWriter('sequence', ZeroHash, privateKey);
+-    await feedWriter.upload(stamp, reference);
+-    return commentObject;
++    try {
++        console.log("Entering writeComment")
++        const { identifier, stamp, beeApiUrl, beeDebugApiUrl, privateKey: optionsPrivateKey } = await prepareWriteOptions(options);
++        const privateKey = optionsPrivateKey || getPrivateKeyFromIdentifier(identifier);
++        const bee = new Bee(beeApiUrl);
++        const beeDebug = new BeeDebug(beeDebugApiUrl);
++        const commentObject = Object.assign(Object.assign({}, comment), { user: /*(await beeDebug.getNodeAddresses()).ethereum*/ "username", id: comment.id || uuid(), timestamp: typeof comment.timestamp === 'number' ? comment.timestamp : new Date().getTime() });
++        const { reference } = await bee.uploadData(stamp, JSON.stringify(commentObject));
++        const feedWriter = bee.makeFeedWriter('sequence', ZeroHash, privateKey);
++        await feedWriter.upload(stamp, reference);
++
++        console.log("Done! commentObject is: ", commentObject)
++
++        return commentObject;
++    } catch (error) {
++        console.log("Error inside writeComment: ", error)
++    }
+ }
+ export async function readComments(options) {
+     const { identifier, beeApiUrl, approvedFeedAddress: optionsAddress } = await prepareReadOptions(options);

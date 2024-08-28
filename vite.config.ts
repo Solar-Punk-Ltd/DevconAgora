@@ -7,5 +7,8 @@ export default defineConfig(() => {
 
     plugins: [react()],
     base: '/DevconAgora/',
+    build: {
+      sourcemap: true
+    }
   }
 })

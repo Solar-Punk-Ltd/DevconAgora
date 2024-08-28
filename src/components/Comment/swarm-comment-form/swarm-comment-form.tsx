@@ -1,4 +1,4 @@
-import { CommentRequest } from "swarm-comment-system"
+import { CommentRequest } from "../../../libs/comment-system/model/comment.model"
 import styles from "./swarm-comment-form.module.scss"
 import { useState } from "react"
 
@@ -51,7 +51,7 @@ export default function SwarmCommentForm({
       return setErrors(errors)
     }
 
-    onSubmit({ timestamp: Date.now(), data })
+    onSubmit({ timestamp: Date.now(), data, user })
   }
 
   return (

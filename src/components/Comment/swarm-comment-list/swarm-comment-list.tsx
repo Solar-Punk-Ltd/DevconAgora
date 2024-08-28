@@ -1,4 +1,4 @@
-import { Comment } from "swarm-comment-system"
+import { Comment } from "../../../libs/comment-system/model/comment.model"
 import styles from "./swarm-comment-list.module.scss"
 
 export interface SwarmCommentSystemProps {

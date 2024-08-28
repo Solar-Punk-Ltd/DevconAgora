@@ -10,7 +10,7 @@ import ReactDOM from "react-dom/client";
 import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import { ethers, ZeroHash } from "ethers";
-import { Bee } from "@ethersphere/bee-js";
+import { Bee, Topic } from "@ethersphere/bee-js";
 import { Binary } from "cafe-utility";
 import { Bytes } from "mantaray-js";
 import {
@@ -18,7 +18,7 @@ import {
   SwarmCommentSystemProps,
 } from "../../components/Comment/swarm-comment-system";
 // import { SwarmCommentSystemProps } from "swarm-comment-system-ui"
-const TEMP_BEE_API_URL = "http://161.97.125.121:1833/";
+const TEMP_BEE_API_URL = "http://161.97.125.121:1933/";
 const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
 
 function renderSwarmComments(id: string, props: SwarmCommentSystemProps) {
@@ -37,7 +37,20 @@ const MainProfilePage: React.FC = () => {
   const [postageStamp, setPostageStamp] = useState<string>("");
   const [feed, setFeed] = useState<string>("");
 
-  const wallet = ethers.Wallet.createRandom();
+  // Topic
+  const topicHumanReadable = "bagoytopic";
+
+  // Create Wallet
+  let wallet: ethers.Wallet | null;
+  const savedKey = localStorage.getItem("walletPrivKey");
+  if (savedKey) {
+    wallet = new ethers.Wallet(savedKey)
+  } else {
+    const tempPriv = ethers.Wallet.createRandom().privateKey;
+    wallet = new ethers.Wallet(tempPriv);
+    localStorage.setItem("walletPrivKey", wallet.privateKey)
+  }
+
   const bee = new Bee(TEMP_BEE_API_URL);
   const swarm = new Swarm({
     beeApi: TEMP_BEE_API_URL,
@@ -48,13 +61,19 @@ const MainProfilePage: React.FC = () => {
     "03bfb125b262beafd2531171e1b4aa7b69dc4417222ff6ff58334c9fc0c96ce87f";
   const nodeaddr = "0x5fDCAeb6D886806A49F4263C0e6c45Dcf4706799";
   async function createFeed() {
-    if (postageStamp.length !== 0 && feed.length === 0) {
-      console.log("wallet address", wallet.address);
+    console.log(postageStamp.length)
+    console.log(feed.length)
+    if (postageStamp.length !== 0 && feed.length === 0 && wallet) {
+      console.log("wallet address (inside createFeed)", wallet.address);
+      console.log("Postage stamp (inside createFeed): ", postageStamp)
       try {
+        console.log("creating feed...")
+        const topicHex: Topic = bee.makeFeedTopic(topicHumanReadable)
+        console.log("topicHex ", topicHex)
         const feedReference = await bee.createFeedManifest(
           postageStamp,
           "sequence",
-          ZeroHash,
+          topicHex,
           wallet.address
         );
         console.log("created feed:", feedReference.reference);
@@ -66,21 +85,22 @@ const MainProfilePage: React.FC = () => {
   }
 
   useEffect(() => {
+    console.log("feed use effect")
     if (feed.length !== 0) {
       console.log("bagoy renderSwarmComments private key", wallet.privateKey);
       renderSwarmComments(COMMENTS_DIV_ID, {
-        identifier: bee.makeFeedTopic("bagoytopic"),
+        stamp: postageStamp,
+        identifier: bee.makeFeedTopic(topicHumanReadable),
         approvedFeedAddress: wallet.address,
         privateKey: wallet.privateKey,
-        beeApiUrl: TEMP_BEE_API_URL,
-        beeDebugApiUrl: TEMP_BEE_API_URL,
+        beeApiUrl: TEMP_BEE_API_URL
       });
     }
   }, [feed]);
 
   async function checkBee() {
     setBeeRunning(true);
-    setPostageStamp("59aa39cdd579800d6e68e896746575a82e8afe3cb664b96c297173f9f383b059");
+    setPostageStamp("ae9e318f7e4e40161b82d602cc5c1c023b4aec09dd56a55f07bbb3c5842b7413");
     return;
 
     fetch(TEMP_BEE_API_URL + "addresses")
@@ -125,9 +145,11 @@ const MainProfilePage: React.FC = () => {
 
   useEffect(() => {
     checkBee();
+    console.log("checkBee existed (SUCCESS)")
     if (sessions.length === 0) {
       //getSessions(TEMP_DEVCON6_SESSSIONS_HASH);
     }
+    console.log("Entering createFeed...")
     createFeed();
   }, [sessions, isBeeRunning, postageStamp]);
 

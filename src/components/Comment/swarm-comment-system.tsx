@@ -1,9 +1,5 @@
-import {
-  Comment,
-  CommentRequest,
-  readComments,
-  writeComment,
-} from "swarm-comment-system";
+import { Comment, CommentRequest } from "../../libs/comment-system/model/comment.model";
+import { readComments, writeComment } from "../../libs/comment-system/comments";
 import SwarmCommentList from "./swarm-comment-list/swarm-comment-list";
 import React, { useEffect, useState } from "react";
 import SwarmCommentForm from "./swarm-comment-form/swarm-comment-form";
@@ -52,6 +48,7 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
         approvedFeedAddress:
           category === "approved" ? props.approvedFeedAddress : undefined,
       });
+      console.log("readed comments: ", comments)
 
       setComments(comments);
     } catch (error) {
@@ -65,7 +62,10 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
     try {
       setFormLoading(true);
       console.log("bagoy writeComment private key", props.privateKey);
+      console.log("will be sent ", comment)
       const newComment = await writeComment(comment, props);
+      if (!newComment) throw "Comment write failed."
+      console.log("res ", newComment)
 
       setComments([
         ...(comments as Comment[]),
@@ -73,6 +73,7 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
       ]);
     } catch (error) {
       // TODO the error should be displayed on page
+      console.error("E: ", error)
       alert(error);
     } finally {
       setFormLoading(false);
