@@ -1,7 +1,7 @@
 import React from "react";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentTalks from "../../components/RecentTalks/RecentTalks";
-import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
+// import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
 import "./MainProfilePage.scss";
 import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
@@ -90,7 +90,7 @@ const MainProfilePage: React.FC = () => {
         />
         <RecentTalks />
         <RecentRooms />
-        <UpcomingTalkBox sessions={sessions} />
+        {/* <UpcomingTalkBox sessions={sessions} /> */}
       </div>
       <NavigationFooter />
     </div>

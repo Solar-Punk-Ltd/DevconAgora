@@ -5,6 +5,7 @@ import TextBubbleIcon from "../../assets/text-bubble.png";
 import RoomsIcon from "../../assets/rooms.png";
 import ProfileIcon from "../../assets/profile-icon.png";
 import "./NavigationFooter.scss";
+import { Link } from "react-router-dom";
 
 const NavigationFooter: React.FC = () => {
   return (
@@ -35,17 +36,19 @@ const NavigationFooter: React.FC = () => {
         <img src={HomeIcon} alt="" width="24px" height="24px" />
         <div style={{ fontSize: "12px" }}>Home</div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <img src={CalendarIcon} alt="" width="24px" height="24px" />
-        <div style={{ fontSize: "12px" }}>Agenda</div>
-      </div>
+      <Link to="/agenda">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <img src={CalendarIcon} alt="" width="24px" height="24px" />
+          <div style={{ fontSize: "12px" }}>Agenda</div>
+        </div>
+      </Link>
       <div
         style={{
           display: "flex",
