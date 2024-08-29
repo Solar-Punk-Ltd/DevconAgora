@@ -8,52 +8,14 @@ import { numberToFeedIndex } from './uitls/feeds'
 import { Options } from './model/options.model'
 import { Optional } from './model/util.types'
 
-async function prepareOptions(
-  options: Options = {},
-  stampRequired = true,
-): Promise<Optional<Required<Options>, 'stamp' | 'privateKey' | 'approvedFeedAddress'>> {
-  const beeApiUrl = options.beeApiUrl ?? BEE_URL
-  const beeDebugApiUrl = options.beeDebugApiUrl ?? BEE_DEBUG_URL
-  const { privateKey, approvedFeedAddress } = options
-  let { identifier, stamp } = options
-
-  if (!identifier) {
-    identifier = getIdentifierFromUrl(window.location.href)
-  }
-
-  if (!identifier) {
-    throw new Error('Cannot generate private key from an invalid URL')
-  }
-
-  if (!stamp && stampRequired) {
-      throw new Error('No available stamps found.')
-  }
-
-  return {
-    stamp,
-    identifier,
-    beeApiUrl,
-    beeDebugApiUrl,
-    privateKey,
-    approvedFeedAddress,
-  }
-}
-
-function prepareWriteOptions(options: Options = {}): Promise<Required<Options>> {
-  return prepareOptions(options) as Promise<Required<Options>>
-}
-
-function prepareReadOptions(
-  options: Options = {},
-): Promise<Omit<Optional<Required<Options>, 'approvedFeedAddress'>, 'stamp' | 'privateKey'>> {
-  return prepareOptions(options, false)
-}
 
 export async function writeComment(comment: CommentRequest, options?: Options) {
   try {
-    const { identifier, stamp, beeApiUrl, privateKey: optionsPrivateKey } = await prepareWriteOptions(options)
-    const privateKey = optionsPrivateKey || getPrivateKeyFromIdentifier(identifier)
-    const bee = new Bee(beeApiUrl)
+    if (!options) return;
+    const { identifier, stamp, beeApiUrl, privateKey: optionsPrivateKey, signer } = options
+    if (!stamp) return;
+    const privateKey = optionsPrivateKey// || getPrivateKeyFromIdentifier(identifier)
+    const bee = new Bee(beeApiUrl || "http://localhost:1633")
   
     const commentObject: Comment = {
       ...comment,
@@ -61,9 +23,13 @@ export async function writeComment(comment: CommentRequest, options?: Options) {
     }
   
     const { reference } = await bee.uploadData(stamp, JSON.stringify(commentObject))
-    const feedWriter = bee.makeFeedWriter('sequence', ZeroHash, privateKey)
+    console.log("Data upload successful: ", reference)
+    console.log("Signer", signer)
+    const feedWriter = bee.makeFeedWriter('sequence', bee.makeFeedTopic("bagoytopic"), signer)
+    console.log("feedWriter made: ", feedWriter)
   
-    await feedWriter.upload(stamp, reference);
+    const r = await feedWriter.upload(stamp, reference);
+    console.log("feed updated: ", r)
 
     return commentObject;
     
@@ -73,13 +39,18 @@ export async function writeComment(comment: CommentRequest, options?: Options) {
 }
 
 export async function readComments(options?: Options): Promise<Comment[]> {
-  const { identifier, beeApiUrl, approvedFeedAddress: optionsAddress } = await prepareReadOptions(options)
+  if (!options) return []
+  const { identifier, beeApiUrl, approvedFeedAddress: optionsAddress } = options
+  if (!identifier) {
+    console.error("No identifier")
+    return []
+  }
 
-  const bee = new Bee(beeApiUrl)
+  const bee = new Bee(beeApiUrl || "http://localhost:1633")
 
   const address = optionsAddress || getAddressFromIdentifier(identifier)
 
-  const feedReader = bee.makeFeedReader('sequence', ZeroHash, address)
+  const feedReader = bee.makeFeedReader('sequence', bee.makeFeedTopic("bagoytopic"), address)
 
   const comments: Comment[] = []
 

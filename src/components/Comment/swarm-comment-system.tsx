@@ -4,6 +4,7 @@ import SwarmCommentList from "./swarm-comment-list/swarm-comment-list";
 import React, { useEffect, useState } from "react";
 import SwarmCommentForm from "./swarm-comment-form/swarm-comment-form";
 import { Tabs } from "./tabs/tabs";
+import { Signer } from "@ethersphere/bee-js";
 
 /**
  * stamp - Postage stamp ID. If ommitted a first available stamp will be used.
@@ -18,6 +19,7 @@ export interface SwarmCommentSystemProps {
   beeDebugApiUrl?: string;
   approvedFeedAddress?: string;
   privateKey?: string;
+  signer: Signer,
   classes?: {
     wrapper?: string;
     form?: string;

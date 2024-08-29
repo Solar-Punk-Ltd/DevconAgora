@@ -10,7 +10,7 @@ import ReactDOM from "react-dom/client";
 import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import { ethers, ZeroHash } from "ethers";
-import { Bee, Topic } from "@ethersphere/bee-js";
+import { Bee, Signer, Topic, Utils } from "@ethersphere/bee-js";
 import { Binary } from "cafe-utility";
 import { Bytes } from "mantaray-js";
 import {
@@ -51,6 +51,13 @@ const MainProfilePage: React.FC = () => {
     localStorage.setItem("walletPrivKey", wallet.privateKey)
   }
 
+  const signer: Signer = {
+    address: Utils.hexToBytes(wallet.address.slice(2)),
+    sign: async (data: any) => {
+      return await wallet.signMessage(data);
+    },
+  };
+
   const bee = new Bee(TEMP_BEE_API_URL);
   const swarm = new Swarm({
     beeApi: TEMP_BEE_API_URL,
@@ -74,7 +81,7 @@ const MainProfilePage: React.FC = () => {
           postageStamp,
           "sequence",
           topicHex,
-          wallet.address
+          signer.address
         );
         console.log("created feed:", feedReference.reference);
         setFeed(feedReference.reference);
@@ -93,7 +100,8 @@ const MainProfilePage: React.FC = () => {
         identifier: bee.makeFeedTopic(topicHumanReadable),
         approvedFeedAddress: wallet.address,
         privateKey: wallet.privateKey,
-        beeApiUrl: TEMP_BEE_API_URL
+        beeApiUrl: TEMP_BEE_API_URL,
+        signer
       });
     }
   }, [feed]);
