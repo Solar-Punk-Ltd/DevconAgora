@@ -25,7 +25,7 @@ export async function writeComment(comment: CommentRequest, options?: Options) {
     const { reference } = await bee.uploadData(stamp, JSON.stringify(commentObject))
     console.log("Data upload successful: ", reference)
     console.log("Signer", signer)
-    const feedWriter = bee.makeFeedWriter('sequence', bee.makeFeedTopic("bagoytopic"), signer)
+    const feedWriter = bee.makeFeedWriter('sequence', identifier || ZeroHash, signer)
     console.log("feedWriter made: ", feedWriter)
   
     const r = await feedWriter.upload(stamp, reference);
@@ -50,7 +50,7 @@ export async function readComments(options?: Options): Promise<Comment[]> {
 
   const address = optionsAddress || getAddressFromIdentifier(identifier)
 
-  const feedReader = bee.makeFeedReader('sequence', bee.makeFeedTopic("bagoytopic"), address)
+  const feedReader = bee.makeFeedReader('sequence', identifier || ZeroHash, address)
 
   const comments: Comment[] = []
 
