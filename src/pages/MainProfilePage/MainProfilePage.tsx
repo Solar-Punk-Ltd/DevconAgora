@@ -18,7 +18,7 @@ import {
   SwarmCommentSystemProps,
 } from "../../components/Comment/swarm-comment-system";
 // import { SwarmCommentSystemProps } from "swarm-comment-system-ui"
-const TEMP_BEE_API_URL = "http://161.97.125.121:1933/";
+const TEMP_BEE_API_URL = "http://161.97.125.121:1733/";
 const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
 
 function renderSwarmComments(id: string, props: SwarmCommentSystemProps) {
@@ -108,7 +108,7 @@ const MainProfilePage: React.FC = () => {
 
   async function checkBee() {
     setBeeRunning(true);
-    setPostageStamp("ae9e318f7e4e40161b82d602cc5c1c023b4aec09dd56a55f07bbb3c5842b7413");
+    setPostageStamp("27d546c0e5917e247e10fa8f1ffd83166cee59a98ea3a12692db03a28b760d01");
     return;
 
     fetch(TEMP_BEE_API_URL + "addresses")

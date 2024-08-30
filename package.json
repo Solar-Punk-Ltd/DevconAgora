@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ethersphere/bee-js": "^7.1.1",
+    "@ethersphere/bee-js": "6.9.1",
     "cafe-utility": "^22.4.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",

@@ -14,8 +14,8 @@ importers:
   .:
     dependencies:
       '@ethersphere/bee-js':
-        specifier: ^7.1.1
-        version: 7.1.1
+        specifier: 6.9.1
+        version: 6.9.1
       cafe-utility:
         specifier: ^22.4.0
         version: 22.4.0
