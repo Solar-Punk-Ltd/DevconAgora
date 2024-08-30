@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import "./Welcome3.scss";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 
 const Welcome3: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const Welcome3: React.FC = () => {
         </div>
         <div className="bottom">
           <Link to="/welcome4">
-            <Button>Next</Button>
+            <WelcomeButton>Next</WelcomeButton>
           </Link>
           <div className="bottom-text">
             I know everything{" "}

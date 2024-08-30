@@ -1,0 +1,23 @@
+.welcome-button {
+  min-width: 80px;
+  width: 341px;
+  height: 56px;
+  border-radius: 64px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Public Sans", sans-serif;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: border-color 0.25s;
+  color: white;
+  background: linear-gradient(0deg, #8c72ae 0%, #873de7 100%);
+}
+.welcome-button:hover {
+  border-color: #646cff;
+}
+.welcome-button:focus,
+.welcome-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

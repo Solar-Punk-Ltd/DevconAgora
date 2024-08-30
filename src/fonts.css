@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/Poppins-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/Inter-VariableFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
