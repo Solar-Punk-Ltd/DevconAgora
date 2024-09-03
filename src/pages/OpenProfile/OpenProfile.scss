@@ -1,12 +1,41 @@
-.openprofile-header {
-  height: 80px;
-  margin-top: 30px;
+.openprofile-page__header {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.openprofile-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 35px;
 }
 
 @media (min-width: 600px) {
-  .openprofile-header {
+  .openprofile-page__header {
     margin-top: 0px;
   }
+}
+.openprofile-page__username {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+  text-align: center;
+}
+
+.openprofile-page__username-edit {
+  width: 267px;
+  padding: 10px 8px;
+  display: flex;
+  column-gap: 15px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .username {

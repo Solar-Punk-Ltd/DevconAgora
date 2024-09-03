@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import "../src/styles/global.scss";
 import backgroundVideo from "./assets/opening.mp4";
 import bySolarPunk from "./assets/by-solar-punk.png";
 import videoGlassEffect from "./assets/video-glass-effect.png";

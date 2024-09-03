@@ -1,33 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import profileImage from "../../assets/profile.png";
 import editIconImage from "../../assets/edit-icon.png";
 import "./OpenProfile.scss";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import OpenProfilePicture from "../../components/OpenProfilePicture/OpenProfilePicture";
+import DefaultButton from "../../components/DefaultButton/DefaultButton";
 
 const OpenProfile: React.FC = () => {
   return (
     <>
-      <div className="welcome-layout welcome-font">
-        <div className="welcome-content">
-          <div className="openprofile-header">Open your profile</div>
-          <img src={profileImage} alt="" width={242} height={242} />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "15px",
-            }}
-          >
-            <div className="username" style={{ marginRight: "10px" }}>
-              ChainMasterAlex
-            </div>
+      <div className="openprofile-page">
+        <div className="openprofile-page__header">Open your profile</div>
+        <OpenProfilePicture name="CM" />
+        <div>
+          <div className="openprofile-page__username">Name</div>
+          <div className="openprofile-page__username-edit">
+            <div>Chain Master</div>
+
             <img src={editIconImage} alt="" width={24} height={24} />
           </div>
         </div>
         <div className="bottom">
           <Link to="/mainprofile">
-            <WelcomeButton>Start Building Your Community</WelcomeButton>
+            <DefaultButton>Start Building Your Community</DefaultButton>
           </Link>
         </div>
       </div>

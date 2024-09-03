@@ -1,31 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Welcome2.scss";
 import welcome2img from "../../assets/welcome2img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 
 const Welcome2: React.FC = () => {
   return (
     <>
-      <div className="welcome2-page">
-        <div className="welcome2-page__header">
+      <div className="welcome-page">
+        <div className="welcome-page__header">
           Be active and get
           <span style={{ color: "var(--purple-to-text-color)" }}> reward!</span>
         </div>
-        <div className="welcome2-page__content">
-          <div className="welcome2-page__content__image">
+        <div className="welcome-page__content">
+          {/* <div className="welcome1-page__content__color-effect"></div> */}
+
+          <div className="welcome-page__content__image">
             <img src={welcome2img} alt="" width="293px" />
           </div>
-          <div className="welcome2-page__content__text">
+          <div className="welcome-page__content__text">
             Comment and contribute to the community. Receive{" "}
             <b>10 BZZ tokens</b> for 10 valuable contributions.
           </div>
         </div>
-        <div>
-          <Link to="/welcome2">
+        <div className="welcome-page__bottom">
+          <WelcomeProgressIndicator active={1} />
+          <Link to="/welcome3">
             <WelcomeButton>Next</WelcomeButton>
           </Link>
-          <div className="welcome2-page__bottom-text">
+          <div className="welcome-page__bottom-text">
             I know everything{" "}
             <Link to="/openprofile">
               <span
