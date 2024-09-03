@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
@@ -8,6 +8,10 @@ import Welcome4 from "./pages/Welcome4/Welcome4";
 import OpenProfile from "./pages/OpenProfile/OpenProfile";
 import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
 import Recent from "./pages/Recent/Recent";
+import DevconLounge from "./pages/DevconLounge/DevconLounge";
+import Profile from "./pages/Profile/Profile";
+import Gamification from "./components/Gamification/Gamification";
+import Agenda from "./pages/Agenda/Agenda";
 
 export enum ROUTES {
   APP = "/",
@@ -18,6 +22,10 @@ export enum ROUTES {
   OPENPROFILE = "/openprofile",
   MAINPROFILE = "/mainprofile",
   RECENT = "/recent",
+  DEVCONLOUNGE = "/devconlounge",
+  PROFILE = "/profile",
+  GAMIFICATION = "/gamification",
+  AGENDA = "/agenda",
 }
 
 const MainRouter = (): ReactElement => {
@@ -31,6 +39,10 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.OPENPROFILE} element={<OpenProfile />} />
       <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
       <Route path={ROUTES.RECENT} element={<Recent />} />
+      <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
+      <Route path={ROUTES.PROFILE} element={<Profile />} />
+      <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
+      <Route path={ROUTES.AGENDA} element={<Agenda />} />
     </Routes>
   );
 };

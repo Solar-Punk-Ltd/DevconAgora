@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import "./Welcome4.scss";
+import DefaultButton from "../../components/DefaultButton/DefaultButton";
 
 const Welcome4: React.FC = () => {
   return (
@@ -18,7 +18,7 @@ const Welcome4: React.FC = () => {
         </div>
         <div className="bottom">
           <Link to="/openprofile">
-            <Button>Let’s go</Button>
+            <DefaultButton>Let’s go</DefaultButton>
           </Link>
           <div className="bottom-text">
             I know everything{" "}

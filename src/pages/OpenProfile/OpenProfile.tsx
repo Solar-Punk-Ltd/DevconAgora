@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import profileImage from "../../assets/profile.png";
 import editIconImage from "../../assets/edit-icon.png";
 import "./OpenProfile.scss";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 
 const OpenProfile: React.FC = () => {
   return (
@@ -27,7 +27,7 @@ const OpenProfile: React.FC = () => {
         </div>
         <div className="bottom">
           <Link to="/mainprofile">
-            <Button>Start Building Your Community</Button>
+            <WelcomeButton>Start Building Your Community</WelcomeButton>
           </Link>
         </div>
       </div>

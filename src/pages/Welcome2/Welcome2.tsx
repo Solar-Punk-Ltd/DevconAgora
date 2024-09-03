@@ -1,33 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import "./Welcome2.scss";
+import welcome2img from "../../assets/welcome2img.png";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 
 const Welcome2: React.FC = () => {
   return (
     <>
-      <div className="welcome-layout welcome-font">
-        <div className="welcome-content">
-          <div className="welcome-header">Welcome on DevCon Agora</div>
-          <div className="subtext">
-            <div className="welcome-subtext1">Reward</div>
-            <div className="welcome-subtext2">Be active!</div>
-            <div className="welcome-subtext2">
-              Comment and contribute to the community.
-            </div>
-            <div className="welcome-subtext2">
-              Receive 10 BZZ tokens for 10 valuable contributions.
-            </div>
+      <div className="welcome2-page">
+        <div className="welcome2-page__header">
+          Be active and get
+          <span style={{ color: "var(--purple-to-text-color)" }}> reward!</span>
+        </div>
+        <div className="welcome2-page__content">
+          <div className="welcome2-page__content__image">
+            <img src={welcome2img} alt="" width="293px" />
+          </div>
+          <div className="welcome2-page__content__text">
+            Comment and contribute to the community. Receive{" "}
+            <b>10 BZZ tokens</b> for 10 valuable contributions.
           </div>
         </div>
-        <div className="bottom">
-          <Link to="/welcome3">
-            <Button>Next</Button>
+        <div>
+          <Link to="/welcome2">
+            <WelcomeButton>Next</WelcomeButton>
           </Link>
-          <div className="bottom-text">
+          <div className="welcome2-page__bottom-text">
             I know everything{" "}
             <Link to="/openprofile">
-              <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
+              <span
+                style={{
+                  textDecoration: "underline",
+                  fontWeight: "bold",
+                  color: "#8C72AE",
+                }}
+              >
                 SKIP
               </span>
             </Link>
