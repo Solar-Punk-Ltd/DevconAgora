@@ -34,12 +34,6 @@ const Welcome4: React.FC = () => {
           <Link to="/openprofile">
             <WelcomeButton>Let’s go</WelcomeButton>
           </Link>
-          <div className="welcome-page__bottom-text">
-            I know everything{" "}
-            <Link to="/openprofile">
-              <span className="welcome-page__bottom-text__skip">SKIP</span>
-            </Link>
-          </div>
         </div>
       </div>
     </>
