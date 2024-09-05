@@ -16,16 +16,6 @@ import { SwarmCommentSystem, SwarmCommentSystemProps } from "../../components/Co
 const TEMP_BEE_API_URL = "http://161.97.125.121:1733/";
 const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
 
-function renderSwarmComments(id: string, props: SwarmCommentSystemProps) {
-  ReactDOM.createRoot(document.getElementById(id)!).render(
-    <React.StrictMode>
-      <SwarmCommentSystem {...props} />
-    </React.StrictMode>
-  );
-}
-
-const COMMENTS_DIV_ID = "comments";
-
 
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -55,10 +45,7 @@ const MainProfilePage: React.FC = () => {
   };
 
   const bee = new Bee(TEMP_BEE_API_URL);
-  const swarm = new Swarm({
-    beeApi: TEMP_BEE_API_URL,
-    // postageBatchId: "todo dummy",
-  });
+  const swarm = new Swarm({ beeApi: TEMP_BEE_API_URL });
 
   async function createFeed() {
     if (postageStamp.length !== 0 && feed.length === 0 && wallet) {
@@ -80,20 +67,6 @@ const MainProfilePage: React.FC = () => {
       }
     }
   }
-
-  useEffect(() => {
-    if (feed.length !== 0) {
-      console.log("bagoy renderSwarmComments private key", wallet.privateKey);
-      renderSwarmComments(COMMENTS_DIV_ID, {
-        stamp: postageStamp,
-        identifier: bee.makeFeedTopic(topicHumanReadable),
-        approvedFeedAddress: wallet.address,
-        privateKey: wallet.privateKey,
-        beeApiUrl: TEMP_BEE_API_URL,
-        signer
-      });
-    }
-  }, [feed]);
 
   async function getSessions(hash: string) {
     if (hash.length !== ADDRESS_HEX_LENGTH) {
@@ -137,9 +110,16 @@ const MainProfilePage: React.FC = () => {
       <Header name="Agora"></Header>
       <DevConMainBox />
       <RecentBox />
-      <div id={COMMENTS_DIV_ID}>
-        {/* renderSwarmComments finds and renders to the div with the given id*/}
-      </div>
+      
+      <SwarmCommentSystem 
+        stamp={postageStamp}
+        identifier={bee.makeFeedTopic(topicHumanReadable)}
+        approvedFeedAddress={wallet.address}
+        privateKey={wallet.privateKey}
+        beeApiUrl={TEMP_BEE_API_URL}
+        signer={signer}
+      />
+      
       <UpcomingTalkBox sessions={sessions} />
       <BlogPostBox />
     </div>
