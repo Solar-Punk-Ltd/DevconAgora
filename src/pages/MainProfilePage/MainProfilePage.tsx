@@ -23,10 +23,10 @@ const MainProfilePage: React.FC = () => {
   const [postageStamp, setPostageStamp] = useState<string>("52d503ddfe75c71c27accc6396a2748b83d4b2ee05529ec259d8859b5a25bfce");
   const [feed, setFeed] = useState<string>("");
 
-  // Topic
+  // Topic - this will be created outside the component
   const topicHumanReadable = "bagoytopic";
 
-  // Create Wallet
+  // Create Wallet - this will be created outside the component
   let wallet: ethers.Wallet | null;
   const savedKey = localStorage.getItem("walletPrivKey");
   if (savedKey) {
@@ -47,6 +47,7 @@ const MainProfilePage: React.FC = () => {
   const bee = new Bee(TEMP_BEE_API_URL);
   const swarm = new Swarm({ beeApi: TEMP_BEE_API_URL });
 
+  // Most likely we won't have this, because rooms will be pre-created
   async function createFeed() {
     if (postageStamp.length !== 0 && feed.length === 0 && wallet) {
       try {
@@ -111,10 +112,10 @@ const MainProfilePage: React.FC = () => {
       <DevConMainBox />
       <RecentBox />
       
+      {/** Talks will only have this. Room should already exist when the application is launched */}
       <SwarmCommentSystem 
         stamp={postageStamp}
         identifier={bee.makeFeedTopic(topicHumanReadable)}
-        approvedFeedAddress={wallet.address}
         privateKey={wallet.privateKey}
         beeApiUrl={TEMP_BEE_API_URL}
         signer={signer}
