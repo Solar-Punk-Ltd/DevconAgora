@@ -11,13 +11,8 @@ import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import { ethers, ZeroHash } from "ethers";
 import { Bee, Signer, Topic, Utils } from "@ethersphere/bee-js";
-import { Binary } from "cafe-utility";
-import { Bytes } from "mantaray-js";
-import {
-  SwarmCommentSystem,
-  SwarmCommentSystemProps,
-} from "../../components/Comment/swarm-comment-system";
-// import { SwarmCommentSystemProps } from "swarm-comment-system-ui"
+import { SwarmCommentSystem, SwarmCommentSystemProps } from "../../components/Comment/swarm-comment-system";
+
 const TEMP_BEE_API_URL = "http://161.97.125.121:1733/";
 const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
 
@@ -31,10 +26,11 @@ function renderSwarmComments(id: string, props: SwarmCommentSystemProps) {
 
 const COMMENTS_DIV_ID = "comments";
 
+
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
-  const [isBeeRunning, setBeeRunning] = useState(false);
-  const [postageStamp, setPostageStamp] = useState<string>("");
+  const [isBeeRunning, setBeeRunning] = useState(true);
+  const [postageStamp, setPostageStamp] = useState<string>("52d503ddfe75c71c27accc6396a2748b83d4b2ee05529ec259d8859b5a25bfce");
   const [feed, setFeed] = useState<string>("");
 
   // Topic
@@ -64,35 +60,28 @@ const MainProfilePage: React.FC = () => {
     // postageBatchId: "todo dummy",
   });
 
-  const nodepubkey =
-    "03bfb125b262beafd2531171e1b4aa7b69dc4417222ff6ff58334c9fc0c96ce87f";
-  const nodeaddr = "0x5fDCAeb6D886806A49F4263C0e6c45Dcf4706799";
   async function createFeed() {
-    console.log(postageStamp.length)
-    console.log(feed.length)
     if (postageStamp.length !== 0 && feed.length === 0 && wallet) {
-      console.log("wallet address (inside createFeed)", wallet.address);
-      console.log("Postage stamp (inside createFeed): ", postageStamp)
       try {
-        console.log("creating feed...")
+        console.info("creating feed...")
         const topicHex: Topic = bee.makeFeedTopic(topicHumanReadable)
-        console.log("topicHex ", topicHex)
+        
         const feedReference = await bee.createFeedManifest(
           postageStamp,
           "sequence",
           topicHex,
           signer.address
         );
-        console.log("created feed:", feedReference.reference);
+
+        console.info(`created feed with reference ${feedReference.reference}`);
         setFeed(feedReference.reference);
       } catch (e) {
-        console.log("feed gen error", e);
+        console.error("feed gen error", e);
       }
     }
   }
 
   useEffect(() => {
-    console.log("feed use effect")
     if (feed.length !== 0) {
       console.log("bagoy renderSwarmComments private key", wallet.privateKey);
       renderSwarmComments(COMMENTS_DIV_ID, {
@@ -106,34 +95,6 @@ const MainProfilePage: React.FC = () => {
     }
   }, [feed]);
 
-  async function checkBee() {
-    setBeeRunning(true);
-    setPostageStamp("27d546c0e5917e247e10fa8f1ffd83166cee59a98ea3a12692db03a28b760d01");
-    return;
-
-    fetch(TEMP_BEE_API_URL + "addresses")
-      .then(async () => {
-        if (!isBeeRunning) {
-          setBeeRunning(true);
-          console.log("Bee is running");
-        }
-        if (postageStamp.length === 0) {
-          const stamp = await swarm.getUsableStamp();
-          if (stamp === null) {
-            console.log("No usable postage stamp found");
-          } else {
-            setPostageStamp(stamp);
-            console.log("Usable postage stamp found: " + stamp);
-          }
-        }
-      })
-      .catch(() => {
-        setBeeRunning(false);
-        setPostageStamp("");
-        console.log("Bee stopped running");
-      });
-  }
-
   async function getSessions(hash: string) {
     if (hash.length !== ADDRESS_HEX_LENGTH) {
       console.log("session hash invalid");
@@ -144,7 +105,9 @@ const MainProfilePage: React.FC = () => {
       const data = JSON.parse(
         (await swarm.downloadRawData(hash, "application/json")).utf8
       );
+      console.log("data: ", data)
       const s: Session[] = data.data.items;
+      console.log("s: ", s)
       setSessions(sessions.concat(s));
     } catch (e) {
       console.log("talk " + hash + " download/cast error", e);
@@ -152,10 +115,8 @@ const MainProfilePage: React.FC = () => {
   }
 
   useEffect(() => {
-    checkBee();
-    console.log("checkBee existed (SUCCESS)")
     if (sessions.length === 0) {
-      //getSessions(TEMP_DEVCON6_SESSSIONS_HASH);
+      getSessions(TEMP_DEVCON6_SESSSIONS_HASH);
     }
     console.log("Entering createFeed...")
     createFeed();
