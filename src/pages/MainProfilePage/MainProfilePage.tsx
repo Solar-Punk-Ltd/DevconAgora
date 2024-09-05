@@ -11,7 +11,7 @@ import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import { ethers, ZeroHash } from "ethers";
 import { Bee, Signer, Topic, Utils } from "@ethersphere/bee-js";
-import { SwarmCommentSystem, SwarmCommentSystemProps } from "../../components/Comment/swarm-comment-system";
+import { SwarmCommentSystem, SwarmCommentSystemProps } from "../../components/Comment/SwarmCommentSystem";
 
 const TEMP_BEE_API_URL = "http://161.97.125.121:1733/";
 const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a58c08408e06c94cea8dd8b"
@@ -119,7 +119,7 @@ const MainProfilePage: React.FC = () => {
         beeApiUrl={TEMP_BEE_API_URL}
         signer={signer}
       />
-      
+
       <UpcomingTalkBox sessions={sessions} />
       <BlogPostBox />
     </div>
