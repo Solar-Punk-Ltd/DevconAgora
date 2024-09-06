@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "../src/styles/global.scss";
+
 import backgroundVideo from "./assets/opening.mp4";
 import bySolarPunk from "./assets/by-solar-punk.png";
 import videoGlassEffect from "./assets/video-glass-effect.png";
 import dc7Logo from "./assets/dc7.png";
+import { TEXTS } from "../textConstants";
 
 function App() {
   const navigate = useNavigate();
@@ -33,7 +35,7 @@ function App() {
         </div>
         <div style={{}} className="opening-page__text-layer">
           <div className="opening-page__header">
-            <div>DevCon Sidekick</div>
+            <div>{TEXTS.APP_NAME}</div>
 
             <img src={bySolarPunk} alt="" height="30px" width="104px" />
           </div>

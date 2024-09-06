@@ -103,6 +103,12 @@
   z-index: 1;
 }
 
+@media (min-width: 600px) {
+  .welcome-page-buttons {
+    width: 567px;
+  }
+}
+
 .user-input {
   z-index: 1;
 }
