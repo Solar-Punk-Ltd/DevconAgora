@@ -1,0 +1,22 @@
+.welcome-progress-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  width: 48px;
+}
+
+.welcome-progress-indicator__active {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #8c72ae;
+}
+
+.welcome-progress-indicator__inactive {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background-color: #e0e0e0;
+}
