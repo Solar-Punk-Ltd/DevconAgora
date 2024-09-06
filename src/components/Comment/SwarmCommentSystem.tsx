@@ -4,7 +4,6 @@ import SwarmCommentList from "./swarm-comment-list/swarm-comment-list";
 import { useEffect, useState } from "react";
 import SwarmCommentForm from "./swarm-comment-form/swarm-comment-form";
 import { Bee, Signer, Topic } from "@ethersphere/bee-js";
-import { Wallet } from "ethers";
 
 /**
  * stamp - Postage stamp ID. If ommitted a first available stamp will be used.
@@ -34,7 +33,6 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
   const { stamp, topic, beeApiUrl, privateKey, signer } = props;
   const bee = new Bee(beeApiUrl);
   const topicHex: Topic = bee.makeFeedTopic(topic);
-//  const wallet = new Wallet(privateKey);
   const [comments, setComments] = useState<Comment[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [formLoading, setFormLoading] = useState(false);
@@ -129,7 +127,7 @@ export function SwarmCommentSystem(props: SwarmCommentSystemProps) {
 
 
   if (!comments) {
-    return <div>Couldn't load comments</div>;
+    return <div>Loading comments...</div>;
   }
 
   if (error) {
