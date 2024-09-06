@@ -6,7 +6,6 @@ import Header from "../Header/Header";
 import "./MainProfilePage.scss";
 import { Session } from "../../types/session";
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom/client";
 import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import { ethers, ZeroHash } from "ethers";
@@ -19,12 +18,6 @@ const TEMP_DEVCON6_SESSSIONS_HASH = "4e4d8fa5cb134fef91e29c367f5aaf448d8133f91a5
 
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
-  const [isBeeRunning, setBeeRunning] = useState(true);
-  const [postageStamp, setPostageStamp] = useState<string>("52d503ddfe75c71c27accc6396a2748b83d4b2ee05529ec259d8859b5a25bfce");
-  const [feed, setFeed] = useState<string>("");
-
-  // Topic - this will be created outside the component
-  const topicHumanReadable = "bagoytopic";
 
   // Create Wallet - this will be created outside the component
   let wallet: ethers.Wallet | null;
@@ -47,28 +40,6 @@ const MainProfilePage: React.FC = () => {
   const bee = new Bee(TEMP_BEE_API_URL);
   const swarm = new Swarm({ beeApi: TEMP_BEE_API_URL });
 
-  // Most likely we won't have this, because rooms will be pre-created
-  async function createFeed() {
-    if (postageStamp.length !== 0 && feed.length === 0 && wallet) {
-      try {
-        console.info("creating feed...")
-        const topicHex: Topic = bee.makeFeedTopic(topicHumanReadable)
-        
-        const feedReference = await bee.createFeedManifest(
-          postageStamp,
-          "sequence",
-          topicHex,
-          signer.address
-        );
-
-        console.info(`created feed with reference ${feedReference.reference}`);
-        setFeed(feedReference.reference);
-      } catch (e) {
-        console.error("feed gen error", e);
-      }
-    }
-  }
-
   async function getSessions(hash: string) {
     if (hash.length !== ADDRESS_HEX_LENGTH) {
       console.log("session hash invalid");
@@ -79,12 +50,12 @@ const MainProfilePage: React.FC = () => {
       const data = JSON.parse(
         (await swarm.downloadRawData(hash, "application/json")).utf8
       );
-      console.log("data: ", data)
+      //console.log("data: ", data)
       const s: Session[] = data.data.items;
-      console.log("s: ", s)
+      //console.log("s: ", s)
       setSessions(sessions.concat(s));
     } catch (e) {
-      console.log("talk " + hash + " download/cast error", e);
+      //console.log("talk " + hash + " download/cast error", e);
     }
   }
 
@@ -92,9 +63,7 @@ const MainProfilePage: React.FC = () => {
     if (sessions.length === 0) {
       getSessions(TEMP_DEVCON6_SESSSIONS_HASH);
     }
-    console.log("Entering createFeed...")
-    createFeed();
-  }, [sessions, isBeeRunning, postageStamp]);
+  }, [sessions]);
 
   return (
     <div
@@ -112,10 +81,14 @@ const MainProfilePage: React.FC = () => {
       <DevConMainBox />
       <RecentBox />
       
-      {/** Talks will only have this. Room should already exist when the application is launched */}
+      {/** 
+       * Talks will only have this. Room should already exist when the application is launched
+       * A human-readable topic needs to exist, and one master private key is enough, that is burnt in into the application,
+       * rooms will be distinguished by topic
+       */}
       <SwarmCommentSystem 
-        stamp={postageStamp}
-        identifier={bee.makeFeedTopic(topicHumanReadable)}
+        stamp={"52d503ddfe75c71c27accc6396a2748b83d4b2ee05529ec259d8859b5a25bfce"}
+        topic={"bagoytopic"}
         privateKey={wallet.privateKey}
         beeApiUrl={TEMP_BEE_API_URL}
         signer={signer}
