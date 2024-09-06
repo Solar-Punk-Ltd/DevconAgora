@@ -25,9 +25,14 @@ const Welcome2: React.FC = () => {
         </div>
         <div className="welcome-page__bottom">
           <WelcomeProgressIndicator active={1} />
-          <Link to="/welcome3">
-            <WelcomeButton>Next</WelcomeButton>
-          </Link>
+          <div className="welcome-page-buttons">
+            <Link to="/welcome1" style={{ flex: "1 1 0" }}>
+              <WelcomeButton version="outlined">Back</WelcomeButton>
+            </Link>
+            <Link to="/welcome3" style={{ flex: "1 1 0" }}>
+              <WelcomeButton version="filled">Next</WelcomeButton>
+            </Link>
+          </div>
           <div className="welcome-page__bottom-text">
             I know everything{" "}
             <Link to="/openprofile">

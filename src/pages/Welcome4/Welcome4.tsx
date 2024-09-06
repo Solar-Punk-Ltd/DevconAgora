@@ -31,9 +31,14 @@ const Welcome4: React.FC = () => {
         </div>
         <div className="welcome-page__bottom">
           <WelcomeProgressIndicator active={3} />
-          <Link to="/openprofile">
-            <WelcomeButton>Let’s go</WelcomeButton>
-          </Link>
+          <div className="welcome-page-buttons">
+            <Link to="/welcome3" style={{ flex: "1 1 0" }}>
+              <WelcomeButton version="outlined">Back</WelcomeButton>
+            </Link>
+            <Link to="/openprofile" style={{ flex: "1 1 0" }}>
+              <WelcomeButton version="filled">Let’s go</WelcomeButton>
+            </Link>
+          </div>
         </div>
       </div>
     </>

@@ -39,9 +39,11 @@ const Welcome1: React.FC = () => {
         </div>
         <div className="welcome-page__bottom">
           <WelcomeProgressIndicator active={0} />
-          <Link to="/welcome2">
-            <WelcomeButton>Next</WelcomeButton>
-          </Link>
+          <div className="welcome-page-buttons">
+            <Link to="/welcome2" style={{ flex: "1 1 0" }}>
+              <WelcomeButton version="filled">Next</WelcomeButton>
+            </Link>
+          </div>
           <div className="welcome-page__bottom-text">
             I know everything{" "}
             <Link to="/openprofile">

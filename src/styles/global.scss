@@ -9,7 +9,7 @@
   background-color: white;
   text-align: center;
   box-sizing: border-box;
-  padding: 40px 0px;
+  padding: 40px 16px;
 }
 
 @media (min-width: 600px) {
@@ -76,6 +76,7 @@
 }
 
 .welcome-page__bottom {
+  width: 100%;
   height: 20%;
   display: flex;
   flex-direction: column;
@@ -91,4 +92,30 @@
   text-decoration: "underline";
   font-weight: "bold";
   color: "#8C72AE";
+}
+
+.welcome-page-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 1;
+}
+
+.user-input {
+  z-index: 1;
+}
+
+.user-input__input {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 24px;
+  color: #000000;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 267px;
+  height: 52px;
+  padding: 8px 16px 8px 16px;
 }

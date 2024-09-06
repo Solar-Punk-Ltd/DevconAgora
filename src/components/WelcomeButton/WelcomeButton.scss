@@ -1,23 +1,35 @@
 .welcome-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 80px;
-  width: 341px;
   height: 56px;
-  border-radius: 64px;
-  border: 1px solid transparent;
+  border-radius: 12px;
   box-sizing: border-box;
   font-size: 20px;
   font-weight: 700;
+  flex: 1 1 0;
   font-family: "Public Sans", sans-serif;
   cursor: pointer;
   margin-bottom: 24px;
   transition: border-color 0.25s;
+}
+
+.welcome-button--filled {
+  border: none;
   color: white;
   background: linear-gradient(0deg, #8c72ae 0%, #873de7 100%);
 }
-.welcome-button:hover {
-  border-color: #646cff;
+
+.welcome-button--outlined {
+  border: 1px solid #8c72ae;
+  color: #8c72ae;
+  background: white;
 }
-.welcome-button:focus,
-.welcome-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.welcome-button--inactive {
+  border: none;
+  color: #a5adba;
+  background: #f2f2f2;
 }
