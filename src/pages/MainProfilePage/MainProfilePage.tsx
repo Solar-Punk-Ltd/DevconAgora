@@ -87,7 +87,7 @@ const MainProfilePage: React.FC = () => {
        * rooms will be distinguished by topic
        */}
       <SwarmCommentSystem 
-        stamp={"52d503ddfe75c71c27accc6396a2748b83d4b2ee05529ec259d8859b5a25bfce"}
+        stamp={"e95b0e75ae49fdefffc7f598c5fad5030dedec625190b8346c1793b381559410"}
         topic={"bagoytopic"}
         privateKey={wallet.privateKey}
         beeApiUrl={TEMP_BEE_API_URL}
