@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ethersphere/bee-js": "6.9.1",
+    "@ethersphere/comment-system-ui": "file:../comment-system-ui",
     "cafe-utility": "^22.4.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
