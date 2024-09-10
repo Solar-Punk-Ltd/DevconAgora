@@ -53,15 +53,7 @@ const OpenProfile: React.FC = () => {
                 </div>
               </div>
               {error ? (
-                <div
-                  style={{
-                    display: "flex",
-                    color: "#E8303D",
-                    fontFamily: "Public Sans",
-                    fontSize: "12px",
-                    fontWeight: "400",
-                  }}
-                >
+                <div className="profile-creation__user-input__error">
                   <img
                     src={errorAlertIcon}
                     alt=""
