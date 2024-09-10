@@ -8,7 +8,10 @@ export default defineConfig(() => {
     plugins: [react()],
     base: '/DevconAgora/',
     build: {
-      sourcemap: true
+      sourcemap: true,
+      rollupOptions: {
+        external: ['react', 'react-dom'],
+      },
     }
   }
 })
