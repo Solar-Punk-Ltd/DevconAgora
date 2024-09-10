@@ -15,31 +15,26 @@ const Welcome1: React.FC = () => {
           <span style={{ color: "var(--purple-to-text-color)" }}>
             2024 DevCon&nbsp;
           </span>
-          event
+          event!
         </div>
         <div className="welcome-page__content">
-          {/* <div className="welcome1-page__content__color-effect"></div> */}
-
           <div className="welcome-page__content__image">
-            <img src={welcome1img} alt="" height="150%" />
+            <img
+              src={welcome1img}
+              alt=""
+              className="welcome-page__main-image"
+            />
             <div className="welcome-page__effect">
               <img
                 src={WelcomeMask}
                 alt=""
-                style={{
-                  position: "absolute",
-                  bottom: "-62px",
-                  left: "0px",
-                  width: "100%",
-                  height: "65%",
-                  zIndex: "-1",
-                }}
+                className="welcome-page__effect-mask"
               />
             </div>
           </div>
         </div>
         <div className="welcome-page__bottom">
-          <div className="welcome-page__content__text">
+          <div className="welcome-page__bottom__text">
             <div>
               Be Part of the Ethereum Community Contribute of the Growth of the
               Ecosystem.
@@ -47,21 +42,18 @@ const Welcome1: React.FC = () => {
           </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={0} />
-            <Link to="/welcome2">
-              <WelcomeButton>Next</WelcomeButton>
-            </Link>
+            <div className="welcome-page_bottom-bottom__buttons">
+              <Link
+                to="/welcome2"
+                className="welcome-page__navigation-button-link"
+              >
+                <WelcomeButton version="filled">Next</WelcomeButton>
+              </Link>
+            </div>
             <div className="welcome-page__bottom-text">
               I know everything{" "}
-              <Link to="/openprofile">
-                <span
-                  style={{
-                    textDecoration: "underline",
-                    fontWeight: "bold",
-                    color: "#8C72AE",
-                  }}
-                >
-                  SKIP
-                </span>
+              <Link to="/profilecreation">
+                <span className="welcome-page__bottom-text__skip">SKIP</span>
               </Link>
             </div>
           </div>

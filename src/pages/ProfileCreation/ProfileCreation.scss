@@ -1,9 +1,8 @@
-.openprofile-page__header {
+.profile-creation__header {
   font-size: 24px;
   font-weight: 700;
 }
-
-.openprofile-page {
+profile-creation .profile-creation {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,19 +13,19 @@
 }
 
 @media (min-width: 600px) {
-  .openprofile-page__header {
+  .profile-creation__header {
     margin-top: 0px;
   }
 }
-.openprofile-page__username {
-  font-family: Inter;
+.profile-creation__username {
+  font-family: "Inter";
   font-weight: 400;
   font-size: 14px;
   color: #666666;
   text-align: center;
 }
 
-.openprofile-page__username-edit {
+.profile-creation__username-edit {
   width: 267px;
   padding: 10px 8px;
   display: flex;
@@ -37,12 +36,12 @@
   font-weight: 600;
 }
 
-.openprofile-page__user-input {
+.profile-creation__user-input {
   z-index: 1;
 }
 
-.openprofile-page__user-input__input {
-  font-family: Inter;
+.profile-creation__user-input__input {
+  font-family: "Inter";
   font-weight: 400;
   font-size: 24px;
   color: #000000;
@@ -54,8 +53,8 @@
   padding: 8px 16px 8px 16px;
 }
 
-.openprofile-page__user-input__input::placeholder {
-  font-family: Inter;
+.profile-creation__user-input__input::placeholder {
+  font-family: "Inter";
   font-size: 24px;
   font-weight: 400;
   line-height: 35.52px;
@@ -63,27 +62,26 @@
   color: #e0e0e0;
 }
 
-.openprofile-page__user-input__input:focus-visible {
+.profile-creation__user-input__input:focus-visible {
   outline: none;
 }
 
-.username {
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.openprofile-page__bottom {
+.profile-creation__bottom {
   width: 100%;
   z-index: 1;
   margin-bottom: 40px;
+  padding: 0px 16px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0px;
 }
 @media (min-width: 600px) {
-  .openprofile-page__bottom {
+  .profile-creation__bottom {
     width: 567px;
   }
 }
 
-.openprofile-page__background-effect {
+.profile-creation__background-effect {
   position: absolute;
   z-index: 0;
   height: 100vh;
@@ -91,21 +89,29 @@
   top: 0px;
 }
 
-.openprofile-page__backgorund-effect__img {
+.profile-creation__backgorund-effect__img {
   height: 100%;
   width: 100%;
 }
 
-.openprofile-page__main-content {
+.profile-creation__main-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 30px;
 }
 
-.openprofile-page__top {
+.profile-creation__top {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 80px;
+}
+
+.profile-creation__user-input__error {
+  display: flex;
+  color: var(--validation-error-text-color);
+  font-family: Public Sans;
+  font-size: 12px;
+  font-weight: 400;
 }

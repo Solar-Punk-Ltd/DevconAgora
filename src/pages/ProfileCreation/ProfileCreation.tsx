@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
-import "./OpenProfile.scss";
+import "./ProfileCreation.scss";
 import OpenProfilePicture from "../../components/OpenProfilePicture/OpenProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 
@@ -23,31 +23,31 @@ const OpenProfile: React.FC = () => {
   return (
     <>
       <div className="welcome-page">
-        <div className="openprofile-page__top">
+        <div className="profile-creation__top">
           <div className="welcome-page__header">
             Create <br />
             <span style={{ color: "var(--purple-to-text-color)" }}>
               Your profile
             </span>
           </div>
-          <div className="openprofile-page__background-effect">
+          <div className="profile-creation__background-effect">
             <img
               src={createYourProfileEffect}
               alt=""
-              className="openprofile-page__backgorund-effect__img"
+              className="profile-creation__backgorund-effect__img"
             />
           </div>
-          <div style={{}} className="openprofile-page__main-content">
+          <div style={{}} className="profile-creation__main-content">
             <OpenProfilePicture name="CM" />
             <div>
-              <div className="openprofile-page__username">Nickname</div>
-              <div className="openprofile-page__username-edit">
-                <div className="openprofile-page__user-input">
+              <div className="profile-creation__username">Nickname</div>
+              <div className="profile-creation__username-edit">
+                <div className="profile-creation__user-input">
                   <input
                     type="text"
                     value={username}
                     placeholder="Chain Master"
-                    className="openprofile-page__user-input__input"
+                    className="profile-creation__user-input__input"
                     onChange={onInputChange}
                   />
                 </div>
@@ -65,11 +65,11 @@ const OpenProfile: React.FC = () => {
                   <img
                     src={errorAlertIcon}
                     alt=""
-                    className="openprofile-page__user-input__error-icon"
+                    className="profile-creation__user-input__error-icon"
                     width="12px"
                     height="12px"
                   />
-                  <div className="openprofile-page__user-input__error-text">
+                  <div className="profile-creation__user-input__error-text">
                     &nbsp; This nickname is already taken.
                   </div>
                 </div>
@@ -77,7 +77,7 @@ const OpenProfile: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="openprofile-page__bottom">
+        <div className="profile-creation__bottom">
           <Link to="/mainprofile">
             <WelcomeButton version={buttonActive ? "filled" : "inactive"}>
               Start Building Your Community
