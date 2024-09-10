@@ -1,6 +1,6 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
-import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
+import RecentSessions from "../../components/RecentSessions/RecentSessionsItem/RecentSessionsItem";
 import Header from "../../components/Header/Header";
 
 const Recent: React.FC = () => {
@@ -30,9 +30,9 @@ const Recent: React.FC = () => {
         style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
       ></div>
       <div>
-        <RecentItem />
-        <RecentItem />
-        <RecentItem />
+        <RecentSessions />
+        <RecentSessions />
+        <RecentSessions />
       </div>
     </div>
   );

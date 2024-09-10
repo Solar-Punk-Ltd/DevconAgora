@@ -1,7 +1,7 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import "./DevconLounge.scss";
-import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
+import RecentSessionsItem from "../../components/RecentSessions/RecentSessionsItem/RecentSessionsItem";
 import Header from "../../components/Header/Header";
 
 const DevconLounge: React.FC = () => {
@@ -31,9 +31,9 @@ const DevconLounge: React.FC = () => {
         style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
       ></div>
       <div>
-        <RecentItem />
-        <RecentItem />
-        <RecentItem />
+        <RecentSessionsItem />
+        <RecentSessionsItem />
+        <RecentSessionsItem />
       </div>
     </div>
   );

@@ -6,25 +6,12 @@ import RecentRoomsItem from "./RecentRoomsItem/RecentRoomsItem";
 const RecentRooms: React.FC = () => {
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-          marginTop: "20px",
-        }}
-      >
-        <div style={{ fontWeight: "700", fontSize: "14px" }}>Recent rooms</div>
+      <div className="recent-rooms">
+        <div style={{}} className="recent-rooms__title">
+          Recent rooms
+        </div>
         <Link to="/recent">
-          <div
-            style={{
-              textDecoration: "underline",
-              fontSize: "14px",
-              fontWeight: "400",
-            }}
-          >
-            All talks
-          </div>
+          <div className="recent-rooms__all">All rooms</div>
         </Link>
       </div>
       <div>

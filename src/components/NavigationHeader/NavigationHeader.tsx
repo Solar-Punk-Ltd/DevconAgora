@@ -13,7 +13,7 @@ const NavigationHeader: React.FC = () => {
         marginBottom: "28px",
       }}
     >
-      <Link to="/mainprofile">
+      <Link to="/home">
         <div>
           <img src={BackArrowNavigationIcon} alt="" width="32" height="32" />
         </div>

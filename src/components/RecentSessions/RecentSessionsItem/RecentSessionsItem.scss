@@ -1,0 +1,38 @@
+.recent-talks-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 136px;
+  min-width: 164px;
+  border-radius: 8px;
+  background-color: white;
+  margin-bottom: 4px;
+  box-shadow: 0px 2px 8px 0px #1f1f2326;
+
+  margin-right: 15px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.recent-talks-item__title {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.recent-talks-item__stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 8px;
+  box-sizing: border-box;
+  width: 66px;
+  height: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  border: 1px solid var(--primary-accent-color);
+  border-radius: 30px;
+}
