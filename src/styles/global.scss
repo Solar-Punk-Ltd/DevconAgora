@@ -3,7 +3,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   height: 100vh;
   background-color: white;
@@ -16,7 +15,6 @@
   .welcome-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     height: 100vh;
     background-color: white;
@@ -28,6 +26,7 @@
 
 .welcome-page__header {
   height: 20%;
+  box-sizing: border-box;
   font-family: Poppins;
   padding: 0px 20px;
   line-height: 36px;
@@ -37,12 +36,14 @@
 
 .welcome-page__content {
   width: 100%;
-  height: 60%;
+  height: 54%;
   position: relative;
   display: flex;
   align-items: center;
+  // justify-content: end;
   flex-direction: column;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .welcome-page__content__color-effect {
@@ -58,37 +59,161 @@
 }
 
 .welcome-page__content__image {
+  display: flex;
+  justify-content: center;
   z-index: 1;
-  height: 358px;
-  width: 293px;
+  height: 83%;
+  width: 80%;
   overflow: hidden;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-}
-
-.welcome-page__content__text {
-  background-color: white;
-  width: 330px;
-  font-weight: 400;
-  font-size: 16px;
-  font-family: Inter;
-  z-index: 1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .welcome-page__bottom {
-  height: 20%;
+  background: linear-gradient(
+    to top,
+    rgb(255 255 255) 94%,
+    rgb(255 255 255 / 3%) 100%
+  );
+  width: 100%;
+  min-height: 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 0px;
+  padding-bottom: 40px;
+  padding-top: 20px;
 }
-.welcome-page__bottom-text {
-  font-family: Inter;
+.welcome-page__bottom__text {
+  font-family: "Inter";
   font-size: 16px;
   font-weight: 400;
+  width: 83%;
+  box-sizing: border-box;
   color: #000000;
+  z-index: 1;
+  display: flex;
+  align-items: end;
+  justify-content: center;
 }
+
+.welcome-page__bottom-bottom {
+  width: 100%;
+  z-index: 2;
+  height: 31vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}
+
+@media (min-height: 400px) {
+  .welcome-page__bottom-bottom {
+    height: 19vh;
+  }
+}
+
+@media (min-height: 450px) {
+  .welcome-page__bottom-bottom {
+    height: 20vh;
+  }
+}
+
+@media (min-height: 500px) {
+  .welcome-page__bottom-bottom {
+    height: 21vh;
+  }
+}
+
+@media (min-height: 550px) {
+  .welcome-page__bottom-bottom {
+    height: 22vh;
+  }
+}
+
+@media (min-height: 600px) {
+  .welcome-page__bottom-bottom {
+    height: 23vh;
+  }
+}
+
+@media (min-height: 650px) {
+  .welcome-page__bottom-bottom {
+    height: 24vh;
+  }
+}
+
+@media (min-height: 670px) {
+  .welcome-page__bottom-bottom {
+    height: 25vh;
+  }
+}
+
+@media (min-height: 710px) {
+  .welcome-page__bottom-bottom {
+    height: 26vh;
+  }
+}
+
+@media (min-height: 760px) {
+  .welcome-page__bottom-bottom {
+    height: 27vh;
+  }
+}
+
+@media (min-height: 810px) {
+  .welcome-page__bottom-bottom {
+    height: 28vh;
+  }
+}
+
+@media (min-height: 910px) {
+  .welcome-page__bottom-bottom {
+    height: 29vh;
+  }
+}
+
+@media (min-height: 1000px) {
+  .welcome-page__bottom-bottom {
+    height: 30vh;
+  }
+}
+
+.welcome-page_bottom-bottom__buttons {
+  display: flex;
+  width: 100%;
+  max-width: 341px;
+  gap: 16px;
+}
+
+.welcome-page__effect-mask {
+  position: absolute;
+  bottom: -28px;
+  left: 0px;
+  width: 100%;
+  height: 65%;
+  z-index: -1;
+}
+
 .welcome-page__bottom-text__skip {
-  text-decoration: "underline";
-  font-weight: "bold";
-  color: "#8C72AE";
+  text-decoration: underline;
+  font-weight: bold;
+  color: #8c72ae;
+}
+
+.welcome-page__main-image {
+  height: 150%;
+}
+
+.welcome-page__navigation-button-link {
+  width: 100%;
 }

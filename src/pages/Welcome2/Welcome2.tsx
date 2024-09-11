@@ -1,46 +1,64 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import welcome2img from "../../assets/welcome2img.png";
+import welcome2img from "../../assets/ob_2.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
+import WelcomeMask from "../../assets/welcome-glass-effect.png";
 
-const Welcome2: React.FC = () => {
+const Welcome1: React.FC = () => {
   return (
     <>
       <div className="welcome-page">
         <div className="welcome-page__header">
-          Be active and get
-          <span style={{ color: "var(--purple-to-text-color)" }}> reward!</span>
+          Be active and get a{" "}
+          <span style={{ color: "var(--purple-to-text-color)" }}>reward</span>!
         </div>
         <div className="welcome-page__content">
-          {/* <div className="welcome1-page__content__color-effect"></div> */}
-
           <div className="welcome-page__content__image">
-            <img src={welcome2img} alt="" width="293px" />
-          </div>
-          <div className="welcome-page__content__text">
-            Comment and contribute to the community. Receive{" "}
-            <b>10 BZZ tokens</b> for 10 valuable contributions.
+            <img
+              src={welcome2img}
+              alt=""
+              className="welcome-page__main-image"
+            />
+            <div className="welcome-page__effect">
+              <img
+                src={WelcomeMask}
+                alt=""
+                className="welcome-page__effect-mask"
+              />
+            </div>
           </div>
         </div>
         <div className="welcome-page__bottom">
-          <WelcomeProgressIndicator active={1} />
-          <Link to="/welcome3">
-            <WelcomeButton>Next</WelcomeButton>
-          </Link>
-          <div className="welcome-page__bottom-text">
-            I know everything{" "}
-            <Link to="/openprofile">
-              <span
-                style={{
-                  textDecoration: "underline",
-                  fontWeight: "bold",
-                  color: "#8C72AE",
-                }}
+          <div className="welcome-page__bottom__text">
+            <div>
+              Comment and contribute to the community. Receive
+              <b> 10 BZZ tokens </b>
+              for 10 valuable contributions.
+            </div>
+          </div>
+          <div className="welcome-page__bottom-bottom">
+            <WelcomeProgressIndicator active={1} />
+            <div className="welcome-page_bottom-bottom__buttons">
+              <Link
+                to="/welcome1"
+                className="welcome-page__navigation-button-link"
               >
-                SKIP
-              </span>
-            </Link>
+                <WelcomeButton version="outlined">Back</WelcomeButton>
+              </Link>
+              <Link
+                to="/welcome3"
+                className="welcome-page__navigation-button-link"
+              >
+                <WelcomeButton version="filled">Next</WelcomeButton>
+              </Link>
+            </div>
+            <div className="welcome-page__bottom-text">
+              I know everything{" "}
+              <Link to="/profilecreation">
+                <span className="welcome-page__bottom-text__skip">SKIP</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -48,4 +66,4 @@ const Welcome2: React.FC = () => {
   );
 };
 
-export default Welcome2;
+export default Welcome1;
