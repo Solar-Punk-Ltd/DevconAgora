@@ -12,7 +12,7 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import Header from "../../components/Header/Header";
 import { ethers } from "ethers";
 import { Signer, Utils } from "@ethersphere/bee-js";
-import { SwarmCommentSystem } from "@ethersphere/comment-system-ui";
+import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
 
 
 const MainProfilePage: React.FC = () => {
