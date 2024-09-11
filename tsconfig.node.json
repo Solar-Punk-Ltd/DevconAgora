@@ -10,5 +10,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["vite.config.ts", "public", "src"]
+  "include": ["vite.config.ts", "public", "src", "textConstants.ts"]
 }

@@ -1,5 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* Colors */
+  --purple-to-text-color: #8c72ae;
+  --validation-error-text-color: #e8303d;
 }
 
 body {

@@ -1,34 +1,61 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
-import "./Welcome1.scss";
+import welcome1img from "../../assets/ob_1.png";
+// import welcome1ColorEffectImg from "../../assets/welcome1-color-effect.png";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
+import WelcomeMask from "../../assets/welcome-glass-effect.png";
 
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-layout welcome-font">
-        <div className="welcome-content">
-          <div className="welcome-header">Welcome on DevCon Agora</div>
-          <div className="subtext">
-            <div className="welcome-subtext1">
-              Be Part of the Ethereum Community
-            </div>
-            <div className="welcome-subtext2">
-              Contribute of the Growth of the Ecosystem.
+      <div className="welcome-page">
+        <div className="welcome-page__header">
+          Welcome to the{" "}
+          <span style={{ color: "var(--purple-to-text-color)" }}>
+            2024 DevCon&nbsp;
+          </span>
+          event!
+        </div>
+        <div className="welcome-page__content">
+          <div className="welcome-page__content__image">
+            <img
+              src={welcome1img}
+              alt=""
+              className="welcome-page__main-image"
+            />
+            <div className="welcome-page__effect">
+              <img
+                src={WelcomeMask}
+                alt=""
+                className="welcome-page__effect-mask"
+              />
             </div>
           </div>
         </div>
-        <div className="bottom">
-          <Link to="/welcome2">
-            <Button>Next</Button>
-          </Link>
-          <div className="bottom-text">
-            I know everything{" "}
-            <Link to="/openprofile">
-              <span style={{ textDecoration: "underline", fontWeight: "bold" }}>
-                SKIP
-              </span>
-            </Link>
+        <div className="welcome-page__bottom">
+          <div className="welcome-page__bottom__text">
+            <div>
+              Be Part of the Ethereum Community Contribute of the Growth of the
+              Ecosystem.
+            </div>
+          </div>
+          <div className="welcome-page__bottom-bottom">
+            <WelcomeProgressIndicator active={0} />
+            <div className="welcome-page_bottom-bottom__buttons">
+              <Link
+                to="/welcome2"
+                className="welcome-page__navigation-button-link"
+              >
+                <WelcomeButton version="filled">Next</WelcomeButton>
+              </Link>
+            </div>
+            <div className="welcome-page__bottom-text">
+              I know everything{" "}
+              <Link to="/profilecreation">
+                <span className="welcome-page__bottom-text__skip">SKIP</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

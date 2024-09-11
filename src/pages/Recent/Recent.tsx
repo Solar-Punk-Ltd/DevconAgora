@@ -1,8 +1,7 @@
 import React from "react";
 import TabPanel from "../../components/TabPanel/TabPanel";
-import "./Recent.scss";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentItem from "../../components/RecentBox/RecentItem/RecentItem";
+import RecentItem from "../../components/RecentTalks/RecentTalksItem/RecentTalksItem";
+import Header from "../../components/Header/Header";
 
 const Recent: React.FC = () => {
   return (
@@ -14,14 +13,22 @@ const Recent: React.FC = () => {
         alignItems: "center",
         backgroundColor: "#f5f5f5",
         height: "100vh",
+        padding: "20px",
       }}
     >
+      <div
+        style={{
+          width: "100%",
+        }}
+      >
+        <Header name="Agora" />
+      </div>
       <div style={{ margin: "10px" }}>
         <TabPanel />
       </div>
-      <div style={{ padding: "10px", width: "100%", boxSizing: "border-box" }}>
-        <DevConMainBox />
-      </div>
+      <div
+        style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
+      ></div>
       <div>
         <RecentItem />
         <RecentItem />
