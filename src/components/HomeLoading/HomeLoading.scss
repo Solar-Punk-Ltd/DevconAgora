@@ -1,0 +1,63 @@
+.home-loading {
+  padding: 15px;
+}
+
+.home-loading__main-box {
+  width: 100%;
+  height: 137px;
+  background-color: var(--primary-grey);
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.home-loading__recent-box {
+  width: 100%;
+}
+
+.home-loading__recent-box__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home-loading__recent-box__title {
+  width: 120px;
+  height: 20px;
+  background-color: var(--primary-grey);
+}
+
+.home-loading__recent-box__all {
+  width: 55px;
+  height: 20px;
+  background-color: var(--primary-grey);
+}
+
+.home-loading__recent-box__session-items-container {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home-loading__recent-box__session-item-container__item__session {
+  width: 100%;
+  height: 136px;
+  background-color: var(--primary-grey);
+  border-radius: 16px;
+}
+
+.home-loading__recent-box__room-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home-loading__recent-box__room-item-container__item__room {
+  width: 100%;
+  height: 56px;
+  background-color: var(--primary-grey);
+  border-radius: 8px;
+}

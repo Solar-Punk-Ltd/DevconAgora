@@ -1,0 +1,21 @@
+.active-visitors {
+  font-family: "Inter", sans-serif;
+  color: #4a2875;
+  background-color: #f7f8fa;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 400;
+  display: inline-flex;
+  align-self: flex-start;
+  border-radius: 6px;
+}
+
+.active-visitors__with-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 2px 6px;
+}

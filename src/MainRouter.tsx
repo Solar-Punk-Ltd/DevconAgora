@@ -6,7 +6,7 @@ import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
-import MainProfilePage from "./pages/MainProfilePage/MainProfilePage";
+import HomePage from "./pages/HomePage/HomePage";
 import Recent from "./pages/Recent/Recent";
 import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
@@ -19,8 +19,8 @@ export enum ROUTES {
   WELCOME2 = "/welcome2",
   WELCOME3 = "/welcome3",
   WELCOME4 = "/welcome4",
-  PROFILECREATION = "/PROFILECREATION",
-  MAINPROFILE = "/mainprofile",
+  PROFILECREATION = "/profilecreation",
+  HOME = "/home",
   RECENT = "/recent",
   DEVCONLOUNGE = "/devconlounge",
   PROFILE = "/profile",
@@ -37,7 +37,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
       <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
       <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
-      <Route path={ROUTES.MAINPROFILE} element={<MainProfilePage />} />
+      <Route path={ROUTES.HOME} element={<HomePage isLoaded={false} />} />
       <Route path={ROUTES.RECENT} element={<Recent />} />
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />

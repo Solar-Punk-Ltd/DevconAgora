@@ -1,4 +1,4 @@
-.openprofile-picture {
+.profile-picture {
   width: 121px;
   height: 121px;
   background-color: #f7f8fa;
@@ -10,4 +10,16 @@
   font-weight: 700;
   color: #4a2875;
   z-index: 1;
+}
+
+.profile-picture--big {
+  width: 121px;
+  height: 121px;
+  font-size: 32px;
+}
+
+.profile-picture--small {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
 }

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import "./ProfileCreation.scss";
-import OpenProfilePicture from "../../components/OpenProfilePicture/OpenProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 
-const OpenProfile: React.FC = () => {
+const ProfileCreation: React.FC = () => {
   const [username, setUsername] = React.useState("");
   const [buttonActive, setButtonActive] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -38,7 +38,7 @@ const OpenProfile: React.FC = () => {
             />
           </div>
           <div style={{}} className="profile-creation__main-content">
-            <OpenProfilePicture name="CM" />
+            <ProfilePicture name="CM" />
             <div>
               <div className="profile-creation__username">Nickname</div>
               <div className="profile-creation__username-edit">
@@ -70,7 +70,7 @@ const OpenProfile: React.FC = () => {
           </div>
         </div>
         <div className="profile-creation__bottom">
-          <Link to="/mainprofile">
+          <Link to="/home">
             <WelcomeButton version={buttonActive ? "filled" : "inactive"}>
               Start Building Your Community
             </WelcomeButton>
@@ -81,4 +81,4 @@ const OpenProfile: React.FC = () => {
   );
 };
 
-export default OpenProfile;
+export default ProfileCreation;

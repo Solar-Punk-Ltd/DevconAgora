@@ -1,19 +1,24 @@
-.recent-rooms {
+.recent-talks {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
   margin-top: 20px;
 }
 
-.recent-rooms__title {
+.recent-talks__title {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 14px;
 }
 
-.recent-rooms__all {
+.recent-talks__all {
   font-family: "Inter", sans-serif;
-  text-decoration: underline;
-  font-size: 14px;
   font-weight: 400;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.recent-talks__item-container {
+  display: flex;
+  overflow-y: auto;
 }

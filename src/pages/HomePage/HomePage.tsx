@@ -1,47 +1,32 @@
 import React from "react";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentTalks from "../../components/RecentTalks/RecentTalks";
+import RecentSessions from "../../components/RecentSessions/RecentSessions";
 // import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
-import "./MainProfilePage.scss";
+import "./HomePage.scss";
 import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
 import { Swarm } from "libswarm";
 import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import Header from "../../components/Header/Header";
-import { ethers } from "ethers";
-import { Signer, Utils } from "@ethersphere/bee-js";
-import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
+import HomeHeader from "../../components/HomeHeader/HomeHeader";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
+import HomeLoading from "../../components/HomeLoading/HomeLoading";
 
+interface HomePageProps {
+  isLoaded?: boolean;
+}
 
-const MainProfilePage: React.FC = () => {
+const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [isBeeRunning, setBeeRunning] = useState(false);
   const [postageStamp, setPostageStamp] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const swarm = new Swarm({
     beeApi: process.env.BEE_API_URL,
     postageBatchId: "todo dummy",
   });
-
-  // Create Wallet - this will be created outside the component
-  let wallet: ethers.Wallet | null;
-  const savedKey = localStorage.getItem("walletPrivKey");
-  if (savedKey) {
-    wallet = new ethers.Wallet(savedKey)
-  } else {
-    const tempPriv = ethers.Wallet.createRandom().privateKey;
-    wallet = new ethers.Wallet(tempPriv);
-    localStorage.setItem("walletPrivKey", wallet.privateKey)
-  }
-
-  const signer: Signer = {
-    address: Utils.hexToBytes(wallet.address.slice(2)),
-    sign: async (data: any) => {
-      return await wallet.signMessage(data);
-    },
-  };
 
   async function checkBee() {
     fetch(process.env.BEE_API_URL + "addresses")
@@ -91,46 +76,42 @@ const MainProfilePage: React.FC = () => {
     }
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoaded) {
+        setIsLoading(false);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div
-      style={{
-        height: "100vh",
-        boxSizing: "border-box",
-        backgroundColor: "#f5f5f5",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Header name="Agora"></Header>
-      <div style={{ padding: "15px" }}>
-        <DevConMainBox
-          title="Devcon chatroom"
-          content="Share your tought, chat with anybody without moderation and collect the reward."
-          showActiveVisitors={true}
-          activeVisitors={110}
-          furtherInfo="Tell us how are you!"
-        />
-        <RecentTalks />
-        <RecentRooms />
-        {/* <UpcomingTalkBox sessions={sessions} /> */}
-
-      {/** 
-       * Talks will only have this. Room should already exist when the application is launched
-       * A human-readable topic needs to exist, and one master private key is enough, that is burnt in into the application,
-       * rooms will be distinguished by topic
-       */}
-      <SwarmCommentSystem
-        stamp={postageStamp}
-        topic={"bagoytopic"}
-        privateKey={wallet.privateKey}
-        beeApiUrl={process.env.BEE_API_URL}
-        signer={signer}
-      />
-
-      </div>
+    <div className="home-page">
+      {!isLoading ? (
+        <div className="home-page__background">
+          <img src={HomeBackground} alt="" width="100%" height="100%" />
+        </div>
+      ) : null}
+      <HomeHeader points={10} />
+      {isLoading ? (
+        <HomeLoading />
+      ) : (
+        <div className="home-page__content">
+          <DevConMainBox
+            title="Devcon buzz space"
+            content="Share your tought, chat with anybody without moderation and collect the reward."
+            showActiveVisitors={true}
+            activeVisitors={110}
+            bordered={true}
+          />
+          <RecentSessions />
+          <RecentRooms />
+          {/* <UpcomingTalkBox sessions={sessions} /> */}
+        </div>
+      )}
       <NavigationFooter />
     </div>
   );
 };
 
-export default MainProfilePage;
+export default HomePage;

@@ -4,6 +4,10 @@
   /* Colors */
   --purple-to-text-color: #8c72ae;
   --validation-error-text-color: #e8303d;
+  --swarm-color: #ff8a50;
+  --default-purple: #8c72ae;
+  --primary-accent-color: #ff5a1f;
+  --primary-grey: #f7f8fa;
 }
 
 body {
