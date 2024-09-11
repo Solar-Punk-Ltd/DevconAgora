@@ -1,0 +1,68 @@
+@import "../../fonts.css";
+.welcome2-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px 16px;
+}
+
+@media (min-width: 600px) {
+  .welcome2-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 40px 0px;
+    // font-size: 2rem;
+    // font-weight: 700;
+    // color: #000000;
+  }
+}
+
+.welcome2-page__header {
+  font-family: Poppins;
+  padding: 0px 20px;
+  line-height: 36px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.welcome2-page__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.welcome2-page__content__image {
+  height: 358px;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.welcome2-page__content__text {
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Inter;
+  z-index: 1;
+}
+
+.welcome2-page__bottom-text {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}

@@ -1,4 +1,5 @@
-.welcome-layout {
+@import "../../fonts.css";
+.welcome1-page {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -7,53 +8,83 @@
   height: 100vh;
   background-color: white;
   text-align: center;
+  box-sizing: border-box;
+  padding: 40px 0px;
 }
 
 @media (min-width: 600px) {
-  .welcome-layout {
+  .welcome1-page {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
     background-color: white;
     text-align: center;
+    box-sizing: border-box;
+    padding: 40px 0px;
   }
 }
 
-.welcome-font {
-  font-size: 2rem;
+.welcome1-page__header {
+  height: 20%;
+  font-family: Poppins;
+  padding: 0px 20px;
+  line-height: 36px;
   font-weight: 700;
-  color: #000000;
+  font-size: 32px;
 }
 
-.welcome-header {
-  margin-top: 30px;
-  font-weight: 700;
-  font-size: 24px;
-  height: 22vh;
+.welcome1-page__content {
+  width: 100%;
+  height: 60%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.welcome-subtext1 {
-  font-weight: 700;
-  font-size: 18px;
-  height: 8vh;
+.welcome1-page__content__color-effect {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  height: 100vh;
+  background: linear-gradient(
+    rgb(255 255 255 / -46%) 45.52%,
+    rgba(130, 35, 255, 18%) 62.52%,
+    rgb(255 255 255 / 26%) 67.83%
+  );
 }
 
-.welcome-subtext2 {
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 15px;
+.welcome1-page__content__image {
+  z-index: 1;
+  height: 358px;
+  width: 293px;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 
-.bottom-text {
-  margin-bottom: 30px;
-  margin-top: 15px;
-  font-size: 14px;
+.welcome1-page__content__text {
+  background-color: white;
+  width: 330px;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: Inter;
+  z-index: 1;
+}
+
+.welcome1-page__bottom {
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome1-page__bottom-text {
+  font-family: Inter;
+  font-size: 16px;
   font-weight: 400;
   color: #000000;
-}
-
-.subtext {
-  height: 150px;
 }
