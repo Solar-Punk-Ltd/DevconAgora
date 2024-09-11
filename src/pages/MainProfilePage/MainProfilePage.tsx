@@ -10,6 +10,10 @@ import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import Header from "../../components/Header/Header";
+import { ethers } from "ethers";
+import { Signer, Utils } from "@ethersphere/bee-js";
+import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
+
 
 const MainProfilePage: React.FC = () => {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -20,6 +24,24 @@ const MainProfilePage: React.FC = () => {
     beeApi: process.env.BEE_API_URL,
     postageBatchId: "todo dummy",
   });
+
+  // Create Wallet - this will be created outside the component
+  let wallet: ethers.Wallet | null;
+  const savedKey = localStorage.getItem("walletPrivKey");
+  if (savedKey) {
+    wallet = new ethers.Wallet(savedKey)
+  } else {
+    const tempPriv = ethers.Wallet.createRandom().privateKey;
+    wallet = new ethers.Wallet(tempPriv);
+    localStorage.setItem("walletPrivKey", wallet.privateKey)
+  }
+
+  const signer: Signer = {
+    address: Utils.hexToBytes(wallet.address.slice(2)),
+    sign: async (data: any) => {
+      return await wallet.signMessage(data);
+    },
+  };
 
   async function checkBee() {
     fetch(process.env.BEE_API_URL + "addresses")
@@ -91,6 +113,20 @@ const MainProfilePage: React.FC = () => {
         <RecentTalks />
         <RecentRooms />
         {/* <UpcomingTalkBox sessions={sessions} /> */}
+
+      {/** 
+       * Talks will only have this. Room should already exist when the application is launched
+       * A human-readable topic needs to exist, and one master private key is enough, that is burnt in into the application,
+       * rooms will be distinguished by topic
+       */}
+      <SwarmCommentSystem
+        stamp={postageStamp}
+        topic={"bagoytopic"}
+        privateKey={wallet.privateKey}
+        beeApiUrl={process.env.BEE_API_URL}
+        signer={signer}
+      />
+
       </div>
       <NavigationFooter />
     </div>
