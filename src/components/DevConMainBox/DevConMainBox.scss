@@ -1,11 +1,14 @@
 .devcon-main-box {
   padding: 10px;
   background-color: white;
-  border: 2px solid var(--default-purple);
   border-radius: 16px;
   box-sizing: border-box;
-  // box-shadow: 0px 2px 4px 0px #1f1f231a;
   box-shadow: 0px 2px 8px 0px #1f1f2326;
+  margin-bottom: 20px;
+}
+
+.devcon-main-box__border {
+  border: 2px solid var(--default-purple);
 }
 
 .devcon-main-box__title {

@@ -21,6 +21,10 @@ const RecentRooms: React.FC = () => {
           title="Cypherhunk and privacy"
           numberOfActiveUsers={29}
         />
+        <RecentRoomsItem
+          title="Cypherhunk and privacy"
+          numberOfActiveUsers={29}
+        />
       </div>
     </div>
   );

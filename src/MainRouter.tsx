@@ -37,7 +37,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
       <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
       <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
-      <Route path={ROUTES.HOME} element={<HomePage />} />
+      <Route path={ROUTES.HOME} element={<HomePage isLoaded={false} />} />
       <Route path={ROUTES.RECENT} element={<Recent />} />
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />

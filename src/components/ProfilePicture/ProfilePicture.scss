@@ -1,4 +1,6 @@
-.openprofile-picture {
+.profile-picture {
+  width: 121px;
+  height: 121px;
   background-color: #f7f8fa;
   display: flex;
   justify-content: center;
@@ -10,13 +12,13 @@
   z-index: 1;
 }
 
-.openprofile-picture--big {
+.profile-picture--big {
   width: 121px;
   height: 121px;
   font-size: 32px;
 }
 
-.openprofile-picture--small {
+.profile-picture--small {
   width: 32px;
   height: 32px;
   font-size: 12px;

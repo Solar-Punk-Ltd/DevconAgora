@@ -1,9 +1,7 @@
 .home-page {
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  // justify-content: space-between;
-  height: 100vh;
+  height: calc(100vh - 56px);
 }
 
 .home-page__background {
@@ -18,4 +16,9 @@
     padding: 40px;
     font-size: 18px;
   }
+}
+
+.home-page__content {
+  padding: 15px;
+  overflow: scroll;
 }

@@ -11,11 +11,17 @@ import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
+import HomeLoading from "../../components/HomeLoading/HomeLoading";
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+  isLoaded?: boolean;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [sessions, setSessions] = useState<Session[]>([]);
   const [isBeeRunning, setBeeRunning] = useState(false);
   const [postageStamp, setPostageStamp] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const swarm = new Swarm({
     beeApi: process.env.BEE_API_URL,
@@ -70,23 +76,39 @@ const HomePage: React.FC = () => {
     }
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoaded) {
+        setIsLoading(false);
+      }
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="home-page">
-      <div className="home-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
-      </div>
+      {!isLoading ? (
+        <div className="home-page__background">
+          <img src={HomeBackground} alt="" width="100%" height="100%" />
+        </div>
+      ) : null}
       <HomeHeader points={10} />
-      <div style={{ padding: "15px" }}>
-        <DevConMainBox
-          title="Devcon buzz space"
-          content="Share your tought, chat with anybody without moderation and collect the reward."
-          showActiveVisitors={true}
-          activeVisitors={110}
-        />
-        <RecentSessions />
-        <RecentRooms />
-        {/* <UpcomingTalkBox sessions={sessions} /> */}
-      </div>
+      {isLoading ? (
+        <HomeLoading />
+      ) : (
+        <div className="home-page__content">
+          <DevConMainBox
+            title="Devcon buzz space"
+            content="Share your tought, chat with anybody without moderation and collect the reward."
+            showActiveVisitors={true}
+            activeVisitors={110}
+            bordered={true}
+          />
+          <RecentSessions />
+          <RecentRooms />
+          {/* <UpcomingTalkBox sessions={sessions} /> */}
+        </div>
+      )}
       <NavigationFooter />
     </div>
   );

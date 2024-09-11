@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeHeader.scss";
 import swarmIcon from "../../assets/swarm-icon.png";
-import OpenProfilePicture from "../OpenProfilePicture/OpenProfilePicture";
+import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { Link } from "react-router-dom";
 
 interface HomeHeaderProps {
@@ -19,7 +19,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
         </div>
         <Link to="/profile">
           <div className="home-header__profile">
-            <OpenProfilePicture name="CM" version="small" />
+            <ProfilePicture name="CM" version="small" />
           </div>
         </Link>
       </div>
