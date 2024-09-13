@@ -1,0 +1,20 @@
+.agenda-page__upper-tab-panel {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 16px;
+  background-color: #f1f2f4;
+}
+
+.agenda-page__content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.agenda-page__content__items {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
