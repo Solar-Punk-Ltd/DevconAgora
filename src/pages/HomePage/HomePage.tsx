@@ -1,17 +1,24 @@
 import React from "react";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
-// import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
 import "./HomePage.scss";
 import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
 import { Swarm } from "libswarm";
-import { ADDRESS_HEX_LENGTH } from "../../utils/constants";
 import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
+import {
+  FIVE_MINNUTES,
+  FEEDTYPE_SEQUENCE,
+  ADDRESS_HEX_LENGTH,
+} from "../../utils/constants";
+import { Bee } from "@ethersphere/bee-js";
+
+const maxSessionsShown = 9;
+const rawFeedTopicSession = "sessions";
 
 interface HomePageProps {
   isLoaded?: boolean;
@@ -19,14 +26,16 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [sessions, setSessions] = useState<Session[]>([]);
+  const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
-  const [postageStamp, setPostageStamp] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  // TODO: is libswarm needed at all ?
   const swarm = new Swarm({
     beeApi: process.env.BEE_API_URL,
     postageBatchId: "todo dummy",
   });
+
+  const bee = new Bee(process.env.BEE_API_URL || "http://localhost:1633/");
 
   async function checkBee() {
     fetch(process.env.BEE_API_URL + "addresses")
@@ -35,46 +44,72 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           setBeeRunning(true);
           console.log("Bee is running");
         }
-        if (postageStamp.length === 0) {
-          const stamp = await swarm.getUsableStamp();
-          if (stamp === null) {
-            console.log("No usable postage stamp found");
-          } else {
-            setPostageStamp(stamp);
-            console.log("Usable postage stamp found: " + stamp);
-          }
-        }
       })
       .catch(() => {
         setBeeRunning(false);
-        setPostageStamp("");
         console.log("Bee stopped running");
       });
   }
 
-  async function getSessions(hash: string) {
-    if (hash.length !== ADDRESS_HEX_LENGTH) {
+  async function getSessions(ref: string) {
+    if (ref.length !== ADDRESS_HEX_LENGTH) {
       console.log("session hash invalid");
       return;
     }
 
     try {
       const data = JSON.parse(
-        (await swarm.downloadRawData(hash, "application/json")).utf8
+        (await swarm.downloadRawData(ref, "application/json")).utf8
       );
       const s: Session[] = data.data.items;
       setSessions(sessions.concat(s));
     } catch (e) {
-      console.log("talk " + hash + " download/cast error", e);
+      console.log("session " + ref + " download/cast error", e);
     }
   }
 
   useEffect(() => {
     checkBee();
-    if (sessions.length === 0) {
-      getSessions(process.env.DEVCON6_SESSSIONS_HASH || "");
-    }
   });
+
+  async function getFeedUpdate() {
+    if (isBeeRunning) {
+      const sessionFeedTopic = bee.makeFeedTopic(rawFeedTopicSession);
+      const feedReader = bee.makeFeedReader(
+        FEEDTYPE_SEQUENCE,
+        sessionFeedTopic,
+        process.env.FEED_OWNER_ADDRESS as string
+      );
+      try {
+        const feedUpdateRes = await feedReader.download();
+        const feedRef = feedUpdateRes.reference as string;
+        if (feedRef !== sessionsReference) {
+          // TODO: somehow this if re-evaluates becausue sessionsReference is always empty
+          setSessionsReference(feedRef);
+          console.log("sessions reference updated: ", feedRef);
+        }
+      } catch (e) {
+        console.log("feed download error", e);
+      }
+    }
+  }
+
+  useEffect(() => {
+    getFeedUpdate();
+    // const feedUpdateInterval = 5000; // 5 seconds
+    const feedUpdateInterval = FIVE_MINNUTES;
+    const interval = setInterval(async () => {
+      getFeedUpdate();
+    }, feedUpdateInterval);
+
+    return () => clearInterval(interval);
+  }, [isBeeRunning]);
+
+  useEffect(() => {
+    if (isBeeRunning) {
+      getSessions(sessionsReference);
+    }
+  }, [isBeeRunning, sessionsReference]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -104,9 +139,11 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             activeVisitors={110}
             bordered={true}
           />
-          <RecentSessions />
+          <RecentSessions
+            sessions={sessions}
+            maxNumOfSessions={maxSessionsShown}
+          />
           <RecentRooms />
-          {/* <UpcomingTalkBox sessions={sessions} /> */}
         </div>
       )}
       <NavigationFooter />

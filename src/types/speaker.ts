@@ -3,5 +3,5 @@ export interface Speaker {
     sourceId: string
     name: string
     description: string
-    avatar: string
+    avatar?: string
 }
