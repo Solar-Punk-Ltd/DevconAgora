@@ -25,6 +25,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [isBeeRunning, setBeeRunning] = useState(false);
   const [postageStamp, setPostageStamp] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [nonce, setNonce] = useState(0);
 
 
 
@@ -82,6 +83,14 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   });
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      setNonce(nonce + 1);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (!isLoaded) {
         setIsLoading(false);
@@ -126,6 +135,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             privateKey={wallet.privateKey}
             signer={signer}
             beeApiUrl={"http://161.97.125.121:1733"}
+            nonce={nonce}
           />
 
           <DevConMainBox

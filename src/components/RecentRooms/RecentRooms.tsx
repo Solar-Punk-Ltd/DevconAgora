@@ -45,14 +45,6 @@ const RecentRooms: React.FC = () => {
           title="Cypherhunk and privacy"
           numberOfActiveUsers={29}
         />
-
-        <SwarmCommentSystem
-          stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"}
-          topic={"bagoytopic"}
-          privateKey={wallet.privateKey}
-          beeApiUrl={process.env.BEE_API_URL}
-          signer={signer}
-      />
       </div>
     </div>
   );
