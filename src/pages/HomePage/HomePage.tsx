@@ -12,6 +12,9 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
+import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
+import { ethers } from "ethers";
+import { Signer, Utils } from "@ethersphere/bee-js";
 
 interface HomePageProps {
   isLoaded?: boolean;
@@ -22,6 +25,8 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [isBeeRunning, setBeeRunning] = useState(false);
   const [postageStamp, setPostageStamp] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+
 
   const swarm = new Swarm({
     beeApi: process.env.BEE_API_URL,
@@ -70,7 +75,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   }
 
   useEffect(() => {
-    checkBee();
+    //checkBee();
     if (sessions.length === 0) {
       getSessions(process.env.DEVCON6_SESSSIONS_HASH || "");
     }
@@ -85,6 +90,24 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     return () => clearTimeout(timer);
   }, []);
 
+    // Create Wallet - this will be created outside the component
+    let wallet: ethers.Wallet | null;
+    const savedKey = localStorage.getItem("walletPrivKey");
+    if (savedKey) {
+      wallet = new ethers.Wallet(savedKey)
+    } else {
+      const tempPriv = ethers.Wallet.createRandom().privateKey;
+      wallet = new ethers.Wallet(tempPriv);
+      localStorage.setItem("walletPrivKey", wallet.privateKey)
+    }
+  
+    const signer: Signer = {
+      address: Utils.hexToBytes(wallet.address.slice(2)),
+      sign: async (data: any) => {
+        return await wallet.signMessage(data);
+      },
+    };
+
   return (
     <div className="home-page">
       {!isLoading ? (
@@ -97,6 +120,14 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
         <HomeLoading />
       ) : (
         <div className="home-page__content">
+          <SwarmCommentSystem 
+            stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
+            topic={"bagoytopic-2"} 
+            privateKey={wallet.privateKey}
+            signer={signer}
+            beeApiUrl={"http://161.97.125.121:1733"}
+          />
+
           <DevConMainBox
             title="Devcon buzz space"
             content="Share your tought, chat with anybody without moderation and collect the reward."
