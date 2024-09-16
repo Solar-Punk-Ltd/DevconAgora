@@ -85,7 +85,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setNonce(nonce + 1);
-    }, 30000);
+    }, 10 * 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -135,7 +135,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             privateKey={wallet.privateKey}
             signer={signer}
             beeApiUrl={"http://161.97.125.121:1733"}
-            nonce={nonce}
           />
 
           <DevConMainBox
@@ -147,6 +146,16 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           />
           <RecentSessions />
           <RecentRooms />
+
+          <SwarmCommentSystem 
+            stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
+            topic={"bagoytopic-3"} 
+            privateKey={wallet.privateKey}
+            signer={signer}
+            beeApiUrl={"http://161.97.125.121:1733"}
+            key={nonce}
+          />
+
           {/* <UpcomingTalkBox sessions={sessions} /> */}
         </div>
       )}
