@@ -61,7 +61,21 @@ const NavigationFooter: React.FC = () => {
         <img src={RoomsIcon} alt="" width="24px" height="24px" />
         <div style={{ fontSize: "12px" }}>Rooms</div>
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <img src={RoomsIcon} alt="" width="24px" height="24px" />
+        <Link to="/test">
+        <div style={{ fontSize: "12px" }}>Test</div>
+        </Link>
+      </div>
     </div>
+    
   );
 };
 

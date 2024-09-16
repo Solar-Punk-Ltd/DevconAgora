@@ -25,7 +25,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const [isBeeRunning, setBeeRunning] = useState(false);
   const [postageStamp, setPostageStamp] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [nonce, setNonce] = useState(0);
 
 
 
@@ -83,14 +82,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setNonce(nonce + 1);
-    }, 10 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       if (!isLoaded) {
         setIsLoading(false);
@@ -102,13 +93,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     // Create Wallet - this will be created outside the component
     let wallet: ethers.Wallet | null;
     const savedKey = localStorage.getItem("walletPrivKey");
-    //if (savedKey) {
-      wallet = new ethers.Wallet("0x5a6d2217c2a202cb9ac1cb6781cc3423ec6a276f488634bb935495f77cd7aba9")
-    //} else {
-    //  const tempPriv = ethers.Wallet.createRandom().privateKey;
-    //  wallet = new ethers.Wallet(tempPriv);
-    //  localStorage.setItem("walletPrivKey", wallet.privateKey)
-    //}
+    if (savedKey) {
+      wallet = new ethers.Wallet(savedKey)
+    } else {
+      const tempPriv = ethers.Wallet.createRandom().privateKey;
+      wallet = new ethers.Wallet(tempPriv);
+      localStorage.setItem("walletPrivKey", wallet.privateKey)
+    }
   
     const signer: Signer = {
       address: Utils.hexToBytes(wallet.address.slice(2)),
@@ -146,16 +137,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           />
           <RecentSessions />
           <RecentRooms />
-
-          <SwarmCommentSystem 
-            stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
-            topic={"bagoytopic-3"} 
-            privateKey={wallet.privateKey}
-            signer={signer}
-            beeApiUrl={"http://161.97.125.121:1733"}
-            key={nonce}
-          />
-
           {/* <UpcomingTalkBox sessions={sessions} /> */}
         </div>
       )}

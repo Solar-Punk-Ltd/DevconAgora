@@ -12,6 +12,7 @@ import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
+import Test from "./pages/Test/Test";
 
 export enum ROUTES {
   APP = "/",
@@ -26,6 +27,7 @@ export enum ROUTES {
   PROFILE = "/profile",
   GAMIFICATION = "/gamification",
   AGENDA = "/agenda",
+  TEST = "/test",
 }
 
 const MainRouter = (): ReactElement => {
@@ -43,6 +45,8 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda />} />
+      <Route path={ROUTES.AGENDA} element={<Agenda />} />
+      <Route path={ROUTES.TEST} element={<Test />} />
     </Routes>
   );
 };
