@@ -93,13 +93,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     // Create Wallet - this will be created outside the component
     let wallet: ethers.Wallet | null;
     const savedKey = localStorage.getItem("walletPrivKey");
-    if (savedKey) {
-      wallet = new ethers.Wallet(savedKey)
-    } else {
-      const tempPriv = ethers.Wallet.createRandom().privateKey;
-      wallet = new ethers.Wallet(tempPriv);
-      localStorage.setItem("walletPrivKey", wallet.privateKey)
-    }
+    //if (savedKey) {
+      wallet = new ethers.Wallet("0x5a6d2217c2a202cb9ac1cb6781cc3423ec6a276f488634bb935495f77cd7aba9")
+    //} else {
+    //  const tempPriv = ethers.Wallet.createRandom().privateKey;
+    //  wallet = new ethers.Wallet(tempPriv);
+    //  localStorage.setItem("walletPrivKey", wallet.privateKey)
+    //}
   
     const signer: Signer = {
       address: Utils.hexToBytes(wallet.address.slice(2)),
