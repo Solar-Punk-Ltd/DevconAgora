@@ -4,7 +4,14 @@
   align-items: center;
 }
 
-.tab-panel-item {
-  width: 118px;
-  height: 32px;
+.tab-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.tab-panel__outlined {
+  gap: 8px;
 }
