@@ -3,6 +3,7 @@ import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
 import { ethers } from "ethers";
 import { Signer, Utils } from "@ethersphere/bee-js";
 import "./Test.scss";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 
 const Test: React.FC = () => {
     // Create Wallet - this will be created outside the component
@@ -24,14 +25,17 @@ const Test: React.FC = () => {
       };
 
     return (
-        <div id="chatContainer">
-            <SwarmCommentSystem
-                stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
-                topic={"bagoytopic-3"} 
-                privateKey={wallet.privateKey}
-                signer={signer}
-                beeApiUrl={"http://161.97.125.121:1733"}
-            />
+        <div>
+            <div id="chatContainer">
+                <SwarmCommentSystem
+                    stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
+                    topic={"bagoytopic-3"} 
+                    privateKey={wallet.privateKey}
+                    signer={signer}
+                    beeApiUrl={"http://161.97.125.121:1733"}
+                />
+            </div>
+            <NavigationFooter />
         </div>
     );
 };
