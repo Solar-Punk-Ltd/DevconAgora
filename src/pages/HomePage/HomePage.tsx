@@ -122,7 +122,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
         <div className="home-page__content">
           <SwarmCommentSystem 
             stamp={"9d976f24b0956280dd62eaa050e97d2b7adae9a04f6e5921bbc56f5bb0bc1f69"} 
-            topic={"bagoytopic-2"} 
+            topic={"bagoytopic-3"} 
             privateKey={wallet.privateKey}
             signer={signer}
             beeApiUrl={"http://161.97.125.121:1733"}
