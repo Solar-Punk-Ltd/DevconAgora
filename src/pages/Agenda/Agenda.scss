@@ -1,3 +1,9 @@
+.agenda-page {
+  height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+}
+
 .agenda-page__upper-tab-panel {
   display: flex;
   flex-direction: column;
@@ -11,10 +17,18 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  height: 100%;
+  overflow: scroll;
 }
 
 .agenda-page__content__items {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+}
+
+.agenda-page__content__filter-icon {
+  position: fixed;
+  right: 8px;
+  bottom: 120px;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./RecentSessionsItem.scss";
 import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
-import PlaceIcon from "../../icons/PlaceIcon/PlaceIcon";
+import Stage from "../../Stage/Stage";
 
 interface RecentSessionsItemProps {
   title?: string;
@@ -17,9 +17,8 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
   return (
     <div className="recent-talks-item">
       <div className="recent-talks-item__title">{title}</div>
-      <div className="recent-talks-item__stage">
-        <PlaceIcon />
-        {stage}
+      <div className="recent-sessions-item__stage">
+        <Stage name={stage} />
       </div>
       <ActiveVisitors number={activeVisitors} />
     </div>

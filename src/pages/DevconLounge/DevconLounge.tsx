@@ -1,5 +1,4 @@
 import React from "react";
-import TabPanel from "../../components/TabPanel/TabPanel";
 import "./DevconLounge.scss";
 import RecentSessionsItem from "../../components/RecentSessions/RecentSessionsItem/RecentSessionsItem";
 import Header from "../../components/Header/Header";
@@ -23,9 +22,6 @@ const DevconLounge: React.FC = () => {
         }}
       >
         <Header name="Agora" />
-      </div>
-      <div style={{ margin: "10px" }}>
-        <TabPanel />
       </div>
       <div
         style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}

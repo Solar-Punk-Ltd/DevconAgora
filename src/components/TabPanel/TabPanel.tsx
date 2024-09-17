@@ -5,18 +5,21 @@ import clsx from "clsx";
 interface TabPanelProps {
   version?: "underlined" | "filled" | "outlined";
   children: React.ReactNode;
+  activeIndex: number;
 }
 
 interface TabPanelItemProps {
   label: string;
   active: boolean;
   version?: "underlined" | "filled" | "outlined";
-  onClick?: () => void;
+  handleClick?: () => void;
 }
 
-const TabPanel: React.FC<TabPanelProps> = ({ version, children }) => {
-  const [activeTab, setActiveTab] = React.useState(0);
-  // const TabItems = ["Recent", "All rooms", "Blogs"];
+const TabPanel: React.FC<TabPanelProps> = ({
+  version,
+  children,
+  activeIndex,
+}) => {
   return (
     <div
       className={clsx("tab-panel", {
@@ -26,9 +29,8 @@ const TabPanel: React.FC<TabPanelProps> = ({ version, children }) => {
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement<TabPanelItemProps>(child)) {
           return React.cloneElement(child, {
-            active: index === activeTab,
+            active: index === activeIndex,
             version: version,
-            onClick: () => setActiveTab(index),
           });
         }
         return child;
