@@ -106,7 +106,7 @@ const Agenda: React.FC = () => {
             />
           </div>
         )}
-        ;
+
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />

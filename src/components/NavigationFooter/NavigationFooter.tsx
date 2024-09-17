@@ -11,6 +11,7 @@ const NavigationFooter: React.FC = () => {
       style={{
         position: "absolute",
         bottom: "0",
+        left: "0",
         display: "flex",
         justifyContent: "center",
         gap: "40px",

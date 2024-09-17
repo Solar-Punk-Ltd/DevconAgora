@@ -17,7 +17,9 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
   return (
     <div className="recent-talks-item">
       <div className="recent-talks-item__title">{title}</div>
-      <Stage name={stage} />
+      <div className="recent-sessions-item__stage">
+        <Stage name={stage} />
+      </div>
       <ActiveVisitors number={activeVisitors} />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import "./AgendaItem.scss";
-import CategoryIndicator from "../../../components/CategoryIndicator/CategoryIndicator";
 import HeartIcon from "../../../components/icons/HeartIcon/HeartIcon";
+import CategoryIndicator from "../../../components/CategoryIndicator/CategoryIndicator";
 import Stage from "../../../components/Stage/Stage";
 
 interface AgendaItemProps {
@@ -29,10 +29,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
       </div>
       <div className="agenda-item__content">
         <div className="agenda-item__content__name">{name}</div>
-        <div
-          style={{ display: "flex", width: "100%" }}
-          className="agenda-item__content__tagged"
-        >
+        <div style={{}} className="agenda-item__content__tagged">
           {stage ? <Stage name={stage} /> : null}
           {category ? <CategoryIndicator name={category} /> : null}
         </div>
