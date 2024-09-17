@@ -17,4 +17,18 @@ export enum ROUTES {
     PROFILE = "/profile",
     GAMIFICATION = "/gamification",
     AGENDA = "/agenda",
+    CATEGORIES = "/categories",
 };
+
+export const CATEGORY_FILTERS = [
+  "Layer 2s",
+  "Core protocol",
+  "Cypherpunk and privacy",
+  "Usability",
+  "Real World Ethereum",
+  "Applied Cryptography",
+  "Crypto Economics",
+  "Coordination",
+  "Developer Experience",
+  "Security",
+];

@@ -124,6 +124,7 @@ const MainRouter = (): ReactElement => {
           <Agenda sessions={sessions} maxSessionsShown={maxSessionsShown} />
         }
       />
+      {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
     </Routes>
   );
 };
