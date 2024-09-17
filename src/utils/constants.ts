@@ -32,3 +32,11 @@ export const CATEGORY_FILTERS = [
   "Developer Experience",
   "Security",
 ];
+
+export const STAGES = {
+  "talk-1": "Stage 1",
+  "talk-2": "Stage 2",
+  "talk-3": "Stage 3",
+  "talk-4": "Stage 4",
+  "talk-5": "Stage 5",
+};

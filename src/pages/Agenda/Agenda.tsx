@@ -8,11 +8,12 @@ import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
 import { Session } from "../../types/session";
 import { shortenTitle } from "../../utils/helpers";
+import { STAGES } from "../../utils/constants";
 
-const DEVCON_DAY1 = new Date("2022-10-11").toDateString();
-const DEVCON_DAY2 = new Date("2022-10-12").toDateString();
-const DEVCON_DAY3 = new Date("2022-10-13").toDateString();
-const DEVCON_DAY4 = new Date("2022-10-14").toDateString();
+const DEVCON_DAY_AS_DATE1 = new Date("2022-10-11").toDateString();
+const DEVCON_DAY_AS_DATE2 = new Date("2022-10-12").toDateString();
+const DEVCON_DAY_AS_DATE3 = new Date("2022-10-13").toDateString();
+const DEVCON_DAY_AS_DATE4 = new Date("2022-10-14").toDateString();
 
 enum DAYS {
   DAY1 = 0,
@@ -25,23 +26,16 @@ interface AgendaProps {
   sessions: Session[];
   maxSessionsShown?: number;
 }
-
 const Agenda: React.FC<AgendaProps> = ({ sessions, maxSessionsShown = 8 }) => {
-  const [agenda, setAgenda] = useState<JSX.Element[]>([]);
-  const [day1Sessions, setDay1Sessions] = useState<Session[]>([]);
-  const [day2Sessions, setDay2Sessions] = useState<Session[]>([]);
-  const [day3Sessions, setDay3Sessions] = useState<Session[]>([]);
-  const [day4Sessions, setDay4Sessions] = useState<Session[]>([]);
-  const [day1Items, setDay1Items] = useState<JSX.Element[]>([]);
-  const [day2Items, setDay2Items] = useState<JSX.Element[]>([]);
-  const [day3Items, setDay3Items] = useState<JSX.Element[]>([]);
-  const [day4Items, setDay4Items] = useState<JSX.Element[]>([]);
-
+  const [sessionsByDay, setSessionsByDay] = useState<Session[][]>([]);
+  const [agendaItemsByDay, setAgendaItemsByDay] = useState<JSX.Element[][]>([]);
   const [showCategories, setShowCategories] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState(0);
   const [activeDayTab, setActiveDayTab] = useState(0);
   const [activeStageTab, setActiveStageTab] = useState(0);
+
+  const sessionsByDayLength = 4;
 
   const renderTabPanelItems = (
     labels: string[],
@@ -56,90 +50,85 @@ const Agenda: React.FC<AgendaProps> = ({ sessions, maxSessionsShown = 8 }) => {
     ));
   };
 
-  function filterForDays() {
-    const tmpDay1Sessions: Session[] = [];
-    const tmpDay2Sessions: Session[] = [];
-    const tmpDay3Sessions: Session[] = [];
-    const tmpDay4Sessions: Session[] = [];
+  // TODO: map stage names per day
+  // TODO: map stage names per category
+  const getStageNames = (): string[] => {
+    const arr: string[] = [];
+    for (const [key, value] of Object.entries(STAGES)) {
+      arr.push(value);
+    }
+    return arr;
+  };
+
+  function filterSessionsByDay() {
+    const sessionsByDayArray = new Array<Session[]>(sessionsByDayLength);
+    for (let i = 0; i < sessionsByDayArray.length; i++) {
+      sessionsByDayArray[i] = new Array<Session>();
+    }
     for (let i = 0; i < sessions.length; i++) {
       const slotStart = sessions[i].slot_start;
       if (slotStart) {
         const day = new Date(slotStart).toDateString();
+        let dayIndex = DAYS.DAY1;
         switch (day) {
-          case DEVCON_DAY1:
-            tmpDay1Sessions.push(sessions[i]);
+          case DEVCON_DAY_AS_DATE1:
+            dayIndex = DAYS.DAY1;
             break;
-          case DEVCON_DAY2:
-            tmpDay2Sessions.push(sessions[i]);
+          case DEVCON_DAY_AS_DATE2:
+            dayIndex = DAYS.DAY2;
             break;
-          case DEVCON_DAY3:
-            tmpDay3Sessions.push(sessions[i]);
+          case DEVCON_DAY_AS_DATE3:
+            dayIndex = DAYS.DAY3;
             break;
-          case DEVCON_DAY4:
-            tmpDay4Sessions.push(sessions[i]);
+          case DEVCON_DAY_AS_DATE4:
+            dayIndex = DAYS.DAY4;
             break;
           default:
             console.log("unkown day: ", day);
             break;
         }
+        sessionsByDayArray[dayIndex].push(sessions[i]);
       }
     }
-    setDay1Sessions(tmpDay1Sessions);
-    setDay2Sessions(tmpDay2Sessions);
-    setDay3Sessions(tmpDay3Sessions);
-    setDay4Sessions(tmpDay4Sessions);
+
+    setSessionsByDay(sessionsByDayArray);
   }
 
-  const filterDays = (day: DAYS) => {
-    let arr = [];
-    switch (day) {
-      case DAYS.DAY1:
-        arr = day1Sessions;
-        break;
-      case DAYS.DAY2:
-        arr = day2Sessions;
-        break;
-      case DAYS.DAY3:
-        arr = day3Sessions;
-        break;
-      case DAYS.DAY4:
-        arr = day4Sessions;
-        break;
-      default:
-        arr = day1Sessions;
-        break;
+  const getItemsByDay = () => {
+    const items = new Array<JSX.Element[]>(sessionsByDayLength);
+    for (let i = 0; i < items.length; i++) {
+      items[i] = new Array<JSX.Element>();
     }
-    const items = new Array<JSX.Element>(maxSessionsShown);
-    for (let i = 0; i < maxSessionsShown && i < arr.length; i++) {
-      const shortTitle = shortenTitle(arr[i].title);
-      const randomBoolean = Math.random() >= 0.5;
-      // console.log("bagoy shortTitle:", shortTitle);
-      items[i] = (
-        <AgendaItem
-          key={arr[i].id}
-          title={shortTitle}
-          // TODO: format start/end times
-          startDate={arr[i].slot_start}
-          endDate={arr[i].slot_end}
-          category={arr[i].track}
-          // TODO: heart logic
-          hearted={randomBoolean}
-        />
-      );
+    for (let n = 0; n < sessionsByDay.length; n++) {
+      const dailySessions = sessionsByDay[n];
+      for (let i = 0; i < maxSessionsShown && i < dailySessions.length; i++) {
+        const sessionItem = dailySessions[i];
+        const shortTitle = shortenTitle(sessionItem.title, 100);
+        const randomBoolean = Math.random() >= 0.5;
+        // TODO: format start/end times
+        items[n].push(
+          <AgendaItem
+            key={sessionItem.id}
+            title={shortTitle}
+            startDate={sessionItem.slot_start}
+            endDate={sessionItem.slot_end}
+            category={sessionItem.track}
+            // TODO: heart logic
+            hearted={randomBoolean}
+          />
+        );
+      }
     }
-    return items;
-  };
 
+    setAgendaItemsByDay(items);
+  };
   useEffect(() => {
-    filterForDays();
+    filterSessionsByDay();
   }, [sessions]);
 
   useEffect(() => {
-    setDay1Items(filterDays(DAYS.DAY1));
-    setDay2Items(filterDays(DAYS.DAY2));
-    setDay3Items(filterDays(DAYS.DAY3));
-    setDay4Items(filterDays(DAYS.DAY4));
-  }, [day1Sessions]);
+    getItemsByDay();
+  }, [sessionsByDay]);
 
   return !showCategories ? (
     <div className="agenda-page">
@@ -156,71 +145,9 @@ const Agenda: React.FC<AgendaProps> = ({ sessions, maxSessionsShown = 8 }) => {
       </div>
       <div className="agenda-page__content">
         <TabPanel version="outlined" activeIndex={activeStageTab}>
-          {renderTabPanelItems(
-            ["Stage 1", "Stage 2", "Stage 3", "Stage 4"],
-            setActiveStageTab
-          )}
+          {renderTabPanelItems(getStageNames(), setActiveStageTab)}
         </TabPanel>
-        {activeAgendaTab === 0 ? (
-          <div className="agenda-page__content__items">
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Layer 2s"
-            />
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={false}
-              category="Layer 2s"
-            />
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Layer 2s"
-            />
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={false}
-              category="Layer 2s"
-            />
-          </div>
-        ) : (
-          <div className="agenda-page__content__items">
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-            <AgendaItem
-              title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-          </div>
-        )}
-
+        {agendaItemsByDay[activeDayTab] ? agendaItemsByDay[activeDayTab] : null}
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />
