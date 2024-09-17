@@ -4,6 +4,7 @@ import welcome2img from "../../assets/ob_2.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";
+import { ROUTES } from "../../utils/constants";
 
 const Welcome1: React.FC = () => {
   return (
@@ -41,13 +42,13 @@ const Welcome1: React.FC = () => {
             <WelcomeProgressIndicator active={1} />
             <div className="welcome-page_bottom-bottom__buttons">
               <Link
-                to="/welcome1"
+                to={ROUTES.WELCOME1}
                 className="welcome-page__navigation-button-link"
               >
                 <WelcomeButton version="outlined">Back</WelcomeButton>
               </Link>
               <Link
-                to="/welcome3"
+                to={ROUTES.WELCOME3}
                 className="welcome-page__navigation-button-link"
               >
                 <WelcomeButton version="filled">Next</WelcomeButton>
@@ -55,7 +56,7 @@ const Welcome1: React.FC = () => {
             </div>
             <div className="welcome-page__bottom-text">
               I know everything{" "}
-              <Link to="/profilecreation">
+              <Link to={ROUTES.PROFILECREATION}>
                 <span className="welcome-page__bottom-text__skip">SKIP</span>
               </Link>
             </div>

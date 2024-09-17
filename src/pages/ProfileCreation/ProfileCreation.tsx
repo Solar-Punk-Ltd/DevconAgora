@@ -5,6 +5,7 @@ import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import "./ProfileCreation.scss";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
+import { ROUTES } from "../../utils/constants";
 
 const ProfileCreation: React.FC = () => {
   const [username, setUsername] = React.useState("");
@@ -70,7 +71,7 @@ const ProfileCreation: React.FC = () => {
           </div>
         </div>
         <div className="profile-creation__bottom">
-          <Link to="/home">
+          <Link to={ROUTES.HOME}>
             <WelcomeButton version={buttonActive ? "filled" : "inactive"}>
               Start Building Your Community
             </WelcomeButton>

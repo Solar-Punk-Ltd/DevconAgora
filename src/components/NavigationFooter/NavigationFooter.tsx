@@ -4,6 +4,7 @@ import CalendarIcon from "../../assets/calendar.png";
 import RoomsIcon from "../../assets/rooms.png";
 import "./NavigationFooter.scss";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 const NavigationFooter: React.FC = () => {
   return (
@@ -24,7 +25,7 @@ const NavigationFooter: React.FC = () => {
         borderBottom: "1px solid #C8C8CA",
       }}
     >
-      <Link to="/home">
+      <Link to={ROUTES.HOME}>
         <div
           style={{
             display: "flex",
@@ -37,7 +38,7 @@ const NavigationFooter: React.FC = () => {
           <div style={{ fontSize: "12px" }}>Home</div>
         </div>
       </Link>
-      <Link to="/agenda">
+      <Link to={ROUTES.AGENDA}>
         <div
           style={{
             display: "flex",

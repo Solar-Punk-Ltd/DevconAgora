@@ -4,16 +4,18 @@ import CategoryIndicator from "../../../components/CategoryIndicator/CategoryInd
 import HeartIcon from "../../../components/icons/HeartIcon/HeartIcon";
 
 interface AgendaItemProps {
-  name?: string;
+  title?: string;
   startDate?: string;
   endDate?: string;
+  track?: string;
   hearted?: boolean;
 }
 
 const AgendaItem: React.FC<AgendaItemProps> = ({
-  name,
+  title,
   startDate,
   endDate,
+  track,
   hearted,
 }) => {
   return (
@@ -23,9 +25,9 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         <div style={{ fontSize: "12px", fontWeight: "400" }}>{endDate}</div>
       </div>
       <div className="agenda-item__content">
-        <div className="agenda-item__content__name">{name}</div>
+        <div className="agenda-item__content__name">{title}</div>
         <div className="agenda-item__content__category">
-          <CategoryIndicator name="Layer 2s" />
+          <CategoryIndicator name={track || "no track"} />
         </div>
       </div>
       <div style={{ width: "24px", paddingRight: "9px" }}>

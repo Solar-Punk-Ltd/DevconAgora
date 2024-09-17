@@ -3,6 +3,7 @@ import "./Header.scss";
 // import AlertIndicator from "./AlertIndicator/AlertIndicator";
 import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 interface HeaderProps {
   name: string;
@@ -23,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ name }) => {
       <div style={{ fontSize: "24px", fontWeight: "700" }}>{name}</div>
 
       <div style={{ height: "40px" }}>
-        <Link to="/profile">
+        <Link to={ROUTES.PROFILE}>
           <ProfileIndicator alertValue={10} />
         </Link>
       </div>

@@ -4,83 +4,78 @@ import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
 import { Session } from "../../types/session";
+import { FIVE_MINNUTES, ROUTES } from "../../utils/constants";
+import { shortenTitle } from "../../utils/helpers";
+
+const mockStartTime = new Date("2022-10-12T10:00:00.000Z").getTime();
 
 interface SessionBoxProps {
   sessions: Session[];
-  maxNumOfSessions?: number;
+  maxSessionsShown?: number;
 }
 
+// TODO: get favorite sessions from local storage + #comment from swarm and order by that
 const RecentSessions: React.FC<SessionBoxProps> = ({
   sessions,
-  maxNumOfSessions = 9,
+  maxSessionsShown = 9,
 }) => {
-  const [recentSessions, setRecentSessions] = useState<JSX.Element[]>([]);
+  const [recentSessionsItems, setRecentSessionsItems] = useState<JSX.Element[]>(
+    []
+  );
   const [sessionIndex, setSessionIndex] = useState<number>(0);
-  const [time, setTime] = useState<number>(0);
+  const [time, setTime] = useState<number>(mockStartTime);
 
-  const createRingBuffer = (
-    arr: JSX.Element[],
-    startIx: number,
-    length: number
-  ) => {
-    let index = startIx;
-    const buffer = arr.slice();
-
-    return {
-      getItem: (key: number) => {
-        return buffer[key];
-      },
-      push: (item: JSX.Element) => {
-        buffer[index] = item;
-        index = (length + index + 1) % length;
-        return index;
-      },
-      get: () => {
-        return buffer;
-      },
-    };
-  };
-
-  // TODO: sort sessions by activity or by time
-  function getCurrentTime() {
-    setTime(new Date().getTime());
+  function findSlotStartIx(startIx: number) {
+    for (let i = startIx; i < sessions.length; i++) {
+      const slotStart = sessions[i].slot_start;
+      if (slotStart && new Date(slotStart).getTime() > time) {
+        return i > 0 ? i - 1 : 0;
+      }
+    }
+    return -1;
   }
-
+  // the uploaded sessions are already sorted by time
+  // find the first session that starts after the current time
   const filterRecentSessions = () => {
     if (sessions.length != 0) {
-      const ringBuffer = createRingBuffer(
-        recentSessions,
-        sessionIndex,
-        maxNumOfSessions
-      );
-      let ix = sessionIndex;
+      const mostRecentSessions = new Array<JSX.Element>(maxSessionsShown);
+      let firstSessionIx = findSlotStartIx(sessionIndex);
+      firstSessionIx =
+        firstSessionIx === -1
+          ? sessionIndex > maxSessionsShown
+            ? sessionIndex
+            : maxSessionsShown
+          : firstSessionIx;
+
       for (
         let i = 0;
-        i < maxNumOfSessions && i < sessions.length - maxNumOfSessions;
+        i < maxSessionsShown && 0 < sessions.length - firstSessionIx - i;
         i++
       ) {
-        const slotStart = new Date(sessions[i].slot_start).getTime();
-        if (slotStart < time) {
-          ix = ringBuffer.push(
-            <RecentSessionsItem
-              key={sessions[i].id}
-              title={sessions[i].title}
-              stage={sessions[i].slot_roomId}
-              activeVisitors={110}
-            />
-          );
-        }
+        const recentIx = firstSessionIx - i;
+        const shortTitle = shortenTitle(sessions[recentIx].title);
+        mostRecentSessions[i] = (
+          <RecentSessionsItem
+            key={sessions[recentIx].id}
+            title={shortTitle}
+            stage={sessions[recentIx].slot_roomId}
+            // TODO: active visitors
+            activeVisitors={110}
+          />
+        );
       }
-      setSessionIndex(ix);
-      setRecentSessions(ringBuffer.get());
+      setSessionIndex(firstSessionIx);
+      setRecentSessionsItems(mostRecentSessions);
     }
   };
 
   useEffect(() => {
-    getCurrentTime();
+    // TODO: what shall be the update time ?
+    // const sessionUpdateInterval = FIVE_MINNUTES;
     const sessionUpdateInterval = 5000; // 5 seconds
     const interval = setInterval(async () => {
-      getCurrentTime();
+      // increase current time by 10 minutes to see the change in recent sessions
+      setTime((time) => new Date(time + FIVE_MINNUTES).getTime());
     }, sessionUpdateInterval);
 
     return () => clearInterval(interval);
@@ -96,15 +91,15 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
         <div style={{}} className="recent-sessions__title">
           Recent sessions
         </div>
-        <Link to="/recent">
+        <Link to={ROUTES.AGENDA}>
           <div className="recent-sessions__all">All sessions</div>
         </Link>
       </div>
       <div className="recent-sessions__item-container">
-        {recentSessions.length === 0 ? (
+        {recentSessionsItems.length === 0 ? (
           <RecentSessionsItem key={"no-session"} title={"No recent session"} />
         ) : (
-          recentSessions
+          recentSessionsItems
         )}
       </div>
     </div>

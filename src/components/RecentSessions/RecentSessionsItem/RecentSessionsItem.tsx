@@ -9,6 +9,7 @@ interface RecentSessionsItemProps {
   activeVisitors?: number;
 }
 
+// TODO: maybe add hover effect to show full title
 const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
   title,
   stage,

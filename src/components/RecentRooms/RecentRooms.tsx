@@ -2,6 +2,7 @@ import React from "react";
 import "./RecentRooms.scss";
 import { Link } from "react-router-dom";
 import RecentRoomsItem from "./RecentRoomsItem/RecentRoomsItem";
+import { ROUTES } from "../../utils/constants";
 
 const RecentRooms: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const RecentRooms: React.FC = () => {
         <div style={{}} className="recent-rooms__title">
           Recent rooms
         </div>
-        <Link to="/recent">
+        <Link to={ROUTES.RECENT}>
           <div className="recent-rooms__all">All rooms</div>
         </Link>
       </div>
