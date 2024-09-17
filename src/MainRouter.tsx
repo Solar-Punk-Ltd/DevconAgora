@@ -28,7 +28,6 @@ const MainRouter = (): ReactElement => {
 
   const bee = new Bee(process.env.BEE_API_URL || "http://localhost:1633/");
   const rawFeedTopicSession = "sessions";
-  const maxSessionsShown = 8;
 
   async function checkBee() {
     fetch(process.env.BEE_API_URL + "addresses")
@@ -56,8 +55,7 @@ const MainRouter = (): ReactElement => {
         const feedUpdateRes = await feedReader.download();
         const feedRef = feedUpdateRes.reference as string;
         if (feedRef !== sessionsReference) {
-          // TODO: somehow this if re-evaluates becausue sessionsReference is always empty
-          setSessionsReference(feedRef);
+          setSessionsReference(() => feedRef);
           console.log("sessions reference updated: ", feedRef);
         }
       } catch (e) {
@@ -118,12 +116,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
-      <Route
-        path={ROUTES.AGENDA}
-        element={
-          <Agenda sessions={sessions} maxSessionsShown={maxSessionsShown} />
-        }
-      />
+      <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
       {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
     </Routes>
   );

@@ -15,6 +15,7 @@ interface SessionBoxProps {
 }
 
 // TODO: get favorite sessions from local storage + #comment from swarm and order by that
+// TODO: stage logo is displayed twice somehow
 const RecentSessions: React.FC<SessionBoxProps> = ({
   sessions,
   maxSessionsShown = 9,
@@ -37,36 +38,34 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
   // the uploaded sessions are already sorted by time
   // find the first session that starts after the current time
   const filterRecentSessions = () => {
-    if (sessions.length != 0) {
-      const mostRecentSessions = new Array<JSX.Element>(maxSessionsShown);
-      let firstSessionIx = findSlotStartIx(sessionIndex);
-      firstSessionIx =
-        firstSessionIx === -1
-          ? sessionIndex > maxSessionsShown
-            ? sessionIndex
-            : maxSessionsShown
-          : firstSessionIx;
+    const mostRecentSessions = new Array<JSX.Element>(maxSessionsShown);
+    let firstSessionIx = findSlotStartIx(sessionIndex);
+    firstSessionIx =
+      firstSessionIx === -1
+        ? sessionIndex > maxSessionsShown
+          ? sessionIndex
+          : maxSessionsShown
+        : firstSessionIx;
 
-      for (
-        let i = 0;
-        i < maxSessionsShown && 0 < sessions.length - firstSessionIx - i;
-        i++
-      ) {
-        const recentIx = firstSessionIx - i;
-        const shortTitle = shortenTitle(sessions[recentIx].title);
-        mostRecentSessions[i] = (
-          <RecentSessionsItem
-            key={sessions[recentIx].id}
-            title={shortTitle}
-            stage={sessions[recentIx].slot_roomId}
-            // TODO: active visitors
-            activeVisitors={110}
-          />
-        );
-      }
-      setSessionIndex(firstSessionIx);
-      setRecentSessionsItems(mostRecentSessions);
+    for (
+      let i = 0;
+      i < maxSessionsShown && 0 < sessions.length - firstSessionIx - i;
+      i++
+    ) {
+      const recentIx = firstSessionIx - i;
+      const shortTitle = shortenTitle(sessions[recentIx].title);
+      const activeVisitors = Math.floor(Math.random() * 100);
+      mostRecentSessions[i] = (
+        <RecentSessionsItem
+          key={sessions[recentIx].id}
+          title={shortTitle}
+          stage={sessions[recentIx].slot_roomId}
+          activeVisitors={activeVisitors}
+        />
+      );
     }
+    setSessionIndex(firstSessionIx);
+    setRecentSessionsItems(mostRecentSessions);
   };
 
   useEffect(() => {
@@ -82,7 +81,9 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
   }, []);
 
   useEffect(() => {
-    filterRecentSessions();
+    if (sessions.length != 0) {
+      filterRecentSessions();
+    }
   }, [sessions, time]);
 
   return (

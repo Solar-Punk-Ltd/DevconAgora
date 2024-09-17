@@ -6,3 +6,7 @@ export function shortenTitle(title?: string, maxTitleLength?: number): string {
     }
     return shortTitle;
 }
+
+export function dateToTime(date?: string): string {
+    return !date ? "" :date.substring(11, 16);
+}
