@@ -1,0 +1,14 @@
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 8px;
+  box-sizing: border-box;
+  width: 66px;
+  height: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  border: 1px solid var(--primary-accent-color);
+  border-radius: 30px;
+}

@@ -2,12 +2,15 @@ import React from "react";
 import "./AgendaItem.scss";
 import CategoryIndicator from "../../../components/CategoryIndicator/CategoryIndicator";
 import HeartIcon from "../../../components/icons/HeartIcon/HeartIcon";
+import Stage from "../../../components/Stage/Stage";
 
 interface AgendaItemProps {
   name?: string;
   startDate?: string;
   endDate?: string;
   hearted?: boolean;
+  category?: string;
+  stage?: string;
 }
 
 const AgendaItem: React.FC<AgendaItemProps> = ({
@@ -15,6 +18,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   startDate,
   endDate,
   hearted,
+  category,
+  stage,
 }) => {
   return (
     <div className="agenda-item">
@@ -24,8 +29,12 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
       </div>
       <div className="agenda-item__content">
         <div className="agenda-item__content__name">{name}</div>
-        <div className="agenda-item__content__category">
-          <CategoryIndicator name="Layer 2s" />
+        <div
+          style={{ display: "flex", width: "100%" }}
+          className="agenda-item__content__tagged"
+        >
+          {stage ? <Stage name={stage} /> : null}
+          {category ? <CategoryIndicator name={category} /> : null}
         </div>
       </div>
       <div style={{ width: "24px", paddingRight: "9px" }}>

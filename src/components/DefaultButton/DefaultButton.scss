@@ -1,11 +1,21 @@
 .default-button {
-  width: 343px;
+  width: 100%;
   height: 40px;
   border-radius: 8px;
+  font-family: "Public Sans";
+  font-size: 14px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.default-button__filled {
   background-color: #8c72ae;
   color: white;
-  font-family: "Public Sans";
-  font-weight: 700;
   border: 1px solid transparent;
-  box-sizing: border-box;
+}
+
+.default-button__outlined {
+  background-color: white;
+  color: #a5adba;
+  border: 1px solid #a5adba;
 }

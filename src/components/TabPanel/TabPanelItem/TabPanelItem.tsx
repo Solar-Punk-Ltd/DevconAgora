@@ -7,18 +7,18 @@ interface TabPanelItemProps {
   active?: boolean;
   version?: "underlined" | "filled" | "outlined";
   onClick?: () => void;
+  handleClick?: () => void;
 }
 
 const TabPanelItem: React.FC<TabPanelItemProps> = ({
   label,
   active,
   version,
-  onClick,
+  handleClick,
 }) => {
   return (
     <div
       className={clsx("tab-panel-item", "flex-center", {
-        // "tab-panel-item__active": active,
         "tab-panel-item__underlined": version === "underlined",
         "tab-panel-item__underlined__active":
           active && version === "underlined",
@@ -27,7 +27,7 @@ const TabPanelItem: React.FC<TabPanelItemProps> = ({
         "tab-panel-item__outlined": version === "outlined",
         "tab-panel-item__outlined__active": active && version === "outlined",
       })}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {label}
     </div>
