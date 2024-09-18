@@ -33,4 +33,14 @@ export const CATEGORY_FILTERS = [
   "Security",
 ];
 
-export const STAGE_IDS = ["talk-1", "talk-2", "talk-3", "talk-4", "talk-5"];
+export const STAGES_MAP = new Map([
+  ["talk-1", "Stage 1"],
+  ["talk-2", "Stage 2"],
+  ["talk-3", "Stage 3"],
+  ["talk-4", "Stage 4"],
+  ["talk-5", "Stage 5"],
+  ["workshop-1", "Workshop 1"],
+  ["workshop-2", "Workshop 2"],
+  ["workshop-3", "Workshop 3"],
+  ["workshop-4", "Workshop 4"]
+]);

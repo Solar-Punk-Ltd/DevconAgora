@@ -8,7 +8,7 @@ import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
 import { Session } from "../../types/session";
 import { shortenTitle, dateToTime } from "../../utils/helpers";
-import { STAGE_IDS, CATEGORY_FILTERS } from "../../utils/constants";
+import { STAGES_MAP, CATEGORY_FILTERS } from "../../utils/constants";
 
 const DEVCON_DAY_AS_DATE1 = new Date("2022-10-11").toDateString();
 const DEVCON_DAY_AS_DATE2 = new Date("2022-10-12").toDateString();
@@ -61,7 +61,7 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
       const slotStart = sessions[i].slot_start;
       if (slotStart) {
         const day = new Date(slotStart).toDateString();
-        let dayIndex = DAYS.DAY1;
+        let dayIndex = -1;
         switch (day) {
           case DEVCON_DAY_AS_DATE1:
             dayIndex = DAYS.DAY1;
@@ -82,17 +82,19 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
         const sessionItem = sessions[i];
         const shortTitle = shortenTitle(sessionItem.title, 100);
         const randomBoolean = Math.random() >= 0.5;
-        agendaItemsByDayArray[dayIndex].push(
-          <AgendaItem
-            key={sessionItem.id}
-            title={shortTitle}
-            startDate={dateToTime(sessionItem.slot_start)}
-            endDate={dateToTime(sessionItem.slot_end)}
-            category={sessionItem.track}
-            roomId={sessionItem.slot_roomId}
-            hearted={randomBoolean}
-          />
-        );
+        if (dayIndex !== -1) {
+          agendaItemsByDayArray[dayIndex].push(
+            <AgendaItem
+              key={sessionItem.id}
+              title={shortTitle}
+              startDate={dateToTime(sessionItem.slot_start)}
+              endDate={dateToTime(sessionItem.slot_end)}
+              category={sessionItem.track}
+              roomId={sessionItem.slot_roomId}
+              hearted={randomBoolean}
+            />
+          );
+        }
       }
     }
 
@@ -117,7 +119,8 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           activeAgendaTab === 1 ? items[i].props.hearted === true : true;
 
         if (
-          items[i].props.roomId === STAGE_IDS[activeStageTab] &&
+          items[i].props.roomId ===
+            Array.from(STAGES_MAP.keys())[activeStageTab] &&
           isYourAgenda &&
           categoryFilter
         ) {
@@ -150,7 +153,7 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
       <div className="agenda-page__content">
         <TabPanel version="outlined" activeIndex={activeStageTab}>
           {renderTabPanelItems(
-            ["Stage 1", "Stage 2", "Stage 3", "Stage 4"],
+            Array.from(STAGES_MAP.values()),
             setActiveStageTab
           )}
         </TabPanel>

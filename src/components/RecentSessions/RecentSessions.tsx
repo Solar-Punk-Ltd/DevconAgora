@@ -4,7 +4,7 @@ import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
 import { Session } from "../../types/session";
-import { FIVE_MINNUTES, ROUTES } from "../../utils/constants";
+import { FIVE_MINNUTES, ROUTES, STAGES_MAP } from "../../utils/constants";
 import { shortenTitle } from "../../utils/helpers";
 
 const mockStartTime = new Date("2022-10-12T10:00:00.000Z").getTime();
@@ -15,7 +15,7 @@ interface SessionBoxProps {
 }
 
 // TODO: get favorite sessions from local storage + #comment from swarm and order by that
-// TODO: stage logo is displayed twice somehow
+// TODO: stage logo is displayed twice somehow and misaligned
 const RecentSessions: React.FC<SessionBoxProps> = ({
   sessions,
   maxSessionsShown = 9,
@@ -54,12 +54,13 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
     ) {
       const recentIx = firstSessionIx - i;
       const shortTitle = shortenTitle(sessions[recentIx].title);
+      const room = sessions[recentIx].slot_roomId || "No room";
       const activeVisitors = Math.floor(Math.random() * 100);
       mostRecentSessions[i] = (
         <RecentSessionsItem
           key={sessions[recentIx].id}
           title={shortTitle}
-          stage={sessions[recentIx].slot_roomId}
+          stage={STAGES_MAP.get(room)}
           activeVisitors={activeVisitors}
         />
       );
@@ -70,10 +71,9 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
 
   useEffect(() => {
     // TODO: what shall be the update time ?
-    // const sessionUpdateInterval = FIVE_MINNUTES;
-    const sessionUpdateInterval = 5000; // 5 seconds
+    const sessionUpdateInterval = FIVE_MINNUTES;
     const interval = setInterval(async () => {
-      // increase current time by 10 minutes to see the change in recent sessions
+      // TODO: remove this: increase current time by 10 minutes to see the change in recent sessions
       setTime((time) => new Date(time + FIVE_MINNUTES).getTime());
     }, sessionUpdateInterval);
 
