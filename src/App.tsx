@@ -11,6 +11,7 @@ import { TEXTS } from "../textConstants";
 
 function App() {
   const navigate = useNavigate();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/welcome1");

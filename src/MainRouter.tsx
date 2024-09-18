@@ -85,7 +85,7 @@ const MainRouter = (): ReactElement => {
 
   useEffect(() => {
     getFeedUpdate();
-    // const feedUpdateInterval = 5000; // 5 seconds
+    // TODO: what shall be the update time ?
     const feedUpdateInterval = FIVE_MINNUTES;
     const interval = setInterval(async () => {
       getFeedUpdate();

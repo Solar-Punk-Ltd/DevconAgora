@@ -1,6 +1,5 @@
 export const BATCH_ID_HEX_LENGTH = 64;
 export const ADDRESS_HEX_LENGTH = 64;
-export const TOTAL_NUMBER_OF_SESSIONS = 353;
 export const FIVE_MINNUTES = 1000 * 60 * 5;
 export const FEEDTYPE_SEQUENCE = "sequence";
 
@@ -32,6 +31,13 @@ export const CATEGORY_FILTERS = [
   "Developer Experience",
   "Security",
 ];
+
+export const DAYS_MAP = new Map([
+  ["Day 1", new Date("2022-10-11").toDateString()],
+  ["Day 2", new Date("2022-10-12").toDateString()],
+  ["Day 3", new Date("2022-10-13").toDateString()],
+  ["Day 4", new Date("2022-10-14").toDateString()],
+]);
 
 export const STAGES_MAP = new Map([
   ["talk-1", "Stage 1"],

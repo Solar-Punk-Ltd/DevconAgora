@@ -13,7 +13,6 @@ interface AgendaItemProps {
   roomId?: string;
   stage?: string;
 }
-// TODO: add room name maybe
 const AgendaItem: React.FC<AgendaItemProps> = ({
   title,
   startDate,

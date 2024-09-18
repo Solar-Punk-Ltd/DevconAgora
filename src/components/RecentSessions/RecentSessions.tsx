@@ -14,8 +14,6 @@ interface SessionBoxProps {
   maxSessionsShown?: number;
 }
 
-// TODO: get favorite sessions from local storage + #comment from swarm and order by that
-// TODO: stage logo is displayed twice somehow and misaligned
 const RecentSessions: React.FC<SessionBoxProps> = ({
   sessions,
   maxSessionsShown = 9,
@@ -53,7 +51,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
       i++
     ) {
       const recentIx = firstSessionIx - i;
-      const shortTitle = shortenTitle(sessions[recentIx].title);
+      const shortTitle = shortenTitle(sessions[recentIx].title, 40);
       const room = sessions[recentIx].slot_roomId || "No room";
       const activeVisitors = Math.floor(Math.random() * 100);
       mostRecentSessions[i] = (
