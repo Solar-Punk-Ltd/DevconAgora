@@ -1,0 +1,16 @@
+.chat {
+  margin: 8px;
+  background-color: red;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.chat__p {
+  padding: 8px;
+  margin: 16px;
+  background-color: yellow;
+  color: red;
+  text-align: center;
+}

@@ -12,10 +12,26 @@ import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
-import RoomsPage from "./pages/RoomsPage/RoomsPage";
-import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
-import { Session } from "./types/session";
-import { getFeedUpdate, getSessionsData } from "./utils/bee";
+import Chat from "./pages/Chat/Chat";
+import { getSessionsData } from "./utils/bee";
+import { ADDRESS_HEX_LENGTH, FIVE_MINUTES } from "./utils/constants";
+// import Categories from "./pages/Categories/Categories";
+
+export enum ROUTES {
+  APP = "/",
+  WELCOME1 = "/welcome1",
+  WELCOME2 = "/welcome2",
+  WELCOME3 = "/welcome3",
+  WELCOME4 = "/welcome4",
+  PROFILECREATION = "/profilecreation",
+  HOME = "/home",
+  RECENT = "/recent",
+  DEVCONLOUNGE = "/devconlounge",
+  PROFILE = "/profile",
+  GAMIFICATION = "/gamification",
+  AGENDA = "/agenda",
+  CATEGORIES = "/categories",
+}
 
 const MainRouter = (): ReactElement => {
   const [sessions, setSessions] = useState(new Map<string, Session[]>());
@@ -94,8 +110,9 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
-      <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      <Route path={ROUTES.ROOMS} element={<RoomsPage />} />
+      <Route path={ROUTES.AGENDA} element={<Agenda />} />
+      <Route path={"/chat_dev"} element={<Chat />} />
+      {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
     </Routes>
   );
 };
