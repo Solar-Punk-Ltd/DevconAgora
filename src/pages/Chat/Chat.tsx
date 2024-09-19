@@ -11,7 +11,37 @@ const Chat: React.FC<ChatProps> = (
     something,
 ) => {
   return (
-    <div className="chat">
+    <div className="chat-page">
+      {/**Agenda */}
+
+      {/**Messages */}
+        {/**Message threadId={"0x124"} */}
+        {/**Message threadId={"0x125"} */}
+        {/**Message threadId={"0x126"} */}
+
+        {/**MessageThread threadId={"0x125"} */}
+          {/**Message parent={"0x125"}*/}
+          {/**Message parent={"0x125"}*/}
+          {/**Message parent={"0x125"}*/}
+
+        {/**Message threadId={"0x124"} */}
+          {/**MessageControls */}
+            {/**Like */}
+            {/**Reply */}
+
+        {/**OR */}
+        {/**Message */}
+          {/**Avatar */}
+          {/**Name */}
+          {/**Time */}
+          {/**MessageBubble */}
+          {/**MessageControls */}
+            {/**Like */}
+            {/**Reply */}
+
+
+        {/**ChatInput */}
+
       <p className="chat__p">
         The Chat
       </p>
