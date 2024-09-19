@@ -12,7 +12,7 @@ const Chat: React.FC<ChatProps> = (
 ) => {
   return (
     <div className="chat-page">
-      {/**Agenda */}
+      {/**AgendaItem */}
 
       {/**Messages */}
         {/**Message threadId={"0x124"} */}
@@ -42,7 +42,7 @@ const Chat: React.FC<ChatProps> = (
 
         {/**ChatInput */}
 
-      <p className="chat__p">
+      <p className="chat-page__p">
         The Chat
       </p>
       

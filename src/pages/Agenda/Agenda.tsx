@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Agenda.scss";
-import AgendaItem from "./AgendaItem/AgendaItem";
+import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";

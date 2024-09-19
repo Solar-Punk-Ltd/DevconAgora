@@ -1,6 +1,6 @@
 
 // first test
-.chat {
+.chat-page {
   background-color: red;
   height: 100%;
   display: flex;
@@ -8,7 +8,7 @@
   justify-content: space-around;
 }
 
-.chat__p {
+.chat-page__p {
   padding: 8px;
   margin: 16px;
   background-color: yellow;
