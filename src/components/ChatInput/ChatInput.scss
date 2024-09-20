@@ -3,3 +3,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.chat-input__input {
+    flex-grow: 1;
+    height: 50px;
+}

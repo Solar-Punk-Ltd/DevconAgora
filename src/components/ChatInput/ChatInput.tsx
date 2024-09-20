@@ -55,8 +55,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
       stamp,
       privKey
     );
-    setSending(false);
     setMessageToSend("");
+    setSending(false);
   }
 
   return (
@@ -75,6 +75,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           value={messageToSend}
           onChange={(e) => setMessageToSend(e.target.value)}
           onKeyDown={handleKeyDown}
+          className="chat-input__input"
         />
       )
     }

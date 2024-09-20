@@ -62,17 +62,21 @@ const Chat: React.FC<ChatProps> = ({
       .catch((err) => console.error(`initUsers error: ${err.error}`));
 
       const { on } = newChat.getChatActions();
-      on(EVENTS.RECEIVE_MESSAGE, handleReceiveMessage);
+      on(EVENTS.RECEIVE_MESSAGE, (data) => setMessages(data)/*handleReceiveMessage*/);
 
-      setChat(newChat)
+      setChat(() => {return newChat})
   }
 
-  const handleReceiveMessage = (data: MessageData[]) => {
-    if (!chat) return;
+  /*const handleReceiveMessage = (data: MessageData[]) => {
+    if (!chat) {
+      console.warn("NO CHAT INSTANCE")
+      console.log(chat)
+      return;
+    }
     console.log("Data: ", data);
     const ordered = chat.orderMessages(data); // check if this is happening inside lib or not
     setMessages(Object.assign([], ordered));
-  };
+  };*/
 
   useEffect(() => {
     init();
@@ -82,10 +86,6 @@ const Chat: React.FC<ChatProps> = ({
       chat?.stopUserFetchProcess();
     }
   }, []);
-
-  useEffect(() => {
-    console.log("Messages: ", messages)//del
-  }, [messages])
 
 
   return (
@@ -107,14 +107,18 @@ const Chat: React.FC<ChatProps> = ({
         messages={messages}
       />
         
-      {chat && <ChatInput 
+      {chat ? (
+        <ChatInput 
         chat={chat}
         ownAddress={ownAddress}
         nickname={nickname}
         topic={topic}
         stamp={stamp}
         privKey={privKey}
-      />}
+      />
+      ) : (
+        <p>Connecting...</p>
+      )}
       
       <NavigationFooter />
     </div>
