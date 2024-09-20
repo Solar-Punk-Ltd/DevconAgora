@@ -61,18 +61,14 @@ const Chat: React.FC<ChatProps> = ({
 
 
     const { on } = chat.getChatActions();
-    on(EVENTS.RECEIVE_MESSAGE, (data) => {
-      console.log("Data: ", data);
-      //const id = `${msg.address}${msg.timestamp}`;
-      //if (lastThiry.includes(id)) { console.log("return;"); return;}
-      setMessages((m) => {
-        m.push(data);
-        return m;
-      });
-    });
-
-    console.log("Messages: ", messages)
+    on(EVENTS.RECEIVE_MESSAGE, handleReceiveMessage);
   }
+
+  const handleReceiveMessage = (data: MessageData[]) => {
+    console.log("Data: ", data);
+    const ordered = chat.orderMessages(data);
+    setMessages(Object.assign([], ordered));
+  };
 
   useEffect(() => {
     init();
@@ -82,6 +78,10 @@ const Chat: React.FC<ChatProps> = ({
       chat.stopUserFetchProcess();
     }
   }, []);
+
+  useEffect(() => {
+    console.log("Messages: ", messages)
+  }, [messages])
 
 
   return (
@@ -100,7 +100,7 @@ const Chat: React.FC<ChatProps> = ({
       />
 
       <Messages 
-        messages={[{message: "hello", timestamp: 123}, {message: "szia", timestamp: 126}]}
+        messages={messages}
       />
         
       <ChatInput 

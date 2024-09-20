@@ -1,21 +1,20 @@
 import React from 'react';
 import "./Message.scss";
+import { MessageData } from 'swarm-decentralized-chat';
 
 interface MessageProps {
-    text: string;
-    timestamp: number;
+    data: MessageData;
     threadId: string;
 }
 
 const Message: React.FC<MessageProps> = ({
-    text,
-    timestamp,
+    data,
     threadId,
 }) => {
   return (
     <div className="message">
-        <p>{text}</p>
-        <p>{timestamp}</p>
+        <p><strong>{`${data.username}: `}</strong>{data.message}</p>
+        <p>{data.timestamp}</p>
     </div>
   )
 }

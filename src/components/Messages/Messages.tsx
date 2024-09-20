@@ -1,9 +1,10 @@
 import React from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
+import { MessageData } from 'swarm-decentralized-chat';
 
 interface MessagesProps {
-    messages: object[];
+    messages: MessageData[];
 }
 
 
@@ -12,23 +13,12 @@ const Messages: React.FC<MessagesProps> = ({
 }) => {
   return (
     <div className="messages">
-      <Message 
-        text={"Hello world"}
-        timestamp={123}
-        threadId={"0x123"}
-      />
-
-      <Message 
-        text={"Szia"}
-        timestamp={233}
-        threadId={"0x129"}
-      />
-
-      <Message 
-        text={"Sziasztok"}
-        timestamp={445}
-        threadId={"0x456"}
-      />
+      {messages.map((message, ind) => (
+        <Message 
+          data={message}
+          threadId={`mock-${ind}`}
+        />
+      ))}
 
               {/**Message threadId={"0x124"} */}
         {/**Message threadId={"0x125"} */}

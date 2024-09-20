@@ -22,16 +22,17 @@ const ChatInput: React.FC<ChatInputProps> = ({
   privKey
 }) => {
   const [messageToSend, setMessageToSend] = useState("");
-  const [isReconnecting, setIsReconnecting] = useState(false);
+  const [reconnecting, setReconnecting] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const sendMessage = async () => {
 
     if (!chat.isRegistered(ownAddress)) {
-      setIsReconnecting(true);
+      setReconnecting(true);
       await chat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
         .then(() => console.info(`user reconnected.`))
         .catch((err) => console.error(`error when reconnecting ${err.error}`));
-      setIsReconnecting(false);   // this might not be accurate
+      setReconnecting(false);   // this might not be accurate
     }
 
     const messageObj: MessageData = {
@@ -41,19 +42,26 @@ const ChatInput: React.FC<ChatInputProps> = ({
       address: ownAddress
     }
 
-    chat.sendMessage(
+    setSending(true);
+    await chat.sendMessage(
       ownAddress,
       topic,
       messageObj,
       stamp,
       privKey
     );
+    setSending(false);
+    setMessageToSend("");
   }
 
   return (
     <div id="chat-input">
-      {isReconnecting ? (
-        <p>Reconnecting...</p>
+      {(reconnecting || sending) ? (
+        reconnecting ? (
+          <p>Reconnecting...</p>
+        ) : (
+          sending && <p>Sending message...</p>
+        )
       ) 
         : 
       (
@@ -67,7 +75,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
       <button 
         onClick={sendMessage}
-        disabled={isReconnecting}
+        disabled={(reconnecting || sending)}
       >
         Send
       </button>
