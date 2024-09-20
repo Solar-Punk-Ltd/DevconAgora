@@ -70,6 +70,8 @@ const Chat: React.FC<ChatProps> = ({
         return m;
       });
     });
+
+    console.log("Messages: ", messages)
   }
 
   useEffect(() => {

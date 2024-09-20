@@ -23,7 +23,6 @@ export default defineConfig(({mode}) => {
     resolve: {
       alias: {
         stream: 'stream-browserify',
-        //process: 'process/browser', // Polyfill process for browser 
       }
     }
   }
