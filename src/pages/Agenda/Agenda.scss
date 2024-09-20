@@ -32,3 +32,9 @@
   right: 8px;
   bottom: 120px;
 }
+
+@media (min-width: 500px) {
+  .agenda-page__content__filter-icon {
+    position: absolute;
+  }
+}

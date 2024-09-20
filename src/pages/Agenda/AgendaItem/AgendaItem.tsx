@@ -24,8 +24,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   return (
     <div className="agenda-item">
       <div className={"agenda-item__time"}>
-        <div style={{ fontSize: "12px", fontWeight: "400" }}>{startDate}</div>
-        <div style={{ fontSize: "12px", fontWeight: "400" }}>{endDate}</div>
+        <div>{startDate}</div>
+        <div>{endDate}</div>
       </div>
       <div className="agenda-item__content">
         <div className="agenda-item__content__name">{name}</div>
@@ -34,7 +34,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           {category ? <CategoryIndicator name={category} /> : null}
         </div>
       </div>
-      <div style={{ width: "24px", paddingRight: "9px" }}>
+      <div className="agenda-item__content__heart-icon">
         <HeartIcon empty={!hearted} />
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
-// import UpcomingTalkBox from "../../components/UpcomingTalkBox/UpcomingTalkBox";
 import "./HomePage.scss";
 import { Session } from "../../types/session";
 import { useEffect, useState } from "react";
@@ -106,7 +105,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           />
           <RecentSessions />
           <RecentRooms />
-          {/* <UpcomingTalkBox sessions={sessions} /> */}
         </div>
       )}
       <NavigationFooter />

@@ -3,12 +3,14 @@ import "./HomeHeader.scss";
 import swarmIcon from "../../assets/swarm-icon.png";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { Link } from "react-router-dom";
+import { useGlobalState } from "../../GlobalStateContext";
 
 interface HomeHeaderProps {
   points?: number;
 }
 
 const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
+  const { monogram } = useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
@@ -19,7 +21,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
         </div>
         <Link to="/profile">
           <div className="home-header__profile">
-            <ProfilePicture name="CM" version="small" />
+            <ProfilePicture name={monogram} version="small" />
           </div>
         </Link>
       </div>

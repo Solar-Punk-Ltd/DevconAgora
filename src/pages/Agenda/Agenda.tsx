@@ -6,6 +6,8 @@ import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import { STAGES } from "../../utils/constants";
 
 const Agenda: React.FC = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -41,12 +43,11 @@ const Agenda: React.FC = () => {
         </TabPanel>
       </div>
       <div className="agenda-page__content">
-        <TabPanel version="outlined" activeIndex={activeStageTab}>
-          {renderTabPanelItems(
-            ["Stage 1", "Stage 2", "Stage 3", "Stage 4"],
-            setActiveStageTab
-          )}
-        </TabPanel>
+        <Dropdown
+          items={STAGES}
+          activeItem={activeStageTab}
+          onClick={(index) => setActiveStageTab(index)}
+        />
         {activeAgendaTab === 0 ? (
           <div className="agenda-page__content__items">
             <AgendaItem
