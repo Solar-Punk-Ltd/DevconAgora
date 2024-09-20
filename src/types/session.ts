@@ -1,3 +1,5 @@
+import { Speaker } from './speaker'
+
 export interface Session {
     id: string
     sourceId: string
@@ -9,7 +11,7 @@ export interface Session {
     expertise: string
     featured?: boolean
     tags: string
-    speakers: string
+    speakers?: Speaker[]
     resources_slides?: string
     slot_start?: string
     slot_end?: string

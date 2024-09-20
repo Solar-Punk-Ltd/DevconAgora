@@ -1,6 +1,6 @@
 export const BATCH_ID_HEX_LENGTH = 64;
 export const ADDRESS_HEX_LENGTH = 64;
-export const FIVE_MINNUTES = 1000 * 60 * 5;
+export const FIVE_MINUTES = 1000 * 60 * 5;
 export const FEEDTYPE_SEQUENCE = "sequence";
 
 export enum ROUTES {
@@ -32,11 +32,11 @@ export const CATEGORY_FILTERS = [
   "Security",
 ];
 
-export const DAYS_MAP = new Map([
-  ["Day 1", new Date("2022-10-11").toDateString()],
-  ["Day 2", new Date("2022-10-12").toDateString()],
-  ["Day 3", new Date("2022-10-13").toDateString()],
-  ["Day 4", new Date("2022-10-14").toDateString()],
+export const DATE_TO_DEVCON_DAY = new Map([
+  [new Date("2022-10-11").toDateString(), "Day 1"],
+  [new Date("2022-10-12").toDateString(), "Day 2"],
+  [new Date("2022-10-13").toDateString(), "Day 3"],
+  [new Date("2022-10-14").toDateString(), "Day 4"],
 ]);
 
 export const STAGES_MAP = new Map([
@@ -45,8 +45,9 @@ export const STAGES_MAP = new Map([
   ["talk-3", "Stage 3"],
   ["talk-4", "Stage 4"],
   ["talk-5", "Stage 5"],
+  ["talk-5-opening-ceremonies", "Stage 5 - opening"],
   ["workshop-1", "Workshop 1"],
   ["workshop-2", "Workshop 2"],
   ["workshop-3", "Workshop 3"],
-  ["workshop-4", "Workshop 4"]
+  ["workshop-4", "Workshop 4"],
 ]);

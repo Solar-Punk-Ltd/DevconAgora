@@ -28,7 +28,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         <div style={{ fontSize: "12px", fontWeight: "400" }}>{endDate}</div>
       </div>
       <div className="agenda-item__content">
-        <div className="agenda-item__content__name">{title}</div>
+        <div className="agenda-item__content__title">{title}</div>
         <div style={{}} className="agenda-item__content__tagged">
           {stage ? <Stage name={stage} /> : null}
           {category ? (

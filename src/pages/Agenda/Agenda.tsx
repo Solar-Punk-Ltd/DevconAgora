@@ -7,16 +7,20 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
 import { Session } from "../../types/session";
-import { shortenTitle, dateToTime } from "../../utils/helpers";
-import { STAGES_MAP, DAYS_MAP, CATEGORY_FILTERS } from "../../utils/constants";
+import { dateToTime } from "../../utils/helpers";
+import {
+  STAGES_MAP,
+  CATEGORY_FILTERS,
+  DATE_TO_DEVCON_DAY,
+} from "../../utils/constants";
+import { getSessionsByDay } from "../../utils/helpers";
 
 interface AgendaProps {
-  sessions: Session[];
+  sessions: Map<string, Session[]>;
 }
 
 const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
-  const [agendaItemsByDay, setAgendaItemsByDay] = useState<JSX.Element[][]>([]);
-  const [activeAgendaItems, setActiveAgendaItems] = useState<JSX.Element[]>([]);
+  const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
   const [showCategories, setShowCategories] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState(0);
@@ -36,92 +40,33 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
     ));
   };
 
-  function filterSessionsByDay() {
-    const agendaItemsByDayArray = new Array<JSX.Element[]>(
-      Array.from(DAYS_MAP.keys()).length
+  useEffect(() => {
+    const sessionsByDay = getSessionsByDay(
+      sessions,
+      Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab]
     );
-    for (let i = 0; i < agendaItemsByDayArray.length; i++) {
-      agendaItemsByDayArray[i] = new Array<JSX.Element>();
-    }
-    for (let i = 0; i < sessions.length; i++) {
-      const slotStart = sessions[i].slot_start;
-      if (slotStart) {
-        const day = new Date(slotStart).toDateString();
-        let dayIndex = -1;
-        switch (day) {
-          case DAYS_MAP.get("Day 1"):
-            dayIndex = 0;
-            break;
-          case DAYS_MAP.get("Day 2"):
-            dayIndex = 1;
-            break;
-          case DAYS_MAP.get("Day 3"):
-            dayIndex = 2;
-            break;
-          case DAYS_MAP.get("Day 4"):
-            dayIndex = 3;
-            break;
-          default:
-            console.log("unkown day: ", day);
-            break;
-        }
-        const sessionItem = sessions[i];
-        const shortTitle = shortenTitle(sessionItem.title);
-        const randomBoolean = Math.random() >= 0.5;
-        if (dayIndex !== -1) {
-          agendaItemsByDayArray[dayIndex].push(
-            <AgendaItem
-              key={sessionItem.id}
-              title={shortTitle}
-              startDate={dateToTime(sessionItem.slot_start)}
-              endDate={dateToTime(sessionItem.slot_end)}
-              category={sessionItem.track}
-              roomId={sessionItem.slot_roomId}
-              hearted={randomBoolean}
-            />
-          );
-        }
-      }
-    }
-
-    setAgendaItemsByDay(agendaItemsByDayArray);
-  }
-
-  useEffect(() => {
-    if (sessions.length != 0) {
-      filterSessionsByDay();
-    }
-  }, [sessions]);
-
-  useEffect(() => {
-    if (agendaItemsByDay.length > 0) {
-      const activeItemsArray: JSX.Element[] = [];
-      for (let i = 0; i < agendaItemsByDay[activeDayTab].length; i++) {
-        const items = agendaItemsByDay[activeDayTab];
+    if (sessionsByDay.length > 0) {
+      const items: Session[] = [];
+      for (let i = 0; i < sessionsByDay.length; i++) {
         const categoryFilter = categoryIndex
-          ? items[i].props.category === CATEGORY_FILTERS[categoryIndex]
+          ? sessionsByDay[i].track === CATEGORY_FILTERS[categoryIndex]
           : true;
+        // TODO: implement heart logic
         const isYourAgenda =
-          activeAgendaTab === 1 ? items[i].props.hearted === true : true;
+          activeAgendaTab === 1 ? sessionsByDay[i].hearted === true : true;
 
         if (
-          items[i].props.roomId ===
+          sessionsByDay[i].slot_roomId ===
             Array.from(STAGES_MAP.keys())[activeStageTab] &&
           isYourAgenda &&
           categoryFilter
         ) {
-          activeItemsArray.push(items[i]);
+          items.push(sessionsByDay[i]);
         }
       }
-      setActiveAgendaItems(activeItemsArray);
+      setActiveAgendaItems(items);
     }
-  }, [
-    agendaItemsByDay,
-    activeDayTab,
-    activeStageTab,
-    activeAgendaTab,
-    categoryIndex,
-  ]);
+  }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
   return !showCategories ? (
     <div className="agenda-page">
@@ -130,7 +75,10 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           {renderTabPanelItems(["Agenda", "Your Agenda"], setActiveAgendaTab)}
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
-          {renderTabPanelItems(Array.from(DAYS_MAP.keys()), setActiveDayTab)}
+          {renderTabPanelItems(
+            Array.from(DATE_TO_DEVCON_DAY.values()),
+            setActiveDayTab
+          )}
         </TabPanel>
       </div>
       <div className="agenda-page__content">
@@ -140,7 +88,20 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
             setActiveStageTab
           )}
         </TabPanel>
-        {activeAgendaItems}
+        {activeAgendaItems.map((session) => {
+          const randomBoolean = Math.random() >= 0.5;
+          return (
+            <AgendaItem
+              key={session.id}
+              title={session.title}
+              startDate={dateToTime(session.slot_start)}
+              endDate={dateToTime(session.slot_end)}
+              category={session.track}
+              roomId={session.slot_roomId}
+              hearted={randomBoolean}
+            />
+          );
+        })}
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />

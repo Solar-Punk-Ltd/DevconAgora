@@ -1,6 +1,5 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Bee } from "@ethersphere/bee-js";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
@@ -13,24 +12,19 @@ import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
-import {
-  ROUTES,
-  FIVE_MINNUTES,
-  FEEDTYPE_SEQUENCE,
-  ADDRESS_HEX_LENGTH,
-} from "./utils/constants";
+import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
+import { getFeedUpdate, getSessionsData } from "./utils/bee";
 
 const MainRouter = (): ReactElement => {
-  const [sessions, setSessions] = useState<Session[]>([]);
+  const [sessions, setSessions] = useState(new Map<string, Session[]>());
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
 
-  const bee = new Bee(process.env.BEE_API_URL || "http://localhost:1633/");
-  const rawFeedTopicSession = "sessions";
-
   async function checkBee() {
-    fetch(process.env.BEE_API_URL + "addresses")
+    fetch(
+      process.env.BEE_API_URL + "bytes/" + process.env.HEALTH_CHECK_DATA_REF
+    )
       .then(async () => {
         if (!isBeeRunning) {
           setBeeRunning(true);
@@ -43,62 +37,45 @@ const MainRouter = (): ReactElement => {
       });
   }
 
-  async function getFeedUpdate() {
+  useEffect(() => {
+    // TODO: what shall be the update time ?
+    checkBee();
+    const interval = setInterval(() => {
+      checkBee();
+    }, FIVE_MINUTES);
+    return () => clearInterval(interval);
+  }, []);
+
+  const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
-      const sessionFeedTopic = bee.makeFeedTopic(rawFeedTopicSession);
-      const feedReader = bee.makeFeedReader(
-        FEEDTYPE_SEQUENCE,
-        sessionFeedTopic,
-        process.env.FEED_OWNER_ADDRESS as string
-      );
-      try {
-        const feedUpdateRes = await feedReader.download();
-        const feedRef = feedUpdateRes.reference as string;
-        if (feedRef !== sessionsReference) {
-          setSessionsReference(() => feedRef);
-          console.log("sessions reference updated: ", feedRef);
-        }
-      } catch (e) {
-        console.log("feed download error", e);
+      const ref = await getFeedUpdate();
+      if (ref.length === ADDRESS_HEX_LENGTH && ref !== sessionsReference) {
+        console.log("sessions reference updated: ", ref);
+        setSessionsReference(() => ref);
       }
     }
-  }
-
-  async function getSessions(ref: string) {
-    if (ref.length !== ADDRESS_HEX_LENGTH) {
-      console.log("session hash invalid");
-      return;
-    }
-
-    try {
-      const data = JSON.parse((await bee.downloadData(ref)).text());
-      const s: Session[] = data.data.items;
-      setSessions(s);
-    } catch (e) {
-      console.log("session " + ref + " download/cast error", e);
-    }
-  }
-
-  useEffect(() => {
-    checkBee();
-  });
-
-  useEffect(() => {
-    getFeedUpdate();
-    // TODO: what shall be the update time ?
-    const feedUpdateInterval = FIVE_MINNUTES;
-    const interval = setInterval(async () => {
-      getFeedUpdate();
-    }, feedUpdateInterval);
-
-    return () => clearInterval(interval);
   }, [isBeeRunning]);
 
   useEffect(() => {
-    if (isBeeRunning && sessionsReference.length === ADDRESS_HEX_LENGTH) {
-      getSessions(sessionsReference);
+    fetchFeedUpdate();
+    const interval = setInterval(async () => {
+      fetchFeedUpdate();
+    }, FIVE_MINUTES);
+
+    return () => clearInterval(interval);
+  }, [fetchFeedUpdate]);
+
+  const fetchSessions = useCallback(async () => {
+    if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
+      const data = await getSessionsData(sessionsReference);
+      console.log("session data updated");
+      setSessions(() => data);
     }
-  }, [isBeeRunning, sessionsReference]);
+  }, [sessionsReference]);
+
+  useEffect(() => {
+    fetchSessions();
+  }, [fetchSessions]);
 
   return (
     <Routes>

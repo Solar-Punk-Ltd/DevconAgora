@@ -13,7 +13,7 @@ import { Session } from "../../types/session";
 const maxSessionsShown = 9;
 
 interface HomePageProps {
-  sessions: Session[];
+  sessions: Map<string, Session[]>;
   isLoaded?: boolean;
 }
 
