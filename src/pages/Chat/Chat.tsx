@@ -27,46 +27,50 @@ const Chat: React.FC<ChatProps> = ({
     nickname,
     gsocResourceId
 }) => {
+  const [chat, setChat] = useState<SwarmChat|null>(null);
   const [messages, setMessages] = useState<MessageData[]>([]);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
 
 
-  // Initialize the SwarmDecentralizedChat library
-  const chat = new SwarmChat({
-    url: process.env.BEE_API_URL,
-    gateway: GATEWAY,
-    gsocResourceId,
-    logLevel: "info", 
-    usersFeedTimeout: 10000,
-    messageCheckInterval: 2000,
-    messageFetchMin: 2000,
-    //  prettier: undefined
-  });
+  const init = async () => { console.log("chat: ", chat)
+    // Initialize the SwarmDecentralizedChat library
+    const newChat = new SwarmChat({
+      url: process.env.BEE_API_URL,
+      gateway: GATEWAY,
+      gsocResourceId,
+      logLevel: "info", 
+      usersFeedTimeout: 10000,
+      messageCheckInterval: 2000,
+      messageFetchMin: 2000,
+      //  prettier: undefined
+    });
+    //setChat(newChat)
 
-  const init = async () => {
     // Start polling messages & the Users feed
-    chat.startMessageFetchProcess(topic);
-    chat.startUserFetchProcess(topic);
+    newChat.startMessageFetchProcess(topic);
+    newChat.startUserFetchProcess(topic);
 
     // Connect to chat
-    await chat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
+    await newChat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
       .then(() => console.info(`user registered.`))
       .catch((err) => console.error(`registerUser error ${err.error}`));
 
     // Load users (first time when entering app)
-    await chat.initUsers(topic)
+    await newChat.initUsers(topic)
       .then(() => console.info(`initUsers was successful`))
       .catch((err) => console.error(`initUsers error: ${err.error}`));
 
+      const { on } = newChat.getChatActions();
+      on(EVENTS.RECEIVE_MESSAGE, handleReceiveMessage);
 
-    const { on } = chat.getChatActions();
-    on(EVENTS.RECEIVE_MESSAGE, handleReceiveMessage);
+      setChat(newChat)
   }
 
   const handleReceiveMessage = (data: MessageData[]) => {
+    if (!chat) return;
     console.log("Data: ", data);
-    const ordered = chat.orderMessages(data);
+    const ordered = chat.orderMessages(data); // check if this is happening inside lib or not
     setMessages(Object.assign([], ordered));
   };
 
@@ -74,13 +78,13 @@ const Chat: React.FC<ChatProps> = ({
     init();
 
     return () => {
-      chat.stopMessageFetchProcess();
-      chat.stopUserFetchProcess();
+      chat?.stopMessageFetchProcess();
+      chat?.stopUserFetchProcess();
     }
   }, []);
 
   useEffect(() => {
-    console.log("Messages: ", messages)
+    console.log("Messages: ", messages)//del
   }, [messages])
 
 
@@ -103,14 +107,14 @@ const Chat: React.FC<ChatProps> = ({
         messages={messages}
       />
         
-      <ChatInput 
+      {chat && <ChatInput 
         chat={chat}
         ownAddress={ownAddress}
         nickname={nickname}
         topic={topic}
         stamp={stamp}
         privKey={privKey}
-      />
+      />}
       
       <NavigationFooter />
     </div>

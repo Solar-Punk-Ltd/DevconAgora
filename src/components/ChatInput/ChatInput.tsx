@@ -25,8 +25,13 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const [reconnecting, setReconnecting] = useState(false);
   const [sending, setSending] = useState(false);
 
-  const sendMessage = async () => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      sendMessage()
+    }
+  }
 
+  const sendMessage = async () => {
     if (!chat.isRegistered(ownAddress)) {
       setReconnecting(true);
       await chat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
@@ -69,6 +74,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           placeholder={"Type your message here..."}
           value={messageToSend}
           onChange={(e) => setMessageToSend(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       )
     }
