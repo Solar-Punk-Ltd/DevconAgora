@@ -12,6 +12,7 @@ import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
+import RoomsPage from "./pages/RoomsPage/RoomsPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
@@ -94,7 +95,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
+      <Route path={ROUTES.ROOMS} element={<RoomsPage />} />
     </Routes>
   );
 };

@@ -1,26 +1,61 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import "./ProfileCreation.scss";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
+import EditIcon from "../../components/icons/EditIcon/EditIcon";
+import clsx from "clsx";
+import OkIcon from "../../components/icons/OkIcon/OkIcon";
+import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
 
 const ProfileCreation: React.FC = () => {
-  const [username, setUsername] = React.useState("");
-  const [buttonActive, setButtonActive] = React.useState(false);
+  const { username, setUsername, monogram, setMonogram } = useGlobalState();
+  const [buttonActive, setButtonActive] = React.useState(true);
   const [error, setError] = React.useState(false);
+  const [isEdit, setIsEdit] = React.useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-    if (e.target.value.length > 0) {
+  };
+
+  const createMonogram = (name: string) => {
+    const initials = name.split(" ").map((n) => n[0]);
+    return initials.join("").toUpperCase();
+  };
+
+  const handleEditClick = () => {
+    setIsEdit(true);
+    setButtonActive(false);
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  };
+
+  const handleOkClick = () => {
+    if (validateInput(username)) {
       setButtonActive(true);
+      setIsEdit(false);
+      setMonogram(createMonogram(username));
     } else {
       setButtonActive(false);
       setError(true);
     }
   };
+
+  const validateInput = (name: string) => {
+    if (name.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       <div className="welcome-page">
@@ -38,8 +73,10 @@ const ProfileCreation: React.FC = () => {
               className="profile-creation__backgorund-effect__img"
             />
           </div>
-          <div style={{}} className="profile-creation__main-content">
-            <ProfilePicture name="CM" />
+          <div className="profile-creation__main-content">
+            <ProfilePicture
+              name={monogram ? monogram : createMonogram(username)}
+            />
             <div>
               <div className="profile-creation__username">Nickname</div>
               <div className="profile-creation__username-edit">
@@ -47,11 +84,21 @@ const ProfileCreation: React.FC = () => {
                   <input
                     type="text"
                     value={username}
-                    placeholder="Chain Master"
-                    className="profile-creation__user-input__input"
+                    ref={inputRef}
+                    placeholder="Generated Nickname"
+                    className={clsx("profile-creation__user-input__input", {
+                      "profile-creation__user-input__input__disabled": !isEdit,
+                    })}
                     onChange={onInputChange}
+                    readOnly={!isEdit}
                   />
                 </div>
+
+                {!isEdit ? (
+                  <EditIcon onClick={handleEditClick} />
+                ) : (
+                  <OkIcon onClick={handleOkClick} />
+                )}
               </div>
               {error ? (
                 <div className="profile-creation__user-input__error">

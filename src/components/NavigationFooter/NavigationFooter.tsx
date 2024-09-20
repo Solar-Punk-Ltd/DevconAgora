@@ -1,68 +1,53 @@
 import React from "react";
-import HomeIcon from "../../assets/home.png";
-import CalendarIcon from "../../assets/calendar.png";
-import RoomsIcon from "../../assets/rooms.png";
 import "./NavigationFooter.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import HomeIcon from "../icons/HomeIcon/HomeIcon";
+import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
+import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
 import { ROUTES } from "../../utils/constants";
+import clsx from "clsx";
 
 const NavigationFooter: React.FC = () => {
+  const location = useLocation();
+
+  const getColor = (path: string) => {
+    return location.pathname === path ? "#8C72AE" : "black";
+  };
   return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: "0",
-        left: "0",
-        display: "flex",
-        justifyContent: "center",
-        gap: "40px",
-        alignItems: "center",
-        height: "56px",
-        width: "100%",
-        backgroundColor: "white",
-        padding: "8px",
-        boxSizing: "border-box",
-        borderTop: "1px solid #C8C8CA",
-        borderBottom: "1px solid #C8C8CA",
-      }}
-    >
+    <div className="navigation-footer">
       <Link to={ROUTES.HOME}>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
+          className={clsx("navigation-footer__item-container", {
+            "navigation-footer__item-container__active":
+              location.pathname === "/home",
+          })}
         >
-          <img src={HomeIcon} alt="" width="24px" height="24px" />
-          <div style={{ fontSize: "12px" }}>Home</div>
+          <HomeIcon color={getColor("/home")} />
+          <div>Home</div>
         </div>
       </Link>
       <Link to={ROUTES.AGENDA}>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
+          className={clsx("navigation-footer__item-container", {
+            "navigation-footer__item-container__active":
+              location.pathname === "/agenda",
+          })}
         >
-          <img src={CalendarIcon} alt="" width="24px" height="24px" />
-          <div style={{ fontSize: "12px" }}>Agenda</div>
+          <AgendaIcon color={getColor("/agenda")} />
+          <div>Agenda</div>
         </div>
       </Link>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <img src={RoomsIcon} alt="" width="24px" height="24px" />
-        <div style={{ fontSize: "12px" }}>Rooms</div>
-      </div>
+      <Link to="/rooms">
+        <div
+          className={clsx("navigation-footer__item-container", {
+            "navigation-footer__item-container__active":
+              location.pathname === "/rooms",
+          })}
+        >
+          <RoomsIcon color={getColor("/rooms")} />
+          <div>Rooms</div>
+        </div>
+      </Link>
     </div>
   );
 };

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: white;
   text-align: center;
   box-sizing: border-box;
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     background-color: white;
     text-align: center;
     box-sizing: border-box;
@@ -173,7 +173,7 @@
 
 @media (min-height: 810px) {
   .welcome-page__bottom-bottom {
-    height: 28vh;
+    height: 26vh;
   }
 }
 

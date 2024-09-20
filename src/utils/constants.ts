@@ -17,7 +17,8 @@ export enum ROUTES {
     GAMIFICATION = "/gamification",
     AGENDA = "/agenda",
     CATEGORIES = "/categories",
-};
+    ROOMS = "/rooms",
+  };
 
 export const CATEGORY_FILTERS = [
   "Layer 2s",

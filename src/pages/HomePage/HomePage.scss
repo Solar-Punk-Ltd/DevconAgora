@@ -1,14 +1,15 @@
 .home-page {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 56px);
+  height: calc(100% - 56px);
+  z-index: 1;
 }
 
 .home-page__background {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
 }
 
 @media (min-width: 600px) {
@@ -21,4 +22,5 @@
 .home-page__content {
   padding: 15px;
   overflow: scroll;
+  z-index: 1;
 }

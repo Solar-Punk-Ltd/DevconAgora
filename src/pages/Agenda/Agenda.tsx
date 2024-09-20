@@ -6,14 +6,14 @@ import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
+import Dropdown from "../../components/Dropdown/Dropdown";
 import { Session } from "../../types/session";
-import { dateToTime } from "../../utils/helpers";
 import {
   STAGES_MAP,
   CATEGORY_FILTERS,
   DATE_TO_DEVCON_DAY,
 } from "../../utils/constants";
-import { getSessionsByDay } from "../../utils/helpers";
+import { getSessionsByDay, dateToTime } from "../../utils/helpers";
 
 interface AgendaProps {
   sessions: Map<string, Session[]>;
@@ -82,12 +82,11 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
         </TabPanel>
       </div>
       <div className="agenda-page__content">
-        <TabPanel version="outlined" activeIndex={activeStageTab}>
-          {renderTabPanelItems(
-            Array.from(STAGES_MAP.values()),
-            setActiveStageTab
-          )}
-        </TabPanel>
+        <Dropdown
+          items={Array.from(STAGES_MAP.values())}
+          activeItem={activeStageTab}
+          onClick={(index) => setActiveStageTab(index)}
+        />
         {activeAgendaItems.map((session) => {
           const randomBoolean = Math.random() >= 0.5;
           return (

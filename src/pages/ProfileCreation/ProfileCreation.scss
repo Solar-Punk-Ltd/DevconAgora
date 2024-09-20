@@ -26,6 +26,7 @@ profile-creation .profile-creation {
 }
 
 .profile-creation__username-edit {
+  position: relative;
   width: 267px;
   padding: 10px 8px;
   display: flex;
@@ -34,6 +35,7 @@ profile-creation .profile-creation {
   align-items: center;
   font-size: 24px;
   font-weight: 600;
+  z-index: 1;
 }
 
 .profile-creation__user-input {
@@ -43,19 +45,31 @@ profile-creation .profile-creation {
 .profile-creation__user-input__input {
   font-family: "Inter";
   font-weight: 400;
-  font-size: 24px;
+  font-size: 16px;
   color: #000000;
   text-align: center;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   width: 267px;
-  height: 52px;
-  padding: 8px 16px 8px 16px;
+  height: 40px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+.profile-creation__user-input__input::selection {
+  color: white;
+  background: #8c72ae;
+}
+
+.profile-creation__user-input__input__disabled {
+  background-color: #f2f2f2;
+  color: #a5adba;
+  border-bottom: 1px solid #a5adba;
 }
 
 .profile-creation__user-input__input::placeholder {
   font-family: "Inter";
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 35.52px;
   text-align: center;
@@ -75,11 +89,11 @@ profile-creation .profile-creation {
   position: absolute;
   bottom: 0px;
 }
-@media (min-width: 600px) {
-  .profile-creation__bottom {
-    width: 567px;
-  }
-}
+// @media (min-width: 600px) {
+//   .profile-creation__bottom {
+//     width: 567px;
+//   }
+// }
 
 .profile-creation__background-effect {
   position: absolute;
