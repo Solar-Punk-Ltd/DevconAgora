@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Agenda.scss";
 import AgendaItem from "./AgendaItem/AgendaItem";
 import TabPanel from "../../components/TabPanel/TabPanel";
@@ -7,9 +7,20 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import Categories from "../Categories/Categories";
 import Dropdown from "../../components/Dropdown/Dropdown";
-import { STAGES } from "../../utils/constants";
+import { Session } from "../../types/session";
+import {
+  STAGES_MAP,
+  CATEGORY_FILTERS,
+  DATE_TO_DEVCON_DAY,
+} from "../../utils/constants";
+import { getSessionsByDay, dateToTime } from "../../utils/helpers";
 
-const Agenda: React.FC = () => {
+interface AgendaProps {
+  sessions: Map<string, Session[]>;
+}
+
+const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
+  const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
   const [showCategories, setShowCategories] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState(0);
@@ -29,6 +40,34 @@ const Agenda: React.FC = () => {
     ));
   };
 
+  useEffect(() => {
+    const sessionsByDay = getSessionsByDay(
+      sessions,
+      Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab]
+    );
+    if (sessionsByDay.length > 0) {
+      const items: Session[] = [];
+      for (let i = 0; i < sessionsByDay.length; i++) {
+        const categoryFilter = categoryIndex
+          ? sessionsByDay[i].track === CATEGORY_FILTERS[categoryIndex]
+          : true;
+        // TODO: implement heart logic
+        const isYourAgenda =
+          activeAgendaTab === 1 ? sessionsByDay[i].hearted === true : true;
+
+        if (
+          sessionsByDay[i].slot_roomId ===
+            Array.from(STAGES_MAP.keys())[activeStageTab] &&
+          isYourAgenda &&
+          categoryFilter
+        ) {
+          items.push(sessionsByDay[i]);
+        }
+      }
+      setActiveAgendaItems(items);
+    }
+  }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
+
   return !showCategories ? (
     <div className="agenda-page">
       <div className="agenda-page__upper-tab-panel">
@@ -37,77 +76,31 @@ const Agenda: React.FC = () => {
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
           {renderTabPanelItems(
-            ["Day 1", "Day 2", "Day 3", "Day 4"],
+            Array.from(DATE_TO_DEVCON_DAY.values()),
             setActiveDayTab
           )}
         </TabPanel>
       </div>
       <div className="agenda-page__content">
         <Dropdown
-          items={STAGES}
+          items={Array.from(STAGES_MAP.values())}
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
         />
-        {activeAgendaTab === 0 ? (
-          <div className="agenda-page__content__items">
+        {activeAgendaItems.map((session) => {
+          const randomBoolean = Math.random() >= 0.5;
+          return (
             <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Layer 2s"
+              key={session.id}
+              title={session.title}
+              startDate={dateToTime(session.slot_start)}
+              endDate={dateToTime(session.slot_end)}
+              category={session.track}
+              roomId={session.slot_roomId}
+              hearted={randomBoolean}
             />
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={false}
-              category="Layer 2s"
-            />
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Layer 2s"
-            />
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={false}
-              category="Layer 2s"
-            />
-          </div>
-        ) : (
-          <div className="agenda-page__content__items">
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-            <AgendaItem
-              name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-              startDate="9:00 AM"
-              endDate="10:15 AM"
-              hearted={true}
-              category="Cypherpunk and privacy"
-              stage="Stage 1"
-            />
-          </div>
-        )}
-
+          );
+        })}
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />

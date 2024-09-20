@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
+import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
 
 const NavigationFooter: React.FC = () => {
@@ -14,7 +15,7 @@ const NavigationFooter: React.FC = () => {
   };
   return (
     <div className="navigation-footer">
-      <Link to="/home">
+      <Link to={ROUTES.HOME}>
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":
@@ -25,7 +26,7 @@ const NavigationFooter: React.FC = () => {
           <div>Home</div>
         </div>
       </Link>
-      <Link to="/agenda">
+      <Link to={ROUTES.AGENDA}>
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":

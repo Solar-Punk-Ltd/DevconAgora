@@ -3,6 +3,7 @@ import "./DevConMainBox.scss";
 import { Link } from "react-router-dom";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
+import { ROUTES } from "../../utils/constants";
 
 interface DevConMainBoxProps {
   title: string;
@@ -20,7 +21,7 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
   bordered,
 }) => {
   return (
-    <Link to="/devconlounge">
+    <Link to={ROUTES.DEVCONLOUNGE}>
       <div
         className={clsx("devcon-main-box", {
           "devcon-main-box__border": bordered,

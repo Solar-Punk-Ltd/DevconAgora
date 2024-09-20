@@ -9,6 +9,7 @@ import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import clsx from "clsx";
 import OkIcon from "../../components/icons/OkIcon/OkIcon";
 import { useGlobalState } from "../../GlobalStateContext";
+import { ROUTES } from "../../utils/constants";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -117,7 +118,7 @@ const ProfileCreation: React.FC = () => {
           </div>
         </div>
         <div className="profile-creation__bottom">
-          <Link to="/home">
+          <Link to={ROUTES.HOME}>
             <WelcomeButton version={buttonActive ? "filled" : "inactive"}>
               Start Building Your Community
             </WelcomeButton>

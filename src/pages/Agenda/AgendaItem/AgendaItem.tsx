@@ -5,16 +5,16 @@ import CategoryIndicator from "../../../components/CategoryIndicator/CategoryInd
 import Stage from "../../../components/Stage/Stage";
 
 interface AgendaItemProps {
-  name?: string;
+  title?: string;
   startDate?: string;
   endDate?: string;
   hearted?: boolean;
   category?: string;
+  roomId?: string;
   stage?: string;
 }
-
 const AgendaItem: React.FC<AgendaItemProps> = ({
-  name,
+  title,
   startDate,
   endDate,
   hearted,
@@ -28,10 +28,12 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         <div>{endDate}</div>
       </div>
       <div className="agenda-item__content">
-        <div className="agenda-item__content__name">{name}</div>
+        <div className="agenda-item__content__title">{title}</div>
         <div style={{}} className="agenda-item__content__tagged">
           {stage ? <Stage name={stage} /> : null}
-          {category ? <CategoryIndicator name={category} /> : null}
+          {category ? (
+            <CategoryIndicator name={category || "no track"} />
+          ) : null}
         </div>
       </div>
       <div className="agenda-item__content__heart-icon">
