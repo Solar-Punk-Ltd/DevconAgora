@@ -13,8 +13,7 @@ import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
 import Chat from "./pages/Chat/Chat";
-import { getSessionsData } from "./utils/bee";
-import { ADDRESS_HEX_LENGTH, FIVE_MINUTES } from "./utils/constants";
+import { BatchId } from "@ethersphere/bee-js";
 // import Categories from "./pages/Categories/Categories";
 
 export enum ROUTES {
@@ -111,7 +110,13 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda />} />
-      <Route path={"/chat_dev"} element={<Chat />} />
+      <Route path={"/chat_dev"} element={<Chat 
+          topic={"gsoc-9"}
+          privKey={"0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"}
+          stamp={"97576a61665918e9cb96b56fd677bd13f5c48ea2a61d6eef34b291e0eea7da3b" as BatchId}
+          nickname={"Peter"}
+          gsocResourceId={"6ebfbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"}
+      />} />
       {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
     </Routes>
   );

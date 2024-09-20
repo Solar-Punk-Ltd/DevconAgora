@@ -1,17 +1,7 @@
-
-// first test
 .chat-page {
-  background-color: red;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-}
+  height: calc(100vh - 56px);
 
-.chat-page__p {
-  padding: 8px;
-  margin: 16px;
-  background-color: yellow;
-  color: red;
-  text-align: center;
+    background-color: red;
 }
