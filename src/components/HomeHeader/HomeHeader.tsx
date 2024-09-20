@@ -3,6 +3,7 @@ import "./HomeHeader.scss";
 import swarmIcon from "../../assets/swarm-icon.png";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 interface HomeHeaderProps {
   points?: number;
@@ -17,7 +18,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
           {points ? points : 0}
           <img src={swarmIcon} alt="" width="15px" height="15px" />
         </div>
-        <Link to="/profile">
+        <Link to={ROUTES.PROFILE}>
           <div className="home-header__profile">
             <ProfilePicture name="CM" version="small" />
           </div>

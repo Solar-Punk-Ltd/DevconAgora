@@ -1,24 +1,24 @@
-.recent-talks {
+.recent-sessions {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
   margin-top: 20px;
 }
 
-.recent-talks__title {
+.recent-sessions__title {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 14px;
 }
 
-.recent-talks__all {
+.recent-sessions__all {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 14px;
   text-decoration: underline;
 }
 
-.recent-talks__item-container {
+.recent-sessions__item-container {
   display: flex;
   overflow-y: auto;
 }

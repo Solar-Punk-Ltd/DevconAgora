@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Categories.scss";
 import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
-import { CATEGORY_FILTERS } from "../../utils/constants"; // Importálás
+import { CATEGORY_FILTERS } from "../../utils/constants";
 import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 
