@@ -14,6 +14,9 @@ import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
 import Chat from "./pages/Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
+import { Session } from "./types/session";
+import { ADDRESS_HEX_LENGTH, FIVE_MINUTES } from "./utils/constants";
+import { getFeedUpdate, getSessionsData } from "./utils/bee";
 // import Categories from "./pages/Categories/Categories";
 
 export enum ROUTES {
@@ -109,7 +112,6 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
-      <Route path={ROUTES.AGENDA} element={<Agenda />} />
       <Route path={"/chat_dev"} element={<Chat 
           topic={"gsoc-11"}
           privKey={"0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"}

@@ -85,7 +85,7 @@ const Chat: React.FC<ChatProps> = ({
       />
 
       <AgendaItem 
-        name="Ethereum for the next billion: DeFi for the unbanked/underbanked"
+        title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
         startDate="9:00 AM"
         endDate="10:15 AM"
         hearted={true}
