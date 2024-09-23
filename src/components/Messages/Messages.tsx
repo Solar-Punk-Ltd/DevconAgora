@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
-import { MessageData } from 'swarm-decentralized-chat';
+import { MessageData } from 'solarpunk-swarm-decentralized-chat';
 
 interface MessagesProps {
     messages: MessageData[];

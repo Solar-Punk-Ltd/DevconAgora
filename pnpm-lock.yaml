@@ -38,9 +38,9 @@ importers:
       solarpunk-comment-system-ui:
         specifier: 0.0.1
         version: 0.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      swarm-decentralized-chat:
-        specifier: file:../swarm-decentralized-chat
-        version: file:../swarm-decentralized-chat
+      solarpunk-swarm-decentralized-chat:
+        specifier: 0.0.1
+        version: 0.0.1
       vite-plugin-node-polyfills:
         specifier: ^0.22.0
         version: 0.22.0(rollup@4.22.4)(vite@5.4.7(@types/node@22.5.5)(sass@1.79.3))
@@ -99,9 +99,6 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
-
-  '@anythread/gsoc@file:../gsoc':
-    resolution: {directory: ../gsoc, type: directory}
 
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
@@ -2246,6 +2243,12 @@ packages:
   solarpunk-comment-system@1.1.0:
     resolution: {integrity: sha512-tHAjbaDDf0OT384Cbdns8Wtds9Kxt4WZv+DrpScut7PexrBDSPPETuStu9qY085GQFLnwxMXAn35cuAHZ6MdDA==}
 
+  solarpunk-gsoc@0.0.1:
+    resolution: {integrity: sha512-ORXUNMypb7Py/MDe0GmWO40wQzlZoZFeTgbZ0jlvz+59G7heHEoGQLBztF5dN/LZLmTOioNxH+a/COJRXwdMMA==}
+
+  solarpunk-swarm-decentralized-chat@0.0.1:
+    resolution: {integrity: sha512-Bno18J8HgL2vf6+Cic/XfOoBzqKwqOD/AKhG2wClzvTY+yFnjU1TL8fMyyjUHMqpbI6Tiyul5E6nzK9Lb/5ndg==}
+
   sonic-boom@4.1.0:
     resolution: {integrity: sha512-NGipjjRicyJJ03rPiZCJYjwlsuP2d1/5QUviozRXC7S3WdVWNK5e3Ojieb9CCyfhq2UC+3+SRd9nG3I2lPRvUw==}
 
@@ -2310,9 +2313,6 @@ packages:
   supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
-
-  swarm-decentralized-chat@file:../swarm-decentralized-chat:
-    resolution: {directory: ../swarm-decentralized-chat, type: directory}
 
   tar-js@0.3.0:
     resolution: {integrity: sha512-9uqP2hJUZNKRkwPDe5nXxXdzo6w+BFBPq9x/tyi5/U/DneuSesO/HMb0y5TeWpfcv49YDJTs7SrrZeeu8ZHWDA==}
@@ -2574,19 +2574,6 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
-
-  '@anythread/gsoc@file:../gsoc':
-    dependencies:
-      '@fairdatasociety/bmt-js': 2.1.0
-      axios: 1.7.7
-      elliptic: 6.5.7
-      isomorphic-ws: 5.0.0(ws@8.18.0)
-      js-sha3: 0.9.3
-      ws: 8.18.0
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - utf-8-validate
 
   '@babel/code-frame@7.24.7':
     dependencies:
@@ -5323,6 +5310,34 @@ snapshots:
       - domexception
       - utf-8-validate
 
+  solarpunk-gsoc@0.0.1:
+    dependencies:
+      '@fairdatasociety/bmt-js': 2.1.0
+      axios: 1.7.7
+      elliptic: 6.5.7
+      isomorphic-ws: 5.0.0(ws@8.18.0)
+      js-sha3: 0.9.3
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - utf-8-validate
+
+  solarpunk-swarm-decentralized-chat@0.0.1:
+    dependencies:
+      '@ethersphere/bee-js': 6.9.1
+      '@ethersphere/swarm-cli': 2.16.0
+      ethers: 5.7.2
+      pino: 9.4.0
+      pino-pretty: 11.2.2
+      remove: 0.1.5
+      solarpunk-gsoc: 0.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - domexception
+      - utf-8-validate
+
   sonic-boom@4.1.0:
     dependencies:
       atomic-sleep: 1.0.0
@@ -5411,21 +5426,6 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
-
-  swarm-decentralized-chat@file:../swarm-decentralized-chat:
-    dependencies:
-      '@anythread/gsoc': file:../gsoc
-      '@ethersphere/bee-js': 6.9.1
-      '@ethersphere/swarm-cli': 2.16.0
-      ethers: 5.7.2
-      pino: 9.4.0
-      pino-pretty: 11.2.2
-      remove: 0.1.5
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - domexception
-      - utf-8-validate
 
   tar-js@0.3.0: {}
 

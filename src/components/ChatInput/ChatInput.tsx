@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./ChatInput.scss";
-import { EthAddress, MessageData, SwarmChat } from 'swarm-decentralized-chat';
+import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
 import SendIcon from '../icons/SendIcon/SendIcon';
 

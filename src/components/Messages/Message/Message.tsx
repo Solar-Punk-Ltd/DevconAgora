@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Message.scss";
-import { MessageData } from 'swarm-decentralized-chat';
+import { MessageData } from 'solarpunk-swarm-decentralized-chat';
 import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import { useGlobalState } from '../../../GlobalStateContext';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';

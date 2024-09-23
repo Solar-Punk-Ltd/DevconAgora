@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Chat.scss"
-import { EthAddress, EVENTS, MessageData, SwarmChat } from 'swarm-decentralized-chat';
+import { EthAddress, EVENTS, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
 import AgendaItem from '../../components/AgendaItem/AgendaItem';
 import Back from '../../components/Back/Back';

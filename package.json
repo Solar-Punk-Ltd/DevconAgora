@@ -20,7 +20,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
     "solarpunk-comment-system-ui": "0.0.1",
-    "swarm-decentralized-chat": "file:../swarm-decentralized-chat",
+    "solarpunk-swarm-decentralized-chat": "0.0.1",
     "vite-plugin-node-polyfills": "^0.22.0"
   },
   "devDependencies": {
