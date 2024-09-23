@@ -11,7 +11,7 @@ interface MessagesProps {
 const Messages: React.FC<MessagesProps> = ({
   messages
 }) => {
-  if (true) {
+  if (messages.length === 0) {
     return (
       <div className="messages messages__no-messages">
         <p>{"There’s nothing in this chat yet."}</p>

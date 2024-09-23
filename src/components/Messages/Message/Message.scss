@@ -20,7 +20,9 @@
     p { margin: 0; }
 }
 
-.message__right-side__username {
+.message__right-side__name-and-time {
+    display: flex;
+    flex-direction: row;
     line-height: 20px;
     color: var(--text-terniary);
     font-family: Inter;
