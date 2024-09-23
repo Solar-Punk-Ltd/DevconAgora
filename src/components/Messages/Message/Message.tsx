@@ -4,6 +4,7 @@ import { MessageData } from 'swarm-decentralized-chat';
 import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import { useGlobalState } from '../../../GlobalStateContext';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
+import { createMonogram } from '../../../utils/helpers';
 
 interface MessageProps {
     data: MessageData;
@@ -14,13 +15,12 @@ const Message: React.FC<MessageProps> = ({
     data,
     threadId,
 }) => {
-  const { monogram } = useGlobalState();
   const mockMonogram = "OP";
 
   return (
     <div className="message">
       <div className="message__left-side">
-        <AvatarMonogram letters={mockMonogram} />
+        <AvatarMonogram letters={createMonogram(data.username)} />
       </div>
       <div className="message__right-side">
         <p className="message__right-side__username">{data.username}</p>

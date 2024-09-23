@@ -17,4 +17,9 @@ export function dateToTime(date?: string): string {
 
 export function getSessionsByDay(sessions: Map<string, Session[]>, day: string): Session[] {
     return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
-  }
+}
+
+export const createMonogram = (name: string) => {
+    const initials = name.split(" ").map((n) => n[0]);
+    return initials.join("").toUpperCase();
+  };
