@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./ChatInput.scss";
 import { EthAddress, MessageData, SwarmChat } from 'swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
+import SendIcon from '../icons/SendIcon/SendIcon';
 
 interface ChatInputProps {
     chat: SwarmChat;
@@ -70,22 +71,25 @@ const ChatInput: React.FC<ChatInputProps> = ({
       ) 
         : 
       (
-        <input 
-          placeholder={"Type your message here..."}
-          value={messageToSend}
-          onChange={(e) => setMessageToSend(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="chat-input__input"
-        />
+        <>
+          <input 
+            placeholder={"Type your message here..."}
+            value={messageToSend}
+            onChange={(e) => setMessageToSend(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="chat-input__input"
+          />
+          <button 
+            onClick={sendMessage}
+            className="chat-input__send-button"
+            disabled={(reconnecting || sending)}
+          >
+            <SendIcon />
+          </button>
+        </>
       )
     }
 
-      <button 
-        onClick={sendMessage}
-        disabled={(reconnecting || sending)}
-      >
-        Send
-      </button>
     </div>
   )
 }

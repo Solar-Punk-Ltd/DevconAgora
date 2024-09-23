@@ -1,12 +1,12 @@
 import React from "react";
 import "./LikeIcon.scss";
 
-interface BackArrowProps {
+interface LikeProps {
   fillColor?: string;
   contourColor?: string;
 }
 
-const LikeIcon: React.FC<BackArrowProps> = ({
+const LikeIcon: React.FC<LikeProps> = ({
   fillColor,
   contourColor,
 }) => {

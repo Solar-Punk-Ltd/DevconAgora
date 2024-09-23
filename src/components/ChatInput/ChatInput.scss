@@ -1,10 +1,20 @@
 #chat-input {
     display: flex;
     flex-direction: row;
+    margin: 8px 16px 8px 16px;
     justify-content: space-between;
+    border: 1px solid #D4D5DD;
+    border-radius: 8px;
+    height: 40px;
 }
 
 .chat-input__input {
     flex-grow: 1;
-    height: 50px;
+    border: none;
+    margin: 3px;
+}
+
+.chat-input__send-button {
+    border: none;
+    background-color: transparent;
 }
