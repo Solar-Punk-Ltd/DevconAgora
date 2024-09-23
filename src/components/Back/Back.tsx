@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Back.scss"
+import BackArrow from '../icons/BackArrow/BackArrow';
 
 interface BackProps {
     where: string;
@@ -13,9 +14,11 @@ const Back: React.FC<BackProps> = ({
 }) => {
   return (
     <div className="back-menu">
-      <div className="back-menu__button">
+      <BackArrow  backgroundColor={"#FFFFFF"} />
+      
+      <p className="back-menu__text">
         {where}
-      </div>
+      </p>
     </div>
   )
 }

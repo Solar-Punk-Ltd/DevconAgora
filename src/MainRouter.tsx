@@ -111,11 +111,11 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda />} />
       <Route path={"/chat_dev"} element={<Chat 
-          topic={"gsoc-10"}
+          topic={"gsoc-11"}
           privKey={"0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"}
-          stamp={"97576a61665918e9cb96b56fd677bd13f5c48ea2a61d6eef34b291e0eea7da3b" as BatchId}
+          stamp={"03263b84b1263899b4e63ea6b2ce4fb252c280a31a128b5d54f44cd0807c9e0e" as BatchId}
           nickname={"Peter"}
-          gsocResourceId={"f2aebeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"}
+          gsocResourceId={"f6b7beefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"}
       />} />
       {/* <Route path={ROUTES.CATEGORIES} element={<Categories />} /> */}
     </Routes>
