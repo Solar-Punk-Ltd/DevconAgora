@@ -103,7 +103,7 @@ const Chat: React.FC<ChatProps> = ({
             },
             {
               address: wallet.address as EthAddress,
-              message: "Hi",
+              message: "Az övesállatok vagy más néven tatuk a vendégízületesek (Xenarthra) öregrendjébe tartozó emlősök egyik családja. (Ebben a rendszerezésben a páncélosok rendjébe tartoznak.) A család kilenc nemet és huszonegy recens fajt számlál, ezek legkisebbike 85 grammos, legnagyobbika 54 kg-os. Fajai Észak- és Dél-Amerikában élnek Kanada kivételével.",
               username: "Alice",
               timestamp: 1727084859617
             }

@@ -23,7 +23,7 @@ const Message: React.FC<MessageProps> = ({
       </div>
       <div className="message__right-side">
         <p className="message__right-side__username">{data.username}</p>
-        <p>{data.message}</p>
+        <p className="message__right-side__text">{data.message}</p>
         <p>{"like-reply"}</p>
       </div>
     </div>
