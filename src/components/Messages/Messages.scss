@@ -1,6 +1,14 @@
 .messages {
-    color: red;
-    text-align: center;
-    flex-grow: 1;
-    overflow: scroll;
-  }
+  text-align: center;
+  flex-grow: 1;
+  overflow: scroll;
+}
+
+.messages__no-messages {
+  align-content: center;
+  font-family: Public Sans;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.5%;
+  color: #333333;
+}
