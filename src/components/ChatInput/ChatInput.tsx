@@ -66,7 +66,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
     <div id="chat-input" className={(sending || reconnecting ? "chat-input__processing" : "")}>
       {(reconnecting || sending) ? (
         reconnecting ? (
-          <div>{"Reconnecting..."}</div>
+          <div>{"Connecting to chat..."}</div>
         ) : (
           sending && <>{"Sending message..."}</>
         )

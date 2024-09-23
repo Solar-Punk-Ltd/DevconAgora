@@ -28,8 +28,8 @@ const Message: React.FC<MessageProps> = ({
 
       <div className="message__right-side">
         <div className="message__right-side__name-and-time">
-          <p className="">{data.username}</p>
-          {true && <p className="">{formatTime(data.timestamp)}</p>}
+          <p className="message__right-side__name-and-time__username">{data.username}</p>
+          {true && <p className="message__right-side__name-and-time__time">{formatTime(data.timestamp)}</p>}
         </div>
         
         <p className="message__right-side__text">{data.message}</p>

@@ -96,7 +96,7 @@ const Chat: React.FC<ChatProps> = ({
         messages={messages}
       />
         
-      {chat ? (
+      {chat && (
         <ChatInput 
         chat={chat}
         ownAddress={ownAddress}
@@ -105,8 +105,6 @@ const Chat: React.FC<ChatProps> = ({
         stamp={stamp}
         privKey={privKey}
       />
-      ) : (
-        <p>Connecting...</p>
       )}
       
       <NavigationFooter />
