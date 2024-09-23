@@ -67,17 +67,6 @@ const Chat: React.FC<ChatProps> = ({
       setChat(() => {return newChat})
   }
 
-  /*const handleReceiveMessage = (data: MessageData[]) => {
-    if (!chat) {
-      console.warn("NO CHAT INSTANCE")
-      console.log(chat)
-      return;
-    }
-    console.log("Data: ", data);
-    const ordered = chat.orderMessages(data); // check if this is happening inside lib or not
-    setMessages(Object.assign([], ordered));
-  };*/
-
   useEffect(() => {
     init();
 
