@@ -39,3 +39,8 @@
     line-height: 20px;
     letter-spacing: 0.5%;
 }
+
+.message__right-side__message-controls {
+    display: flex;
+    flex-direction: row;
+}
