@@ -93,7 +93,22 @@ const Chat: React.FC<ChatProps> = ({
       />
 
       <Messages 
-        messages={messages}
+        messages={
+          [
+            {
+              address: wallet.address as EthAddress,
+              message: "Hello",
+              username: "Peter",
+              timestamp: 1727084764586
+            },
+            {
+              address: wallet.address as EthAddress,
+              message: "Hi",
+              username: "Alice",
+              timestamp: 1727084859617
+            }
+          ]
+        }
       />
         
       {chat ? (

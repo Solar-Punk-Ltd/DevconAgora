@@ -1,5 +1,25 @@
 .message {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 8px;
+}
+
+.message__left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.message__right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    p { margin: 0; }
+}
+
+.message__right-side__username {
+    line-height: 20px;
+    color: var(--text-terniary);
+    font-family: Inter;
+    font-size: 12px;
 }
