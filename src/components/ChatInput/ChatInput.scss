@@ -5,7 +5,7 @@
     justify-content: space-between;
     border: 1px solid #D4D5DD;
     border-radius: 8px;
-    height: 40px;
+    height: 32px;
 }
 
 .chat-input__input {
@@ -17,4 +17,10 @@
 .chat-input__send-button {
     border: none;
     background-color: transparent;
+    margin-right: 4px;
+}
+
+.chat-input__processing {
+    justify-content: center !important;
+    align-items: center !important;
 }

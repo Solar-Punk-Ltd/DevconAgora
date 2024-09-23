@@ -33,6 +33,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
   }
 
   const sendMessage = async () => {
+    if (!messageToSend) return;
+
     if (!chat.isRegistered(ownAddress)) {
       setReconnecting(true);
       await chat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
@@ -61,19 +63,18 @@ const ChatInput: React.FC<ChatInputProps> = ({
   }
 
   return (
-    <div id="chat-input">
+    <div id="chat-input" className={(sending || reconnecting ? "chat-input__processing" : "")}>
       {(reconnecting || sending) ? (
         reconnecting ? (
-          <p>Reconnecting...</p>
+          <div>{"Reconnecting..."}</div>
         ) : (
-          sending && <p>Sending message...</p>
+          sending && <>{"Sending message..."}</>
         )
       ) 
         : 
       (
         <>
           <input 
-            placeholder={"Type your message here..."}
             value={messageToSend}
             onChange={(e) => setMessageToSend(e.target.value)}
             onKeyDown={handleKeyDown}
