@@ -106,6 +106,18 @@ const Chat: React.FC<ChatProps> = ({
               message: "Az övesállatok vagy más néven tatuk a vendégízületesek (Xenarthra) öregrendjébe tartozó emlősök egyik családja. (Ebben a rendszerezésben a páncélosok rendjébe tartoznak.) A család kilenc nemet és huszonegy recens fajt számlál, ezek legkisebbike 85 grammos, legnagyobbika 54 kg-os. Fajai Észak- és Dél-Amerikában élnek Kanada kivételével.",
               username: "Alice",
               timestamp: 1727084859617
+            },
+            {
+              address: wallet.address as EthAddress,
+              message: "A tatuk háta páncéllal fedett, melyet középen mozgatható övekbe rendezett, máshol mozgathatatlan csonttáblácskák alkotnak. Az övek száma fajra jellemző tulajdonság. Ha veszélyt éreznek, összegömbölyödnek, áthatolhatatlan bőrcsont-páncélt mutatva a támadónak.",
+              username: "Alice",
+              timestamp: 1727084859617
+            },
+            {
+              address: wallet.address as EthAddress,
+              message: "Nappal föld alatti üregekben tartózkodnak, éjjel keresnek táplálékot, mely elsősorban hangyákból és termeszekből áll, de nem vetik meg a döghúst és a gyümölcsöt sem. A hangyákkal táplálkozó állatokra jellemző lapos fejformájuk, hosszú alsó állkapcsuk és hosszú nyelvük van. Szemfoga egyik fajnak sincs, sok fajnál a metszőfogak is hiányoznak.",
+              username: "Alice",
+              timestamp: 1727084859617
             }
           ]
         }

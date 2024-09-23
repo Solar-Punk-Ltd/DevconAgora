@@ -25,9 +25,9 @@ const Message: React.FC<MessageProps> = ({
       <div className="message__right-side">
         <p className="message__right-side__username">{data.username}</p>
         <p className="message__right-side__text">{data.message}</p>
-        <div className="message__right-side__message-controls">
+        <div className="message__right-side__message-controls" onClick={() => null}>
           <LikeIcon />
-          <p>{"reply"}</p>
+          <p className="message__right-side__message-controls_reply">{"Reply"}</p>
         </div>
       </div>
     </div>
