@@ -10,6 +10,7 @@ import clsx from "clsx";
 import OkIcon from "../../components/icons/OkIcon/OkIcon";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
+import { createMonogram } from "../../utils/helpers";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -21,11 +22,6 @@ const ProfileCreation: React.FC = () => {
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-  };
-
-  const createMonogram = (name: string) => {
-    const initials = name.split(" ").map((n) => n[0]);
-    return initials.join("").toUpperCase();
   };
 
   const handleEditClick = () => {

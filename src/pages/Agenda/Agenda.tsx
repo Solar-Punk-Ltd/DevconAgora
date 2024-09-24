@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Agenda.scss";
-import AgendaItem from "./AgendaItem/AgendaItem";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
@@ -14,6 +13,7 @@ import {
   DATE_TO_DEVCON_DAY,
 } from "../../utils/constants";
 import { getSessionsByDay, dateToTime } from "../../utils/helpers";
+import AgendaItem from "../../components/AgendaItem/AgendaItem";
 
 interface AgendaProps {
   sessions: Map<string, Session[]>;

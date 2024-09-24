@@ -1,8 +1,8 @@
 import React from "react";
 import "./AgendaItem.scss";
-import HeartIcon from "../../../components/icons/HeartIcon/HeartIcon";
-import CategoryIndicator from "../../../components/CategoryIndicator/CategoryIndicator";
-import Stage from "../../../components/Stage/Stage";
+import HeartIcon from "../icons/HeartIcon/HeartIcon";
+import CategoryIndicator from "../CategoryIndicator/CategoryIndicator";
+import Stage from "../Stage/Stage";
 
 interface AgendaItemProps {
   title?: string;
