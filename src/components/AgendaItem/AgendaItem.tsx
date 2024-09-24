@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AgendaItem.scss";
-import HeartIcon from "../icons/HeartIcon/HeartIcon";
-import CategoryIndicator from "../CategoryIndicator/CategoryIndicator";
-import Stage from "../Stage/Stage";
+import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
+import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
+import Stage from "../../components/Stage/Stage";
+import { debounce } from "../../utils/helpers";
 
 interface AgendaItemProps {
-  title?: string;
+  title: string;
   startDate?: string;
   endDate?: string;
-  hearted?: boolean;
+  liked?: boolean;
   category?: string;
   roomId?: string;
   stage?: string;
+  onClick: () => boolean;
 }
 const AgendaItem: React.FC<AgendaItemProps> = ({
   title,
   startDate,
   endDate,
-  hearted,
+  liked,
   category,
   stage,
+  onClick,
 }) => {
+  const [empty, setEmpty] = useState(!liked);
+  const debounceTime = 1000;
+  const handleClick = () => {
+    const isLiked = onClick();
+    setEmpty(!isLiked);
+  };
+
   return (
     <div className="agenda-item">
       <div className={"agenda-item__time"}>
@@ -36,8 +46,11 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           ) : null}
         </div>
       </div>
-      <div className="agenda-item__content__heart-icon">
-        <HeartIcon empty={!hearted} />
+      <div
+        className="agenda-item__content__heart-icon"
+        onClick={debounce(handleClick, debounceTime)}
+      >
+        <HeartIcon empty={empty} />
       </div>
     </div>
   );
