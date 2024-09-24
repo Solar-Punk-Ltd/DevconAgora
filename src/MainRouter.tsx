@@ -101,7 +101,7 @@ const MainRouter = (): ReactElement => {
       <Route path={"/chat_dev"} element={<Chat
           topic={"gsoc-11"}
           privKey={"0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"}
-          stamp={"03263b84b1263899b4e63ea6b2ce4fb252c280a31a128b5d54f44cd0807c9e0e" as BatchId}
+          stamp={"e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId}
           nickname={"Peter"}
           gsocResourceId={"f6b7beefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"}
       />} />

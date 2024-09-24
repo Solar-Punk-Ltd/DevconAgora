@@ -8,17 +8,13 @@ import { createMonogram, formatTime } from '../../../utils/helpers';
 
 interface MessageProps {
     data: MessageData;
-    showTime?: boolean;
     threadId: string;
 }
 
 const Message: React.FC<MessageProps> = ({
     data,
-    showTime,
     threadId,
 }) => {
-  const mockMonogram = "OP";
-
   return (
     <div className="message">
      
