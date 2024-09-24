@@ -28,27 +28,6 @@ const Messages: React.FC<MessagesProps> = ({
           threadId={`mock-${ind}`}
         />
       ))}
-
-              {/**Message threadId={"0x124"} */}
-        {/**Message threadId={"0x125"} */}
-        {/**Message threadId={"0x126"} */}
-        {/**MessageThread threadId={"0x125"} */}
-          {/**Message parent={"0x125"}*/}
-          {/**Message parent={"0x125"}*/}
-          {/**Message parent={"0x125"}*/}
-        {/**Message threadId={"0x124"} */}
-          {/**MessageControls */}
-            {/**Like */}
-            {/**Reply */}
-        {/**OR */}
-        {/**Message */}
-          {/**Avatar */}
-          {/**Name */}
-          {/**Time */}
-          {/**MessageBubble */}
-          {/**MessageControls */}
-            {/**Like */}
-            {/**Reply */}
     </div>
   );
 }

@@ -16,7 +16,6 @@ export default defineConfig(({mode}) => {
     plugins: [
       react(),
       nodePolyfills({
-        exclude: ['fs', 'path'], // Exclude unnecessary polyfills for the browser
         globals: { process: true, Buffer: true }
       })
     ],
