@@ -7,21 +7,30 @@ interface BackProps {
     where: string;
     link: string;
     backgroundColor?: string;
+    action?: () => any | undefined | null;
 }
 
 
 const Back: React.FC<BackProps> = ({
   where,
   link,
-  backgroundColor
+  backgroundColor,
+  action
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (action) {
+      e.preventDefault();
+      action();
+    }
+  }
+
   return (
     <div className="back-menu" style={{ backgroundColor }}>
-        <Link to={link}>
+        <Link to={link} onClick={(e) => handleClick(e)}>
           <BackArrow  backgroundColor={backgroundColor || "#FFFFFF"} />
         </Link>
         
-        <Link to={link}>
+        <Link to={link} onClick={(e) => handleClick(e)}>
           <p className="back-menu__text">
             {where}
           </p>

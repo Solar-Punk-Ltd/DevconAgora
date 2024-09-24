@@ -100,7 +100,7 @@ const Chat: React.FC<ChatProps> = ({
 
     let filteredMessages = []
     if (currentThread) {
-      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread);
+      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread || msg.threadId === currentThread);
     } else {
       filteredMessages = threadCapableMessages.filter((msg) => msg.parent === null);
     }
@@ -120,7 +120,7 @@ const Chat: React.FC<ChatProps> = ({
   useEffect(() => {
     const newlyFilteredMessages = filterMessages(allMessages);
 
-    setVisibleMessages(newlyFilteredMessages);
+    setVisibleMessages(Object.assign([], newlyFilteredMessages));
   }, [currentThread]);
 
 
@@ -128,8 +128,9 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <Back 
         where={currentThread ? "Chat" : originatorPage}
-        link={currentThread ? "ACTION" : originatorPageUrl}
+        link={currentThread ? '/chat-action' : originatorPageUrl}
         backgroundColor={topMenuColor}
+        action={currentThread ? () => setCurrentThread(null) : undefined}
       />
 
       {session && (
