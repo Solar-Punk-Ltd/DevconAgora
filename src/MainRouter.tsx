@@ -128,6 +128,8 @@ const MainRouter = (): ReactElement => {
             track: "Layer 2s"
           }}  
           topMenuColor={undefined && "#F1F2F4"}
+          originatorPage={"Home"}
+          originatorPageUrl={'/home'}
       />} />
     </Routes>
   );

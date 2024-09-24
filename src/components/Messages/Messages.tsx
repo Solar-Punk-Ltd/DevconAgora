@@ -6,12 +6,14 @@ import { MessageWithThread, ThreadId } from '../../types/message';
 interface MessagesProps {
     messages: MessageWithThread[];
     currentThread: ThreadId | null;
+    setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 
 const Messages: React.FC<MessagesProps> = ({
   messages,
-  currentThread
+  currentThread,
+  setThreadId
 }) => {
   if (messages.length === 0) {
     return (
@@ -30,6 +32,7 @@ const Messages: React.FC<MessagesProps> = ({
           currentThread={currentThread}
           threadId={msg.threadId}
           parent={msg.parent}
+          setThreadId={setThreadId}
         />
       ))}
     </div>

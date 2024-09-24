@@ -12,11 +12,15 @@ interface MessageProps {
     currentThread: ThreadId | null;
     threadId: ThreadId | null;
     parent: ThreadId | null;
+    setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const Message: React.FC<MessageProps> = ({
     data,
+    currentThread,
     threadId,
+    parent,
+    setThreadId
 }) => {
   return (
     <div className="message">
@@ -35,7 +39,14 @@ const Message: React.FC<MessageProps> = ({
         
         <div className="message__right-side__message-controls" onClick={() => null}>
           <LikeIcon />
-          <p className="message__right-side__message-controls_reply">{"Reply"}</p>
+          {threadId && (
+            <p 
+              className="message__right-side__message-controls_reply"
+              onClick={() => setThreadId(threadId)}
+            >
+              {"Reply"}
+            </p>
+          )}
         </div>
       </div>
 

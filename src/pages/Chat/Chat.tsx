@@ -19,6 +19,8 @@ interface ChatProps {
   gsocResourceId: string;
   session?: Session;
   topMenuColor?: string;
+  originatorPage: string;
+  originatorPageUrl: string;
 }
 
 const GATEWAY = "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272";
@@ -31,10 +33,13 @@ const Chat: React.FC<ChatProps> = ({
     nickname,
     gsocResourceId,
     session,
-    topMenuColor
+    topMenuColor,
+    originatorPage,
+    originatorPageUrl
 }) => {
   const [chat, setChat] = useState<SwarmChat|null>(null);
-  const [messages, setMessages] = useState<MessageWithThread[]>([]);
+  const [allMessages, setAllMessages] = useState<MessageData[]>([]);
+  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
   const [currentThread, setCurrentThread] = useState<null|ThreadId>(null);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
@@ -73,8 +78,15 @@ const Chat: React.FC<ChatProps> = ({
 
       setChat(() => {return newChat})
   }
-
+  
   const handleReceiveMessage = (data: MessageData[]) => {
+    const finalMessages = filterMessages(data);
+
+    setAllMessages(data);
+    setVisibleMessages(finalMessages);
+  }
+
+  const filterMessages = (data: MessageData[]): MessageWithThread[] => {
     const threadCapableMessages: MessageWithThread[] = data.map((msg) => {
       return {
         username: msg.username,
@@ -86,15 +98,14 @@ const Chat: React.FC<ChatProps> = ({
       }
     });
 
-    let finalMessages = []
+    let filteredMessages = []
     if (currentThread) {
-      finalMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread);
+      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread);
     } else {
-      finalMessages = threadCapableMessages.filter((msg) => msg.parent === null);
+      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === null);
     }
 
-    
-    setMessages(finalMessages);
+    return filteredMessages;
   }
 
   useEffect(() => {
@@ -106,12 +117,18 @@ const Chat: React.FC<ChatProps> = ({
     }
   }, []);
 
+  useEffect(() => {
+    const newlyFilteredMessages = filterMessages(allMessages);
+
+    setVisibleMessages(newlyFilteredMessages);
+  }, [currentThread]);
+
 
   return (
     <div className="chat-page">
       <Back 
-        where={"Home"}
-        link={"/home"}
+        where={currentThread ? "Chat" : originatorPage}
+        link={currentThread ? "ACTION" : originatorPageUrl}
         backgroundColor={topMenuColor}
       />
 
@@ -129,8 +146,9 @@ const Chat: React.FC<ChatProps> = ({
       )}
 
       <Messages 
-        messages={messages}
+        messages={visibleMessages}
         currentThread={currentThread}
+        setThreadId={setCurrentThread}
       />
         
       {chat && (
