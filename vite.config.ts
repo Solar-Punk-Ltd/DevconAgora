@@ -12,7 +12,6 @@ export default defineConfig(({mode}) => {
       'process.env.DEVCON6_SESSSIONS_HASH': JSON.stringify(env.DEVCON6_SESSSIONS_HASH) ?? JSON.stringify(''),
       'process.env.BEE_API_URL': JSON.stringify(env.BEE_API_URL) ?? JSON.stringify('http://localhost:1633/'),
       'process.versions': JSON.stringify({ node: 'browser-mock' }), // Mocking process.versions.node
-      'process.nextTick': (callback: Function) => setTimeout(callback, 0),
     },
     plugins: [
       react(),
