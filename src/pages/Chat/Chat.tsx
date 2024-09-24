@@ -40,7 +40,7 @@ const Chat: React.FC<ChatProps> = ({
   const [chat, setChat] = useState<SwarmChat|null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
-  const [currentThread, setCurrentThread] = useState<null|ThreadId>(null);
+  const [currentThread, setCurrentThread] = useState<ThreadId|null>(null);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
 
@@ -57,7 +57,6 @@ const Chat: React.FC<ChatProps> = ({
       messageFetchMin: 2000,
       //  prettier: undefined
     });
-    //setChat(newChat)
 
     // Start polling messages & the Users feed
     newChat.startMessageFetchProcess(topic);
@@ -82,11 +81,12 @@ const Chat: React.FC<ChatProps> = ({
   const handleReceiveMessage = (data: MessageData[]) => {
     const finalMessages = filterMessages(data);
 
-    setAllMessages(data);
-    setVisibleMessages(finalMessages);
+    setAllMessages(Object.assign([], data));
+    setVisibleMessages(Object.assign([], finalMessages));
   }
 
   const filterMessages = (data: MessageData[]): MessageWithThread[] => {
+    
     const threadCapableMessages: MessageWithThread[] = data.map((msg) => {
       return {
         username: msg.username,
@@ -104,7 +104,10 @@ const Chat: React.FC<ChatProps> = ({
     } else {
       filteredMessages = threadCapableMessages.filter((msg) => msg.parent === null);
     }
-
+    console.log("000 Received Messages:", data);
+    console.log("000 Filtered Messages:", filteredMessages);
+    console.log("000 Current Thread:", currentThread);
+    
     return filteredMessages;
   }
 
@@ -118,6 +121,7 @@ const Chat: React.FC<ChatProps> = ({
   }, []);
 
   useEffect(() => {
+    console.log("000 Current thread... ", currentThread)
     const newlyFilteredMessages = filterMessages(allMessages);
 
     setVisibleMessages(Object.assign([], newlyFilteredMessages));
@@ -128,7 +132,7 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <Back 
         where={currentThread ? "Chat" : originatorPage}
-        link={currentThread ? '/chat-action' : originatorPageUrl}
+        link={currentThread ? '/home' : originatorPageUrl}
         backgroundColor={topMenuColor}
         action={currentThread ? () => setCurrentThread(null) : undefined}
       />

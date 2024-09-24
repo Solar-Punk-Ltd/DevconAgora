@@ -39,4 +39,4 @@ const Back: React.FC<BackProps> = ({
   )
 }
 
-export default Back
+export default Back;

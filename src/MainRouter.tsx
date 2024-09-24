@@ -21,10 +21,10 @@ import { useGlobalState } from "./GlobalStateContext";
 import Chat from "./pages/Chat/Chat";
 
 // Chat related variables, later this will be deleted
-const TOPIC = "threads-0"
+const TOPIC = "threads-1"
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
 const STAMP = "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId
-const GSOC_RESOURCE_ID = "b309000000000000000000000000000000000000000000000000000000000000"
+const GSOC_RESOURCE_ID = "6300000000000000000000000000000000000000000000000000000000000000"
 
 const MainRouter = (): ReactElement => {
   const { username } = useGlobalState();
@@ -130,6 +130,7 @@ const MainRouter = (): ReactElement => {
           topMenuColor={undefined && "#F1F2F4"}
           originatorPage={"Home"}
           originatorPageUrl={'/home'}
+          key={"0"}
       />} />
     </Routes>
   );
