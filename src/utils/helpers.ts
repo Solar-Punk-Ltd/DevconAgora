@@ -33,22 +33,14 @@ export function formatTime(timestamp: number) {
     const formatDate = (date: Date) =>
         date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
-    if (
-        date.getDate() === now.getDate() &&
-        date.getMonth() === now.getMonth() &&
-        date.getFullYear() === now.getFullYear()
-    ) {
+    if (isSameDay(date, now)) {
         return formatHM(date);
     }
 
     const yesterday = new Date();
     yesterday.setDate(now.getDate() - 1);
 
-    if (
-        date.getDate() === yesterday.getDate() &&
-        date.getMonth() === yesterday.getMonth() &&
-        date.getFullYear() === yesterday.getFullYear()
-    ) {
+    if (isSameDay(date, yesterday)) {
         return `Yesterday ${formatHM(date)}`;
     }
 
@@ -57,4 +49,10 @@ export function formatTime(timestamp: number) {
     }
 
     return `${date.getFullYear()} ${formatDate(date)} ${formatHM(date)}`;
+}
+
+export function isSameDay(firstDate: Date, secondDate: Date) {
+    return (firstDate.getDate() === secondDate.getDate() &&
+    firstDate.getMonth() === secondDate.getMonth() &&
+    firstDate.getFullYear() === secondDate.getFullYear())
 }
