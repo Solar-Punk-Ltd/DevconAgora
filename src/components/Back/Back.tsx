@@ -6,17 +6,19 @@ import { Link } from 'react-router-dom';
 interface BackProps {
     where: string;
     link: string;
+    backgroundColor?: string;
 }
 
 
 const Back: React.FC<BackProps> = ({
   where,
-  link
+  link,
+  backgroundColor
 }) => {
   return (
-    <div className="back-menu">
+    <div className="back-menu" style={{ backgroundColor }}>
         <Link to={link}>
-          <BackArrow  backgroundColor={"#FFFFFF"} />
+          <BackArrow  backgroundColor={backgroundColor || "#FFFFFF"} />
         </Link>
         
         <Link to={link}>

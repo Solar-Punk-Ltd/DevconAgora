@@ -82,6 +82,7 @@ const Chat: React.FC<ChatProps> = ({
       <Back 
         where={"Home"}
         link={"/home"}
+        backgroundColor={"red"}
       />
 
       <AgendaItem 
@@ -90,6 +91,9 @@ const Chat: React.FC<ChatProps> = ({
         endDate="10:15 AM"
         hearted={true}
         category="Layer 2s"
+        backgroundColor={"red"}
+        borderRadius={"0"}
+        paddingRight={"16px"}
       />
 
       <Messages 
