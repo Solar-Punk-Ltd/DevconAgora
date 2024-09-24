@@ -5,10 +5,13 @@ import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import { useGlobalState } from '../../../GlobalStateContext';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
+import { ThreadId } from '../../../types/message';
 
 interface MessageProps {
     data: MessageData;
-    threadId: string;
+    currentThread: ThreadId | null;
+    threadId: ThreadId | null;
+    parent: ThreadId | null;
 }
 
 const Message: React.FC<MessageProps> = ({

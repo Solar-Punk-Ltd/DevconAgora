@@ -16,15 +16,15 @@ import RoomsPage from "./pages/RoomsPage/RoomsPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
-import Chat from "./pages/Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "./GlobalStateContext";
+import Chat from "./pages/Chat/Chat";
 
 // Chat related variables, later this will be deleted
-const TOPIC = "gsoc-12"
+const TOPIC = "threads-0"
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
 const STAMP = "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId
-const GSOC_RESOURCE_ID = "5201000000000000000000000000000000000000000000000000000000000000"
+const GSOC_RESOURCE_ID = "b309000000000000000000000000000000000000000000000000000000000000"
 
 const MainRouter = (): ReactElement => {
   const { username } = useGlobalState();

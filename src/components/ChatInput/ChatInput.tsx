@@ -3,6 +3,8 @@ import "./ChatInput.scss";
 import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
 import SendIcon from '../icons/SendIcon/SendIcon';
+import { ThreadId } from '../../types/message';
+import { randomThreadId } from '../../utils/helpers';
 
 interface ChatInputProps {
     chat: SwarmChat;
@@ -11,6 +13,7 @@ interface ChatInputProps {
     topic: string;
     stamp: BatchId;
     privKey: string;
+    currentThread: ThreadId | null;
 }
 
 
@@ -20,7 +23,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
   nickname,
   topic,
   stamp,
-  privKey
+  privKey,
+  currentThread
 }) => {
   const [messageToSend, setMessageToSend] = useState("");
   const [reconnecting, setReconnecting] = useState(false);
@@ -44,7 +48,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
     }
 
     const messageObj: MessageData = {
-      message: messageToSend,
+      message: JSON.stringify({
+        text: messageToSend,
+        threadId: currentThread ? null : randomThreadId(),       // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
+        parent: currentThread                                    // This will be ThreadId (string) or null
+      }),
       timestamp: Date.now(),
       username: nickname,
       address: ownAddress

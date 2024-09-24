@@ -1,15 +1,17 @@
 import React from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
-import { MessageData } from 'solarpunk-swarm-decentralized-chat';
+import { MessageWithThread, ThreadId } from '../../types/message';
 
 interface MessagesProps {
-    messages: MessageData[];
+    messages: MessageWithThread[];
+    currentThread: ThreadId | null;
 }
 
 
 const Messages: React.FC<MessagesProps> = ({
-  messages
+  messages,
+  currentThread
 }) => {
   if (messages.length === 0) {
     return (
@@ -22,10 +24,12 @@ const Messages: React.FC<MessagesProps> = ({
 
   return (
     <div className="messages">
-      {messages.map((message, ind) => (
+      {messages.map((msg, ind) => (
         <Message 
-          data={message}
-          threadId={`mock-${ind}`}
+          data={msg}
+          currentThread={currentThread}
+          threadId={msg.threadId}
+          parent={msg.parent}
         />
       ))}
     </div>

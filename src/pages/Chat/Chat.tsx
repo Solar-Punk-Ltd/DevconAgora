@@ -9,6 +9,7 @@ import ChatInput from '../../components/ChatInput/ChatInput';
 import { Wallet } from 'ethers';
 import { BatchId } from '@ethersphere/bee-js';
 import { Session } from '../../types/session';
+import { MessageWithThread, ThreadId } from '../../types/message';
 
 interface ChatProps {
   topic: string;
@@ -33,7 +34,8 @@ const Chat: React.FC<ChatProps> = ({
     topMenuColor
 }) => {
   const [chat, setChat] = useState<SwarmChat|null>(null);
-  const [messages, setMessages] = useState<MessageData[]>([]);
+  const [messages, setMessages] = useState<MessageWithThread[]>([]);
+  const [currentThread, setCurrentThread] = useState<null|ThreadId>(null);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
 
@@ -67,9 +69,32 @@ const Chat: React.FC<ChatProps> = ({
       .catch((err) => console.error(`initUsers error: ${err.error}`));
 
       const { on } = newChat.getChatActions();
-      on(EVENTS.RECEIVE_MESSAGE, (data) => setMessages(data)/*handleReceiveMessage*/);
+      on(EVENTS.RECEIVE_MESSAGE, (data) => handleReceiveMessage(data));
 
       setChat(() => {return newChat})
+  }
+
+  const handleReceiveMessage = (data: MessageData[]) => {
+    const threadCapableMessages: MessageWithThread[] = data.map((msg) => {
+      return {
+        username: msg.username,
+        address: msg.address,
+        timestamp: msg.timestamp,
+        message: JSON.parse(msg.message).text,
+        threadId: JSON.parse(msg.message).threadId,
+        parent: JSON.parse(msg.message).parent
+      }
+    });
+
+    let finalMessages = []
+    if (currentThread) {
+      finalMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread);
+    } else {
+      finalMessages = threadCapableMessages.filter((msg) => msg.parent === null);
+    }
+
+    
+    setMessages(finalMessages);
   }
 
   useEffect(() => {
@@ -105,6 +130,7 @@ const Chat: React.FC<ChatProps> = ({
 
       <Messages 
         messages={messages}
+        currentThread={currentThread}
       />
         
       {chat && (
@@ -115,6 +141,7 @@ const Chat: React.FC<ChatProps> = ({
         topic={topic}
         stamp={stamp}
         privKey={privKey}
+        currentThread={currentThread}
       />
       )}
       
