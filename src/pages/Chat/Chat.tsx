@@ -8,6 +8,7 @@ import Messages from '../../components/Messages/Messages';
 import ChatInput from '../../components/ChatInput/ChatInput';
 import { Wallet } from 'ethers';
 import { BatchId } from '@ethersphere/bee-js';
+import { Session } from '../../types/session';
 
 interface ChatProps {
   topic: string;
@@ -15,6 +16,8 @@ interface ChatProps {
   stamp: BatchId;
   nickname: string;
   gsocResourceId: string;
+  session?: Session;
+  topMenuColor?: string;
 }
 
 const GATEWAY = "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272";
@@ -25,7 +28,9 @@ const Chat: React.FC<ChatProps> = ({
     privKey,
     stamp,
     nickname,
-    gsocResourceId
+    gsocResourceId,
+    session,
+    topMenuColor
 }) => {
   const [chat, setChat] = useState<SwarmChat|null>(null);
   const [messages, setMessages] = useState<MessageData[]>([]);
@@ -82,7 +87,7 @@ const Chat: React.FC<ChatProps> = ({
       <Back 
         where={"Home"}
         link={"/home"}
-        backgroundColor={"red"}
+        backgroundColor={topMenuColor}
       />
 
       <AgendaItem 
@@ -91,7 +96,7 @@ const Chat: React.FC<ChatProps> = ({
         endDate="10:15 AM"
         hearted={true}
         category="Layer 2s"
-        backgroundColor={"red"}
+        backgroundColor={topMenuColor}
         borderRadius={"0"}
         paddingRight={"16px"}
       />

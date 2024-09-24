@@ -112,6 +112,7 @@ const MainRouter = (): ReactElement => {
           stamp={STAMP as BatchId}
           nickname={username}
           gsocResourceId={GSOC_RESOURCE_ID}
+          topMenuColor={"#F1F2F4"}
       />} />
     </Routes>
   );
