@@ -112,7 +112,22 @@ const MainRouter = (): ReactElement => {
           stamp={STAMP as BatchId}
           nickname={username}
           gsocResourceId={GSOC_RESOURCE_ID}
-          topMenuColor={"#F1F2F4"}
+          session={undefined && {
+            id: "00",
+            title: "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+            description: "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+            sourceId: "123",
+            type: "no-type",
+            duration: "1 hour",
+            expertise: "medium",
+            tags: "l2",
+            language: "english",
+            eventId: "00",
+            slot_start: "9:00 AM",
+            slot_end: "10:15 AM",
+            track: "Layer 2s"
+          }}  
+          topMenuColor={undefined && "#F1F2F4"}
       />} />
     </Routes>
   );

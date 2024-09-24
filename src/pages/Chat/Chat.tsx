@@ -21,7 +21,7 @@ interface ChatProps {
 }
 
 const GATEWAY = "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272";
-
+const MOCK_HEARTED = true;
 
 const Chat: React.FC<ChatProps> = ({
     topic,
@@ -90,16 +90,18 @@ const Chat: React.FC<ChatProps> = ({
         backgroundColor={topMenuColor}
       />
 
-      <AgendaItem 
-        title="Ethereum for the next billion: DeFi for the unbanked/underbanked"
-        startDate="9:00 AM"
-        endDate="10:15 AM"
-        hearted={true}
-        category="Layer 2s"
-        backgroundColor={topMenuColor}
-        borderRadius={"0"}
-        paddingRight={"16px"}
-      />
+      {session && (
+        <AgendaItem 
+          title={session.title}
+          startDate={session.slot_start}
+          endDate={session.slot_end}
+          hearted={MOCK_HEARTED}
+          category={session.track}
+          backgroundColor={topMenuColor}
+          borderRadius={"0"}
+          paddingRight={"16px"}
+        />
+      )}
 
       <Messages 
         messages={messages}
