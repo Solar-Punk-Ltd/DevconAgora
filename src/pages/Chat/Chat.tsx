@@ -81,7 +81,7 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <Back 
         where={"Home"}
-        link={"/home-"}
+        link={"/home"}
       />
 
       <AgendaItem 
