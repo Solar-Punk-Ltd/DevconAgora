@@ -20,7 +20,7 @@ const LikeIcon: React.FC<LikeProps> = ({
         </g>
         <defs>
          <clipPath id="clip0_2_710">
-            <rect width="16" height="16" fill={contourColor || "white"}/>
+            <rect width="16" height="16" fill={contourColor || "white"}/>
          </clipPath>
         </defs>
       </svg>

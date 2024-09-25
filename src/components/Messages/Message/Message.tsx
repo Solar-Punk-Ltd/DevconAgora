@@ -36,7 +36,13 @@ const Message: React.FC<MessageProps> = ({
         <p className="message__right-side__text">{data.message}</p>
         
         <div className="message__right-side__message-controls" onClick={() => null}>
-          <LikeIcon />
+          <button 
+            className="message__right-side__message-controls_like"
+            onClick={() => window.alert("hi")}
+          >
+            <LikeIcon fillColor={"#FFFF00"} />
+          </button>
+
           {!currentThread && (
             <p 
               className={data.replyCount ? "message__right-side__message-controls_reply message__right-side__message-controls_reply__has-reply" : "message__right-side__message-controls_reply"}
