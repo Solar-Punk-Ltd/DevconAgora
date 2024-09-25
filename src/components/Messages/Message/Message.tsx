@@ -57,7 +57,7 @@ const Message: React.FC<MessageProps> = ({
 
 
   return (
-    <div className="message" style={{ marginLeft: parent ? "128px" : undefined}}>
+    <div className="message" style={{ marginLeft: parent ? "32px" : undefined}}>
      
       <div className="message__left-side">
         <AvatarMonogram letters={createMonogram(data.username)} />
