@@ -105,9 +105,6 @@ const Chat: React.FC<ChatProps> = ({
     } else {
       filteredMessages = threadCapableMessages.filter((msg) => msg.parent === null);
     }
-    console.log("000 Received Messages:", data);
-    console.log("000 Filtered Messages:", filteredMessages);
-    console.log("000 Current Thread:", currentThreadRef.current);
     
     return filteredMessages;
   }

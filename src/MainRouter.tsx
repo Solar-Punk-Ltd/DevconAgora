@@ -23,7 +23,7 @@ import Chat from "./pages/Chat/Chat";
 // Chat related variables, later this will be deleted
 const TOPIC = "threads-1"
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
-const STAMP = "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId
+const STAMP = "2fa0e758c691e74f74631e31277a0636b7a901494deeeeecccfb16cf6b1baebf" as BatchId
 const GSOC_RESOURCE_ID = "6300000000000000000000000000000000000000000000000000000000000000"
 
 const MainRouter = (): ReactElement => {

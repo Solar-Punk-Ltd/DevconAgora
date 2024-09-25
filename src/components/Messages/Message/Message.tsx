@@ -2,7 +2,6 @@ import React from 'react';
 import "./Message.scss";
 import { MessageData } from 'solarpunk-swarm-decentralized-chat';
 import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
-import { useGlobalState } from '../../../GlobalStateContext';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
 import { ThreadId } from '../../../types/message';
@@ -23,7 +22,7 @@ const Message: React.FC<MessageProps> = ({
     setThreadId
 }) => {
   return (
-    <div className="message">
+    <div className="message" style={{ marginLeft: parent ? "128px" : undefined}}>
      
       <div className="message__left-side">
         <AvatarMonogram letters={createMonogram(data.username)} />
@@ -39,7 +38,7 @@ const Message: React.FC<MessageProps> = ({
         
         <div className="message__right-side__message-controls" onClick={() => null}>
           <LikeIcon />
-          {threadId && (
+          {!currentThread && (
             <p 
               className="message__right-side__message-controls_reply"
               onClick={() => setThreadId(threadId)}
