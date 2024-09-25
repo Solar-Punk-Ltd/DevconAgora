@@ -51,6 +51,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       message: JSON.stringify({
         text: messageToSend,
         threadId: currentThread ? null : randomThreadId(),       // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
+        messageId: randomThreadId(),                             // Every message has an ID, for liking
         parent: currentThread                                    // This will be ThreadId (string) or null
       }),
       timestamp: Date.now(),

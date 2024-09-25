@@ -86,18 +86,28 @@ const Chat: React.FC<ChatProps> = ({
     setVisibleMessages([...finalMessages]);
   }
 
-  const filterMessages = (data: MessageData[]): MessageWithThread[] => {
-    
-    const threadCapableMessages: MessageWithThread[] = data.map((msg) => {
-      return {
-        username: msg.username,
-        address: msg.address,
-        timestamp: msg.timestamp,
-        message: JSON.parse(msg.message).text,
-        threadId: JSON.parse(msg.message).threadId,
-        parent: JSON.parse(msg.message).parent
+  const filterMessages = (data: MessageData[]): MessageWithThread[] => {    
+    let threadCapableMessages: MessageWithThread[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+      const msgObj = JSON.parse(data[i].message);
+
+      if (msgObj.like) {
+        const likedIndex = threadCapableMessages.findIndex((msg) => msg.messageId === msgObj.like);
+      } else {
+        threadCapableMessages.push({
+          username: data[i].username,
+          address: data[i].address,
+          timestamp: data[i].timestamp,
+          message: msgObj.text,
+          threadId: msgObj.threadId,
+          messageId: msgObj.messageId,
+          parent: msgObj.parent,
+          replyCount: 0,
+          likeCount: 0
+        });
       }
-    });
+    }
 
     let filteredMessages = []
     if (currentThreadRef.current) {
