@@ -9,7 +9,7 @@ import Dropdown from "../../components/Dropdown/Dropdown";
 import { Session } from "../../types/session";
 import {
   STAGES_MAP,
-  CATEGORY_FILTERS,
+  CATEGORIES,
   DATE_TO_DEVCON_DAY,
 } from "../../utils/constants";
 import { getSessionsByDay, dateToTime } from "../../utils/helpers";
@@ -49,7 +49,7 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
       const items: Session[] = [];
       for (let i = 0; i < sessionsByDay.length; i++) {
         const categoryFilter = categoryIndex
-          ? sessionsByDay[i].track === CATEGORY_FILTERS[categoryIndex]
+          ? sessionsByDay[i].track === CATEGORIES[categoryIndex]
           : true;
         // TODO: implement heart logic
         const isYourAgenda =

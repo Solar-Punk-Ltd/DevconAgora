@@ -11,17 +11,16 @@ export enum ROUTES {
   WELCOME4 = "/welcome4",
   PROFILECREATION = "/profilecreation",
   HOME = "/home",
-  RECENT = "/recent",
   DEVCONLOUNGE = "/devconlounge",
   PROFILE = "/profile",
   GAMIFICATION = "/gamification",
   AGENDA = "/agenda",
   CATEGORIES = "/categories",
-  ROOMS = "/rooms",
+  SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
 }
 
-export const CATEGORY_FILTERS = [
+export const CATEGORIES = [
   "Layer 2s",
   "Core protocol",
   "Cypherpunk and privacy",

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
-import ChatTest from "../../assets/visitors-icon.svg"
+import ChatTest from "../../assets/visitors-icon.svg";
 import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
 
@@ -38,15 +38,15 @@ const NavigationFooter: React.FC = () => {
           <div>Agenda</div>
         </div>
       </Link>
-      <Link to="/rooms">
+      <Link to="/spaces">
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":
-              location.pathname === "/rooms",
+              location.pathname === "/spaces",
           })}
         >
-          <RoomsIcon color={getColor("/rooms")} />
-          <div>Rooms</div>
+          <RoomsIcon color={getColor("/spaces")} />
+          <div>Spaces</div>
         </div>
       </Link>
       <Link to="/chat_dev">

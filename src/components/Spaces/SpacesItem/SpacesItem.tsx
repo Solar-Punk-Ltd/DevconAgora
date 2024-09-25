@@ -1,5 +1,5 @@
 import React from "react";
-import "./RecentRoomsItem.scss";
+import "./SpacesItem.scss";
 import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
 import RightArrowIcon from "../../icons/RightArrowIcon/RightArrowIcon";
 

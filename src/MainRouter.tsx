@@ -7,12 +7,11 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import HomePage from "./pages/HomePage/HomePage";
-import Recent from "./pages/Recent/Recent";
 import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
-import RoomsPage from "./pages/RoomsPage/RoomsPage";
+import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
@@ -104,12 +103,11 @@ const MainRouter = (): ReactElement => {
         path={ROUTES.HOME}
         element={<HomePage sessions={sessions} isLoaded={false} />}
       />
-      <Route path={ROUTES.RECENT} element={<Recent />} />
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      <Route path={ROUTES.ROOMS} element={<RoomsPage />} />
+      <Route path={ROUTES.SPACES} element={<SpacesPage />} />
       <Route
         path={"/chat_dev"}
         element={

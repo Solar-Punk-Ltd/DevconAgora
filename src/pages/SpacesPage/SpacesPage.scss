@@ -1,0 +1,9 @@
+.spaces {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 56px);
+}
+.spaces__content {
+  overflow: scroll;
+  padding: 16px;
+}

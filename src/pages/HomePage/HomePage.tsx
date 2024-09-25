@@ -3,12 +3,12 @@ import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import "./HomePage.scss";
 import { useEffect, useState } from "react";
-import RecentRooms from "../../components/RecentRooms/RecentRooms";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import { Session } from "../../types/session";
+import Spaces from "../../components/Spaces/Spaces";
 
 const maxSessionsShown = 9;
 
@@ -52,7 +52,7 @@ const HomePage: React.FC<HomePageProps> = ({ sessions, isLoaded }) => {
             sessions={sessions}
             maxSessionsShown={maxSessionsShown}
           />
-          <RecentRooms />
+          <Spaces />
         </div>
       )}
       <NavigationFooter />
