@@ -4,22 +4,58 @@ import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
 import { MessageWithThread, ThreadId } from '../../../types/message';
+import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
+import { BatchId } from '@ethersphere/bee-js';
 
 interface MessageProps {
     data: MessageWithThread;
+    nickname: string;
+    ownAddress: EthAddress;
+    chat: SwarmChat;
+    topic: string;
+    stamp: BatchId;
+    privKey: string;
     currentThread: ThreadId | null;
     threadId: ThreadId | null;
     parent: ThreadId | null;
     setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
+
 const Message: React.FC<MessageProps> = ({
     data,
+    nickname,
+    ownAddress,
+    chat,
+    topic,
+    stamp,
+    privKey,
     currentThread,
     threadId,
     parent,
     setThreadId
 }) => {
+  const likeMessage = async () => {
+    const messageObj: MessageData = {
+      message: JSON.stringify({
+        like: data.messageId
+      }),
+      timestamp: Date.now(),
+      username: nickname,
+      address: ownAddress
+    }
+
+    const rep = await chat.sendMessage(
+      ownAddress,
+      topic,
+      messageObj,
+      stamp,
+      privKey
+    );
+    console.log("Like message ref: ", rep)
+  }
+
+
   return (
     <div className="message" style={{ marginLeft: parent ? "128px" : undefined}}>
      
@@ -36,9 +72,10 @@ const Message: React.FC<MessageProps> = ({
         <p className="message__right-side__text">{data.message}</p>
         
         <div className="message__right-side__message-controls" onClick={() => null}>
+          <span>{data.likeCount ? data.likeCount : ""}</span>
           <button 
             className="message__right-side__message-controls_like"
-            onClick={() => window.alert("hi")}
+            onClick={likeMessage}
           >
             <LikeIcon fillColor={"#FFFF00"} />
           </button>

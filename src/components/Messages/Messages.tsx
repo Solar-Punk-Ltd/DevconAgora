@@ -2,9 +2,17 @@ import React from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
 import { MessageWithThread, ThreadId } from '../../types/message';
+import { EthAddress, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
+import { BatchId } from '@ethersphere/bee-js';
 
 interface MessagesProps {
     messages: MessageWithThread[];
+    nickname: string;
+    ownAddress: EthAddress;
+    chat: SwarmChat;
+    topic: string;
+    stamp: BatchId;
+    privKey: string;
     currentThread: ThreadId | null;
     setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
 }
@@ -12,6 +20,12 @@ interface MessagesProps {
 
 const Messages: React.FC<MessagesProps> = ({
   messages,
+  nickname,
+  ownAddress,
+  chat,
+  topic,
+  stamp,
+  privKey,
   currentThread,
   setThreadId
 }) => {
@@ -29,6 +43,12 @@ const Messages: React.FC<MessagesProps> = ({
       {messages.map((msg, ind) => (
         <Message
           data={msg}
+          nickname={nickname}
+          ownAddress={ownAddress}
+          chat={chat}
+          topic={topic}
+          stamp={stamp}
+          privKey={privKey}
           currentThread={currentThread}
           threadId={msg.threadId}
           parent={msg.parent}

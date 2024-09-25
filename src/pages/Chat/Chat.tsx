@@ -165,23 +165,31 @@ const Chat: React.FC<ChatProps> = ({
         />
       )}
 
-      <Messages 
-        messages={visibleMessages}
-        currentThread={currentThread}
-        setThreadId={setCurrentThread}
-        key={`${currentThread}-${allMessages.length}`}
-      />
-        
       {chat && (
-        <ChatInput 
-        chat={chat}
-        ownAddress={ownAddress}
-        nickname={nickname}
-        topic={topic}
-        stamp={stamp}
-        privKey={privKey}
-        currentThread={currentThread}
-      />
+        <>
+          <Messages 
+            messages={visibleMessages}
+            nickname={nickname}
+            ownAddress={ownAddress}
+            chat={chat}
+            topic={topic}
+            stamp={stamp}
+            privKey={privKey}
+            currentThread={currentThread}
+            setThreadId={setCurrentThread}
+            key={`${currentThread}-${allMessages.length}`}
+          />
+                
+          <ChatInput 
+            chat={chat}
+            ownAddress={ownAddress}
+            nickname={nickname}
+            topic={topic}
+            stamp={stamp}
+            privKey={privKey}
+            currentThread={currentThread}
+          />
+        </>
       )}
       
       <NavigationFooter />
