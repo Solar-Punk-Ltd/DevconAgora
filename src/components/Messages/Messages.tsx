@@ -27,12 +27,13 @@ const Messages: React.FC<MessagesProps> = ({
   return (
     <div className="messages">
       {messages.map((msg, ind) => (
-        <Message 
+        <Message
           data={msg}
           currentThread={currentThread}
           threadId={msg.threadId}
           parent={msg.parent}
           setThreadId={setThreadId}
+          key={`${msg.threadId}-${msg.parent}`}
         />
       ))}
     </div>

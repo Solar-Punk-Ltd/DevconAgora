@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "./Chat.scss"
 import { EthAddress, EVENTS, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
@@ -41,6 +41,7 @@ const Chat: React.FC<ChatProps> = ({
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
   const [currentThread, setCurrentThread] = useState<ThreadId|null>(null);
+  const currentThreadRef = useRef(currentThread);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
 
@@ -99,14 +100,14 @@ const Chat: React.FC<ChatProps> = ({
     });
 
     let filteredMessages = []
-    if (currentThread) {
-      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === currentThread || msg.threadId === currentThread);
+    if (currentThreadRef.current) {
+      filteredMessages = threadCapableMessages.filter((msg) => msg.parent === currentThreadRef.current || msg.threadId === currentThreadRef.current);
     } else {
       filteredMessages = threadCapableMessages.filter((msg) => msg.parent === null);
     }
     console.log("000 Received Messages:", data);
     console.log("000 Filtered Messages:", filteredMessages);
-    console.log("000 Current Thread:", currentThread);
+    console.log("000 Current Thread:", currentThreadRef.current);
     
     return filteredMessages;
   }
@@ -122,6 +123,7 @@ const Chat: React.FC<ChatProps> = ({
 
   useEffect(() => {
     console.log("000 Current thread... ", currentThread)
+    currentThreadRef.current = currentThread;
     const newlyFilteredMessages = filterMessages(allMessages);
 
     setVisibleMessages(Object.assign([], newlyFilteredMessages));
