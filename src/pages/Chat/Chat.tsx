@@ -82,8 +82,8 @@ const Chat: React.FC<ChatProps> = ({
   const handleReceiveMessage = (data: MessageData[]) => {
     const finalMessages = filterMessages(data);
 
-    setAllMessages(Object.assign([], data));
-    setVisibleMessages(Object.assign([], finalMessages));
+    setAllMessages([...data]);
+    setVisibleMessages([...finalMessages]);
   }
 
   const filterMessages = (data: MessageData[]): MessageWithThread[] => {
@@ -122,11 +122,11 @@ const Chat: React.FC<ChatProps> = ({
   }, []);
 
   useEffect(() => {
-    console.log("000 Current thread... ", currentThread)
+    setVisibleMessages([]);
     currentThreadRef.current = currentThread;
     const newlyFilteredMessages = filterMessages(allMessages);
 
-    setVisibleMessages(Object.assign([], newlyFilteredMessages));
+    setVisibleMessages([...newlyFilteredMessages]);
   }, [currentThread]);
 
 
@@ -156,6 +156,7 @@ const Chat: React.FC<ChatProps> = ({
         messages={visibleMessages}
         currentThread={currentThread}
         setThreadId={setCurrentThread}
+        key={`${currentThread}-${allMessages.length}`}
       />
         
       {chat && (

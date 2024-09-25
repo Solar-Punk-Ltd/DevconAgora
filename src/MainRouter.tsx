@@ -130,7 +130,6 @@ const MainRouter = (): ReactElement => {
           topMenuColor={undefined && "#F1F2F4"}
           originatorPage={"Home"}
           originatorPageUrl={'/home'}
-          key={"0"}
       />} />
     </Routes>
   );
