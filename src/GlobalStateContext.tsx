@@ -1,10 +1,18 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface GlobalState {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   monogram: string;
   setMonogram: React.Dispatch<React.SetStateAction<string>>;
+  points: number;
+  setPoints: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -16,11 +24,40 @@ interface GlobalStateProviderProps {
 export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   children,
 }) => {
-  const [username, setUsername] = useState("Generated Nickname");
-  const [monogram, setMonogram] = useState("");
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("username") || "Generated Nickname";
+  });
+  const [monogram, setMonogram] = useState(() => {
+    return localStorage.getItem("monogram") || "";
+  });
+
+  const [points, setPoints] = useState(() => {
+    const storedPoints = localStorage.getItem("points");
+    return storedPoints ? parseInt(storedPoints, 10) : 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("username", username);
+  }, [username]);
+
+  useEffect(() => {
+    localStorage.setItem("monogram", monogram);
+  }, [monogram]);
+
+  useEffect(() => {
+    localStorage.setItem("points", points.toString());
+  }, [points]);
+
   return (
     <GlobalStateContext.Provider
-      value={{ username, setUsername, monogram, setMonogram }}
+      value={{
+        username,
+        setUsername,
+        monogram,
+        setMonogram,
+        points,
+        setPoints,
+      }}
     >
       {children}
     </GlobalStateContext.Provider>

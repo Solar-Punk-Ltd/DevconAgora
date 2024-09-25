@@ -1,90 +1,56 @@
 import React from "react";
 import "./Profile.scss";
-// import AlertIndicator from "./AlertIndicator/AlertIndicator";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import ProfilePicture from "../../assets/profile-page-profile-icon.png";
-import QRcode from "../../assets/qr-code.png";
+import { useGlobalState } from "../../GlobalStateContext";
+import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
+import ProfileBox from "../../components/ProfileBox/ProfileBox";
+import { Link } from "react-router-dom";
 
 const Profile: React.FC = () => {
+  const { username, monogram, points } = useGlobalState();
   return (
-    <div>
-      <NavigationHeader />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <div
-          style={{ fontSize: "24px", fontWeight: "700", marginBottom: "16px" }}
-        >
-          ChainMasterAlex
-        </div>
-        <div style={{ marginBottom: "10px" }}>
-          <img src={ProfilePicture} alt="" width="135px" height="135px" />
-        </div>
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            borderRadius: "200px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#949499",
-            marginBottom: "10px",
-            fontSize: "18px",
-            fontWeight: "700",
-            color: "white",
-          }}
-        >
-          8 points
-        </div>
-        <div
-          style={{
-            fontSize: "14px",
-            fontWeight: "700",
-            textDecoration: "underline",
-          }}
-        >
-          Claim your reward
-        </div>
-        <div
-          style={{
-            width: "100%",
-            fontSize: "14px",
-            fontWeight: "700",
-            textAlign: "left",
-            marginLeft: "17px",
-          }}
-        >
-          Get referal points
-        </div>
-        <div
-          style={{
-            width: "100%",
-            fontSize: "14px",
-            fontWeight: "400",
-            textAlign: "left",
-            marginLeft: "17px",
-            marginBottom: "14px",
-          }}
-        >
-          Each active registration you got extra 2 points
-        </div>
+    <div className="profile">
+      <NavigationHeader to="/home" />
+      <div className="profile__content">
         <div>
-          <img src={QRcode} alt="" width="171px" height="171px" />
+          <ProfilePicture name={monogram} version="big" />
         </div>
-        <div
-          style={{
-            fontSize: "14px",
-            fontWeight: "700",
-            textDecoration: "underline",
-          }}
-        >
-          Share referal link
+        <div className="profile__content__datas">
+          <div className="profile__content__background">
+            <img
+              src={HomeBackground}
+              alt=""
+              className="profile__content__background__image"
+            />
+          </div>
+          <div className="profile__content__datas__user">
+            <div className="profile-creation__username">Nickname</div>
+            <div className="profile__username">{username}</div>
+          </div>
+          <ProfileBox
+            title="Points"
+            link="Claim reward"
+            points={points}
+            showPoints={true}
+            showContent={true}
+          />
+          <ProfileBox
+            title="Get referal points"
+            link="Share referal link"
+            showPoints={false}
+            showContent={true}
+          />
+          <Link
+            to="/how-does-it-work"
+            className="profile__content__datas__how-does-it-work"
+          >
+            <ProfileBox
+              title="How does it work?"
+              showPoints={false}
+              showContent={false}
+            />
+          </Link>
         </div>
       </div>
     </div>
