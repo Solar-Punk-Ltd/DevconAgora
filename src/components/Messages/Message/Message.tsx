@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Message.scss";
 import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
@@ -35,7 +35,11 @@ const Message: React.FC<MessageProps> = ({
     parent,
     setThreadId
 }) => {
+  const [likeLoading, setLikeLoading] = useState(false);
+
   const likeMessage = async () => {
+    setLikeLoading(true);
+
     const messageObj: MessageData = {
       message: JSON.stringify({
         like: data.messageId
@@ -77,7 +81,11 @@ const Message: React.FC<MessageProps> = ({
             className="message__right-side__message-controls_like"
             onClick={likeMessage}
           >
-            <LikeIcon fillColor={"#FFFF00"} />
+            {likeLoading ? 
+              "L"
+            : 
+              <LikeIcon fillColor={"#FFFF00"} />
+            }
           </button>
 
           {!currentThread && (

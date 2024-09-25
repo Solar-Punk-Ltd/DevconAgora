@@ -41,9 +41,20 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
     if (!chat.isRegistered(ownAddress)) {
       setReconnecting(true);
+      let rounds = 0;
+      const waitOneRound = async (ms: number) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
       await chat.registerUser(topic, { participant: ownAddress, key: privKey, stamp, nickName: nickname })
         .then(() => console.info(`user reconnected.`))
         .catch((err) => console.error(`error when reconnecting ${err.error}`));
+
+        do {
+          await waitOneRound(1000);
+          console.log("isRegistered: ", chat.isRegistered)
+        } while (!chat.isRegistered(ownAddress) && rounds < 60);
+
       setReconnecting(false);   // this might not be accurate
     }
 
