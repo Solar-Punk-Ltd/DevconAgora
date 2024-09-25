@@ -5,9 +5,14 @@ import clsx from "clsx";
 interface WelcomeButtonProps {
   children: string;
   version?: "filled" | "outlined" | "inactive";
+  onClick: () => void;
 }
 
-const WelcomeButton: React.FC<WelcomeButtonProps> = ({ children, version }) => {
+const WelcomeButton: React.FC<WelcomeButtonProps> = ({
+  children,
+  version,
+  onClick,
+}) => {
   return (
     <button
       disabled={version === "inactive"}
@@ -16,6 +21,7 @@ const WelcomeButton: React.FC<WelcomeButtonProps> = ({ children, version }) => {
         "welcome-button--outlined": version === "outlined",
         "welcome-button--inactive": version === "inactive",
       })}
+      onClick={() => onClick()}
     >
       {children}
     </button>

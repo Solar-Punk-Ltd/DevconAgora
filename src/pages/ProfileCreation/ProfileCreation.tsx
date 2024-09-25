@@ -33,6 +33,12 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleOkClick();
+    }
+  };
+
   const handleOkClick = () => {
     if (validateInput(username)) {
       setButtonActive(true);
@@ -85,6 +91,7 @@ const ProfileCreation: React.FC = () => {
                     className={clsx("profile-creation__user-input__input", {
                       "profile-creation__user-input__input__disabled": !isEdit,
                     })}
+                    onKeyDown={handleKeyDown}
                     onChange={onInputChange}
                     readOnly={!isEdit}
                   />
@@ -115,7 +122,12 @@ const ProfileCreation: React.FC = () => {
         </div>
         <div className="profile-creation__bottom">
           <Link to={ROUTES.HOME}>
-            <WelcomeButton version={buttonActive ? "filled" : "inactive"}>
+            <WelcomeButton
+              version={buttonActive ? "filled" : "inactive"}
+              onClick={() => {
+                handleOkClick();
+              }}
+            >
               Start Building Your Community
             </WelcomeButton>
           </Link>

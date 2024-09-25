@@ -21,10 +21,14 @@ import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "./GlobalStateContext";
 
 // Chat related variables, later this will be deleted
-const TOPIC = "gsoc-11"
-const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
-const STAMP = "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId
-const GSOC_RESOURCE_ID = "f6b7beefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+const TOPIC = "gsoc-11";
+const PRIVKEY =
+  "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
+const STAMP =
+  "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId;
+const GSOC_RESOURCE_ID =
+  "f6b7beefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef";
+import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 
 const MainRouter = (): ReactElement => {
   const { username } = useGlobalState();
@@ -106,13 +110,19 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
       <Route path={ROUTES.ROOMS} element={<RoomsPage />} />
-      <Route path={"/chat_dev"} element={<Chat
-          topic={TOPIC}
-          privKey={PRIVKEY}
-          stamp={STAMP as BatchId}
-          nickname={username}
-          gsocResourceId={GSOC_RESOURCE_ID}
-      />} />
+      <Route
+        path={"/chat_dev"}
+        element={
+          <Chat
+            topic={TOPIC}
+            privKey={PRIVKEY}
+            stamp={STAMP as BatchId}
+            nickname={username}
+            gsocResourceId={GSOC_RESOURCE_ID}
+          />
+        }
+      />
+      <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
     </Routes>
   );
 };
