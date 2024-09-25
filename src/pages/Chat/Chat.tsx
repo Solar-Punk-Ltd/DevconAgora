@@ -94,6 +94,7 @@ const Chat: React.FC<ChatProps> = ({
 
       if (msgObj.like) {
         const likedIndex = threadCapableMessages.findIndex((msg) => msg.messageId === msgObj.like);
+        threadCapableMessages[likedIndex].likeCount++;
       } else {
         threadCapableMessages.push({
           username: data[i].username,
@@ -106,6 +107,11 @@ const Chat: React.FC<ChatProps> = ({
           replyCount: 0,
           likeCount: 0
         });
+
+        if (msgObj.parent) {
+          const parentIndex = threadCapableMessages.findIndex((msg) => msg.threadId === msgObj.parent);
+          threadCapableMessages[parentIndex].replyCount++;
+        }
       }
     }
 

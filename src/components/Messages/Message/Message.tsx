@@ -1,13 +1,12 @@
 import React from 'react';
 import "./Message.scss";
-import { MessageData } from 'solarpunk-swarm-decentralized-chat';
 import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
-import { ThreadId } from '../../../types/message';
+import { MessageWithThread, ThreadId } from '../../../types/message';
 
 interface MessageProps {
-    data: MessageData;
+    data: MessageWithThread;
     currentThread: ThreadId | null;
     threadId: ThreadId | null;
     parent: ThreadId | null;
@@ -40,10 +39,10 @@ const Message: React.FC<MessageProps> = ({
           <LikeIcon />
           {!currentThread && (
             <p 
-              className="message__right-side__message-controls_reply"
+              className={data.replyCount ? "message__right-side__message-controls_reply message__right-side__message-controls_reply__has-reply" : "message__right-side__message-controls_reply"}
               onClick={() => setThreadId(threadId)}
             >
-              {"Reply"}
+              {data.replyCount ? `${data.replyCount} Replies` : "Reply"}
             </p>
           )}
         </div>
