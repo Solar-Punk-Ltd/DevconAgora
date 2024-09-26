@@ -53,7 +53,7 @@ const Messages: React.FC<MessagesProps> = ({
           threadId={msg.threadId}
           parent={msg.parent}
           setThreadId={setThreadId}
-          key={`${msg.threadId}-${msg.parent}`}
+          key={ind}
         />
       ))}
     </div>
