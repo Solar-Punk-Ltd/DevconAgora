@@ -10,6 +10,7 @@ import { Wallet } from 'ethers';
 import { BatchId } from '@ethersphere/bee-js';
 import { Session } from '../../types/session';
 import { MessageWithThread, ThreadId } from '../../types/message';
+import { ROUTES } from '../../utils/constants';
 
 interface ChatProps {
   topic: string;
@@ -147,7 +148,7 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <Back 
         where={currentThread ? "Chat" : originatorPage}
-        link={currentThread ? '/home' : originatorPageUrl}
+        link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
         action={currentThread ? () => setCurrentThread(null) : undefined}
       />
