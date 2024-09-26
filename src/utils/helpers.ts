@@ -56,3 +56,10 @@ export function isSameDay(firstDate: Date, secondDate: Date) {
     firstDate.getMonth() === secondDate.getMonth() &&
     firstDate.getFullYear() === secondDate.getFullYear())
 }
+
+export function randomThreadId() {
+    const randomPart = Math.random().toString(36).substr(2, 9);
+    const timestampPart = Date.now().toString(36);
+
+    return `${timestampPart}-${randomPart}`;
+}
