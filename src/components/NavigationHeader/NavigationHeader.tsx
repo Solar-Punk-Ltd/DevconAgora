@@ -1,26 +1,20 @@
 import React from "react";
 import "./NavigationHeader.scss";
-import BackArrowNavigationIcon from "../../assets/back-arrow-navigation.png";
 import { Link } from "react-router-dom";
+import LeftNavigationIcon from "../icons/LeftNavigationIcon/LeftNavigationIcon";
 
-const NavigationHeader: React.FC = () => {
+interface NavigationHeaderProps {
+  to: string;
+}
+
+const NavigationHeader: React.FC<NavigationHeaderProps> = ({ to }) => {
+  const formattedTo = to.charAt(1).toUpperCase() + to.slice(2);
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "32px",
-        alignItems: "center",
-        marginBottom: "28px",
-      }}
-    >
-      <Link to="/home">
-        <div>
-          <img src={BackArrowNavigationIcon} alt="" width="32" height="32" />
-        </div>
+    <div className="navigation-header">
+      <Link to={to} className="navigation-header__link">
+        <LeftNavigationIcon />
       </Link>
-      <div style={{ marginLeft: "16px", fontSize: "18px", fontWeight: "700" }}>
-        Profile
-      </div>
+      <div className="navigation-header__text">{formattedTo}</div>
     </div>
   );
 };
