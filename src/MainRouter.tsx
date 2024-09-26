@@ -24,7 +24,7 @@ import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 // Chat related variables, later this will be deleted
 const TOPIC = "threads-5"
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
-const STAMP = "2fa0e758c691e74f74631e31277a0636b7a901494deeeeecccfb16cf6b1baebf" as BatchId
+const STAMP = "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId
 const GSOC_RESOURCE_ID = "3805000000000000000000000000000000000000000000000000000000000000"
 
 

@@ -147,7 +147,7 @@ const Chat: React.FC<ChatProps> = ({
   return (
     <div className="chat-page">
       <Back 
-        where={currentThread ? "Chat" : originatorPage}
+        where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
         action={currentThread ? () => setCurrentThread(null) : undefined}
