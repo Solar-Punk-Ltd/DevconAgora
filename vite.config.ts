@@ -24,6 +24,13 @@ export default defineConfig(({mode}) => {
       alias: {
         stream: 'stream-browserify',
       }
-    }
+    },
+    css: {
+      preprocessorOptions: {
+          scss: {
+              api: 'modern-compiler', // or 'modern'
+          },
+      },
+  },
   }
 })
