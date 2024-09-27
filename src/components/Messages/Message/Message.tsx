@@ -6,6 +6,7 @@ import { createMonogram, formatTime } from '../../../utils/helpers';
 import { MessageWithThread, ThreadId } from '../../../types/message';
 import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
+import LikeIconFilled from '../../icons/LikeIconFilled/LikeIconFilled';
 
 interface MessageProps {
     data: MessageWithThread;
@@ -87,7 +88,7 @@ const Message: React.FC<MessageProps> = ({
             {likeLoading ? 
               <div className="message__right-side__message-controls_like_loading"></div>
             : 
-              iLiked ? "X" : <LikeIcon fillColor={"#FFFF00"} />
+              iLiked ? <LikeIconFilled color={"black"}/> : <LikeIcon fillColor={"#FFFF00"} />
             }
           </button>
 
