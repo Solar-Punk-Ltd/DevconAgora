@@ -11,8 +11,7 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
-  const { monogram, showGamification, setShowGamification, setPoints } =
-    useGlobalState();
+  const { monogram, showGamification, setShowGamification } = useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
