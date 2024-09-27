@@ -15,19 +15,19 @@ import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
-import Chat from "./pages/Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "./GlobalStateContext";
+import Chat from "./pages/Chat/Chat";
+import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 
 // Chat related variables, later this will be deleted
-const TOPIC = "gsoc-11";
+const TOPIC = "threads-5";
 const PRIVKEY =
   "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
 const STAMP =
-  "e3b756ad3c4c5bcea52e35cc323807a482e276e3c27edf1dbc1ab287cb9a3395" as BatchId;
+  "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId;
 const GSOC_RESOURCE_ID =
-  "f6b7beefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef";
-import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
+  "3805000000000000000000000000000000000000000000000000000000000000";
 
 const MainRouter = (): ReactElement => {
   const { username } = useGlobalState();
@@ -35,7 +35,7 @@ const MainRouter = (): ReactElement => {
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
 
-  async function checkBee() {
+  const checkBee = async () => {
     fetch(
       process.env.BEE_API_URL + "bytes/" + process.env.HEALTH_CHECK_DATA_REF
     )
@@ -49,7 +49,7 @@ const MainRouter = (): ReactElement => {
         setBeeRunning(false);
         console.log("Bee stopped running");
       });
-  }
+  };
 
   useEffect(() => {
     // TODO: what shall be the update time ?
@@ -109,7 +109,7 @@ const MainRouter = (): ReactElement => {
       <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
       <Route path={ROUTES.SPACES} element={<SpacesPage />} />
       <Route
-        path={"/chat_dev"}
+        path={ROUTES.CHAT}
         element={
           <Chat
             topic={TOPIC}
@@ -117,6 +117,28 @@ const MainRouter = (): ReactElement => {
             stamp={STAMP as BatchId}
             nickname={username}
             gsocResourceId={GSOC_RESOURCE_ID}
+            session={
+              undefined && {
+                id: "00",
+                title:
+                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                description:
+                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                sourceId: "123",
+                type: "no-type",
+                duration: "1 hour",
+                expertise: "medium",
+                tags: "l2",
+                language: "english",
+                eventId: "00",
+                slot_start: "9:00 AM",
+                slot_end: "10:15 AM",
+                track: "Layer 2s",
+              }
+            }
+            topMenuColor={undefined && "#F1F2F4"}
+            originatorPage={"Home"}
+            originatorPageUrl={"/home"}
           />
         }
       />

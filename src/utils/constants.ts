@@ -18,6 +18,7 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
+  CHAT = "/chat_dev",
 }
 
 export const CATEGORIES = [

@@ -4,11 +4,12 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import CollectPointsImg from "../../assets/collect-points.png";
 import ProfileGetBZZImg from "../../assets/profile-get-BZZ.png";
+import { ROUTES } from "../../utils/constants";
 
 const HowDoesItWork: React.FC = () => {
   return (
     <div className="how-does-it-work-page">
-      <NavigationHeader to="/profile" />
+      <NavigationHeader to={ROUTES.PROFILE} />
       <div className="how-does-it-work-page__content">
         <div className="how-does-it-work-page__content__background">
           <img

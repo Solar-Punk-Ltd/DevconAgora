@@ -4,11 +4,12 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
+import { ROUTES } from "../../utils/constants";
 
 const SpacesPage: React.FC = () => {
   return (
     <div className="spaces">
-      <NavigationHeader to="/home" />
+      <NavigationHeader to={ROUTES.HOME} />
       <NavigationFooter />
       <div className="spaces__content">
         {CATEGORIES.map((category) => (

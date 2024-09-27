@@ -6,12 +6,13 @@ import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 const Profile: React.FC = () => {
   const { username, monogram, points } = useGlobalState();
   return (
     <div className="profile">
-      <NavigationHeader to="/home" />
+      <NavigationHeader to={ROUTES.HOME} />
       <div className="profile__content">
         <div>
           <ProfilePicture name={monogram} version="big" />
@@ -42,7 +43,7 @@ const Profile: React.FC = () => {
             showContent={true}
           />
           <Link
-            to="/how-does-it-work"
+            to={ROUTES.HOWDOESITWORK}
             className="profile__content__datas__how-does-it-work"
           >
             <ProfileBox

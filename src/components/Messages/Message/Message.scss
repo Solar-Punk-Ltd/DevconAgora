@@ -60,11 +60,23 @@
     align-items: center;
 }
 
+.message__right-side__message-controls_like {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
 .message__right-side__message-controls_reply {
     line-height: 20px;
     letter-spacing: 0.5%;
     font-family: Inter;
+    text-decoration: underline;
     color: #2B2E36;
     font-size: 12px;
     padding-left: 4px;
+    cursor: pointer ;
+}
+
+.message__right-side__message-controls_reply__has-reply {
+    font-weight: bold;
 }

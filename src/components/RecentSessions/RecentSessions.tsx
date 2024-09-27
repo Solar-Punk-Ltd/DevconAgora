@@ -22,7 +22,10 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
   const [sessionIndex, setSessionIndex] = useState<number>(0);
   const [time, setTime] = useState<number>(mockStartTime.getTime());
 
-  function findSlotStartIx(startIx: number, sessionsByDay: Session[]): number {
+  const findSlotStartIx = (
+    startIx: number,
+    sessionsByDay: Session[]
+  ): number => {
     for (let i = startIx; i < sessionsByDay.length; i++) {
       const slotStart = sessionsByDay[i].slot_start;
       if (slotStart && new Date(slotStart).getTime() > time) {
@@ -30,7 +33,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
       }
     }
     return -1;
-  }
+  };
   // the uploaded sessions are already sorted by time and day
   // find the first session that starts after the current time
   const filterRecentSessions = () => {

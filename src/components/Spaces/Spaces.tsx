@@ -7,9 +7,7 @@ const Spaces: React.FC = () => {
   return (
     <div>
       <div className="recent-rooms">
-        <div style={{}} className="recent-rooms__title">
-          Buzz spaces
-        </div>
+        <div className="recent-rooms__title">Buzz spaces</div>
       </div>
       <div>
         {CATEGORIES.map((category) => (
