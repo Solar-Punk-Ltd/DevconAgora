@@ -17,9 +17,6 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
-        <button onClick={() => setPoints(1)}>points 1</button>
-        <button onClick={() => setPoints(5)}>points 5</button>
-        <button onClick={() => setPoints(10)}>points 10</button>
         <div
           className="home-header__points"
           onClick={() => setShowGamification(!showGamification)}
