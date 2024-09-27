@@ -11,7 +11,6 @@ import { BatchId } from "@ethersphere/bee-js";
 // Chat related variables, later this will be deleted
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
 const STAMP = "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId;
-const GSOC_RESOURCE_ID = "3805000000000000000000000000000000000000000000000000000000000000";
 
 
 const SpacesPage: React.FC = () => {
@@ -47,22 +46,3 @@ const SpacesPage: React.FC = () => {
 };
 
 export default SpacesPage;
-
-/*
-undefined && {
-            id: "00",
-            title:
-              "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-            description:
-              "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-            sourceId: "123",
-            type: "no-type",
-            duration: "1 hour",
-            expertise: "medium",
-            tags: "l2",
-            language: "english",
-            eventId: "00",
-            slot_start: "9:00 AM",
-            slot_end: "10:15 AM",
-            track: "Layer 2s",
-          }*/
