@@ -27,6 +27,7 @@ interface ChatProps {
   topMenuColor?: string;
   originatorPage: string;
   originatorPageUrl: string;
+  backAction: () => any | undefined | null;
 }
 
 const GATEWAY =
@@ -42,6 +43,7 @@ const Chat: React.FC<ChatProps> = ({
   topMenuColor,
   originatorPage,
   originatorPageUrl,
+  backAction,
 }) => {
   const [chat, setChat] = useState<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
@@ -175,7 +177,7 @@ const Chat: React.FC<ChatProps> = ({
         where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
-        action={currentThread ? () => setCurrentThread(null) : undefined}
+        action={currentThread ? () => setCurrentThread(null) : backAction}
       />
 
       {session && (
