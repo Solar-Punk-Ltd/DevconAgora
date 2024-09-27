@@ -28,9 +28,11 @@ const STAMP =
   "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId;
 const GSOC_RESOURCE_ID =
   "3805000000000000000000000000000000000000000000000000000000000000";
+import ClaimRewardPage from "./pages/ClaimRewardPage/ClaimRevardPage";
 
 const MainRouter = (): ReactElement => {
-  const { username } = useGlobalState();
+  const { username, showGamification, setShowGamification, points } =
+    useGlobalState();
   const [sessions, setSessions] = useState(new Map<string, Session[]>());
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
@@ -91,59 +93,70 @@ const MainRouter = (): ReactElement => {
     fetchSessions();
   }, [fetchSessions]);
 
+  useEffect(() => {
+    if (points > 0) {
+      setShowGamification(true);
+    } else {
+      setShowGamification(false);
+    }
+  }, [points]);
+
   return (
-    <Routes>
-      <Route path={ROUTES.APP} element={<App />} />
-      <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
-      <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
-      <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
-      <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
-      <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
-      <Route
-        path={ROUTES.HOME}
-        element={<HomePage sessions={sessions} isLoaded={false} />}
-      />
-      <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
-      <Route path={ROUTES.PROFILE} element={<Profile />} />
-      <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
-      <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      <Route path={ROUTES.SPACES} element={<SpacesPage />} />
-      <Route
-        path={ROUTES.CHAT}
-        element={
-          <Chat
-            topic={TOPIC}
-            privKey={PRIVKEY}
-            stamp={STAMP as BatchId}
-            nickname={username}
-            gsocResourceId={GSOC_RESOURCE_ID}
-            session={
-              undefined && {
-                id: "00",
-                title:
-                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-                description:
-                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-                sourceId: "123",
-                type: "no-type",
-                duration: "1 hour",
-                expertise: "medium",
-                tags: "l2",
-                language: "english",
-                eventId: "00",
-                slot_start: "9:00 AM",
-                slot_end: "10:15 AM",
-                track: "Layer 2s",
+    <>
+      {showGamification ? <Gamification points={points} /> : null}
+      <Routes>
+        <Route path={ROUTES.APP} element={<App />} />
+        <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
+        <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
+        <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
+        <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
+        <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
+        <Route
+          path={ROUTES.HOME}
+          element={<HomePage sessions={sessions} isLoaded={false} />}
+        />
+        <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
+        <Route path={ROUTES.PROFILE} element={<Profile />} />
+        <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
+        <Route path={ROUTES.SPACES} element={<SpacesPage />} />
+        <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
+        <Route
+          path={ROUTES.CHAT}
+          element={
+            <Chat
+              topic={TOPIC}
+              privKey={PRIVKEY}
+              stamp={STAMP as BatchId}
+              nickname={username}
+              gsocResourceId={GSOC_RESOURCE_ID}
+              session={
+                undefined && {
+                  id: "00",
+                  title:
+                    "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                  description:
+                    "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                  sourceId: "123",
+                  type: "no-type",
+                  duration: "1 hour",
+                  expertise: "medium",
+                  tags: "l2",
+                  language: "english",
+                  eventId: "00",
+                  slot_start: "9:00 AM",
+                  slot_end: "10:15 AM",
+                  track: "Layer 2s",
+                }
               }
-            }
-            topMenuColor={undefined && "#F1F2F4"}
-            originatorPage={"Home"}
-            originatorPageUrl={"/home"}
-          />
-        }
-      />
-      <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
-    </Routes>
+              topMenuColor={undefined && "#F1F2F4"}
+              originatorPage={"Home"}
+              originatorPageUrl={"/home"}
+            />
+          }
+        />
+        <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
+      </Routes>
+    </>
   );
 };
 

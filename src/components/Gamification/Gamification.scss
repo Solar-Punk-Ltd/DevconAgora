@@ -1,0 +1,100 @@
+.gamification {
+  position: absolute;
+  background-color: rgba(21, 21, 21, 0.6);
+  backdrop-filter: blur(3px);
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.gamification__modal {
+  position: relative;
+  background-color: black;
+  width: 100%;
+  min-height: 170px;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px 0px #1f1f231a;
+  border-radius: 12px;
+}
+.gamification__modal__img {
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  bottom: 30px;
+  left: -50px;
+}
+
+.gamification__modal__content {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.gamification__modal__content__header {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #e0e0e0;
+}
+
+.gamification__modal__content__header__emphasize {
+  color: #ff8a50;
+}
+
+.gamification__modal__content__emphasize {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  color: #ff8a50;
+  font-size: 20px;
+}
+
+.gamification__modal__content__tokens {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+.gamification__modal__content__tokens_img {
+  width: 15px;
+  height: 15px;
+}
+
+.gamification__modal__content_how {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #f7f8fa;
+  text-decoration: underline;
+}
+
+.gamification__modal__content__close {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gamification__modal__content__claim-button {
+  border-radius: 8px;
+  background-color: #ff8a50;
+  height: 40px;
+  padding: 8px 24px;
+  font-family: "Public Sans", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  border: none;
+}

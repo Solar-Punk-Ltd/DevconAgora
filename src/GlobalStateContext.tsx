@@ -13,6 +13,8 @@ interface GlobalState {
   setMonogram: React.Dispatch<React.SetStateAction<string>>;
   points: number;
   setPoints: React.Dispatch<React.SetStateAction<number>>;
+  showGamification: boolean;
+  setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -36,6 +38,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     return storedPoints ? parseInt(storedPoints, 10) : 0;
   });
 
+  const [showGamification, setShowGamification] = useState(false);
+
   useEffect(() => {
     localStorage.setItem("username", username);
   }, [username]);
@@ -57,6 +61,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setMonogram,
         points,
         setPoints,
+        showGamification,
+        setShowGamification,
       }}
     >
       {children}

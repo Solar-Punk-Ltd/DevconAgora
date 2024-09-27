@@ -11,12 +11,19 @@ interface HomeHeaderProps {
 }
 
 const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
-  const { monogram } = useGlobalState();
+  const { monogram, showGamification, setShowGamification, setPoints } =
+    useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
-        <div className="home-header__points">
+        <button onClick={() => setPoints(1)}>points 1</button>
+        <button onClick={() => setPoints(5)}>points 5</button>
+        <button onClick={() => setPoints(10)}>points 10</button>
+        <div
+          className="home-header__points"
+          onClick={() => setShowGamification(!showGamification)}
+        >
           {points ? points : 0}
           <img src={swarmIcon} alt="" width="15px" height="15px" />
         </div>
