@@ -59,6 +59,9 @@ const Message: React.FC<MessageProps> = ({
     console.log("Like message ref: ", rep)
   }
 
+  const likeCount = Object.values(data.likeTable).filter(liked => liked).length;          // Count truthy values
+  const iLiked = data.likeTable[ownAddress];
+
 
   return (
     <div className="message" style={{ marginLeft: parent ? "32px" : undefined}}>
@@ -76,15 +79,15 @@ const Message: React.FC<MessageProps> = ({
         <p className="message__right-side__text">{data.message}</p>
         
         <div className="message__right-side__message-controls" onClick={() => null}>
-          <span>{data.likeCount ? data.likeCount : ""}</span>
+          <span>{likeCount ? likeCount : ""}</span>
           <button 
             className="message__right-side__message-controls_like"
             onClick={likeMessage}
           >
             {likeLoading ? 
-              "L"
+              <div className="message__right-side__message-controls_like_loading"></div>
             : 
-              <LikeIcon fillColor={"#FFFF00"} />
+              iLiked ? "X" : <LikeIcon fillColor={"#FFFF00"} />
             }
           </button>
 

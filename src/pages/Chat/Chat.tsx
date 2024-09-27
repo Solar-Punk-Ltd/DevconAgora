@@ -109,12 +109,13 @@ const Chat: React.FC<ChatProps> = ({
 
     for (let i = 0; i < data.length; i++) {
       const msgObj = JSON.parse(data[i].message);
+      const address = data[i].address;
 
       if (msgObj.like) {
         const likedIndex = threadCapableMessages.findIndex(
           (msg) => msg.messageId === msgObj.like
         );
-        threadCapableMessages[likedIndex].likeCount++;
+        threadCapableMessages[likedIndex].likeTable[address] = true;
       } else {
         threadCapableMessages.push({
           username: data[i].username,
@@ -125,7 +126,7 @@ const Chat: React.FC<ChatProps> = ({
           messageId: msgObj.messageId,
           parent: msgObj.parent,
           replyCount: 0,
-          likeCount: 0,
+          likeTable: {}
         });
 
         if (msgObj.parent) {
