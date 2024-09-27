@@ -12,8 +12,13 @@ import {
   CATEGORY_FILTERS,
   DATE_TO_DEVCON_DAY,
 } from "../../utils/constants";
-import { getSessionsByDay, dateToTime } from "../../utils/helpers";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
+import {
+  getSessionsByDay,
+  dateToTime,
+  stringToBoolean,
+  booleanToString,
+} from "../../utils/helpers";
 
 interface AgendaProps {
   sessions: Map<string, Session[]>;
@@ -51,9 +56,11 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
         const categoryFilter = categoryIndex
           ? sessionsByDay[i].track === CATEGORY_FILTERS[categoryIndex]
           : true;
-        // TODO: implement heart logic
-        const isYourAgenda =
-          activeAgendaTab === 1 ? sessionsByDay[i].hearted === true : true;
+        const isLiked = stringToBoolean(
+          localStorage.getItem(sessionsByDay[i].id)
+        );
+        sessionsByDay[i].liked = isLiked;
+        const isYourAgenda = activeAgendaTab === 1 ? isLiked === true : true;
 
         if (
           sessionsByDay[i].slot_roomId ===
@@ -68,11 +75,17 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
     }
   }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
+  const handleOnHeartClick = (id: string): boolean => {
+    const isLiked = stringToBoolean(localStorage.getItem(id));
+    localStorage.setItem(id, booleanToString(!isLiked));
+    return !isLiked;
+  };
+  // TODO: all vs agenda naming ?
   return !showCategories ? (
     <div className="agenda-page">
       <div className="agenda-page__upper-tab-panel">
         <TabPanel version="underlined" activeIndex={activeAgendaTab}>
-          {renderTabPanelItems(["Agenda", "Your Agenda"], setActiveAgendaTab)}
+          {renderTabPanelItems(["All", "Your Agenda"], setActiveAgendaTab)}
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
           {renderTabPanelItems(
@@ -88,7 +101,6 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           onClick={(index) => setActiveStageTab(index)}
         />
         {activeAgendaItems.map((session) => {
-          const randomBoolean = Math.random() >= 0.5;
           return (
             <AgendaItem
               key={session.id}
@@ -97,7 +109,8 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
               endDate={dateToTime(session.slot_end)}
               category={session.track}
               roomId={session.slot_roomId}
-              hearted={randomBoolean}
+              liked={session.liked}
+              onClick={() => handleOnHeartClick(session.id)}
             />
           );
         })}

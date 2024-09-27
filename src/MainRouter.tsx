@@ -34,7 +34,7 @@ const MainRouter = (): ReactElement => {
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
 
-  async function checkBee() {
+  const checkBee = async () => {
     fetch(
       process.env.BEE_API_URL + "bytes/" + process.env.HEALTH_CHECK_DATA_REF
     )
@@ -48,7 +48,7 @@ const MainRouter = (): ReactElement => {
         setBeeRunning(false);
         console.log("Bee stopped running");
       });
-  }
+  };
 
   useEffect(() => {
     // TODO: what shall be the update time ?
