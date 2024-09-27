@@ -15,12 +15,10 @@ import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
-import { useGlobalState } from "./GlobalStateContext";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 
 
 const MainRouter = (): ReactElement => {
-  const { username } = useGlobalState();
   const [sessions, setSessions] = useState(new Map<string, Session[]>());
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
