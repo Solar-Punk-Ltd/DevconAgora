@@ -7,12 +7,11 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import HomePage from "./pages/HomePage/HomePage";
-import Recent from "./pages/Recent/Recent";
 import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
-import RoomsPage from "./pages/RoomsPage/RoomsPage";
+import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
@@ -22,11 +21,13 @@ import Chat from "./pages/Chat/Chat";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 
 // Chat related variables, later this will be deleted
-const TOPIC = "threads-5"
-const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb"
-const STAMP = "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId
-const GSOC_RESOURCE_ID = "3805000000000000000000000000000000000000000000000000000000000000"
-
+const TOPIC = "threads-5";
+const PRIVKEY =
+  "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
+const STAMP =
+  "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId;
+const GSOC_RESOURCE_ID =
+  "3805000000000000000000000000000000000000000000000000000000000000";
 
 const MainRouter = (): ReactElement => {
   const { username } = useGlobalState();
@@ -102,37 +103,45 @@ const MainRouter = (): ReactElement => {
         path={ROUTES.HOME}
         element={<HomePage sessions={sessions} isLoaded={false} />}
       />
-      <Route path={ROUTES.RECENT} element={<Recent />} />
       <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
       <Route path={ROUTES.PROFILE} element={<Profile />} />
       <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
       <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      <Route path={ROUTES.ROOMS} element={<RoomsPage />} />
-      <Route path={"/chat_dev"} element={<Chat
-          topic={TOPIC}
-          privKey={PRIVKEY}
-          stamp={STAMP as BatchId}
-          nickname={username}
-          gsocResourceId={GSOC_RESOURCE_ID}
-          session={undefined && {
-            id: "00",
-            title: "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-            description: "Ethereum for the next billion: DeFi for the unbanked/underbanked",
-            sourceId: "123",
-            type: "no-type",
-            duration: "1 hour",
-            expertise: "medium",
-            tags: "l2",
-            language: "english",
-            eventId: "00",
-            slot_start: "9:00 AM",
-            slot_end: "10:15 AM",
-            track: "Layer 2s"
-          }}  
-          topMenuColor={undefined && "#F1F2F4"}
-          originatorPage={"Home"}
-          originatorPageUrl={'/home'}
-      />} />
+      <Route path={ROUTES.SPACES} element={<SpacesPage />} />
+      <Route
+        path={ROUTES.CHAT}
+        element={
+          <Chat
+            topic={TOPIC}
+            privKey={PRIVKEY}
+            stamp={STAMP as BatchId}
+            nickname={username}
+            gsocResourceId={GSOC_RESOURCE_ID}
+            session={
+              undefined && {
+                id: "00",
+                title:
+                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                description:
+                  "Ethereum for the next billion: DeFi for the unbanked/underbanked",
+                sourceId: "123",
+                type: "no-type",
+                duration: "1 hour",
+                expertise: "medium",
+                tags: "l2",
+                language: "english",
+                eventId: "00",
+                slot_start: "9:00 AM",
+                slot_end: "10:15 AM",
+                track: "Layer 2s",
+              }
+            }
+            topMenuColor={undefined && "#F1F2F4"}
+            originatorPage={"Home"}
+            originatorPageUrl={"/home"}
+          />
+        }
+      />
       <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
     </Routes>
   );

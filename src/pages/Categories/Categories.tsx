@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Categories.scss";
 import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
-import { CATEGORY_FILTERS } from "../../utils/constants";
+import { CATEGORIES } from "../../utils/constants";
 import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 
@@ -42,7 +42,7 @@ const Categories: React.FC<CategoriesProps> = ({
         <CloseIcon onClick={handleClose} />
       </div>
       <div className="categories_page__content">
-        {CATEGORY_FILTERS.map((category, index) => (
+        {CATEGORIES.map((category, index) => (
           <div
             key={category}
             className="categories-page__content__item"

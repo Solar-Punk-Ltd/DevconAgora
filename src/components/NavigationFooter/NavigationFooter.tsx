@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
-import ChatTest from "../../assets/visitors-icon.svg"
+import ChatTest from "../../assets/visitors-icon.svg";
 import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
 
@@ -20,10 +20,10 @@ const NavigationFooter: React.FC = () => {
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":
-              location.pathname === "/home",
+              location.pathname === ROUTES.HOME,
           })}
         >
-          <HomeIcon color={getColor("/home")} />
+          <HomeIcon color={getColor(ROUTES.HOME)} />
           <div>Home</div>
         </div>
       </Link>
@@ -31,25 +31,25 @@ const NavigationFooter: React.FC = () => {
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":
-              location.pathname === "/agenda",
+              location.pathname === ROUTES.AGENDA,
           })}
         >
-          <AgendaIcon color={getColor("/agenda")} />
+          <AgendaIcon color={getColor(ROUTES.AGENDA)} />
           <div>Agenda</div>
         </div>
       </Link>
-      <Link to="/rooms">
+      <Link to={ROUTES.SPACES}>
         <div
           className={clsx("navigation-footer__item-container", {
             "navigation-footer__item-container__active":
-              location.pathname === "/rooms",
+              location.pathname === ROUTES.SPACES,
           })}
         >
-          <RoomsIcon color={getColor("/rooms")} />
-          <div>Rooms</div>
+          <RoomsIcon color={getColor(ROUTES.SPACES)} />
+          <div>Spaces</div>
         </div>
       </Link>
-      <Link to="/chat_dev">
+      <Link to={ROUTES.CHAT}>
         <div
           style={{
             display: "flex",
