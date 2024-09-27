@@ -14,6 +14,9 @@ interface AgendaItemProps {
   roomId?: string;
   stage?: string;
   onClick: () => boolean;
+  backgroundColor?: string;
+  borderRadius?: string;
+  paddingRight: string;
 }
 const AgendaItem: React.FC<AgendaItemProps> = ({
   title,
@@ -23,16 +26,22 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   category,
   stage,
   onClick,
+  backgroundColor,
+  borderRadius,
+  paddingRight,
 }) => {
   const [empty, setEmpty] = useState(!liked);
-  const debounceTime = 1000;
+  // const debounceTime = 1000;
   const handleClick = () => {
     const isLiked = onClick();
     setEmpty(!isLiked);
   };
 
   return (
-    <div className="agenda-item">
+    <div
+      className="agenda-item"
+      style={{ backgroundColor, borderRadius, paddingRight }}
+    >
       <div className={"agenda-item__time"}>
         <div>{startDate}</div>
         <div>{endDate}</div>
@@ -46,10 +55,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           ) : null}
         </div>
       </div>
-      <div
-        className="agenda-item__content__heart-icon"
-        onClick={debounce(handleClick, debounceTime)}
-      >
+      {/* TODO: use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
+      <div className="agenda-item__content__heart-icon" onClick={handleClick}>
         <HeartIcon empty={empty} />
       </div>
     </div>

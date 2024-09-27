@@ -4,21 +4,22 @@ export const FIVE_MINUTES = 1000 * 60 * 5;
 export const FEEDTYPE_SEQUENCE = "sequence";
 
 export enum ROUTES {
-    APP = "/",
-    WELCOME1 = "/welcome1",
-    WELCOME2 = "/welcome2",
-    WELCOME3 = "/welcome3",
-    WELCOME4 = "/welcome4",
-    PROFILECREATION = "/profilecreation",
-    HOME = "/home",
-    RECENT = "/recent",
-    DEVCONLOUNGE = "/devconlounge",
-    PROFILE = "/profile",
-    GAMIFICATION = "/gamification",
-    AGENDA = "/agenda",
-    CATEGORIES = "/categories",
-    ROOMS = "/rooms",
-  };
+  APP = "/",
+  WELCOME1 = "/welcome1",
+  WELCOME2 = "/welcome2",
+  WELCOME3 = "/welcome3",
+  WELCOME4 = "/welcome4",
+  PROFILECREATION = "/profilecreation",
+  HOME = "/home",
+  RECENT = "/recent",
+  DEVCONLOUNGE = "/devconlounge",
+  PROFILE = "/profile",
+  GAMIFICATION = "/gamification",
+  AGENDA = "/agenda",
+  CATEGORIES = "/categories",
+  ROOMS = "/rooms",
+  HOWDOESITWORK = "/how-does-it-work",
+}
 
 export const CATEGORY_FILTERS = [
   "Layer 2s",
@@ -52,3 +53,25 @@ export const STAGES_MAP = new Map([
   ["workshop-3", "Workshop 3"],
   ["workshop-4", "Workshop 4"],
 ]);
+
+export const HOW_DOES_IT_WORK = "How does it work?";
+
+export const COLLECTED_ALL = "You've collected all your points.";
+
+export const GET_EXTRA = "For each active registration, you get an extra";
+
+export const GET_YOUR_BZZ_TOKEN = "Get your BZZ token.";
+
+export const CLAIM_REWARD = "Claim reward";
+
+export const SHARE_REFERAL = "Share referal link";
+
+export const POINTS = "Points";
+
+export const GET_REFERAL_POINTS = "Get referal points";
+
+export const MORE_POINTS = "more points";
+
+export const GET_BZZ_TOKEN = "Get your BZZ token";
+
+export const BZZ_TOKENS = "BZZ Tokens";

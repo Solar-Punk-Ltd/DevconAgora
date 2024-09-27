@@ -1,0 +1,103 @@
+.profile {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profile__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+}
+
+.profile__content__datas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0px 16px;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+}
+
+.profile-creation__username {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+  text-align: center;
+}
+
+.profile__username {
+  position: relative;
+  width: 267px;
+  width: 267px;
+  height: 40px;
+  padding: 16px 8px;
+  display: flex;
+  column-gap: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  z-index: 1;
+  font-family: "Inter";
+  color: #000000;
+  border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.profile__username {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 267px;
+  height: 40px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.profile__username::selection {
+  color: white;
+  background: #8c72ae;
+}
+
+.profile__content__background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  bottom: 9%;
+  overflow: hidden;
+}
+
+.profile__content__background__image {
+  width: 100%;
+  height: 100%;
+}
+
+.profile__content__datas__user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile__content__datas__how-does-it-work {
+  width: 100%;
+  z-index: 1;
+}

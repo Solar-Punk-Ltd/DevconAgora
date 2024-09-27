@@ -87,3 +87,10 @@ export function debounce(callback: () => void, delay: number) {
     }, delay);
   };
 }
+
+export function randomThreadId() {
+  const randomPart = Math.random().toString(36).substr(2, 9);
+  const timestampPart = Date.now().toString(36);
+
+  return `${timestampPart}-${randomPart}`;
+}
