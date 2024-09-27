@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
-import ChatTest from "../../assets/visitors-icon.svg";
 import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
 
@@ -47,19 +46,6 @@ const NavigationFooter: React.FC = () => {
         >
           <RoomsIcon color={getColor(ROUTES.SPACES)} />
           <div>Spaces</div>
-        </div>
-      </Link>
-      <Link to={ROUTES.CHAT}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <img src={ChatTest} alt="" width="24px" height="24px" />
-          <div style={{ fontSize: "12px" }}>Chat</div>
         </div>
       </Link>
     </div>
