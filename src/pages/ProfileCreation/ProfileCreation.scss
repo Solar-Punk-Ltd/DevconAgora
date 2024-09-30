@@ -122,10 +122,26 @@ profile-creation .profile-creation {
   row-gap: 80px;
 }
 
-.profile-creation__user-input__error {
+.profile-creation__user-input__error-container__error {
   display: flex;
+  gap: 6px;
   color: var(--validation-error-text-color);
   font-family: Public Sans;
   font-size: 12px;
   font-weight: 400;
+  width: 80%;
+}
+
+.profile-creation__user-input__error-container {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-creation__user-input__error-container__error-text {
+  text-align: left;
+}
+
+.profile-creation__user-input__error-container__error-icon {
+  width: 12px;
+  height: 12px;
 }

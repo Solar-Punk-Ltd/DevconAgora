@@ -41,17 +41,19 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
       className="agenda-item"
       style={{ backgroundColor, borderRadius, paddingRight }}
     >
-      <div className={"agenda-item__time"}>
-        <div>{startDate}</div>
-        <div>{endDate}</div>
-      </div>
-      <div className="agenda-item__content">
-        <div className="agenda-item__content__title">{title}</div>
-        <div style={{}} className="agenda-item__content__tagged">
-          {stage ? <Stage name={stage} /> : null}
-          {category ? (
-            <CategoryIndicator name={category || "no track"} />
-          ) : null}
+      <div className="agenda-item__main">
+        <div className={"agenda-item__main__time"}>
+          <div>{startDate}</div>
+          <div>{endDate}</div>
+        </div>
+        <div className="agenda-item__main__content">
+          <div className="agenda-item__main__content__title">{title}</div>
+          <div style={{}} className="agenda-item__main__content__tagged">
+            {stage ? <Stage name={stage} /> : null}
+            {category ? (
+              <CategoryIndicator name={category || "no track"} />
+            ) : null}
+          </div>
         </div>
       </div>
       {/* TODO: use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}

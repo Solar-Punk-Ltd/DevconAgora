@@ -1,6 +1,7 @@
 .agenda-item {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   border-radius: 8px;
   box-shadow: 0px 2px 4px 0px #1f1f231a;
   gap: 6px;
@@ -8,20 +9,25 @@
   box-sizing: border-box;
 }
 
-.agenda-item__content {
+.agenda-item__main {
+  display: flex;
+  gap: 6px;
+}
+
+.agenda-item__main__content {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.agenda-item__content__title {
+.agenda-item__main__content__title {
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 700;
   padding: 5px;
 }
 
-.agenda-item__time {
+.agenda-item__main__time {
   font-family: "Public Sans", sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -35,7 +41,7 @@
   border-right: 1px solid #e0e0e0;
 }
 
-.agenda-item__content__tagged {
+.agenda-item__main__content__tagged {
   display: flex;
   width: 100%;
   gap: 8px;
