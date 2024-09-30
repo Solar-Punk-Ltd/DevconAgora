@@ -31,6 +31,14 @@ export default defineConfig(({mode}) => {
               api: 'modern-compiler', // or 'modern'
           },
       },
-  },
+    },
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      host: true,
+      strictPort: true,
+      port: 5173,
+    },
   }
 })
