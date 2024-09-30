@@ -33,6 +33,19 @@ export const CATEGORIES = [
   "Security",
 ];
 
+export const TEST_CATEGORIES = [
+  "Layer 2s::test",
+  "Core protocol::test",
+  "Cypherpunk and privacy::test",
+  "Usability::test",
+  "Real World Ethereum::test",
+  "Applied Cryptography::test",
+  "Cryptoeconomics::test",
+  "Coordination::test",
+  "Developer Experience::test",
+  "Security::test",
+];
+
 export const RESOURCE_IDS = {
   "Layer 2s":
     "1405000000000000000000000000000000000000000000000000000000000000",
@@ -45,7 +58,20 @@ export const RESOURCE_IDS = {
   "Coordination": "null",
   "Developer Experience": "null",
   "Security": "null",
-};
+}
+
+export const TEST_RESOURCE_IDS = {
+  "Layer 2s::test": "null",
+  "Core protocol::test": "null",
+  "Cypherpunk and privacy::test": "null",
+  "Usability::test": "null",
+  "Real World Ethereum::test": "null",
+  "Applied Cryptography::test": "null",
+  "Cryptoeconomics::test": "null",
+  "Coordination::test": "null",
+  "Developer Experience::test": "null",
+  "Security::test": "null",
+}
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2022-10-11").toDateString(), "Day 1"],
