@@ -17,7 +17,7 @@ function App() {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
 
   useEffect(() => {
-    fetch(process.env.BACKEND_API_URL + username).then((resp) =>
+    fetch(process.env.BACKEND_API_URL + "username").then((resp) =>
       resp.text().then((data) => {
         setUsername(data)
         setMonogram(createMonogram(data))
