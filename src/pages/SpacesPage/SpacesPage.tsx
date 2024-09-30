@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { CATEGORIES, RESOURCE_IDS } from "../../utils/constants";
+import { CATEGORIES, RESOURCE_IDS, TEST_CATEGORIES, TEST_RESOURCE_IDS, TestCategory } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
@@ -14,14 +14,14 @@ const STAMP = "e00104768a599d9d08ebdec7fc7f50cc949c7792f3ebf8d621e66fd47bb85f33"
 
 
 const SpacesPage: React.FC = () => {
-  const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const [selectedChat, setSelectedChat] = useState<TestCategory | null>(null);
 
   return (
     <div className="spaces">
       <NavigationHeader to={ROUTES.HOME} />
       <NavigationFooter />
       <div className="spaces__content">
-        {CATEGORIES.map((category) => (
+        {TEST_CATEGORIES.map((category) => (
           <div key={category} onClick={() => setSelectedChat(category)}>
             <SpacesItem title={category} numberOfActiveUsers={20} />
           </div>
@@ -33,7 +33,7 @@ const SpacesPage: React.FC = () => {
         privKey={PRIVKEY}
         stamp={STAMP as BatchId}
         nickname={"P"}
-        gsocResourceId={"1405000000000000000000000000000000000000000000000000000000000000"}
+        gsocResourceId={TEST_RESOURCE_IDS[selectedChat]}
         session={undefined}
         topMenuColor={undefined && "#F1F2F4"}
         originatorPage={"Spaces"}

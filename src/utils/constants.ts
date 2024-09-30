@@ -44,7 +44,9 @@ export const TEST_CATEGORIES = [
   "Coordination::test",
   "Developer Experience::test",
   "Security::test",
-];
+] as const;
+
+export type TestCategory = typeof TEST_CATEGORIES[number];  // Type is a union of the category strings
 
 export const RESOURCE_IDS = {
   "Layer 2s" : "1405000000000000000000000000000000000000000000000000000000000000",
@@ -59,7 +61,7 @@ export const RESOURCE_IDS = {
   "Security": "null",
 }
 
-export const TEST_RESOURCE_IDS = {
+export const TEST_RESOURCE_IDS: Record<TestCategory, string> = {
   "Layer 2s::test": "2400000000000000000000000000000000000000000000000000000000000000",
   "Core protocol::test": "2311000000000000000000000000000000000000000000000000000000000000",
   "Cypherpunk and privacy::test": "ab09000000000000000000000000000000000000000000000000000000000000",
