@@ -10,7 +10,7 @@ import { BatchId } from "@ethersphere/bee-js";
 
 // Chat related variables, later this will be deleted
 const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
-const STAMP = "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9" as BatchId;
+const STAMP = "e00104768a599d9d08ebdec7fc7f50cc949c7792f3ebf8d621e66fd47bb85f33" as BatchId;
 
 
 const SpacesPage: React.FC = () => {
