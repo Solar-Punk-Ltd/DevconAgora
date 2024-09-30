@@ -18,7 +18,6 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
-  CHAT = "/chat_dev",
 }
 
 export const CATEGORIES = [
@@ -33,6 +32,19 @@ export const CATEGORIES = [
   "Developer Experience",
   "Security",
 ];
+
+export const RESOURCE_IDS = {
+  "Layer 2s" : "1405000000000000000000000000000000000000000000000000000000000000",
+  "Core protocol": "null",
+  "Cypherpunk and privacy": "null",
+  "Usability": "null",
+  "Real World Ethereum": "null",
+  "Applied Cryptography": "null",
+  "Cryptoeconomics": "null",
+  "Coordination": "null",
+  "Developer Experience": "null",
+  "Security": "null",
+} 
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2022-10-11").toDateString(), "Day 1"],

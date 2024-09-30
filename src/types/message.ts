@@ -1,11 +1,11 @@
-import { MessageData } from "solarpunk-swarm-decentralized-chat"
+import { EthAddress, MessageData } from "solarpunk-swarm-decentralized-chat"
 
 export interface MessageWithThread extends MessageData {
     threadId: ThreadId | null;
     messageId: MessageId | null;
     parent: ThreadId | null;
     replyCount: number;
-    likeCount: number;
+    likeTable: { [key: EthAddress]: boolean }
 }
 
 export type ThreadId = string;
