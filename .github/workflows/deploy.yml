@@ -39,6 +39,10 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          BEE_API_URL: ${{ secrets.BEE_API_URL }}
+          FEED_OWNER_ADDRESS: ${{ secrets.FEED_OWNER_ADDRESS }}
+          HEALTH_CHECK_DATA_REF: ${{ secrets.HEALTH_CHECK_DATA_REF }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
