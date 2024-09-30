@@ -39,11 +39,25 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
-  const handleOkClick = () => {
+  const saveUsername = async () => {
+    await fetch(process.env.BACKEND_API_URL + "username", {
+      method: "POST",
+      body: username,
+    });
+  };
+
+  const handleOkClick = async () => {
     if (validateInput(username)) {
-      setButtonActive(true);
+      setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));
+      const response = await fetch(process.env.BACKEND_API_URL + "username/" + username);
+      if (response.status === 200) {
+        setButtonActive(true);
+      } else {
+        setButtonActive(false);
+        setError(true);
+      }
     } else {
       setButtonActive(false);
       setError(true);
@@ -87,7 +101,7 @@ const ProfileCreation: React.FC = () => {
                     type="text"
                     value={username}
                     ref={inputRef}
-                    placeholder="Generated Nickname"
+                    placeholder={username}
                     className={clsx("profile-creation__user-input__input", {
                       "profile-creation__user-input__input__disabled": !isEdit,
                     })}
@@ -126,6 +140,7 @@ const ProfileCreation: React.FC = () => {
               version={buttonActive ? "filled" : "inactive"}
               onClick={() => {
                 handleOkClick();
+                saveUsername();
               }}
             >
               Start Building Your Community

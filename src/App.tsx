@@ -8,10 +8,22 @@ import bySolarPunk from "./assets/by-solar-punk.png";
 import videoGlassEffect from "./assets/video-glass-effect.png";
 import dc7Logo from "./assets/dc7.png";
 import { TEXTS } from "../textConstants";
+import { useGlobalState } from "./GlobalStateContext";
+import { createMonogram, formatTime } from './utils/helpers';
 
 function App() {
   const navigate = useNavigate();
 
+  const { username, setUsername, monogram, setMonogram } = useGlobalState();
+
+  useEffect(() => {
+    fetch(process.env.BACKEND_API_URL + username).then((resp) =>
+      resp.text().then((data) => {
+        setUsername(data)
+        setMonogram(createMonogram(data))
+      })
+    );
+  }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/welcome1");
