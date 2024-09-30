@@ -16,9 +16,10 @@ import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
-
+import { useGlobalState } from "./GlobalStateContext";
 
 const MainRouter = (): ReactElement => {
+  const { showGamification, setShowGamification, points } = useGlobalState();
   const [sessions, setSessions] = useState(new Map<string, Session[]>());
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
@@ -79,25 +80,35 @@ const MainRouter = (): ReactElement => {
     fetchSessions();
   }, [fetchSessions]);
 
+  useEffect(() => {
+    if (points > 0) {
+      setShowGamification(true);
+    } else {
+      setShowGamification(false);
+    }
+  }, [points]);
+
   return (
-    <Routes>
-      <Route path={ROUTES.APP} element={<App />} />
-      <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
-      <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
-      <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
-      <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
-      <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
-      <Route
-        path={ROUTES.HOME}
-        element={<HomePage sessions={sessions} isLoaded={false} />}
-      />
-      <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
-      <Route path={ROUTES.PROFILE} element={<Profile />} />
-      <Route path={ROUTES.GAMIFICATION} element={<Gamification />} />
-      <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
-      <Route path={ROUTES.SPACES} element={<SpacesPage />} />
-      <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
-    </Routes>
+    <>
+      {showGamification ? <Gamification points={points} /> : null}
+      <Routes>
+        <Route path={ROUTES.APP} element={<App />} />
+        <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
+        <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
+        <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
+        <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
+        <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
+        <Route
+          path={ROUTES.HOME}
+          element={<HomePage sessions={sessions} isLoaded={false} />}
+        />
+        <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
+        <Route path={ROUTES.PROFILE} element={<Profile />} />
+        <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
+        <Route path={ROUTES.SPACES} element={<SpacesPage />} />
+        <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
+      </Routes>
+    </>
   );
 };
 

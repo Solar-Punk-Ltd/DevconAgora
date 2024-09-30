@@ -34,7 +34,8 @@ export const CATEGORIES = [
 ];
 
 export const RESOURCE_IDS = {
-  "Layer 2s" : "1405000000000000000000000000000000000000000000000000000000000000",
+  "Layer 2s":
+    "1405000000000000000000000000000000000000000000000000000000000000",
   "Core protocol": "null",
   "Cypherpunk and privacy": "null",
   "Usability": "null",
@@ -44,7 +45,7 @@ export const RESOURCE_IDS = {
   "Coordination": "null",
   "Developer Experience": "null",
   "Security": "null",
-} 
+};
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2022-10-11").toDateString(), "Day 1"],
