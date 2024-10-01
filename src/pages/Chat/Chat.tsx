@@ -47,7 +47,9 @@ const Chat: React.FC<ChatProps> = ({
 }) => {
   const [chat, setChat] = useState<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
-  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
+  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
+    []
+  );
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
   const currentThreadRef = useRef(currentThread);
   const wallet = new Wallet(privKey);
@@ -126,7 +128,7 @@ const Chat: React.FC<ChatProps> = ({
           messageId: msgObj.messageId,
           parent: msgObj.parent,
           replyCount: 0,
-          likeTable: {}
+          likeTable: {},
         });
 
         if (msgObj.parent) {
@@ -191,7 +193,7 @@ const Chat: React.FC<ChatProps> = ({
           backgroundColor={topMenuColor}
           borderRadius={"0"}
           paddingRight={"16px"}
-          onClick={() => {
+          onHeartClick={() => {
             return true;
           }}
         />

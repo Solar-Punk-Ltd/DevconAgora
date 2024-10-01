@@ -12,11 +12,13 @@ interface AgendaItemProps {
   category?: string;
   roomId?: string;
   stage?: string;
-  onClick: () => boolean;
   backgroundColor?: string;
   borderRadius?: string;
   paddingRight: string;
+  onHeartClick: () => boolean;
+  onTitleClick?: () => void;
 }
+
 const AgendaItem: React.FC<AgendaItemProps> = ({
   title,
   startDate,
@@ -24,15 +26,16 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   liked,
   category,
   stage,
-  onClick,
   backgroundColor,
   borderRadius,
   paddingRight,
+  onHeartClick,
+  onTitleClick,
 }) => {
   const [empty, setEmpty] = useState(!liked);
   // const debounceTime = 1000;
   const handleClick = () => {
-    const isLiked = onClick();
+    const isLiked = onHeartClick();
     setEmpty(!isLiked);
   };
 
@@ -47,7 +50,12 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           <div>{endDate}</div>
         </div>
         <div className="agenda-item__main__content">
-          <div className="agenda-item__main__content__title">{title}</div>
+          <div
+            className="agenda-item__main__content__title"
+            onClick={onTitleClick}
+          >
+            {title}
+          </div>
           <div style={{}} className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
             {category ? (

@@ -11,8 +11,10 @@ import {
   STAGES_MAP,
   CATEGORIES,
   DATE_TO_DEVCON_DAY,
+  ROUTES,
 } from "../../utils/constants";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
+import TalkCommentItem from "../../components/TalkCommentItem/TalkCommentItem";
 import {
   getSessionsByDay,
   dateToTime,
@@ -31,6 +33,7 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
   const [activeAgendaTab, setActiveAgendaTab] = useState(0);
   const [activeDayTab, setActiveDayTab] = useState(0);
   const [activeStageTab, setActiveStageTab] = useState(0);
+  const [selectedTalk, setSelectedTalk] = useState<Session | null>(null);
 
   const renderTabPanelItems = (
     labels: string[],
@@ -100,21 +103,34 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
         />
-        {activeAgendaItems.map((session) => {
-          return (
-            <AgendaItem
-              key={session.id}
-              title={session.title}
-              startDate={dateToTime(session.slot_start)}
-              endDate={dateToTime(session.slot_end)}
-              category={session.track}
-              roomId={session.slot_roomId}
-              liked={session.liked}
-              onClick={() => handleOnHeartClick(session.id)}
-              paddingRight={"16px"}
-            />
-          );
-        })}
+        {selectedTalk ? (
+          <TalkCommentItem
+            session={selectedTalk}
+            originatorPage={"Agenda"}
+            originatorPageUrl={ROUTES.AGENDA}
+            paddingRight={"16px"}
+            onHeartClick={() => handleOnHeartClick(selectedTalk.id)}
+            // onTitleClick={() => setSelectedTalk(selectedTalk)}
+            backAction={() => setSelectedTalk(null)}
+          />
+        ) : (
+          activeAgendaItems.map((session) => {
+            return (
+              <AgendaItem
+                key={session.id}
+                title={session.title}
+                startDate={dateToTime(session.slot_start)}
+                endDate={dateToTime(session.slot_end)}
+                category={session.track}
+                roomId={session.slot_roomId}
+                liked={session.liked}
+                paddingRight={"16px"}
+                onHeartClick={() => handleOnHeartClick(session.id)}
+                onTitleClick={() => setSelectedTalk(session)}
+              />
+            );
+          })
+        )}
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />

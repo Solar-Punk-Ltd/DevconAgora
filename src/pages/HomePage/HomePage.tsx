@@ -48,6 +48,7 @@ const HomePage: React.FC<HomePageProps> = ({ sessions, isLoaded }) => {
             activeVisitors={110}
             bordered={true}
           />
+          {/* TODO: onclick to comment */}
           <RecentSessions
             sessions={sessions}
             maxSessionsShown={maxSessionsShown}
