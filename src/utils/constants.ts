@@ -46,34 +46,32 @@ export const TEST_CATEGORIES = [
   "Security::test",
 ] as const;
 
-export type TestCategory = typeof TEST_CATEGORIES[number];  // Type is a union of the category strings
 
-export const RESOURCE_IDS = {
-  "Layer 2s":
-    "1405000000000000000000000000000000000000000000000000000000000000",
-  "Core protocol": "null",
-  "Cypherpunk and privacy": "null",
-  "Usability": "null",
-  "Real World Ethereum": "null",
-  "Applied Cryptography": "null",
-  "Cryptoeconomics": "null",
-  "Coordination": "null",
-  "Developer Experience": "null",
-  "Security": "null",
-}
+export const RESOURCE_IDS = new Map([
+  ["Layer 2s", "null"],
+  ["Core protocol", "null"],
+  ["Cypherpunk and privacy", "null"],
+  ["Usability", "null"],
+  ["Real World Ethereum", "null"],
+  ["Applied Cryptography", "null"],
+  ["Cryptoeconomics", "null"],
+  ["Coordination", "null"],
+  ["Developer Experience", "null"],
+  ["Security", "null"]
+]);
 
-export const TEST_RESOURCE_IDS: Record<TestCategory, string> = {
-  "Layer 2s::test": "2400000000000000000000000000000000000000000000000000000000000000",
-  "Core protocol::test": "2311000000000000000000000000000000000000000000000000000000000000",
-  "Cypherpunk and privacy::test": "ab09000000000000000000000000000000000000000000000000000000000000",
-  "Usability::test": "e705000000000000000000000000000000000000000000000000000000000000",
-  "Real World Ethereum::test": "1f0a000000000000000000000000000000000000000000000000000000000000",
-  "Applied Cryptography::test": "6e09000000000000000000000000000000000000000000000000000000000000",
-  "Cryptoeconomics::test": "0505000000000000000000000000000000000000000000000000000000000000",
-  "Coordination::test": "9601000000000000000000000000000000000000000000000000000000000000",
-  "Developer Experience::test": "1814000000000000000000000000000000000000000000000000000000000000",
-  "Security::test": "e404000000000000000000000000000000000000000000000000000000000000",
-}
+export const TEST_RESOURCE_IDS = new Map([
+  ["layer-2s-test", "null"],
+  ["core-protocol-test", "null"],
+  ["cypherpunk-and-privacy-test", "null"],
+  ["usability-test", "null"],
+  ["real-world-ethereum-test", "null"],
+  ["applied-cryptography-test", "null"],
+  ["cryptoeconomics-test", "null"],
+  ["coordination-test", "null"],
+  ["developer-experience-test", "null"],
+  ["security-test", "null"]
+]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2022-10-11").toDateString(), "Day 1"],
@@ -93,6 +91,32 @@ export const STAGES_MAP = new Map([
   ["workshop-2", "Workshop 2"],
   ["workshop-3", "Workshop 3"],
   ["workshop-4", "Workshop 4"],
+]);
+
+export const CATEGORY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2s", "layer-2s"],
+  ["Core protocol", "core-protocol"],
+  ["Cypherpunk and privacy", "cypherpunk-and-privacy"],
+  ["Usability", "usability"],
+  ["Real World Ethereum", "real-world-ethereum"],
+  ["Applied Cryptography", "applied-cryptography"],
+  ["Cryptoeconomics", "cryptoeconomics"],
+  ["Coordination", "coordination"],
+  ["Developer Experience", "developer-experience"],
+  ["Security", "security"],
+]);
+
+export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2s::test", "layer-2s-test"],
+  ["Core protocol::test", "core-protocol-test"],
+  ["Cypherpunk and privacy::test", "cypherpunk-and-privacy-test"],
+  ["Usability::test", "usability-test"],
+  ["Real World Ethereum::test", "real-world-ethereum-test"],
+  ["Applied Cryptography::test", "applied-cryptography-test"],
+  ["Cryptoeconomics::test", "cryptoeconomics-test"],
+  ["Coordination::test", "coordination-test"],
+  ["Developer Experience::test", "developer-experience-test"],
+  ["Security::test", "security-test"],
 ]);
 
 export const HOW_DOES_IT_WORK = "How does it work?";

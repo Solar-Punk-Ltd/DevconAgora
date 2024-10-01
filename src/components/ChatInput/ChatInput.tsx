@@ -52,7 +52,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
         do {
           await waitOneRound(1000);
-          console.log("isRegistered: ", chat.isRegistered)
+          console.log("isRegistered: ", chat.isRegistered(ownAddress))
         } while (!chat.isRegistered(ownAddress) && rounds < 60);
 
       setReconnecting(false);   // this might not be accurate
