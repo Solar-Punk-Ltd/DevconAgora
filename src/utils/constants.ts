@@ -61,16 +61,16 @@ export const RESOURCE_IDS = new Map([
 ]);
 
 export const TEST_RESOURCE_IDS = new Map([
-  ["layer-2s-test", "null"],
-  ["core-protocol-test", "null"],
-  ["cypherpunk-and-privacy-test", "null"],
-  ["usability-test", "null"],
-  ["real-world-ethereum-test", "null"],
-  ["applied-cryptography-test", "null"],
-  ["cryptoeconomics-test", "null"],
-  ["coordination-test", "null"],
-  ["developer-experience-test", "null"],
-  ["security-test", "null"]
+  ["layer-2s-test", "9804000000000000000000000000000000000000000000000000000000000000"],
+  ["core-protocol-test", "f103000000000000000000000000000000000000000000000000000000000000"],
+  ["cypherpunk-and-privacy-test", "7a02000000000000000000000000000000000000000000000000000000000000"],
+  ["usability-test", "6305000000000000000000000000000000000000000000000000000000000000"],
+  ["real-world-ethereum-test", "7d13000000000000000000000000000000000000000000000000000000000000"],
+  ["applied-cryptography-test", "a50c000000000000000000000000000000000000000000000000000000000000"],
+  ["cryptoeconomics-test", "d900000000000000000000000000000000000000000000000000000000000000"],
+  ["coordination-test", "d109000000000000000000000000000000000000000000000000000000000000"],
+  ["developer-experience-test", "0a01000000000000000000000000000000000000000000000000000000000000"],
+  ["security-test", "7302000000000000000000000000000000000000000000000000000000000000"]
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
