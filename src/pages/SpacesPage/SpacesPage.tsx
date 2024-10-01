@@ -7,41 +7,48 @@ import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
+import { useGlobalState } from "../../GlobalStateContext";
 
 // Chat related variables, later this will be deleted
-const PRIVKEY = "0x527f11716334d9565179db07bca7de808bda1be8456d00975045ce40b9abf5bb";
 const STAMP = "5c2a4f00ff17374a9d1ed8e148dc4ed5c3df12f1f0c10d37299db51a3bce0399" as BatchId;
 
-const TestgetResourceId = (category: string) => {
-  const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
-  if (categoryId) {
-    const result = TEST_RESOURCE_IDS.get(categoryId);
-    if (result) {
-      return result;
-    } else {
-      return "";
-    }
-  } else {
-    return "";
-  }
-}
-
-const getResourceId = (category: string) => {
-  const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
-  if (categoryId) {
-    const result = RESOURCE_IDS.get(categoryId);
-    if (result) {
-      return result;
-    } else {
-      return "";
-    }
-  } else {
-    return "";
-  }
-}
 
 const SpacesPage: React.FC = () => {
+  const { username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const privKey = localStorage.getItem("privKey");
+  if (!privKey) {
+    throw new Error("No private key found");
+  }
+
+  const TestgetResourceId = (category: string) => {
+    const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
+    if (categoryId) {
+      const result = TEST_RESOURCE_IDS.get(categoryId);
+      if (result) {
+        return result;
+      } else {
+        return "";
+      }
+    } else {
+      return "";
+    }
+  }
+
+  const getResourceId = (category: string) => {
+    const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
+    if (categoryId) {
+      const result = RESOURCE_IDS.get(categoryId);
+      if (result) {
+        return result;
+      } else {
+        return "";
+      }
+    } else {
+      return "";
+    }
+  }
+
 
   return (
     <div className="spaces">
@@ -57,9 +64,9 @@ const SpacesPage: React.FC = () => {
 
       {selectedChat && <Chat
         topic={selectedChat}
-        privKey={PRIVKEY}
+        privKey={privKey}
         stamp={STAMP as BatchId}
-        nickname={"P"}
+        nickname={username}
         gsocResourceId={TestgetResourceId(selectedChat)}
         session={undefined}
         topMenuColor={undefined && "#F1F2F4"}

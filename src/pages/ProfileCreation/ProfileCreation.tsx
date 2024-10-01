@@ -11,6 +11,7 @@ import OkIcon from "../../components/icons/OkIcon/OkIcon";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
 import { createMonogram } from "../../utils/helpers";
+import { ethers } from "ethers";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -45,6 +46,11 @@ const ProfileCreation: React.FC = () => {
       body: username,
     });
   };
+
+  const savePrivKey = () => {
+    const newKey = ethers.Wallet.createRandom().privateKey;
+    localStorage.setItem("privKey", newKey);
+  }
 
   const handleOkClick = async () => {
     if (validateInput(username)) {
@@ -141,6 +147,7 @@ const ProfileCreation: React.FC = () => {
               onClick={() => {
                 handleOkClick();
                 saveUsername();
+                savePrivKey();
               }}
             >
               Start Building Your Community
