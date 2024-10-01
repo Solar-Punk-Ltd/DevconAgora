@@ -74,7 +74,7 @@
 @media (max-width: 500px) {
   .dropdown__open__background {
     width: 100%;
-    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
   }
 }
 

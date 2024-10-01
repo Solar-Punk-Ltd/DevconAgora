@@ -44,7 +44,7 @@ const Welcome1: React.FC = () => {
             <WelcomeProgressIndicator active={3} />
             <div className="welcome-page_bottom-bottom__buttons">
               <Link
-                to={ROUTES.WELCOME4}
+                to={ROUTES.WELCOME3}
                 className="welcome-page__navigation-button-link"
               >
                 <WelcomeButton version="outlined">Back</WelcomeButton>
