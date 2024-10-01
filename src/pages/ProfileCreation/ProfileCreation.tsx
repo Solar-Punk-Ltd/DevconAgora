@@ -27,10 +27,12 @@ const ProfileCreation: React.FC = () => {
   const handleEditClick = () => {
     setIsEdit(true);
     setButtonActive(false);
-    if (inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.select();
+      }
+    }, 0);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -51,9 +53,12 @@ const ProfileCreation: React.FC = () => {
       setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));
-      const response = await fetch(process.env.BACKEND_API_URL + "username/" + username);
+      const response = await fetch(
+        process.env.BACKEND_API_URL + "username/" + username
+      );
       if (response.status === 200) {
         setButtonActive(true);
+        setError(false);
       } else {
         setButtonActive(false);
         setError(true);
@@ -65,11 +70,8 @@ const ProfileCreation: React.FC = () => {
   };
 
   const validateInput = (name: string) => {
-    if (name.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    const regex = /^[a-zA-Z0-9 ]*$/;
+    return regex.test(name);
   };
 
   return (
@@ -93,7 +95,13 @@ const ProfileCreation: React.FC = () => {
             <ProfilePicture
               name={monogram ? monogram : createMonogram(username)}
             />
-            <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <div className="profile-creation__username">Nickname</div>
               <div className="profile-creation__username-edit">
                 <div className="profile-creation__user-input">
@@ -102,6 +110,7 @@ const ProfileCreation: React.FC = () => {
                     value={username}
                     ref={inputRef}
                     placeholder={username}
+                    maxLength={24}
                     className={clsx("profile-creation__user-input__input", {
                       "profile-creation__user-input__input__disabled": !isEdit,
                     })}
@@ -118,16 +127,16 @@ const ProfileCreation: React.FC = () => {
                 )}
               </div>
               {error ? (
-                <div className="profile-creation__user-input__error">
-                  <img
-                    src={errorAlertIcon}
-                    alt=""
-                    className="profile-creation__user-input__error-icon"
-                    width="12px"
-                    height="12px"
-                  />
-                  <div className="profile-creation__user-input__error-text">
-                    &nbsp; This nickname is already taken.
+                <div className="profile-creation__user-input__error-container">
+                  <div className="profile-creation__user-input__error-container__error">
+                    <img
+                      src={errorAlertIcon}
+                      alt=""
+                      className="profile-creation__user-input__error-container__error-icon"
+                    />
+                    <div className="profile-creation__user-input__error-container__error-text">
+                      Only spaces and alphanumerical characters are allowed.
+                    </div>
                   </div>
                 </div>
               ) : null}
