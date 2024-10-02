@@ -124,7 +124,7 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
         <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
-        <Route path={ROUTES.TALK + "/:talkId"} element={<TalkPage />} />
+        <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage />} />
       </Routes>
     </>
   );

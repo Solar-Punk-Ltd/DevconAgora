@@ -18,7 +18,7 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
-  TALK = "/talk",
+  TALKS = "/talks",
   CLAIMREWARD = "/claim-reward",
 }
 

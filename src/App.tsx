@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "../src/styles/global.scss";
+import { ROUTES } from "./utils/constants";
 
 import backgroundVideo from "./assets/opening.mp4";
 import bySolarPunk from "./assets/by-solar-punk.png";
@@ -22,9 +23,9 @@ function App() {
     const timer = setTimeout(() => {
       // Check if user is already registered
       if (isRegistered()) {
-        navigate("/home");
+        navigate(ROUTES.HOME);
       } else {
-        navigate("/welcome1");
+        navigate(ROUTES.WELCOME1);
       }
     }, 5000);
 

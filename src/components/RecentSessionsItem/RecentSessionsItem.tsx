@@ -20,7 +20,7 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
 }) => {
   return (
     <div className="recent-sessions-item">
-      <Link to={ROUTES.TALK + "/" + id}>
+      <Link to={`${ROUTES.TALKS}/${id}`}>
         <div className="recent-sessions-item__title">{title}</div>
       </Link>
       <div className="recent-sessions-item__stage">

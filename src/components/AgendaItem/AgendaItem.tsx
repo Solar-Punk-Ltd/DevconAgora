@@ -37,7 +37,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   const handleClick = () => {
     const isLiked = stringToBoolean(localStorage.getItem(id));
     localStorage.setItem(id, booleanToString(!isLiked));
-    setEmpty(!isLiked);
+    setEmpty(isLiked);
   };
 
   return (
@@ -51,10 +51,10 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           <div>{endDate}</div>
         </div>
         <div className="agenda-item__main__content">
-          <Link to={ROUTES.TALK + "/" + id}>
+          <Link to={`${ROUTES.TALKS}/${id}`}>
             <div className="agenda-item__main__content__title">{title}</div>
           </Link>
-          <div style={{}} className="agenda-item__main__content__tagged">
+          <div className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
             {category ? (
               <CategoryIndicator name={category || "no track"} />

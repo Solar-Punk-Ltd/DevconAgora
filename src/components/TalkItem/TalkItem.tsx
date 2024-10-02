@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
+import { Signer, Utils, Data } from "@ethersphere/bee-js";
 import "./TalkItem.scss";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
-import Back from "../Back/Back";
 import { dateToTime } from "../../utils/helpers";
-import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import { ethers } from "ethers";
-import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
 // TODO: remove stamp, maybe can bee dummy because gateway overwrites it
 const stamp =
@@ -14,53 +13,31 @@ const stamp =
 
 interface TalkItemProps {
   session: Session | null;
-  originatorPage: string;
-  originatorPageUrl: string;
-  backgroundColor?: string;
-  borderRadius?: string;
-  paddingRight: string;
-  backAction?: () => void | undefined | null;
 }
 
-const TalkItem: React.FC<TalkItemProps> = ({
-  session,
-  originatorPage,
-  originatorPageUrl,
-  backgroundColor,
-  borderRadius,
-  paddingRight,
-  backAction,
-}) => {
-  // Create Wallet - this will be created outside the component
-  let wallet: ethers.Wallet | null;
-  const savedKey = localStorage.getItem("walletPrivKey");
-  if (savedKey) {
-    wallet = new ethers.Wallet(savedKey);
-  } else {
-    const tempPriv = ethers.Wallet.createRandom().privateKey;
-    wallet = new ethers.Wallet(tempPriv);
-    localStorage.setItem("walletPrivKey", wallet.privateKey);
-  }
-
-  const signer: Signer = {
-    address: Utils.hexToBytes(wallet.address.slice(2)),
-    sign: async (data: Data) => {
-      return await wallet.signMessage(data);
-    },
-  };
+const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
+  const [wallet, setWallet] = useState<ethers.Wallet | null>(null);
+  const [signer, setSigner] = useState<Signer | null>(null);
+  useEffect(() => {
+    const savedKey = localStorage.getItem("privKey");
+    if (savedKey) {
+      const w = new ethers.Wallet(savedKey);
+      const s: Signer = {
+        address: Utils.hexToBytes(w.address.slice(2)),
+        sign: async (data: Data) => {
+          return await w.signMessage(data);
+        },
+      };
+      setWallet(w);
+      setSigner(s);
+    } else {
+      console.log("No private key found in local storage");
+    }
+  }, []);
 
   return (
-    <div className="swarm-comment">
-      <div
-        className="talk-item"
-        style={{ backgroundColor, borderRadius, paddingRight }}
-      >
-        <Back
-          where={originatorPage}
-          link={originatorPageUrl}
-          backgroundColor={backgroundColor}
-          action={backAction}
-        />
+    <>
+      <div className="talk-item">
         {session && (
           <AgendaItem
             key={session.id}
@@ -75,7 +52,7 @@ const TalkItem: React.FC<TalkItemProps> = ({
           />
         )}
       </div>
-      {session && (
+      {session && wallet && signer && (
         <SwarmCommentSystem
           stamp={stamp}
           topic={session.id}
@@ -84,7 +61,7 @@ const TalkItem: React.FC<TalkItemProps> = ({
           beeApiUrl={process.env.BEE_API_URL}
         />
       )}
-    </div>
+    </>
   );
 };
 

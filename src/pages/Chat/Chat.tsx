@@ -185,6 +185,7 @@ const Chat: React.FC<ChatProps> = ({
       {session && (
         // TODO: what to do here with onClick ?
         <AgendaItem
+          id={session.id}
           title={session.title}
           startDate={session.slot_start}
           endDate={session.slot_end}

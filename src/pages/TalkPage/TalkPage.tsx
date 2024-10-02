@@ -33,7 +33,7 @@ const TalkPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!session && talkId) {
+    if (talkId) {
       const sessionItem = findSessionId(talkId);
       if (sessionItem) {
         setSession(sessionItem);
@@ -43,17 +43,11 @@ const TalkPage: React.FC = () => {
 
   return (
     <div className="talk">
-      <NavigationHeader to={ROUTES.HOME} />
-      <NavigationFooter />
+      <NavigationHeader to={ROUTES.AGENDA} />
       <div className="talk__content">
-        <TalkItem
-          session={session}
-          originatorPage={"Agenda"}
-          originatorPageUrl={ROUTES.AGENDA}
-          paddingRight={"16px"}
-          backAction={() => setSession(null)}
-        />
+        <TalkItem session={session} />
       </div>
+      <NavigationFooter />
     </div>
   );
 };

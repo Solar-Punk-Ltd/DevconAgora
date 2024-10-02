@@ -1,53 +1,21 @@
 .talk-item {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px 0px #1f1f231a;
-  gap: 6px;
-  padding: 8px;
-  box-sizing: border-box;
+
 }
 
-.talk-item__main {
-  display: flex;
-  gap: 6px;
+.swarm-comment-system-wrapper {
+
 }
 
-.talk-item__main__content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.swarm-comment-system-comment-form {
+
 }
 
-.talk-item__main__content__title {
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 5px;
+.swarm-comment-system-comment-list {
+
 }
 
-.talk-item__main__time {
-  font-family: "Public Sans", sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  min-width: 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  padding-right: 9px;
-  padding-left: 9px;
-  border-right: 1px solid #e0e0e0;
-}
-
-.talk-item__main__content__tagged {
-  display: flex;
-  width: 100%;
-  gap: 8px;
-}
-
-.talk-item__content__heart-icon {
-  width: 24px;
-  padding-right: 9px;
+.swarm-comment-system-button {
+  border: none;
+  background-color: transparent;
+  margin-right: 4px;
 }
