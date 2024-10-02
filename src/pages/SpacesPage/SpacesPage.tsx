@@ -7,6 +7,12 @@ import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 
 const SpacesPage: React.FC = () => {
+  const privKey = localStorage.getItem("privKey");
+  if (!privKey) {
+    throw new Error("No private key found");
+  }
+
+
   return (
     <div className="spaces">
       <NavigationHeader to={ROUTES.HOME} />
