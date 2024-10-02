@@ -1,7 +1,13 @@
 .chat-page {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 56px);
+  height: calc(calc(var(--vh, 1vh) * 100) - 56px);
 
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 56px);
 }

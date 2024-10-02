@@ -27,6 +27,7 @@ interface ChatProps {
   topMenuColor?: string;
   originatorPage: string;
   originatorPageUrl: string;
+  backAction: () => any | undefined | null;
 }
 
 const GATEWAY =
@@ -42,16 +43,16 @@ const Chat: React.FC<ChatProps> = ({
   topMenuColor,
   originatorPage,
   originatorPageUrl,
+  backAction,
 }) => {
   const [chat, setChat] = useState<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
-  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
-    []
-  );
+  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
   const currentThreadRef = useRef(currentThread);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
+  const modal = true;
 
   const init = async () => {
     console.log("chat: ", chat);
@@ -108,12 +109,13 @@ const Chat: React.FC<ChatProps> = ({
 
     for (let i = 0; i < data.length; i++) {
       const msgObj = JSON.parse(data[i].message);
+      const address = data[i].address;
 
       if (msgObj.like) {
         const likedIndex = threadCapableMessages.findIndex(
           (msg) => msg.messageId === msgObj.like
         );
-        threadCapableMessages[likedIndex].likeCount++;
+        threadCapableMessages[likedIndex].likeTable[address] = true;
       } else {
         threadCapableMessages.push({
           username: data[i].username,
@@ -124,7 +126,7 @@ const Chat: React.FC<ChatProps> = ({
           messageId: msgObj.messageId,
           parent: msgObj.parent,
           replyCount: 0,
-          likeCount: 0,
+          likeTable: {}
         });
 
         if (msgObj.parent) {
@@ -175,7 +177,7 @@ const Chat: React.FC<ChatProps> = ({
         where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
-        action={currentThread ? () => setCurrentThread(null) : undefined}
+        action={currentThread ? () => setCurrentThread(null) : backAction}
       />
 
       {session && (
@@ -222,7 +224,7 @@ const Chat: React.FC<ChatProps> = ({
         </>
       )}
 
-      <NavigationFooter />
+      {!modal && <NavigationFooter />}
     </div>
   );
 };

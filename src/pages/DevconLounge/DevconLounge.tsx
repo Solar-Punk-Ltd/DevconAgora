@@ -12,7 +12,7 @@ const DevconLounge: React.FC = () => {
         justifyContent: "start",
         alignItems: "center",
         backgroundColor: "#f5f5f5",
-        height: "100vh",
+        height: "calc(var(--vh, 1vh) * 100)",
         padding: "20px",
       }}
     >
