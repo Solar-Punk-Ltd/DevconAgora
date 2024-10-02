@@ -18,6 +18,7 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
+  CLAIMREWARD = "/claim-reward",
 }
 
 export const CATEGORIES = [
@@ -38,13 +39,13 @@ export const RESOURCE_IDS = {
     "1405000000000000000000000000000000000000000000000000000000000000",
   "Core protocol": "null",
   "Cypherpunk and privacy": "null",
-  "Usability": "null",
+  Usability: "null",
   "Real World Ethereum": "null",
   "Applied Cryptography": "null",
-  "Cryptoeconomics": "null",
-  "Coordination": "null",
+  Cryptoeconomics: "null",
+  Coordination: "null",
   "Developer Experience": "null",
-  "Security": "null",
+  Security: "null",
 };
 
 export const DATE_TO_DEVCON_DAY = new Map([
