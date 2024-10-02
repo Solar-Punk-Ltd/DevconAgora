@@ -11,29 +11,23 @@ import {
   STAGES_MAP,
   CATEGORIES,
   DATE_TO_DEVCON_DAY,
-  ROUTES,
 } from "../../utils/constants";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
-import TalkCommentItem from "../../components/TalkCommentItem/TalkCommentItem";
 import {
   getSessionsByDay,
   dateToTime,
   stringToBoolean,
-  booleanToString,
 } from "../../utils/helpers";
+import { useGlobalState } from "../../GlobalStateContext";
 
-interface AgendaProps {
-  sessions: Map<string, Session[]>;
-}
-
-const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
+const Agenda: React.FC = () => {
+  const { sessions } = useGlobalState();
   const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
   const [showCategories, setShowCategories] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState(0);
   const [activeDayTab, setActiveDayTab] = useState(0);
   const [activeStageTab, setActiveStageTab] = useState(0);
-  const [selectedTalk, setSelectedTalk] = useState<Session | null>(null);
 
   const renderTabPanelItems = (
     labels: string[],
@@ -78,11 +72,6 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
     }
   }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
-  const handleOnHeartClick = (id: string): boolean => {
-    const isLiked = stringToBoolean(localStorage.getItem(id));
-    localStorage.setItem(id, booleanToString(!isLiked));
-    return !isLiked;
-  };
   // TODO: all vs agenda naming ?
   return !showCategories ? (
     <div className="agenda-page">
@@ -103,34 +92,21 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
         />
-        {selectedTalk ? (
-          <TalkCommentItem
-            session={selectedTalk}
-            originatorPage={"Agenda"}
-            originatorPageUrl={ROUTES.AGENDA}
-            paddingRight={"16px"}
-            onHeartClick={() => handleOnHeartClick(selectedTalk.id)}
-            // onTitleClick={() => setSelectedTalk(selectedTalk)}
-            backAction={() => setSelectedTalk(null)}
-          />
-        ) : (
-          activeAgendaItems.map((session) => {
-            return (
-              <AgendaItem
-                key={session.id}
-                title={session.title}
-                startDate={dateToTime(session.slot_start)}
-                endDate={dateToTime(session.slot_end)}
-                category={session.track}
-                roomId={session.slot_roomId}
-                liked={session.liked}
-                paddingRight={"16px"}
-                onHeartClick={() => handleOnHeartClick(session.id)}
-                onTitleClick={() => setSelectedTalk(session)}
-              />
-            );
-          })
-        )}
+        {activeAgendaItems.map((session) => {
+          return (
+            <AgendaItem
+              key={session.id}
+              id={session.id}
+              title={session.title}
+              startDate={dateToTime(session.slot_start)}
+              endDate={dateToTime(session.slot_end)}
+              category={session.track}
+              roomId={session.slot_roomId}
+              liked={session.liked}
+              paddingRight={"16px"}
+            />
+          );
+        })}
         <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />

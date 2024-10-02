@@ -1,6 +1,6 @@
 import React from "react";
 import "./DevconLounge.scss";
-import RecentSessionsItem from "../../components/RecentSessions/RecentSessionsItem/RecentSessionsItem";
+import RecentSessionsItem from "../../components/RecentSessionsItem/RecentSessionsItem";
 import Header from "../../components/Header/Header";
 
 const DevconLounge: React.FC = () => {

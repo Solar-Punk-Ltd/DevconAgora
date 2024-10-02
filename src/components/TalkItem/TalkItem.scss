@@ -1,4 +1,4 @@
-.talk-comment-item {
+.talk-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -9,25 +9,25 @@
   box-sizing: border-box;
 }
 
-.talk-comment-item__main {
+.talk-item__main {
   display: flex;
   gap: 6px;
 }
 
-.talk-comment-item__main__content {
+.talk-item__main__content {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.talk-comment-item__main__content__title {
+.talk-item__main__content__title {
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 700;
   padding: 5px;
 }
 
-.talk-comment-item__main__time {
+.talk-item__main__time {
   font-family: "Public Sans", sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -41,13 +41,13 @@
   border-right: 1px solid #e0e0e0;
 }
 
-.talk-comment-item__main__content__tagged {
+.talk-item__main__content__tagged {
   display: flex;
   width: 100%;
   gap: 8px;
 }
 
-.talk-comment-item__content__heart-icon {
+.talk-item__content__heart-icon {
   width: 24px;
   padding-right: 9px;
 }

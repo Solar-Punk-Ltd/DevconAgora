@@ -7,17 +7,17 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
-import { Session } from "../../types/session";
 import Spaces from "../../components/Spaces/Spaces";
+import { useGlobalState } from "../../GlobalStateContext";
 
 const maxSessionsShown = 9;
 
 interface HomePageProps {
-  sessions: Map<string, Session[]>;
   isLoaded?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ sessions, isLoaded }) => {
+const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
+  const { sessions } = useGlobalState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -48,7 +48,6 @@ const HomePage: React.FC<HomePageProps> = ({ sessions, isLoaded }) => {
             activeVisitors={110}
             bordered={true}
           />
-          {/* TODO: onclick to comment */}
           <RecentSessions
             sessions={sessions}
             maxSessionsShown={maxSessionsShown}

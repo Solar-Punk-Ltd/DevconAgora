@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
-import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
+import RecentSessionsItem from "../RecentSessionsItem/RecentSessionsItem";
 import { Session } from "../../types/session";
 import { FIVE_MINUTES, ROUTES, STAGES_MAP } from "../../utils/constants";
 import { getSessionsByDay } from "../../utils/helpers";
@@ -94,6 +94,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
           return (
             <RecentSessionsItem
               key={session.id}
+              id={session.id}
               title={session.title}
               stage={STAGES_MAP.get(roomId) || "unknown"}
               activeVisitors={activeVisitors}

@@ -1,40 +1,34 @@
-import React, { useState } from "react";
-import "./TalkCommentItem.scss";
+import React from "react";
+import "./TalkItem.scss";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
 import Back from "../Back/Back";
 import { dateToTime } from "../../utils/helpers";
-import { SwarmCommentSystem } from "solarpunk-comment-system-ui";
+import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import { ethers } from "ethers";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
-// TODO: remove these
+// TODO: remove stamp, maybe can bee dummy because gateway overwrites it
 const stamp =
   "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
-const commentTopic = "bagoytopic-3";
-// const privateKey = "";
 
-interface TalkCommentItemProps {
-  session: Session;
+interface TalkItemProps {
+  session: Session | null;
+  originatorPage: string;
+  originatorPageUrl: string;
   backgroundColor?: string;
   borderRadius?: string;
   paddingRight: string;
-  originatorPage?: string;
-  originatorPageUrl: string;
-  onHeartClick: () => boolean;
-  onTitleClick?: () => void;
-  backAction: () => void | undefined | null;
+  backAction?: () => void | undefined | null;
 }
 
-const TalkCommentItem: React.FC<TalkCommentItemProps> = ({
+const TalkItem: React.FC<TalkItemProps> = ({
   session,
+  originatorPage,
+  originatorPageUrl,
   backgroundColor,
   borderRadius,
   paddingRight,
-  originatorPage,
-  originatorPageUrl,
-  onHeartClick,
-  // onTitleClick,
   backAction,
 }) => {
   // Create Wallet - this will be created outside the component
@@ -50,7 +44,6 @@ const TalkCommentItem: React.FC<TalkCommentItemProps> = ({
 
   const signer: Signer = {
     address: Utils.hexToBytes(wallet.address.slice(2)),
-    // TODO: check any vs Data type ?
     sign: async (data: Data) => {
       return await wallet.signMessage(data);
     },
@@ -59,37 +52,40 @@ const TalkCommentItem: React.FC<TalkCommentItemProps> = ({
   return (
     <div className="swarm-comment">
       <div
-        className="talk-comment-item"
+        className="talk-item"
         style={{ backgroundColor, borderRadius, paddingRight }}
       >
         <Back
-          where={originatorPage ? originatorPage : "Back to Agenda"}
+          where={originatorPage}
           link={originatorPageUrl}
           backgroundColor={backgroundColor}
           action={backAction}
         />
-        <AgendaItem
-          key={session.id}
-          title={session.title}
-          startDate={dateToTime(session.slot_start)}
-          endDate={dateToTime(session.slot_end)}
-          category={session.track}
-          roomId={session.slot_roomId}
-          liked={session.liked}
-          paddingRight={"16px"}
-          onHeartClick={onHeartClick}
-          // onTitleClick={}
-        />
+        {session && (
+          <AgendaItem
+            key={session.id}
+            id={session.id}
+            title={session.title}
+            startDate={dateToTime(session.slot_start)}
+            endDate={dateToTime(session.slot_end)}
+            category={session.track}
+            roomId={session.slot_roomId}
+            liked={session.liked}
+            paddingRight={"16px"}
+          />
+        )}
       </div>
-      <SwarmCommentSystem
-        stamp={stamp}
-        topic={commentTopic}
-        privateKey={wallet.privateKey}
-        signer={signer}
-        beeApiUrl={process.env.BEE_API_URL}
-      />
+      {session && (
+        <SwarmCommentSystem
+          stamp={stamp}
+          topic={session.id}
+          privateKey={wallet.privateKey}
+          signer={signer}
+          beeApiUrl={process.env.BEE_API_URL}
+        />
+      )}
     </div>
   );
 };
 
-export default TalkCommentItem;
+export default TalkItem;

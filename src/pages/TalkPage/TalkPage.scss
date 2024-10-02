@@ -1,0 +1,9 @@
+.talk {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 56px);
+}
+.talk__content {
+  overflow: scroll;
+  padding: 16px;
+}

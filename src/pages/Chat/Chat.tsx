@@ -5,7 +5,7 @@ import {
   EVENTS,
   MessageData,
   SwarmChat,
-} from "solarpunk-swarm-decentralized-chat";
+} from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Back from "../../components/Back/Back";
@@ -193,9 +193,6 @@ const Chat: React.FC<ChatProps> = ({
           backgroundColor={topMenuColor}
           borderRadius={"0"}
           paddingRight={"16px"}
-          onHeartClick={() => {
-            return true;
-          }}
         />
       )}
 
