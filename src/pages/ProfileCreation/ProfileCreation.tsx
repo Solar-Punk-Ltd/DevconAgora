@@ -11,6 +11,7 @@ import OkIcon from "../../components/icons/OkIcon/OkIcon";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
 import { createMonogram } from "../../utils/helpers";
+import { ethers } from "ethers";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -40,6 +41,12 @@ const ProfileCreation: React.FC = () => {
       handleOkClick();
     }
   };
+
+
+  const savePrivKey = () => {
+    const newKey = ethers.Wallet.createRandom().privateKey;
+    localStorage.setItem("privKey", newKey);
+  }
 
   const saveUsername = async () => {
     await fetch(process.env.BACKEND_API_URL + "username", {
@@ -149,6 +156,7 @@ const ProfileCreation: React.FC = () => {
               version={buttonActive ? "filled" : "inactive"}
               onClick={() => {
                 handleOkClick();
+                savePrivKey();
                 saveUsername();
               }}
             >

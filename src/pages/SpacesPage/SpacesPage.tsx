@@ -15,7 +15,12 @@ const STAMP = "b7344c4b8e6a74a8305084294180507c6ec72a6badf80b757d5256f43e63e8a9"
 
 const SpacesPage: React.FC = () => {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const privKey = localStorage.getItem("privKey");
+  if (!privKey) {
+    throw new Error("No private key found");
+  }
 
+  
   return (
     <div className="spaces">
       <NavigationHeader to={ROUTES.HOME} />
