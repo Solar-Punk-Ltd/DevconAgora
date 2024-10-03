@@ -6,6 +6,7 @@ import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
 import { dateToTime } from "../../utils/helpers";
 import { ethers } from "ethers";
+import { useGlobalState } from "../../GlobalStateContext";
 
 // TODO: remove stamp, maybe can bee dummy because gateway overwrites it
 const stamp =
@@ -16,8 +17,10 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
+  const { username } = useGlobalState();
   const [wallet, setWallet] = useState<ethers.Wallet | null>(null);
   const [signer, setSigner] = useState<Signer | null>(null);
+
   useEffect(() => {
     const savedKey = localStorage.getItem("privKey");
     if (savedKey) {
@@ -59,6 +62,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           privateKey={wallet.privateKey}
           signer={signer}
           beeApiUrl={process.env.BEE_API_URL}
+          username={username}
         />
       )}
     </>
