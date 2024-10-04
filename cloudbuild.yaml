@@ -17,3 +17,5 @@ steps:
     'BACKEND_API_URL=${_BACKEND_API_URL}',
     '.'
   ]
+- options:
+  logging: CLOUD_LOGGING_ONLY
