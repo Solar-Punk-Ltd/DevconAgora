@@ -55,11 +55,6 @@ const ProfileCreation: React.FC = () => {
     });
   };
 
-  const savePrivKey = () => {
-    const newKey = ethers.Wallet.createRandom().privateKey;
-    localStorage.setItem("privKey", newKey);
-  }
-
   const handleOkClick = async () => {
     if (validateInput(username)) {
       setError(false);
@@ -163,7 +158,6 @@ const ProfileCreation: React.FC = () => {
                 handleOkClick();
                 savePrivKey();
                 saveUsername();
-                savePrivKey();
               }}
             >
               Start Building Your Community
