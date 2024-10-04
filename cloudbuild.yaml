@@ -1,0 +1,19 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'docker', 
+    'build', 
+    '--build-arg', 
+    'BEE_API_URL=${_BEE_API_URL}',
+    '--build-arg',
+    'DEVCON6_SESSSIONS_HASH=${_DEVCON6_SESSSIONS_HASH}',
+    '--build-arg',
+    'BASE_URL=${_BASE_URL}'
+    '--build-arg',
+    'HEALTH_CHECK_DATA_REF=${_HEALTH_CHECK_DATA_REF}',
+    '--build-arg',
+    'FEED_OWNER_ADDRESS=${_FEED_OWNER_ADDRESS}',
+    '--build-arg',
+    'BACKEND_API_URL=${_BACKEND_API_URL}',
+    '.'
+  ]
