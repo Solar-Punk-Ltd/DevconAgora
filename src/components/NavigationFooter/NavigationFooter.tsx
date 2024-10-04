@@ -6,6 +6,7 @@ import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
 import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
+import NotesIcon from "../icons/NotesIcon/NotesIcon";
 
 const NavigationFooter: React.FC = () => {
   const location = useLocation();
@@ -46,6 +47,17 @@ const NavigationFooter: React.FC = () => {
         >
           <RoomsIcon color={getColor(ROUTES.SPACES)} />
           <div>Spaces</div>
+        </div>
+      </Link>
+      <Link to={ROUTES.NOTES}>
+        <div
+          className={clsx("navigation-footer__item-container", {
+            "navigation-footer__item-container__active":
+              location.pathname === ROUTES.NOTES,
+          })}
+        >
+          <NotesIcon color={getColor(ROUTES.NOTES)} />
+          <div>Notes</div>
         </div>
       </Link>
     </div>

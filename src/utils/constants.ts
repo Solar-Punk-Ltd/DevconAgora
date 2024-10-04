@@ -21,6 +21,9 @@ export enum ROUTES {
   HOWDOESITWORK = "/how-does-it-work",
   TALKS = "/talks",
   CLAIMREWARD = "/claim-reward",
+  CONTENTFILTER = "/content-filter",
+  TERMSANDCONDITIONS = "/terms-and-conditions",
+  NOTES = "/notes",
 }
 
 export const CATEGORIES = [
@@ -69,6 +72,19 @@ export const STAGES_MAP = new Map([
   ["workshop-3", "Workshop 3"],
   ["workshop-4", "Workshop 4"],
 ]);
+
+export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
+export const DISCLAIMER_OF_LIABILITY =
+  "The developer of this application disclaims any liability for content shared or viewed within the app. Users are solely responsible for their actions and communications and should comply with all applicable laws and regulations.";
+export const PERSONAL_DATA_HEADER = "Personal Data";
+export const PERSONAL_DATA =
+  "The application does not collect or store any personal data. Users are identified by nicknames only.";
+export const DATA_STORAGE_HEADER = "Data Storage";
+export const DATA_STORAGE =
+  "All data is stored on the Swarm network, a decentralized storage and distribution system, that is by design censorship-resistant and unstoppable. Content Filter An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this filter at their own discretion, but do so entirely at their own risk. Acceptance of Terms By using this application, you acknowledge that you have read, understood, and agree to be bound by the terms of this agreement. If you do not agree to these terms, do not use the application.";
+
+export const CONTENT_FILTER_TEXT =
+  "An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this filter at their own discretion, but do so entirely at their own risk.";
 
 export const HOW_DOES_IT_WORK = "How does it work?";
 

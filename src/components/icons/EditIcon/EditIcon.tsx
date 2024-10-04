@@ -7,7 +7,7 @@ interface EditIconProps {
 
 const EditIcon: React.FC<EditIconProps> = ({ color, onClick }) => {
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} style={{ display: "flex" }}>
       <svg
         width="17"
         height="16"

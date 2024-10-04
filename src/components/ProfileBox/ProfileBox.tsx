@@ -1,8 +1,8 @@
 import React from "react";
 import "./ProfileBox.scss";
 import { Link } from "react-router-dom";
-import PointsInfo from "./PointsInfo/PointsInfo";
 import ReferalQRIcon from "../../assets/referal-qr.svg";
+import clsx from "clsx";
 
 interface ProfileBoxProps {
   title?: string;
@@ -23,24 +23,15 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
 }) => {
   return (
     <div className="profile-box">
-      <div className="profile-box__left-content">
+      <div
+        className={clsx({
+          "profile-box__left-content": points < 10,
+          "profile-box__left-content__with-link": points === 10,
+        })}
+      >
         <div className="profile-box__title">{title}</div>
-        {showPoints ? (
-          <div className="profile-box__content">
-            <PointsInfo points={points} />
-          </div>
-        ) : showContent ? (
-          <div className="profile-box__content">
-            <div>
-              For each active registration, you get an extra{" "}
-              <span className="profile-box__content__points-emphasize">
-                2 points
-              </span>
-              .
-            </div>
-          </div>
-        ) : null}
-        {link ? (
+
+        {link && points === 10 ? (
           <div>
             <Link to="points">
               <div className="profile-box__link">{link}</div>
@@ -50,7 +41,14 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
       </div>
       {showPoints ? (
         <div className="profile-box__right-content">
-          <div className="profile-box__points-box">{points}</div>
+          <div
+            className={clsx({
+              "profile-box__points-box": points < 10,
+              "profile-box__points-box__ten": points === 10,
+            })}
+          >
+            {points}
+          </div>
         </div>
       ) : showContent ? (
         <div className="profile-box__right-content">

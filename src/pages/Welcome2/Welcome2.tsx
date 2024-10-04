@@ -35,7 +35,7 @@ const Welcome1: React.FC = () => {
             <div>
               Comment and contribute to the community. Receive
               <b> 10 BZZ tokens </b>
-              for 10 valuable contributions.
+              for 10 valuable contributions with the Devcon.buzz APP.
             </div>
           </div>
           <div className="welcome-page__bottom-bottom">

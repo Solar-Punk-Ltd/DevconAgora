@@ -19,6 +19,7 @@ interface HomePageProps {
 const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const { sessions } = useGlobalState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { points } = useGlobalState();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,7 +37,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           <img src={HomeBackground} alt="" width="100%" height="100%" />
         </div>
       ) : null}
-      <HomeHeader points={10} />
+      <HomeHeader points={points} />
       {isLoading ? (
         <HomeLoading />
       ) : (
