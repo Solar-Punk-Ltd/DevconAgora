@@ -7,11 +7,13 @@ import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
+import Settings from "../../components/Settings/Settings";
 
 const Profile: React.FC = () => {
   const { username, monogram, points } = useGlobalState();
   return (
     <div className="profile">
+      <Settings />
       <NavigationHeader to={ROUTES.HOME} />
       <div className="profile__content">
         <div>
@@ -37,7 +39,7 @@ const Profile: React.FC = () => {
             showContent={true}
           />
           <ProfileBox
-            title="Get referal points"
+            title="Share the experience with others"
             link="Share referal link"
             showPoints={false}
             showContent={true}
