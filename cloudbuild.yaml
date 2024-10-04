@@ -2,7 +2,9 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [
     'docker', 
-    'build', 
+    'build',
+    '-t',
+    'agora',
     '--build-arg', 
     'BEE_API_URL=${_BEE_API_URL}',
     '--build-arg',
