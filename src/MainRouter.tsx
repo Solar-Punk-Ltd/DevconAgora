@@ -17,12 +17,26 @@ import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 import { useGlobalState } from "./GlobalStateContext";
+import ClaimRewardPage from "./pages/ClaimRewardPage/ClaimRevardPage";
 
 const MainRouter = (): ReactElement => {
   const { showGamification, setShowGamification, points } = useGlobalState();
   const [sessions, setSessions] = useState(new Map<string, Session[]>());
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
+
+  const setVhVariable = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  useEffect(() => {
+    setVhVariable();
+    window.addEventListener("resize", setVhVariable);
+    return () => {
+      window.removeEventListener("resize", setVhVariable);
+    };
+  }, []);
 
   const checkBee = async () => {
     fetch(
@@ -107,6 +121,7 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
         <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
+        <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
       </Routes>
     </>
   );

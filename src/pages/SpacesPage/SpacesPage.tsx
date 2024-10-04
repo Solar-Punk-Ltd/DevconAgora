@@ -49,7 +49,7 @@ const SpacesPage: React.FC = () => {
     }
   }
 
-
+  
   return (
     <div className="spaces">
       <NavigationHeader to={ROUTES.HOME} />

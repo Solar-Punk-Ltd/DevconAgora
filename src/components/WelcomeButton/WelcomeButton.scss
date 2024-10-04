@@ -22,6 +22,10 @@
   background: linear-gradient(0deg, #8c72ae 0%, #873de7 100%);
 }
 
+.welcome-button--filled:active {
+  background: linear-gradient(0deg, #8223ff, #8223ff);
+}
+
 .welcome-button--outlined {
   border: 1px solid #8c72ae;
   color: #8c72ae;

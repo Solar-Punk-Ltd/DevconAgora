@@ -18,6 +18,7 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   HOWDOESITWORK = "/how-does-it-work",
+  CLAIMREWARD = "/claim-reward",
 }
 
 export const CATEGORIES = [
