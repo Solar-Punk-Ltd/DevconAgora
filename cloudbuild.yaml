@@ -8,7 +8,7 @@ steps:
     '--build-arg',
     'DEVCON6_SESSSIONS_HASH=${_DEVCON6_SESSSIONS_HASH}',
     '--build-arg',
-    'BASE_URL=${_BASE_URL}'
+    'BASE_URL=${_BASE_URL}',
     '--build-arg',
     'HEALTH_CHECK_DATA_REF=${_HEALTH_CHECK_DATA_REF}',
     '--build-arg',
