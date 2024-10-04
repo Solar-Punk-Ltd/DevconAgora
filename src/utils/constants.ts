@@ -2,6 +2,7 @@ export const BATCH_ID_HEX_LENGTH = 64;
 export const ADDRESS_HEX_LENGTH = 64;
 export const FIVE_MINUTES = 1000 * 60 * 5;
 export const FEEDTYPE_SEQUENCE = "sequence";
+export const DEFAULT_URL = "http://localhost:1633/";
 
 export enum ROUTES {
   APP = "/",

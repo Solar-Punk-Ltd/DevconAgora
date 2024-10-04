@@ -10,8 +10,7 @@ import { useGlobalState } from "../../GlobalStateContext";
 import { getSessionsByDay } from "../../utils/helpers";
 import { DATE_TO_DEVCON_DAY } from "../../utils/constants";
 
-// TODO: already pass the session or always find it ?
-// TODO: pre-upload comments
+// TODO: pre-upload talk feeds
 const TalkPage: React.FC = () => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
@@ -46,7 +45,7 @@ const TalkPage: React.FC = () => {
     <div className="talk">
       <NavigationHeader to={ROUTES.AGENDA} />
       <div className="talk__content">
-        <TalkItem session={session} />
+        {session && <TalkItem session={session} />}
       </div>
       <NavigationFooter />
     </div>

@@ -1,42 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
-import { Signer, Utils, Data } from "@ethersphere/bee-js";
+import { Signer, Utils, Data, Bee } from "@ethersphere/bee-js";
 import "./TalkItem.scss";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
 import { dateToTime } from "../../utils/helpers";
-import { ethers } from "ethers";
+import { DEFAULT_URL } from "../../utils/constants";
+import { Wallet, hexlify } from "ethers";
 import { useGlobalState } from "../../GlobalStateContext";
 
-// TODO: remove stamp, maybe can bee dummy because gateway overwrites it
-const stamp =
-  "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
-
 interface TalkItemProps {
-  session: Session | null;
+  session: Session;
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username } = useGlobalState();
-  const [wallet, setWallet] = useState<ethers.Wallet | null>(null);
-  const [signer, setSigner] = useState<Signer | null>(null);
 
-  useEffect(() => {
-    const savedKey = localStorage.getItem("privKey");
-    if (savedKey) {
-      const w = new ethers.Wallet(savedKey);
-      const s: Signer = {
-        address: Utils.hexToBytes(w.address.slice(2)),
-        sign: async (data: Data) => {
-          return await w.signMessage(data);
-        },
-      };
-      setWallet(w);
-      setSigner(s);
-    } else {
-      console.log("No private key found in local storage");
-    }
-  }, []);
+  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
+  const rawTalkTopic = session.id + "test1";
+  const identifier = bee.makeFeedTopic(rawTalkTopic);
+  const privateKey = Utils.keccak256Hash(identifier);
+  const wallet = new Wallet(hexlify(privateKey)).address;
+  const signer: Signer = {
+    address: Utils.hexToBytes(wallet.address.slice(2)),
+    sign: async (data: Data) => {
+      return await wallet.signMessage(data);
+    },
+  };
 
   return (
     <>
@@ -55,16 +45,15 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           />
         )}
       </div>
-      {session && wallet && signer && (
-        <SwarmCommentSystem
-          stamp={stamp}
-          topic={session.id}
-          privateKey={wallet.privateKey}
-          signer={signer}
-          beeApiUrl={process.env.BEE_API_URL}
-          username={username}
-        />
-      )}
+      {/* // either use a local stamp from the env or a dummy can be sent to the
+      gateway */}
+      <SwarmCommentSystem
+        stamp={process.env.STAMP}
+        topic={identifier}
+        signer={signer}
+        beeApiUrl={process.env.BEE_API_URL}
+        username={username}
+      />
     </>
   );
 };
