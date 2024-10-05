@@ -1,9 +1,9 @@
 import React from "react";
 import "./RecentSessionsItem.scss";
-import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
-import Stage from "../Stage/Stage";
+import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
+import Stage from "../../Stage/Stage";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../../utils/constants";
 
 interface RecentSessionsItemProps {
   id: string;

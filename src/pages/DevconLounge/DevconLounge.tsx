@@ -1,6 +1,6 @@
 import React from "react";
 import "./DevconLounge.scss";
-import RecentSessionsItem from "../../components/RecentSessionsItem/RecentSessionsItem";
+import RecentSessionsItem from "../../components/RecentSessions/RecentSessionsItem/RecentSessionsItem";
 import Header from "../../components/Header/Header";
 
 const DevconLounge: React.FC = () => {
@@ -27,9 +27,9 @@ const DevconLounge: React.FC = () => {
         style={{ padding: "10px", width: "360px", boxSizing: "border-box" }}
       ></div>
       <div>
-        <RecentSessionsItem />
-        <RecentSessionsItem />
-        <RecentSessionsItem />
+        <RecentSessionsItem id={"dummy1"} title={"dummytitle1"} />
+        <RecentSessionsItem id={"dummy3"} title={"dummytitle2"} />
+        <RecentSessionsItem id={"dummy2"} title={"dummytitle3"} />
       </div>
     </div>
   );
