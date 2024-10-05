@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@ethersphere/bee-js": "^7.1.1",
-    "@solarpunkltd/comment-system-ui": "^0.0.2",
+    "@solarpunkltd/comment-system-ui": "^0.0.3",
     "@solarpunkltd/swarm-decentralized-chat": "^0.0.5",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
-    "ethers": "^6.13.2",
+    "ethers": "^6.13.3",
     "mantaray-js": "^1.0.3",
     "process": "^0.11.10",
     "react": "^18.3.1",

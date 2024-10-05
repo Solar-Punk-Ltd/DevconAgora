@@ -20,7 +20,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const rawTalkTopic = session.id + "test1";
   const identifier = bee.makeFeedTopic(rawTalkTopic);
   const privateKey = Utils.keccak256Hash(identifier);
-  const wallet = new Wallet(hexlify(privateKey)).address;
+  const wallet = new Wallet(hexlify(privateKey));
   const signer: Signer = {
     address: Utils.hexToBytes(wallet.address.slice(2)),
     sign: async (data: Data) => {
