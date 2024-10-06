@@ -15,6 +15,8 @@ interface GlobalState {
   setPoints: React.Dispatch<React.SetStateAction<number>>;
   showGamification: boolean;
   setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
+  isContentFilterEnabled: boolean;
+  setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -38,6 +40,11 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     return storedPoints ? parseInt(storedPoints, 10) : 0;
   });
 
+  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState(() => {
+    const storedValue = localStorage.getItem("isContentFilterEnabled");
+    return storedValue === null ? true : storedValue === "true";
+  });
+
   const [showGamification, setShowGamification] = useState(false);
 
   useEffect(() => {
@@ -52,6 +59,13 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     localStorage.setItem("points", points.toString());
   }, [points]);
 
+  useEffect(() => {
+    localStorage.setItem(
+      "isContentFilterEnabled",
+      isContentFilterEnabled.toString()
+    );
+  }, [isContentFilterEnabled]);
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -63,6 +77,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setPoints,
         showGamification,
         setShowGamification,
+        isContentFilterEnabled,
+        setIsContentFilterEnabled,
       }}
     >
       {children}

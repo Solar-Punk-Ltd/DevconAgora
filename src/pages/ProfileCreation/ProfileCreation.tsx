@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
@@ -7,10 +7,10 @@ import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import clsx from "clsx";
-import OkIcon from "../../components/icons/OkIcon/OkIcon";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
 import { createMonogram } from "../../utils/helpers";
+import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 import { ethers } from "ethers";
 
 const ProfileCreation: React.FC = () => {
@@ -28,13 +28,25 @@ const ProfileCreation: React.FC = () => {
   const handleEditClick = () => {
     setIsEdit(true);
     setButtonActive(false);
-    setTimeout(() => {
-      if (inputRef.current) {
-        inputRef.current.focus();
-        inputRef.current.select();
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   if (inputRef.current) {
+    //     inputRef.current.focus();
+    //     inputRef.current.select();
+    //   }
+    // }, 0);
   };
+
+  useEffect(() => {
+    if (isEdit && inputRef.current) {
+      inputRef.current.focus();
+      setTimeout(() => {
+        inputRef.current?.select();
+      }, 0);
+    } else if (!isEdit && inputRef.current) {
+      inputRef.current.setSelectionRange(0, 0);
+      (document.activeElement as HTMLElement)?.blur(); // Remove focus from the input
+    }
+  }, [isEdit]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -42,11 +54,10 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
-
   const savePrivKey = () => {
     const newKey = ethers.Wallet.createRandom().privateKey;
     localStorage.setItem("privKey", newKey);
-  }
+  };
 
   const saveUsername = async () => {
     await fetch(process.env.BACKEND_API_URL + "username", {
@@ -77,7 +88,8 @@ const ProfileCreation: React.FC = () => {
   };
 
   const validateInput = (name: string) => {
-    const regex = /^[a-zA-Z0-9 ]*$/;
+    // const regex = /^[a-zA-Z0-9 ]*$/;
+    const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])[a-zA-Z0-9 ]+$/;
     return regex.test(name);
   };
 
@@ -130,7 +142,7 @@ const ProfileCreation: React.FC = () => {
                 {!isEdit ? (
                   <EditIcon onClick={handleEditClick} />
                 ) : (
-                  <OkIcon onClick={handleOkClick} />
+                  <EnterIcon onClick={handleOkClick} />
                 )}
               </div>
               {error ? (
@@ -142,7 +154,9 @@ const ProfileCreation: React.FC = () => {
                       className="profile-creation__user-input__error-container__error-icon"
                     />
                     <div className="profile-creation__user-input__error-container__error-text">
-                      Only spaces and alphanumerical characters are allowed.
+                      The name can only contain alphanumeric characters, must
+                      include alphanumeric characters, and cannot have more than
+                      2 spaces.
                     </div>
                   </div>
                 </div>
