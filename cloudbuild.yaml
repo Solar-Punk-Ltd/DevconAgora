@@ -1,0 +1,61 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '--no-cache'
+      - '-t'
+      - $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - .
+      - '-f'
+      - Dockerfile
+      - '--build-arg' 
+      - 'BEE_API_URL=${_BEE_API_URL}'
+      - '--build-arg'
+      - 'DEVCON6_SESSSIONS_HASH=${_DEVCON6_SESSSIONS_HASH}'
+      - '--build-arg'
+      - 'BASE_URL=${_BASE_URL}'
+      - '--build-arg'
+      - 'HEALTH_CHECK_DATA_REF=${_HEALTH_CHECK_DATA_REF}'
+      - '--build-arg'
+      - 'FEED_OWNER_ADDRESS=${_FEED_OWNER_ADDRESS}'
+      - '--build-arg'
+      - 'BACKEND_API_URL=${_BACKEND_API_URL}'
+    id: Build
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - >-
+        $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    id: Push
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - $_SERVICE_NAME
+      - '--platform=managed'
+      - >-
+        --image=$_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - >-
+        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID
+      - '--region=$_DEPLOY_REGION'
+      - '--quiet'
+    id: Deploy
+    entrypoint: gcloud
+images:
+  - >-
+    $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+options:
+  substitutionOption: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
+substitutions:
+  _PLATFORM: managed
+  _SERVICE_NAME: devcon-buzz
+  REPO_NAME: devconagora
+  _DEPLOY_REGION: asia-southeast1
+  _AR_HOSTNAME: asia-southeast1-docker.pkg.dev
+  _TRIGGER_ID: e75a64ec-20e2-411a-aecb-7e21816b1466
+tags:
+  - gcp-cloud-build-deploy-cloud-run
+  - gcp-cloud-build-deploy-cloud-run-managed
+  - devcon-buzz

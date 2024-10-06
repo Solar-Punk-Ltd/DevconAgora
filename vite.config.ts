@@ -19,7 +19,7 @@ export default defineConfig(({mode}) => {
         globals: { process: true, Buffer: true }
       })
     ],
-    base: '/DevconAgora/',
+    base: env.BASE_URL ?? '/DevconAgora/',
     resolve: {
       alias: {
         stream: 'stream-browserify',
@@ -31,6 +31,14 @@ export default defineConfig(({mode}) => {
               api: 'modern-compiler', // or 'modern'
           },
       },
-  },
+    },
+    server: {
+      watch: {
+        usePolling: true,
+      },
+      host: true,
+      strictPort: true,
+      port: 5173,
+    },
   }
 })

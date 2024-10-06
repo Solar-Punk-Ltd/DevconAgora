@@ -37,19 +37,45 @@ export const CATEGORIES = [
   "Security",
 ];
 
-export const RESOURCE_IDS = {
-  "Layer 2s":
-    "1405000000000000000000000000000000000000000000000000000000000000",
-  "Core protocol": "null",
-  "Cypherpunk and privacy": "null",
-  Usability: "null",
-  "Real World Ethereum": "null",
-  "Applied Cryptography": "null",
-  Cryptoeconomics: "null",
-  Coordination: "null",
-  "Developer Experience": "null",
-  Security: "null",
-};
+export const TEST_CATEGORIES = [
+  "Layer 2s::test",
+  "Core protocol::test",
+  "Cypherpunk and privacy::test",
+  "Usability::test",
+  "Real World Ethereum::test",
+  "Applied Cryptography::test",
+  "Cryptoeconomics::test",
+  "Coordination::test",
+  "Developer Experience::test",
+  "Security::test",
+] as const;
+
+
+export const RESOURCE_IDS = new Map([
+  ["Layer 2s", "null"],
+  ["Core protocol", "null"],
+  ["Cypherpunk and privacy", "null"],
+  ["Usability", "null"],
+  ["Real World Ethereum", "null"],
+  ["Applied Cryptography", "null"],
+  ["Cryptoeconomics", "null"],
+  ["Coordination", "null"],
+  ["Developer Experience", "null"],
+  ["Security", "null"]
+]);
+
+export const TEST_RESOURCE_IDS = new Map([
+  ["layer-2s-test", "9804000000000000000000000000000000000000000000000000000000000000"],
+  ["core-protocol-test", "f103000000000000000000000000000000000000000000000000000000000000"],
+  ["cypherpunk-and-privacy-test", "7a02000000000000000000000000000000000000000000000000000000000000"],
+  ["usability-test", "6305000000000000000000000000000000000000000000000000000000000000"],
+  ["real-world-ethereum-test", "7d13000000000000000000000000000000000000000000000000000000000000"],
+  ["applied-cryptography-test", "a50c000000000000000000000000000000000000000000000000000000000000"],
+  ["cryptoeconomics-test", "d900000000000000000000000000000000000000000000000000000000000000"],
+  ["coordination-test", "d109000000000000000000000000000000000000000000000000000000000000"],
+  ["developer-experience-test", "0a01000000000000000000000000000000000000000000000000000000000000"],
+  ["security-test", "7302000000000000000000000000000000000000000000000000000000000000"]
+]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2022-10-11").toDateString(), "Day 1"],
@@ -69,6 +95,32 @@ export const STAGES_MAP = new Map([
   ["workshop-2", "Workshop 2"],
   ["workshop-3", "Workshop 3"],
   ["workshop-4", "Workshop 4"],
+]);
+
+export const CATEGORY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2s", "layer-2s"],
+  ["Core protocol", "core-protocol"],
+  ["Cypherpunk and privacy", "cypherpunk-and-privacy"],
+  ["Usability", "usability"],
+  ["Real World Ethereum", "real-world-ethereum"],
+  ["Applied Cryptography", "applied-cryptography"],
+  ["Cryptoeconomics", "cryptoeconomics"],
+  ["Coordination", "coordination"],
+  ["Developer Experience", "developer-experience"],
+  ["Security", "security"],
+]);
+
+export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2s::test", "layer-2s-test"],
+  ["Core protocol::test", "core-protocol-test"],
+  ["Cypherpunk and privacy::test", "cypherpunk-and-privacy-test"],
+  ["Usability::test", "usability-test"],
+  ["Real World Ethereum::test", "real-world-ethereum-test"],
+  ["Applied Cryptography::test", "applied-cryptography-test"],
+  ["Cryptoeconomics::test", "cryptoeconomics-test"],
+  ["Coordination::test", "coordination-test"],
+  ["Developer Experience::test", "developer-experience-test"],
+  ["Security::test", "security-test"],
 ]);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
