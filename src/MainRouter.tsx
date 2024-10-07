@@ -43,7 +43,7 @@ const MainRouter = (): ReactElement => {
 
   const checkBee = async () => {
     fetch(
-      process.env.BEE_API_URL + "bytes/" + process.env.HEALTH_CHECK_DATA_REF
+      process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF
     )
       .then(async () => {
         if (!isBeeRunning) {
