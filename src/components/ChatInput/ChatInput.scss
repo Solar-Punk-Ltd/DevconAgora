@@ -25,3 +25,11 @@
     align-items: center !important;
     margin-left: 16px !important;
 }
+
+.chat-input__connecting {
+    padding-left: 16px;
+    display: flex;
+    font-size: 12px;
+    gap: 12px;
+    align-items: center;
+}
