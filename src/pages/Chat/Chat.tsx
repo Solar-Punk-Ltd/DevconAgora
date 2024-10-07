@@ -16,6 +16,7 @@ import { BatchId } from "@ethersphere/bee-js";
 import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import { ROUTES } from "../../utils/constants";
+import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 
 interface ChatProps {
   topic: string;
@@ -198,7 +199,7 @@ const Chat: React.FC<ChatProps> = ({
         />
       )}
 
-      {chat.current && (
+      {chat.current ? (
         <>
           <Messages
             messages={visibleMessages}
@@ -224,6 +225,13 @@ const Chat: React.FC<ChatProps> = ({
             setVisibleMessages={setVisibleMessages}
           />
         </>
+      ) : (
+        <div className="chat-page__loading">
+          <div className="chat-page__loading__container">
+            <InputLoading />
+            <p>Loading chat...</p>
+          </div>
+        </div>
       )}
 
       {!modal && <NavigationFooter />}
