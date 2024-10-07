@@ -17,14 +17,11 @@ import {
   getSessionsByDay,
   dateToTime,
   stringToBoolean,
-  booleanToString,
 } from "../../utils/helpers";
+import { useGlobalState } from "../../GlobalStateContext";
 
-interface AgendaProps {
-  sessions: Map<string, Session[]>;
-}
-
-const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
+const Agenda: React.FC = () => {
+  const { sessions } = useGlobalState();
   const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
   const [showCategories, setShowCategories] = useState(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
@@ -75,11 +72,6 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
     }
   }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
-  const handleOnHeartClick = (id: string): boolean => {
-    const isLiked = stringToBoolean(localStorage.getItem(id));
-    localStorage.setItem(id, booleanToString(!isLiked));
-    return !isLiked;
-  };
   // TODO: all vs agenda naming ?
   return !showCategories ? (
     <div className="agenda-page">
@@ -104,13 +96,13 @@ const Agenda: React.FC<AgendaProps> = ({ sessions }) => {
           return (
             <AgendaItem
               key={session.id}
+              id={session.id}
               title={session.title}
               startDate={dateToTime(session.slot_start)}
               endDate={dateToTime(session.slot_end)}
               category={session.track}
               roomId={session.slot_roomId}
               liked={session.liked}
-              onClick={() => handleOnHeartClick(session.id)}
               paddingRight={"16px"}
             />
           );

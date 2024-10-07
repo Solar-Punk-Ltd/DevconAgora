@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { Session } from "./types/session";
 
 interface GlobalState {
   username: string;
@@ -15,6 +16,8 @@ interface GlobalState {
   setPoints: React.Dispatch<React.SetStateAction<number>>;
   showGamification: boolean;
   setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
+  sessions: Map<string, Session[]>;
+  setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -47,6 +50,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   const [showGamification, setShowGamification] = useState(false);
 
+  const [sessions, setSessions] = useState<Map<string, Session[]>>(
+    new Map<string, Session[]>()
+  );
+
   useEffect(() => {
     localStorage.setItem("username", username);
   }, [username]);
@@ -77,6 +84,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setPoints,
         showGamification,
         setShowGamification,
+        sessions,
+        setSessions,
         isContentFilterEnabled,
         setIsContentFilterEnabled,
       }}
