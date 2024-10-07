@@ -17,6 +17,11 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
         <div
+          style={{ fontSize: "10px", display: "flex", alignItems: "center" }}
+        >
+          Version: 34 - 2024-10-07
+        </div>
+        <div
           className="home-header__points"
           onClick={() => setShowGamification(!showGamification)}
         >
