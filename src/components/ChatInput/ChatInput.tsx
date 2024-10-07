@@ -5,6 +5,7 @@ import { BatchId } from '@ethersphere/bee-js';
 import SendIcon from '../icons/SendIcon/SendIcon';
 import { ThreadId } from '../../types/message';
 import { randomThreadId } from '../../utils/helpers';
+import InputLoading from './InputLoading/InputLoading';
 
 interface ChatInputProps {
     chat: SwarmChat;
@@ -88,7 +89,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         reconnecting ? (
           <div>{"Connecting to chat..."}</div>
         ) : (
-          sending && <>{"Sending message..."}</>
+          sending && <InputLoading />
         )
       ) 
         : 
