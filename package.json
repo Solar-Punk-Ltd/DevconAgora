@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "clean": "rm -rf ./dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ethersphere/bee-js": "^7.1.1",
-    "@solarpunkltd/comment-system-ui": "^0.0.3",
+    "@solarpunkltd/comment-system-ui": "^v0.0.4",
     "@solarpunkltd/swarm-decentralized-chat": "^0.0.5",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
