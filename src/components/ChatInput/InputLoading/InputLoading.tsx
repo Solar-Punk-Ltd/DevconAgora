@@ -13,9 +13,3 @@ const InputLoading: React.FC = () => {
 }
 
 export default InputLoading;
-
-// 8x8 négyzetek
-// 4px helyköz
-// nincs lekerekítés
-// e4 szürke
-// 

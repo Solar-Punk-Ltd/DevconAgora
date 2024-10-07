@@ -65,7 +65,10 @@ const Message: React.FC<MessageProps> = ({
 
 
   return (
-    <div className="message" style={{ marginLeft: parent ? "32px" : undefined}}>
+    <div className="message" style={{ 
+      marginLeft: parent ? "32px" : undefined,
+      opacity: data.threadId === "being-sent" ? 0.3 : 1
+    }}>
      
       <div className="message__left-side">
         <AvatarMonogram letters={createMonogram(data.username)} />

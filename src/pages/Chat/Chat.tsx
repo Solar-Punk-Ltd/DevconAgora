@@ -221,6 +221,7 @@ const Chat: React.FC<ChatProps> = ({
             stamp={stamp}
             privKey={privKey}
             currentThread={currentThread}
+            setVisibleMessages={setVisibleMessages}
           />
         </>
       )}
