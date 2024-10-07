@@ -8,7 +8,7 @@ import { randomThreadId } from '../../utils/helpers';
 import InputLoading from './InputLoading/InputLoading';
 
 interface ChatInputProps {
-    chat: SwarmChat;
+    chat: SwarmChat | null;
     ownAddress: EthAddress;
     nickname: string;
     topic: string;
@@ -32,6 +32,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const [messageToSend, setMessageToSend] = useState("");
   const [reconnecting, setReconnecting] = useState(false);
   const [sending, setSending] = useState(false);
+
+  if (!chat) return <></>;
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -105,7 +107,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
     <div id="chat-input" className={(sending || reconnecting ? "chat-input__processing" : "")}>
       {(reconnecting || sending) ? (
         reconnecting ? (
-          <div>{"Connecting to chat..."}</div>
+          <div>
+            <InputLoading />
+            {"Connecting to chat..."}
+          </div>
         ) : (
           sending && <InputLoading />
         )

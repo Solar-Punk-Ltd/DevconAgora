@@ -50,6 +50,7 @@ const Chat: React.FC<ChatProps> = ({
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
+  const [chatLoaded, setChatLoaded] = useState(false);
   const currentThreadRef = useRef(currentThread);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
@@ -94,6 +95,7 @@ const Chat: React.FC<ChatProps> = ({
     on(EVENTS.RECEIVE_MESSAGE, (data) => handleReceiveMessage(data));
 
     chat.current = newChat;
+    setChatLoaded(true);
   };
 
   const handleReceiveMessage = (data: MessageData[]) => {
@@ -199,7 +201,7 @@ const Chat: React.FC<ChatProps> = ({
         />
       )}
 
-      {chat.current ? (
+      {chatLoaded ? (
         <>
           <Messages
             messages={visibleMessages}

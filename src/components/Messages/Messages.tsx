@@ -9,7 +9,7 @@ interface MessagesProps {
     messages: MessageWithThread[];
     nickname: string;
     ownAddress: EthAddress;
-    chat: SwarmChat;
+    chat: SwarmChat | null;
     topic: string;
     stamp: BatchId;
     privKey: string;
@@ -29,7 +29,7 @@ const Messages: React.FC<MessagesProps> = ({
   currentThread,
   setThreadId
 }) => {
-  if (messages.length === 0) {
+  if (messages.length === 0 || !chat) {
     return (
       <div className="messages messages__no-messages">
         <p>{"There’s nothing in this chat yet."}</p>
