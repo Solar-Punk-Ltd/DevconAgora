@@ -37,12 +37,17 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Build
         run: npm run build
         env:
           BEE_API_URL: ${{ secrets.BEE_API_URL }}
           FEED_OWNER_ADDRESS: ${{ secrets.FEED_OWNER_ADDRESS }}
           HEALTH_CHECK_DATA_REF: ${{ secrets.HEALTH_CHECK_DATA_REF }}
+          PR_NUMBER: ${{ github.event.number }}
+          PR_TIMESTAMP: ${{ steps.date.outputs.date }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
