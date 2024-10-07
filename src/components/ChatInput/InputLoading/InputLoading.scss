@@ -1,12 +1,29 @@
 #chat-input__loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+  
+.chat-input__loading-square {
+    width: 8px;
+    height: 8px;
+    background-color: #E0E0E0;
+    animation: changeColor 1.2s infinite;
+}
+  
+.chat-input__loading-square:nth-child(2) {
+    animation-delay: 0.3s;
+}
+  
+.chat-input__loading-square:nth-child(3) {
+    animation-delay: 0.6s;
+}
+  
+@keyframes changeColor {
+    0%, 100% {
+        background-color: #E0E0E0;
+    }
+    50% {
+        background-color: #FF8A50;
+    }
 }

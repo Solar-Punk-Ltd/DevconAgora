@@ -29,7 +29,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 }) => {
   const [messageToSend, setMessageToSend] = useState("");
   const [reconnecting, setReconnecting] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [sending, setSending] = useState(true);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
