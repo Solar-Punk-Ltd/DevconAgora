@@ -53,6 +53,9 @@
     color: #000000;
     line-height: 20px;
     letter-spacing: 0.5%;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
 }
 
 .message__right-side__message-controls {
