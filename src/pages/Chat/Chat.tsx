@@ -31,7 +31,7 @@ interface ChatProps {
 }
 
 const GATEWAY =
-  "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272";
+  "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272"; // this should be in env
 
 const Chat: React.FC<ChatProps> = ({
   topic,
@@ -45,7 +45,7 @@ const Chat: React.FC<ChatProps> = ({
   originatorPageUrl,
   backAction,
 }) => {
-  const [chat, setChat] = useState<SwarmChat | null>(null);
+  const chat = useRef<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
@@ -55,7 +55,6 @@ const Chat: React.FC<ChatProps> = ({
   const modal = true;
 
   const init = async () => {
-    console.log("chat: ", chat);
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
@@ -70,6 +69,7 @@ const Chat: React.FC<ChatProps> = ({
 
     // Start polling messages & the Users feed
     newChat.startMessageFetchProcess(topic);
+    console.info("Message fetch process started.");
     newChat.startUserFetchProcess(topic);
 
     // Connect to chat
@@ -92,9 +92,7 @@ const Chat: React.FC<ChatProps> = ({
     const { on } = newChat.getChatActions();
     on(EVENTS.RECEIVE_MESSAGE, (data) => handleReceiveMessage(data));
 
-    setChat(() => {
-      return newChat;
-    });
+    chat.current = newChat;
   };
 
   const handleReceiveMessage = (data: MessageData[]) => {
@@ -155,11 +153,14 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   useEffect(() => {
-    init();
+    if (!chat.current) init();
 
     return () => {
-      chat?.stopMessageFetchProcess();
-      chat?.stopUserFetchProcess();
+      console.info("Chat cleanup...", chat.current);
+      chat.current?.stopMessageFetchProcess();
+      chat.current?.stopUserFetchProcess();
+      chat.current = null;
+      console.info("Chat cleanup done.");
     };
   }, []);
 
@@ -197,13 +198,13 @@ const Chat: React.FC<ChatProps> = ({
         />
       )}
 
-      {chat && (
+      {chat.current && (
         <>
           <Messages
             messages={visibleMessages}
             nickname={nickname}
             ownAddress={ownAddress}
-            chat={chat}
+            chat={chat.current}
             topic={topic}
             stamp={stamp}
             privKey={privKey}
@@ -213,7 +214,7 @@ const Chat: React.FC<ChatProps> = ({
           />
 
           <ChatInput
-            chat={chat}
+            chat={chat.current}
             ownAddress={ownAddress}
             nickname={nickname}
             topic={topic}

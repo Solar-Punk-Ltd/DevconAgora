@@ -69,7 +69,7 @@ const SpacesPage: React.FC = () => {
         nickname={username}
         gsocResourceId={TestgetResourceId(selectedChat)}
         session={undefined}
-        topMenuColor={undefined && "#F1F2F4"}
+        topMenuColor={undefined}
         originatorPage={"Spaces"}
         originatorPageUrl={"/spaces"}
         backAction={() => setSelectedChat(null)}
