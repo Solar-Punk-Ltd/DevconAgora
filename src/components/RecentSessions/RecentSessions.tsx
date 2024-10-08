@@ -94,6 +94,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
           return (
             <RecentSessionsItem
               key={session.id}
+              id={session.id}
               title={session.title}
               stage={STAGES_MAP.get(roomId) || "unknown"}
               activeVisitors={activeVisitors}

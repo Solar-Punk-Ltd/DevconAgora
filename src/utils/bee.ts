@@ -1,8 +1,10 @@
 import { Bee } from "@ethersphere/bee-js";
 import { Session } from "../types/session";
-import { FEEDTYPE_SEQUENCE, ADDRESS_HEX_LENGTH } from "../utils/constants";
-
-const DEFAULT_URL = "http://localhost:1633/";
+import {
+  FEEDTYPE_SEQUENCE,
+  ADDRESS_HEX_LENGTH,
+  DEFAULT_URL,
+} from "../utils/constants";
 
 export async function getFeedUpdate(): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);

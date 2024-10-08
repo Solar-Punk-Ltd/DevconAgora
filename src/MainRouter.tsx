@@ -12,8 +12,8 @@ import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
 import SpacesPage from "./pages/SpacesPage/SpacesPage";
+import TalkPage from "./pages/TalkPage/TalkPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
-import { Session } from "./types/session";
 import { getFeedUpdate, getSessionsData } from "./utils/bee";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 import { useGlobalState } from "./GlobalStateContext";
@@ -23,8 +23,8 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndCondi
 import NotesPage from "./pages/NotesPage/NotesPage";
 
 const MainRouter = (): ReactElement => {
-  const { showGamification, setShowGamification, points } = useGlobalState();
-  const [sessions, setSessions] = useState(new Map<string, Session[]>());
+  const { showGamification, setShowGamification, points, setSessions } =
+    useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState(false);
 
@@ -52,9 +52,11 @@ const MainRouter = (): ReactElement => {
         }
       })
       .catch(() => {
+      if (isBeeRunning) {
         setBeeRunning(false);
-        console.log("Bee stopped running");
-      });
+        console.log("Bee stopped running, error: ", error);
+      }
+    }
   };
 
   useEffect(() => {
@@ -88,8 +90,12 @@ const MainRouter = (): ReactElement => {
   const fetchSessions = useCallback(async () => {
     if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
       const data = await getSessionsData(sessionsReference);
-      console.log("session data updated");
-      setSessions(() => data);
+      if (data.size !== 0) {
+        console.log("session data updated");
+        setSessions(() => data);
+      } else {
+        console.log("session data empty");
+      }
     }
   }, [sessionsReference]);
 
@@ -115,16 +121,14 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
         <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
-        <Route
-          path={ROUTES.HOME}
-          element={<HomePage sessions={sessions} isLoaded={false} />}
-        />
+        <Route path={ROUTES.HOME} element={<HomePage isLoaded={false} />} />
         <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
-        <Route path={ROUTES.AGENDA} element={<Agenda sessions={sessions} />} />
+        <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
         <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
+        <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage />} />
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route

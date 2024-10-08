@@ -5,7 +5,7 @@ import {
   EVENTS,
   MessageData,
   SwarmChat,
-} from "solarpunk-swarm-decentralized-chat";
+} from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Back from "../../components/Back/Back";
@@ -48,7 +48,9 @@ const Chat: React.FC<ChatProps> = ({
 }) => {
   const chat = useRef<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
-  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>([]);
+  const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
+    []
+  );
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
   const [chatLoaded, setChatLoaded] = useState(false);
   const currentThreadRef = useRef(currentThread);
@@ -127,7 +129,7 @@ const Chat: React.FC<ChatProps> = ({
           messageId: msgObj.messageId,
           parent: msgObj.parent,
           replyCount: 0,
-          likeTable: {}
+          likeTable: {},
         });
 
         if (msgObj.parent) {
@@ -187,6 +189,7 @@ const Chat: React.FC<ChatProps> = ({
       {session && (
         // TODO: what to do here with onClick ?
         <AgendaItem
+          id={session.id}
           title={session.title}
           startDate={session.slot_start}
           endDate={session.slot_end}
@@ -195,9 +198,6 @@ const Chat: React.FC<ChatProps> = ({
           backgroundColor={topMenuColor}
           borderRadius={"0"}
           paddingRight={"16px"}
-          onClick={() => {
-            return true;
-          }}
         />
       )}
 

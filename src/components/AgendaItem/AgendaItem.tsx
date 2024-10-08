@@ -3,8 +3,12 @@ import "./AgendaItem.scss";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
 import Stage from "../../components/Stage/Stage";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
+import { booleanToString, stringToBoolean } from "../../utils/helpers";
 
 interface AgendaItemProps {
+  id: string;
   title: string;
   startDate?: string;
   endDate?: string;
@@ -12,28 +16,28 @@ interface AgendaItemProps {
   category?: string;
   roomId?: string;
   stage?: string;
-  onClick: () => boolean;
   backgroundColor?: string;
   borderRadius?: string;
   paddingRight: string;
 }
+
 const AgendaItem: React.FC<AgendaItemProps> = ({
+  id,
   title,
   startDate,
   endDate,
   liked,
   category,
   stage,
-  onClick,
   backgroundColor,
   borderRadius,
   paddingRight,
 }) => {
   const [empty, setEmpty] = useState(!liked);
-  // const debounceTime = 1000;
   const handleClick = () => {
-    const isLiked = onClick();
-    setEmpty(!isLiked);
+    const isLiked = stringToBoolean(localStorage.getItem(id));
+    localStorage.setItem(id, booleanToString(!isLiked));
+    setEmpty(isLiked);
   };
 
   return (
@@ -47,8 +51,10 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           <div>{endDate}</div>
         </div>
         <div className="agenda-item__main__content">
-          <div className="agenda-item__main__content__title">{title}</div>
-          <div style={{}} className="agenda-item__main__content__tagged">
+          <Link to={`${ROUTES.TALKS}/${id}`}>
+            <div className="agenda-item__main__content__title">{title}</div>
+          </Link>
+          <div className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
             {category ? (
               <CategoryIndicator name={category || "no track"} />
