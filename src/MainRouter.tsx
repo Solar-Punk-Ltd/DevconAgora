@@ -21,6 +21,7 @@ import ClaimRewardPage from "./pages/ClaimRewardPage/ClaimRevardPage";
 import ContentFilterPage from "./pages/ContentFilterPage/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndConditionsPage";
 import NotesPage from "./pages/NotesPage/NotesPage";
+import FullNotePage from "./pages/FullNotePage/FullNotePage";
 
 const MainRouter = (): ReactElement => {
   const { showGamification, setShowGamification, points, setSessions } =
@@ -130,6 +131,10 @@ const MainRouter = (): ReactElement => {
         <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage />} />
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
+        <Route
+          path={`${ROUTES.NOTES}${ROUTES.NOTEITEM}`}
+          element={<FullNotePage />}
+        />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
           element={<TermsAndConditionsPage />}

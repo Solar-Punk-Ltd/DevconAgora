@@ -94,3 +94,13 @@ export function randomThreadId() {
 
   return `${timestampPart}-${randomPart}`;
 }
+
+export function textExtract(content: string): string {
+  const modifiedContent = content.replace(/[\s\n]+/g, " ");
+
+  if (modifiedContent.length > 34) {
+    return modifiedContent.substring(0, 34) + "...";
+  } else {
+    return modifiedContent;
+  }
+}

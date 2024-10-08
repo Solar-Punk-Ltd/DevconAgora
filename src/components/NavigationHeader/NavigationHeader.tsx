@@ -1,19 +1,36 @@
 import React from "react";
 import "./NavigationHeader.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LeftNavigationIcon from "../icons/LeftNavigationIcon/LeftNavigationIcon";
 
 interface NavigationHeaderProps {
   to: string;
+  saveQuestionBeforeLeave?: boolean;
+  handlerInCaseOfSave?: () => void;
 }
 
-const NavigationHeader: React.FC<NavigationHeaderProps> = ({ to }) => {
+const NavigationHeader: React.FC<NavigationHeaderProps> = ({
+  to,
+  saveQuestionBeforeLeave,
+  handlerInCaseOfSave,
+}) => {
+  const navigate = useNavigate();
   const formattedTo = to.charAt(1).toUpperCase() + to.slice(2);
+
+  const handleNavigation = () => {
+    if (saveQuestionBeforeLeave) {
+      if (handlerInCaseOfSave) {
+        handlerInCaseOfSave();
+      }
+    } else {
+      navigate(to);
+    }
+  };
   return (
     <div className="navigation-header">
-      <Link to={to} className="navigation-header__link">
+      <div onClick={handleNavigation} className="navigation-header__link">
         <LeftNavigationIcon />
-      </Link>
+      </div>
       <div className="navigation-header__text">{formattedTo}</div>
     </div>
   );
