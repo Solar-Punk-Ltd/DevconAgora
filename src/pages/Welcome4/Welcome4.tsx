@@ -1,7 +1,7 @@
 import React from "react";
 import "./Welcome4.scss";
 import { Link } from "react-router-dom";
-import welcome4img from "../../assets/ob_4.png";
+import welcome4img from "../../assets/welcome4img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";

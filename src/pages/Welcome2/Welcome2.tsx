@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import welcome2img from "../../assets/ob_2.png";
+import welcome2img from "../../assets/welcome2img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";
