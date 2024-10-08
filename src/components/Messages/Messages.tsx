@@ -43,7 +43,8 @@ const Messages: React.FC<MessagesProps> = ({
   const isScrolledToBottom = () => {
     if (chatBodyRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
-      return Math.abs(scrollHeight - clientHeight - scrollTop) < 1;
+      const halfScreen = clientHeight * 2;
+      return Math.abs(scrollHeight - clientHeight - scrollTop) < halfScreen;
     }
     return false;
   };
