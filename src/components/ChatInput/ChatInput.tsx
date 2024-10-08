@@ -29,7 +29,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const [messageToSend, setMessageToSend] = useState("");
   const [reconnecting, setReconnecting] = useState(false);
   const [sending, setSending] = useState(false);
-
+  // TODO: put this into helpers
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       sendMessage()
@@ -90,17 +90,17 @@ const ChatInput: React.FC<ChatInputProps> = ({
         ) : (
           sending && <>{"Sending message..."}</>
         )
-      ) 
-        : 
+      )
+        :
       (
         <>
-          <input 
+          <input
             value={messageToSend}
             onChange={(e) => setMessageToSend(e.target.value)}
             onKeyDown={handleKeyDown}
             className="chat-input__input"
           />
-          <button 
+          <button
             onClick={sendMessage}
             className="chat-input__send-button"
             disabled={(reconnecting || sending)}

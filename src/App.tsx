@@ -14,9 +14,9 @@ function App() {
   const navigate = useNavigate();
 
   const isRegistered = () => {
-    const pKey = localStorage.getItem("privKey");
+    const privKey = localStorage.getItem("privKey");
     const username = localStorage.getItem("username");
-    if (pKey && username) return true;
+    if (privKey && username) return true;
     else return false;
   };
 

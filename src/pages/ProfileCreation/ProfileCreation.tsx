@@ -47,7 +47,7 @@ const ProfileCreation: React.FC = () => {
       (document.activeElement as HTMLElement)?.blur(); // Remove focus from the input
     }
   }, [isEdit]);
-
+  // TODO: put this into helpers
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleOkClick();

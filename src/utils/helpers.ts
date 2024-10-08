@@ -1,5 +1,7 @@
+import { Wallet } from "ethers";
 import { Session } from "../types/session";
 import { DATE_TO_DEVCON_DAY } from "../utils/constants";
+import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -78,15 +80,15 @@ export function booleanToString(val: boolean): string {
   return val ? "true" : "false";
 }
 
-export function debounce(callback: () => void, delay: number) {
-  let timeoutId;
-  return function (...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      callback.apply(this, args);
-    }, delay);
-  };
-}
+// export function debounce(callback: () => void, delay: number) {
+//   let timeoutId;
+//   return function (...args) {
+//     clearTimeout(timeoutId);
+//     timeoutId = setTimeout(() => {
+//       callback.apply(this, args);
+//     }, delay);
+//   };
+// }
 
 export function randomThreadId() {
   const randomPart = Math.random().toString(36).substr(2, 9);
@@ -103,4 +105,14 @@ export function textExtract(content: string): string {
   } else {
     return modifiedContent;
   }
+}
+
+export function getSigner(wallet: Wallet): Signer {
+  const signer: Signer = {
+    address: Utils.hexToBytes(wallet.address.slice(2)),
+    sign: async (data: Data) => {
+      return await wallet.signMessage(data);
+    },
+  };
+  return signer;
 }
