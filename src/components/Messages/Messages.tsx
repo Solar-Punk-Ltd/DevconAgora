@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
 import { MessageWithThread, ThreadId } from '../../types/message';
@@ -29,6 +29,8 @@ const Messages: React.FC<MessagesProps> = ({
   currentThread,
   setThreadId
 }) => {
+  const chatBodyRef = useRef<HTMLDivElement>(null);
+
   if (messages.length === 0 || !chat) {
     return (
       <div className="messages messages__no-messages">
@@ -38,8 +40,28 @@ const Messages: React.FC<MessagesProps> = ({
     );
   }
 
+  const isScrolledToBottom = () => {
+    if (chatBodyRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
+      return Math.abs(scrollHeight - clientHeight - scrollTop) < 1;
+    }
+    return false;
+  };
+
+  const scrollToBottom = () => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  };
+  
+  // Schedule a scroll after the state update if we're already at the bottom
+  if (isScrolledToBottom()) {
+    setTimeout(scrollToBottom, 0);
+  }
+
+  
   return (
-    <div className="messages">
+    <div className="messages" ref={chatBodyRef}>
       {messages.map((msg, ind) => (
         <Message
           data={msg}
