@@ -51,13 +51,13 @@ const MainRouter = (): ReactElement => {
           console.log("Bee is running");
         }
       })
-      .catch(() => {
+      .catch((error) => {
       if (isBeeRunning) {
         setBeeRunning(false);
         console.log("Bee stopped running, error: ", error);
       }
-    }
-  };
+    })
+  }
 
   useEffect(() => {
     // TODO: what shall be the update time ?

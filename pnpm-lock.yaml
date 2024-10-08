@@ -11,6 +11,12 @@ importers:
       '@ethersphere/bee-js':
         specifier: ^7.1.1
         version: 7.1.2
+      '@solarpunkltd/comment-system-ui':
+        specifier: ^v0.0.4
+        version: 0.0.4(rollup@4.24.0)(vite@5.4.8(@types/node@22.7.5)(sass@1.79.4))
+      '@solarpunkltd/swarm-decentralized-chat':
+        specifier: ^0.0.5
+        version: 0.0.5
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -18,7 +24,7 @@ importers:
         specifier: ^16.4.5
         version: 16.4.5
       ethers:
-        specifier: ^6.13.2
+        specifier: ^6.13.3
         version: 6.13.3
       mantaray-js:
         specifier: ^1.0.3
@@ -35,12 +41,6 @@ importers:
       react-router-dom:
         specifier: ^6.26.0
         version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      solarpunk-comment-system-ui:
-        specifier: 0.0.1
-        version: 0.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      solarpunk-swarm-decentralized-chat:
-        specifier: 0.0.4
-        version: 0.0.4
       vite-plugin-node-polyfills:
         specifier: ^0.22.0
         version: 0.22.0(rollup@4.24.0)(vite@5.4.8(@types/node@22.7.5)(sass@1.79.4))
@@ -602,6 +602,15 @@ packages:
     resolution: {integrity: sha512-fbMkAF7fufku0N2dE5TBXcNlg0pt0cJue4xBRE2Qc5Vqikxr4VCgKj/ht6SMdFcOacVA9rqF70APJ8RN/4vMJw==}
     cpu: [x64]
     os: [win32]
+
+  '@solarpunkltd/comment-system-ui@0.0.4':
+    resolution: {integrity: sha512-qz/an61T5JH0GFmwA2TNRQoEwob1rea/rVSKyBN3qtMN60sxPsTye3I1IUT6vqyga//gTwm8va24YcLm1xtfdg==}
+
+  '@solarpunkltd/comment-system@1.1.1':
+    resolution: {integrity: sha512-mE8DpJU2nGYh2dGHWqBHcEkBP+7nRJjvNwrF34YpT1E0c7iK067X94s8sT/aMfMU+SWXDAQH3K4dPB2Ik6khBg==}
+
+  '@solarpunkltd/swarm-decentralized-chat@0.0.5':
+    resolution: {integrity: sha512-K4RbMUo5KPTC04lvEs0/+sOrT1fUypzXJPncqm6tq5KoadvSDeMxgD6lJQ4glEuwNMa/AXzg1gv4bRaWBuwCGg==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2052,20 +2061,8 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
-  solarpunk-comment-system-ui@0.0.1:
-    resolution: {integrity: sha512-G/y+CmsdRq5EqIpF6VtqBnvTGAQzXhFqCZ/zTE/YZjPA+CUTP9UTypksVTJab118pP91O5kfQyyTVyiaXcfXgQ==}
-    peerDependencies:
-      react: ^18.3.1
-      react-dom: ^18.3.1
-
-  solarpunk-comment-system@1.1.0:
-    resolution: {integrity: sha512-tHAjbaDDf0OT384Cbdns8Wtds9Kxt4WZv+DrpScut7PexrBDSPPETuStu9qY085GQFLnwxMXAn35cuAHZ6MdDA==}
-
   solarpunk-gsoc@0.0.1:
     resolution: {integrity: sha512-ORXUNMypb7Py/MDe0GmWO40wQzlZoZFeTgbZ0jlvz+59G7heHEoGQLBztF5dN/LZLmTOioNxH+a/COJRXwdMMA==}
-
-  solarpunk-swarm-decentralized-chat@0.0.4:
-    resolution: {integrity: sha512-AEX7d8QO26iNEfrXkK8fqkt+lZs19ZxyFsqOPFHz/vC1J8rP+fYenEJm9EvEcOQowZNszVUSDTBqlou+HGVw1Q==}
 
   sonic-boom@4.1.0:
     resolution: {integrity: sha512-NGipjjRicyJJ03rPiZCJYjwlsuP2d1/5QUviozRXC7S3WdVWNK5e3Ojieb9CCyfhq2UC+3+SRd9nG3I2lPRvUw==}
@@ -2987,6 +2984,45 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
+
+  '@solarpunkltd/comment-system-ui@0.0.4(rollup@4.24.0)(vite@5.4.8(@types/node@22.7.5)(sass@1.79.4))':
+    dependencies:
+      '@ethersphere/bee-js': 6.9.1
+      '@solarpunkltd/comment-system': 1.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      vite-plugin-node-polyfills: 0.22.0(rollup@4.24.0)(vite@5.4.8(@types/node@22.7.5)(sass@1.79.4))
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - domexception
+      - rollup
+      - utf-8-validate
+      - vite
+
+  '@solarpunkltd/comment-system@1.1.1':
+    dependencies:
+      '@ethersphere/bee-js': 6.9.1
+      ethers: 6.13.3
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - domexception
+      - utf-8-validate
+
+  '@solarpunkltd/swarm-decentralized-chat@0.0.5':
+    dependencies:
+      '@ethersphere/bee-js': 6.9.1
+      ethers: 5.7.2
+      pino: 9.4.0
+      pino-pretty: 11.2.2
+      remove: 0.1.5
+      solarpunk-gsoc: 0.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - domexception
+      - utf-8-validate
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -4827,29 +4863,6 @@ snapshots:
 
   slash@3.0.0: {}
 
-  solarpunk-comment-system-ui@0.0.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      '@ethersphere/bee-js': 6.9.1
-      ethers: 6.13.3
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      solarpunk-comment-system: 1.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - domexception
-      - utf-8-validate
-
-  solarpunk-comment-system@1.1.0:
-    dependencies:
-      '@ethersphere/bee-js': 6.9.1
-      ethers: 6.13.3
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - domexception
-      - utf-8-validate
-
   solarpunk-gsoc@0.0.1:
     dependencies:
       '@fairdatasociety/bmt-js': 2.1.0
@@ -4861,20 +4874,6 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - debug
-      - utf-8-validate
-
-  solarpunk-swarm-decentralized-chat@0.0.4:
-    dependencies:
-      '@ethersphere/bee-js': 6.9.1
-      ethers: 5.7.2
-      pino: 9.4.0
-      pino-pretty: 11.2.2
-      remove: 0.1.5
-      solarpunk-gsoc: 0.0.1
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - domexception
       - utf-8-validate
 
   sonic-boom@4.1.0:
