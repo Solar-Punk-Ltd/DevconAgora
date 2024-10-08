@@ -12,7 +12,6 @@
   flex: 1 1 0;
   font-family: "Public Sans", sans-serif;
   cursor: pointer;
-  // margin-bottom: 24px;
   transition: border-color 0.25s;
   z-index: 1;
   position: relative;
@@ -38,4 +37,5 @@
   border: none;
   color: #a5adba;
   background: #f2f2f2;
+  cursor: not-allowed;
 }

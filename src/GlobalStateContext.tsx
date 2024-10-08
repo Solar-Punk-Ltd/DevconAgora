@@ -20,6 +20,10 @@ interface GlobalState {
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  isTermsAndConditionsAccepted: boolean;
+  setIsTermsAndConditionsAccepted: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -49,6 +53,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   });
 
   const [showGamification, setShowGamification] = useState(false);
+  const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] =
+    useState(false);
 
   const [sessions, setSessions] = useState<Map<string, Session[]>>(
     new Map<string, Session[]>()
@@ -88,6 +94,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setSessions,
         isContentFilterEnabled,
         setIsContentFilterEnabled,
+        isTermsAndConditionsAccepted,
+        setIsTermsAndConditionsAccepted,
       }}
     >
       {children}

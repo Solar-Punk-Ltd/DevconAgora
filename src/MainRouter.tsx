@@ -22,6 +22,7 @@ import ContentFilterPage from "./pages/ContentFilterPage/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndConditionsPage";
 import NotesPage from "./pages/NotesPage/NotesPage";
 import FullNotePage from "./pages/FullNotePage/FullNotePage";
+import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
 
 const MainRouter = (): ReactElement => {
   const { showGamification, setShowGamification, points, setSessions } =
@@ -135,6 +136,7 @@ const MainRouter = (): ReactElement => {
           path={`${ROUTES.NOTES}${ROUTES.NOTEITEM}`}
           element={<FullNotePage />}
         />
+        <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
           element={<TermsAndConditionsPage />}

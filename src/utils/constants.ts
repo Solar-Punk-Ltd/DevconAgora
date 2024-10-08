@@ -23,6 +23,7 @@ export enum ROUTES {
   CLAIMREWARD = "/claim-reward",
   CONTENTFILTER = "/content-filter",
   TERMSANDCONDITIONS = "/terms-and-conditions",
+  TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",
   NOTEITEM = "/note-item",
 }
