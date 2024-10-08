@@ -10,7 +10,7 @@ import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 
 // Chat related variables, later this will be deleted
-const STAMP = "5c2a4f00ff17374a9d1ed8e148dc4ed5c3df12f1f0c10d37299db51a3bce0399" as BatchId;
+const STAMP = "53ec9faa9fe03ac14d33f68901dc88d71aa03c810b8de6a11b31f38c1c09d92a" as BatchId;
 
 
 const SpacesPage: React.FC = () => {
