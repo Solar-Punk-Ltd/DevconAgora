@@ -30,8 +30,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 84px);
+  height: calc(100vh - 68px);
   gap: 20px;
+  box-sizing: border-box;
 }
 
 .terms-and-conditions-onboarding-page__bottom {
