@@ -12,6 +12,16 @@
   --text-terniary: #666666;
 }
 
+.bold {
+  font-weight: 700;
+}
+
+.default-text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
 body,
 #root {
   height: 100%;

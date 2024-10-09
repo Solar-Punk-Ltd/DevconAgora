@@ -1,0 +1,32 @@
+.note-item {
+  background-color: white;
+  position: relative;
+  padding: 16px;
+  z-index: 4;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-item__extract {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2b2e36;
+}
+
+.note-item__timestamp__date {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #4a2875;
+}
+
+.note-item__timestamp__time {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2b2e36;
+  display: flex;
+  justify-content: end;
+}
