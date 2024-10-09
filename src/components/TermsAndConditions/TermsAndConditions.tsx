@@ -8,8 +8,24 @@ import {
   DATA_STORAGE_HEADER,
   DATA_STORAGE,
 } from "../../utils/constants";
+import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
+import { useGlobalState } from "../../GlobalStateContext";
 
-const TermsAndConditions: React.FC = () => {
+interface TermsAndConditionsProps {
+  contentFilterCheckBox?: boolean;
+  termsAndConditionCheckBox?: boolean;
+  termsAndConditionCheckBoxHandler?: () => void;
+  termsAndConditionCheckBoxValue?: boolean;
+}
+
+const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
+  contentFilterCheckBox,
+  termsAndConditionCheckBox,
+  termsAndConditionCheckBoxHandler,
+  termsAndConditionCheckBoxValue,
+}) => {
+  const { isContentFilterEnabled, setIsContentFilterEnabled } =
+    useGlobalState();
   return (
     <div className="terms-and-conditions">
       <div className="terms-and-conditions__text__header">
@@ -26,6 +42,30 @@ const TermsAndConditions: React.FC = () => {
         {DATA_STORAGE_HEADER}
       </div>
       <div className="terms-and-conditions__text">{DATA_STORAGE}</div>
+
+      {contentFilterCheckBox ? (
+        <div className="terms-and-conditions__checkbox-setting">
+          <CheckBoxIcon
+            checked={isContentFilterEnabled}
+            onClick={() => setIsContentFilterEnabled(!isContentFilterEnabled)}
+          />{" "}
+          Content Filter enabled
+        </div>
+      ) : null}
+
+      {termsAndConditionCheckBox ? (
+        <div className="terms-and-conditions__checkbox-setting">
+          <CheckBoxIcon
+            checked={
+              termsAndConditionCheckBoxValue
+                ? termsAndConditionCheckBoxValue
+                : false
+            }
+            onClick={termsAndConditionCheckBoxHandler}
+          />{" "}
+          Agree with Terms and Conditions
+        </div>
+      ) : null}
     </div>
   );
 };

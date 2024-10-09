@@ -1,4 +1,5 @@
 import React from "react";
+import "./Welcome4.scss";
 import { Link } from "react-router-dom";
 import welcome4img from "../../assets/ob_4.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
@@ -42,7 +43,7 @@ const Welcome1: React.FC = () => {
           </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={3} />
-            <div className="welcome-page_bottom-bottom__buttons">
+            <div className="welcome-page_bottom-bottom__buttons welcome4-bottom">
               <Link
                 to={ROUTES.WELCOME3}
                 className="welcome-page__navigation-button-link"
@@ -50,16 +51,10 @@ const Welcome1: React.FC = () => {
                 <WelcomeButton version="outlined">Back</WelcomeButton>
               </Link>
               <Link
-                to={ROUTES.PROFILECREATION}
+                to={ROUTES.TACONBOARDING}
                 className="welcome-page__navigation-button-link"
               >
-                <WelcomeButton version="filled">Let’s go</WelcomeButton>
-              </Link>
-            </div>
-            <div className="welcome-page__bottom-text">
-              I know everything{" "}
-              <Link to={ROUTES.PROFILECREATION}>
-                <span className="welcome-page__bottom-text__skip">SKIP</span>
+                <WelcomeButton version="filled">Next</WelcomeButton>
               </Link>
             </div>
           </div>

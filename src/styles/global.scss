@@ -192,8 +192,9 @@
 .welcome-page_bottom-bottom__buttons {
   display: flex;
   width: 100%;
-  max-width: 341px;
-  gap: 16px;
+  padding: 0px 16px;
+  box-sizing: border-box;
+  gap: 20px;
 }
 
 .welcome-page__effect-mask {
