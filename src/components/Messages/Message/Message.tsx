@@ -4,7 +4,7 @@ import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
 import { MessageWithThread, ThreadId } from '../../../types/message';
-import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
+import { EthAddress, MessageData, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
 import LikeIconFilled from '../../icons/LikeIconFilled/LikeIconFilled';
 
