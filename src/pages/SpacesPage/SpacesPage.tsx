@@ -18,12 +18,16 @@ import { useGlobalState } from "../../GlobalStateContext";
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
-  // TODO: do not thorw, show error page just like in talks and notes
+
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
-    throw new Error("No private key found");
+    return (
+      <div className="notes-page-error">
+        No private key found
+        <NavigationFooter />
+      </div>
+    );
   }
-
   const TestgetResourceId = (category: string) => {
     const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
     if (categoryId) {

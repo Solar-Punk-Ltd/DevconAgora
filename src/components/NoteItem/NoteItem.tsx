@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 import { textExtract } from "../../utils/helpers";
 
 export interface NoteItemProps {
-  id: string;
-  text: string;
+  id?: string;
+  text?: string;
   date?: string;
   time?: string;
 }
 
 const NoteItem: React.FC<NoteItemProps> = ({ id, text, date, time }) => {
   return (
-    <Link to={`${ROUTES.NOTES}/${id}`}>
+    <Link
+      to={`${ROUTES.NOTES}/${id}`}
+      state={{ noteItem: { id, text, date, time } }}
+    >
       <div className="note-item">
-        <div className="note-item__extract">{textExtract(text)}</div>
+        <div className="note-item__extract">{textExtract(text || "")}</div>
         <div className="note-item__timestamp">
           <div className="note-item__timestamp__date">{date}</div>
           <div className="note-item__timestamp__time">{time}</div>

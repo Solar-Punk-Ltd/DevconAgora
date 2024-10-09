@@ -7,14 +7,17 @@ import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NoteItem, { NoteItemProps } from "../../components/NoteItem/NoteItem";
-import { ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
+import {
+  ROUTES,
+  SELF_NOTE_TOPIC,
+  ADDRESS_HEX_LENGTH,
+} from "../../utils/constants";
 import { Link } from "react-router-dom";
 
 const NotesPage: React.FC = () => {
-  // TODO: store the feed indices to improve performance
   const [feedRawTopics, setFeedRawTopics] = useState<string[]>([]);
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState(false);
 
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
@@ -39,7 +42,7 @@ const NotesPage: React.FC = () => {
         console.log("error parsing note: ", error);
         continue;
       }
-      if (note.text.length > 0) {
+      if (note.text && note.text.length > 0) {
         const found = notes.find((n) => n.id === note.id);
         if (!found) {
           setNotes((notes) => [...notes, note]);
@@ -52,7 +55,10 @@ const NotesPage: React.FC = () => {
   useEffect(() => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
-      setFeedRawTopics(selfNoteTopicsStr.split(","));
+      const tmpTopics = selfNoteTopicsStr.split(",");
+      setFeedRawTopics(
+        tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH)
+      );
     }
   }, []);
 

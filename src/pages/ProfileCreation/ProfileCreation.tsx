@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ethers } from "ethers";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
@@ -15,9 +15,9 @@ import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
-  const [buttonActive, setButtonActive] = React.useState(true);
-  const [error, setError] = React.useState(false);
-  const [isEdit, setIsEdit] = React.useState(false);
+  const [buttonActive, setButtonActive] = useState(true);
+  const [error, setError] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
