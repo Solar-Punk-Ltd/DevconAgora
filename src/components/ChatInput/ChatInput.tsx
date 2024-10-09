@@ -8,7 +8,7 @@ import {
 import { BatchId } from "@ethersphere/bee-js";
 import SendIcon from "../icons/SendIcon/SendIcon";
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { randomThreadId } from "../../utils/helpers";
+import { randomThreadId, handleKeyDown } from "../../utils/helpers";
 import InputLoading from "./InputLoading/InputLoading";
 
 interface ChatInputProps {
@@ -37,12 +37,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const [sending, setSending] = useState(false);
 
   if (!chat) return <></>;
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  };
 
   const sendMessage = async () => {
     if (!messageToSend) return;

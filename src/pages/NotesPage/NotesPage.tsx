@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Wallet } from "ethers";
-import { getFeedUpdate, getData } from "../../utils/bee";
+import { Link } from "react-router-dom";
 import "./NotesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import ActionButton from "../../components/ActionButton/ActionButton";
@@ -12,10 +12,10 @@ import {
   SELF_NOTE_TOPIC,
   ADDRESS_HEX_LENGTH,
 } from "../../utils/constants";
-import { Link } from "react-router-dom";
+import { getFeedUpdate, getData } from "../../utils/bee";
 
 const NotesPage: React.FC = () => {
-  const [feedRawTopics, setFeedRawTopics] = useState<string[]>([]);
+  const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -32,14 +32,14 @@ const NotesPage: React.FC = () => {
   const fetchNotes = async () => {
     setLoading(true);
     const wallet = new Wallet(privKey);
-    for (let i = 0; i < feedRawTopics.length; i++) {
-      const rawTopic = feedRawTopics[i];
+    for (let i = 0; i < noteRawTopics.length; i++) {
+      const rawTopic = noteRawTopics[i];
       const dataRef = await getFeedUpdate(wallet.address, rawTopic);
       let note: NoteItemProps;
       try {
         note = JSON.parse(await getData(dataRef)) as NoteItemProps;
       } catch (error) {
-        console.log("error parsing note: ", error);
+        console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
         continue;
       }
       if (note.text && note.text.length > 0) {
@@ -56,7 +56,7 @@ const NotesPage: React.FC = () => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
       const tmpTopics = selfNoteTopicsStr.split(",");
-      setFeedRawTopics(
+      setNoteRawTopics(
         tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH)
       );
     }
@@ -64,7 +64,7 @@ const NotesPage: React.FC = () => {
 
   useEffect(() => {
     fetchNotes();
-  }, [feedRawTopics]);
+  }, [noteRawTopics]);
 
   return (
     <div className="notes-page">

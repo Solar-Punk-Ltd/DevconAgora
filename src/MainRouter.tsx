@@ -99,7 +99,9 @@ const MainRouter = (): ReactElement => {
       try {
         dataStr = JSON.parse(await getData(sessionsReference));
       } catch (error) {
-        console.log("error fetching session: ", error);
+        console.log(
+          `error parsing session, ref ${sessionsReference}:\n ${error}`
+        );
         return;
       }
       const data = new Map<string, Session[]>(Object.entries(dataStr));

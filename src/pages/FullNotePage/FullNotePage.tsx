@@ -155,7 +155,7 @@ const FullNotePage: React.FC = () => {
     try {
       note = JSON.parse(await getData(dataRef)) as NoteItemProps;
     } catch (error) {
-      console.log("error parsing note: ", error);
+      console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
       return;
     }
     setCurrentNote(note);
