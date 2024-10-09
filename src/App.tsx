@@ -16,7 +16,7 @@ function App() {
   const isRegistered = () => {
     const privKey = localStorage.getItem("privKey");
     const username = localStorage.getItem("username");
-    if (privKey && username) return true;
+    if (privKey && username && username.length > 0 ) return true;
     else return false;
   };
 

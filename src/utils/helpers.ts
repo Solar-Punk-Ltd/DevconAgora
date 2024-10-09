@@ -116,3 +116,13 @@ export function getSigner(wallet: Wallet): Signer {
   };
   return signer;
 }
+
+export const handleKeyDown = (
+  e: React.KeyboardEvent,
+  key: string,
+  callback: () => void
+) => {
+  if (e.key === key) {
+    callback();
+  }
+};

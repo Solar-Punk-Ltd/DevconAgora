@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ethers } from "ethers";
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import "./ProfileCreation.scss";
@@ -9,9 +10,8 @@ import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import clsx from "clsx";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
-import { createMonogram } from "../../utils/helpers";
+import { createMonogram, handleKeyDown } from "../../utils/helpers";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
-import { ethers } from "ethers";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -47,12 +47,6 @@ const ProfileCreation: React.FC = () => {
       (document.activeElement as HTMLElement)?.blur(); // Remove focus from the input
     }
   }, [isEdit]);
-  // TODO: put this into helpers
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleOkClick();
-    }
-  };
 
   const savePrivKey = () => {
     const newKey = ethers.Wallet.createRandom().privateKey;
@@ -60,10 +54,14 @@ const ProfileCreation: React.FC = () => {
   };
 
   const saveUsername = async () => {
-    await fetch(process.env.BACKEND_API_URL + "username", {
-      method: "POST",
-      body: username,
-    });
+    try {
+      await fetch(process.env.BACKEND_API_URL + "username", {
+        method: "POST",
+        body: username,
+      });
+    } catch (error) {
+      console.log("error saving username: ", error);
+    }
   };
 
   const handleOkClick = async () => {
@@ -133,7 +131,7 @@ const ProfileCreation: React.FC = () => {
                     className={clsx("profile-creation__user-input__input", {
                       "profile-creation__user-input__input__disabled": !isEdit,
                     })}
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={(e) => handleKeyDown(e, "Enter", handleOkClick)}
                     onChange={onInputChange}
                     readOnly={!isEdit}
                   />

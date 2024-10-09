@@ -4,7 +4,7 @@ import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralize
 import { BatchId } from '@ethersphere/bee-js';
 import SendIcon from '../icons/SendIcon/SendIcon';
 import { ThreadId } from '../../types/message';
-import { randomThreadId } from '../../utils/helpers';
+import { randomThreadId, handleKeyDown } from '../../utils/helpers';
 
 interface ChatInputProps {
     chat: SwarmChat;
@@ -29,12 +29,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const [messageToSend, setMessageToSend] = useState("");
   const [reconnecting, setReconnecting] = useState(false);
   const [sending, setSending] = useState(false);
-  // TODO: put this into helpers
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      sendMessage()
-    }
-  }
 
   const sendMessage = async () => {
     if (!messageToSend) return;
@@ -97,7 +91,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           <input
             value={messageToSend}
             onChange={(e) => setMessageToSend(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(e) => handleKeyDown(e,'Enter',sendMessage)}
             className="chat-input__input"
           />
           <button

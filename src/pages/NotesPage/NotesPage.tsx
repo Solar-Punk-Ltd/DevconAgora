@@ -7,7 +7,7 @@ import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NoteItem, { NoteItemProps } from "../../components/NoteItem/NoteItem";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
 import { Link } from "react-router-dom";
 
 const NotesPage: React.FC = () => {
@@ -26,45 +26,40 @@ const NotesPage: React.FC = () => {
     );
   }
 
-  // TODO: do not show notes if data empty == removed
   const fetchNotes = async () => {
+    setLoading(true);
     const wallet = new Wallet(privKey);
     for (let i = 0; i < feedRawTopics.length; i++) {
-      // TODO: check if data.id === topic ?
       const rawTopic = feedRawTopics[i];
       const dataRef = await getFeedUpdate(wallet.address, rawTopic);
-      const note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+      let note: NoteItemProps;
+      try {
+        note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+      } catch (error) {
+        console.log("error parsing note: ", error);
+        continue;
+      }
       if (note.text.length > 0) {
-        console.log(`text id: ${note.id} updated`);
         const found = notes.find((n) => n.id === note.id);
         if (!found) {
-          setNotes([...notes, note]);
+          setNotes((notes) => [...notes, note]);
         }
-      } else {
-        console.log(`text id: ${note.id} empty`);
       }
-
-      console.log(
-        `feedRawTopics[${i}] note ref updated: ${dataRef} for rawTopic/id: ${rawTopic}/${note.id}`
-      );
     }
+    setLoading(false);
   };
 
   useEffect(() => {
-    const selfNoteTopicsStr = localStorage.getItem("selfNoteTopics");
+    const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
-      console.log("bagoy setFeedRawTopics: ", selfNoteTopicsStr);
       setFeedRawTopics(selfNoteTopicsStr.split(","));
     }
   }, []);
 
   useEffect(() => {
-    setLoading(true);
     fetchNotes();
-    setLoading(false);
-    console.log("bagoy notes.length: ", notes.length);
   }, [feedRawTopics]);
-  // TOOD: bug, jsut the first note is loaded, after saving the file it appears
+
   return (
     <div className="notes-page">
       <div className="notes-page__background">
@@ -77,7 +72,7 @@ const NotesPage: React.FC = () => {
           <span className="notes-page__button-text">New note</span>
         </ActionButton>
       </Link>
-      {notes.length > 0 ? (
+      {!loading ? (
         notes.map((note, ix) => {
           return (
             <NoteItem
@@ -90,9 +85,7 @@ const NotesPage: React.FC = () => {
           );
         })
       ) : (
-        <div className="notes-page__no-note">
-          {loading ? "Loading notes..." : "There are no notes yet."}
-        </div>
+        <div className="notes-page__no-note">Loading notes...</div>
       )}
       <NavigationFooter />
     </div>

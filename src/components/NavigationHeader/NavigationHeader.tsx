@@ -11,8 +11,8 @@ interface NavigationHeaderProps {
 
 const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   to,
-  saveQuestionBeforeLeave, // TODO: rename
-  handlerInCaseOfSave, // TODO: rename
+  saveQuestionBeforeLeave,
+  handlerInCaseOfSave,
 }) => {
   const navigate = useNavigate();
   const formattedTo = to.charAt(1).toUpperCase() + to.slice(2);

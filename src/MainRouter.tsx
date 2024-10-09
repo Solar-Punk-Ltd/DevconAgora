@@ -94,7 +94,13 @@ const MainRouter = (): ReactElement => {
 
   const fetchSessions = useCallback(async () => {
     if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
-      const dataStr = JSON.parse(await getData(sessionsReference));
+      let dataStr;
+      try {
+        dataStr = JSON.parse(await getData(sessionsReference));
+      } catch (error) {
+        console.log("error fetching session: ", error);
+        return;
+      }
       const data = new Map<string, Session[]>(Object.entries(dataStr));
       if (data.size !== 0) {
         console.log("session data updated");

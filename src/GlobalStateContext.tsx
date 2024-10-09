@@ -32,7 +32,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   children,
 }) => {
   const [username, setUsername] = useState(() => {
-    return localStorage.getItem("username") || "Generated Nickname";
+    return localStorage.getItem("username") || "";
   });
   const [monogram, setMonogram] = useState(() => {
     return localStorage.getItem("monogram") || "";

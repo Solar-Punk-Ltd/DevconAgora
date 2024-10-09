@@ -5,7 +5,6 @@ import {
   DEFAULT_URL,
 } from "../utils/constants";
 
-// TODO: upgrade bee-js version to latest
 // TODO: global bee var vs init in every function ?
 export async function getFeedUpdate(
   owner: string,
@@ -80,12 +79,9 @@ export async function updateFeed(
     const feedWriter = bee.makeFeedWriter(FEEDTYPE_SEQUENCE, topic, signer);
 
     console.log("updating feed with the file reference: ", ref);
-    // const feedUpdateRes = await feedWriter.upload(stamp, ref as Reference, {
-    //   index: 0,
-    // });
     const feedUpdateRes = await feedWriter.upload(stamp, ref as Reference);
     console.log("feed upload result: ", feedUpdateRes);
-    return feedUpdateRes;
+    return feedUpdateRes.reference;
   } catch (error) {
     console.log("error feed update: ", error);
     return "";

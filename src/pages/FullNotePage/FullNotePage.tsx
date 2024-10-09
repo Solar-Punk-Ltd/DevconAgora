@@ -8,7 +8,7 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
-import { DUMMY_STAMP } from "../../utils/constants";
+import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../utils/constants";
 import { getSigner, dateToTime } from "../../utils/helpers";
 import {
   updateFeed,
@@ -40,14 +40,12 @@ const FullNotePage: React.FC = () => {
     }
   };
 
-  // TOOD: remove note from local storage, do we need to wait for feed update removal? probably not
+  // TOOD: remove note from local storage, do we need to wait for feed update removal? probably not -> fix it
   const handleRemove = async () => {
     setShowRemovePopUp(false);
     const rawSelfNoteTopic = hexlify(Utils.keccak256Hash(text));
     addRemoveTopicToLocalStore(rawSelfNoteTopic, true);
-    setText("");
     saveNote(rawSelfNoteTopic);
-    setSaved(true);
     navigate(ROUTES.NOTES);
   };
 
@@ -75,23 +73,22 @@ const FullNotePage: React.FC = () => {
     rawSelfNoteTopic: string,
     remove: boolean
   ) => {
-    // TODO: use constant for local storage key
-    const selfNoteTopicsStr = localStorage.getItem("selfNoteTopics") || "";
+    const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC) || "";
     const separator = selfNoteTopicsStr.length > 1 ? "," : "";
     if (remove) {
       localStorage.setItem(
-        "selfNoteTopics",
+        SELF_NOTE_TOPIC,
         selfNoteTopicsStr.replace(`${separator}${rawSelfNoteTopic}`, "")
       );
     } else {
       localStorage.setItem(
-        "selfNoteTopics",
+        SELF_NOTE_TOPIC,
         selfNoteTopicsStr.concat(`${separator}${rawSelfNoteTopic}`)
       );
     }
   };
 
-  // TODO: empty text == remove note
+  // TODO: empty text == remove note ?
   const saveNote = async (rawSelfNoteTopic: string) => {
     if (!text) return;
 
@@ -110,14 +107,13 @@ const FullNotePage: React.FC = () => {
     console.log("bagoy dataRef: ", dataRef);
     const wallet = new Wallet(privKey);
     const signer = getSigner(wallet);
-    const feedRef = await updateFeed(
+    await updateFeed(
       wallet.address,
       signer,
       rawSelfNoteTopic,
       process.env.STAMP || DUMMY_STAMP,
       dataRef
     );
-    console.log("bagoy feedRef: ", feedRef);
     setSending(false);
   };
 
@@ -128,13 +124,18 @@ const FullNotePage: React.FC = () => {
     setSaved(true);
   };
 
-  // TODO: do no duplicate fetchNote
   const fetchNote = async (topic: string) => {
     const wallet = new Wallet(privKey);
-    // TODO: check if data.id === topic ?
     const dataRef = await getFeedUpdate(wallet.address, topic);
-    const note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+    let note: NoteItemProps;
+    try {
+      note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+    } catch (error) {
+      console.log("error parsing note: ", error);
+      return;
+    }
     setText(note.text);
+    setCharactersCount(note.text.length);
   };
 
   useEffect(() => {
