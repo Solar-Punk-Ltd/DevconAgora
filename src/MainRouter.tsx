@@ -42,22 +42,21 @@ const MainRouter = (): ReactElement => {
   }, []);
 
   const checkBee = async () => {
-    fetch(
-      process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF
-    )
-      .then(async () => {
-        if (!isBeeRunning) {
-          setBeeRunning(true);
-          console.log("Bee is running");
-        }
-      })
-      .catch((error) => {
+    try {
+      await fetch(
+        process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF
+      );
+      if (!isBeeRunning) {
+        setBeeRunning(true);
+        console.log("Bee is running");
+      }
+    } catch (error) {
       if (isBeeRunning) {
         setBeeRunning(false);
         console.log("Bee stopped running, error: ", error);
       }
-    })
-  }
+    }
+  };
 
   useEffect(() => {
     // TODO: what shall be the update time ?

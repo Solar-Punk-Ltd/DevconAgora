@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import "./Messages.scss";
 import Message from './Message/Message';
 import { MessageWithThread, ThreadId } from '../../types/message';
-import { EthAddress, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
+import { EthAddress, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
 
 interface MessagesProps {
