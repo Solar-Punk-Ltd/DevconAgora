@@ -4,7 +4,7 @@ import AvatarMonogram from '../../AvatarMonogram/AvatarMonogram';
 import LikeIcon from '../../icons/LikeIcon/LikeIcon';
 import { createMonogram, formatTime } from '../../../utils/helpers';
 import { MessageWithThread, ThreadId } from '../../../types/message';
-import { EthAddress, MessageData, SwarmChat } from 'solarpunk-swarm-decentralized-chat';
+import { EthAddress, MessageData, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
 import { BatchId } from '@ethersphere/bee-js';
 import LikeIconFilled from '../../icons/LikeIconFilled/LikeIconFilled';
 
@@ -65,7 +65,10 @@ const Message: React.FC<MessageProps> = ({
 
 
   return (
-    <div className="message" style={{ marginLeft: parent ? "32px" : undefined}}>
+    <div className="message" style={{ 
+      marginLeft: parent ? "32px" : undefined,
+      opacity: data.threadId === "being-sent" ? 0.3 : 1
+    }}>
      
       <div className="message__left-side">
         <AvatarMonogram letters={createMonogram(data.username)} />

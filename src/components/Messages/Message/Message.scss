@@ -3,6 +3,7 @@
     flex-direction: row;
     gap: 8px;
     margin: 12px;
+    position: relative;
 }
 
 .message__left-side {
@@ -52,6 +53,9 @@
     color: #000000;
     line-height: 20px;
     letter-spacing: 0.5%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
 }
 
 .message__right-side__message-controls {

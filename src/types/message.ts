@@ -1,4 +1,4 @@
-import { EthAddress, MessageData } from "solarpunk-swarm-decentralized-chat"
+import { EthAddress, MessageData } from "@solarpunkltd/swarm-decentralized-chat"
 
 export interface MessageWithThread extends MessageData {
     threadId: ThreadId | null;
