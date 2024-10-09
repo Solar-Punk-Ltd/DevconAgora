@@ -31,9 +31,6 @@ interface ChatProps {
   backAction: () => any | undefined | null;
 }
 
-const GATEWAY =
-  "86d2154575a43f3bf9922d9c52f0a63daca1cf352d57ef2b5027e38bc8d8f272"; // this should be in env
-
 const Chat: React.FC<ChatProps> = ({
   topic,
   privKey,
@@ -62,7 +59,7 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: GATEWAY,
+      gateway: process.env.GATEWAY,
       gsocResourceId,
       logLevel: "info",
       usersFeedTimeout: 10000,
