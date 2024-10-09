@@ -57,12 +57,6 @@ const Welcome1: React.FC = () => {
                 <WelcomeButton version="filled">Next</WelcomeButton>
               </Link>
             </div>
-            {/* <div className="welcome-page__bottom-text">
-              I know everything{" "}
-              <Link to={ROUTES.PROFILECREATION}>
-                <span className="welcome-page__bottom-text__skip">SKIP</span>
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>
