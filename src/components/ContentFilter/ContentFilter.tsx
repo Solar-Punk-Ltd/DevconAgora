@@ -23,7 +23,7 @@ const ContentFilter: React.FC = () => {
           onClick={() => handleClick(isContentFilterEnabled, checked)}
         />
         <div className="content-filter__text__header">
-          Content Filter {checked ? "enabled" : "disabled"}
+          Content Filter enabled
         </div>
       </div>
     </div>

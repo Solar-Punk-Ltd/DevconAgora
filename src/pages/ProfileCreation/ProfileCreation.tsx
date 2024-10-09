@@ -55,7 +55,7 @@ const ProfileCreation: React.FC = () => {
 
   const saveUsername = async () => {
     try {
-      await fetch(process.env.BACKEND_API_URL + "username", {
+      await fetch(process.env.BACKEND_API_URL + "/username", {
         method: "POST",
         body: username,
       });
@@ -70,7 +70,7 @@ const ProfileCreation: React.FC = () => {
       setIsEdit(false);
       setMonogram(createMonogram(username));
       const response = await fetch(
-        process.env.BACKEND_API_URL + "username/" + username
+        process.env.BACKEND_API_URL + "/username/" + username
       );
       if (response.status === 200) {
         setButtonActive(true);

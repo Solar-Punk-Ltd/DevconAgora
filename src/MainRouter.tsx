@@ -23,6 +23,7 @@ import ContentFilterPage from "./pages/ContentFilterPage/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndConditionsPage";
 import NotesPage from "./pages/NotesPage/NotesPage";
 import FullNotePage from "./pages/FullNotePage/FullNotePage";
+import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
 
 const MainRouter = (): ReactElement => {
   const { showGamification, setShowGamification, points, setSessions } =
@@ -46,7 +47,7 @@ const MainRouter = (): ReactElement => {
   const checkBee = async () => {
     try {
       await fetch(
-        process.env.BEE_API_URL + "bytes/" + process.env.HEALTH_CHECK_DATA_REF
+        process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF
       );
       if (!isBeeRunning) {
         setBeeRunning(true);
@@ -144,6 +145,7 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
+        <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
           element={<TermsAndConditionsPage />}
