@@ -68,7 +68,7 @@ const SpacesPage: React.FC = () => {
         session={undefined}
         topMenuColor={undefined}
         originatorPage={"Spaces"}
-        originatorPageUrl={"/spaces"}
+        originatorPageUrl={ROUTES.SPACES}
         backAction={() => setSelectedChat(null)}
         key={selectedChat}
       />}
