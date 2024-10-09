@@ -9,9 +9,6 @@ import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 
-// Chat related variables, later this will be deleted
-const STAMP = "53ec9faa9fe03ac14d33f68901dc88d71aa03c810b8de6a11b31f38c1c09d92a" as BatchId;
-
 
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -65,7 +62,7 @@ const SpacesPage: React.FC = () => {
       {selectedChat && <Chat
         topic={selectedChat}
         privKey={privKey}
-        stamp={STAMP as BatchId}
+        stamp={process.env.STAMP as BatchId}
         nickname={username}
         gsocResourceId={TestgetResourceId(selectedChat)}
         session={undefined}
