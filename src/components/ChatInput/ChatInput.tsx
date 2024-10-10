@@ -72,7 +72,9 @@ const ChatInput: React.FC<ChatInputProps> = ({
       return newMessages;
     });
 
+    console.log("USERS! ", chat.getDiagnostics().users);
     if (!chat.isRegistered(ownAddress)) {
+      console.log("Diagnostics: ", chat.getDiagnostics());
       setReconnecting(true);
       let rounds = 0;
       const waitOneRound = async (ms: number) => {
