@@ -12,7 +12,7 @@ const Welcome1: React.FC = () => {
       <div className="welcome-page">
         <div className="welcome-page__header">
           Decentralized Data Storage -{" "}
-          <span style={{ color: "var(--purple-to-text-color)" }}>SWARM</span>!
+          <span style={{ color: "var(--purple-to-text-color)" }}>SWARM</span>
         </div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
