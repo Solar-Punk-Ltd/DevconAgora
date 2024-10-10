@@ -49,7 +49,6 @@ const SpacesPage: React.FC = () => {
   
   return (
     <div className="spaces">
-      <NavigationHeader to={ROUTES.HOME} />
       <NavigationFooter />
       <div className="spaces__content">
         {TEST_CATEGORIES.map((category) => (
