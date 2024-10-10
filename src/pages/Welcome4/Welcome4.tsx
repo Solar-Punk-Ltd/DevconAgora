@@ -1,7 +1,7 @@
 import React from "react";
 import "./Welcome4.scss";
 import { Link } from "react-router-dom";
-import welcome4img from "../../assets/ob_4.png";
+import welcome4img from "../../assets/welcome4img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";
@@ -16,7 +16,6 @@ const Welcome1: React.FC = () => {
           <span style={{ color: "var(--purple-to-text-color)" }}>
             Your Reward
           </span>
-          !
         </div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
@@ -37,8 +36,8 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
             <div>
-              Our data is stored on the
-              <b> SWARM network</b>, ensuring security and reliability.
+              Start commenting and you will get your 10 BZZ reward and all the
+              info you need once you have collected 10 points.
             </div>
           </div>
           <div className="welcome-page__bottom-bottom">

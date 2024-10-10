@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import welcome3img from "../../assets/ob_3.png";
+import welcome3img from "../../assets/welcome3img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";
@@ -12,7 +12,7 @@ const Welcome1: React.FC = () => {
       <div className="welcome-page">
         <div className="welcome-page__header">
           Decentralized Data Storage -{" "}
-          <span style={{ color: "var(--purple-to-text-color)" }}>SWARM</span>!
+          <span style={{ color: "var(--purple-to-text-color)" }}>SWARM</span>
         </div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">

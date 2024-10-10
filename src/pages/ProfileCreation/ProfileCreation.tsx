@@ -28,12 +28,6 @@ const ProfileCreation: React.FC = () => {
   const handleEditClick = () => {
     setIsEdit(true);
     setButtonActive(false);
-    // setTimeout(() => {
-    //   if (inputRef.current) {
-    //     inputRef.current.focus();
-    //     inputRef.current.select();
-    //   }
-    // }, 0);
   };
 
   useEffect(() => {
