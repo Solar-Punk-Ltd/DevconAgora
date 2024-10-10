@@ -3,6 +3,9 @@ export const ADDRESS_HEX_LENGTH = 64;
 export const FIVE_MINUTES = 1000 * 60 * 5;
 export const FEEDTYPE_SEQUENCE = "sequence";
 export const DEFAULT_URL = "http://localhost:1633/";
+export const DUMMY_STAMP =
+  "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
+export const SELF_NOTE_TOPIC = "selfNoteTopics";
 
 export enum ROUTES {
   APP = "/",
@@ -25,7 +28,7 @@ export enum ROUTES {
   TERMSANDCONDITIONS = "/terms-and-conditions",
   TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",
-  NOTEITEM = "/note-item",
+  NEW_NOTE = "/new",
 }
 
 export const CATEGORIES = [

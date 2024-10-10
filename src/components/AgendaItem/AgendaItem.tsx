@@ -62,7 +62,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           </div>
         </div>
       </div>
-      {/* TODO: use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
+      {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
       <div className="agenda-item__content__heart-icon" onClick={handleClick}>
         <HeartIcon empty={empty} />
       </div>

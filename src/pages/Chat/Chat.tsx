@@ -106,9 +106,14 @@ const Chat: React.FC<ChatProps> = ({
 
   const filterMessages = (data: MessageData[]): MessageWithThread[] => {
     const threadCapableMessages: MessageWithThread[] = [];
-
     for (let i = 0; i < data.length; i++) {
-      const msgObj = JSON.parse(data[i].message);
+      let msgObj;
+      try {
+        msgObj = JSON.parse(data[i].message);
+      } catch (error) {
+        console.log(`error parsing message: ${data[i].message}:\n ${error}`);
+        return [];
+      }
       const address = data[i].address;
 
       if (msgObj.like) {

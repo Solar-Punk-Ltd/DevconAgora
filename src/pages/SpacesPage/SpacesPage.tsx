@@ -2,22 +2,32 @@ import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP, RESOURCE_IDS, TEST_CATEGORIES, TEST_CATEGPRY_NAMES_TO_ID_MAP, TEST_RESOURCE_IDS } from "../../utils/constants";
+import {
+  CATEGORY_NAMES_TO_ID_MAP,
+  RESOURCE_IDS,
+  TEST_CATEGORIES,
+  TEST_CATEGPRY_NAMES_TO_ID_MAP,
+  TEST_RESOURCE_IDS,
+} from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 
-
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
+
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
-    throw new Error("No private key found");
+    return (
+      <div className="notes-page-error">
+        No private key found
+        <NavigationFooter />
+      </div>
+    );
   }
-
   const TestgetResourceId = (category: string) => {
     const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
     if (categoryId) {
@@ -30,7 +40,7 @@ const SpacesPage: React.FC = () => {
     } else {
       return "";
     }
-  }
+  };
 
   const getResourceId = (category: string) => {
     const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
@@ -44,9 +54,8 @@ const SpacesPage: React.FC = () => {
     } else {
       return "";
     }
-  }
+  };
 
-  
   return (
     <div className="spaces">
       <NavigationHeader to={ROUTES.HOME} />
@@ -59,19 +68,21 @@ const SpacesPage: React.FC = () => {
         ))}
       </div>
 
-      {selectedChat && <Chat
-        topic={selectedChat}
-        privKey={privKey}
-        stamp={process.env.STAMP as BatchId}
-        nickname={username}
-        gsocResourceId={TestgetResourceId(selectedChat)}
-        session={undefined}
-        topMenuColor={undefined}
-        originatorPage={"Spaces"}
-        originatorPageUrl={ROUTES.SPACES}
-        backAction={() => setSelectedChat(null)}
-        key={selectedChat}
-      />}
+      {selectedChat && (
+        <Chat
+          topic={selectedChat}
+          privKey={privKey}
+          stamp={process.env.STAMP as BatchId}
+          nickname={username}
+          gsocResourceId={TestgetResourceId(selectedChat)}
+          session={undefined}
+          topMenuColor={undefined}
+          originatorPage={"Spaces"}
+          originatorPageUrl={ROUTES.SPACES}
+          backAction={() => setSelectedChat(null)}
+          key={selectedChat}
+        />
+      )}
     </div>
   );
 };

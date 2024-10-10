@@ -14,7 +14,8 @@ import Agenda from "./pages/Agenda/Agenda";
 import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import TalkPage from "./pages/TalkPage/TalkPage";
 import { ROUTES, FIVE_MINUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
-import { getFeedUpdate, getSessionsData } from "./utils/bee";
+import { getFeedUpdate, getData } from "./utils/bee";
+import { Session } from "./types/session";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 import { useGlobalState } from "./GlobalStateContext";
 import ClaimRewardPage from "./pages/ClaimRewardPage/ClaimRevardPage";
@@ -71,7 +72,11 @@ const MainRouter = (): ReactElement => {
 
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
-      const ref = await getFeedUpdate();
+      const rawFeedTopicSession = "sessions";
+      const ref = await getFeedUpdate(
+        process.env.FEED_OWNER_ADDRESS as string,
+        rawFeedTopicSession
+      );
       if (ref.length === ADDRESS_HEX_LENGTH && ref !== sessionsReference) {
         console.log("sessions reference updated: ", ref);
         setSessionsReference(() => ref);
@@ -90,7 +95,16 @@ const MainRouter = (): ReactElement => {
 
   const fetchSessions = useCallback(async () => {
     if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
-      const data = await getSessionsData(sessionsReference);
+      let dataStr;
+      try {
+        dataStr = JSON.parse(await getData(sessionsReference));
+      } catch (error) {
+        console.log(
+          `error parsing session, ref ${sessionsReference}:\n ${error}`
+        );
+        return;
+      }
+      const data = new Map<string, Session[]>(Object.entries(dataStr));
       if (data.size !== 0) {
         console.log("session data updated");
         setSessions(() => data);
@@ -132,10 +146,7 @@ const MainRouter = (): ReactElement => {
         <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage />} />
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
-        <Route
-          path={`${ROUTES.NOTES}${ROUTES.NOTEITEM}`}
-          element={<FullNotePage />}
-        />
+        <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
