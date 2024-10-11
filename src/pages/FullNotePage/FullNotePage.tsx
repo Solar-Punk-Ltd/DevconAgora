@@ -222,7 +222,11 @@ const FullNotePage: React.FC = () => {
       </div>
       <div className="full-note-page__bottom">
         <WelcomeButton
-          version={sending ? "inactive" : "outlined"}
+          version={
+            sending || (noteId == ROUTES.NEW_NOTE.slice(1) && !saved)
+              ? "inactive"
+              : "outlined"
+          }
           onClick={() => setShowRemovePopUp(true)}
         >
           Remove
