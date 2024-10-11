@@ -12,7 +12,8 @@ import { useGlobalState } from "../../GlobalStateContext";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { TestgetResourceId,  getResourceId } from "../../utils/helpers";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES, CATEGORIES, TEST_CATEGORIES } from "../../utils/constants";
+import { RoomWithUserCounts } from "../../types/room";
 
 const maxSessionsShown = 9;
 
@@ -24,6 +25,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const { username, sessions } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(TEST_CATEGORIES.map((catName) => ({
+    topic: catName,
+    url: "null",
+    gateway: "null",
+    userCount: undefined
+  })));
   const { points } = useGlobalState();
 
   const privKey = localStorage.getItem("privKey");
@@ -31,7 +38,22 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     throw new Error("No private key found");
   }
 
+  // User count refreshes every 15 minutes on backend. We are only fetching it, when the page loads.
+  const fetchUserCount = async () => {
+    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(process.env.BACKEND_API_URL + "/user-count")
+      .then((res) => res.json())
+      .then((json) => json.filter((room: RoomWithUserCounts) => Boolean(room.userCount)))
+      .catch((err) => console.error("Error fetching user counts ", err));
+
+    const orderedRooms = roomsWithUserCount.sort((a, b) => a.userCount! - b.userCount!);
+    console.log("Rooms with user counts: ", orderedList)
+
+    setOrderedList(orderedRooms);
+  }
+
   useEffect(() => {
+    fetchUserCount();
+
     const timer = setTimeout(() => {
       if (!isLoaded) {
         setIsLoading(false);
@@ -40,6 +62,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  
   return (
     <div className="home-page">
       {!isLoading ? (
@@ -65,7 +88,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             maxSessionsShown={maxSessionsShown}
           />
           <Spaces 
-            selectedChat={selectedChat}
+            list={orderedList}
             setSelectedChat={setSelectedChat}
           />
         </div>
