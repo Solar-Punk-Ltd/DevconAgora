@@ -62,8 +62,13 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           </div>
         </div>
         {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
-        <div className="agenda-item__content__heart-icon" onClick={handleClick}>
-          <HeartIcon empty={empty} />
+        <div className="agenda-item__content__heart-icon">
+          <HeartIcon
+            empty={empty}
+            onClick={() => {
+              handleClick();
+            }}
+          />
         </div>
       </div>
     </Link>
