@@ -72,17 +72,7 @@ const Chat: React.FC<ChatProps> = ({
     newChat.startMessageFetchProcess(topic);
     console.info("Message fetch process started.");
     newChat.startUserFetchProcess(topic);
-
-    // Connect to chat
-    await newChat
-      .registerUser(topic, {
-        participant: ownAddress,
-        key: privKey,
-        stamp,
-        nickName: nickname,
-      })
-      .then(() => console.info(`user registered.`))
-      .catch((err) => console.error(`registerUser error ${err.error}`));
+    // probably move this more down
 
     // Load users (first time when entering app)
     await newChat
