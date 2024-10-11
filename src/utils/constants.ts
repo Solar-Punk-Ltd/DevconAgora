@@ -28,6 +28,8 @@ export enum ROUTES {
   NOTEITEM = "/note-item",
 }
 
+export const LOBBY_TOPIC = "lobby::test";
+
 export const CATEGORIES = [
   "Layer 2s",
   "Core protocol",

@@ -2,8 +2,7 @@ import React from "react";
 import "./DevConMainBox.scss";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
-
-const LOBBY_TOPIC = "lobby::test";
+import { LOBBY_TOPIC } from "../../utils/constants";
 
 interface DevConMainBoxProps {
   title: string;
