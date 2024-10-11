@@ -1,5 +1,5 @@
 import { Session } from "../types/session";
-import { DATE_TO_DEVCON_DAY } from "../utils/constants";
+import { CATEGORY_NAMES_TO_ID_MAP, DATE_TO_DEVCON_DAY, RESOURCE_IDS, TEST_CATEGPRY_NAMES_TO_ID_MAP, TEST_RESOURCE_IDS } from "../utils/constants";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -102,5 +102,33 @@ export function textExtract(content: string): string {
     return modifiedContent.substring(0, 34) + "...";
   } else {
     return modifiedContent;
+  }
+}
+
+export const TestgetResourceId = (category: string) => {
+  const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
+  if (categoryId) {
+    const result = TEST_RESOURCE_IDS.get(categoryId);
+    if (result) {
+      return result;
+    } else {
+      return "";
+    }
+  } else {
+    return "";
+  }
+}
+
+export const getResourceId = (category: string) => {
+  const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
+  if (categoryId) {
+    const result = RESOURCE_IDS.get(categoryId);
+    if (result) {
+      return result;
+    } else {
+      return "";
+    }
+  } else {
+    return "";
   }
 }
