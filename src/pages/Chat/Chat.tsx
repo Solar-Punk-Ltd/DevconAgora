@@ -177,6 +177,7 @@ const Chat: React.FC<ChatProps> = ({
   return (
     <div className="chat-page">
       <Back
+        title={topic}
         where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
