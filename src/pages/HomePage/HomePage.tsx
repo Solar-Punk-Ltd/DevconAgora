@@ -80,8 +80,8 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
         gsocResourceId={TestgetResourceId(selectedChat)}
         session={undefined}
         topMenuColor={undefined}
-        originatorPage={"Spaces"}
-        originatorPageUrl={ROUTES.SPACES}
+        originatorPage={"Home"}
+        originatorPageUrl={ROUTES.HOME}
         backAction={() => setSelectedChat(null)}
         key={selectedChat}
       />}
