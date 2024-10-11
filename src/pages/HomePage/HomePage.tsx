@@ -40,12 +40,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
 
   // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
   const fetchUserCount = async () => {
-    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(process.env.BACKEND_API_URL + "/user-count")
+    const roomsWithUserCount: RoomWithUserCounts[] = await fetch("http://localhost:4000" + "/user-count")
       .then((res) => res.json())
       .then((json) => json.filter((room: RoomWithUserCounts) => Boolean(room.userCount)))
       .catch((err) => console.error("Error fetching user counts ", err));
 
-    const orderedRooms = roomsWithUserCount.sort((a, b) => a.userCount! - b.userCount!);
+    const orderedRooms = roomsWithUserCount.sort((a, b) => b.userCount! - a.userCount!);
     console.log("Rooms with user counts: ", orderedList)
 
     setOrderedList(orderedRooms);
