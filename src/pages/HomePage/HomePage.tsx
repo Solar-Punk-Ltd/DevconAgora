@@ -38,7 +38,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     throw new Error("No private key found");
   }
 
-  // User count refreshes every 15 minutes on backend. We are only fetching it, when the page loads.
+  // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
   const fetchUserCount = async () => {
     const roomsWithUserCount: RoomWithUserCounts[] = await fetch(process.env.BACKEND_API_URL + "/user-count")
       .then((res) => res.json())
@@ -51,9 +51,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     setOrderedList(orderedRooms);
   }
 
+  // We are reading user count values, when the component loads, and when selectedChat changes
+  // (user is closing the Chat, and coming back to the Home Page)
   useEffect(() => {
     fetchUserCount();
+  }, [selectedChat]);
 
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (!isLoaded) {
         setIsLoading(false);
