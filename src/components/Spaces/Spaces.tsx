@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";exitCode
+import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
-import { exitCode } from "process";
 
 interface SpacesProps {
   selectedChat: string | null,
   setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
 }
+
 
 /** Ordered Spaces list (ordered by activity) */
 const Spaces: React.FC<SpacesProps> = ({

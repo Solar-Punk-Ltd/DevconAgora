@@ -1,9 +1,7 @@
 import React from "react";
 import "./DevConMainBox.scss";
-import { Link } from "react-router-dom";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
-import { ROUTES } from "../../utils/constants";
 
 const LOBBY_TOPIC = "lobby::test";
 

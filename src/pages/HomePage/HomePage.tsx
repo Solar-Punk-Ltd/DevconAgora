@@ -58,6 +58,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             showActiveVisitors={true}
             activeVisitors={110}
             bordered={true}
+            setSelectedChat={setSelectedChat}
           />
           <RecentSessions
             sessions={sessions}
