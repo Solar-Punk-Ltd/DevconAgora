@@ -2,14 +2,19 @@ import React, { useEffect, useState } from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
 import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";
-import Chat from "../../pages/Chat/Chat";
 import { useGlobalState } from "../../GlobalStateContext";
 import { RoomWithUserCounts } from "../../types/room";
-import { BatchId } from "@ethersphere/bee-js";
-import { getResourceId, TestgetResourceId } from "../../utils/helpers";
+
+interface SpacesProps {
+  selectedChat: string | null,
+  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
+}
 
 /** Ordered Spaces list (ordered by activity) */
-const Spaces: React.FC = () => {
+const Spaces: React.FC<SpacesProps> = ({
+  selectedChat,
+  setSelectedChat
+}) => {
   const { username } = useGlobalState();
   const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(TEST_CATEGORIES.map((catName) => ({
     topic: catName,
@@ -17,7 +22,6 @@ const Spaces: React.FC = () => {
     gateway: "null",
     userCount: undefined
   })));
-  const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
@@ -44,6 +48,7 @@ const Spaces: React.FC = () => {
   
   return (
     <div>
+
       <div className="recent-rooms">
         <div className="recent-rooms__title">Buzz spaces</div>
       </div>
@@ -56,19 +61,6 @@ const Spaces: React.FC = () => {
         ))}
       </div>
 
-      {selectedChat && <Chat
-        topic={selectedChat}
-        privKey={privKey}
-        stamp={process.env.STAMP as BatchId}
-        nickname={username}
-        gsocResourceId={TestgetResourceId(selectedChat)}
-        session={undefined}
-        topMenuColor={undefined}
-        originatorPage={"Home"}
-        originatorPageUrl={ROUTES.HOME}
-        backAction={() => setSelectedChat(null)}
-        key={selectedChat}
-      />}
     </div>
   );
 };
