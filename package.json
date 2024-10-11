@@ -11,9 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ethersphere/bee-js": "^7.1.1",
+    "@ethersphere/bee-js": "^8.1.0",
     "@solarpunkltd/comment-system-ui": "^v0.0.4",
-    "@solarpunkltd/swarm-decentralized-chat": "^0.0.5",
+    "@solarpunkltd/swarm-decentralized-chat": "^0.0.15",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.3",

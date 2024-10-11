@@ -8,22 +8,38 @@ import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
-import { TestgetResourceId } from "../../utils/helpers";
+import { getResourceId, TestgetResourceId } from "../../utils/helpers";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
+
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
-    throw new Error("No private key found");
+    return (
+      <div className="notes-page-error">
+        No private key found
+        <NavigationFooter />
+      </div>
+    );
   }
 
-  
+
   return (
     <div className="spaces">
       <NavigationFooter />
-      
+      <div className="spaces__background">
+        <img
+          src={HomeBackground}
+          alt=""
+          width="100%"
+          height="100%"
+          className="spaces__background__img"
+        />
+      </div>
+
       <div className="spaces__content">
         {TEST_CATEGORIES.map((category) => (
           <div key={category} onClick={() => setSelectedChat(category)}>
@@ -32,19 +48,21 @@ const SpacesPage: React.FC = () => {
         ))}
       </div>
 
-      {selectedChat && <Chat
-        topic={selectedChat}
-        privKey={privKey}
-        stamp={process.env.STAMP as BatchId}
-        nickname={username}
-        gsocResourceId={TestgetResourceId(selectedChat)}
-        session={undefined}
-        topMenuColor={undefined}
-        originatorPage={"Spaces"}
-        originatorPageUrl={ROUTES.SPACES}
-        backAction={() => setSelectedChat(null)}
-        key={selectedChat}
-      />}
+      {selectedChat && (
+        <Chat
+          topic={selectedChat}
+          privKey={privKey}
+          stamp={process.env.STAMP as BatchId}
+          nickname={username}
+          gsocResourceId={TestgetResourceId(selectedChat)}
+          session={undefined}
+          topMenuColor={undefined}
+          originatorPage={"Spaces"}
+          originatorPageUrl={ROUTES.SPACES}
+          backAction={() => setSelectedChat(null)}
+          key={selectedChat}
+        />
+      )}
     </div>
   );
 };

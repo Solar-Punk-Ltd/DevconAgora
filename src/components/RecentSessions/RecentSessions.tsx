@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
@@ -81,7 +80,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
     <div>
       <div className="recent-sessions">
         <div style={{}} className="recent-sessions__title">
-          Recent sessions
+          Recent talks
         </div>
         <Link to={ROUTES.AGENDA}>
           <div className="recent-sessions__all">All sessions</div>

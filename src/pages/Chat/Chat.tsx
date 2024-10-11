@@ -72,17 +72,7 @@ const Chat: React.FC<ChatProps> = ({
     newChat.startMessageFetchProcess(topic);
     console.info("Message fetch process started.");
     newChat.startUserFetchProcess(topic);
-
-    // Connect to chat
-    await newChat
-      .registerUser(topic, {
-        participant: ownAddress,
-        key: privKey,
-        stamp,
-        nickName: nickname,
-      })
-      .then(() => console.info(`user registered.`))
-      .catch((err) => console.error(`registerUser error ${err.error}`));
+    // probably move this more down
 
     // Load users (first time when entering app)
     await newChat
@@ -106,9 +96,14 @@ const Chat: React.FC<ChatProps> = ({
 
   const filterMessages = (data: MessageData[]): MessageWithThread[] => {
     const threadCapableMessages: MessageWithThread[] = [];
-
     for (let i = 0; i < data.length; i++) {
-      const msgObj = JSON.parse(data[i].message);
+      let msgObj;
+      try {
+        msgObj = JSON.parse(data[i].message);
+      } catch (error) {
+        console.log(`error parsing message: ${data[i].message}:\n ${error}`);
+        return [];
+      }
       const address = data[i].address;
 
       if (msgObj.like) {

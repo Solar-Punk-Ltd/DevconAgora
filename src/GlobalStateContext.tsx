@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Session } from "./types/session";
+import { createMonogram } from "./utils/helpers";
 
 interface GlobalState {
   username: string;
@@ -36,10 +37,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   children,
 }) => {
   const [username, setUsername] = useState(() => {
-    return localStorage.getItem("username") || "Generated Nickname";
+    return localStorage.getItem("username") || "";
   });
   const [monogram, setMonogram] = useState(() => {
-    return localStorage.getItem("monogram") || "";
+    return createMonogram(localStorage.getItem("username") || "");
   });
 
   const [points, setPoints] = useState(() => {
@@ -62,11 +63,12 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   useEffect(() => {
     localStorage.setItem("username", username);
+    setMonogram(createMonogram(username));
   }, [username]);
 
-  useEffect(() => {
-    localStorage.setItem("monogram", monogram);
-  }, [monogram]);
+  // useEffect(() => {
+  //   localStorage.setItem("monogram", monogram);
+  // }, [monogram]);
 
   useEffect(() => {
     localStorage.setItem("points", points.toString());
@@ -78,6 +80,18 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
       isContentFilterEnabled.toString()
     );
   }, [isContentFilterEnabled]);
+
+  useEffect(() => {
+    if (!username) {
+      fetch(process.env.BACKEND_API_URL + "/username/" + username).then(
+        (resp) =>
+          resp.text().then((data) => {
+            setUsername(data);
+            setMonogram(createMonogram(data));
+          })
+      );
+    }
+  }, []);
 
   return (
     <GlobalStateContext.Provider

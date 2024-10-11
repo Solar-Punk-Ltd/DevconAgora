@@ -19,6 +19,7 @@ import {
   stringToBoolean,
 } from "../../utils/helpers";
 import { useGlobalState } from "../../GlobalStateContext";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();
@@ -86,6 +87,17 @@ const Agenda: React.FC = () => {
           )}
         </TabPanel>
       </div>
+      <div className="agenda-page__content__wrapper">
+        <div className="agenda-page__content__background">
+          <img
+            src={HomeBackground}
+            alt=""
+            width="100%"
+            height="100%"
+            className="agenda-page__content__background__img"
+          />
+        </div>
+      </div>
       <div className="agenda-page__content">
         <Dropdown
           items={Array.from(STAGES_MAP.values())}
@@ -107,11 +119,11 @@ const Agenda: React.FC = () => {
             />
           );
         })}
-        <NavigationFooter />
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />
         </div>
       </div>
+      <NavigationFooter />
     </div>
   ) : (
     <Categories

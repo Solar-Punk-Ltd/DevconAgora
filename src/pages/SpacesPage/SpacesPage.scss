@@ -6,4 +6,14 @@
 .spaces__content {
   overflow: scroll;
   padding: 16px;
+  position: relative;
+  z-index: 0;
+}
+
+.spaces__background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 0;
 }

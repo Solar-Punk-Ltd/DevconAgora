@@ -11,6 +11,7 @@ import { getSessionsByDay } from "../../utils/helpers";
 import { DATE_TO_DEVCON_DAY } from "../../utils/constants";
 
 // TODO: pre-upload talk feeds
+// TODO: pre-fetch recent or active talk feeds
 const TalkPage: React.FC = () => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
