@@ -72,8 +72,9 @@ const FullNotePage: React.FC = () => {
     navigate(ROUTES.NOTES);
   };
 
-  const handleUnsave = () => {
+  const handleUnsaved = () => {
     setShowUnsavePopUp(false);
+    handleSave();
     navigate(ROUTES.NOTES);
   };
 
@@ -192,7 +193,7 @@ const FullNotePage: React.FC = () => {
           leftButtonText="Discard"
           leftButtonHandler={() => handleUnsaveDiscard()}
           rightButtonText="Save"
-          rightButtonHandler={() => handleUnsave()}
+          rightButtonHandler={() => handleUnsaved()}
         />
       )}
       <div className="full-note-page__top">
