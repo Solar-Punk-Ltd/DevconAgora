@@ -12,7 +12,7 @@ import { useGlobalState } from "../../GlobalStateContext";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { TestgetResourceId,  getResourceId } from "../../utils/helpers";
-import { ROUTES, CATEGORIES, TEST_CATEGORIES } from "../../utils/constants";
+import { ROUTES, CATEGORIES, TEST_CATEGORIES, LOBBY_TOPIC } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
 
 const maxSessionsShown = 9;
@@ -51,6 +51,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
     setOrderedList(orderedRooms);
   }
 
+  const lobbyeUserCount = (): number => {
+    const lobby = orderedList.find((room) => room.topic === LOBBY_TOPIC);
+    if (!lobby) return 0;
+    if (lobby.userCount) return lobby.userCount;
+    else return 0;
+  }
+
   // We are reading user count values, when the component loads, and when selectedChat changes
   // (user is closing the Chat, and coming back to the Home Page)
   useEffect(() => {
@@ -83,7 +90,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             title="Devcon buzz space"
             content="Share your tought, chat with anybody without moderation and collect the reward."
             showActiveVisitors={true}
-            activeVisitors={110}
+            activeVisitors={lobbyeUserCount()}
             bordered={true}
             setSelectedChat={setSelectedChat}
           />
