@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { TEST_CATEGORIES, CATEGORIES } from "../../utils/constants";
+import { CATEGORIES, TEST_CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";

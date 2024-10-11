@@ -5,12 +5,15 @@ import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
 import { ROUTES } from "../../utils/constants";
 
+const LOBBY_TOPIC = "lobby::test";
+
 interface DevConMainBoxProps {
   title: string;
   content?: string;
   showActiveVisitors?: boolean;
   activeVisitors?: number;
   bordered?: boolean;
+  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const DevConMainBox: React.FC<DevConMainBoxProps> = ({
@@ -19,9 +22,10 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
   showActiveVisitors,
   activeVisitors,
   bordered,
+  setSelectedChat
 }) => {
   return (
-    <Link to={ROUTES.DEVCONLOUNGE}>
+    <div onClick={() => setSelectedChat(LOBBY_TOPIC)} >
       <div
         className={clsx("devcon-main-box", {
           "devcon-main-box__border": bordered,
@@ -33,7 +37,7 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
         ) : null}
         {showActiveVisitors ? <ActiveVisitors number={activeVisitors} /> : null}
       </div>
-    </Link>
+    </div>
   );
 };
 

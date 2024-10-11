@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";
-import { useGlobalState } from "../../GlobalStateContext";
+import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";exitCode
 import { RoomWithUserCounts } from "../../types/room";
+import { exitCode } from "process";
 
 interface SpacesProps {
   selectedChat: string | null,
@@ -15,7 +15,6 @@ const Spaces: React.FC<SpacesProps> = ({
   selectedChat,
   setSelectedChat
 }) => {
-  const { username } = useGlobalState();
   const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(TEST_CATEGORIES.map((catName) => ({
     topic: catName,
     url: "null",
