@@ -40,7 +40,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     return localStorage.getItem("username") || "";
   });
   const [monogram, setMonogram] = useState(() => {
-    return localStorage.getItem("monogram") || "";
+    return createMonogram(localStorage.getItem("username") || "");
   });
 
   const [points, setPoints] = useState(() => {
@@ -63,11 +63,12 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   useEffect(() => {
     localStorage.setItem("username", username);
+    setMonogram(createMonogram(username));
   }, [username]);
 
-  useEffect(() => {
-    localStorage.setItem("monogram", monogram);
-  }, [monogram]);
+  // useEffect(() => {
+  //   localStorage.setItem("monogram", monogram);
+  // }, [monogram]);
 
   useEffect(() => {
     localStorage.setItem("points", points.toString());

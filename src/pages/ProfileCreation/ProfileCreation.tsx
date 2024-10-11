@@ -22,7 +22,12 @@ const ProfileCreation: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+    if (!validateInput(e.target.value)) {
+      setError(true);
+    } else {
+      setUsername(e.target.value);
+      setError(false);
+    }
   };
 
   const handleEditClick = () => {
