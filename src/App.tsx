@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import "../src/styles/global.scss";
-import { ROUTES } from "./utils/constants";
+import { ROUTES, ADDRESS_HEX_LENGTH } from "./utils/constants";
 
 import backgroundVideo from "./assets/opening.mp4";
 import bySolarPunk from "./assets/by-solar-punk.png";
@@ -16,7 +16,13 @@ function App() {
   const isRegistered = () => {
     const privKey = localStorage.getItem("privKey");
     const username = localStorage.getItem("username");
-    if (privKey && username && username.length > 0 ) return true;
+    if (
+      privKey &&
+      privKey.slice(2).length === ADDRESS_HEX_LENGTH &&
+      username &&
+      username.length > 0
+    )
+      return true;
     else return false;
   };
 

@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Session } from "./types/session";
+import { createMonogram } from "./utils/helpers";
 
 interface GlobalState {
   username: string;
@@ -78,6 +79,18 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
       isContentFilterEnabled.toString()
     );
   }, [isContentFilterEnabled]);
+
+  useEffect(() => {
+    if (!username) {
+      fetch(process.env.BACKEND_API_URL + "/username/" + username).then(
+        (resp) =>
+          resp.text().then((data) => {
+            setUsername(data);
+            setMonogram(createMonogram(data));
+          })
+      );
+    }
+  }, []);
 
   return (
     <GlobalStateContext.Provider

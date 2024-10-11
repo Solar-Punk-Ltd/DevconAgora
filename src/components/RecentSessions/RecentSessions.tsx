@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
