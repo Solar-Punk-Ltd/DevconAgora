@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { CATEGORIES, ROUTES } from "../../utils/constants";
+import { TEST_CATEGORIES, CATEGORIES, ROUTES } from "../../utils/constants";
 import Chat from "../../pages/Chat/Chat";
 import { useGlobalState } from "../../GlobalStateContext";
 import { RoomWithUserCounts } from "../../types/room";
 import { BatchId } from "@ethersphere/bee-js";
+import { getResourceId, TestgetResourceId } from "../../utils/helpers";
 
 /** Ordered Spaces list (ordered by activity) */
 const Spaces: React.FC = () => {
   const { username } = useGlobalState();
-  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(CATEGORIES.map((catName) => ({
+  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(TEST_CATEGORIES.map((catName) => ({
     topic: catName,
     url: "null",
     gateway: "null",
-    userCount: 0
+    userCount: undefined
   })));
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
+
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
     throw new Error("No private key found");
   }
 
+  // User count refreshes every 15 minutes on backend. We are only fetching it, when the page loads.
   const fetchUserCount = async () => {
     const roomsWithUserCount: RoomWithUserCounts[] = await fetch(process.env.BACKEND_API_URL + "/user-count")
       .then((res) => res.json())
@@ -29,7 +32,6 @@ const Spaces: React.FC = () => {
       .catch((err) => console.error("Error fetching user counts ", err));
 
     const orderedRooms = roomsWithUserCount.sort((a, b) => a.userCount! - b.userCount!);
-
     console.log("Rooms with user counts: ", orderedList)
 
     setOrderedList(orderedRooms);
@@ -37,15 +39,6 @@ const Spaces: React.FC = () => {
 
   useEffect(() => {
     fetchUserCount();
-
-    return () => {
-      setOrderedList(CATEGORIES.map((catName) => ({
-        topic: catName,
-        url: "null",
-        gateway: "null",
-        userCount: 0
-      })));
-    }
   }, []);
 
   
@@ -57,7 +50,7 @@ const Spaces: React.FC = () => {
 
       <div>
         {orderedList.map((room) => (
-          <div key={room.topic}>
+          <div key={room.topic} onClick={() => setSelectedChat(room.topic)}>
             <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount!} />
           </div>
         ))}
