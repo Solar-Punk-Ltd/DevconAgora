@@ -80,7 +80,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
     <div>
       <div className="recent-sessions">
         <div style={{}} className="recent-sessions__title">
-          Recent sessions
+          Recent talks
         </div>
         <Link to={ROUTES.AGENDA}>
           <div className="recent-sessions__all">All sessions</div>

@@ -146,6 +146,31 @@ export const CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Security", "security"],
 ]);
 
+export const CATEGORY_IMAGES_MAP = new Map([
+  ["Layer 2s", "/DevconAgora/src/assets/category-layer-2s.png"],
+  ["Core protocol", "/DevconAgora/src/assets/category-core-protocol.png"],
+  [
+    "Cypherpunk and privacy",
+    "/DevconAgora/src/assets/category-cypherpunk-and-privacy.png",
+  ],
+  ["Usability", "/DevconAgora/src/assets/category-usability.png"],
+  [
+    "Real World Ethereum",
+    "/DevconAgora/src/assets/category-real-world-ethereum.png",
+  ],
+  [
+    "Applied Cryptography",
+    "/DevconAgora/src/assets/category-applied-cryptography.png",
+  ],
+  ["Cryptoeconomics", "/DevconAgora/src/assets/category-crypto-economics.png"],
+  ["Coordination", "/DevconAgora/src/assets/category-coordination.png"],
+  [
+    "Developer Experience",
+    "/DevconAgora/src/assets/category-developer-experience.png",
+  ],
+  ["Security", "/DevconAgora/src/assets/category-security.png"],
+]);
+
 export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
   ["Layer 2s::test", "layer-2s-test"],
   ["Core protocol::test", "core-protocol-test"],

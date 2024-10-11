@@ -27,8 +27,8 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     }
   };
   return (
-    <div className="navigation-header">
-      <div onClick={handleNavigation} className="navigation-header__link">
+    <div className="navigation-header" onClick={handleNavigation}>
+      <div className="navigation-header__link">
         <LeftNavigationIcon />
       </div>
       <div className="navigation-header__text">{formattedTo}</div>

@@ -19,15 +19,13 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
   activeVisitors,
 }) => {
   return (
-    <div className="recent-sessions-item">
-      <Link to={`${ROUTES.TALKS}/${id}`}>
-        <div className="recent-sessions-item__title">{title}</div>
-      </Link>
+    <Link to={`${ROUTES.TALKS}/${id}`} className="recent-sessions-item">
+      <div className="recent-sessions-item__title">{title}</div>
       <div className="recent-sessions-item__stage">
         <Stage name={stage} />
       </div>
       <ActiveVisitors number={activeVisitors} />
-    </div>
+    </Link>
   );
 };
 
