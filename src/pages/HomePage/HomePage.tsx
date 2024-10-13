@@ -10,14 +10,12 @@ import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
 
-const maxSessionsShown = 9;
-
 interface HomePageProps {
   isLoaded?: boolean;
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
-  const { sessions, points } = useGlobalState();
+  const { points } = useGlobalState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -48,10 +46,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             activeVisitors={110}
             bordered={true}
           />
-          <RecentSessions
-            sessions={sessions}
-            maxSessionsShown={maxSessionsShown}
-          />
+          <RecentSessions />
           <Spaces />
         </div>
       )}

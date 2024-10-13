@@ -5,13 +5,9 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { LastNComments } from "@solarpunkltd/comment-system";
 import { Session } from "./types/session";
+import { TalkComment } from "./types/talkComment";
 import { createMonogram } from "./utils/helpers";
-
-export interface TalkCommentProps extends LastNComments {
-  talkId: string;
-}
 
 interface GlobalState {
   username: string;
@@ -24,9 +20,11 @@ interface GlobalState {
   setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
   sessions: Map<string, Session[]>;
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
-  loadedTalks: TalkCommentProps[] | undefined;
+  recentSessions: Session[];
+  setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
+  loadedTalks: TalkComment[] | undefined;
   setLoadedTalks: React.Dispatch<
-    React.SetStateAction<TalkCommentProps[] | undefined>
+    React.SetStateAction<TalkComment[] | undefined>
   >;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,9 +70,9 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     new Map<string, Session[]>()
   );
 
-  const [loadedTalks, setLoadedTalks] = useState<
-    TalkCommentProps[] | undefined
-  >();
+  const [recentSessions, setRecentSessions] = useState<Session[]>([]);
+
+  const [loadedTalks, setLoadedTalks] = useState<TalkComment[] | undefined>();
 
   useEffect(() => {
     localStorage.setItem("username", username);
@@ -121,6 +119,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setShowGamification,
         sessions,
         setSessions,
+        recentSessions,
+        setRecentSessions,
         loadedTalks,
         setLoadedTalks,
         isContentFilterEnabled,

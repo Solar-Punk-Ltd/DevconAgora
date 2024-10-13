@@ -138,3 +138,17 @@ export function isEmpty(obj?: object) {
   }
   return Object.keys(obj).length === 0;
 }
+
+export const findSlotStartIx = (
+  startIx: number,
+  sessionsByDay: Session[],
+  time: number
+): number => {
+  for (let i = startIx; i < sessionsByDay.length; i++) {
+    const slotStart = sessionsByDay[i].slot_start;
+    if (slotStart && new Date(slotStart).getTime() > time) {
+      return i > 0 ? i - 1 : 0;
+    }
+  }
+  return -1;
+};

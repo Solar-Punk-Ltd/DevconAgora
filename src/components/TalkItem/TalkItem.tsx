@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import { Comment } from "@solarpunkltd/comment-system";
 import "./TalkItem.scss";
+import { useGlobalState } from "../../GlobalStateContext";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
 import { DUMMY_STAMP } from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
-import { useGlobalState } from "../../GlobalStateContext";
+import { getTopic } from "../../utils/bee";
 
 interface TalkItemProps {
   session: Session;
@@ -17,7 +18,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username, loadedTalks, setLoadedTalks } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
 
-  const rawTalkTopic = session.id + "test1";
+  const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
   const signer = getSigner(wallet);
   const [startIx, setStartIx] = useState<number>(0);

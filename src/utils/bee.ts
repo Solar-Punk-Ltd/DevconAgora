@@ -82,3 +82,12 @@ export async function updateFeed(
     return "";
   }
 }
+
+// TOOD: remove test1
+export function getTopic(topic: string, raw: boolean): string {
+  if (raw) {
+    return topic + "test1";
+  }
+  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
+  return bee.makeFeedTopic(topic);
+}
