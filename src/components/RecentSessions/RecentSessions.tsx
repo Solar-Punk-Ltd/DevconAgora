@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
-import "./RecentSessions.scss";
 import { Link } from "react-router-dom";
+import { loadLastNComments } from "@solarpunkltd/comment-system-ui";
+import { LastNComments } from "@solarpunkltd/comment-system";
+import { TalkCommentProps, useGlobalState } from "../../GlobalStateContext";
+import "./RecentSessions.scss";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
 import { Session } from "../../types/session";
-import { FIVE_MINUTES, ROUTES, STAGES_MAP } from "../../utils/constants";
-import { getSessionsByDay } from "../../utils/helpers";
+import {
+  FIVE_MINUTES,
+  ROUTES,
+  STAGES_MAP,
+  DUMMY_STAMP,
+} from "../../utils/constants";
+import {
+  getSessionsByDay,
+  getSigner,
+  getWallet,
+  isEmpty,
+} from "../../utils/helpers";
 
 const mockStartTime = new Date("2022-10-11T12:15:00.000Z");
+const numOfPreloadedTalks = 9;
 
 interface SessionBoxProps {
   sessions: Map<string, Session[]>;
@@ -17,6 +31,7 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
   sessions,
   maxSessionsShown = 9,
 }) => {
+  const { loadedTalks, setLoadedTalks } = useGlobalState();
   const [recentSessions, setRecentSessions] = useState<Session[]>([]);
   const [sessionIndex, setSessionIndex] = useState<number>(0);
   const [time, setTime] = useState<number>(mockStartTime.getTime());
@@ -76,12 +91,69 @@ const RecentSessions: React.FC<SessionBoxProps> = ({
     filterRecentSessions();
   }, [sessions, time]);
 
+  const preLoadTalks = async () => {
+    try {
+      const stamp = process.env.STAMP || DUMMY_STAMP;
+      const preLoadedTalks: TalkCommentProps[] = [];
+      const commentPromises: Promise<LastNComments>[] = [];
+      const talkIds: string[] = [];
+      for (let i = 0; i < recentSessions.length; i++) {
+        const sessionId = recentSessions[i].id;
+        const rawTalkTopic = sessionId + "test1";
+        const wallet = getWallet(rawTalkTopic);
+        const signer = getSigner(wallet);
+        // only load the talks that are not already loaded
+        if (loadedTalks) {
+          const foundIx = loadedTalks.findIndex(
+            (talk) => talk.talkId === sessionId
+          );
+          if (foundIx > -1) {
+            preLoadedTalks.push(loadedTalks[foundIx]);
+            continue;
+          }
+        }
+        commentPromises.push(
+          loadLastNComments(
+            stamp,
+            rawTalkTopic,
+            signer,
+            process.env.BEE_API_URL,
+            numOfPreloadedTalks
+          )
+        );
+        talkIds.push(sessionId);
+      }
+
+      await Promise.allSettled(commentPromises).then((results) => {
+        results.forEach((result, i) => {
+          if (result.status === "fulfilled") {
+            if (result.value && !isEmpty(result.value)) {
+              preLoadedTalks.push({
+                talkId: talkIds[i],
+                comments: result.value.comments,
+                nextIndex: result.value.nextIndex,
+              });
+            }
+          } else {
+            console.log(`pre-loading talks error: `, result.reason);
+          }
+        });
+      });
+
+      setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
+    } catch (error) {
+      console.log("pre-loading talks error: ", error);
+    }
+  };
+
+  useEffect(() => {
+    preLoadTalks();
+  }, [recentSessions]);
+
   return (
     <div>
       <div className="recent-sessions">
-        <div style={{}} className="recent-sessions__title">
-          Recent talks
-        </div>
+        <div className="recent-sessions__title">Recent talks</div>
         <Link to={ROUTES.AGENDA}>
           <div className="recent-sessions__all">All sessions</div>
         </Link>

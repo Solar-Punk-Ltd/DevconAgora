@@ -1,14 +1,14 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useGlobalState } from "../../GlobalStateContext";
+import "./HomePage.scss";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
-import "./HomePage.scss";
-import { useEffect, useState } from "react";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
-import { useGlobalState } from "../../GlobalStateContext";
 
 const maxSessionsShown = 9;
 
@@ -17,9 +17,8 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
-  const { sessions } = useGlobalState();
+  const { sessions, points } = useGlobalState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { points } = useGlobalState();
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -38,11 +38,6 @@ export async function getData(ref: string): Promise<string> {
   }
 }
 
-export function getTopic(rawTopic: string): string {
-  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
-  return bee.makeFeedTopic(rawTopic);
-}
-
 export async function uploadData(
   stamp: string,
   data: string | Uint8Array

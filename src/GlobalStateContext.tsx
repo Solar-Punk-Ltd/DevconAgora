@@ -5,8 +5,13 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { LastNComments } from "@solarpunkltd/comment-system";
 import { Session } from "./types/session";
 import { createMonogram } from "./utils/helpers";
+
+export interface TalkCommentProps extends LastNComments {
+  talkId: string;
+}
 
 interface GlobalState {
   username: string;
@@ -19,6 +24,10 @@ interface GlobalState {
   setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
   sessions: Map<string, Session[]>;
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
+  loadedTalks: TalkCommentProps[] | undefined;
+  setLoadedTalks: React.Dispatch<
+    React.SetStateAction<TalkCommentProps[] | undefined>
+  >;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   isTermsAndConditionsAccepted: boolean;
@@ -36,30 +45,36 @@ interface GlobalStateProviderProps {
 export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   children,
 }) => {
-  const [username, setUsername] = useState(() => {
+  const [username, setUsername] = useState<string>(() => {
     return localStorage.getItem("username") || "";
   });
-  const [monogram, setMonogram] = useState(() => {
+  const [monogram, setMonogram] = useState<string>(() => {
     return createMonogram(localStorage.getItem("username") || "");
   });
 
-  const [points, setPoints] = useState(() => {
+  const [points, setPoints] = useState<number>(() => {
     const storedPoints = localStorage.getItem("points");
     return storedPoints ? parseInt(storedPoints, 10) : 0;
   });
 
-  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState(() => {
-    const storedValue = localStorage.getItem("isContentFilterEnabled");
-    return storedValue === null ? true : storedValue === "true";
-  });
+  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState<boolean>(
+    () => {
+      const storedValue = localStorage.getItem("isContentFilterEnabled");
+      return storedValue === null ? true : storedValue === "true";
+    }
+  );
 
-  const [showGamification, setShowGamification] = useState(false);
+  const [showGamification, setShowGamification] = useState<boolean>(false);
   const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] =
-    useState(false);
+    useState<boolean>(false);
 
   const [sessions, setSessions] = useState<Map<string, Session[]>>(
     new Map<string, Session[]>()
   );
+
+  const [loadedTalks, setLoadedTalks] = useState<
+    TalkCommentProps[] | undefined
+  >();
 
   useEffect(() => {
     localStorage.setItem("username", username);
@@ -106,6 +121,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setShowGamification,
         sessions,
         setSessions,
+        loadedTalks,
+        setLoadedTalks,
         isContentFilterEnabled,
         setIsContentFilterEnabled,
         isTermsAndConditionsAccepted,

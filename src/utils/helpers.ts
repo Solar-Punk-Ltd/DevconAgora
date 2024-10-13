@@ -1,4 +1,4 @@
-import { Wallet } from "ethers";
+import { Wallet, hexlify } from "ethers";
 import { Session } from "../types/session";
 import { DATE_TO_DEVCON_DAY } from "../utils/constants";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
@@ -107,6 +107,11 @@ export function textExtract(content: string): string {
   }
 }
 
+export function getWallet(input: string): Wallet {
+  const privateKey = Utils.keccak256Hash(input);
+  return new Wallet(hexlify(privateKey));
+}
+
 export function getSigner(wallet: Wallet): Signer {
   const signer: Signer = {
     address: Utils.hexToBytes(wallet.address.slice(2)),
@@ -126,3 +131,10 @@ export const handleKeyDown = (
     callback();
   }
 };
+
+export function isEmpty(obj?: object) {
+  if (!obj) {
+    return true;
+  }
+  return Object.keys(obj).length === 0;
+}
