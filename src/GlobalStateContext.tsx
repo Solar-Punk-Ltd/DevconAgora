@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Session } from "./types/session";
-import { TalkComment } from "./types/talkComment";
+import { TalkComments } from "./types/talkComment";
 import { createMonogram } from "./utils/helpers";
 
 interface GlobalState {
@@ -22,9 +22,9 @@ interface GlobalState {
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
   recentSessions: Session[];
   setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
-  loadedTalks: TalkComment[] | undefined;
+  loadedTalks: TalkComments[] | undefined;
   setLoadedTalks: React.Dispatch<
-    React.SetStateAction<TalkComment[] | undefined>
+    React.SetStateAction<TalkComments[] | undefined>
   >;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
@@ -72,7 +72,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   const [recentSessions, setRecentSessions] = useState<Session[]>([]);
 
-  const [loadedTalks, setLoadedTalks] = useState<TalkComment[] | undefined>();
+  const [loadedTalks, setLoadedTalks] = useState<TalkComments[] | undefined>();
 
   useEffect(() => {
     localStorage.setItem("username", username);

@@ -5,7 +5,6 @@ import {
   DEFAULT_URL,
 } from "../utils/constants";
 
-// TODO: global bee var vs init in every function ?
 export async function getFeedUpdate(
   owner: string,
   rawTopic: string

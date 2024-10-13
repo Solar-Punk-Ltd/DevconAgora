@@ -1,5 +1,5 @@
-import { LastNComments } from "@solarpunkltd/comment-system";
+import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 
-export interface TalkComment extends LastNComments {
+export interface TalkComments extends CommentsWithIndex {
   talkId: string;
 }

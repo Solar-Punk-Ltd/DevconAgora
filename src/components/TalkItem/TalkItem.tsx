@@ -5,15 +5,14 @@ import "./TalkItem.scss";
 import { useGlobalState } from "../../GlobalStateContext";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
-import { DUMMY_STAMP } from "../../utils/constants";
+import { DUMMY_STAMP, MAX_COMMENTS_LOADED } from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
 import { getTopic } from "../../utils/bee";
 
 interface TalkItemProps {
   session: Session;
 }
-// TODO: if talk not found in loadedTalks, then replace tha oldest talk with this one
-// TODO: load comments on-scroll
+// TODO: load comments on-scroll -> use startix, endix
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username, loadedTalks, setLoadedTalks } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
@@ -24,33 +23,45 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const [startIx, setStartIx] = useState<number>(0);
   const [endIx, setEndIx] = useState<number>(0);
 
-  const hanldeOnComment = (newComment: Comment, ix: number) => {
-    setEndIx(ix);
+  // update the loaded talk comments with the new comment
+  // if the talk is not found, then replace the oldest talk with the new one
+  const hanldeOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
     setComments(updatedComments);
+    const newLoadedTalks = [...(loadedTalks || [])];
     if (loadedTalks) {
       const foundIx = loadedTalks.findIndex(
         (talk) => talk.talkId === session.id
       );
       if (foundIx > -1) {
-        const tmpLoadedTalks = [...loadedTalks];
-        tmpLoadedTalks[foundIx].comments = updatedComments;
-        setLoadedTalks(tmpLoadedTalks);
+        newLoadedTalks[foundIx].comments = updatedComments;
+      } else {
+        newLoadedTalks.splice(newLoadedTalks.length - 1, 1, {
+          talkId: session.id,
+          comments: updatedComments,
+          nextIndex: endIx + 1,
+        });
       }
     }
+    setLoadedTalks(newLoadedTalks);
   };
 
-  const hanldeOnRead = (ix: number) => {
-    setStartIx(ix);
+  const hanldeOnRead = (start: number, end: number) => {
+    setStartIx(start);
+    setEndIx(end);
+    console.log("start index", startIx);
+    console.log("end index", endIx);
   };
 
+  // TODO: periodically update the comments
+  // TODO: swarmcommentsystem load before the talk is found, therefore the comments are not loaded
   useEffect(() => {
     if (loadedTalks) {
       const talk = loadedTalks.find((talk) => talk.talkId === session.id);
       if (talk && talk.comments) {
         setComments(talk.comments);
         setStartIx(talk.nextIndex - talk.comments.length);
-        setEndIx(talk.nextIndex);
+        setEndIx(talk.nextIndex - 1);
       }
     }
   }, []);
@@ -81,10 +92,9 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
         beeApiUrl={process.env.BEE_API_URL}
         username={username}
         preloadedCommnets={comments}
-        startIx={startIx}
-        endIx={endIx}
         onComment={hanldeOnComment}
         onRead={hanldeOnRead}
+        numOfComments={MAX_COMMENTS_LOADED}
       />
     </>
   );

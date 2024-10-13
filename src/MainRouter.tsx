@@ -1,8 +1,8 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { loadLastNComments } from "@solarpunkltd/comment-system-ui";
-import { LastNComments } from "@solarpunkltd/comment-system";
-import { TalkComment } from "./types/talkComment";
+import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
+import { CommentsWithIndex } from "@solarpunkltd/comment-system";
+import { TalkComments } from "./types/talkComment";
 import { useGlobalState } from "./GlobalStateContext";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
@@ -205,8 +205,8 @@ const MainRouter = (): ReactElement => {
   const preLoadTalks = async () => {
     try {
       const stamp = process.env.STAMP || DUMMY_STAMP;
-      const preLoadedTalks: TalkComment[] = [];
-      const commentPromises: Promise<LastNComments>[] = [];
+      const preLoadedTalks: TalkComments[] = [];
+      const commentPromises: Promise<CommentsWithIndex>[] = [];
       const talkIds: string[] = [];
       for (let i = 0; i < recentSessions.length; i++) {
         const sessionId = recentSessions[i].id;
@@ -224,7 +224,7 @@ const MainRouter = (): ReactElement => {
           }
         }
         commentPromises.push(
-          loadLastNComments(
+          loadLatestComments(
             stamp,
             rawTalkTopic,
             signer,
