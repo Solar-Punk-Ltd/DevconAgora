@@ -1,9 +1,8 @@
 import React from "react";
 import "./DevConMainBox.scss";
-import { Link } from "react-router-dom";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
-import { ROUTES } from "../../utils/constants";
+import { LOBBY_TOPIC } from "../../utils/constants";
 
 interface DevConMainBoxProps {
   title: string;
@@ -11,6 +10,7 @@ interface DevConMainBoxProps {
   showActiveVisitors?: boolean;
   activeVisitors?: number;
   bordered?: boolean;
+  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const DevConMainBox: React.FC<DevConMainBoxProps> = ({
@@ -19,9 +19,10 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
   showActiveVisitors,
   activeVisitors,
   bordered,
+  setSelectedChat
 }) => {
   return (
-    <Link to={ROUTES.DEVCONLOUNGE}>
+    <div onClick={() => setSelectedChat(LOBBY_TOPIC)} >
       <div
         className={clsx("devcon-main-box", {
           "devcon-main-box__border": bordered,
@@ -33,7 +34,7 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
         ) : null}
         {showActiveVisitors ? <ActiveVisitors number={activeVisitors} /> : null}
       </div>
-    </Link>
+    </div>
   );
 };
 

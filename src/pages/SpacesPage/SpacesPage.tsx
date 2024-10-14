@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import {
-  CATEGORY_NAMES_TO_ID_MAP,
-  RESOURCE_IDS,
-  TEST_CATEGORIES,
-  TEST_CATEGPRY_NAMES_TO_ID_MAP,
-  TEST_RESOURCE_IDS,
-} from "../../utils/constants";
+import { TEST_CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
+import { TestgetResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 const SpacesPage: React.FC = () => {
@@ -29,33 +23,6 @@ const SpacesPage: React.FC = () => {
       </div>
     );
   }
-  const TestgetResourceId = (category: string) => {
-    const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
-    if (categoryId) {
-      const result = TEST_RESOURCE_IDS.get(categoryId);
-      if (result) {
-        return result;
-      } else {
-        return "";
-      }
-    } else {
-      return "";
-    }
-  };
-
-  const getResourceId = (category: string) => {
-    const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
-    if (categoryId) {
-      const result = RESOURCE_IDS.get(categoryId);
-      if (result) {
-        return result;
-      } else {
-        return "";
-      }
-    } else {
-      return "";
-    }
-  };
 
   return (
     <div className="spaces">
@@ -69,6 +36,7 @@ const SpacesPage: React.FC = () => {
           className="spaces__background__img"
         />
       </div>
+
       <div className="spaces__content">
         {TEST_CATEGORIES.map((category) => (
           <div key={category} onClick={() => setSelectedChat(category)}>
