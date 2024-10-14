@@ -79,10 +79,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     setMonogram(createMonogram(username));
   }, [username]);
 
-  // useEffect(() => {
-  //   localStorage.setItem("monogram", monogram);
-  // }, [monogram]);
-
   useEffect(() => {
     localStorage.setItem("points", points.toString());
   }, [points]);

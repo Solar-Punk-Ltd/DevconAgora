@@ -18,6 +18,7 @@ import {
 } from "../../utils/bee";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 
+// TODO: comment max characters ?
 const maxCharacters = 4096;
 
 const FullNotePage: React.FC = () => {
@@ -30,7 +31,7 @@ const FullNotePage: React.FC = () => {
   }
   const [currentNote, setCurrentNote] = useState<NoteItemProps>({});
   const [showRemovePopUp, setShowRemovePopUp] = useState(false);
-  const [showUnsavePopUp, setShowUnsavePopUp] = useState(false);
+  const [showUnsavedPopUp, setShowUnsavedPopUp] = useState(false);
   const [sending, setSending] = useState(false);
   const [saved, setSaved] = useState(true);
 
@@ -46,12 +47,15 @@ const FullNotePage: React.FC = () => {
   };
 
   // calculate the topic from the note text
+  // if note has an id, use it as topic
   const calcRawNoteTopic = (): string => {
     let rawNoteTopic = "";
-    if (currentNote.text && currentNote.text.length > 0) {
-      rawNoteTopic = currentNote.id
-        ? currentNote.id
-        : hexlify(Utils.keccak256Hash(currentNote.text)).slice(2);
+    if (currentNote.id && currentNote.id.length > 0) {
+      rawNoteTopic = currentNote.id;
+    } else {
+      if (currentNote.text && currentNote.text.length > 0) {
+        rawNoteTopic = hexlify(Utils.keccak256Hash(currentNote.text)).slice(2);
+      }
     }
     return rawNoteTopic;
   };
@@ -60,20 +64,23 @@ const FullNotePage: React.FC = () => {
     setShowRemovePopUp(false);
     const rawNoteTopic = calcRawNoteTopic();
     if (rawNoteTopic.length > 0) {
-      addRemoveTopicToLocalStore(rawNoteTopic, true);
-      // do not wait for save to finish
-      saveNote(rawNoteTopic);
+      const remove = true;
+      const tmpNote = { ...currentNote };
+      tmpNote.text = "";
+      setCurrentNote(tmpNote);
+      addRemoveTopicToLocalStore(rawNoteTopic, remove);
+      saveNote(rawNoteTopic, remove);
     }
     navigate(ROUTES.NOTES);
   };
 
   const handleUnsaveDiscard = () => {
-    setShowUnsavePopUp(false);
+    setShowUnsavedPopUp(false);
     navigate(ROUTES.NOTES);
   };
 
   const handleUnsaved = () => {
-    setShowUnsavePopUp(false);
+    setShowUnsavedPopUp(false);
     handleSave();
     navigate(ROUTES.NOTES);
   };
@@ -111,14 +118,30 @@ const FullNotePage: React.FC = () => {
     localStorage.setItem(SELF_NOTE_TOPIC, topicsArray.join(","));
   };
 
-  // TODO: empty text == remove note ?
-  const saveNote = async (rawNoteTopic: string) => {
-    if (!currentNote.text || currentNote.text.length === 0) return;
+  const handleSave = async () => {
+    const rawNoteTopic = calcRawNoteTopic();
+    if (rawNoteTopic.length > 0) {
+      const remove = false;
+      addRemoveTopicToLocalStore(rawNoteTopic, remove);
+      saveNote(rawNoteTopic, remove);
+    }
+  };
+
+  const saveNote = async (rawNoteTopic: string, remove: boolean) => {
+    let text = currentNote.text;
+    if (remove) {
+      text = "";
+    } else {
+      // save empty note, if note already exists
+      if (saved && (!text || text.length === 0)) {
+        return;
+      }
+    }
 
     const date = new Date();
     const noteObj: NoteItemProps = {
       id: rawNoteTopic,
-      text: currentNote.text,
+      text: text,
       date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
       time: dateToTime(date.toISOString()),
     };
@@ -137,16 +160,7 @@ const FullNotePage: React.FC = () => {
       dataRef
     );
     setSending(false);
-  };
-
-  const handleSave = async () => {
-    const rawNoteTopic = calcRawNoteTopic();
-    if (rawNoteTopic.length > 0) {
-      addRemoveTopicToLocalStore(rawNoteTopic, false);
-      // do not wait for save to finish
-      saveNote(rawNoteTopic);
-      setSaved(true);
-    }
+    setSaved(true);
   };
 
   const fetchNote = async (topic: string) => {
@@ -187,7 +201,7 @@ const FullNotePage: React.FC = () => {
           rightButtonHandler={handleRemove}
         />
       )}
-      {showUnsavePopUp && (
+      {showUnsavedPopUp && (
         <PopUpQuestion
           question="Your note is not saved yet!"
           leftButtonText="Discard"
@@ -205,7 +219,7 @@ const FullNotePage: React.FC = () => {
               if (!currentNote.text || currentNote.text.length === 0 || saved) {
                 return navigate(ROUTES.NOTES);
               } else {
-                return setShowUnsavePopUp(true);
+                return setShowUnsavedPopUp(true);
               }
             }}
           />
@@ -233,7 +247,7 @@ const FullNotePage: React.FC = () => {
           Remove
         </WelcomeButton>
         <WelcomeButton
-          version={sending ? "inactive" : "filled"}
+          version={sending || saved ? "inactive" : "filled"}
           onClick={() => handleSave()}
         >
           Save

@@ -25,6 +25,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
 
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
+  // TODO: use MAX_PRELOADED_TALKS
   const hanldeOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
     setComments(updatedComments);
@@ -58,10 +59,18 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   useEffect(() => {
     if (loadedTalks) {
       const talk = loadedTalks.find((talk) => talk.talkId === session.id);
+      const newLoadedTalks = [...(loadedTalks || [])];
       if (talk && talk.comments) {
         setComments(talk.comments);
         setStartIx(talk.nextIndex - talk.comments.length);
         setEndIx(talk.nextIndex - 1);
+      } else {
+        newLoadedTalks.splice(newLoadedTalks.length - 1, 1, {
+          talkId: session.id,
+          comments: [],
+          nextIndex: 0,
+        });
+        setLoadedTalks(newLoadedTalks);
       }
     }
   }, []);
