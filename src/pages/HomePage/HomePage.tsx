@@ -36,7 +36,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
     return (
-      <div className="notes-page-error">
+      <div className="home-page-error">
         No private key found
         <NavigationFooter />
       </div>
