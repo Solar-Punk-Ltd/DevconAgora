@@ -5,7 +5,11 @@ import "./TalkItem.scss";
 import { useGlobalState } from "../../GlobalStateContext";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Session } from "../../types/session";
-import { DUMMY_STAMP, MAX_COMMENTS_LOADED } from "../../utils/constants";
+import {
+  DUMMY_STAMP,
+  MAX_CHARACTER_COUNT,
+  MAX_COMMENTS_LOADED,
+} from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
 import { getTopic } from "../../utils/bee";
 
@@ -104,6 +108,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
         onComment={hanldeOnComment}
         onRead={hanldeOnRead}
         numOfComments={MAX_COMMENTS_LOADED}
+        maxCharacterCount={MAX_CHARACTER_COUNT}
       />
     </>
   );

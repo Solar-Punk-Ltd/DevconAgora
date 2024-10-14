@@ -7,7 +7,11 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
-import { ROUTES, ADDRESS_HEX_LENGTH } from "../../utils/constants";
+import {
+  ROUTES,
+  ADDRESS_HEX_LENGTH,
+  MAX_CHARACTER_COUNT,
+} from "../../utils/constants";
 import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../utils/constants";
 import { getSigner, dateToTime } from "../../utils/helpers";
 import {
@@ -17,9 +21,6 @@ import {
   getData,
 } from "../../utils/bee";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
-
-// TODO: comment max characters ?
-const maxCharacters = 4096;
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const FullNotePage: React.FC = () => {
   const [saved, setSaved] = useState(true);
 
   const handleOnChange = (txt: string) => {
-    if (txt.length <= maxCharacters) {
+    if (txt.length <= MAX_CHARACTER_COUNT) {
       const tmpNote = { ...currentNote };
       tmpNote.text = txt;
       setCurrentNote(tmpNote);
@@ -225,7 +226,7 @@ const FullNotePage: React.FC = () => {
           />
           <div className="full-note-page__top__header__counter">
             <span className="bold">{currentNote.text?.length || 0}</span>/
-            {maxCharacters.toString()}
+            {MAX_CHARACTER_COUNT.toString()}
           </div>
         </div>
         <div className="full-note-page__input">

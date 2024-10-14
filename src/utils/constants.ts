@@ -11,6 +11,8 @@ export const MAX_PRELOADED_TALKS = 11;
 export const MAX_COMMENTS_LOADED = 9;
 export const MAX_SESSIONS_SHOWN = 9;
 export const LOBBY_TOPIC = "lobby::test";
+export const MAX_CHARACTER_COUNT = 4096;
+
 import Layer2s from "../assets/category-layer-2s.png";
 import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
 import Security from "../assets/category-security.png";
