@@ -6,6 +6,16 @@ export const DEFAULT_URL = "http://localhost:1633/";
 export const DUMMY_STAMP =
   "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
 export const SELF_NOTE_TOPIC = "selfNoteTopics";
+import Layer2s from "../assets/category-layer-2s.png";
+import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
+import Security from "../assets/category-security.png";
+import Usability from "../assets/category-usability.png";
+import DeveloperExperience from "../assets/category-developer-experience.png";
+import CypherpunkAndPrivacy from "../assets/category-cypherpunk-and-privacy.png";
+import CryptoEconomics from "../assets/category-crypto-economics.png";
+import CoreProtocol from "../assets/category-core-protocol.png";
+import Coordination from "../assets/category-coordination.png";
+import AppliedCryptography from "../assets/category-applied-cryptography.png";
 
 export enum ROUTES {
   APP = "/",
@@ -149,28 +159,16 @@ export const CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 export const CATEGORY_IMAGES_MAP = new Map([
-  ["Layer 2s", "/DevconAgora/src/assets/category-layer-2s.png"],
-  ["Core protocol", "/DevconAgora/src/assets/category-core-protocol.png"],
-  [
-    "Cypherpunk and privacy",
-    "/DevconAgora/src/assets/category-cypherpunk-and-privacy.png",
-  ],
-  ["Usability", "/DevconAgora/src/assets/category-usability.png"],
-  [
-    "Real World Ethereum",
-    "/DevconAgora/src/assets/category-real-world-ethereum.png",
-  ],
-  [
-    "Applied Cryptography",
-    "/DevconAgora/src/assets/category-applied-cryptography.png",
-  ],
-  ["Cryptoeconomics", "/DevconAgora/src/assets/category-crypto-economics.png"],
-  ["Coordination", "/DevconAgora/src/assets/category-coordination.png"],
-  [
-    "Developer Experience",
-    "/DevconAgora/src/assets/category-developer-experience.png",
-  ],
-  ["Security", "/DevconAgora/src/assets/category-security.png"],
+  ["Layer 2s::test", Layer2s],
+  ["Core protocol::test", CoreProtocol],
+  ["Cypherpunk and privacy::test", CypherpunkAndPrivacy],
+  ["Usability::test", Usability],
+  ["Real World Ethereum::test", RealWorldEthereum],
+  ["Applied Cryptography::test", AppliedCryptography],
+  ["Cryptoeconomics::test", CryptoEconomics],
+  ["Coordination::test", Coordination],
+  ["Developer Experience::test", DeveloperExperience],
+  ["Security::test", Security],
 ]);
 
 export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([

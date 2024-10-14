@@ -59,8 +59,10 @@
 
 @media (min-width: 500px) {
   .agenda-page__content__filter-icon {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    left: 210px;
     position: fixed;
-    width: 480px;
-    right: -200px;
   }
 }
