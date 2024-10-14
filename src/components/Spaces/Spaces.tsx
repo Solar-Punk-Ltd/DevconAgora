@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { CATEGORIES } from "../../utils/constants";
+import { RoomWithUserCounts } from "../../types/room";
 
-const Spaces: React.FC = () => {
+interface SpacesProps {
+  list: RoomWithUserCounts[],
+  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
+}
+
+
+/** Ordered Spaces list (ordered by activity) */
+const Spaces: React.FC<SpacesProps> = ({
+  list,
+  setSelectedChat
+}) => {
   return (
     <div>
+
       <div className="recent-rooms">
         <div className="recent-rooms__title">Buzz spaces</div>
       </div>
+
       <div>
-        {CATEGORIES.map((category) => (
-          <div key={category}>
-            <SpacesItem title={category} numberOfActiveUsers={20} />
+        {list.map((room) => (
+          <div key={room.topic} onClick={() => setSelectedChat(room.topic)}>
+            <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount!} />
           </div>
         ))}
       </div>
+
     </div>
   );
 };

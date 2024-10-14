@@ -4,6 +4,7 @@ import BackArrow from '../icons/BackArrow/BackArrow';
 import { Link } from 'react-router-dom';
 
 interface BackProps {
+    title?: string;
     where: string;
     link: string;
     backgroundColor?: string;
@@ -12,6 +13,7 @@ interface BackProps {
 
 
 const Back: React.FC<BackProps> = ({
+  title,
   where,
   link,
   backgroundColor,
@@ -31,10 +33,16 @@ const Back: React.FC<BackProps> = ({
         </Link>
         
         <Link to={link} onClick={(e) => handleClick(e)}>
-          <p className="back-menu__text">
+          <p className="back-menu__where">
             {where}
           </p>
         </Link>
+
+        {title && (
+          <p className="back-menu__title">
+            {title}
+          </p>
+        )}
       </div>
   )
 }
