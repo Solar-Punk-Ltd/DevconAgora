@@ -32,7 +32,7 @@ import {
   ADDRESS_HEX_LENGTH,
   DUMMY_STAMP,
   MOCK_START_TIME,
-  MAX_PRELOADED_TALKS,
+  MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
 } from "./utils/constants";
 import {
@@ -229,7 +229,7 @@ const MainRouter = (): ReactElement => {
             rawTalkTopic,
             signer,
             process.env.BEE_API_URL,
-            MAX_PRELOADED_TALKS
+            MAX_COMMENTS_LOADED
           )
         );
         talkIds.push(sessionId);

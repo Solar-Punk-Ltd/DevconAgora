@@ -9,9 +9,11 @@ import {
   DUMMY_STAMP,
   MAX_CHARACTER_COUNT,
   MAX_COMMENTS_LOADED,
+  MAX_PRELOADED_TALKS,
 } from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
 import { getTopic } from "../../utils/bee";
+import { TalkComments } from "../../types/talkComment";
 
 interface TalkItemProps {
   session: Session;
@@ -20,6 +22,7 @@ interface TalkItemProps {
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username, loadedTalks, setLoadedTalks } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
+  const [loading, setLoading] = useState(true);
 
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
@@ -31,31 +34,33 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   // if the talk is not found, then replace the oldest talk with the new one
   const hanldeOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
-    setComments(updatedComments);
     const newLoadedTalks = [...(loadedTalks || [])];
-    if (loadedTalks) {
+    if (loadedTalks && loadedTalks.length > 0) {
       const foundIx = loadedTalks.findIndex(
         (talk) => talk.talkId === session.id
       );
       // update the already loaded talk
       if (foundIx > -1) {
         newLoadedTalks[foundIx].comments = updatedComments;
+      }
+    } else {
+      const newTalkComent: TalkComments = {
+        talkId: session.id,
+        comments: updatedComments,
+        nextIndex: endIx + 1,
+      };
+      // push the new talk with comments if buffer is not full
+      if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
+        newLoadedTalks.push(newTalkComent);
       } else {
-        const newTalkComent = {
-          talkId: session.id,
-          comments: updatedComments,
-          nextIndex: endIx + 1,
-        };
-        // push the new talk with comments if buffer is not full
-        if (newLoadedTalks.length < MAX_COMMENTS_LOADED) {
-          newLoadedTalks.push(newTalkComent);
-        } else {
-          // otherwise replace the last talk with the new one
-          newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
-        }
+        // otherwise replace the last talk with the new one
+        newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
       }
     }
+
+    setComments(updatedComments);
     setLoadedTalks(newLoadedTalks);
+    setEndIx(endIx + 1);
   };
 
   const hanldeOnRead = (start: number, end: number) => {
@@ -66,24 +71,18 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   };
 
   // TODO: periodically update the comments
-  // TODO: swarmcommentsystem load before the talk is found, therefore the comments are not loaded
+  // find whether the talk is already loaded the first time the component is rendered
   useEffect(() => {
     if (loadedTalks) {
       const talk = loadedTalks.find((talk) => talk.talkId === session.id);
-      const newLoadedTalks = [...(loadedTalks || [])];
+      // load the already loaded talk
       if (talk && talk.comments) {
         setComments(talk.comments);
         setStartIx(talk.nextIndex - talk.comments.length);
         setEndIx(talk.nextIndex - 1);
-      } else {
-        newLoadedTalks.splice(newLoadedTalks.length - 1, 1, {
-          talkId: session.id,
-          comments: [],
-          nextIndex: 0,
-        });
-        setLoadedTalks(newLoadedTalks);
       }
     }
+    setLoading(false);
   }, []);
 
   return (
@@ -105,18 +104,20 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       </div>
       {/* // either use a local stamp from the env or a dummy can be sent to the
       gateway */}
-      <SwarmCommentSystem
-        stamp={process.env.STAMP || DUMMY_STAMP}
-        topic={rawTalkTopic}
-        signer={signer}
-        beeApiUrl={process.env.BEE_API_URL}
-        username={username}
-        preloadedCommnets={comments}
-        onComment={hanldeOnComment}
-        onRead={hanldeOnRead}
-        numOfComments={MAX_COMMENTS_LOADED}
-        maxCharacterCount={MAX_CHARACTER_COUNT}
-      />
+      {!loading && (
+        <SwarmCommentSystem
+          stamp={process.env.STAMP || DUMMY_STAMP}
+          topic={rawTalkTopic}
+          signer={signer}
+          beeApiUrl={process.env.BEE_API_URL}
+          username={username}
+          preloadedCommnets={comments}
+          onComment={hanldeOnComment}
+          onRead={hanldeOnRead}
+          numOfComments={MAX_COMMENTS_LOADED}
+          maxCharacterCount={MAX_CHARACTER_COUNT}
+        />
+      )}
     </>
   );
 };
