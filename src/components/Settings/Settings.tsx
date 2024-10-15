@@ -4,7 +4,7 @@ import SettingsIcon from "../icons/SettingsIcon/SettingsIcon";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 const Settings: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   return (
     <>
       {isOpen ? <div className="settings__open__background"></div> : null}

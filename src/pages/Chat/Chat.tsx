@@ -28,7 +28,7 @@ interface ChatProps {
   topMenuColor?: string;
   originatorPage: string;
   originatorPageUrl: string;
-  backAction: () => any | undefined | null;
+  backAction: () => void | undefined | null;
 }
 
 const Chat: React.FC<ChatProps> = ({
@@ -49,7 +49,7 @@ const Chat: React.FC<ChatProps> = ({
     []
   );
   const [currentThread, setCurrentThread] = useState<ThreadId | null>(null);
-  const [chatLoaded, setChatLoaded] = useState(false);
+  const [chatLoaded, setChatLoaded] = useState<boolean>(false);
   const currentThreadRef = useRef(currentThread);
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;

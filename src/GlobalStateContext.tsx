@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { Session } from "./types/session";
 import { TalkComments } from "./types/talkComment";
+import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { createMonogram } from "./utils/helpers";
 
 interface GlobalState {
@@ -32,6 +33,8 @@ interface GlobalState {
   setIsTermsAndConditionsAccepted: React.Dispatch<
     React.SetStateAction<boolean>
   >;
+  notes: NoteItemProps[];
+  setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -73,6 +76,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   const [recentSessions, setRecentSessions] = useState<Session[]>([]);
 
   const [loadedTalks, setLoadedTalks] = useState<TalkComments[] | undefined>();
+
+  const [notes, setNotes] = useState<NoteItemProps[]>([]);
 
   useEffect(() => {
     localStorage.setItem("username", username);
@@ -123,6 +128,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setIsContentFilterEnabled,
         isTermsAndConditionsAccepted,
         setIsTermsAndConditionsAccepted,
+        notes,
+        setNotes,
       }}
     >
       {children}

@@ -22,7 +22,7 @@ interface TalkItemProps {
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username, loadedTalks, setLoadedTalks } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
@@ -32,7 +32,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
 
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
-  // TODO: maybe onread shall set comments and loadedtalks comments: loadedtalks is undefined and the last written comment is pushed
   const hanldeOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
     const newLoadedTalks = [...(loadedTalks || [])];

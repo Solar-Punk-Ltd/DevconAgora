@@ -2,7 +2,7 @@ import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
-import { TalkComments } from "./types/talkComment";
+import { Wallet } from "ethers";
 import { useGlobalState } from "./GlobalStateContext";
 import App from "./App";
 import Welcome1 from "./pages/Welcome1/Welcome1";
@@ -25,7 +25,9 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndCondi
 import NotesPage from "./pages/NotesPage/NotesPage";
 import FullNotePage from "./pages/FullNotePage/FullNotePage";
 import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
+import { TalkComments } from "./types/talkComment";
 import { getFeedUpdate, getData, getTopic } from "./utils/bee";
+import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import {
   ROUTES,
   FIVE_MINUTES,
@@ -34,6 +36,7 @@ import {
   MOCK_START_TIME,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
+  SELF_NOTE_TOPIC,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -54,11 +57,14 @@ const MainRouter = (): ReactElement => {
     setRecentSessions,
     loadedTalks,
     setLoadedTalks,
+    notes,
+    setNotes,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(MOCK_START_TIME.getTime());
+  const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
@@ -260,6 +266,46 @@ const MainRouter = (): ReactElement => {
   useEffect(() => {
     preLoadTalks();
   }, [recentSessions]);
+
+  const fetchNotes = async () => {
+    const privKey = localStorage.getItem("privKey");
+    if (!privKey) {
+      console.log("private key not found - cannot fetch notes");
+      return;
+    }
+
+    const wallet = new Wallet(privKey);
+    for (let i = 0; i < noteRawTopics.length; i++) {
+      const rawTopic = noteRawTopics[i];
+      const dataRef = await getFeedUpdate(wallet.address, rawTopic);
+      let note: NoteItemProps;
+      try {
+        note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+      } catch (error) {
+        console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
+        continue;
+      }
+      const found = notes.find((n) => n.id === note.id);
+      if (!found) {
+        setNotes((notes) => [...notes, note]);
+      }
+    }
+    console.log("self notes updated");
+  };
+
+  useEffect(() => {
+    const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
+    if (selfNoteTopicsStr) {
+      const tmpTopics = selfNoteTopicsStr.split(",");
+      setNoteRawTopics(
+        tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchNotes();
+  }, [noteRawTopics]);
 
   return (
     <>

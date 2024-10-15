@@ -33,7 +33,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   borderRadius,
   paddingRight,
 }) => {
-  const [empty, setEmpty] = useState(!liked);
+  const [empty, setEmpty] = useState<boolean>(!liked);
   const handleClick = () => {
     const isLiked = stringToBoolean(localStorage.getItem(id));
     localStorage.setItem(id, booleanToString(!isLiked));
