@@ -42,11 +42,9 @@ const NotesPage: React.FC = () => {
         console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
         continue;
       }
-      if (note.text && note.text.length > 0) {
-        const found = notes.find((n) => n.id === note.id);
-        if (!found) {
-          setNotes((notes) => [...notes, note]);
-        }
+      const found = notes.find((n) => n.id === note.id);
+      if (!found) {
+        setNotes((notes) => [...notes, note]);
       }
     }
     setLoading(false);

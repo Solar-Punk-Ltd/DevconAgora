@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { CATEGORIES, TEST_CATEGORIES } from "../../utils/constants";
+import { TEST_CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
-import { getResourceId, TestgetResourceId } from "../../utils/helpers";
+import { TestgetResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-
 
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -25,7 +23,6 @@ const SpacesPage: React.FC = () => {
       </div>
     );
   }
-
 
   return (
     <div className="spaces">

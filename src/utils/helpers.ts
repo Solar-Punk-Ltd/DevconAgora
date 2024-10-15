@@ -1,4 +1,4 @@
-import { Wallet } from "ethers";
+import { Wallet, hexlify } from "ethers";
 import { Session } from "../types/session";
 import { CATEGORY_NAMES_TO_ID_MAP, DATE_TO_DEVCON_DAY, RESOURCE_IDS, TEST_CATEGPRY_NAMES_TO_ID_MAP, TEST_RESOURCE_IDS } from "../utils/constants";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
@@ -107,6 +107,11 @@ export function textExtract(content: string): string {
   }
 }
 
+export function getWallet(input: string): Wallet {
+  const privateKey = Utils.keccak256Hash(input);
+  return new Wallet(hexlify(privateKey));
+}
+
 export const TestgetResourceId = (category: string) => {
   const categoryId = TEST_CATEGPRY_NAMES_TO_ID_MAP.get(category);
   if (categoryId) {
@@ -153,4 +158,25 @@ export const handleKeyDown = (
   if (e.key === key) {
     callback();
   }
+};
+
+export function isEmpty(obj?: object) {
+  if (!obj) {
+    return true;
+  }
+  return Object.keys(obj).length === 0;
+}
+
+export const findSlotStartIx = (
+  startIx: number,
+  sessionsByDay: Session[],
+  time: number
+): number => {
+  for (let i = startIx; i < sessionsByDay.length; i++) {
+    const slotStart = sessionsByDay[i].slot_start;
+    if (slotStart && new Date(slotStart).getTime() > time) {
+      return i > 0 ? i - 1 : 0;
+    }
+  }
+  return -1;
 };
