@@ -1,33 +1,26 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useGlobalState } from "../../GlobalStateContext";
+import "./HomePage.scss";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
-import "./HomePage.scss";
-import { useEffect, useState } from "react";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
-import { useGlobalState } from "../../GlobalStateContext";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
-import { TestgetResourceId, getResourceId } from "../../utils/helpers";
-import {
-  ROUTES,
-  CATEGORIES,
-  TEST_CATEGORIES,
-  LOBBY_TOPIC,
-} from "../../utils/constants";
+import { TestgetResourceId } from "../../utils/helpers";
+import { ROUTES, TEST_CATEGORIES, LOBBY_TOPIC } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
-
-const maxSessionsShown = 9;
 
 interface HomePageProps {
   isLoaded?: boolean;
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
-  const { username, sessions } = useGlobalState();
+  const { points, username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
@@ -38,7 +31,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
       userCount: undefined,
     }))
   );
-  const { points } = useGlobalState();
 
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
@@ -106,10 +98,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
             bordered={true}
             setSelectedChat={setSelectedChat}
           />
-          <RecentSessions
-            sessions={sessions}
-            maxSessionsShown={maxSessionsShown}
-          />
+          <RecentSessions />
           <Spaces list={orderedList} setSelectedChat={setSelectedChat} />
         </div>
       )}

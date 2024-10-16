@@ -8,7 +8,7 @@ interface BackProps {
     where: string;
     link: string;
     backgroundColor?: string;
-    action?: () => any | undefined | null;
+    action?: () => void | undefined | null;
 }
 
 
@@ -31,7 +31,7 @@ const Back: React.FC<BackProps> = ({
         <Link to={link} onClick={(e) => handleClick(e)}>
           <BackArrow  backgroundColor={backgroundColor || "#FFFFFF"} />
         </Link>
-        
+
         <Link to={link} onClick={(e) => handleClick(e)}>
           <p className="back-menu__where">
             {where}

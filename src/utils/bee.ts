@@ -5,7 +5,6 @@ import {
   DEFAULT_URL,
 } from "../utils/constants";
 
-// TODO: global bee var vs init in every function ?
 export async function getFeedUpdate(
   owner: string,
   rawTopic: string
@@ -36,11 +35,6 @@ export async function getData(ref: string): Promise<string> {
     console.log("session " + ref + " download/cast error", e);
     return "";
   }
-}
-
-export function getTopic(rawTopic: string): string {
-  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
-  return bee.makeFeedTopic(rawTopic);
 }
 
 export async function uploadData(
@@ -86,4 +80,13 @@ export async function updateFeed(
     console.log("error feed update: ", error);
     return "";
   }
+}
+
+// TOOD: remove test1
+export function getTopic(topic: string, raw: boolean): string {
+  if (raw) {
+    return topic + "test1";
+  }
+  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
+  return bee.makeFeedTopic(topic);
 }
