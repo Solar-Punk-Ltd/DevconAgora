@@ -195,11 +195,10 @@ const MainRouter = (): ReactElement => {
 
   useEffect(() => {
     // TODO: what shall be the update time ?
-    const sessionUpdateInterval = FIVE_MINUTES;
     const interval = setInterval(async () => {
       // TODO: remove this: increase current time by 10 minutes to see the change in recent sessions
       setTime((time) => new Date(time + FIVE_MINUTES).getTime());
-    }, sessionUpdateInterval);
+    }, FIVE_MINUTES);
 
     return () => clearInterval(interval);
   }, []);
