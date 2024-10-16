@@ -32,9 +32,9 @@ const ChatInput: React.FC<ChatInputProps> = ({
   currentThread,
   setVisibleMessages,
 }) => {
-  const [messageToSend, setMessageToSend] = useState("");
-  const [reconnecting, setReconnecting] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [messageToSend, setMessageToSend] = useState<string>("");
+  const [reconnecting, setReconnecting] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
 
   if (!chat) return <></>;
 

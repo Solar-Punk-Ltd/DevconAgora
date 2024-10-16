@@ -15,9 +15,9 @@ import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
-  const [buttonActive, setButtonActive] = useState(true);
-  const [error, setError] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+  const [buttonActive, setButtonActive] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 

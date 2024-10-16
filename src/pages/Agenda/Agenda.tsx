@@ -24,11 +24,11 @@ import HomeBackground from "../../assets/welcome-glass-effect.png";
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();
   const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
-  const [showCategories, setShowCategories] = useState(false);
+  const [showCategories, setShowCategories] = useState<boolean>(false);
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
-  const [activeAgendaTab, setActiveAgendaTab] = useState(0);
-  const [activeDayTab, setActiveDayTab] = useState(0);
-  const [activeStageTab, setActiveStageTab] = useState(0);
+  const [activeAgendaTab, setActiveAgendaTab] = useState<number>(0);
+  const [activeDayTab, setActiveDayTab] = useState<number>(0);
+  const [activeStageTab, setActiveStageTab] = useState<number>(0);
 
   const renderTabPanelItems = (
     labels: string[],

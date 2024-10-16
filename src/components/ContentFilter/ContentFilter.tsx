@@ -8,7 +8,7 @@ const ContentFilter: React.FC = () => {
   const { isContentFilterEnabled, setIsContentFilterEnabled } =
     useGlobalState();
 
-  const [checked, setIsChecked] = useState(isContentFilterEnabled);
+  const [checked, setIsChecked] = useState<boolean>(isContentFilterEnabled);
 
   const handleClick = (isContentFilterEnabled: boolean, checked: boolean) => {
     setIsChecked(!checked);

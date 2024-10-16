@@ -11,7 +11,7 @@ const TACOnboardingPage: React.FC = () => {
   const navigate = useNavigate();
   const { setIsTermsAndConditionsAccepted } = useGlobalState();
   const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] =
-    useState(false);
+    useState<boolean>(false);
   const handleOkClick = () => {
     if (isTermsAndConditionsChecked) {
       setIsTermsAndConditionsAccepted(true);

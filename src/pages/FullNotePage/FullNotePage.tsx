@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { hexlify, Wallet } from "ethers";
 import { Utils } from "@ethersphere/bee-js";
+import { useGlobalState } from "../../GlobalStateContext";
 import "./FullNotePage.scss";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
@@ -14,27 +15,18 @@ import {
 } from "../../utils/constants";
 import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../utils/constants";
 import { getSigner, dateToTime } from "../../utils/helpers";
-import {
-  updateFeed,
-  uploadData,
-  getFeedUpdate,
-  getData,
-} from "../../utils/bee";
+import { updateFeed, uploadData } from "../../utils/bee";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
   const { noteId } = useParams();
-  const location = useLocation();
-  let noteItem: NoteItemProps;
-  if (location && location.state) {
-    noteItem = location.state.noteItem;
-  }
+  const { notes, setNotes } = useGlobalState();
   const [currentNote, setCurrentNote] = useState<NoteItemProps>({});
-  const [showRemovePopUp, setShowRemovePopUp] = useState(false);
-  const [showUnsavedPopUp, setShowUnsavedPopUp] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [saved, setSaved] = useState(true);
+  const [showRemovePopUp, setShowRemovePopUp] = useState<boolean>(false);
+  const [showUnsavedPopUp, setShowUnsavedPopUp] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(true);
 
   const handleOnChange = (txt: string) => {
     if (txt.length <= MAX_CHARACTER_COUNT) {
@@ -160,30 +152,29 @@ const FullNotePage: React.FC = () => {
       process.env.STAMP || DUMMY_STAMP,
       dataRef
     );
+
+    const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
+    const tmpNotes = [...notes];
+    if (foundIx > -1) {
+      if (remove) {
+        tmpNotes.splice(foundIx, 1);
+      } else {
+        tmpNotes[foundIx] = noteObj;
+      }
+    } else {
+      tmpNotes.push(noteObj);
+    }
+    setNotes(tmpNotes);
     setSending(false);
     setSaved(true);
   };
 
-  const fetchNote = async (topic: string) => {
-    const wallet = new Wallet(privKey);
-    const dataRef = await getFeedUpdate(wallet.address, topic);
-    let note: NoteItemProps;
-    try {
-      note = JSON.parse(await getData(dataRef)) as NoteItemProps;
-    } catch (error) {
-      console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
-      return;
-    }
-    setCurrentNote(note);
-  };
-
-  // load note from location state if available, fetch otherwise
+  // load note from global state only if not creating a new note
   useEffect(() => {
-    if (noteItem) {
-      setCurrentNote(noteItem);
-    } else {
-      if (noteId && noteId !== ROUTES.NEW_NOTE.slice(1)) {
-        fetchNote(noteId);
+    if (noteId && noteId !== ROUTES.NEW_NOTE.slice(1)) {
+      const foundIx = notes.findIndex((n) => n.id === noteId);
+      if (foundIx > -1) {
+        setCurrentNote(notes[foundIx]);
       }
     }
   }, []);

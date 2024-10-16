@@ -13,10 +13,7 @@ export interface NoteItemProps {
 
 const NoteItem: React.FC<NoteItemProps> = ({ id, text, date, time }) => {
   return (
-    <Link
-      to={`${ROUTES.NOTES}/${id}`}
-      state={{ noteItem: { id, text, date, time } }}
-    >
+    <Link to={`${ROUTES.NOTES}/${id}`}>
       <div className="note-item">
         <div className="note-item__extract">{textExtract(text || "")}</div>
         <div className="note-item__timestamp">

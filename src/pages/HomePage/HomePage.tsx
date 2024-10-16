@@ -48,12 +48,14 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
       )
       .catch((err) => console.error("Error fetching user counts ", err));
 
-    const orderedRooms = roomsWithUserCount.sort(
-      (a, b) => b.userCount! - a.userCount!
-    );
-    console.log("Rooms with user counts: ", orderedList);
+    if (roomsWithUserCount !== undefined) {
+      const orderedRooms = roomsWithUserCount.sort(
+        (a, b) => b.userCount! - a.userCount!
+      );
+      setOrderedList(orderedRooms);
+    }
 
-    setOrderedList(orderedRooms);
+    console.log("Rooms with user counts: ", orderedList);
   };
 
   const lobbyeUserCount = (): number => {

@@ -10,7 +10,7 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ items, activeItem, onClick }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
