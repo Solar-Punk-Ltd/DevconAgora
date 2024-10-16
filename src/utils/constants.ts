@@ -50,8 +50,8 @@ export enum ROUTES {
 
 export const CATEGORIES = [
   "Layer 2s",
-  "Core protocol",
-  "Cypherpunk and privacy",
+  "Core Protocol",
+  "Cypherpunk & Privacy",
   "Usability",
   "Real World Ethereum",
   "Applied Cryptography",

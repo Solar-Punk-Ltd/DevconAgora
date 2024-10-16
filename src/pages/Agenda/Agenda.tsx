@@ -51,9 +51,10 @@ const Agenda: React.FC = () => {
     if (sessionsByDay.length > 0) {
       const items: Session[] = [];
       for (let i = 0; i < sessionsByDay.length; i++) {
-        const categoryFilter = categoryIndex
-          ? sessionsByDay[i].track === CATEGORIES[categoryIndex]
-          : true;
+        const categoryFilter =
+          categoryIndex !== null
+            ? sessionsByDay[i].track === CATEGORIES[categoryIndex]
+            : true;
         const isLiked = stringToBoolean(
           localStorage.getItem(sessionsByDay[i].id)
         );

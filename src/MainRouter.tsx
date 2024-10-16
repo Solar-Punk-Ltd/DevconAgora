@@ -277,7 +277,7 @@ const MainRouter = (): ReactElement => {
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
       const dataRef = await getFeedUpdate(wallet.address, rawTopic);
-      let note: NoteItemProps;
+      let note: NoteItemProps | undefined = undefined;
       try {
         note = JSON.parse(await getData(dataRef)) as NoteItemProps;
       } catch (error) {
@@ -285,7 +285,7 @@ const MainRouter = (): ReactElement => {
         continue;
       }
       const found = notes.find((n) => n.id === note.id);
-      if (!found) {
+      if (!found && note !== undefined) {
         setNotes((notes) => [...notes, note]);
       }
     }
