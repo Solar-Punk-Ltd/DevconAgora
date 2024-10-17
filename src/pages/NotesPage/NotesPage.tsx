@@ -24,17 +24,19 @@ const NotesPage: React.FC = () => {
           <span className="notes-page__button-text">New note</span>
         </ActionButton>
       </Link>
-      {notes.map((note, ix) => {
-        return (
-          <NoteItem
-            key={ix}
-            id={note.id}
-            text={note.text}
-            date={note.date}
-            time={note.time}
-          />
-        );
-      })}
+      <div className="notes-page__note-items">
+        {notes.map((note, ix) => {
+          return (
+            <NoteItem
+              key={ix}
+              id={note.id}
+              text={note.text}
+              date={note.date}
+              time={note.time}
+            />
+          );
+        })}
+      </div>
       <NavigationFooter />
     </div>
   );

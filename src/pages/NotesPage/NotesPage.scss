@@ -3,7 +3,17 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow-y: scroll;
+  box-sizing: border-box;
+  height: calc(calc(var(--vh, 1vh) * 100) - 56px);
+}
+
+.notes-page__note-items {
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 3;
 }
 
 .notes-page__header {
