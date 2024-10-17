@@ -20,6 +20,7 @@ import {
 } from "../../utils/helpers";
 import { useGlobalState } from "../../GlobalStateContext";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
+import AgendaBanner from "../../assets/side-event-banner.png";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();
@@ -105,6 +106,14 @@ const Agenda: React.FC = () => {
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
         />
+        <div className="agenda-page__content__banner">
+          <img
+            src={AgendaBanner}
+            alt=""
+            className="agenda-page__content__banner__img"
+          />
+          <div className="agenda-page__content__banner__text">Side Event</div>
+        </div>
         {activeAgendaItems.length > 0 ? (
           activeAgendaItems.map((session) => {
             return (

@@ -33,6 +33,18 @@
   background: white;
 }
 
+.welcome-button--white {
+  border: 1px solid white;
+  color: white;
+  background: black;
+}
+
+.welcome-button--orange {
+  border: none;
+  color: white;
+  background: #ff8a50;
+}
+
 .welcome-button--inactive {
   border: none;
   color: #a5adba;

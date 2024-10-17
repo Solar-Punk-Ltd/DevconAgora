@@ -5,12 +5,14 @@ import clsx from "clsx";
 interface WelcomeButtonProps {
   children: string;
   version?: "filled" | "outlined" | "inactive";
+  type?: "white" | "orange" | "normal";
   onClick?: () => void;
 }
 
 const WelcomeButton: React.FC<WelcomeButtonProps> = ({
   children,
   version,
+  type,
   onClick,
 }) => {
   return (
@@ -20,6 +22,8 @@ const WelcomeButton: React.FC<WelcomeButtonProps> = ({
         "welcome-button--filled": version === "filled",
         "welcome-button--outlined": version === "outlined",
         "welcome-button--inactive": version === "inactive",
+        "welcome-button--white": type === "white",
+        "welcome-button--orange": type === "orange",
       })}
       onClick={() => (onClick ? onClick() : null)}
     >

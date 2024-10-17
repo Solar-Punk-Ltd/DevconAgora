@@ -21,6 +21,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points }) => {
         >
           Version: {process.env.PR_NUMBER} - {process.env.PR_TIMESTAMP}
         </div>
+
         <div
           className="home-header__points"
           onClick={() => setShowGamification(!showGamification)}

@@ -7,7 +7,7 @@ interface CloseIconProps {
 
 const CloseIcon: React.FC<CloseIconProps> = ({ color, onClick }) => {
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} style={{ display: "flex" }}>
       <svg
         width="24"
         height="24"
