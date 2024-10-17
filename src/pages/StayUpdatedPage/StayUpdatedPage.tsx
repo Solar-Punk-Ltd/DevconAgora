@@ -20,7 +20,7 @@ const StayUpdatedPage: React.FC = () => {
       <div className="stay-updated__header">Stay updated!</div>
       <div className="stay-updated__main-content">
         <div className="stay-updated__text-box">
-          Be on the top of cutting edge web3 tech. Get insights and laterst news
+          Be on the top of cutting edge web3 tech. Get insights and latest news
           from the developers of the Devcon Buzz app
         </div>
         <div className="stay-updated__input-wrapper">
