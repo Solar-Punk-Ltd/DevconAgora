@@ -42,7 +42,6 @@ const ClaimRewardPage: React.FC = () => {
                 type="text"
                 ref={inputRef}
                 className="claim-reward__code__input"
-                value="fdfdsfdsfsdfsd"
               />
               <CopyIcon onClick={handleCopyClick} />
             </div>
