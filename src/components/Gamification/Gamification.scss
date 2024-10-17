@@ -23,11 +23,13 @@
   border-radius: 12px;
 }
 .gamification__modal__img {
-  width: 30%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
   position: absolute;
-  bottom: 30px;
-  left: -50px;
+}
+
+.gamification__modal_img__ten-points {
+  height: auto;
 }
 
 .gamification__modal__content {
@@ -43,11 +45,18 @@
   box-sizing: border-box;
 }
 
+@media (min-width: 480px) {
+  .gamification__modal__content {
+    height: auto;
+  }
+}
+
 .gamification__modal__content__header {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: #e0e0e0;
+  text-align: center;
 }
 
 .gamification__modal__content__header__emphasize {
@@ -97,4 +106,14 @@
   font-size: 14px;
   color: white;
   border: none;
+}
+
+.gamification__modal__content_main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  width: 97%;
+  align-items: center;
+  line-height: 26px;
 }

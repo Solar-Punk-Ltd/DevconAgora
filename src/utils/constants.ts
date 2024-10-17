@@ -46,6 +46,7 @@ export enum ROUTES {
   TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",
   NEW_NOTE = "/new",
+  STAYUPDATED = "/stay-updated",
 }
 
 export const CATEGORIES = [

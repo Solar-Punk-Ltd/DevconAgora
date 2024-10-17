@@ -25,6 +25,7 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndCondi
 import NotesPage from "./pages/NotesPage/NotesPage";
 import FullNotePage from "./pages/FullNotePage/FullNotePage";
 import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
+import StayUpdatedPage from "./pages/StayUpdatedPage/StayUpdatedPage";
 import { TalkComments } from "./types/talkComment";
 import { getFeedUpdate, getData, getTopic } from "./utils/bee";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
@@ -328,6 +329,7 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
+        <Route path={ROUTES.STAYUPDATED} element={<StayUpdatedPage />} />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
           element={<TermsAndConditionsPage />}
