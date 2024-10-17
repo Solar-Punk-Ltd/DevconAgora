@@ -50,8 +50,8 @@ export enum ROUTES {
 
 export const CATEGORIES = [
   "Layer 2s",
-  "Core protocol",
-  "Cypherpunk and privacy",
+  "Core Protocol",
+  "Cypherpunk & Privacy",
   "Usability",
   "Real World Ethereum",
   "Applied Cryptography",
@@ -61,6 +61,7 @@ export const CATEGORIES = [
   "Security",
 ];
 
+// TODO: match category names and resource ids with the actual categories
 export const TEST_CATEGORIES = [
   "Layer 2s::test",
   "Core protocol::test",

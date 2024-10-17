@@ -51,9 +51,10 @@ const Agenda: React.FC = () => {
     if (sessionsByDay.length > 0) {
       const items: Session[] = [];
       for (let i = 0; i < sessionsByDay.length; i++) {
-        const categoryFilter = categoryIndex
-          ? sessionsByDay[i].track === CATEGORIES[categoryIndex]
-          : true;
+        const categoryFilter =
+          categoryIndex !== null
+            ? sessionsByDay[i].track === CATEGORIES[categoryIndex]
+            : true;
         const isLiked = stringToBoolean(
           localStorage.getItem(sessionsByDay[i].id)
         );
@@ -104,21 +105,25 @@ const Agenda: React.FC = () => {
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
         />
-        {activeAgendaItems.map((session) => {
-          return (
-            <AgendaItem
-              key={session.id}
-              id={session.id}
-              title={session.title}
-              startDate={dateToTime(session.slot_start)}
-              endDate={dateToTime(session.slot_end)}
-              category={session.track}
-              roomId={session.slot_roomId}
-              liked={session.liked}
-              paddingRight={"16px"}
-            />
-          );
-        })}
+        {activeAgendaItems.length > 0 ? (
+          activeAgendaItems.map((session) => {
+            return (
+              <AgendaItem
+                key={session.id}
+                id={session.id}
+                title={session.title}
+                startDate={dateToTime(session.slot_start)}
+                endDate={dateToTime(session.slot_end)}
+                category={session.track}
+                roomId={session.slot_roomId}
+                liked={session.liked}
+                paddingRight={"16px"}
+              />
+            );
+          })
+        ) : (
+          <div className="agenda-page__content__empty">No talk found</div>
+        )}
         <div className="agenda-page__content__filter-icon">
           <FilterIcon onClick={() => setShowCategories(true)} />
         </div>
