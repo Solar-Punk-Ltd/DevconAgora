@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./ChatInput.scss";
 import {
   EthAddress,
@@ -94,6 +94,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       do {
         await waitOneRound(1000);
         console.log("isRegistered: ", chat.isRegistered(ownAddress));
+        rounds++
       } while (!chat.isRegistered(ownAddress) && rounds < 60);
 
       setReconnecting(false); // this might not be accurate
@@ -104,6 +105,14 @@ const ChatInput: React.FC<ChatInputProps> = ({
     setMessageToSend("");
     setSending(false);
   };
+
+  useEffect(() => {
+    return () => {
+      chat.stopMessageFetchProcess();
+      chat.stopUserFetchProcess();
+    }
+  }, []);
+
 
   return (
     <div
