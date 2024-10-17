@@ -63,9 +63,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
     setEndIx(endIx + 1);
   };
 
-  const hanldeOnRead = (comments: Comment[], end: number) => {
-    setComments(comments);
-    const newStart = end - comments.length > 0 ? end - comments.length : 0;
+  const hanldeOnRead = (newComments: Comment[], end: number) => {
+    setComments([...(comments || [])].concat(newComments));
+    const newStart =
+      end - newComments.length > 0 ? end - newComments.length : 0;
     setStartIx(newStart);
     setEndIx(end);
     console.log("start index", startIx);
