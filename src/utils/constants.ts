@@ -61,6 +61,7 @@ export const CATEGORIES = [
   "Security",
 ];
 
+// TODO: match category names and resource ids with the actual categories
 export const TEST_CATEGORIES = [
   "Layer 2s::test",
   "Core protocol::test",
