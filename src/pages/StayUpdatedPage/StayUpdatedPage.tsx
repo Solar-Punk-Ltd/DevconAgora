@@ -1,5 +1,5 @@
 import React from "react";
-import "./StayUpdatedpage.scss";
+import "./StayUpdatedPage.scss";
 import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useNavigate } from "react-router-dom";
