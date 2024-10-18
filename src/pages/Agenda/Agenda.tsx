@@ -21,6 +21,7 @@ import {
 import { useGlobalState } from "../../GlobalStateContext";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import AgendaBanner from "../../assets/side-event-banner.png";
+import clsx from "clsx";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();
@@ -30,6 +31,7 @@ const Agenda: React.FC = () => {
   const [activeAgendaTab, setActiveAgendaTab] = useState<number>(0);
   const [activeDayTab, setActiveDayTab] = useState<number>(0);
   const [activeStageTab, setActiveStageTab] = useState<number>(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const renderTabPanelItems = (
     labels: string[],
@@ -42,6 +44,10 @@ const Agenda: React.FC = () => {
         handleClick={() => handleClick(index)}
       />
     ));
+  };
+
+  const changesWhenOpenDropdown = (isOpen: boolean) => {
+    setIsDropdownOpen(isOpen);
   };
 
   useEffect(() => {
@@ -100,11 +106,16 @@ const Agenda: React.FC = () => {
           />
         </div>
       </div>
-      <div className="agenda-page__content">
+      <div
+        className={clsx("agenda-page__content", {
+          "not-scroll": isDropdownOpen,
+        })}
+      >
         <Dropdown
           items={Array.from(STAGES_MAP.values())}
           activeItem={activeStageTab}
           onClick={(index) => setActiveStageTab(index)}
+          changesWhenOpen={changesWhenOpenDropdown}
         />
         <div className="agenda-page__content__banner">
           <img

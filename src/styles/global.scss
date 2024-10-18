@@ -2,6 +2,7 @@
 .welcome-page {
   position: relative;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   height: 100%;
@@ -94,6 +95,7 @@
 
 .welcome-page__bottom__text {
   position: relative;
+  top: 4px;
 }
 
 @media (min-height: 100px) {
@@ -222,4 +224,8 @@
 
 .welcome-page__navigation-button-link {
   width: 100%;
+}
+
+.not-scroll {
+  overflow: hidden !important;
 }

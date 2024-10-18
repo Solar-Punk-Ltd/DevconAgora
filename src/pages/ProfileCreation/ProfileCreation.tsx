@@ -17,13 +17,18 @@ const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
   const [buttonActive, setButtonActive] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [userNameSetError, setUserNameSetError] = useState<boolean>(false);
+  const [otherError, setOtherError] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(false);
     if (!validateInput(e.target.value)) {
       setError(true);
+      setOtherError(false);
+      setUserNameSetError(false);
     } else {
       setUsername(e.target.value);
       setError(false);
@@ -59,12 +64,13 @@ const ProfileCreation: React.FC = () => {
         body: username,
       });
     } catch (error) {
+      setUserNameSetError(true);
       console.log("error saving username: ", error);
     }
   };
 
   const handleOkClick = async () => {
-    if (validateInput(username)) {
+    if (validateInput(username) && username.length > 0) {
       setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));
@@ -74,9 +80,14 @@ const ProfileCreation: React.FC = () => {
       if (response.status === 200) {
         setButtonActive(true);
         setError(false);
+      } else if (response.status === 409) {
+        setButtonActive(false);
+        setError(true);
+        setUserNameSetError(true);
       } else {
         setButtonActive(false);
         setError(true);
+        setOtherError(true);
       }
     } else {
       setButtonActive(false);
@@ -86,7 +97,7 @@ const ProfileCreation: React.FC = () => {
 
   const validateInput = (name: string) => {
     // const regex = /^[a-zA-Z0-9 ]*$/;
-    const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])[a-zA-Z0-9 ]+$/;
+    const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])?[a-zA-Z0-9 ]*$/;
     return regex.test(name);
   };
 
@@ -150,11 +161,22 @@ const ProfileCreation: React.FC = () => {
                       alt=""
                       className="profile-creation__user-input__error-container__error-icon"
                     />
-                    <div className="profile-creation__user-input__error-container__error-text">
-                      The name can only contain alphanumeric characters, must
-                      include alphanumeric characters, and cannot have more than
-                      2 spaces.
-                    </div>
+                    {userNameSetError ? (
+                      <div className="profile-creation__user-input__error-container__error-text">
+                        The username is already taken. Please try another one.
+                      </div>
+                    ) : otherError ? (
+                      <div className="profile-creation__user-input__error-container__error-text">
+                        Something happened during username validation. Please
+                        try again.
+                      </div>
+                    ) : (
+                      <div className="profile-creation__user-input__error-container__error-text">
+                        The name can only contain alphanumeric characters, must
+                        include alphanumeric characters, and cannot have more
+                        than 2 spaces.
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : null}
