@@ -43,9 +43,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
       process.env.BACKEND_API_URL + "/user-count"
     )
       .then((res) => res.json())
-      .then((json) =>
-        json.filter((room: RoomWithUserCounts) => Boolean(room.userCount))
-      )
       .catch((err) => console.error("Error fetching user counts ", err));
 
     if (roomsWithUserCount !== undefined) {
