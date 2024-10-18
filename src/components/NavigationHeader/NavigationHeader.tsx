@@ -29,7 +29,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         handlerInCaseOfSave();
       }
     } else {
-      if (to) {
+      if (to && to.length > 0) {
         navigate(to);
       } else {
         navigate(-1);
