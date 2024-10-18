@@ -4,18 +4,24 @@ import { useNavigate } from "react-router-dom";
 import LeftNavigationIcon from "../icons/LeftNavigationIcon/LeftNavigationIcon";
 
 interface NavigationHeaderProps {
-  to: string;
+  to?: string;
+  toText?: string;
   saveQuestionBeforeLeave?: boolean;
   handlerInCaseOfSave?: () => void;
 }
 
 const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   to,
+  toText,
   saveQuestionBeforeLeave,
   handlerInCaseOfSave,
 }) => {
   const navigate = useNavigate();
-  const formattedTo = to.charAt(1).toUpperCase() + to.slice(2);
+  const formattedTo = to
+    ? to.charAt(1).toUpperCase() + to.slice(2)
+    : toText
+    ? toText.charAt(1).toUpperCase() + toText.slice(2)
+    : "";
 
   const handleNavigation = () => {
     if (saveQuestionBeforeLeave) {
@@ -23,7 +29,11 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         handlerInCaseOfSave();
       }
     } else {
-      navigate(to);
+      if (to) {
+        navigate(to);
+      } else {
+        navigate(-1);
+      }
     }
   };
   return (

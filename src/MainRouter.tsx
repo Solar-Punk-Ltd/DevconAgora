@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
@@ -66,11 +66,19 @@ const MainRouter = (): ReactElement => {
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(MOCK_START_TIME.getTime());
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
+  const location = useLocation();
+  const [prevLocation, setPrevLocation] = useState<string | null>(null);
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
+
+  useEffect(() => {
+    return () => {
+      setPrevLocation(location.pathname);
+    };
+  }, [location]);
 
   useEffect(() => {
     setVhVariable();
@@ -324,7 +332,10 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
         <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
-        <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage />} />
+        <Route
+          path={`${ROUTES.TALKS}/:talkId`}
+          element={<TalkPage toText={prevLocation} />}
+        />
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
