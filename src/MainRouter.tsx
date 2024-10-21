@@ -260,14 +260,14 @@ const MainRouter = (): ReactElement => {
               });
             }
           } else {
-            console.log(`pre-loading talks error: `, result.reason);
+            console.log(`preloading talks error: `, result.reason);
           }
         });
       });
 
       setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
     } catch (error) {
-      console.log("pre-loading talks error: ", error);
+      console.log("preloading talks error: ", error);
     }
   };
 
@@ -275,6 +275,7 @@ const MainRouter = (): ReactElement => {
     preLoadTalks();
   }, [recentSessions]);
 
+  // TODO: batch promises just like preloaded talks
   const fetchNotes = async () => {
     const privKey = localStorage.getItem("privKey");
     if (!privKey) {

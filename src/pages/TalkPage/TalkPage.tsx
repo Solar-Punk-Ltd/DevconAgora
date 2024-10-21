@@ -7,17 +7,19 @@ import TalkItem from "../../components/TalkItem/TalkItem";
 import { Session } from "../../types/session";
 import { useGlobalState } from "../../GlobalStateContext";
 import { getSessionsByDay } from "../../utils/helpers";
-import { DATE_TO_DEVCON_DAY } from "../../utils/constants";
+import { DATE_TO_DEVCON_DAY, ROUTES } from "../../utils/constants";
 
 interface TalkPageProps {
   toText: string | null;
 }
 
-// TODO: pre-upload talk feeds
+// TODO: preupload talk feeds
 const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
   const [session, setSession] = useState<Session | null>(null);
+  // in case a reload the path is the talk id, choose Home instead
+  const toTextFixed = toText?.startsWith(ROUTES.TALKS) ? ROUTES.HOME : toText;
 
   const findSessionId = (id: string): Session | null => {
     for (let i = 0; i < sessions.size; i++) {
@@ -46,7 +48,7 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
 
   return (
     <div className="talk">
-      <NavigationHeader toText={toText ? toText : ""} />
+      <NavigationHeader toText={toTextFixed ? toTextFixed : ""} />
       <div className="talk__content">
         {session && <TalkItem session={session} />}
       </div>

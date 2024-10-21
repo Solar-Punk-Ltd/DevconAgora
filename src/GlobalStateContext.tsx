@@ -97,13 +97,17 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   useEffect(() => {
     if (!username) {
-      fetch(process.env.BACKEND_API_URL + "/username/" + username).then(
-        (resp) =>
-          resp.text().then((data) => {
-            setUsername(data);
-            setMonogram(createMonogram(data));
-          })
-      );
+      try {
+        fetch(process.env.BACKEND_API_URL + "/username/" + username).then(
+          (resp) =>
+            resp.text().then((data) => {
+              setUsername(data);
+              setMonogram(createMonogram(data));
+            })
+        );
+      } catch (err) {
+        console.log(`error fetching username "${username}" :`, err);
+      }
     }
   }, []);
 

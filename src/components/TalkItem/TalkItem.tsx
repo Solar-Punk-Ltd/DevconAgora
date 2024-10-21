@@ -23,12 +23,12 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const { username, loadedTalks, setLoadedTalks } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
+  const [startIx, setStartIx] = useState<number>(0);
+  const [endIx, setEndIx] = useState<number>(0);
 
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
   const signer = getSigner(wallet);
-  const [startIx, setStartIx] = useState<number>(0);
-  const [endIx, setEndIx] = useState<number>(0);
 
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
@@ -69,11 +69,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       end - newComments.length > 0 ? end - newComments.length : 0;
     setStartIx(newStart);
     setEndIx(end);
-    console.log("start index", startIx);
-    console.log("end index", endIx);
   };
 
-  // TODO: periodically update the comments
   // find whether the talk is already loaded the first time the component is rendered
   useEffect(() => {
     if (loadedTalks) {
@@ -117,6 +114,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           preloadedCommnets={comments}
           onComment={hanldeOnComment}
           onRead={hanldeOnRead}
+          startIx={startIx}
+          endIx={endIx}
           numOfComments={MAX_COMMENTS_LOADED}
           maxCharacterCount={MAX_CHARACTER_COUNT}
         />
