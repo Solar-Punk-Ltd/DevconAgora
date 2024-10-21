@@ -51,6 +51,8 @@ const MainRouter = (): ReactElement => {
     showGamification,
     setShowGamification,
     points,
+    setPoints,
+    username,
     sessions,
     setSessions,
     recentSessions,
@@ -106,12 +108,29 @@ const MainRouter = (): ReactElement => {
     }
   };
 
+  const getPoints = async () => {
+    fetch(process.env.BACKEND_API_URL + "/points/" + username).then(
+      (resp) =>
+        resp.text().then((data) => {
+          setPoints(Number(data));
+        })
+    );
+  }
+
   useEffect(() => {
     // TODO: what shall be the update time ?
     checkBee();
     const interval = setInterval(() => {
       checkBee();
     }, FIVE_MINUTES);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    getPoints();
+    const interval = setInterval(() => {
+      getPoints();
+    }, 1000 * 60);
     return () => clearInterval(interval);
   }, []);
 
