@@ -1,14 +1,40 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./ClaimRewardPage.scss";
 import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import { useGlobalState } from "../../GlobalStateContext";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 
 const ClaimRewardPage: React.FC = () => {
+  const { username } = useGlobalState();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const nonce = "nonce";
+    fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
+      resp.text().then((data) => {
+        console.log("nonce fetched", data);
+        //TODO: sign nonce with private key
+      })
+    );
+    fetch(process.env.BACKEND_API_URL + "/redeem", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: username, message: nonce }),
+    }).then((resp) =>
+      resp.text().then((data) => {
+        if (inputRef.current) {
+          inputRef.current.value = data;
+        }
+      })
+    );
+  });
 
   const handleCopyClick = async () => {
     if (inputRef.current) {
