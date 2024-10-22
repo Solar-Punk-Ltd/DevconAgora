@@ -101,6 +101,7 @@ const Message: React.FC<MessageProps> = ({
           <span>{likeCount ? likeCount : ""}</span>
           <button
             className="message__right-side__message-controls_like"
+            disabled={data.threadId === "being-sent"}
             onClick={likeMessage}
           >
             {likeLoading ? (
@@ -112,7 +113,7 @@ const Message: React.FC<MessageProps> = ({
             )}
           </button>
 
-          {!currentThread && (
+          {!currentThread && data.threadId !== "being-sent" && (
             <p
               className={
                 data.replyCount

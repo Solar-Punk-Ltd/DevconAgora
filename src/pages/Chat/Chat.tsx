@@ -168,6 +168,7 @@ const Chat: React.FC<ChatProps> = ({
 
   useEffect(() => {
     setVisibleMessages([]);
+    setBeingSentMessages([]);
     currentThreadRef.current = currentThread;
     const newlyFilteredMessages = filterMessages(allMessages);
 
