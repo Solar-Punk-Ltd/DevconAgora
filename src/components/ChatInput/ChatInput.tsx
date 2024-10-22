@@ -106,6 +106,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         console.error("Registration did not go through");
         setSending(false);
         setReconnecting(false);
+        setBeingSentMessages([]);
         return;
       }
 
