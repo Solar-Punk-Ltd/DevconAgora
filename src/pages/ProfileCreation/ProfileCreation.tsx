@@ -74,20 +74,27 @@ const ProfileCreation: React.FC = () => {
       setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));
-      const response = await fetch(
-        process.env.BACKEND_API_URL + "/username/" + username
-      );
-      if (response.status === 200) {
-        setButtonActive(true);
-        setError(false);
-      } else if (response.status === 409) {
-        setButtonActive(false);
-        setError(true);
-        setUserNameSetError(true);
-      } else {
+      try {
+        const response = await fetch(
+          process.env.BACKEND_API_URL + "/username/" + username
+        );
+        if (response.status === 200) {
+          setButtonActive(true);
+          setError(false);
+        } else if (response.status === 409) {
+          setButtonActive(false);
+          setError(true);
+          setUserNameSetError(true);
+        } else {
+          setButtonActive(false);
+          setError(true);
+          setOtherError(true);
+        }
+      } catch (err) {
         setButtonActive(false);
         setError(true);
         setOtherError(true);
+        console.log(`error fetching username "${username}" :`, err);
       }
     } else {
       setButtonActive(false);
