@@ -79,25 +79,35 @@ const ChatInput: React.FC<ChatInputProps> = ({
       console.log("Diagnostics: ", chat.getDiagnostics());
       setReconnecting(true);
       let rounds = 0;
+      const EVERY_X_ROUND = 5;    // Resend registration request every X round
+      const MAX_ROUNDS = 60;
       const waitOneRound = async (ms: number) => {
         return new Promise((resolve) => setTimeout(resolve, ms));
       };
 
-      await chat
-        .registerUser(topic, {
-          participant: ownAddress,
-          key: privKey,
-          stamp,
-          nickName: nickname,
-        })
-        .then(() => console.info(`user reconnected.`))
-        .catch((err) => console.error(`error when reconnecting ${err.error}`));
-
       do {
+        if (!(rounds % EVERY_X_ROUND)) await chat
+          .registerUser(topic, {
+            participant: ownAddress,
+            key: privKey,
+            stamp,
+            nickName: nickname,
+          })
+          .then(() => console.info(`Registration request sent`))
+          .catch((err) => console.error(`Error while registering ${err.error}`));
+
         await waitOneRound(1000);
+
         console.log("isRegistered: ", chat.isRegistered(ownAddress));
-        rounds++
-      } while (!chat.isRegistered(ownAddress) && rounds < 60);
+        rounds++;
+      } while (!chat.isRegistered(ownAddress) && rounds < MAX_ROUNDS);
+
+      if (rounds === MAX_ROUNDS) {
+        console.error("Registration did not go through");
+        setSending(false);
+        setReconnecting(false);
+        return;
+      }
 
       setReconnecting(false); // this might not be accurate
     }

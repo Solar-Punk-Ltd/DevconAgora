@@ -11,9 +11,12 @@ importers:
       '@ethersphere/bee-js':
         specifier: ^8.1.0
         version: 8.1.0
+      '@solarpunkltd/comment-system':
+        specifier: ^1.1.5
+        version: 1.1.5(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))
       '@solarpunkltd/comment-system-ui':
-        specifier: ^v0.0.4
-        version: 0.0.4(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))
+        specifier: ^0.0.12
+        version: 0.0.12(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))
       '@solarpunkltd/swarm-decentralized-chat':
         specifier: ^0.0.23
         version: 0.0.23
@@ -683,8 +686,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@solarpunkltd/comment-system-ui@0.0.4':
-    resolution: {integrity: sha512-qz/an61T5JH0GFmwA2TNRQoEwob1rea/rVSKyBN3qtMN60sxPsTye3I1IUT6vqyga//gTwm8va24YcLm1xtfdg==}
+  '@solarpunkltd/comment-system-ui@0.0.12':
+    resolution: {integrity: sha512-J20tOUw6lKzuYqpYicfUBOWMvaxCRKuQ+UNTMaoQi8fkjNCwjIzyC1myYG/jQEHuff3Shlc6ooc8sFYLWoIIIg==}
 
   '@solarpunkltd/comment-system@1.1.5':
     resolution: {integrity: sha512-x2NnHzeWa0F1loM6kcTgsn2qnf+gb1mUr/T02GhD2w01uFkJ8KhbZsJ+VtSWNxfzUbf7Ezv7B1e46A9BqymUgQ==}
@@ -3145,17 +3148,17 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
 
-  '@solarpunkltd/comment-system-ui@0.0.4(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))':
+  '@solarpunkltd/comment-system-ui@0.0.12(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))':
     dependencies:
-      '@ethersphere/bee-js': 6.9.1
+      '@ethersphere/bee-js': 8.1.0
       '@solarpunkltd/comment-system': 1.1.5(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))
+      clsx: 2.1.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       vite-plugin-node-polyfills: 0.22.0(rollup@4.24.0)(vite@5.4.9(@types/node@22.7.7)(sass@1.80.3))
     transitivePeerDependencies:
       - bufferutil
       - debug
-      - domexception
       - rollup
       - utf-8-validate
       - vite
