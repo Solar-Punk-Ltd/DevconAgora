@@ -68,6 +68,7 @@ const MainRouter = (): ReactElement => {
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState<string | null>(null);
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
@@ -163,10 +164,10 @@ const MainRouter = (): ReactElement => {
   }, [fetchSessions]);
 
   useEffect(() => {
-    if (points > 0) {
-      setShowGamification(true);
+    if (isFirstRender) {
+      setIsFirstRender(false);
     } else {
-      setShowGamification(false);
+      setShowGamification(true);
     }
   }, [points]);
 
