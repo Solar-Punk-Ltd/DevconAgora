@@ -81,7 +81,6 @@ const Agenda: React.FC = () => {
     }
   }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
-  // TODO: all vs agenda naming ?
   return !showCategories ? (
     <div className="agenda-page">
       <div className="agenda-page__upper-tab-panel">
