@@ -14,26 +14,34 @@ const ClaimRewardPage: React.FC = () => {
 
   useEffect(() => {
     const nonce = "nonce";
-    fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
-      resp.text().then((data) => {
-        console.log("nonce fetched", data);
-        //TODO: sign nonce with private key
-      })
-    );
-    fetch(process.env.BACKEND_API_URL + "/redeem", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name: username, message: nonce }),
-    }).then((resp) =>
-      resp.text().then((data) => {
-        if (inputRef.current) {
-          inputRef.current.value = data;
-        }
-      })
-    );
+    try {
+      fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
+        resp.text().then((data) => {
+          console.log("nonce fetched", data);
+          //TODO: sign nonce with private key
+        })
+      );
+    } catch (error) {
+      console.log("error fetching nonce: ", error);
+    }
+    try {
+      fetch(process.env.BACKEND_API_URL + "/redeem", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, message: nonce }),
+      }).then((resp) =>
+        resp.text().then((data) => {
+          if (inputRef.current) {
+            inputRef.current.value = data;
+          }
+        })
+      );
+    } catch (error) {
+      console.log("error fetching redeem: ", error);
+    }
   });
 
   const handleCopyClick = async () => {

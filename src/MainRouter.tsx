@@ -109,13 +109,16 @@ const MainRouter = (): ReactElement => {
   };
 
   const getPoints = async () => {
-    fetch(process.env.BACKEND_API_URL + "/points/" + username).then(
-      (resp) =>
+    try {
+      fetch(process.env.BACKEND_API_URL + "/points/" + username).then((resp) =>
         resp.text().then((data) => {
           setPoints(Number(data));
         })
-    );
-  }
+      );
+    } catch (error) {
+      console.log("error fetching points: ", error);
+    }
+  };
 
   useEffect(() => {
     // TODO: what shall be the update time ?
