@@ -43,7 +43,7 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
     return () => {
       if (imgElement) {
         imgElement.removeEventListener("load", updateContainerHeight);
-        window.removeEventListener("resize", updateContainerHeight); // Eseményfigyelő eltávolítása
+        window.removeEventListener("resize", updateContainerHeight);
       }
     };
   }, [points]);
