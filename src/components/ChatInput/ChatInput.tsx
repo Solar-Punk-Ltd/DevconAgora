@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./ChatInput.scss";
 import {
   EthAddress,
@@ -19,7 +19,7 @@ interface ChatInputProps {
   stamp: BatchId;
   privKey: string;
   currentThread: ThreadId | null;
-  setVisibleMessages: Dispatch<SetStateAction<MessageWithThread[]>>;
+  setBeingSentMessages: Dispatch<SetStateAction<MessageWithThread[]>>;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({
@@ -30,7 +30,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   stamp,
   privKey,
   currentThread,
-  setVisibleMessages,
+  setBeingSentMessages
 }) => {
   const [messageToSend, setMessageToSend] = useState<string>("");
   const [reconnecting, setReconnecting] = useState<boolean>(false);
@@ -41,19 +41,21 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const sendMessage = async () => {
     if (!messageToSend) return;
 
+    const messageId = randomThreadId();
+
     const messageObj: MessageData = {
       message: JSON.stringify({
         text: messageToSend,
         threadId: currentThread ? null : randomThreadId(), // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
-        messageId: randomThreadId(), // Every message has an ID, for liking
-        parent: currentThread, // This will be ThreadId (string) or null
+        messageId,                                         // Every message has an ID, for liking
+        parent: currentThread,                             // This will be ThreadId (string) or null
       }),
       timestamp: Date.now(),
       username: nickname,
       address: ownAddress,
     };
 
-    setVisibleMessages((prevMessages) => {
+    setBeingSentMessages((prevMessages) => {
       const newMessages = [
         ...prevMessages,
         {
@@ -62,7 +64,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           timestamp: messageObj.timestamp,
           message: messageToSend,
           threadId: "being-sent",
-          messageId: "being-sent",
+          messageId,
           parent: currentThread,
           replyCount: 0,
           likeTable: {},
@@ -94,6 +96,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       do {
         await waitOneRound(1000);
         console.log("isRegistered: ", chat.isRegistered(ownAddress));
+        rounds++
       } while (!chat.isRegistered(ownAddress) && rounds < 60);
 
       setReconnecting(false); // this might not be accurate
@@ -104,6 +107,14 @@ const ChatInput: React.FC<ChatInputProps> = ({
     setMessageToSend("");
     setSending(false);
   };
+
+  useEffect(() => {
+    return () => {
+      chat.stopMessageFetchProcess();
+      chat.stopUserFetchProcess();
+    }
+  }, []);
+
 
   return (
     <div

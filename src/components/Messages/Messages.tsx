@@ -56,7 +56,7 @@ const Messages: React.FC<MessagesProps> = ({
   };
   
   // Schedule a scroll after the state update if we're already at the bottom
-  if (isScrolledToBottom()) {
+  if (true || isScrolledToBottom()) {
     setTimeout(scrollToBottom, 0);
   }
 

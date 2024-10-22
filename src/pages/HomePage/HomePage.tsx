@@ -35,7 +35,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
 
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
-    throw new Error("No private key found");
+    return (
+      <div className="home-page-error">
+        No private key found
+        <NavigationFooter />
+      </div>
+    );
   }
 
   // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.

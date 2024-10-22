@@ -45,6 +45,7 @@ const Chat: React.FC<ChatProps> = ({
 }) => {
   const chat = useRef<SwarmChat | null>(null);
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
+  const [beingSentMessages, setBeingSentMessages] = useState<MessageWithThread[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
     []
   );
@@ -59,7 +60,7 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: process.env.GATEWAY,
+      gateway: process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
       logLevel: "info",
       usersFeedTimeout: 10000,
@@ -81,18 +82,22 @@ const Chat: React.FC<ChatProps> = ({
       .catch((err) => console.error(`initUsers error: ${err.error}`));
 
     const { on } = newChat.getChatActions();
-    on(EVENTS.RECEIVE_MESSAGE, (data) => handleReceiveMessage(data));
+    on(EVENTS.RECEIVE_MESSAGE, (data) => setAllMessages([...data]));
 
     chat.current = newChat;
     setChatLoaded(true);
   };
 
-  const handleReceiveMessage = (data: MessageData[]) => {
-    const finalMessages = filterMessages(data);
+  useEffect(() => {
+    const messageIds = allMessages.map((msg) => JSON.parse(msg.message).messageId)
+    const newBeingSent = beingSentMessages.filter((message) => !messageIds.includes(message.messageId));
+    setBeingSentMessages(newBeingSent)
+  }, [allMessages]);
 
-    setAllMessages([...data]);
-    setVisibleMessages([...finalMessages]);
-  };
+  useEffect(() => {
+    const finalMessages = filterMessages(allMessages);
+    setVisibleMessages([...finalMessages, ...beingSentMessages]);
+  }, [allMessages, beingSentMessages]);
 
   const filterMessages = (data: MessageData[]): MessageWithThread[] => {
     const threadCapableMessages: MessageWithThread[] = [];
@@ -169,6 +174,7 @@ const Chat: React.FC<ChatProps> = ({
     setVisibleMessages([...newlyFilteredMessages]);
   }, [currentThread]);
 
+
   return (
     <div className="chat-page">
       <Back
@@ -217,7 +223,8 @@ const Chat: React.FC<ChatProps> = ({
             stamp={stamp}
             privKey={privKey}
             currentThread={currentThread}
-            setVisibleMessages={setVisibleMessages}
+            setBeingSentMessages={setBeingSentMessages}
+            key={topic}
           />
         </>
       ) : (
