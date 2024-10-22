@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Gamification.scss";
 
 import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
@@ -18,13 +18,43 @@ interface GamificationProps {
 const Gamification: React.FC<GamificationProps> = ({ points }) => {
   const { setShowGamification } = useGlobalState();
   const [showClaimReward, setShowClaimReward] = React.useState(false);
+  const imageContainerRef = React.useRef<HTMLDivElement>(null);
+  const imageRef = React.useRef<HTMLImageElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updateContainerHeight = () => {
+      if (imageContainerRef.current && imageRef.current && contentRef.current) {
+        imageContainerRef.current.style.minHeight = `${imageRef.current.offsetHeight}px`;
+        imageContainerRef.current.style.height = `${contentRef.current.offsetHeight}px`;
+      }
+    };
+    window.addEventListener("resize", updateContainerHeight);
+
+    const imgElement = imageRef.current;
+    if (imgElement) {
+      imgElement.addEventListener("load", updateContainerHeight);
+
+      if (imgElement.complete) {
+        updateContainerHeight();
+      }
+    }
+
+    return () => {
+      if (imgElement) {
+        imgElement.removeEventListener("load", updateContainerHeight);
+        window.removeEventListener("resize", updateContainerHeight);
+      }
+    };
+  }, [points]);
+
   return (
     <>
       <div className="gamification">
         {showClaimReward ? (
           <ClaimRewardExplanation />
         ) : (
-          <div className="gamification__modal">
+          <div className="gamification__modal" ref={imageContainerRef}>
             <img
               src={
                 points === 1
@@ -34,11 +64,12 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
                   : GamificationBackgroundTen
               }
               alt=""
+              ref={imageRef}
               className={clsx("gamification__modal__img", {
                 "gamification__modal_img__ten-points": points === 10,
               })}
             />
-            <div className="gamification__modal__content">
+            <div className="gamification__modal__content" ref={contentRef}>
               <div className="gamification__modal__content__close">
                 <CloseIcon
                   color="white"
@@ -90,7 +121,12 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
                     Claim your reward
                   </button>
                 ) : null}
-                <Link to={ROUTES.HOWDOESITWORK}>
+              </div>
+              <div>
+                <Link
+                  to={ROUTES.HOWDOESITWORK}
+                  onClick={() => setShowGamification(false)}
+                >
                   <div className="gamification__modal__content_how">
                     How does it work?
                   </div>

@@ -47,6 +47,7 @@ export enum ROUTES {
   NOTES = "/notes",
   NEW_NOTE = "/new",
   STAYUPDATED = "/stay-updated",
+  HOMEDEBUGLESS = "/home-debugless",
 }
 
 export const CATEGORIES = [

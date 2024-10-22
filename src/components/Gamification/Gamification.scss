@@ -15,7 +15,7 @@
   position: relative;
   background-color: black;
   width: 100%;
-  min-height: 170px;
+  // min-height: 223px;
   display: flex;
   box-sizing: border-box;
   overflow: hidden;
@@ -24,8 +24,10 @@
 }
 .gamification__modal__img {
   width: 100%;
-  height: 90%;
+  object-fit: contain;
   position: absolute;
+  top: 0px;
+  background-color: black;
 }
 
 .gamification__modal_img__ten-points {
@@ -38,18 +40,19 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
   padding: 16px;
+  background-color: #00000054;
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
-  .gamification__modal__content {
-    height: auto;
-  }
-}
+// @media (min-width: 480px) {
+//   .gamification__modal__content {
+//     height: auto;
+//   }
+// }
 
 .gamification__modal__content__header {
   font-family: "Inter", sans-serif;
@@ -116,4 +119,10 @@
   width: 97%;
   align-items: center;
   line-height: 26px;
+}
+
+@media (min-width: 480px) {
+  .gamification__modal__content_main {
+    width: 81%;
+  }
 }

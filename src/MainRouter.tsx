@@ -68,6 +68,7 @@ const MainRouter = (): ReactElement => {
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState<string | null>(null);
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
@@ -163,10 +164,10 @@ const MainRouter = (): ReactElement => {
   }, [fetchSessions]);
 
   useEffect(() => {
-    if (points > 0) {
-      setShowGamification(true);
+    if (isFirstRender) {
+      setIsFirstRender(false);
     } else {
-      setShowGamification(false);
+      setShowGamification(true);
     }
   }, [points]);
 
@@ -327,6 +328,10 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage isLoaded={false} />} />
+        <Route
+          path={ROUTES.HOMEDEBUGLESS}
+          element={<HomePage isLoaded={false} debugless={true} />}
+        />
         <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />

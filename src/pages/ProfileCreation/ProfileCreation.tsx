@@ -70,7 +70,11 @@ const ProfileCreation: React.FC = () => {
   };
 
   const handleOkClick = async () => {
-    if (validateInput(username) && username.length > 0) {
+    if (
+      validateInput(username) &&
+      username.length > 0 &&
+      username.trim() !== ""
+    ) {
       setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));

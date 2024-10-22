@@ -17,9 +17,10 @@ import { RoomWithUserCounts } from "../../types/room";
 
 interface HomePageProps {
   isLoaded?: boolean;
+  debugless?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
+const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
   const { points, username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -84,7 +85,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded }) => {
           <img src={HomeBackground} alt="" width="100%" height="100%" />
         </div>
       ) : null}
-      <HomeHeader points={points} />
+      <HomeHeader points={points} debugless={debugless} />
       {isLoading ? (
         <HomeLoading />
       ) : (
