@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import { CATEGORY_NAMES_TO_ID_MAP, TEST_CATEGORIES, TEST_CATEGPRY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { CATEGORY_NAMES_TO_ID_MAP, TEST_CATEGORIES, TEST_CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
@@ -49,7 +49,7 @@ const SpacesPage: React.FC = () => {
       {selectedChat && (
         <Chat
           title={selectedChat}
-          topic={TEST_CATEGPRY_NAMES_TO_ID_MAP.get(selectedChat)}
+          topic={TEST_CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
           privKey={privKey}
           stamp={process.env.STAMP as BatchId}
           nickname={username}
