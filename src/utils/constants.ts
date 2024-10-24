@@ -10,7 +10,7 @@ export const MOCK_START_TIME = new Date("2022-10-11T12:15:00.000Z");
 export const MAX_PRELOADED_TALKS = 11;
 export const MAX_COMMENTS_LOADED = 15;
 export const MAX_SESSIONS_SHOWN = 9;
-export const LOBBY_TOPIC = "lobby::test";
+export const LOBBY_TITLE = "Lobby::test";
 export const MAX_CHARACTER_COUNT = 4096;
 
 import Layer2s from "../assets/category-layer-2s.png";
@@ -164,6 +164,7 @@ export const CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Coordination", "coordination"],
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
+  ["Lobby", "lobby"]
 ]);
 
 export const CATEGORY_IMAGES_MAP = new Map([
@@ -190,6 +191,7 @@ export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
   ["Coordination::test", "coordination-test"],
   ["Developer Experience::test", "developer-experience-test"],
   ["Security::test", "security-test"],
+  ["Lobby::test", "lobby-test"]
 ]);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";

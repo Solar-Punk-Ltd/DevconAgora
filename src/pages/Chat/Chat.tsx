@@ -15,11 +15,12 @@ import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
 import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { ROUTES } from "../../utils/constants";
+import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 
 interface ChatProps {
-  topic: string;
+  title: string | undefined;
+  topic: string | undefined;
   privKey: string;
   stamp: BatchId;
   nickname: string;
@@ -31,7 +32,9 @@ interface ChatProps {
   backAction: () => void | undefined | null;
 }
 
+
 const Chat: React.FC<ChatProps> = ({
+  title,
   topic,
   privKey,
   stamp,
@@ -55,6 +58,16 @@ const Chat: React.FC<ChatProps> = ({
   const wallet = new Wallet(privKey);
   const ownAddress = wallet.address as EthAddress;
   const modal = true;
+  // Now that we have 'title', we could calculate 'topic' here. Only problem is that it might be undefined.
+
+  if (!topic) {
+    return (
+      <div className="chat-page-error">
+        Topic is undefined
+        <NavigationFooter />
+      </div>
+    );
+  }
 
   const init = async () => {
     // Initialize the SwarmDecentralizedChat library
@@ -179,7 +192,7 @@ const Chat: React.FC<ChatProps> = ({
   return (
     <div className="chat-page">
       <Back
-        title={topic}
+        title={title}
         where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}

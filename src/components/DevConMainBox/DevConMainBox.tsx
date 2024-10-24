@@ -2,7 +2,7 @@ import React from "react";
 import "./DevConMainBox.scss";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
-import { LOBBY_TOPIC } from "../../utils/constants";
+import { LOBBY_TITLE } from "../../utils/constants";
 
 interface DevConMainBoxProps {
   title: string;
@@ -22,7 +22,7 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
   setSelectedChat
 }) => {
   return (
-    <div onClick={() => setSelectedChat(LOBBY_TOPIC)} >
+    <div onClick={() => setSelectedChat(LOBBY_TITLE)} >
       <div
         className={clsx("devcon-main-box", {
           "devcon-main-box__border": bordered,
