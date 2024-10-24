@@ -12,7 +12,7 @@ import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { TestgetResourceId } from "../../utils/helpers";
-import { ROUTES, TEST_CATEGORIES, LOBBY_TOPIC } from "../../utils/constants";
+import { ROUTES, TEST_CATEGORIES, LOBBY_TITLE, TEST_CATEGPRY_NAMES_TO_ID_MAP, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
 
 interface HomePageProps {
@@ -35,7 +35,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
 
   const privKey = localStorage.getItem("privKey");
   if (!privKey) {
-    throw new Error("No private key found");
+    return (
+      <div className="home-page-error">
+        No private key found
+        <NavigationFooter />
+      </div>
+    );
   }
 
   // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
@@ -57,7 +62,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
   };
 
   const lobbyeUserCount = (): number => {
-    const lobby = orderedList.find((room) => room.topic === LOBBY_TOPIC);
+    const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
     if (!lobby) return 0;
     if (lobby.userCount) return lobby.userCount;
     else return 0;
@@ -106,7 +111,8 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
 
       {selectedChat && (
         <Chat
-          topic={selectedChat}
+          title={selectedChat}
+          topic={TEST_CATEGPRY_NAMES_TO_ID_MAP.get(selectedChat)}
           privKey={privKey}
           stamp={process.env.STAMP as BatchId}
           nickname={username}
