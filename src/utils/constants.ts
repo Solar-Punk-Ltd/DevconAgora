@@ -1,3 +1,14 @@
+const createBiDirectionaltMap = (map: Map<string, string>) => {
+  const biDirectionalMap = new Map();
+
+  map.forEach((value: string, key: string) => {
+    biDirectionalMap.set(key, value);
+    biDirectionalMap.set(value, key);
+  });
+
+  return biDirectionalMap;
+};
+
 export const BATCH_ID_HEX_LENGTH = 64;
 export const ADDRESS_HEX_LENGTH = 64;
 export const FIVE_MINUTES = 1000 * 60 * 5;
@@ -79,16 +90,17 @@ export const TEST_CATEGORIES = [
 ] as const;
 
 export const RESOURCE_IDS = new Map([
-  ["Layer 2s", "null"],
-  ["Core protocol", "null"],
-  ["Cypherpunk and privacy", "null"],
-  ["Usability", "null"],
-  ["Real World Ethereum", "null"],
-  ["Applied Cryptography", "null"],
-  ["Cryptoeconomics", "null"],
-  ["Coordination", "null"],
-  ["Developer Experience", "null"],
-  ["Security", "null"],
+  ["layer-2s", "null"],
+  ["core-protocol", "null"],
+  ["cypherpunk-and-privacy", "null"],
+  ["usability", "null"],
+  ["real-world-ethereum", "null"],
+  ["applied-cryptography", "null"],
+  ["cryptoeconomics", "null"],
+  ["coordination", "null"],
+  ["developer-experience", "null"],
+  ["security", "null"],
+  ["lobby", "null"]
 ]);
 
 export const TEST_RESOURCE_IDS = new Map([
@@ -158,7 +170,7 @@ export const STAGES_MAP = new Map([
   ["workshop-4", "Workshop 4"],
 ]);
 
-export const CATEGORY_NAMES_TO_ID_MAP = new Map([
+const oneDirectionCategoryNamesToIdMap = new Map([
   ["Layer 2s", "layer-2s"],
   ["Core protocol", "core-protocol"],
   ["Cypherpunk and privacy", "cypherpunk-and-privacy"],
@@ -171,6 +183,7 @@ export const CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Security", "security"],
   ["Lobby", "lobby"]
 ]);
+export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionCategoryNamesToIdMap);
 
 export const CATEGORY_IMAGES_MAP = new Map([
   ["Layer 2s::test", Layer2s],
@@ -185,7 +198,7 @@ export const CATEGORY_IMAGES_MAP = new Map([
   ["Security::test", Security],
 ]);
 
-export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
+const oneDirectionTestCategoryNamesToIdMap = new Map([
   ["Layer 2s::test", "layer-2s-test"],
   ["Core protocol::test", "core-protocol-test"],
   ["Cypherpunk and privacy::test", "cypherpunk-and-privacy-test"],
@@ -198,6 +211,7 @@ export const TEST_CATEGPRY_NAMES_TO_ID_MAP = new Map([
   ["Security::test", "security-test"],
   ["Lobby::test", "lobby-test"]
 ]);
+export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionTestCategoryNamesToIdMap);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
 export const DISCLAIMER_OF_LIABILITY_TEXT =

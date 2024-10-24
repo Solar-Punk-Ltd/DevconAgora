@@ -2,6 +2,7 @@ import React from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
 import { RoomWithUserCounts } from "../../types/room";
+import { TEST_CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 
 interface SpacesProps {
   list: RoomWithUserCounts[];
@@ -18,9 +19,9 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedChat }) => {
 
       <div>
         {list.map((room) => (
-          <div key={room.topic} onClick={() => setSelectedChat(room.topic)}>
+          <div key={room.topic} onClick={() => setSelectedChat(TEST_CATEGORY_NAMES_TO_ID_MAP.get(room.topic))}>
             <SpacesItem
-              title={room.topic}
+              title={TEST_CATEGORY_NAMES_TO_ID_MAP.get(room.topic)}
               numberOfActiveUsers={room.userCount!}
             />
           </div>
