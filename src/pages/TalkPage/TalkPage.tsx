@@ -48,7 +48,10 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
 
   return (
     <div className="talk">
-      <NavigationHeader toText={toTextFixed ? toTextFixed : ""} />
+      <NavigationHeader
+        toText={toTextFixed ? toTextFixed : ""}
+        backgroundColor="#F1F2F4"
+      />
       <div className="talk__content">
         {session && <TalkItem session={session} />}
       </div>

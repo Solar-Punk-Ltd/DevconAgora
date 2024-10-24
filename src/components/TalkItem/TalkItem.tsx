@@ -10,6 +10,7 @@ import {
   MAX_CHARACTER_COUNT,
   MAX_COMMENTS_LOADED,
   MAX_PRELOADED_TALKS,
+  STAGES_MAP,
 } from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
 import { getTopic } from "../../utils/bee";
@@ -87,21 +88,21 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
 
   return (
     <>
-      <div className="talk-item">
-        {session && (
-          <AgendaItem
-            key={session.id}
-            id={session.id}
-            title={session.title}
-            startDate={dateToTime(session.slot_start)}
-            endDate={dateToTime(session.slot_end)}
-            category={session.track}
-            roomId={session.slot_roomId}
-            liked={session.liked}
-            paddingRight={"16px"}
-          />
-        )}
-      </div>
+      {session && (
+        <AgendaItem
+          key={session.id}
+          id={session.id}
+          title={session.title}
+          startDate={dateToTime(session.slot_start)}
+          endDate={dateToTime(session.slot_end)}
+          category={session.track}
+          roomId={session.slot_roomId}
+          liked={session.liked}
+          paddingRight={"16px"}
+          stage={STAGES_MAP.get(session.slot_roomId ? session.slot_roomId : "")}
+          commentVersion={true}
+        />
+      )}
       {/* // either use a local stamp from the env or a dummy can be sent to the
       gateway */}
       {!loading && (
