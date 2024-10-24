@@ -6,6 +6,7 @@ import Stage from "../../components/Stage/Stage";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 import { booleanToString, stringToBoolean } from "../../utils/helpers";
+import clsx from "clsx";
 
 interface AgendaItemProps {
   id: string;
@@ -19,6 +20,7 @@ interface AgendaItemProps {
   backgroundColor?: string;
   borderRadius?: string;
   paddingRight: string;
+  commentVersion?: boolean;
 }
 
 const AgendaItem: React.FC<AgendaItemProps> = ({
@@ -32,6 +34,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   backgroundColor,
   borderRadius,
   paddingRight,
+  commentVersion,
 }) => {
   const [empty, setEmpty] = useState<boolean>(!liked);
   const handleClick = () => {
@@ -43,7 +46,9 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   return (
     <Link to={`${ROUTES.TALKS}/${id}`}>
       <div
-        className="agenda-item"
+        className={clsx("agenda-item", {
+          "agenda-item__comment-version": commentVersion,
+        })}
         style={{ backgroundColor, borderRadius, paddingRight }}
       >
         <div className="agenda-item__main">

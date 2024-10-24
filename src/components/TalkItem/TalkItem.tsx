@@ -10,6 +10,7 @@ import {
   MAX_CHARACTER_COUNT,
   MAX_COMMENTS_LOADED,
   MAX_PRELOADED_TALKS,
+  STAGES_MAP,
 } from "../../utils/constants";
 import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
 import { getTopic } from "../../utils/bee";
@@ -99,6 +100,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
             roomId={session.slot_roomId}
             liked={session.liked}
             paddingRight={"16px"}
+            stage={STAGES_MAP.get(
+              session.slot_roomId ? session.slot_roomId : ""
+            )}
+            commentVersion={true}
           />
         )}
       </div>

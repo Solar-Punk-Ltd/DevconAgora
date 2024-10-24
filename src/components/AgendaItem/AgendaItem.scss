@@ -11,6 +11,14 @@
   z-index: 2;
 }
 
+.agenda-item__comment-version {
+  background-color: #f1f2f4;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 100%;
+  position: fixed;
+}
+
 .agenda-item__main {
   display: flex;
   gap: 6px;
