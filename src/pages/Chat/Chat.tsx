@@ -86,9 +86,9 @@ const Chat: React.FC<ChatProps> = ({
     });
 
     // Start polling messages & the Users feed
-    newChat.startMessageFetchProcess(topic);
-    console.info("Message fetch process started.");
-    newChat.startUserFetchProcess(topic);
+    //newChat.startMessageFetchProcess(topic);
+    //console.info("Message fetch process started.");
+    //newChat.startUserFetchProcess(topic);
     // probably move this more down
 
     // Load users (first time when entering app)
@@ -101,6 +101,8 @@ const Chat: React.FC<ChatProps> = ({
     on(EVENTS.RECEIVE_MESSAGE, (data) => setAllMessages([...data]));
 
     chat.current = newChat;
+    chat.current.startMessageFetchProcess(topic)
+    chat.current.startUserFetchProcess(topic)
     setChatLoaded(true);
   };
 
