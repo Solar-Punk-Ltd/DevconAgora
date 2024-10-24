@@ -10,6 +10,7 @@ import SendIcon from "../icons/SendIcon/SendIcon";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import { randomThreadId, handleKeyDown } from "../../utils/helpers";
 import InputLoading from "./InputLoading/InputLoading";
+import { BEING_SENT } from "../../utils/constants";
 
 interface ChatInputProps {
   chat: SwarmChat | null;
@@ -63,7 +64,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           address: ownAddress,
           timestamp: messageObj.timestamp,
           message: messageToSend,
-          threadId: "being-sent",
+          threadId: BEING_SENT,
           messageId,
           parent: currentThread,
           replyCount: 0,
