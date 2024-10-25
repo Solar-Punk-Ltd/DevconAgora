@@ -14,7 +14,7 @@
     "@ethersphere/bee-js": "^8.1.0",
     "@solarpunkltd/comment-system-ui": "^0.0.19",
     "@solarpunkltd/comment-system": "^1.1.5",
-    "@solarpunkltd/swarm-decentralized-chat": "^0.0.23",
+    "@solarpunkltd/swarm-decentralized-chat": "^0.1.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.3",

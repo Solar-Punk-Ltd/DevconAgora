@@ -80,8 +80,8 @@ const Chat: React.FC<ChatProps> = ({
       gsocResourceId,
       logLevel: "info",
       usersFeedTimeout: 10000,
-      messageCheckInterval: 2000,
-      messageFetchMin: 2000,
+      messageCheckInterval: 2000,       // We might want to reduce this number to 1000 or 800
+      messageFetchMin: 2000,            // same as above
       //  prettier: undefined
     });
 

@@ -97,8 +97,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
           .then(() => console.info(`Registration request sent`))
           .catch((err) => console.error(`Error while registering ${err.error}`));
 
-        await waitOneRound(1000);
+        //await waitOneRound(1000);
+        await chat.getNewUsers(topic);
 
+        console.log("USERS! ", chat.getDiagnostics().users);
         console.log("isRegistered: ", chat.isRegistered(ownAddress));
         rounds++;
       } while (!chat.isRegistered(ownAddress) && rounds < MAX_ROUNDS);
