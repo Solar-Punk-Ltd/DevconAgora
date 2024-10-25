@@ -275,14 +275,13 @@ const MainRouter = (): ReactElement => {
     preLoadTalks();
   }, [recentSessions]);
 
-  const calcActiveVisitors = () => {
+  const calcActivity = () => {
     if (loadedTalks) {
       const tmpActiveVisitors = new Map<string, number>();
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) =>
           talk.talkId.includes(recentSessions[i].id)
         );
-        // TODO: active visitors by user count vs comment activiy by comment count ?
         if (foundIx > -1) {
           tmpActiveVisitors.set(
             recentSessions[i].id,
@@ -295,10 +294,9 @@ const MainRouter = (): ReactElement => {
   };
 
   useEffect(() => {
-    calcActiveVisitors();
+    calcActivity();
   }, [loadedTalks, recentSessions]);
 
-  // TODO: batch promises just like preloaded talks
   const fetchNotes = async () => {
     const privKey = localStorage.getItem("privKey");
     if (!privKey) {
@@ -307,21 +305,55 @@ const MainRouter = (): ReactElement => {
     }
 
     const wallet = new Wallet(privKey);
+    const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      const dataRef = await getFeedUpdate(wallet.address, rawTopic);
+      feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
+    }
+
+    const dataRefPromises: Promise<string>[] = [];
+    await Promise.allSettled(feedPromises).then((results) => {
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          dataRefPromises.push(getData(result.value));
+        } else {
+          console.log(`fetching note ref error: `, result.reason);
+        }
+      });
+    });
+
+    const notesArray: string[] = [];
+    await Promise.allSettled(dataRefPromises).then((results) => {
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          notesArray.push(result.value);
+        } else {
+          console.log(`fetching note data error: `, result.reason);
+        }
+      });
+    });
+
+    const tmpNotes: NoteItemProps[] = [...notes];
+    for (let i = 0; i < notesArray.length; i++) {
       let note: NoteItemProps | undefined = undefined;
       try {
-        note = JSON.parse(await getData(dataRef)) as NoteItemProps;
+        note = JSON.parse(notesArray[i]) as NoteItemProps;
       } catch (error) {
-        console.log(`error parsing note, ref ${dataRef}:\n ${error}`);
+        console.log(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
       const found = notes.find((n) => n.id === note.id);
       if (!found && note !== undefined) {
-        setNotes((notes) => [...notes, note]);
+        tmpNotes.push(note);
       }
     }
+    tmpNotes.sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateA - dateB;
+    });
+    setNotes(tmpNotes);
+
     console.log("self notes updated");
   };
 

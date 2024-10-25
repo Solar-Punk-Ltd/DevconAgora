@@ -36,8 +36,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
   const signer = getSigner(wallet);
-  // TODO: first time updating the feed there is an index error
-  // TODO: preloader is not working when a new talk should be added
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
   const hanldeOnComment = (newComment: Comment) => {
@@ -61,8 +59,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
           newLoadedTalks.push(newTalkComent);
         } else {
-          // otherwise replace the last talk with the new one
-          newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
+          // otherwise replace the first talk with the new one
+          newLoadedTalks.splice(0, 1, newTalkComent);
         }
       }
     }
@@ -97,7 +95,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           newLoadedTalks.push(newTalkComent);
         } else {
           // otherwise replace the last talk with the new one
-          newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
+          newLoadedTalks.splice(0, 1, newTalkComent);
         }
         setLoadedTalks(newLoadedTalks);
       }

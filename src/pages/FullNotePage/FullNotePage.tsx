@@ -69,6 +69,12 @@ const FullNotePage: React.FC = () => {
       setCurrentNote(tmpNote);
       addRemoveTopicToLocalStore(rawNoteTopic, remove);
       saveNote(rawNoteTopic, remove);
+      const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
+      if (foundIx > -1) {
+        const tmpNotes = [...notes];
+        tmpNotes.splice(foundIx, 1);
+        setNotes(tmpNotes);
+      }
     }
     navigate(ROUTES.NOTES);
   };
@@ -161,16 +167,15 @@ const FullNotePage: React.FC = () => {
 
     const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
     const tmpNotes = [...notes];
-    if (foundIx > -1) {
-      if (remove) {
-        tmpNotes.splice(foundIx, 1);
-      } else {
+    if (!remove) {
+      if (foundIx > -1) {
         tmpNotes[foundIx] = noteObj;
+      } else {
+        tmpNotes.push(noteObj);
       }
-    } else {
-      tmpNotes.push(noteObj);
+      setNotes(tmpNotes);
+      setCurrentNote(noteObj);
     }
-    setNotes(tmpNotes);
     setSending(false);
     setSaved(true);
   };
