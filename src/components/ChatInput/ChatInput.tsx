@@ -76,7 +76,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
     });
 
     if (!chat.isRegistered(ownAddress)) {
-      console.log("Diagnostics: ", chat.getDiagnostics());
       setReconnecting(true);
       let rounds = 0;
       const EVERY_X_ROUND = 5;    // Resend registration request every X round
@@ -94,9 +93,6 @@ const ChatInput: React.FC<ChatInputProps> = ({
           .catch((err) => console.error(`Error while registering ${err.error}`));
 
         await chat.getNewUsers(topic);
-
-        console.log("USERS! ", chat.getDiagnostics().users);
-        console.log("isRegistered: ", chat.isRegistered(ownAddress));
         rounds++;
       } while (!chat.isRegistered(ownAddress) && rounds < MAX_ROUNDS);
 
