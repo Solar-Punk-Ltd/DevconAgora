@@ -94,7 +94,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
         await chat.getNewUsers(topic);
         rounds++;
-      } while (!chat.isRegistered(ownAddress) && rounds < MAX_ROUNDS);
+      } while (rounds < MAX_ROUNDS && !chat.isRegistered(ownAddress));
 
       if (rounds === MAX_ROUNDS) {
         console.error("Registration did not go through");
