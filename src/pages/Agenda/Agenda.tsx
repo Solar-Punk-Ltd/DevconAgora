@@ -85,11 +85,13 @@ const Agenda: React.FC = () => {
     <div className="agenda-page">
       <div className="agenda-page__upper-tab-panel">
         <TabPanel version="underlined" activeIndex={activeAgendaTab}>
-          {renderTabPanelItems(["All", "Your Agenda"], setActiveAgendaTab)}
+          {renderTabPanelItems(["All", "My Agenda"], setActiveAgendaTab)}
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
           {renderTabPanelItems(
-            Array.from(DATE_TO_DEVCON_DAY.values()),
+            activeAgendaTab === 1
+              ? ["All", ...Array.from(DATE_TO_DEVCON_DAY.values())]
+              : Array.from(DATE_TO_DEVCON_DAY.values()),
             setActiveDayTab
           )}
         </TabPanel>
@@ -122,7 +124,23 @@ const Agenda: React.FC = () => {
             alt=""
             className="agenda-page__content__banner__img"
           />
-          <div className="agenda-page__content__banner__text">Side Event</div>
+          <div className="agenda-page__content__banner__text">
+            <div className="agenda-page__content__banner__text__main-text">
+              <b>Rooftop </b>
+              <span className="agenda-page__content__banner__text__main-text-regular">
+                &nbsp;Buzz
+              </span>
+            </div>
+            <div className="agenda-page__content__banner__text__sub-text">
+              Sunset &&nbsp;
+              <span className="agenda-page__content__banner__text__sub-text-bold">
+                <b>Chill</b>
+              </span>
+            </div>
+            <div className="agenda-page__content__banner__text__register-button">
+              Register now!
+            </div>
+          </div>
         </div>
         {activeAgendaItems.length > 0 ? (
           activeAgendaItems.map((session) => {
