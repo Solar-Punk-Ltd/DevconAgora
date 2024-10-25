@@ -79,9 +79,9 @@ const Chat: React.FC<ChatProps> = ({
       gateway: process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
       logLevel: "error",
-      usersFeedTimeout: 10000,          // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
-      messageCheckInterval: 2000,       // We might want to reduce this number to 1000 or 800
-      messageFetchMin: 2000,            // same as above
+      usersFeedTimeout: 4000,           // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
+      messageCheckInterval: 1600,       // We might want to reduce this number to 1000 or 800
+      messageFetchMin: 1600,            // same as above
       //  prettier: undefined
     });
 
