@@ -332,7 +332,6 @@ const MainRouter = (): ReactElement => {
           path={ROUTES.HOMEDEBUGLESS}
           element={<HomePage isLoaded={false} debugless={true} />}
         />
-        <Route path={ROUTES.DEVCONLOUNGE} element={<DevconLounge />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
