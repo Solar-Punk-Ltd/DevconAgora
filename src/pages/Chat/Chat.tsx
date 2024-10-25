@@ -85,12 +85,6 @@ const Chat: React.FC<ChatProps> = ({
       //  prettier: undefined
     });
 
-    // Start polling messages & the Users feed
-    //newChat.startMessageFetchProcess(topic);
-    //console.info("Message fetch process started.");
-    //newChat.startUserFetchProcess(topic);
-    // probably move this more down
-
     // Load users (first time when entering app)
     await newChat
       .initUsers(topic)
@@ -101,8 +95,10 @@ const Chat: React.FC<ChatProps> = ({
     on(EVENTS.RECEIVE_MESSAGE, (data) => setAllMessages([...data]));
 
     chat.current = newChat;
-    chat.current.startMessageFetchProcess(topic)
-    chat.current.startUserFetchProcess(topic)
+    chat.current.startMessageFetchProcess(topic);
+    console.info("Message fetch process started.");
+    chat.current.startUserFetchProcess(topic);
+    console.info("User fetch process started, interval: ", chat.current.getUserUpdateIntervalConst());
     setChatLoaded(true);
   };
 
