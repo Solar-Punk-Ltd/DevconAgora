@@ -235,7 +235,6 @@ const MainRouter = (): ReactElement => {
             talk.talkId.includes(sessionId)
           );
           if (foundIx > -1) {
-            console.log("bagoy found preloaded talk, do not load again");
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
           }

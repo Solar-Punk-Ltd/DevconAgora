@@ -30,8 +30,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   } = useGlobalState();
   const [comments, setComments] = useState<Comment[] | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [startIx, setStartIx] = useState<number>(0);
-  const [endIx, setEndIx] = useState<number>(0);
+  const [startIx, setStartIx] = useState<number | undefined>();
+  const [endIx, setEndIx] = useState<number | undefined>();
 
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
@@ -51,15 +51,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       // update the already loaded talk
       if (foundIx > -1) {
         newLoadedTalks[foundIx].comments = updatedComments;
-        console.log(
-          "bagoy new comments added to the preloaded buffer: ",
-          updatedComments
-        );
       } else {
         const newTalkComent: TalkComments = {
           talkId: rawTalkTopic,
           comments: updatedComments,
-          nextIndex: endIx + 1,
+          nextIndex: endIx === undefined ? 0 : endIx + 1,
         };
         // push the new talk with comments if buffer is not full
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
@@ -68,16 +64,12 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           // otherwise replace the last talk with the new one
           newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
         }
-        console.log(
-          "bagoy new talk added to the preloaded buffer: ",
-          newTalkComent
-        );
       }
     }
 
     setComments(updatedComments);
     setLoadedTalks(newLoadedTalks);
-    setEndIx(endIx + 1);
+    setEndIx(endIx === undefined ? 0 : endIx + 1);
   };
 
   const hanldeOnRead = (newComments: Comment[], end: number) => {
@@ -107,10 +99,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           // otherwise replace the last talk with the new one
           newLoadedTalks.splice(newLoadedTalks.length - 1, 1, newTalkComent);
         }
-        console.log(
-          "bagoy new talk added to the preloaded buffer: ",
-          newTalkComent
-        );
         setLoadedTalks(newLoadedTalks);
       }
     }
@@ -119,10 +107,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   // find whether the talk is already loaded the first time the component is rendered
   useEffect(() => {
     if (loadedTalks) {
-      const talk = loadedTalks.find((talk) => {
-        console.log("bagoy talkid: ", talk.talkId);
-        return talk.talkId.includes(session.id);
-      });
+      const talk = loadedTalks.find((talk) => talk.talkId.includes(session.id));
       // get the already loaded talk
       if (talk) {
         setComments(talk.comments || []);
