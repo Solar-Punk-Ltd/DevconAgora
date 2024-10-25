@@ -43,7 +43,6 @@ import {
   getSessionsByDay,
   getSigner,
   getWallet,
-  isEmpty,
   findSlotStartIx,
 } from "./utils/helpers";
 
@@ -60,6 +59,7 @@ const MainRouter = (): ReactElement => {
     setLoadedTalks,
     notes,
     setNotes,
+    setTalkActivity,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
@@ -230,10 +230,12 @@ const MainRouter = (): ReactElement => {
         const signer = getSigner(wallet);
         // only load the talks that are not already loaded
         if (loadedTalks) {
-          const foundIx = loadedTalks.findIndex(
-            (talk) => talk.talkId === sessionId
+          // TODO: as of now talkids include a test suffix, remove it
+          const foundIx = loadedTalks.findIndex((talk) =>
+            talk.talkId.includes(sessionId)
           );
           if (foundIx > -1) {
+            console.log("bagoy found preloaded talk, do not load again");
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
           }
@@ -253,13 +255,11 @@ const MainRouter = (): ReactElement => {
       await Promise.allSettled(commentPromises).then((results) => {
         results.forEach((result, i) => {
           if (result.status === "fulfilled") {
-            if (result.value && !isEmpty(result.value)) {
-              preLoadedTalks.push({
-                talkId: talkIds[i],
-                comments: result.value.comments,
-                nextIndex: result.value.nextIndex,
-              });
-            }
+            preLoadedTalks.push({
+              talkId: talkIds[i],
+              comments: result.value.comments,
+              nextIndex: result.value.nextIndex,
+            });
           } else {
             console.log(`preloading talks error: `, result.reason);
           }
@@ -275,6 +275,29 @@ const MainRouter = (): ReactElement => {
   useEffect(() => {
     preLoadTalks();
   }, [recentSessions]);
+
+  const calcActiveVisitors = () => {
+    if (loadedTalks) {
+      const tmpActiveVisitors = new Map<string, number>();
+      for (let i = 0; i < recentSessions.length; i++) {
+        const foundIx = loadedTalks.findIndex((talk) =>
+          talk.talkId.includes(recentSessions[i].id)
+        );
+        // TODO: active visitors by user count vs comment activiy by comment count ?
+        if (foundIx > -1) {
+          tmpActiveVisitors.set(
+            recentSessions[i].id,
+            loadedTalks[foundIx].nextIndex
+          );
+        }
+      }
+      setTalkActivity(tmpActiveVisitors);
+    }
+  };
+
+  useEffect(() => {
+    calcActiveVisitors();
+  }, [loadedTalks, recentSessions]);
 
   // TODO: batch promises just like preloaded talks
   const fetchNotes = async () => {
