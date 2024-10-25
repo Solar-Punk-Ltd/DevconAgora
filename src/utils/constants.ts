@@ -44,7 +44,6 @@ export enum ROUTES {
   WELCOME4 = "/welcome4",
   PROFILECREATION = "/profilecreation",
   HOME = "/home",
-  DEVCONLOUNGE = "/devconlounge",
   PROFILE = "/profile",
   GAMIFICATION = "/gamification",
   AGENDA = "/agenda",
@@ -146,8 +145,8 @@ export const TEST_RESOURCE_IDS = new Map([
   ],
   [
     "lobby-test",
-    "f90b000000000000000000000000000000000000000000000000000000000000"
-  ]
+    "f90b000000000000000000000000000000000000000000000000000000000000",
+  ],
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
@@ -181,7 +180,7 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Coordination", "coordination"],
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
-  ["Lobby", "lobby"]
+  ["Lobby", "lobby"],
 ]);
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionCategoryNamesToIdMap);
 
@@ -209,7 +208,7 @@ const oneDirectionTestCategoryNamesToIdMap = new Map([
   ["Coordination::test", "coordination-test"],
   ["Developer Experience::test", "developer-experience-test"],
   ["Security::test", "security-test"],
-  ["Lobby::test", "lobby-test"]
+  ["Lobby::test", "lobby-test"],
 ]);
 export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionTestCategoryNamesToIdMap);
 
