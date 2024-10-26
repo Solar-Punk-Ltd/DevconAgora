@@ -6,21 +6,21 @@ import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES, STAGES_MAP } from "../../utils/constants";
 
 const RecentSessions: React.FC = () => {
-  const { recentSessions, talkActivity: talkActiveVisitors } = useGlobalState();
+  const { recentSessions, talkActivity } = useGlobalState();
   const [activity, setActivity] = useState<Map<string, number>>(
     new Map<string, number>()
   );
 
   useEffect(() => {
-    const tmpActiveVisitors = new Map<string, number>();
+    const tmpActivity = new Map<string, number>();
     for (let i = 0; i < recentSessions.length; i++) {
-      tmpActiveVisitors.set(
+      tmpActivity.set(
         recentSessions[i].id,
-        talkActiveVisitors.get(recentSessions[i].id) || 0
+        talkActivity.get(recentSessions[i].id) || 0
       );
     }
-    setActivity(tmpActiveVisitors);
-  }, [talkActiveVisitors]);
+    setActivity(tmpActivity);
+  }, [talkActivity]);
 
   return (
     <div>
