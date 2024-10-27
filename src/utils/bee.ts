@@ -45,7 +45,6 @@ export async function uploadData(
   try {
     console.log("uploading data to swarm");
     const sessionsReference = await bee.uploadData(stamp, data);
-    console.log("success, data reference: ", sessionsReference.reference);
     return sessionsReference.reference;
   } catch (error) {
     console.log("error data upload", error);
@@ -71,10 +70,7 @@ export async function updateFeed(
     );
     console.log("created feed manifest", feedManif.reference);
     const feedWriter = bee.makeFeedWriter(FEEDTYPE_SEQUENCE, topic, signer);
-
-    console.log("updating feed with the file reference: ", ref);
     const feedUpdateRes = await feedWriter.upload(stamp, ref as Reference);
-    console.log("feed upload result: ", feedUpdateRes);
     return feedUpdateRes.reference;
   } catch (error) {
     console.log("error feed update: ", error);

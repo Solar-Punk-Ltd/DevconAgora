@@ -6,11 +6,13 @@ import clsx from "clsx";
 interface ActiveVisitorsProps {
   number?: number;
   withIcon?: boolean;
+  activity?: boolean;
 }
 
 const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
   number,
   withIcon,
+  activity,
 }) => {
   return (
     <div
@@ -20,7 +22,7 @@ const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
     >
       {withIcon ? <VisitorsIcon /> : null}
       {number}
-      {!withIcon ? " active visitors" : null}
+      {!withIcon ? (activity ? " activity" : " active visitors") : null}
     </div>
   );
 };

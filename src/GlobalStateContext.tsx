@@ -35,6 +35,8 @@ interface GlobalState {
   >;
   notes: NoteItemProps[];
   setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
+  talkActivity: Map<string, number>;
+  setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -78,6 +80,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   const [loadedTalks, setLoadedTalks] = useState<TalkComments[] | undefined>();
 
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
+
+  const [talkActivity, setTalkActivity] = useState<Map<string, number>>(
+    new Map<string, number>()
+  );
 
   useEffect(() => {
     localStorage.setItem("username", username);
@@ -134,6 +140,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setIsTermsAndConditionsAccepted,
         notes,
         setNotes,
+        talkActivity,
+        setTalkActivity,
       }}
     >
       {children}
