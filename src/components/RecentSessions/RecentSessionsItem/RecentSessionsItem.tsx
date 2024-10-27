@@ -9,14 +9,14 @@ interface RecentSessionsItemProps {
   id: string;
   title: string;
   stage?: string;
-  activeVisitors?: number;
+  activity?: number;
 }
 
 const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
   id,
   title,
   stage,
-  activeVisitors,
+  activity,
 }) => {
   return (
     <Link to={`${ROUTES.TALKS}/${id}`} className="recent-sessions-item">
@@ -24,7 +24,7 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
       <div className="recent-sessions-item__stage">
         <Stage name={stage} />
       </div>
-      <ActiveVisitors number={activeVisitors} />
+      <ActiveVisitors number={activity} activity={true} />
     </Link>
   );
 };
