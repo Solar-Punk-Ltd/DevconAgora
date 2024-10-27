@@ -143,7 +143,9 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           roomId={session.slot_roomId}
           liked={session.liked}
           paddingRight={"16px"}
-          stage={STAGES_MAP.get(session.slot_roomId ? session.slot_roomId : "")}
+          stage={
+            STAGES_MAP.get(session.slot_roomId ? session.slot_roomId : "") || ""
+          }
           commentVersion={true}
         />
       )}

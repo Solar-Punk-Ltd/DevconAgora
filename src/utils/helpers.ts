@@ -1,6 +1,12 @@
 import { Wallet, hexlify } from "ethers";
 import { Session } from "../types/session";
-import { CATEGORY_NAMES_TO_ID_MAP, DATE_TO_DEVCON_DAY, RESOURCE_IDS, TEST_CATEGORY_NAMES_TO_ID_MAP, TEST_RESOURCE_IDS } from "../utils/constants";
+import {
+  CATEGORY_NAMES_TO_ID_MAP,
+  DATE_TO_DEVCON_DAY,
+  RESOURCE_IDS,
+  TEST_CATEGORY_NAMES_TO_ID_MAP,
+  TEST_RESOURCE_IDS,
+} from "../utils/constants";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
@@ -21,6 +27,9 @@ export function getSessionsByDay(
   sessions: Map<string, Session[]>,
   day: string
 ): Session[] {
+  if (day === "all") {
+    return Array.from(sessions.values()).flat();
+  }
   return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
 }
 
@@ -124,7 +133,7 @@ export const TestgetResourceId = (category: string) => {
   } else {
     return "";
   }
-}
+};
 
 export const getResourceId = (category: string) => {
   const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
@@ -138,7 +147,7 @@ export const getResourceId = (category: string) => {
   } else {
     return "";
   }
-}
+};
 
 export function getSigner(wallet: Wallet): Signer {
   const signer: Signer = {

@@ -38,7 +38,7 @@ const RecentSessions: React.FC = () => {
               key={session.id}
               id={session.id}
               title={session.title}
-              stage={STAGES_MAP.get(roomId) || "unknown"}
+              stage={STAGES_MAP.get(roomId) || ""}
               activity={activity.get(session.id) || 0}
             />
           );

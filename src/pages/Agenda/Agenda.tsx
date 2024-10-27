@@ -30,7 +30,9 @@ const Agenda: React.FC = () => {
   const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState<number>(0);
   const [activeDayTab, setActiveDayTab] = useState<number>(0);
-  const [activeStageTab, setActiveStageTab] = useState<number>(0);
+  const [activeStageTab, setActiveStageTab] = useState<number>(
+    STAGES_MAP.size - 1
+  );
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const renderTabPanelItems = (
@@ -51,12 +53,14 @@ const Agenda: React.FC = () => {
   };
 
   useEffect(() => {
-    const sessionsByDay = getSessionsByDay(
-      sessions,
-      Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab]
-    );
+    let day = "all";
+    if (activeDayTab > 0) {
+      day = Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab - 1];
+    }
+    const sessionsByDay = getSessionsByDay(sessions, day);
+
+    const items: Session[] = [];
     if (sessionsByDay.length > 0) {
-      const items: Session[] = [];
       for (let i = 0; i < sessionsByDay.length; i++) {
         const categoryFilter =
           categoryIndex !== null
@@ -68,30 +72,28 @@ const Agenda: React.FC = () => {
         sessionsByDay[i].liked = isLiked;
         const isYourAgenda = activeAgendaTab === 1 ? isLiked === true : true;
 
+        const stageId = Array.from(STAGES_MAP.keys())[activeStageTab];
         if (
-          sessionsByDay[i].slot_roomId ===
-            Array.from(STAGES_MAP.keys())[activeStageTab] &&
+          (sessionsByDay[i].slot_roomId === stageId || stageId === "all") &&
           isYourAgenda &&
           categoryFilter
         ) {
           items.push(sessionsByDay[i]);
         }
       }
-      setActiveAgendaItems(items);
     }
+    setActiveAgendaItems(items);
   }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
 
   return !showCategories ? (
     <div className="agenda-page">
       <div className="agenda-page__upper-tab-panel">
         <TabPanel version="underlined" activeIndex={activeAgendaTab}>
-          {renderTabPanelItems(["All", "My Agenda"], setActiveAgendaTab)}
+          {renderTabPanelItems(["Agenda", "My Agenda"], setActiveAgendaTab)}
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
           {renderTabPanelItems(
-            activeAgendaTab === 1
-              ? ["All", ...Array.from(DATE_TO_DEVCON_DAY.values())]
-              : Array.from(DATE_TO_DEVCON_DAY.values()),
+            ["All", ...Array.from(DATE_TO_DEVCON_DAY.values())],
             setActiveDayTab
           )}
         </TabPanel>
