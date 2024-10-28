@@ -184,7 +184,7 @@ export const getPrivateKey = () => {
 }
 
 export const isUserRegistered = () => {
-  const privKey = localStorage.getItem("privKey");
+  const privKey = getPrivateKey();
   const username = localStorage.getItem("username");
   if (
     privKey &&

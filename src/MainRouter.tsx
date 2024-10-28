@@ -45,6 +45,7 @@ import {
   getWallet,
   findSlotStartIx,
   isUserRegistered,
+  getPrivateKey,
 } from "./utils/helpers";
 
 const MainRouter = (): ReactElement => {
@@ -324,7 +325,7 @@ const MainRouter = (): ReactElement => {
   }, [loadedTalks, recentSessions]);
 
   const fetchNotes = async () => {
-    const privKey = localStorage.getItem("privKey");
+    const privKey = getPrivateKey();
     if (!privKey) {
       console.log("private key not found - cannot fetch notes");
       return;
