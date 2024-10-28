@@ -38,9 +38,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const signer = getSigner(wallet);
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
-  const hanldeOnComment = (newComment: Comment) => {
+  const handleOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
     const newLoadedTalks = [...(loadedTalks || [])];
+    const newEndIx = endIx === undefined ? 0 : endIx + 1;
     if (loadedTalks && loadedTalks.length > 0) {
       const foundIx = loadedTalks.findIndex((talk) =>
         talk.talkId.includes(session.id)
@@ -53,7 +54,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
         const newTalkComent: TalkComments = {
           talkId: rawTalkTopic,
           comments: updatedComments,
-          nextIndex: endIx === undefined ? 0 : endIx + 1,
+          nextIndex: newEndIx,
         };
         // push the new talk with comments if buffer is not full
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
@@ -67,28 +68,33 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
 
     setComments(updatedComments);
     setLoadedTalks(newLoadedTalks);
-    setEndIx(endIx === undefined ? 0 : endIx + 1);
+    setEndIx(newEndIx);
   };
 
-  const hanldeOnRead = (newComments: Comment[], end: number) => {
-    const tmpComments = [...(comments || []), ...newComments];
-    setComments(tmpComments);
-    const newStart =
-      end - newComments.length > 0 ? end - newComments.length : 0;
-    setStartIx(newStart);
-    setEndIx(end);
+  const handleOnRead = (newComments: Comment[], end: number | undefined) => {
+    const updatedComments = [...(comments || []), ...newComments];
+    setComments(updatedComments);
+    if (end !== undefined) {
+      setStartIx(
+        end - updatedComments.length > 0 ? end - updatedComments.length : 0
+      );
+      setEndIx(end);
+    }
 
     if (loadedTalks) {
       const foundIx = loadedTalks.findIndex((talk) =>
         talk.talkId.includes(session.id)
       );
-      // talk was not found in the preloaded buffer, read the comments and add the talk to the buffer
-      if (foundIx < 0) {
-        const newLoadedTalks = [...(loadedTalks || [])];
+      // update the already loaded talk
+      const newLoadedTalks = [...(loadedTalks || [])];
+      if (foundIx > -1) {
+        newLoadedTalks[foundIx].comments = updatedComments;
+      } else {
+        // talk was not found in the preloaded buffer, read the comments and add the talk to the buffer
         const newTalkComent: TalkComments = {
           talkId: rawTalkTopic,
-          comments: tmpComments,
-          nextIndex: end + 1,
+          comments: updatedComments,
+          nextIndex: end === undefined ? 0 : end + 1,
         };
         // push the new talk with comments if buffer is not full
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
@@ -159,8 +165,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           beeApiUrl={process.env.BEE_API_URL}
           username={username}
           preloadedCommnets={comments}
-          onComment={hanldeOnComment}
-          onRead={hanldeOnRead}
+          onComment={handleOnComment}
+          onRead={handleOnRead}
           startIx={startIx}
           endIx={endIx}
           numOfComments={MAX_COMMENTS_LOADED}
