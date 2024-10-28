@@ -135,7 +135,7 @@ const MainRouter = (): ReactElement => {
       getPoints();
     }, 1000 * 60);
     return () => clearInterval(interval);
-  }, []);
+  }, [username]);
 
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {

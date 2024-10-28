@@ -5,7 +5,8 @@ import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../GlobalStateContext";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
+import { ADDRESS_HEX_LENGTH, ROUTES } from "../../utils/constants";
+import { ethers } from "ethers";
 
 const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -16,31 +17,42 @@ const ClaimRewardPage: React.FC = () => {
     const nonce = "nonce";
     try {
       fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
-        resp.text().then((data) => {
+        resp.text().then(async (data) => {
           console.log("nonce fetched", data);
-          //TODO: sign nonce with private key
-        })
-      );
-    } catch (error) {
-      console.log("error fetching nonce: ", error);
-    }
-    try {
-      fetch(process.env.BACKEND_API_URL + "/redeem", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: username, message: nonce }),
-      }).then((resp) =>
-        resp.text().then((data) => {
-          if (inputRef.current) {
-            inputRef.current.value = data;
+          //TODO: refactor
+          const privKey = localStorage.getItem("privKey");
+          const username = localStorage.getItem("username");
+          if (
+            privKey &&
+            privKey.slice(2).length === ADDRESS_HEX_LENGTH &&
+            username &&
+            username.length > 0
+          ) {
+            const wallet = new ethers.Wallet(privKey);
+            let flatSig = await wallet.signMessage(data);
+            try {
+              fetch(process.env.BACKEND_API_URL + "/redeem", {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username: username, message: nonce, sig: flatSig }),
+              }).then((resp) =>
+                resp.text().then((data) => {
+                  if (inputRef.current) {
+                    inputRef.current.value = data;
+                  }
+                })
+              );
+            } catch (error) {
+              console.log("error fetching redeem: ", error);
+            }
           }
         })
       );
     } catch (error) {
-      console.log("error fetching redeem: ", error);
+      console.log("error fetching nonce: ", error);
     }
   });
 
