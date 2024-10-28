@@ -61,7 +61,11 @@ const ProfileCreation: React.FC = () => {
     try {
       await fetch(process.env.BACKEND_API_URL + "/username", {
         method: "POST",
-        body: username,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({username, key: localStorage.getItem("privKey")}),
       });
     } catch (error) {
       setUserNameSetError(true);
