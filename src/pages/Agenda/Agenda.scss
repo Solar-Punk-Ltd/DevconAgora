@@ -60,16 +60,42 @@
 }
 
 .agenda-page__content__banner__text {
-  font-family: "Inter";
-  font-weight: 700;
-  font-size: 48px;
   position: absolute;
-  color: white;
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 16px;
+  background-color: #00000030;
+}
+
+.agenda-page__content__banner__text__main-text {
+  font-family: "Inter";
+  font-size: 32px;
+  color: white;
+}
+
+.agenda-page__content__banner__text__sub-text {
+  font-family: "Inter";
+  font-size: 24px;
+  color: white;
+}
+
+.agenda-page__content__banner__text__register-button {
+  font-family: "Inter";
+  font-size: 16px;
+  border-radius: 30px;
+  background-color: #ff8a50;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  margin-top: 5px;
+}
+
+.agenda-page__content__banner__main-text-regular {
+  font-weight: 400;
 }
 
 .agenda-page__content__items {

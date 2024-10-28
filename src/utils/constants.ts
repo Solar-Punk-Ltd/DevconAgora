@@ -99,7 +99,7 @@ export const RESOURCE_IDS = new Map([
   ["coordination", "null"],
   ["developer-experience", "null"],
   ["security", "null"],
-  ["lobby", "null"]
+  ["lobby", "null"],
 ]);
 
 export const TEST_RESOURCE_IDS = new Map([
@@ -167,6 +167,7 @@ export const STAGES_MAP = new Map([
   ["workshop-2", "Workshop 2"],
   ["workshop-3", "Workshop 3"],
   ["workshop-4", "Workshop 4"],
+  ["all", "All"],
 ]);
 
 const oneDirectionCategoryNamesToIdMap = new Map([
@@ -182,7 +183,9 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Security", "security"],
   ["Lobby", "lobby"],
 ]);
-export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionCategoryNamesToIdMap);
+export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
+  oneDirectionCategoryNamesToIdMap
+);
 
 export const CATEGORY_IMAGES_MAP = new Map([
   ["Layer 2s::test", Layer2s],
@@ -210,7 +213,9 @@ const oneDirectionTestCategoryNamesToIdMap = new Map([
   ["Security::test", "security-test"],
   ["Lobby::test", "lobby-test"],
 ]);
-export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(oneDirectionTestCategoryNamesToIdMap);
+export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
+  oneDirectionTestCategoryNamesToIdMap
+);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
 export const DISCLAIMER_OF_LIABILITY_TEXT =

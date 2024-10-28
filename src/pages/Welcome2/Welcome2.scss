@@ -1,4 +1,4 @@
-@import "../../fonts.css";
+@use "../../fonts.css";
 .welcome2-page {
   position: relative;
   display: flex;
@@ -23,9 +23,6 @@
     text-align: center;
     box-sizing: border-box;
     padding: 40px 0px;
-    // font-size: 2rem;
-    // font-weight: 700;
-    // color: #000000;
   }
 }
 

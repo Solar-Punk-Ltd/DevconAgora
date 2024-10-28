@@ -111,7 +111,7 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
                     </>
                   )}
                 </div>
-                {points === 10 ? (
+                {points >= 10 ? (
                   <button
                     className="gamification__modal__content__claim-button"
                     onClick={() => {
