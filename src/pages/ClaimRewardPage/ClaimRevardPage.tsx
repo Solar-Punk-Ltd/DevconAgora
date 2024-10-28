@@ -7,6 +7,7 @@ import { useGlobalState } from "../../GlobalStateContext";
 import { useNavigate } from "react-router-dom";
 import { ADDRESS_HEX_LENGTH, ROUTES } from "../../utils/constants";
 import { ethers } from "ethers";
+import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
 
 const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -19,16 +20,8 @@ const ClaimRewardPage: React.FC = () => {
       fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
         resp.text().then(async (data) => {
           console.log("nonce fetched", data);
-          //TODO: refactor
-          const privKey = localStorage.getItem("privKey");
-          const username = localStorage.getItem("username");
-          if (
-            privKey &&
-            privKey.slice(2).length === ADDRESS_HEX_LENGTH &&
-            username &&
-            username.length > 0
-          ) {
-            const wallet = new ethers.Wallet(privKey);
+          if (isUserRegistered()) {
+            const wallet = new ethers.Wallet(getPrivateKey());
             let flatSig = await wallet.signMessage(data);
             try {
               fetch(process.env.BACKEND_API_URL + "/redeem", {
@@ -37,7 +30,11 @@ const ClaimRewardPage: React.FC = () => {
                   Accept: "application/json",
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: username, message: nonce, sig: flatSig }),
+                body: JSON.stringify({
+                  username: username,
+                  message: nonce,
+                  sig: flatSig,
+                }),
               }).then((resp) =>
                 resp.text().then((data) => {
                   if (inputRef.current) {
