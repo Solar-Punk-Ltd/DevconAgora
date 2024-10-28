@@ -38,7 +38,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const signer = getSigner(wallet);
   // update the loaded talk comments with the new comment
   // if the talk is not found, then replace the oldest talk with the new one
-  const hanldeOnComment = (newComment: Comment) => {
+  const handleOnComment = (newComment: Comment) => {
     const updatedComments = [...(comments || []), newComment];
     const newLoadedTalks = [...(loadedTalks || [])];
     const newEndIx = endIx === undefined ? 0 : endIx + 1;
@@ -71,7 +71,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
     setEndIx(newEndIx);
   };
 
-  const hanldeOnRead = (newComments: Comment[], end: number | undefined) => {
+  const handleOnRead = (newComments: Comment[], end: number | undefined) => {
     const updatedComments = [...(comments || []), ...newComments];
     setComments(updatedComments);
     if (end !== undefined) {
@@ -165,8 +165,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           beeApiUrl={process.env.BEE_API_URL}
           username={username}
           preloadedCommnets={comments}
-          onComment={hanldeOnComment}
-          onRead={hanldeOnRead}
+          onComment={handleOnComment}
+          onRead={handleOnRead}
           startIx={startIx}
           endIx={endIx}
           numOfComments={MAX_COMMENTS_LOADED}
