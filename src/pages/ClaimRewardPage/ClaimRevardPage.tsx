@@ -13,43 +13,46 @@ const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  let nonceRequested = false;
 
   useEffect(() => {
-    const nonce = "nonce";
-    try {
-      fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
-        resp.text().then(async (data) => {
-          console.log("nonce fetched", data);
-          if (isUserRegistered()) {
-            const wallet = new ethers.Wallet(getPrivateKey());
-            let flatSig = await wallet.signMessage(data);
-            try {
-              fetch(process.env.BACKEND_API_URL + "/redeem", {
-                method: "POST",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  username: username,
-                  message: nonce,
-                  sig: flatSig,
-                }),
-              }).then((resp) =>
-                resp.text().then((data) => {
-                  if (inputRef.current) {
-                    inputRef.current.value = data;
-                  }
-                })
-              );
-            } catch (error) {
-              console.log("error fetching redeem: ", error);
+    if (!nonceRequested) {
+      nonceRequested = true;
+      try {
+        fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
+          resp.text().then(async (data) => {
+            console.log("nonce fetched", data);
+            if (isUserRegistered()) {
+              const wallet = new ethers.Wallet(getPrivateKey());
+              let flatSig = await wallet.signMessage(data);
+              try {
+                fetch(process.env.BACKEND_API_URL + "/redeem", {
+                  method: "POST",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    username: username,
+                    message: data,
+                    sig: flatSig,
+                  }),
+                }).then((resp) =>
+                  resp.text().then((data) => {
+                    if (inputRef.current) {
+                      inputRef.current.value = data;
+                    }
+                  })
+                );
+              } catch (error) {
+                console.log("error fetching redeem: ", error);
+              }
             }
-          }
-        })
-      );
-    } catch (error) {
-      console.log("error fetching nonce: ", error);
+          })
+        );
+      } catch (error) {
+        console.log("error fetching nonce: ", error);
+      }
     }
   });
 
