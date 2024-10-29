@@ -11,8 +11,8 @@ import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
-import { TestgetResourceId } from "../../utils/helpers";
-import { ROUTES, TEST_CATEGORIES, LOBBY_TITLE, TEST_CATEGORY_NAMES_TO_ID_MAP, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { getResourceId } from "../../utils/helpers";
+import { ROUTES, LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP, CATEGORIES } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
 
 interface HomePageProps {
@@ -25,7 +25,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
-    TEST_CATEGORIES.map((catName) => ({
+    CATEGORIES.map((catName) => ({
       topic: catName,
       url: "null",
       gateway: "null",
@@ -112,11 +112,11 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
       {selectedChat && (
         <Chat
           title={selectedChat}
-          topic={TEST_CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
+          topic={CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
           privKey={privKey}
           stamp={process.env.STAMP as BatchId}
           nickname={username}
-          gsocResourceId={TestgetResourceId(selectedChat)}
+          gsocResourceId={getResourceId(selectedChat)}
           session={undefined}
           topMenuColor={undefined}
           originatorPage={"Home"}
