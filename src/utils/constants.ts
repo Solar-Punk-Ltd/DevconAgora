@@ -21,7 +21,7 @@ export const MOCK_START_TIME = new Date("2022-10-11T12:15:00.000Z");
 export const MAX_PRELOADED_TALKS = 11;
 export const MAX_COMMENTS_LOADED = 15;
 export const MAX_SESSIONS_SHOWN = 9;
-export const LOBBY_TITLE = "Lobby::test";
+export const LOBBY_TITLE = "Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
 export const BEING_SENT = "being-sent";
 
@@ -111,8 +111,8 @@ export const STAGES_MAP = new Map([
 
 const oneDirectionCategoryNamesToIdMap = new Map([
   ["Layer 2s", "layer-2s"],
-  ["Core protocol", "core-protocol"],
-  ["Cypherpunk and privacy", "cypherpunk-and-privacy"],
+  ["Core Protocol", "core-protocol"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy"],
   ["Usability", "usability"],
   ["Real World Ethereum", "real-world-ethereum"],
   ["Applied Cryptography", "applied-cryptography"],
@@ -127,16 +127,16 @@ export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
-  ["Layer 2s::test", Layer2s],
-  ["Core protocol::test", CoreProtocol],
-  ["Cypherpunk and privacy::test", CypherpunkAndPrivacy],
-  ["Usability::test", Usability],
-  ["Real World Ethereum::test", RealWorldEthereum],
-  ["Applied Cryptography::test", AppliedCryptography],
-  ["Cryptoeconomics::test", CryptoEconomics],
-  ["Coordination::test", Coordination],
-  ["Developer Experience::test", DeveloperExperience],
-  ["Security::test", Security],
+  ["Layer 2s", Layer2s],
+  ["Core Protocol", CoreProtocol],
+  ["Cypherpunk & Privacy", CypherpunkAndPrivacy],
+  ["Usability", Usability],
+  ["Real World Ethereum", RealWorldEthereum],
+  ["Applied Cryptography", AppliedCryptography],
+  ["Cryptoeconomics", CryptoEconomics],
+  ["Coordination", Coordination],
+  ["Developer Experience", DeveloperExperience],
+  ["Security", Security],
 ]);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
