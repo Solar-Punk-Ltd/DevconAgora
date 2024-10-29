@@ -3,9 +3,7 @@ import { Session } from "../types/session";
 import {
   CATEGORY_NAMES_TO_ID_MAP,
   DATE_TO_DEVCON_DAY,
-  RESOURCE_IDS,
-  TEST_CATEGORY_NAMES_TO_ID_MAP,
-  TEST_RESOURCE_IDS,
+  RESOURCE_IDS
 } from "../utils/constants";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
@@ -120,20 +118,6 @@ export function getWallet(input: string): Wallet {
   const privateKey = Utils.keccak256Hash(input);
   return new Wallet(hexlify(privateKey));
 }
-
-export const TestgetResourceId = (category: string) => {
-  const categoryId = TEST_CATEGORY_NAMES_TO_ID_MAP.get(category);
-  if (categoryId) {
-    const result = TEST_RESOURCE_IDS.get(categoryId);
-    if (result) {
-      return result;
-    } else {
-      return "";
-    }
-  } else {
-    return "";
-  }
-};
 
 export const getResourceId = (category: string) => {
   const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);

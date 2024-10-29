@@ -200,23 +200,6 @@ export const CATEGORY_IMAGES_MAP = new Map([
   ["Security::test", Security],
 ]);
 
-const oneDirectionTestCategoryNamesToIdMap = new Map([
-  ["Layer 2s::test", "layer-2s-test"],
-  ["Core protocol::test", "core-protocol-test"],
-  ["Cypherpunk and privacy::test", "cypherpunk-and-privacy-test"],
-  ["Usability::test", "usability-test"],
-  ["Real World Ethereum::test", "real-world-ethereum-test"],
-  ["Applied Cryptography::test", "applied-cryptography-test"],
-  ["Cryptoeconomics::test", "cryptoeconomics-test"],
-  ["Coordination::test", "coordination-test"],
-  ["Developer Experience::test", "developer-experience-test"],
-  ["Security::test", "security-test"],
-  ["Lobby::test", "lobby-test"],
-]);
-export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  oneDirectionTestCategoryNamesToIdMap
-);
-
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
 export const DISCLAIMER_OF_LIABILITY_TEXT =
   "The developer of this application disclaims any liability for content shared or viewed within the app. Users are solely responsible for their actions and communications and should comply with all applicable laws and regulations.";
