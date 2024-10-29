@@ -72,21 +72,7 @@ export const CATEGORIES = [
   "Coordination",
   "Developer Experience",
   "Security",
-];
-
-// TODO: match category names and resource ids with the actual categories
-export const TEST_CATEGORIES = [
-  "Layer 2s::test",
-  "Core protocol::test",
-  "Cypherpunk and privacy::test",
-  "Usability::test",
-  "Real World Ethereum::test",
-  "Applied Cryptography::test",
-  "Cryptoeconomics::test",
-  "Coordination::test",
-  "Developer Experience::test",
-  "Security::test",
-] as const;
+]; // as const;
 
 export const RESOURCE_IDS = new Map([
   ["layer-2s", "null"],
