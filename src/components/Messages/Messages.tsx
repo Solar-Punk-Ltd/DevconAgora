@@ -1,22 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import "./Messages.scss";
-import Message from './Message/Message';
-import { MessageWithThread, ThreadId } from '../../types/message';
-import { EthAddress, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
-import { BatchId } from '@ethersphere/bee-js';
+import Message from "./Message/Message";
+import { MessageWithThread, ThreadId } from "../../types/message";
+import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
+import { BatchId } from "@ethersphere/bee-js";
 
 interface MessagesProps {
-    messages: MessageWithThread[];
-    nickname: string;
-    ownAddress: EthAddress;
-    chat: SwarmChat | null;
-    topic: string;
-    stamp: BatchId;
-    privKey: string;
-    currentThread: ThreadId | null;
-    setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
+  messages: MessageWithThread[];
+  nickname: string;
+  ownAddress: EthAddress;
+  chat: SwarmChat | null;
+  topic: string;
+  stamp: BatchId;
+  privKey: string;
+  currentThread: ThreadId | null;
+  setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
 }
-
 
 const Messages: React.FC<MessagesProps> = ({
   messages,
@@ -27,9 +26,36 @@ const Messages: React.FC<MessagesProps> = ({
   stamp,
   privKey,
   currentThread,
-  setThreadId
+  setThreadId,
 }) => {
   const chatBodyRef = useRef<HTMLDivElement>(null);
+  const [autoscroll, setAutoscroll] = useState(true);
+  const handleScroll = () => {
+    if (chatBodyRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
+      if (scrollTop + clientHeight < scrollHeight) {
+        setAutoscroll(false);
+      } else {
+        setAutoscroll(true);
+      }
+    }
+  };
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (chatBodyRef.current) {
+        chatBodyRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+  useEffect(() => {
+    if (chatBodyRef.current && autoscroll) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   if (messages.length === 0 || !chat) {
     return (
@@ -40,27 +66,26 @@ const Messages: React.FC<MessagesProps> = ({
     );
   }
 
-  const isScrolledToBottom = () => {
-    if (chatBodyRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
-      const threshold = clientHeight * 2;
-      return Math.abs(scrollHeight - clientHeight - scrollTop) < threshold;
-    }
-    return false;
-  };
+  // const isScrolledToBottom = () => {
+  //   if (chatBodyRef.current) {
+  //     const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
+  //     const threshold = clientHeight * 2;
+  //     return Math.abs(scrollHeight - clientHeight - scrollTop) < threshold;
+  //   }
+  //   return false;
+  // };
 
-  const scrollToBottom = () => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-    }
-  };
-  
-  // Schedule a scroll after the state update if we're already at the bottom
-  if (true || isScrolledToBottom()) {
-    setTimeout(scrollToBottom, 0);
-  }
+  // const scrollToBottom = () => {
+  //   if (chatBodyRef.current) {
+  //     chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+  //   }
+  // };
 
-  
+  // // Schedule a scroll after the state update if we're already at the bottom
+  // if (true || isScrolledToBottom()) {
+  //   setTimeout(scrollToBottom, 0);
+  // }
+
   return (
     <div className="messages" ref={chatBodyRef}>
       {messages.map((msg, ind) => (
@@ -81,6 +106,6 @@ const Messages: React.FC<MessagesProps> = ({
       ))}
     </div>
   );
-}
+};
 
 export default Messages;

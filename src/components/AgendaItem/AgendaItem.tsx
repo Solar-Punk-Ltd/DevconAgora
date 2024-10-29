@@ -52,7 +52,11 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         style={{ backgroundColor, borderRadius, paddingRight }}
       >
         <div className="agenda-item__main">
-          <div className={"agenda-item__main__time"}>
+          <div
+            className={clsx("agenda-item__main__time", {
+              "agenda-item__main__time__comment-version": commentVersion,
+            })}
+          >
             <div>{startDate}</div>
             <div>{endDate}</div>
           </div>

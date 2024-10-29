@@ -219,7 +219,12 @@ const FullNotePage: React.FC = () => {
             to={ROUTES.NOTES}
             saveQuestionBeforeLeave={true}
             handlerInCaseOfSave={() => {
-              if (!currentNote.text || currentNote.text.length === 0 || saved) {
+              if (
+                !currentNote.text ||
+                currentNote.text.length === 0 ||
+                saved ||
+                sending
+              ) {
                 return navigate(ROUTES.NOTES);
               } else {
                 return setShowUnsavedPopUp(true);

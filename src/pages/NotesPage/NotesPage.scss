@@ -1,5 +1,5 @@
 .notes-page {
-  padding: 16px;
+  padding: 16px 16px 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -14,6 +14,7 @@
   flex-direction: column;
   gap: 20px;
   z-index: 3;
+  padding-bottom: 6px;
 }
 
 .notes-page__header {
