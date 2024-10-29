@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import { CATEGORY_NAMES_TO_ID_MAP, TEST_CATEGORIES, TEST_CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP  } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
-import { TestgetResourceId } from "../../utils/helpers";
+import { getResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 
@@ -39,7 +39,7 @@ const SpacesPage: React.FC = () => {
       </div>
 
       <div className="spaces__content">
-        {TEST_CATEGORIES.map((category) => (
+        {CATEGORIES.map((category) => (
           <div key={category} onClick={() => setSelectedChat(category)}>
             <SpacesItem title={category} numberOfActiveUsers={20} />
           </div>
@@ -49,11 +49,11 @@ const SpacesPage: React.FC = () => {
       {selectedChat && (
         <Chat
           title={selectedChat}
-          topic={TEST_CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
+          topic={CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
           privKey={privKey}
           stamp={process.env.STAMP as BatchId}
           nickname={username}
-          gsocResourceId={TestgetResourceId(selectedChat)}
+          gsocResourceId={getResourceId(selectedChat)}
           session={undefined}
           topMenuColor={undefined}
           originatorPage={"Spaces"}

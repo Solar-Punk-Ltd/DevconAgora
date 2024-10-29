@@ -21,7 +21,7 @@ export const MOCK_START_TIME = new Date("2022-10-11T12:15:00.000Z");
 export const MAX_PRELOADED_TALKS = 11;
 export const MAX_COMMENTS_LOADED = 15;
 export const MAX_SESSIONS_SHOWN = 9;
-export const LOBBY_TITLE = "Lobby::test";
+export const LOBBY_TITLE = "Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
 export const BEING_SENT = "being-sent";
 
@@ -72,81 +72,20 @@ export const CATEGORIES = [
   "Coordination",
   "Developer Experience",
   "Security",
-];
-
-// TODO: match category names and resource ids with the actual categories
-export const TEST_CATEGORIES = [
-  "Layer 2s::test",
-  "Core protocol::test",
-  "Cypherpunk and privacy::test",
-  "Usability::test",
-  "Real World Ethereum::test",
-  "Applied Cryptography::test",
-  "Cryptoeconomics::test",
-  "Coordination::test",
-  "Developer Experience::test",
-  "Security::test",
-] as const;
+]; // as const;
 
 export const RESOURCE_IDS = new Map([
-  ["layer-2s", "null"],
-  ["core-protocol", "null"],
-  ["cypherpunk-and-privacy", "null"],
-  ["usability", "null"],
-  ["real-world-ethereum", "null"],
-  ["applied-cryptography", "null"],
-  ["cryptoeconomics", "null"],
-  ["coordination", "null"],
-  ["developer-experience", "null"],
-  ["security", "null"],
-  ["lobby", "null"],
-]);
-
-export const TEST_RESOURCE_IDS = new Map([
-  [
-    "layer-2s-test",
-    "d103000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "core-protocol-test",
-    "350e000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "cypherpunk-and-privacy-test",
-    "9608000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "usability-test",
-    "620c000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "real-world-ethereum-test",
-    "720e000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "applied-cryptography-test",
-    "1806000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "cryptoeconomics-test",
-    "e903000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "coordination-test",
-    "6802000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "developer-experience-test",
-    "dc04000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "security-test",
-    "8809000000000000000000000000000000000000000000000000000000000000",
-  ],
-  [
-    "lobby-test",
-    "f90b000000000000000000000000000000000000000000000000000000000000",
-  ],
+  ["layer-2s", "7a06000000000000000000000000000000000000000000000000000000000000"],
+  ["core-protocol", "ea13000000000000000000000000000000000000000000000000000000000000"],
+  ["cypherpunk-and-privacy", "4f08000000000000000000000000000000000000000000000000000000000000"],
+  ["usability", "9a13000000000000000000000000000000000000000000000000000000000000"],
+  ["real-world-ethereum", "2600000000000000000000000000000000000000000000000000000000000000"],
+  ["applied-cryptography", "6606000000000000000000000000000000000000000000000000000000000000"],
+  ["cryptoeconomics", "1404000000000000000000000000000000000000000000000000000000000000"],
+  ["coordination", "6b00000000000000000000000000000000000000000000000000000000000000"],
+  ["developer-experience", "5d14000000000000000000000000000000000000000000000000000000000000"],
+  ["security", "2802000000000000000000000000000000000000000000000000000000000000"],
+  ["lobby", "6c06000000000000000000000000000000000000000000000000000000000000"],
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
@@ -172,8 +111,8 @@ export const STAGES_MAP = new Map([
 
 const oneDirectionCategoryNamesToIdMap = new Map([
   ["Layer 2s", "layer-2s"],
-  ["Core protocol", "core-protocol"],
-  ["Cypherpunk and privacy", "cypherpunk-and-privacy"],
+  ["Core Protocol", "core-protocol"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy"],
   ["Usability", "usability"],
   ["Real World Ethereum", "real-world-ethereum"],
   ["Applied Cryptography", "applied-cryptography"],
@@ -188,34 +127,17 @@ export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
-  ["Layer 2s::test", Layer2s],
-  ["Core protocol::test", CoreProtocol],
-  ["Cypherpunk and privacy::test", CypherpunkAndPrivacy],
-  ["Usability::test", Usability],
-  ["Real World Ethereum::test", RealWorldEthereum],
-  ["Applied Cryptography::test", AppliedCryptography],
-  ["Cryptoeconomics::test", CryptoEconomics],
-  ["Coordination::test", Coordination],
-  ["Developer Experience::test", DeveloperExperience],
-  ["Security::test", Security],
+  ["Layer 2s", Layer2s],
+  ["Core Protocol", CoreProtocol],
+  ["Cypherpunk & Privacy", CypherpunkAndPrivacy],
+  ["Usability", Usability],
+  ["Real World Ethereum", RealWorldEthereum],
+  ["Applied Cryptography", AppliedCryptography],
+  ["Cryptoeconomics", CryptoEconomics],
+  ["Coordination", Coordination],
+  ["Developer Experience", DeveloperExperience],
+  ["Security", Security],
 ]);
-
-const oneDirectionTestCategoryNamesToIdMap = new Map([
-  ["Layer 2s::test", "layer-2s-test"],
-  ["Core protocol::test", "core-protocol-test"],
-  ["Cypherpunk and privacy::test", "cypherpunk-and-privacy-test"],
-  ["Usability::test", "usability-test"],
-  ["Real World Ethereum::test", "real-world-ethereum-test"],
-  ["Applied Cryptography::test", "applied-cryptography-test"],
-  ["Cryptoeconomics::test", "cryptoeconomics-test"],
-  ["Coordination::test", "coordination-test"],
-  ["Developer Experience::test", "developer-experience-test"],
-  ["Security::test", "security-test"],
-  ["Lobby::test", "lobby-test"],
-]);
-export const TEST_CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  oneDirectionTestCategoryNamesToIdMap
-);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
 export const DISCLAIMER_OF_LIABILITY_TEXT =
