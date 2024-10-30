@@ -32,13 +32,12 @@ const RecentSessions: React.FC = () => {
       </div>
       <div className="recent-sessions__item-container">
         {recentSessions.map((session) => {
-          const roomId = session.slot_roomId || "";
           return (
             <RecentSessionsItem
               key={session.id}
               id={session.id}
               title={session.title}
-              stage={STAGES_MAP.get(roomId) || ""}
+              stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
               activity={activity.get(session.id) || 0}
             />
           );
