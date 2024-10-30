@@ -19,12 +19,11 @@ const HowDoesItWork: React.FC = () => {
           />
         </div>
         <div className="how-does-it-work-page__box">
-          <div className="how-does-it-work-page__box__header">
-            Collect points
-          </div>
+          <div className="how-does-it-work-page__box__header">Comments</div>
           <div className="how-does-it-work-page__box__content">
-            Share your thoughts and <b>chat </b>
-            and <b>invite</b> others and <b>save</b> events.
+            Every time you make a valuable comment in the devcon.buzz
+            application you make one step towards getting your own personalised
+            code.
           </div>
           <div>
             <img
@@ -35,15 +34,11 @@ const HowDoesItWork: React.FC = () => {
           </div>
         </div>
         <div className="how-does-it-work-page__box">
-          <div className="how-does-it-work-page__box__header">
-            Get 10 points and convert them to
-            <span className="how-does-it-work-page__box__header__BZZ-emphasize">
-              {" "}
-              BZZ Tokens
-            </span>
-          </div>
+          <div className="how-does-it-work-page__box__header">Magic codes</div>
           <div className="how-does-it-work-page__box__content">
-            When you collect 10 points, you can redeem them for BZZ Tokens
+            Once you reach 10 comments you get your own personal code, that
+            helps you to be part of the Swarm network yourself the easiest
+            possible way.
           </div>
           <div>
             <img
