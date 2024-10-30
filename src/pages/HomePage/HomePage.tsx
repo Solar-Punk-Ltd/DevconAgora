@@ -31,7 +31,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
     CATEGORIES.map((catName) => ({
-      topic: catName,
+      topic: CATEGORY_NAMES_TO_ID_MAP.get(catName),
       url: "null",
       gateway: "null",
       userCount: undefined,
@@ -56,7 +56,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
       .then((res) => res.json())
       .catch((err) => console.error("Error fetching user counts ", err));
 
-    if (roomsWithUserCount !== undefined) {
+    if (roomsWithUserCount.length > 0 && roomsWithUserCount !== undefined) {
       const orderedRooms = roomsWithUserCount.sort(
         (a, b) => b.userCount! - a.userCount!
       );
