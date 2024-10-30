@@ -410,8 +410,8 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage isLoaded={false} />} />
         <Route
-          path={ROUTES.HOMEDEBUGLESS}
-          element={<HomePage isLoaded={false} debugless={true} />}
+          path={ROUTES.HOMEWITHGAMIFICATION}
+          element={<HomePage isLoaded={false} withGamification={true} />}
         />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />

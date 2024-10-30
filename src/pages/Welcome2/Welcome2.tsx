@@ -10,10 +10,7 @@ const Welcome1: React.FC = () => {
   return (
     <>
       <div className="welcome-page">
-        <div className="welcome-page__header">
-          Be active and get a{" "}
-          <span style={{ color: "var(--purple-to-text-color)" }}>reward</span>!
-        </div>
+        <div className="welcome-page__header">Share your thoughts</div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
             <img
@@ -32,11 +29,7 @@ const Welcome1: React.FC = () => {
         </div>
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
-            <div>
-              Comment and contribute to the community. Receive
-              <b> 10 BZZ tokens </b>
-              for 10 valuable contributions with the Devcon.buzz APP.
-            </div>
+            <div>Comment, start discussions and exchange ideas</div>
           </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={1} />

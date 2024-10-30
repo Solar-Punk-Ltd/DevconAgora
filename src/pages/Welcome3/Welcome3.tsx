@@ -11,8 +11,7 @@ const Welcome1: React.FC = () => {
     <>
       <div className="welcome-page">
         <div className="welcome-page__header">
-          Decentralized Data Storage -{" "}
-          <span style={{ color: "var(--purple-to-text-color)" }}>SWARM</span>
+          Experience the power of true decentalization
         </div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
@@ -33,8 +32,8 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
             <div>
-              Our data is stored on the
-              <b> SWARM network</b>, ensuring security and reliability.
+              Your data is stored on the censorship resistant and unstoppable{" "}
+              <strong>Swarm network</strong>
             </div>
           </div>
           <div className="welcome-page__bottom-bottom">
