@@ -140,6 +140,7 @@ const Chat: React.FC<ChatProps> = ({
           parent: msgObj.parent,
           replyCount: 0,
           likeTable: {},
+          flagged: msgObj.flagged,
         });
 
         if (msgObj.parent) {
