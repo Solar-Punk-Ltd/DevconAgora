@@ -17,6 +17,7 @@ import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
+import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 
 interface ChatProps {
   title: string | undefined;
@@ -217,7 +218,7 @@ const Chat: React.FC<ChatProps> = ({
 
       {chatLoaded ? (
         <>
-          <Messages
+          <FilteredMessages
             messages={visibleMessages}
             nickname={nickname}
             ownAddress={ownAddress}
