@@ -56,7 +56,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
       .then((res) => res.json())
       .catch((err) => console.error("Error fetching user counts ", err));
 
-    if (roomsWithUserCount.length > 0) {
+    if (roomsWithUserCount.length > 0 && roomsWithUserCount !== undefined) {
       const orderedRooms = roomsWithUserCount.sort(
         (a, b) => b.userCount! - a.userCount!
       );
