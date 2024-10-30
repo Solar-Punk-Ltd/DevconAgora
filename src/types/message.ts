@@ -17,6 +17,5 @@ export type MessageId = string;
 //    text: messageToSend,
 //    threadId: "123-an-identifier",
 //    messageId: "123-an-identifier",
-//    parent: "123-an-identifier",
-//    flagged: true,
+//    parent: "123-an-identifier"
 //  })
