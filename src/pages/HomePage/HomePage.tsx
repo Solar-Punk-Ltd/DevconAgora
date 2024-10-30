@@ -11,7 +11,7 @@ import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
-import { getResourceId } from "../../utils/helpers";
+import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import { ROUTES, LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP, CATEGORIES } from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
 
@@ -33,7 +33,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
     }))
   );
 
-  const privKey = localStorage.getItem("privKey");
+  const privKey = getPrivateKey();
   if (!privKey) {
     return (
       <div className="home-page-error">

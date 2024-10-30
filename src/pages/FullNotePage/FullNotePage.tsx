@@ -14,7 +14,7 @@ import {
   MAX_CHARACTER_COUNT,
 } from "../../utils/constants";
 import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../utils/constants";
-import { getSigner, dateToTime } from "../../utils/helpers";
+import { getSigner, dateToTime, getPrivateKey } from "../../utils/helpers";
 import { updateFeed, uploadData } from "../../utils/bee";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 
@@ -90,7 +90,7 @@ const FullNotePage: React.FC = () => {
     navigate(ROUTES.NOTES);
   };
 
-  const privKey = localStorage.getItem("privKey");
+  const privKey = getPrivateKey();
   if (!privKey) {
     return (
       <div className="full-note-page__top__header">

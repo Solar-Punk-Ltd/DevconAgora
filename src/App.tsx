@@ -9,27 +9,15 @@ import bySolarPunk from "./assets/by-solar-punk.png";
 import videoGlassEffect from "./assets/video-glass-effect.png";
 import dc7Logo from "./assets/dc7.png";
 import { TEXTS } from "../textConstants";
+import { isUserRegistered } from "./utils/helpers";
 
 function App() {
   const navigate = useNavigate();
 
-  const isRegistered = () => {
-    const privKey = localStorage.getItem("privKey");
-    const username = localStorage.getItem("username");
-    if (
-      privKey &&
-      privKey.slice(2).length === ADDRESS_HEX_LENGTH &&
-      username &&
-      username.length > 0
-    )
-      return true;
-    else return false;
-  };
-
   useEffect(() => {
     const timer = setTimeout(() => {
       // Check if user is already registered
-      if (isRegistered()) {
+      if (isUserRegistered()) {
         navigate(ROUTES.HOME);
       } else {
         navigate(ROUTES.WELCOME1);

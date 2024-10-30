@@ -44,6 +44,8 @@ import {
   getSigner,
   getWallet,
   findSlotStartIx,
+  isUserRegistered,
+  getPrivateKey,
 } from "./utils/helpers";
 
 const MainRouter = (): ReactElement => {
@@ -51,6 +53,8 @@ const MainRouter = (): ReactElement => {
     showGamification,
     setShowGamification,
     points,
+    setPoints,
+    username,
     sessions,
     setSessions,
     recentSessions,
@@ -106,6 +110,21 @@ const MainRouter = (): ReactElement => {
     }
   };
 
+  const getPoints = async () => {
+    try {
+      if (isUserRegistered()) {
+        fetch(process.env.BACKEND_API_URL + "/points/" + username).then(
+          (resp) =>
+            resp.text().then((data) => {
+              setPoints(Number(data));
+            })
+        );
+      }
+    } catch (error) {
+      console.log("error fetching points: ", error);
+    }
+  };
+
   useEffect(() => {
     // TODO: what shall be the update time ?
     checkBee();
@@ -114,6 +133,14 @@ const MainRouter = (): ReactElement => {
     }, FIVE_MINUTES);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    getPoints();
+    const interval = setInterval(() => {
+      getPoints();
+    }, 1000 * 60);
+    return () => clearInterval(interval);
+  }, [username]);
 
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
@@ -298,7 +325,7 @@ const MainRouter = (): ReactElement => {
   }, [loadedTalks, recentSessions]);
 
   const fetchNotes = async () => {
-    const privKey = localStorage.getItem("privKey");
+    const privKey = getPrivateKey();
     if (!privKey) {
       console.log("private key not found - cannot fetch notes");
       return;

@@ -10,7 +10,7 @@ import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import clsx from "clsx";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
-import { createMonogram, handleKeyDown } from "../../utils/helpers";
+import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 
 const ProfileCreation: React.FC = () => {
@@ -61,7 +61,11 @@ const ProfileCreation: React.FC = () => {
     try {
       await fetch(process.env.BACKEND_API_URL + "/username", {
         method: "POST",
-        body: username,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({username, key: getPrivateKey()}),
       });
     } catch (error) {
       setUserNameSetError(true);

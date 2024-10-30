@@ -173,3 +173,25 @@ export const findSlotStartIx = (
   }
   return -1;
 };
+
+export const getPrivateKey = () => {
+  const privKey = localStorage.getItem("privKey");
+  if (privKey) {
+    return privKey;
+  } else {
+    return "";
+  }
+}
+
+export const isUserRegistered = () => {
+  const privKey = getPrivateKey();
+  const username = localStorage.getItem("username");
+  if (
+    privKey &&
+    privKey.slice(2).length === 64 &&
+    username &&
+    username.length > 0
+  )
+    return true;
+  else return false;
+}
