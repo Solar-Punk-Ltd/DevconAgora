@@ -8,17 +8,22 @@ import { ROUTES } from "../../utils/constants";
 
 interface HomeHeaderProps {
   points?: number;
-  debugless?: boolean;
+  withGamification?: boolean;
 }
 
-const HomeHeader: React.FC<HomeHeaderProps> = ({ points, debugless }) => {
+const HomeHeader: React.FC<HomeHeaderProps> = ({
+  points,
+  withGamification,
+}) => {
   const { monogram, showGamification, setShowGamification, setPoints } =
     useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
-        <div style={debugless ? { display: "none" } : { display: "flex" }}>
+        <div
+          style={withGamification ? { display: "flex" } : { display: "none" }}
+        >
           <div
             style={{ fontSize: "10px", display: "flex", alignItems: "center" }}
           >

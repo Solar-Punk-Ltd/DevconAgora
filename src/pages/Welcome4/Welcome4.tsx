@@ -11,12 +11,7 @@ const Welcome1: React.FC = () => {
   return (
     <>
       <div className="welcome-page">
-        <div className="welcome-page__header">
-          Claim <br />
-          <span style={{ color: "var(--purple-to-text-color)" }}>
-            Your Reward
-          </span>
-        </div>
+        <div className="welcome-page__header">Stay with Swarm</div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
             <img
@@ -36,8 +31,8 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
             <div>
-              Start commenting and you will get your 10 BZZ reward and all the
-              info you need once you have collected 10 points.
+              With your unique code you can start your own node the easiest way
+              possible
             </div>
           </div>
           <div className="welcome-page__bottom-bottom">

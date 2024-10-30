@@ -12,15 +12,20 @@ import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import { ROUTES, LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP, CATEGORIES } from "../../utils/constants";
+import {
+  ROUTES,
+  LOBBY_TITLE,
+  CATEGORY_NAMES_TO_ID_MAP,
+  CATEGORIES,
+} from "../../utils/constants";
 import { RoomWithUserCounts } from "../../types/room";
 
 interface HomePageProps {
   isLoaded?: boolean;
-  debugless?: boolean;
+  withGamification?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
+const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
   const { points, username } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -90,7 +95,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, debugless }) => {
           <img src={HomeBackground} alt="" width="100%" height="100%" />
         </div>
       ) : null}
-      <HomeHeader points={points} debugless={debugless} />
+      <HomeHeader points={points} withGamification={withGamification} />
       {isLoading ? (
         <HomeLoading />
       ) : (

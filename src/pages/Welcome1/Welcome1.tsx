@@ -12,11 +12,7 @@ const Welcome1: React.FC = () => {
     <>
       <div className="welcome-page">
         <div className="welcome-page__header">
-          Welcome to the{" "}
-          <span style={{ color: "var(--purple-to-text-color)" }}>
-            2024 DevCon&nbsp;
-          </span>
-          event!
+          Privacy first communication platform
         </div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
@@ -36,10 +32,7 @@ const Welcome1: React.FC = () => {
         </div>
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
-            <div>
-              Be Part of the Ethereum Community Contribute of the Growth of the
-              Ecosystem.
-            </div>
+            <div>Be part of the community without revealing your identity</div>
           </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={0} />
