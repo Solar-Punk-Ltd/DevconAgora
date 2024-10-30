@@ -219,6 +219,7 @@ const Chat: React.FC<ChatProps> = ({
       {chatLoaded ? (
         <>
           <FilteredMessages
+            filterFunction={(message: MessageWithThread) => message.flagged !== true}
             messages={visibleMessages}
             nickname={nickname}
             ownAddress={ownAddress}

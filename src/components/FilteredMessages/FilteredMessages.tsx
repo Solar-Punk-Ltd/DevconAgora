@@ -14,6 +14,7 @@ interface FilteredMessagesProps {
     privKey: string;
     currentThread: ThreadId | null;
     setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
+    filterFunction: (message: MessageWithThread) => boolean;
 }
 
 
@@ -26,9 +27,10 @@ const FilteredMessages: React.FC<FilteredMessagesProps> = ({
   stamp,
   privKey,
   currentThread,
-  setThreadId
+  setThreadId,
+  filterFunction
 }) => {
-  const filteredMessages = messages;
+  const filteredMessages = messages.filter((msg) => filterFunction(msg));
 
   if (!chat) return <></>;
 
