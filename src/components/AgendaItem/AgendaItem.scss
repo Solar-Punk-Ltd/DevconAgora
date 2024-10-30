@@ -22,7 +22,7 @@
 
 .agenda-item__main {
   display: flex;
-  gap: 6px;
+  gap: 9px;
 }
 
 .agenda-item__main__content {
@@ -35,7 +35,9 @@
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 700;
-  padding: 5px;
+  line-height: 20px;
+  padding-right: 6px;
+  box-sizing: border-box;
 }
 
 .agenda-item__main__time {
@@ -50,6 +52,11 @@
   padding-right: 9px;
   padding-left: 9px;
   border-right: 1px solid #e0e0e0;
+  line-height: 20px;
+}
+
+.agenda-item__main__time__comment-version {
+  align-items: end;
 }
 
 .agenda-item__main__content__tagged {
