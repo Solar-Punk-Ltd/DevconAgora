@@ -13,6 +13,7 @@ interface FilteredMessagesProps {
     stamp: BatchId;
     privKey: string;
     currentThread: ThreadId | null;
+    filteringEnabled: boolean;
     setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
     filterFunction: (message: MessageWithThread) => boolean;
 }
@@ -27,6 +28,7 @@ const FilteredMessages: React.FC<FilteredMessagesProps> = ({
   stamp,
   privKey,
   currentThread,
+  filteringEnabled,
   setThreadId,
   filterFunction
 }) => {
@@ -37,7 +39,7 @@ const FilteredMessages: React.FC<FilteredMessagesProps> = ({
 
   return (
     <Messages
-      messages={filteredMessages}
+      messages={filteringEnabled ? filteredMessages : messages}
       nickname={nickname}
       ownAddress={ownAddress}
       chat={chat}

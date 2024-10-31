@@ -18,6 +18,7 @@ import { MessageWithThread, ThreadId } from "../../types/message";
 import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
+import { useGlobalState } from "../../GlobalStateContext";
 
 interface ChatProps {
   title: string | undefined;
@@ -48,6 +49,7 @@ const Chat: React.FC<ChatProps> = ({
   backAction,
 }) => {
   const chat = useRef<SwarmChat | null>(null);
+  const {isContentFilterEnabled } = useGlobalState();
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
   const [beingSentMessages, setBeingSentMessages] = useState<MessageWithThread[]>([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
@@ -220,6 +222,7 @@ const Chat: React.FC<ChatProps> = ({
         <>
           <FilteredMessages
             filterFunction={(message: MessageWithThread) => message.flagged !== true}
+            filteringEnabled={isContentFilterEnabled}
             messages={visibleMessages}
             nickname={nickname}
             ownAddress={ownAddress}
