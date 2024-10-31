@@ -94,7 +94,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     CATEGORIES.map((catName) => ({
       topic: CATEGORY_NAMES_TO_ID_MAP.get(catName),
       url: "null",
-      gateway: "null",
+      gateway: "",
       userCount: undefined,
     }))
   );

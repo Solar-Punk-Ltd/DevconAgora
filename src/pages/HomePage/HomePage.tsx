@@ -96,6 +96,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
+          gateway={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined}
           session={undefined}
           topMenuColor={undefined}
           originatorPage={"Home"}

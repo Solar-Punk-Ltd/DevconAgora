@@ -27,6 +27,7 @@ interface ChatProps {
   stamp: BatchId;
   nickname: string;
   gsocResourceId: string;
+  gateway?: string
   session?: Session;
   topMenuColor?: string;
   originatorPage: string;
@@ -42,6 +43,7 @@ const Chat: React.FC<ChatProps> = ({
   stamp,
   nickname,
   gsocResourceId,
+  gateway,
   session,
   topMenuColor,
   originatorPage,
@@ -76,7 +78,7 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: null || process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
+      gateway: gateway || process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
       logLevel: "error",
       usersFeedTimeout: 5000,           // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
