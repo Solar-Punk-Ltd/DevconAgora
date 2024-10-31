@@ -139,12 +139,9 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   useEffect(() => {
-    resendStuckMessages();
-
-    const messageIds = allMessages.map((msg) => {
-      const msgWithDetails: any = msg.message;
-      return msgWithDetails.messageId;
-    });
+    const messageIds = allMessages.map(
+      (msg) => JSON.parse(msg.message).messageId
+    );
     const newBeingSent = beingSentMessages.filter(
       (message) => !messageIds.includes(message.messageId)
     );
