@@ -103,7 +103,13 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   useEffect(() => {
-    const messageIds = allMessages.map((msg) => JSON.parse(msg.message).messageId)
+    console.log("ALL MESSAGES: ", allMessages);
+    
+    const messageIds = allMessages.map((msg) => {
+      console.log("MSG.MESSAGE: ", msg.message)
+      const msgWithDetails: any = msg.message;
+      return msgWithDetails.messageId
+    })
     const newBeingSent = beingSentMessages.filter((message) => !messageIds.includes(message.messageId));
     setBeingSentMessages(newBeingSent)
   }, [allMessages]);
@@ -118,7 +124,7 @@ const Chat: React.FC<ChatProps> = ({
     for (let i = 0; i < data.length; i++) {
       let msgObj;
       try {
-        msgObj = JSON.parse(data[i].message);
+        msgObj = data[i].message as any;
       } catch (error) {
         console.log(`error parsing message: ${data[i].message}:\n ${error}`);
         return [];
