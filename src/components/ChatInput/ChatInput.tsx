@@ -93,6 +93,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           .catch((err) => console.error(`Error while registering ${err.error}`));
 
         await chat.getNewUsers(topic);
+        //await chat.initUsers(topic); // we might need this if reset queue does not work.
         rounds++;
       } while (rounds < MAX_ROUNDS && !chat.isRegistered(ownAddress));
 
