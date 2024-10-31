@@ -25,7 +25,7 @@ const FullNotePage: React.FC = () => {
   const [currentNote, setCurrentNote] = useState<NoteItemProps>({});
   const [showRemovePopUp, setShowRemovePopUp] = useState<boolean>(false);
   const [showUnsavedPopUp, setShowUnsavedPopUp] = useState<boolean>(false);
-  const [sending, setSending] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(true);
 
   const handleOnChange = (txt: string) => {
@@ -150,7 +150,7 @@ const FullNotePage: React.FC = () => {
       date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
       time: dateToTime(date.toISOString()),
     };
-    setSending(true);
+    setSaving(true);
     const dataRef = await uploadData(
       process.env.STAMP || DUMMY_STAMP,
       JSON.stringify(noteObj)
@@ -176,7 +176,7 @@ const FullNotePage: React.FC = () => {
       setNotes(tmpNotes);
       setCurrentNote(noteObj);
     }
-    setSending(false);
+    setSaving(false);
     setSaved(true);
   };
 
@@ -246,7 +246,7 @@ const FullNotePage: React.FC = () => {
       <div className="full-note-page__bottom">
         <WelcomeButton
           version={
-            sending || (noteId == ROUTES.NEW_NOTE.slice(1) && !saved)
+            saving || (noteId == ROUTES.NEW_NOTE.slice(1) && !saved)
               ? "inactive"
               : "outlined"
           }
@@ -255,7 +255,7 @@ const FullNotePage: React.FC = () => {
           Remove
         </WelcomeButton>
         <WelcomeButton
-          version={sending || saved ? "inactive" : "filled"}
+          version={saving || saved ? "inactive" : "filled"}
           onClick={() => handleSave()}
         >
           Save

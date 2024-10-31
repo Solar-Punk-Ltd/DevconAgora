@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
-import { Comment } from "@solarpunkltd/comment-system";
+import { Comment, CommentsWithIndex } from "@solarpunkltd/comment-system";
 import "./TalkItem.scss";
 import { useGlobalState } from "../../GlobalStateContext";
 import AgendaItem from "../AgendaItem/AgendaItem";
@@ -19,7 +19,6 @@ import { TalkComments } from "../../types/talkComment";
 interface TalkItemProps {
   session: Session;
 }
-// TODO: load comments on-scroll -> use startix, endix
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const {
     username,
@@ -28,20 +27,30 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
     talkActivity,
     setTalkActivity,
   } = useGlobalState();
-  const [comments, setComments] = useState<Comment[] | undefined>();
+  const [comments, setComments] = useState<CommentsWithIndex | undefined>(
+    undefined
+  );
   const [loading, setLoading] = useState<boolean>(true);
-  const [startIx, setStartIx] = useState<number | undefined>();
-  const [endIx, setEndIx] = useState<number | undefined>();
 
   const rawTalkTopic = getTopic(session.id, true);
   const wallet = getWallet(rawTalkTopic);
   const signer = getSigner(wallet);
-  // update the loaded talk comments with the new comment
+
+  // update the loaded talk comments with the newly read/written comment
   // if the talk is not found, then replace the oldest talk with the new one
-  const handleOnComment = (newComment: Comment) => {
-    const updatedComments = [...(comments || []), newComment];
+  const updateTalks = (
+    newComments: Comment[],
+    isHistory: boolean,
+    next: number | undefined
+  ) => {
+    let updatedComments: Comment[] = [];
+    if (isHistory) {
+      updatedComments = [...newComments, ...(comments?.comments || [])];
+    } else {
+      updatedComments = [...(comments?.comments || []), ...newComments];
+    }
     const newLoadedTalks = [...(loadedTalks || [])];
-    const newEndIx = endIx === undefined ? 0 : endIx + 1;
+    const nextIx = next === undefined ? 0 : next;
     if (loadedTalks && loadedTalks.length > 0) {
       const foundIx = loadedTalks.findIndex((talk) =>
         talk.talkId.includes(session.id)
@@ -50,62 +59,37 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       // update the already loaded talk
       if (foundIx > -1) {
         newLoadedTalks[foundIx].comments = updatedComments;
+        newLoadedTalks[foundIx].nextIndex = nextIx;
       } else {
-        const newTalkComent: TalkComments = {
+        const newTalk: TalkComments = {
           talkId: rawTalkTopic,
           comments: updatedComments,
-          nextIndex: newEndIx,
+          nextIndex: nextIx,
         };
         // push the new talk with comments if buffer is not full
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
-          newLoadedTalks.push(newTalkComent);
+          newLoadedTalks.push(newTalk);
         } else {
           // otherwise replace the first talk with the new one
-          newLoadedTalks.splice(0, 1, newTalkComent);
+          newLoadedTalks.splice(0, 1, newTalk);
         }
       }
     }
 
-    setComments(updatedComments);
+    setComments({ comments: updatedComments, nextIndex: nextIx });
     setLoadedTalks(newLoadedTalks);
-    setEndIx(newEndIx);
   };
 
-  const handleOnRead = (newComments: Comment[], end: number | undefined) => {
-    const updatedComments = [...(comments || []), ...newComments];
-    setComments(updatedComments);
-    if (end !== undefined) {
-      setStartIx(
-        end - updatedComments.length > 0 ? end - updatedComments.length : 0
-      );
-      setEndIx(end);
-    }
+  const handleOnComment = (newComment: Comment, next: number | undefined) => {
+    updateTalks([newComment], false, next);
+  };
 
-    if (loadedTalks) {
-      const foundIx = loadedTalks.findIndex((talk) =>
-        talk.talkId.includes(session.id)
-      );
-      // update the already loaded talk
-      const newLoadedTalks = [...(loadedTalks || [])];
-      if (foundIx > -1) {
-        newLoadedTalks[foundIx].comments = updatedComments;
-      } else {
-        // talk was not found in the preloaded buffer, read the comments and add the talk to the buffer
-        const newTalkComent: TalkComments = {
-          talkId: rawTalkTopic,
-          comments: updatedComments,
-          nextIndex: end === undefined ? 0 : end + 1,
-        };
-        // push the new talk with comments if buffer is not full
-        if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
-          newLoadedTalks.push(newTalkComent);
-        } else {
-          // otherwise replace the last talk with the new one
-          newLoadedTalks.splice(0, 1, newTalkComent);
-        }
-        setLoadedTalks(newLoadedTalks);
-      }
-    }
+  const handleOnRead = (
+    newComments: Comment[],
+    isHistory: boolean,
+    next: number | undefined
+  ) => {
+    updateTalks(newComments, isHistory, next);
   };
 
   // find whether the talk is already loaded the first time the component is rendered
@@ -114,9 +98,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       const talk = loadedTalks.find((talk) => talk.talkId.includes(session.id));
       // get the already loaded talk
       if (talk) {
-        setComments(talk.comments || []);
-        setStartIx(talk.nextIndex - (talk.comments?.length || 0));
-        setEndIx(talk.nextIndex - 1);
+        setComments({
+          comments: talk.comments || [],
+          nextIndex: talk.nextIndex,
+        });
       }
     }
     setLoading(false);
@@ -149,13 +134,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           roomId={session.slot_roomId}
           liked={session.liked}
           paddingRight={"16px"}
-          stage={
-            STAGES_MAP.get(session.slot_roomId ? session.slot_roomId : "") || ""
-          }
+          stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
           commentVersion={true}
         />
       )}
-      {/* // either use a local stamp from the env or a dummy can be sent to the
+      {/* either use a local stamp from the env or a dummy can be sent to the
       gateway */}
       {!loading && (
         <SwarmCommentSystem
@@ -167,8 +150,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           preloadedCommnets={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
-          startIx={startIx}
-          endIx={endIx}
           numOfComments={MAX_COMMENTS_LOADED}
           maxCharacterCount={MAX_CHARACTER_COUNT}
         />
