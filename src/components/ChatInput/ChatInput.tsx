@@ -31,7 +31,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   stamp,
   privKey,
   currentThread,
-  setBeingSentMessages
+  setBeingSentMessages,
 }) => {
   const [messageToSend, setMessageToSend] = useState<string>("");
   const [reconnecting, setReconnecting] = useState<boolean>(false);
@@ -48,8 +48,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
       message: JSON.stringify({
         text: messageToSend,
         threadId: currentThread ? null : randomThreadId(), // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
-        messageId,                                         // Every message has an ID, for liking
-        parent: currentThread,                             // This will be ThreadId (string) or null
+        messageId, // Every message has an ID, for liking
+        parent: currentThread, // This will be ThreadId (string) or null
       }),
       timestamp: Date.now(),
       username: nickname,
@@ -80,22 +80,25 @@ const ChatInput: React.FC<ChatInputProps> = ({
       console.log("Diagnostics: ", chat.getDiagnostics());
       setReconnecting(true);
       let rounds = 0;
-      const EVERY_X_ROUND = 5;    // Resend registration request every X round
+      const EVERY_X_ROUND = 5; // Resend registration request every X round
       const MAX_ROUNDS = 60;
       const waitOneRound = async (ms: number) => {
         return new Promise((resolve) => setTimeout(resolve, ms));
       };
 
       do {
-        if (!(rounds % EVERY_X_ROUND)) await chat
-          .registerUser(topic, {
-            participant: ownAddress,
-            key: privKey,
-            stamp,
-            nickName: nickname,
-          })
-          .then(() => console.info(`Registration request sent`))
-          .catch((err) => console.error(`Error while registering ${err.error}`));
+        if (!(rounds % EVERY_X_ROUND))
+          await chat
+            .registerUser(topic, {
+              participant: ownAddress,
+              key: privKey,
+              stamp,
+              nickName: nickname,
+            })
+            .then(() => console.info(`Registration request sent`))
+            .catch((err) =>
+              console.error(`Error while registering ${err.error}`)
+            );
 
         await waitOneRound(1000);
 
@@ -124,39 +127,44 @@ const ChatInput: React.FC<ChatInputProps> = ({
     return () => {
       chat.stopMessageFetchProcess();
       chat.stopUserFetchProcess();
-    }
+    };
   }, []);
-
 
   return (
     <div
-      id="chat-input"
-      className={sending || reconnecting ? "chat-input__processing" : ""}
+      className="chat-input__wrapper"
+      // className={sending || reconnecting ? "chat-input__processing" : ""}
     >
       {reconnecting || sending ? (
         reconnecting ? (
           <div className="chat-input__connecting">
-            <InputLoading />
             {"Connecting to chat..."}
+            <InputLoading />
           </div>
         ) : (
-          sending && <InputLoading />
+          sending && (
+            <div className="chat-input__sending">
+              <InputLoading />
+            </div>
+          )
         )
       ) : (
         <>
-          <input
-            value={messageToSend}
-            onChange={(e) => setMessageToSend(e.target.value)}
-            onKeyDown={(e) => handleKeyDown(e, "Enter", sendMessage)}
-            className="chat-input__input"
-          />
-          <button
-            onClick={sendMessage}
-            className="chat-input__send-button"
-            disabled={reconnecting || sending}
-          >
-            <SendIcon />
-          </button>
+          <div className="chat-input">
+            <input
+              value={messageToSend}
+              onChange={(e) => setMessageToSend(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e, "Enter", sendMessage)}
+              className="chat-input__input"
+            />
+            <button
+              onClick={sendMessage}
+              className="chat-input__send-button"
+              disabled={reconnecting || sending}
+            >
+              <SendIcon />
+            </button>
+          </div>
         </>
       )}
     </div>

@@ -60,7 +60,6 @@ const Messages: React.FC<MessagesProps> = ({
   if (messages.length === 0 || !chat) {
     return (
       <div className="messages messages__no-messages">
-        <p>{"There’s nothing in this chat yet."}</p>
         <p>{"Start the conversation!"}</p>
       </div>
     );

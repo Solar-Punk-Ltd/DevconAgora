@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP  } from "../../utils/constants";
+import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
-import { ROUTES } from "../../utils/constants";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-
 
 const SpacesPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -56,8 +54,6 @@ const SpacesPage: React.FC = () => {
           gsocResourceId={getResourceId(selectedChat)}
           session={undefined}
           topMenuColor={undefined}
-          originatorPage={"Spaces"}
-          originatorPageUrl={ROUTES.SPACES}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}
         />

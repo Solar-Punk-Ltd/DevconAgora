@@ -13,7 +13,6 @@ import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import {
-  ROUTES,
   LOBBY_TITLE,
   CATEGORY_NAMES_TO_ID_MAP,
   CATEGORIES,
@@ -73,6 +72,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     else return 0;
   };
 
+  const anyRoomUserCount = (roomName: string): number => {
+    const anyRoom = orderedList.find((room) => room.topic === roomName);
+    if (!anyRoom) return 0;
+    if (anyRoom.userCount) return anyRoom.userCount;
+    else return 0;
+  };
+
   // We are reading user count values, when the component loads, and when selectedChat changes
   // (user is closing the Chat, and coming back to the Home Page)
   useEffect(() => {
@@ -124,10 +130,11 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           gsocResourceId={getResourceId(selectedChat)}
           session={undefined}
           topMenuColor={undefined}
-          originatorPage={"Home"}
-          originatorPageUrl={ROUTES.HOME}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}
+          activeNumber={anyRoomUserCount(
+            CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
+          )}
         />
       )}
     </div>

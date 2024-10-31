@@ -13,6 +13,10 @@
   z-index: 2;
 }
 
+.chat-page__header {
+  box-shadow: 0px 2px 8px 0px #1f1f2326;
+}
+
 .chat-page__loading {
   display: flex;
   height: calc(calc(var(--vh, 1vh) * 100) - 56px);

@@ -8,15 +8,16 @@ import {
 } from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
-import Back from "../../components/Back/Back";
 import Messages from "../../components/Messages/Messages";
 import ChatInput from "../../components/ChatInput/ChatInput";
 import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
 import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
+import ChatHeader from "../../components/ChatHeader/ChatHeader";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+import { useLocation } from "react-router-dom";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 import { useGlobalState } from "../../GlobalStateContext";
 
@@ -29,11 +30,9 @@ interface ChatProps {
   gsocResourceId: string;
   session?: Session;
   topMenuColor?: string;
-  originatorPage: string;
-  originatorPageUrl: string;
+  activeNumber?: number;
   backAction: () => void | undefined | null;
 }
-
 
 const Chat: React.FC<ChatProps> = ({
   title,
@@ -44,14 +43,16 @@ const Chat: React.FC<ChatProps> = ({
   gsocResourceId,
   session,
   topMenuColor,
-  originatorPage,
-  originatorPageUrl,
+  activeNumber,
   backAction,
 }) => {
+  const location = useLocation();
   const chat = useRef<SwarmChat | null>(null);
-  const {isContentFilterEnabled } = useGlobalState();
+  const { isContentFilterEnabled } = useGlobalState();
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
-  const [beingSentMessages, setBeingSentMessages] = useState<MessageWithThread[]>([]);
+  const [beingSentMessages, setBeingSentMessages] = useState<
+    MessageWithThread[]
+  >([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
     []
   );
@@ -76,7 +77,7 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
+      gateway: process.env.GATEWAY, // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
       logLevel: "info",
       usersFeedTimeout: 10000,
@@ -105,9 +106,13 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   useEffect(() => {
-    const messageIds = allMessages.map((msg) => JSON.parse(msg.message).messageId)
-    const newBeingSent = beingSentMessages.filter((message) => !messageIds.includes(message.messageId));
-    setBeingSentMessages(newBeingSent)
+    const messageIds = allMessages.map(
+      (msg) => JSON.parse(msg.message).messageId
+    );
+    const newBeingSent = beingSentMessages.filter(
+      (message) => !messageIds.includes(message.messageId)
+    );
+    setBeingSentMessages(newBeingSent);
   }, [allMessages]);
 
   useEffect(() => {
@@ -192,16 +197,26 @@ const Chat: React.FC<ChatProps> = ({
     setVisibleMessages([...newlyFilteredMessages]);
   }, [currentThread]);
 
-
   return (
     <div className="chat-page">
-      <Back
+      {/* <Back
         title={title}
         where={currentThread ? "Back to main thread" : originatorPage}
         link={currentThread ? ROUTES.HOME : originatorPageUrl}
         backgroundColor={topMenuColor}
         action={currentThread ? () => setCurrentThread(null) : backAction}
-      />
+      /> */}
+      <div className="chat-page__header">
+        <NavigationHeader
+          backgroundColor="#F1F2F4"
+          to={location.pathname}
+          saveQuestionBeforeLeave={true}
+          handlerInCaseOfSave={
+            currentThread ? () => setCurrentThread(null) : backAction
+          }
+        />
+        <ChatHeader category={title} activeVisitors={activeNumber} />
+      </div>
 
       {session && (
         // TODO: what to do here with onClick ?
@@ -221,7 +236,9 @@ const Chat: React.FC<ChatProps> = ({
       {chatLoaded ? (
         <>
           <FilteredMessages
-            filterFunction={(message: MessageWithThread) => message.flagged !== true}
+            filterFunction={(message: MessageWithThread) =>
+              message.flagged !== true
+            }
             filteringEnabled={isContentFilterEnabled}
             messages={visibleMessages}
             nickname={nickname}

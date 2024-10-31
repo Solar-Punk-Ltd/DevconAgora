@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Message.scss";
 import AvatarMonogram from "../../AvatarMonogram/AvatarMonogram";
 import LikeIcon from "../../icons/LikeIcon/LikeIcon";
-import { createMonogram, formatTime } from "../../../utils/helpers";
+import { createMonogram } from "../../../utils/helpers";
 import { MessageWithThread, ThreadId } from "../../../types/message";
 import {
   EthAddress,
@@ -12,6 +12,7 @@ import {
 import { BatchId } from "@ethersphere/bee-js";
 import LikeIconFilled from "../../icons/LikeIconFilled/LikeIconFilled";
 import { BEING_SENT } from "../../../utils/constants";
+import clsx from "clsx";
 
 interface MessageProps {
   data: MessageWithThread;
@@ -41,6 +42,7 @@ const Message: React.FC<MessageProps> = ({
   setThreadId,
 }) => {
   const [likeLoading, setLikeLoading] = useState<boolean>(false);
+  const actualUser = localStorage.getItem("username");
 
   const likeMessage = async () => {
     setLikeLoading(true);
@@ -71,35 +73,46 @@ const Message: React.FC<MessageProps> = ({
 
   return (
     <div
-      className="message"
+      className={clsx("message", { own: actualUser === nickname })}
       style={{
         marginLeft: parent ? "32px" : undefined,
         opacity: data.threadId === BEING_SENT ? 0.3 : 1,
       }}
     >
       <div className="message__left-side">
-        <AvatarMonogram letters={createMonogram(data.username)} />
+        <AvatarMonogram
+          letters={createMonogram(data.username)}
+          color={actualUser === nickname ? "#333333" : "#4A2875"}
+          backgroundColor={actualUser === nickname ? "#4A287533" : "#F7F8FA"}
+        />
       </div>
 
       <div className="message__right-side">
-        <div className="message__right-side__name-and-time">
-          <p className="message__right-side__name-and-time__username">
-            {data.username}
-          </p>
-          {
-            <p className="message__right-side__name-and-time__time">
-              {formatTime(data.timestamp)}
-            </p>
-          }
+        <div
+          className={clsx("message__right-side__name", {
+            own: actualUser === nickname,
+          })}
+        >
+          {data.username}
         </div>
 
-        <p className="message__right-side__text">{data.message}</p>
+        <p
+          className={clsx("message__right-side__text", {
+            own: actualUser === nickname,
+          })}
+        >
+          {data.message}
+        </p>
 
         <div
-          className="message__right-side__message-controls"
+          className={clsx("message__right-side__message-controls", {
+            own: actualUser === nickname,
+          })}
           onClick={() => null}
         >
-          <span>{likeCount ? likeCount : ""}</span>
+          <div className="message__right-side__message-controls__number">
+            <b>{likeCount ? likeCount : ""}</b>
+          </div>
           <button
             className="message__right-side__message-controls_like"
             disabled={data.threadId === BEING_SENT}
