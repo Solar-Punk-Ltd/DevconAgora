@@ -122,7 +122,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
-          session={undefined}
           topMenuColor={undefined}
           originatorPage={"Home"}
           originatorPageUrl={ROUTES.HOME}
