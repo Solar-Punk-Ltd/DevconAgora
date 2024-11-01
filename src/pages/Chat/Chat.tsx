@@ -119,7 +119,7 @@ const Chat: React.FC<ChatProps> = ({
         username: messagesOlderThanThreshold[i].username,
         message: JSON.stringify({
           text: messagesOlderThanThreshold[i].message,
-          threadId: null,   // we are using thread capability by this
+          threadId: messagesOlderThanThreshold[i].threadId,
           messageId: messagesOlderThanThreshold[i].messageId,
           parent: messagesOlderThanThreshold[i].parent
         }),

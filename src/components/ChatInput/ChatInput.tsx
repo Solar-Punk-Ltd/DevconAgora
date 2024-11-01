@@ -10,7 +10,6 @@ import SendIcon from "../icons/SendIcon/SendIcon";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import { randomThreadId, handleKeyDown } from "../../utils/helpers";
 import InputLoading from "./InputLoading/InputLoading";
-import { BEING_SENT } from "../../utils/constants";
 
 interface ChatInputProps {
   chat: SwarmChat | null;
@@ -43,11 +42,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
     if (!messageToSend) return;
 
     const messageId = randomThreadId();
+    const threadId = randomThreadId();
 
     const messageObj: MessageData = {
       message: JSON.stringify({
         text: messageToSend,
-        threadId: currentThread ? null : randomThreadId(), // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
+        threadId: currentThread ? null : threadId,         // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
         messageId,                                         // Every message has an ID, for liking
         parent: currentThread,                             // This will be ThreadId (string) or null
       }),
@@ -64,7 +64,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
           address: ownAddress,
           timestamp: messageObj.timestamp,
           message: messageToSend,
-          threadId: BEING_SENT,
+          threadId: threadId,
+          beingSent: true,
           messageId,
           parent: currentThread,
           replyCount: 0,
