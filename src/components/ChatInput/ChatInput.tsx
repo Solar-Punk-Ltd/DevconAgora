@@ -110,7 +110,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
     }
 
     setSending(true);
-    if (messageObj.timestamp % 2) await chat.sendMessage(ownAddress, topic, messageObj, stamp, privKey);
+    await chat.sendMessage(ownAddress, topic, messageObj, stamp, privKey);
     setMessageToSend("");
     setSending(false);
   };
