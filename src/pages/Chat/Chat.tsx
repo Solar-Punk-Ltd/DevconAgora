@@ -201,7 +201,9 @@ const Chat: React.FC<ChatProps> = ({
       );
     }
 
-    return filteredMessages;
+    const withoutDuplicates = Array.from(new Map(filteredMessages.map(item => [item.messageId, item])).values());
+
+    return withoutDuplicates;
   };
 
   useEffect(() => {
