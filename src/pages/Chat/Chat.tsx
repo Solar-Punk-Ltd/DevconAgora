@@ -19,6 +19,7 @@ import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 import { useGlobalState } from "../../GlobalStateContext";
+import { MINUTE } from "@solarpunkltd/swarm-decentralized-chat/constants.js";
 
 interface ChatProps {
   title: string | undefined;
@@ -104,11 +105,37 @@ const Chat: React.FC<ChatProps> = ({
     setChatLoaded(true);
   };
 
+  const resendStuckMessages = async () => {
+    const beingSentThreshold = 1 * MINUTE;
+    const now = Date.now();
+    const messagesOlderThanThreshold = beingSentMessages.filter((msg) => msg.timestamp < now-beingSentThreshold);
+
+    for (let i = 0; i < messagesOlderThanThreshold.length; i++) {
+      console.info("Resending message...")
+      const text = messagesOlderThanThreshold[i].message;
+      console.log("This will be JSON.parsed: ", text)
+      const newlyConstructedMessage: MessageData = {
+        address: messagesOlderThanThreshold[i].address,
+        username: messagesOlderThanThreshold[i].username,
+        message: JSON.stringify({
+          text: messagesOlderThanThreshold[i].message,
+          threadId: null,   // we are using thread capability by this
+          messageId: messagesOlderThanThreshold[i].messageId,
+          parent: messagesOlderThanThreshold[i].parent
+        }),
+        timestamp: messagesOlderThanThreshold[i].timestamp
+      }
+      console.log("message obj: ", newlyConstructedMessage)
+      const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);
+      console.log("sResult ", sResult)
+    }
+  }
+
   useEffect(() => {
     console.log("ALL MESSAGES: ", allMessages);
+    resendStuckMessages();
     
     const messageIds = allMessages.map((msg) => {
-      console.log("MSG.MESSAGE: ", msg.message)
       const msgWithDetails: any = msg.message;
       return msgWithDetails.messageId
     })
