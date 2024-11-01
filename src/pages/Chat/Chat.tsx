@@ -111,9 +111,6 @@ const Chat: React.FC<ChatProps> = ({
     const messagesOlderThanThreshold = beingSentMessages.filter((msg) => msg.timestamp < now-beingSentThreshold);
 
     for (let i = 0; i < messagesOlderThanThreshold.length; i++) {
-      console.info("Resending message...")
-      const text = messagesOlderThanThreshold[i].message;
-      console.log("This will be JSON.parsed: ", text)
       const newlyConstructedMessage: MessageData = {
         address: messagesOlderThanThreshold[i].address,
         username: messagesOlderThanThreshold[i].username,
@@ -125,7 +122,7 @@ const Chat: React.FC<ChatProps> = ({
         }),
         timestamp: messagesOlderThanThreshold[i].timestamp
       }
-      console.log("message obj: ", newlyConstructedMessage)
+      console.info("Resending message: ", newlyConstructedMessage)
       const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);
       console.log("sResult ", sResult)
     }
