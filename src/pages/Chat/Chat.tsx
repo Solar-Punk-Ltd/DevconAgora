@@ -7,13 +7,14 @@ import {
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import Back from "../../components/Back/Back";
 import ChatInput from "../../components/ChatInput/ChatInput";
 import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
+import ChatHeader from "../../components/ChatHeader/ChatHeader";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+import { useLocation } from "react-router-dom";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 import { useGlobalState } from "../../GlobalStateContext";
 import { MINUTE } from "@solarpunkltd/swarm-decentralized-chat/constants.js";
@@ -25,10 +26,9 @@ interface ChatProps {
   stamp: BatchId;
   nickname: string;
   gsocResourceId: string;
-  gateway?: string
+  gateway?: string;
   topMenuColor?: string;
-  originatorPage: string;
-  originatorPageUrl: string;
+  activeNumber?: number;
   backAction: () => void | undefined | null;
 }
 
@@ -40,11 +40,10 @@ const Chat: React.FC<ChatProps> = ({
   nickname,
   gsocResourceId,
   gateway,
-  topMenuColor,
-  originatorPage,
-  originatorPageUrl,
+  activeNumber,
   backAction,
 }) => {
+  const location = useLocation();
   const chat = useRef<SwarmChat | null>(null);
   const { isContentFilterEnabled } = useGlobalState();
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
@@ -75,12 +74,12 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: gateway || process.env.GATEWAY,     // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
+      gateway: gateway || process.env.GATEWAY, // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
       logLevel: "error",
-      usersFeedTimeout: 5000,           // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
-      messageCheckInterval: 1600,       // We might want to reduce this number to 1000 or 800
-      messageFetchMin: 1600,            // same as above
+      usersFeedTimeout: 5000, // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
+      messageCheckInterval: 1600, // We might want to reduce this number to 1000 or 800
+      messageFetchMin: 1600, // same as above
       //  prettier: undefined
     });
 
@@ -97,14 +96,19 @@ const Chat: React.FC<ChatProps> = ({
     chat.current.startMessageFetchProcess(topic);
     console.info("Message fetch process started.");
     chat.current.startUserFetchProcess(topic);
-    console.info("User fetch process started, interval: ", chat.current.getUserUpdateIntervalConst());
+    console.info(
+      "User fetch process started, interval: ",
+      chat.current.getUserUpdateIntervalConst()
+    );
     setChatLoaded(true);
   };
 
   const resendStuckMessages = async () => {
     const beingSentThreshold = 1 * MINUTE;
     const now = Date.now();
-    const messagesOlderThanThreshold = beingSentMessages.filter((msg) => msg.timestamp < now-beingSentThreshold);
+    const messagesOlderThanThreshold = beingSentMessages.filter(
+      (msg) => msg.timestamp < now - beingSentThreshold
+    );
 
     for (let i = 0; i < messagesOlderThanThreshold.length; i++) {
       const newlyConstructedMessage: MessageData = {
@@ -114,29 +118,37 @@ const Chat: React.FC<ChatProps> = ({
           text: messagesOlderThanThreshold[i].message,
           threadId: messagesOlderThanThreshold[i].threadId,
           messageId: messagesOlderThanThreshold[i].messageId,
-          parent: messagesOlderThanThreshold[i].parent
+          parent: messagesOlderThanThreshold[i].parent,
         }),
-        timestamp: messagesOlderThanThreshold[i].timestamp
-      }
+        timestamp: messagesOlderThanThreshold[i].timestamp,
+      };
       try {
-        console.info("Resending message: ", newlyConstructedMessage)
-        const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);
+        console.info("Resending message: ", newlyConstructedMessage);
+        const sResult = await chat.current?.sendMessage(
+          ownAddress,
+          topic,
+          newlyConstructedMessage,
+          stamp,
+          privKey
+        );
         console.log("sResult ", sResult);
       } catch (error) {
         console.error("Error sending message: ", error);
       }
     }
-  }
+  };
 
   useEffect(() => {
     resendStuckMessages();
 
     const messageIds = allMessages.map((msg) => {
       const msgWithDetails: any = msg.message;
-      return msgWithDetails.messageId
-    })
-    const newBeingSent = beingSentMessages.filter((message) => !messageIds.includes(message.messageId));
-    setBeingSentMessages(newBeingSent)
+      return msgWithDetails.messageId;
+    });
+    const newBeingSent = beingSentMessages.filter(
+      (message) => !messageIds.includes(message.messageId)
+    );
+    setBeingSentMessages(newBeingSent);
   }, [allMessages]);
 
   useEffect(() => {
@@ -197,7 +209,9 @@ const Chat: React.FC<ChatProps> = ({
       );
     }
 
-    const withoutDuplicates = Array.from(new Map(filteredMessages.map(item => [item.messageId, item])).values());
+    const withoutDuplicates = Array.from(
+      new Map(filteredMessages.map((item) => [item.messageId, item])).values()
+    );
 
     return withoutDuplicates;
   };
@@ -225,13 +239,17 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <div className="chat-page">
-      <Back
-        title={title}
-        where={currentThread ? "Back to main thread" : originatorPage}
-        link={currentThread ? ROUTES.HOME : originatorPageUrl}
-        backgroundColor={topMenuColor}
-        action={currentThread ? () => setCurrentThread(null) : backAction}
-      />
+      <div className="chat-page__header">
+        <NavigationHeader
+          backgroundColor="#F1F2F4"
+          to={location.pathname}
+          saveQuestionBeforeLeave={true}
+          handlerInCaseOfSave={
+            currentThread ? () => setCurrentThread(null) : backAction
+          }
+        />
+        <ChatHeader category={title} activeVisitors={activeNumber} />
+      </div>
 
       {chatLoaded ? (
         <>

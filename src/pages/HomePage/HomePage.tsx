@@ -12,11 +12,7 @@ import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import {
-  ROUTES,
-  LOBBY_TITLE,
-  CATEGORY_NAMES_TO_ID_MAP,
-} from "../../utils/constants";
+import { LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 
 interface HomePageProps {
   isLoaded?: boolean;
@@ -37,6 +33,13 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
       </div>
     );
   }
+
+  const anyRoomUserCount = (roomName: string): number => {
+    const anyRoom = orderedList.find((room) => room.topic === roomName);
+    if (!anyRoom) return 0;
+    if (anyRoom.userCount) return anyRoom.userCount;
+    else return 0;
+  };
 
   const lobbyUserCount = (): number => {
     const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
@@ -95,10 +98,11 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
             )?.gateway || undefined
           }
           topMenuColor={undefined}
-          originatorPage={"Home"}
-          originatorPageUrl={ROUTES.HOME}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}
+          activeNumber={anyRoomUserCount(
+            CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
+          )}
         />
       )}
     </div>
