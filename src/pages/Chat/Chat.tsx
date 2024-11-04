@@ -139,6 +139,8 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   useEffect(() => {
+    resendStuckMessages();
+
     const messageIds = allMessages.map(
       (msg) => (msg.message as unknown as MessageWithThread).messageId
     );
