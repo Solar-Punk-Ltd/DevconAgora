@@ -23,7 +23,6 @@ export const MAX_COMMENTS_LOADED = 15;
 export const MAX_SESSIONS_SHOWN = 9;
 export const LOBBY_TITLE = "Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
-export const BEING_SENT = "being-sent";
 
 import Layer2s from "../assets/category-layer-2s.png";
 import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
