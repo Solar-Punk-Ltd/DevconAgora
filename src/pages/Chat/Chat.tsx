@@ -10,7 +10,7 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import ChatInput from "../../components/ChatInput/ChatInput";
 import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
-import { MessageWithThread, ThreadId } from "../../types/message";
+import { LikeMessage, MessageWithThread, ThreadId } from "../../types/message";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 import ChatHeader from "../../components/ChatHeader/ChatHeader";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
@@ -140,7 +140,7 @@ const Chat: React.FC<ChatProps> = ({
 
   useEffect(() => {
     const messageIds = allMessages.map(
-      (msg) => JSON.parse(msg.message).messageId
+      (msg) => (msg.message as unknown as MessageWithThread).messageId
     );
     const newBeingSent = beingSentMessages.filter(
       (message) => !messageIds.includes(message.messageId)
@@ -158,16 +158,18 @@ const Chat: React.FC<ChatProps> = ({
     for (let i = 0; i < data.length; i++) {
       let msgObj;
       try {
-        msgObj = data[i].message as unknown as MessageWithThread;
+        msgObj = data[i].message as unknown as MessageWithThread | LikeMessage;
+        console.log(`msgObj: ${msgObj}`);
       } catch (error) {
         console.log(`error parsing message: ${data[i].message}:\n ${error}`);
         return [];
       }
       const address = data[i].address;
 
-      if (msgObj.like) {
+      if (typeof msgObj === "string") {
+        const likeObj = JSON.parse(msgObj);
         const likedIndex = threadCapableMessages.findIndex(
-          (msg) => msg.messageId === msgObj.like
+          (msg) => msg.messageId === likeObj.like
         );
         threadCapableMessages[likedIndex].likeTable[address] = true;
       } else {
@@ -175,7 +177,7 @@ const Chat: React.FC<ChatProps> = ({
           username: data[i].username,
           address: data[i].address,
           timestamp: data[i].timestamp,
-          message: msgObj.text,
+          message: msgObj.text || "",
           threadId: msgObj.threadId,
           messageId: msgObj.messageId,
           parent: msgObj.parent,

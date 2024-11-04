@@ -4,11 +4,14 @@ export interface MessageWithThread extends MessageData {
     threadId: ThreadId | null;
     messageId: MessageId | null;
     parent: ThreadId | null;
+    text?: string;
     replyCount: number;
     likeTable: { [key: EthAddress]: boolean };
     flagged?: boolean;
     beingSent?: boolean;
 }
+
+export type LikeMessage = string;
 
 export type ThreadId = string;
 export type MessageId = string;
