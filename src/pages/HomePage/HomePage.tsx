@@ -26,17 +26,9 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
-  const { points, username } = useGlobalState();
+  const { points, username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
-    CATEGORIES.map((catName) => ({
-      topic: CATEGORY_NAMES_TO_ID_MAP.get(catName),
-      url: "null",
-      gateway: "null",
-      userCount: undefined,
-    }))
-  );
 
   const privKey = getPrivateKey();
   if (!privKey) {
@@ -48,36 +40,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     );
   }
 
-  // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
-  const fetchUserCount = async () => {
-    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(
-      process.env.BACKEND_API_URL + "/user-count"
-    )
-      .then((res) => res.json())
-      .catch((err) => console.error("Error fetching user counts ", err));
-
-    if (roomsWithUserCount.length > 0 && roomsWithUserCount !== undefined) {
-      const orderedRooms = roomsWithUserCount.sort(
-        (a, b) => b.userCount! - a.userCount!
-      );
-      setOrderedList(orderedRooms);
-    }
-
-    console.log("Rooms with user counts: ", orderedList);
-  };
-
-  const lobbyeUserCount = (): number => {
+  const lobbyUserCount = (): number => {
     const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
     if (!lobby) return 0;
     if (lobby.userCount) return lobby.userCount;
     else return 0;
   };
-
-  // We are reading user count values, when the component loads, and when selectedChat changes
-  // (user is closing the Chat, and coming back to the Home Page)
-  useEffect(() => {
-    fetchUserCount();
-  }, [selectedChat]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -104,7 +72,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
             title="Devcon buzz space"
             content="Share your tought, chat with anybody without moderation and collect the reward."
             showActiveVisitors={true}
-            activeVisitors={lobbyeUserCount()}
+            activeVisitors={lobbyUserCount()}
             bordered={true}
             setSelectedChat={setSelectedChat}
           />
@@ -122,6 +90,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
+          gateway={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined}
           session={undefined}
           topMenuColor={undefined}
           originatorPage={"Home"}

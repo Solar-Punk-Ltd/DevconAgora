@@ -10,7 +10,6 @@ import SendIcon from "../icons/SendIcon/SendIcon";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import { randomThreadId, handleKeyDown } from "../../utils/helpers";
 import InputLoading from "./InputLoading/InputLoading";
-import { BEING_SENT } from "../../utils/constants";
 
 interface ChatInputProps {
   chat: SwarmChat | null;
@@ -43,11 +42,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
     if (!messageToSend) return;
 
     const messageId = randomThreadId();
+    const threadId = randomThreadId();
 
     const messageObj: MessageData = {
       message: JSON.stringify({
         text: messageToSend,
-        threadId: currentThread ? null : randomThreadId(), // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
+        threadId: currentThread ? null : threadId,         // Only 1 level of thread is allowed, so if this is already a thread, you can't start a thread from here
         messageId,                                         // Every message has an ID, for liking
         parent: currentThread,                             // This will be ThreadId (string) or null
       }),
@@ -64,7 +64,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
           address: ownAddress,
           timestamp: messageObj.timestamp,
           message: messageToSend,
-          threadId: BEING_SENT,
+          threadId: threadId,
+          beingSent: true,
           messageId,
           parent: currentThread,
           replyCount: 0,
@@ -75,16 +76,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
       return newMessages;
     });
 
-    console.log("USERS! ", chat.getDiagnostics().users);
     if (!chat.isRegistered(ownAddress)) {
-      console.log("Diagnostics: ", chat.getDiagnostics());
       setReconnecting(true);
       let rounds = 0;
       const EVERY_X_ROUND = 5;    // Resend registration request every X round
       const MAX_ROUNDS = 60;
-      const waitOneRound = async (ms: number) => {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      };
 
       do {
         if (!(rounds % EVERY_X_ROUND)) await chat
@@ -97,11 +93,10 @@ const ChatInput: React.FC<ChatInputProps> = ({
           .then(() => console.info(`Registration request sent`))
           .catch((err) => console.error(`Error while registering ${err.error}`));
 
-        await waitOneRound(1000);
-
-        console.log("isRegistered: ", chat.isRegistered(ownAddress));
+        await chat.getNewUsers(topic);
+        //await chat.initUsers(topic); // we might need this if reset queue does not work.
         rounds++;
-      } while (!chat.isRegistered(ownAddress) && rounds < MAX_ROUNDS);
+      } while (rounds < MAX_ROUNDS && !chat.isRegistered(ownAddress));
 
       if (rounds === MAX_ROUNDS) {
         console.error("Registration did not go through");
