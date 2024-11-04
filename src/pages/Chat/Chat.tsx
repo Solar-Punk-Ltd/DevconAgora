@@ -122,9 +122,13 @@ const Chat: React.FC<ChatProps> = ({
         }),
         timestamp: messagesOlderThanThreshold[i].timestamp
       }
-      console.info("Resending message: ", newlyConstructedMessage)
-      const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);
-      console.log("sResult ", sResult)
+      try {
+        console.info("Resending message: ", newlyConstructedMessage)
+        const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);        
+        console.log("sResult ", sResult);
+      } catch (error) {
+        console.error("Error sending message: ", error);
+      }
     }
   }
 
