@@ -17,7 +17,7 @@ export const DEFAULT_URL = "http://localhost:1633/";
 export const DUMMY_STAMP =
   "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
 export const SELF_NOTE_TOPIC = "selfNoteTopics";
-export const MOCK_START_TIME = new Date("2022-10-11T12:15:00.000Z");
+export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
 export const MAX_PRELOADED_TALKS = 11;
 export const MAX_COMMENTS_LOADED = 15;
 export const MAX_SESSIONS_SHOWN = 9;
@@ -61,7 +61,7 @@ export enum ROUTES {
 }
 
 export const CATEGORIES = [
-  "Layer 2s",
+  "Layer 2",
   "Core Protocol",
   "Cypherpunk & Privacy",
   "Usability",
@@ -71,7 +71,8 @@ export const CATEGORIES = [
   "Coordination",
   "Developer Experience",
   "Security",
-]; // as const;
+  "Entertainment",
+];
 
 export const RESOURCE_IDS = new Map([
   [
@@ -118,28 +119,36 @@ export const RESOURCE_IDS = new Map([
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
-  [new Date("2022-10-11").toDateString(), "Day 1"],
-  [new Date("2022-10-12").toDateString(), "Day 2"],
-  [new Date("2022-10-13").toDateString(), "Day 3"],
-  [new Date("2022-10-14").toDateString(), "Day 4"],
+  [new Date("2024-10-12").toDateString(), "Day 1"],
+  [new Date("2024-10-13").toDateString(), "Day 2"],
+  [new Date("2024-10-14").toDateString(), "Day 3"],
+  [new Date("2024-10-15").toDateString(), "Day 4"],
 ]);
 
 export const STAGES_MAP = new Map([
-  ["talk-1", "Stage 1"],
-  ["talk-2", "Stage 2"],
-  ["talk-3", "Stage 3"],
-  ["talk-4", "Stage 4"],
-  ["talk-5", "Stage 5"],
-  ["talk-5-opening-ceremonies", "Stage 5 - opening"],
-  ["workshop-1", "Workshop 1"],
-  ["workshop-2", "Workshop 2"],
-  ["workshop-3", "Workshop 3"],
-  ["workshop-4", "Workshop 4"],
+  ["stage-1", "Stage 1"],
+  ["stage-2", "Stage 2"],
+  ["stage-3", "Stage 3"],
+  ["stage-4", "Stage 4"],
+  ["stage-5", "Stage 5"],
+  ["stage-6", "Stage 6"],
+  ["breakout-1", "Breakout 1"],
+  ["breakout-2", "Breakout 2"],
+  ["breakout-3", "Breakout 3"],
+  ["classroom-a", "Classroom A"],
+  ["classroom-b", "Classroom B"],
+  ["classroom-c", "Classroom C"],
+  ["classroom-d", "Classroom D"],
+  ["classroom-e", "Classroom E"],
+  ["decompression-room", "Decompression Room"],
+  // ["keynote", "Keynote"], // not used
+  ["main-stage", "Main Stage"],
+  ["music-stage", "Music stage"],
   ["all", "All"],
 ]);
 
 const oneDirectionCategoryNamesToIdMap = new Map([
-  ["Layer 2s", "layer-2s"],
+  ["Layer 2", "layer-2s"],
   ["Core Protocol", "core-protocol"],
   ["Cypherpunk & Privacy", "cypherpunk-and-privacy"],
   ["Usability", "usability"],
@@ -150,13 +159,14 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
   ["Lobby", "lobby"],
+  ["Entertainment", "entertainment"],
 ]);
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
   oneDirectionCategoryNamesToIdMap
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
-  ["Layer 2s", Layer2s],
+  ["Layer 2", Layer2s],
   ["Core Protocol", CoreProtocol],
   ["Cypherpunk & Privacy", CypherpunkAndPrivacy],
   ["Usability", Usability],
@@ -166,6 +176,7 @@ export const CATEGORY_IMAGES_MAP = new Map([
   ["Coordination", Coordination],
   ["Developer Experience", DeveloperExperience],
   ["Security", Security],
+  ["Entertainment", "entertainment"],
 ]);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
