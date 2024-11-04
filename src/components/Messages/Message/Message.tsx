@@ -11,8 +11,6 @@ import {
 } from "@solarpunkltd/swarm-decentralized-chat";
 import { BatchId } from "@ethersphere/bee-js";
 import LikeIconFilled from "../../icons/LikeIconFilled/LikeIconFilled";
-import { BEING_SENT } from "../../../utils/constants";
-import clsx from "clsx";
 
 interface MessageProps {
   data: MessageWithThread;
@@ -76,7 +74,7 @@ const Message: React.FC<MessageProps> = ({
       className={clsx("message", { own: actualUser === nickname })}
       style={{
         marginLeft: parent ? "32px" : undefined,
-        opacity: data.threadId === BEING_SENT ? 0.3 : 1,
+        opacity: data.beingSent ? 0.3 : 1,
       }}
     >
       <div className="message__left-side">
@@ -115,7 +113,7 @@ const Message: React.FC<MessageProps> = ({
           </div>
           <button
             className="message__right-side__message-controls_like"
-            disabled={data.threadId === BEING_SENT}
+            disabled={data.beingSent}
             onClick={likeMessage}
           >
             {likeLoading ? (
@@ -127,7 +125,7 @@ const Message: React.FC<MessageProps> = ({
             )}
           </button>
 
-          {!currentThread && data.threadId !== BEING_SENT && (
+          {!currentThread && !data.beingSent && (
             <p
               className={
                 data.replyCount

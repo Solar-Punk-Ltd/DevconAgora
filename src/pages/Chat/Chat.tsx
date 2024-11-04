@@ -7,12 +7,9 @@ import {
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import AgendaItem from "../../components/AgendaItem/AgendaItem";
-import Messages from "../../components/Messages/Messages";
 import ChatInput from "../../components/ChatInput/ChatInput";
 import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
-import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 import ChatHeader from "../../components/ChatHeader/ChatHeader";
@@ -20,6 +17,7 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import { useLocation } from "react-router-dom";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 import { useGlobalState } from "../../GlobalStateContext";
+import { MINUTE } from "@solarpunkltd/swarm-decentralized-chat/constants.js";
 
 interface ChatProps {
   title: string | undefined;
@@ -28,7 +26,7 @@ interface ChatProps {
   stamp: BatchId;
   nickname: string;
   gsocResourceId: string;
-  session?: Session;
+  gateway?: string;
   topMenuColor?: string;
   activeNumber?: number;
   backAction: () => void | undefined | null;
@@ -41,8 +39,7 @@ const Chat: React.FC<ChatProps> = ({
   stamp,
   nickname,
   gsocResourceId,
-  session,
-  topMenuColor,
+  gateway,
   activeNumber,
   backAction,
 }) => {
@@ -77,20 +74,14 @@ const Chat: React.FC<ChatProps> = ({
     // Initialize the SwarmDecentralizedChat library
     const newChat = new SwarmChat({
       url: process.env.BEE_API_URL,
-      gateway: process.env.GATEWAY, // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
+      gateway: gateway || process.env.GATEWAY, // this shouldn't bee process.env.GATEWAY, each GSOC-node has it's own overlay address
       gsocResourceId,
-      logLevel: "info",
-      usersFeedTimeout: 10000,
-      messageCheckInterval: 2000,
-      messageFetchMin: 2000,
+      logLevel: "error",
+      usersFeedTimeout: 5000, // this might or might not help us, if we need to wait 10s to wait, that might add to the delay
+      messageCheckInterval: 1600, // We might want to reduce this number to 1000 or 800
+      messageFetchMin: 1600, // same as above
       //  prettier: undefined
     });
-
-    // Start polling messages & the Users feed
-    newChat.startMessageFetchProcess(topic);
-    console.info("Message fetch process started.");
-    newChat.startUserFetchProcess(topic);
-    // probably move this more down
 
     // Load users (first time when entering app)
     await newChat
@@ -102,13 +93,58 @@ const Chat: React.FC<ChatProps> = ({
     on(EVENTS.RECEIVE_MESSAGE, (data) => setAllMessages([...data]));
 
     chat.current = newChat;
+    chat.current.startMessageFetchProcess(topic);
+    console.info("Message fetch process started.");
+    chat.current.startUserFetchProcess(topic);
+    console.info(
+      "User fetch process started, interval: ",
+      chat.current.getUserUpdateIntervalConst()
+    );
     setChatLoaded(true);
   };
 
-  useEffect(() => {
-    const messageIds = allMessages.map(
-      (msg) => JSON.parse(msg.message).messageId
+  const resendStuckMessages = async () => {
+    const beingSentThreshold = 1 * MINUTE;
+    const now = Date.now();
+    const messagesOlderThanThreshold = beingSentMessages.filter(
+      (msg) => msg.timestamp < now - beingSentThreshold
     );
+
+    for (let i = 0; i < messagesOlderThanThreshold.length; i++) {
+      const newlyConstructedMessage: MessageData = {
+        address: messagesOlderThanThreshold[i].address,
+        username: messagesOlderThanThreshold[i].username,
+        message: JSON.stringify({
+          text: messagesOlderThanThreshold[i].message,
+          threadId: messagesOlderThanThreshold[i].threadId,
+          messageId: messagesOlderThanThreshold[i].messageId,
+          parent: messagesOlderThanThreshold[i].parent,
+        }),
+        timestamp: messagesOlderThanThreshold[i].timestamp,
+      };
+      try {
+        console.info("Resending message: ", newlyConstructedMessage);
+        const sResult = await chat.current?.sendMessage(
+          ownAddress,
+          topic,
+          newlyConstructedMessage,
+          stamp,
+          privKey
+        );
+        console.log("sResult ", sResult);
+      } catch (error) {
+        console.error("Error sending message: ", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    resendStuckMessages();
+
+    const messageIds = allMessages.map((msg) => {
+      const msgWithDetails: any = msg.message;
+      return msgWithDetails.messageId;
+    });
     const newBeingSent = beingSentMessages.filter(
       (message) => !messageIds.includes(message.messageId)
     );
@@ -125,7 +161,7 @@ const Chat: React.FC<ChatProps> = ({
     for (let i = 0; i < data.length; i++) {
       let msgObj;
       try {
-        msgObj = JSON.parse(data[i].message);
+        msgObj = data[i].message as unknown as MessageWithThread;
       } catch (error) {
         console.log(`error parsing message: ${data[i].message}:\n ${error}`);
         return [];
@@ -173,7 +209,11 @@ const Chat: React.FC<ChatProps> = ({
       );
     }
 
-    return filteredMessages;
+    const withoutDuplicates = Array.from(
+      new Map(filteredMessages.map((item) => [item.messageId, item])).values()
+    );
+
+    return withoutDuplicates;
   };
 
   useEffect(() => {
@@ -199,13 +239,6 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <div className="chat-page">
-      {/* <Back
-        title={title}
-        where={currentThread ? "Back to main thread" : originatorPage}
-        link={currentThread ? ROUTES.HOME : originatorPageUrl}
-        backgroundColor={topMenuColor}
-        action={currentThread ? () => setCurrentThread(null) : backAction}
-      /> */}
       <div className="chat-page__header">
         <NavigationHeader
           backgroundColor="#F1F2F4"
@@ -217,21 +250,6 @@ const Chat: React.FC<ChatProps> = ({
         />
         <ChatHeader category={title} activeVisitors={activeNumber} />
       </div>
-
-      {session && (
-        // TODO: what to do here with onClick ?
-        <AgendaItem
-          id={session.id}
-          title={session.title}
-          startDate={session.slot_start}
-          endDate={session.slot_end}
-          liked={session.liked}
-          category={session.track}
-          backgroundColor={topMenuColor}
-          borderRadius={"0"}
-          paddingRight={"16px"}
-        />
-      )}
 
       {chatLoaded ? (
         <>

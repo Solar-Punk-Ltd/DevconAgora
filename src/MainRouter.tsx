@@ -11,7 +11,6 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import HomePage from "./pages/HomePage/HomePage";
-import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
@@ -47,6 +46,7 @@ import {
   isUserRegistered,
   getPrivateKey,
 } from "./utils/helpers";
+import { RoomWithUserCounts } from "./types/room";
 
 const MainRouter = (): ReactElement => {
   const {
@@ -64,6 +64,8 @@ const MainRouter = (): ReactElement => {
     notes,
     setNotes,
     setTalkActivity,
+    orderedList,
+    setOrderedList,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
@@ -259,7 +261,7 @@ const MainRouter = (): ReactElement => {
         if (loadedTalks) {
           // TODO: as of now talkids include a test suffix, remove it
           const foundIx = loadedTalks.findIndex((talk) =>
-            talk.talkId.includes(sessionId)
+            talk.talkId.includes(rawTalkTopic)
           );
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
@@ -275,7 +277,7 @@ const MainRouter = (): ReactElement => {
             MAX_COMMENTS_LOADED
           )
         );
-        talkIds.push(sessionId);
+        talkIds.push(rawTalkTopic);
       }
 
       await Promise.allSettled(commentPromises).then((results) => {
@@ -298,8 +300,27 @@ const MainRouter = (): ReactElement => {
     }
   };
 
+  // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
+  const fetchUserCount = async () => {
+    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(
+      process.env.BACKEND_API_URL + "/user-count"
+    )
+      .then((res) => res.json())
+      .catch((err) => console.error("Error fetching user counts ", err));
+
+    if (roomsWithUserCount !== undefined) {
+      const orderedRooms = roomsWithUserCount.sort(
+        (a, b) => b.userCount! - a.userCount!
+      );
+      setOrderedList(orderedRooms);
+    }
+
+    console.log("Rooms with user counts: ", orderedList);
+  };
+
   useEffect(() => {
     preLoadTalks();
+    fetchUserCount();
   }, [recentSessions]);
 
   const calcActivity = () => {

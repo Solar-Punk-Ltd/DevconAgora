@@ -10,7 +10,7 @@ import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 const SpacesPage: React.FC = () => {
-  const { username } = useGlobalState();
+  const { username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
   const privKey = getPrivateKey();
@@ -22,6 +22,7 @@ const SpacesPage: React.FC = () => {
       </div>
     );
   }
+
 
   return (
     <div className="spaces">
@@ -39,7 +40,7 @@ const SpacesPage: React.FC = () => {
       <div className="spaces__content">
         {CATEGORIES.map((category) => (
           <div key={category} onClick={() => setSelectedChat(category)}>
-            <SpacesItem title={category} numberOfActiveUsers={20} />
+            <SpacesItem title={category} numberOfActiveUsers={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(category))?.userCount || 0} />
           </div>
         ))}
       </div>
@@ -52,7 +53,7 @@ const SpacesPage: React.FC = () => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
-          session={undefined}
+          gateway={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined}
           topMenuColor={undefined}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}

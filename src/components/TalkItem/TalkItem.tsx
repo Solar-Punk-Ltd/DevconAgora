@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
-import { Comment, CommentsWithIndex } from "@solarpunkltd/comment-system";
+import { UserComment, CommentsWithIndex } from "@solarpunkltd/comment-system";
 import "./TalkItem.scss";
 import { useGlobalState } from "../../GlobalStateContext";
 import AgendaItem from "../AgendaItem/AgendaItem";
@@ -26,6 +26,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
     setLoadedTalks,
     talkActivity,
     setTalkActivity,
+    isContentFilterEnabled,
   } = useGlobalState();
   const [comments, setComments] = useState<CommentsWithIndex | undefined>(
     undefined
@@ -39,11 +40,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   // update the loaded talk comments with the newly read/written comment
   // if the talk is not found, then replace the oldest talk with the new one
   const updateTalks = (
-    newComments: Comment[],
+    newComments: UserComment[],
     isHistory: boolean,
     next: number | undefined
   ) => {
-    let updatedComments: Comment[] = [];
+    let updatedComments: UserComment[] = [];
     if (isHistory) {
       updatedComments = [...newComments, ...(comments?.comments || [])];
     } else {
@@ -80,12 +81,15 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
     setLoadedTalks(newLoadedTalks);
   };
 
-  const handleOnComment = (newComment: Comment, next: number | undefined) => {
+  const handleOnComment = (
+    newComment: UserComment,
+    next: number | undefined
+  ) => {
     updateTalks([newComment], false, next);
   };
 
   const handleOnRead = (
-    newComments: Comment[],
+    newComments: UserComment[],
     isHistory: boolean,
     next: number | undefined
   ) => {
@@ -150,6 +154,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           preloadedCommnets={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
+          filterEnabled={isContentFilterEnabled}
           numOfComments={MAX_COMMENTS_LOADED}
           maxCharacterCount={MAX_CHARACTER_COUNT}
         />

@@ -12,12 +12,7 @@ import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import {
-  LOBBY_TITLE,
-  CATEGORY_NAMES_TO_ID_MAP,
-  CATEGORIES,
-} from "../../utils/constants";
-import { RoomWithUserCounts } from "../../types/room";
+import { LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 
 interface HomePageProps {
   isLoaded?: boolean;
@@ -25,17 +20,9 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
-  const { points, username } = useGlobalState();
+  const { points, username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
-    CATEGORIES.map((catName) => ({
-      topic: CATEGORY_NAMES_TO_ID_MAP.get(catName),
-      url: "null",
-      gateway: "null",
-      userCount: undefined,
-    }))
-  );
 
   const privKey = getPrivateKey();
   if (!privKey) {
@@ -47,31 +34,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     );
   }
 
-  // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
-  const fetchUserCount = async () => {
-    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(
-      process.env.BACKEND_API_URL + "/user-count"
-    )
-      .then((res) => res.json())
-      .catch((err) => console.error("Error fetching user counts ", err));
-
-    if (roomsWithUserCount.length > 0 && roomsWithUserCount !== undefined) {
-      const orderedRooms = roomsWithUserCount.sort(
-        (a, b) => b.userCount! - a.userCount!
-      );
-      setOrderedList(orderedRooms);
-    }
-
-    console.log("Rooms with user counts: ", orderedList);
-  };
-
-  const lobbyeUserCount = (): number => {
-    const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
-    if (!lobby) return 0;
-    if (lobby.userCount) return lobby.userCount;
-    else return 0;
-  };
-
   const anyRoomUserCount = (roomName: string): number => {
     const anyRoom = orderedList.find((room) => room.topic === roomName);
     if (!anyRoom) return 0;
@@ -79,11 +41,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     else return 0;
   };
 
-  // We are reading user count values, when the component loads, and when selectedChat changes
-  // (user is closing the Chat, and coming back to the Home Page)
-  useEffect(() => {
-    fetchUserCount();
-  }, [selectedChat]);
+  const lobbyUserCount = (): number => {
+    const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
+    if (!lobby) return 0;
+    if (lobby.userCount) return lobby.userCount;
+    else return 0;
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -110,7 +73,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
             title="Devcon buzz space"
             content="Share your tought, chat with anybody without moderation and collect the reward."
             showActiveVisitors={true}
-            activeVisitors={lobbyeUserCount()}
+            activeVisitors={lobbyUserCount()}
             bordered={true}
             setSelectedChat={setSelectedChat}
           />
@@ -128,7 +91,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
-          session={undefined}
+          gateway={
+            orderedList.find(
+              (room) =>
+                room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
+            )?.gateway || undefined
+          }
           topMenuColor={undefined}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}
