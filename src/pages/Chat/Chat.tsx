@@ -129,7 +129,6 @@ const Chat: React.FC<ChatProps> = ({
   }
 
   useEffect(() => {
-    console.log("ALL MESSAGES: ", allMessages);
     resendStuckMessages();
     
     const messageIds = allMessages.map((msg) => {
