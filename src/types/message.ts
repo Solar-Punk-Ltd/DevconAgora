@@ -7,6 +7,7 @@ export interface MessageWithThread extends MessageData {
     replyCount: number;
     likeTable: { [key: EthAddress]: boolean };
     flagged?: boolean;
+    beingSent?: boolean;
 }
 
 export type ThreadId = string;
