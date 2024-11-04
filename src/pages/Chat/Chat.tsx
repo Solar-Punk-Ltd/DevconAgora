@@ -153,7 +153,7 @@ const Chat: React.FC<ChatProps> = ({
     for (let i = 0; i < data.length; i++) {
       let msgObj;
       try {
-        msgObj = data[i].message as any;
+        msgObj = data[i].message as unknown as MessageWithThread;
       } catch (error) {
         console.log(`error parsing message: ${data[i].message}:\n ${error}`);
         return [];
