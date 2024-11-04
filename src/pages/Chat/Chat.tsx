@@ -7,15 +7,12 @@ import {
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Back from "../../components/Back/Back";
-import Messages from "../../components/Messages/Messages";
 import ChatInput from "../../components/ChatInput/ChatInput";
 import { Wallet } from "ethers";
 import { BatchId } from "@ethersphere/bee-js";
-import { Session } from "../../types/session";
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { CATEGORY_NAMES_TO_ID_MAP, ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../utils/constants";
 import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
 import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
 import { useGlobalState } from "../../GlobalStateContext";
@@ -29,13 +26,11 @@ interface ChatProps {
   nickname: string;
   gsocResourceId: string;
   gateway?: string
-  session?: Session;
   topMenuColor?: string;
   originatorPage: string;
   originatorPageUrl: string;
   backAction: () => void | undefined | null;
 }
-
 
 const Chat: React.FC<ChatProps> = ({
   title,
@@ -45,16 +40,17 @@ const Chat: React.FC<ChatProps> = ({
   nickname,
   gsocResourceId,
   gateway,
-  session,
   topMenuColor,
   originatorPage,
   originatorPageUrl,
   backAction,
 }) => {
   const chat = useRef<SwarmChat | null>(null);
-  const {isContentFilterEnabled } = useGlobalState();
+  const { isContentFilterEnabled } = useGlobalState();
   const [allMessages, setAllMessages] = useState<MessageData[]>([]);
-  const [beingSentMessages, setBeingSentMessages] = useState<MessageWithThread[]>([]);
+  const [beingSentMessages, setBeingSentMessages] = useState<
+    MessageWithThread[]
+  >([]);
   const [visibleMessages, setVisibleMessages] = useState<MessageWithThread[]>(
     []
   );
@@ -124,7 +120,7 @@ const Chat: React.FC<ChatProps> = ({
       }
       try {
         console.info("Resending message: ", newlyConstructedMessage)
-        const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);        
+        const sResult = await chat.current?.sendMessage(ownAddress, topic, newlyConstructedMessage, stamp, privKey);
         console.log("sResult ", sResult);
       } catch (error) {
         console.error("Error sending message: ", error);
@@ -134,7 +130,7 @@ const Chat: React.FC<ChatProps> = ({
 
   useEffect(() => {
     resendStuckMessages();
-    
+
     const messageIds = allMessages.map((msg) => {
       const msgWithDetails: any = msg.message;
       return msgWithDetails.messageId
@@ -227,7 +223,6 @@ const Chat: React.FC<ChatProps> = ({
     setVisibleMessages([...newlyFilteredMessages]);
   }, [currentThread]);
 
-
   return (
     <div className="chat-page">
       <Back
@@ -238,25 +233,12 @@ const Chat: React.FC<ChatProps> = ({
         action={currentThread ? () => setCurrentThread(null) : backAction}
       />
 
-      {session && (
-        // TODO: what to do here with onClick ?
-        <AgendaItem
-          id={session.id}
-          title={session.title}
-          startDate={session.slot_start}
-          endDate={session.slot_end}
-          liked={session.liked}
-          category={session.track}
-          backgroundColor={topMenuColor}
-          borderRadius={"0"}
-          paddingRight={"16px"}
-        />
-      )}
-
       {chatLoaded ? (
         <>
           <FilteredMessages
-            filterFunction={(message: MessageWithThread) => message.flagged !== true}
+            filterFunction={(message: MessageWithThread) =>
+              message.flagged !== true
+            }
             filteringEnabled={isContentFilterEnabled}
             messages={visibleMessages}
             nickname={nickname}

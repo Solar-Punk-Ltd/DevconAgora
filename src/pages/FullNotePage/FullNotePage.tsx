@@ -223,7 +223,7 @@ const FullNotePage: React.FC = () => {
                 !currentNote.text ||
                 currentNote.text.length === 0 ||
                 saved ||
-                sending
+                saving
               ) {
                 return navigate(ROUTES.NOTES);
               } else {

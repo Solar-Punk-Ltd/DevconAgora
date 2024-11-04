@@ -16,9 +16,7 @@ import {
   ROUTES,
   LOBBY_TITLE,
   CATEGORY_NAMES_TO_ID_MAP,
-  CATEGORIES,
 } from "../../utils/constants";
-import { RoomWithUserCounts } from "../../types/room";
 
 interface HomePageProps {
   isLoaded?: boolean;
@@ -90,8 +88,12 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
           stamp={process.env.STAMP as BatchId}
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
-          gateway={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined}
-          session={undefined}
+          gateway={
+            orderedList.find(
+              (room) =>
+                room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
+            )?.gateway || undefined
+          }
           topMenuColor={undefined}
           originatorPage={"Home"}
           originatorPageUrl={ROUTES.HOME}

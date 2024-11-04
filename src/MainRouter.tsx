@@ -11,7 +11,6 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import HomePage from "./pages/HomePage/HomePage";
-import DevconLounge from "./pages/DevconLounge/DevconLounge";
 import Profile from "./pages/Profile/Profile";
 import Gamification from "./components/Gamification/Gamification";
 import Agenda from "./pages/Agenda/Agenda";
@@ -66,7 +65,7 @@ const MainRouter = (): ReactElement => {
     setNotes,
     setTalkActivity,
     orderedList,
-    setOrderedList
+    setOrderedList,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
@@ -262,7 +261,7 @@ const MainRouter = (): ReactElement => {
         if (loadedTalks) {
           // TODO: as of now talkids include a test suffix, remove it
           const foundIx = loadedTalks.findIndex((talk) =>
-            talk.talkId.includes(sessionId)
+            talk.talkId.includes(rawTalkTopic)
           );
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
@@ -278,7 +277,7 @@ const MainRouter = (): ReactElement => {
             MAX_COMMENTS_LOADED
           )
         );
-        talkIds.push(sessionId);
+        talkIds.push(rawTalkTopic);
       }
 
       await Promise.allSettled(commentPromises).then((results) => {
