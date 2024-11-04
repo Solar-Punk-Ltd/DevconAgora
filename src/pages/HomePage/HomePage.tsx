@@ -47,12 +47,6 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     else return 0;
   };
 
-  // We are reading user count values, when the component loads, and when selectedChat changes
-  // (user is closing the Chat, and coming back to the Home Page)
-//  useEffect(() => {
-//    fetchUserCount();
-  //}, [selectedChat]);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isLoaded) {
