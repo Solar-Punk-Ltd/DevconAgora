@@ -119,10 +119,10 @@ export const RESOURCE_IDS = new Map([
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
-  [new Date("2024-10-12").toDateString(), "Day 1"],
-  [new Date("2024-10-13").toDateString(), "Day 2"],
-  [new Date("2024-10-14").toDateString(), "Day 3"],
-  [new Date("2024-10-15").toDateString(), "Day 4"],
+  [new Date("2024-11-12").toDateString(), "Day 1"],
+  [new Date("2024-11-13").toDateString(), "Day 2"],
+  [new Date("2024-11-14").toDateString(), "Day 3"],
+  [new Date("2024-11-15").toDateString(), "Day 4"],
 ]);
 
 export const STAGES_MAP = new Map([

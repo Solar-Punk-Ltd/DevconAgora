@@ -18,8 +18,8 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
   const [session, setSession] = useState<Session | null>(null);
-  // in case a reload the path is the talk id, choose Home instead
-  const toTextFixed = toText?.startsWith(ROUTES.TALKS) ? ROUTES.HOME : toText;
+  // in case a reload the path is the talk id, choose AGENDA instead
+  const toTextFixed = toText?.startsWith(ROUTES.TALKS) ? ROUTES.AGENDA : toText;
 
   const findSessionId = (id: string): Session | null => {
     for (let i = 0; i < sessions.size; i++) {
