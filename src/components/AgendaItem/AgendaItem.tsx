@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AgendaItem.scss";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
@@ -37,6 +37,11 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   commentVersion,
 }) => {
   const [empty, setEmpty] = useState<boolean>(!liked);
+  useEffect(() => {
+    const isLiked = stringToBoolean(localStorage.getItem(id));
+    setEmpty(!isLiked);
+  }, []);
+
   const handleClick = () => {
     const isLiked = stringToBoolean(localStorage.getItem(id));
     localStorage.setItem(id, booleanToString(!isLiked));
