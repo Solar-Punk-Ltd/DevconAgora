@@ -5,7 +5,7 @@ import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../GlobalStateContext";
 import { useNavigate } from "react-router-dom";
-import { ADDRESS_HEX_LENGTH, ROUTES } from "../../utils/constants";
+import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
 import { ethers } from "ethers";
 import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
 
@@ -16,7 +16,11 @@ const ClaimRewardPage: React.FC = () => {
   let nonceRequested = false;
 
   useEffect(() => {
-    if (!nonceRequested) {
+    const code = localStorage.getItem(GIFTCODE_KEY);
+    if ( code !== null && inputRef.current) {
+      inputRef.current.value = code;
+    } 
+    else if (!nonceRequested) {
       nonceRequested = true;
       try {
         fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
@@ -41,6 +45,7 @@ const ClaimRewardPage: React.FC = () => {
                   resp.text().then((data) => {
                     if (inputRef.current) {
                       inputRef.current.value = data;
+                      localStorage.setItem(GIFTCODE_KEY, data)
                     }
                   })
                 );
