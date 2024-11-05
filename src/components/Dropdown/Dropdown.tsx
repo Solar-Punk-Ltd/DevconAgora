@@ -37,7 +37,16 @@ const Dropdown: React.FC<DropdownProps> = ({
         </div>
         <DropdownIcon isDown={!isOpen} />
         {isOpen ? (
-          <div className="dropdown__open__items-container">
+          <div
+            className="dropdown__open__items-container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(2, 1fr)`,
+              gridTemplateRows: `repeat(${Math.ceil(items.length / 2)}, 1fr)`,
+              columnGap: "40px",
+              gridAutoFlow: "column",
+            }}
+          >
             {items.map((item, index) => {
               return (
                 <div

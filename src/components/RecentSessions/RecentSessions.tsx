@@ -27,7 +27,7 @@ const RecentSessions: React.FC = () => {
       <div className="recent-sessions">
         <div className="recent-sessions__title">Recent talks</div>
         <Link to={ROUTES.AGENDA}>
-          <div className="recent-sessions__all">All sessions</div>
+          <div className="recent-sessions__all">Agenda</div>
         </Link>
       </div>
       <div className="recent-sessions__item-container">

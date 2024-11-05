@@ -105,7 +105,7 @@ const ClaimRewardPage: React.FC = () => {
           type="orange"
           onClick={() => navigate(ROUTES.STAYUPDATED)}
         >
-          Registration
+          Keep in touch
         </WelcomeButton>
       </div>
     </div>
