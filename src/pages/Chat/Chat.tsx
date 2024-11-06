@@ -173,7 +173,11 @@ const Chat: React.FC<ChatProps> = ({
         const likedIndex = threadCapableMessages.findIndex(
           (msg) => msg.messageId === likeObj.like
         );
-        threadCapableMessages[likedIndex].likeTable[address] = true;
+        if (likedIndex === -1) {
+          console.warn("This thread does not exist (will not add like)");
+        } else {
+          threadCapableMessages[likedIndex].likeTable[address] = true;
+        }
       } else {
         threadCapableMessages.push({
           username: data[i].username,
@@ -192,7 +196,11 @@ const Chat: React.FC<ChatProps> = ({
           const parentIndex = threadCapableMessages.findIndex(
             (msg) => msg.threadId === msgObj.parent
           );
-          threadCapableMessages[parentIndex].replyCount++;
+          if (parentIndex === -1) {
+            console.warn("This thread does not exist (will not increase replyCount)");
+          } else {
+            threadCapableMessages[parentIndex].replyCount++;
+          }
         }
       }
     }
