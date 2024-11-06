@@ -431,7 +431,7 @@ const MainRouter = (): ReactElement => {
       ROUTES.PROFILECREATION,
     ];
     if (!privKey && !noRedirectedPaths.includes(location.pathname as ROUTES)) {
-      navigate(ROUTES.APP); // Átirányítás az alap URL-re, ha nincs privKey
+      navigate(ROUTES.APP);
     }
   }, [navigate]);
 

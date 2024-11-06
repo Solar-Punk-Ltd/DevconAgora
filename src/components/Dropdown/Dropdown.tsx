@@ -31,10 +31,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div onClick={toggleDropdown}>
       {isOpen ? <div className="dropdown__open__background"></div> : null}
       <div className={clsx("dropdown__button", { dropdown__open: isOpen })}>
-        <div>
-          {items[activeItem]}
-          {/* <span className="dropdown__button__subtext">{" (of 9)"}</span> */}
-        </div>
+        <div>{items[activeItem]}</div>
         <DropdownIcon isDown={!isOpen} />
         {isOpen ? (
           <div
