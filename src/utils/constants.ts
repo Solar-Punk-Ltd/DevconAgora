@@ -222,3 +222,5 @@ export const MORE_POINTS = "more points";
 export const GET_BZZ_TOKEN = "Get your BZZ token";
 
 export const BZZ_TOKENS = "BZZ Tokens";
+
+export const GIFTCODE_KEY = "giftcode";
