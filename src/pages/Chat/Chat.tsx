@@ -192,7 +192,11 @@ const Chat: React.FC<ChatProps> = ({
           const parentIndex = threadCapableMessages.findIndex(
             (msg) => msg.threadId === msgObj.parent
           );
-          threadCapableMessages[parentIndex].replyCount++;
+          if (parentIndex === -1) {
+            console.warn("This thread does not exist (will not increase replyCount)");
+          } else {
+            threadCapableMessages[parentIndex].replyCount++;
+          }
         }
       }
     }
