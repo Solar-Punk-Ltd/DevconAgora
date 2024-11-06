@@ -309,7 +309,7 @@ const MainRouter = (): ReactElement => {
       .then((res) => res.json())
       .catch((err) => console.error("Error fetching user counts ", err));
 
-    if (roomsWithUserCount !== undefined) {
+    if (roomsWithUserCount !== undefined && roomsWithUserCount.length > 0) {
       const orderedRooms = roomsWithUserCount.sort(
         (a, b) => b.userCount! - a.userCount!
       );

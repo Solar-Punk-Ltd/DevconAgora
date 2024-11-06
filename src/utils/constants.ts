@@ -84,28 +84,28 @@ export const RESOURCE_IDS = new Map([
     "b303000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "cypherpunk-and-privacy",
-    "4f08000000000000000000000000000000000000000000000000000000000000",
+    "cypherpunk-and-privacy-0",
+    "c508000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "usability",
-    "3109000000000000000000000000000000000000000000000000000000000000",
+    "e303000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "real-world-ethereum",
     "8108000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "applied-cryptography",
-    "ee01000000000000000000000000000000000000000000000000000000000000",
+    "applied-cryptography-0",
+    "4908000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "cryptoeconomics",
     "880d000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "coordination",
-    "6400000000000000000000000000000000000000000000000000000000000000",
+    "coordination-0",
+    "ae0d000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "developer-experience",
@@ -114,6 +114,10 @@ export const RESOURCE_IDS = new Map([
   [
     "security",
     "b30a000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "entertainment",
+    "2600000000000000000000000000000000000000000000000000000000000000"
   ],
   ["lobby", "000"],
 ]);
@@ -150,12 +154,12 @@ export const STAGES_MAP = new Map([
 const oneDirectionCategoryNamesToIdMap = new Map([
   ["Layer 2", "layer-2s"],
   ["Core Protocol", "core-protocol"],
-  ["Cypherpunk & Privacy", "cypherpunk-and-privacy"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-0"],
   ["Usability", "usability"],
   ["Real World Ethereum", "real-world-ethereum"],
-  ["Applied Cryptography", "applied-cryptography"],
+  ["Applied Cryptography", "applied-cryptography-0"],
   ["Cryptoeconomics", "cryptoeconomics"],
-  ["Coordination", "coordination"],
+  ["Coordination", "coordination-0"],
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
   ["Lobby", "lobby"],
