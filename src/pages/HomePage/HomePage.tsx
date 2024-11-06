@@ -71,7 +71,7 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
         <div className="home-page__content">
           <DevConMainBox
             title="Devcon buzz space"
-            content="Share your tought, chat with anybody without moderation and collect the reward."
+            content="Share your thoughts, chat with anyone without moderation, and collect your reward."
             showActiveVisitors={true}
             activeVisitors={lobbyUserCount()}
             bordered={true}

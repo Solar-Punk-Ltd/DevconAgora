@@ -30,7 +30,7 @@
 .claim-reward__main-content__content {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
 }
 
 .claim-reward__text-box {
@@ -42,6 +42,7 @@
   font-weight: 400;
   font-size: 14px;
   padding: 8px;
+  line-height: 30px;
 }
 .claim-reward__background {
   position: absolute;

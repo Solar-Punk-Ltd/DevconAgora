@@ -144,7 +144,7 @@ const StayUpdatedPage: React.FC = () => {
               onChange={(e) => setPhaseText(e.target.value)}
             />
           </div>
-          <div className="stay-updated__input-wrapper">
+          <div className="stay-updated__input-wrapper stay-updated__input-wrapper__bottom">
             <div className="stay-updated__input__header">Website</div>
             <input
               type="text"
@@ -158,7 +158,20 @@ const StayUpdatedPage: React.FC = () => {
           <WelcomeButton type="white" onClick={() => navigate(ROUTES.HOME)}>
             Cancel
           </WelcomeButton>
-          <WelcomeButton type="orange" onClick={() => navigate(ROUTES.HOME)}>
+          <WelcomeButton
+            type="orange"
+            onClick={() => navigate(ROUTES.HOME)}
+            version={
+              !lastNameText ||
+              !firstNameText ||
+              !emailText ||
+              emailError ||
+              firstNameError ||
+              lastNameError
+                ? "inactive"
+                : "filled"
+            }
+          >
             Done
           </WelcomeButton>
         </div>

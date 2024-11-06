@@ -33,7 +33,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       <div className={clsx("dropdown__button", { dropdown__open: isOpen })}>
         <div>
           {items[activeItem]}
-          <span className="dropdown__button__subtext">{" (of 9)"}</span>
+          {/* <span className="dropdown__button__subtext">{" (of 9)"}</span> */}
         </div>
         <DropdownIcon isDown={!isOpen} />
         {isOpen ? (

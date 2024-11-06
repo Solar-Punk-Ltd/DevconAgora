@@ -19,16 +19,23 @@
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 4px;
-  text-overflow: ellipsis;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
   overflow: hidden;
-  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: calc(18px * 3);
+  line-height: 18px;
 }
 
 .recent-sessions-item__stage {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 8px;
   box-sizing: border-box;
   height: 24px;
   font-family: "Inter", sans-serif;
