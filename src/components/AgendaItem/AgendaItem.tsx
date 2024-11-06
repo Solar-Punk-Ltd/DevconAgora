@@ -3,7 +3,7 @@ import "./AgendaItem.scss";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
 import Stage from "../../components/Stage/Stage";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 import { booleanToString, stringToBoolean } from "../../utils/helpers";
 import clsx from "clsx";
