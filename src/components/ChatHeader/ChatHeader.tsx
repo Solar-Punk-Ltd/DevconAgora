@@ -1,7 +1,7 @@
 import React from "react";
 import "./ChatHeader.scss";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
-import { CATEGORY_IMAGES_MAP } from "../../utils/constants";
+import { CATEGORY_IMAGES_MAP, LOBBY_TITLE } from "../../utils/constants";
 
 interface ChatHeaderProps {
   category?: string;
@@ -15,9 +15,11 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   const imageUrl = CATEGORY_IMAGES_MAP.get(category ? category : "");
   return (
     <div className="chat-header">
-      <div className="chat-header__img">
-        <img src={imageUrl} alt="" className="chat-header__img" />
-      </div>
+      {category !== LOBBY_TITLE && (
+        <div className="chat-header__img">
+          <img src={imageUrl} alt="" className="chat-header__img" />
+        </div>
+      )}
       <div className="chat-header__category-name">{category}</div>
       <div>
         <ActiveVisitors

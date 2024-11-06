@@ -37,6 +37,8 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
+  LOBBY_TITLE,
+  CATEGORY_NAMES_TO_ID_MAP,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -313,7 +315,8 @@ const MainRouter = (): ReactElement => {
       const orderedRooms = roomsWithUserCount.sort(
         (a, b) => b.userCount! - a.userCount!
       );
-      setOrderedList(orderedRooms);
+      const withoutLobby = orderedList.filter((room) => CATEGORY_NAMES_TO_ID_MAP.get(room.topic) !== LOBBY_TITLE);
+      setOrderedList(withoutLobby);
     }
 
     console.log("Rooms with user counts: ", orderedList);
