@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
@@ -73,6 +73,7 @@ const MainRouter = (): ReactElement => {
   const [time, setTime] = useState<number>(MOCK_START_TIME.getTime());
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
   const location = useLocation();
+  const navigate = useNavigate();
   const [prevLocation, setPrevLocation] = useState<string | null>(null);
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
@@ -418,6 +419,21 @@ const MainRouter = (): ReactElement => {
   useEffect(() => {
     fetchNotes();
   }, [noteRawTopics]);
+
+  useEffect(() => {
+    const privKey = localStorage.getItem("privKey");
+    const noRedirectedPaths = [
+      ROUTES.WELCOME1,
+      ROUTES.WELCOME2,
+      ROUTES.WELCOME3,
+      ROUTES.WELCOME4,
+      ROUTES.TACONBOARDING,
+      ROUTES.PROFILECREATION,
+    ];
+    if (!privKey && !noRedirectedPaths.includes(location.pathname as ROUTES)) {
+      navigate(ROUTES.APP);
+    }
+  }, [navigate]);
 
   return (
     <>

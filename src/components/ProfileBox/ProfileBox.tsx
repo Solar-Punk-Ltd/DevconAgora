@@ -1,26 +1,52 @@
 import React from "react";
 import "./ProfileBox.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReferalQRIcon from "../../assets/referal-qr.svg";
 import clsx from "clsx";
 
 interface ProfileBoxProps {
   title?: string;
   content?: string;
+  linkText?: string;
   link?: string;
   showPoints?: boolean;
   showContent?: boolean;
   points?: number;
   to?: string;
+  shareable?: boolean;
 }
 
 const ProfileBox: React.FC<ProfileBoxProps> = ({
   title,
+  linkText,
   link,
   points = 10,
   showPoints,
   showContent,
+  shareable,
 }) => {
+  const navigate = useNavigate();
+  const handleNavigation = (path: string) => {
+    navigate(path);
+  };
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check out this profile!",
+          text: "Here is some interesting content.",
+          url: window.location.origin,
+        })
+        .then(() => {
+          console.log("Content shared successfully");
+        })
+        .catch((error) => {
+          console.error("Error sharing content:", error);
+        });
+    } else {
+      console.log("Web Share API not supported in this browser");
+    }
+  };
   return (
     <div className="profile-box">
       <div
@@ -31,11 +57,18 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
       >
         <div className="profile-box__title">{title}</div>
 
-        {link && points === 10 ? (
+        {linkText && link && points === 10 && !shareable ? (
           <div>
-            <Link to="points">
-              <div className="profile-box__link">{link}</div>
-            </Link>
+            <div
+              className="profile-box__link"
+              onClick={() => handleNavigation(link)}
+            >
+              {linkText}
+            </div>
+          </div>
+        ) : linkText && shareable ? (
+          <div className="profile-box__link" onClick={handleShare}>
+            {linkText}
           </div>
         ) : null}
       </div>

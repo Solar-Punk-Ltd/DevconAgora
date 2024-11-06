@@ -154,7 +154,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
               className="chat-input__send-button"
               disabled={reconnecting || sending}
             >
-              <SendIcon />
+              {messageToSend !== "" ? (
+                <SendIcon />
+              ) : (
+                <SendIcon color="#A5ADBA" />
+              )}
             </button>
           </div>
         </>

@@ -12,7 +12,6 @@ interface ActiveVisitorsProps {
 const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
   number,
   withIcon,
-  activity,
 }) => {
   return (
     <div
@@ -22,7 +21,7 @@ const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
     >
       {withIcon ? <VisitorsIcon /> : null}
       {number}
-      {!withIcon ? (activity ? " activity" : " active visitors") : null}
+      {!withIcon ? " activity" : null}
     </div>
   );
 };

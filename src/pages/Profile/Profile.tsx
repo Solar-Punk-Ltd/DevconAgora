@@ -33,16 +33,19 @@ const Profile: React.FC = () => {
           </div>
           <ProfileBox
             title="Points"
-            link="Claim reward"
+            linkText="Claim your reward"
+            link={ROUTES.CLAIMREWARD}
             points={points}
+            shareable={false}
             showPoints={true}
             showContent={true}
           />
           <ProfileBox
             title="Share the experience with others"
-            link="Share referal link"
+            linkText="Share referal link"
             showPoints={false}
             showContent={true}
+            shareable={true}
           />
           <Link
             to={ROUTES.HOWDOESITWORK}

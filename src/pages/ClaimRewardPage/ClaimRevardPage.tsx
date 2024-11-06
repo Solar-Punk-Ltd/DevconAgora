@@ -74,7 +74,7 @@ const ClaimRewardPage: React.FC = () => {
       <div className="claim-reward__main-content">
         <div className="claim-reward__main-content__header">
           Claim{" "}
-          <span className="claim-reward__text-emphasize">your&nbsp;reward</span>
+          <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>
         </div>
         <div className="claim-reward__main-content__content">
           <div className="claim-reward__text-box">
@@ -105,7 +105,7 @@ const ClaimRewardPage: React.FC = () => {
           type="orange"
           onClick={() => navigate(ROUTES.STAYUPDATED)}
         >
-          Registration
+          Keep in touch
         </WelcomeButton>
       </div>
     </div>

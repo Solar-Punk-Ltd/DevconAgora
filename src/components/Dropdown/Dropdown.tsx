@@ -31,13 +31,19 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div onClick={toggleDropdown}>
       {isOpen ? <div className="dropdown__open__background"></div> : null}
       <div className={clsx("dropdown__button", { dropdown__open: isOpen })}>
-        <div>
-          {items[activeItem]}
-          <span className="dropdown__button__subtext">{" (of 9)"}</span>
-        </div>
+        <div>{items[activeItem]}</div>
         <DropdownIcon isDown={!isOpen} />
         {isOpen ? (
-          <div className="dropdown__open__items-container">
+          <div
+            className="dropdown__open__items-container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(2, 1fr)`,
+              gridTemplateRows: `repeat(${Math.ceil(items.length / 2)}, 1fr)`,
+              columnGap: "40px",
+              gridAutoFlow: "column",
+            }}
+          >
             {items.map((item, index) => {
               return (
                 <div

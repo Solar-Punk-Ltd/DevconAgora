@@ -39,6 +39,7 @@
   font-weight: 400;
   font-size: 14px;
   padding: 8px;
+  line-height: 30px;
 }
 .stay-updated__background {
   position: absolute;
@@ -56,6 +57,10 @@
   gap: 6px;
   color: white;
   z-index: 2;
+}
+
+.stay-updated__input-wrapper__bottom {
+  margin-bottom: 17px;
 }
 
 .stay-updated__input__header {

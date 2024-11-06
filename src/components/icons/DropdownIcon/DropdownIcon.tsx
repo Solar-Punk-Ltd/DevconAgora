@@ -7,7 +7,7 @@ interface DropdownIconProps {
 
 const DropdownIcon: React.FC<DropdownIconProps> = ({ color, isDown }) => {
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       {isDown ? (
         <svg
           width="16"

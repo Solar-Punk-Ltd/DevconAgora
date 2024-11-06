@@ -3,7 +3,7 @@ import "./AgendaItem.scss";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
 import Stage from "../../components/Stage/Stage";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 import { booleanToString, stringToBoolean } from "../../utils/helpers";
 import clsx from "clsx";
@@ -37,6 +37,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   commentVersion,
 }) => {
   const [empty, setEmpty] = useState<boolean>(!liked);
+  const navigate = useNavigate();
   useEffect(() => {
     const isLiked = stringToBoolean(localStorage.getItem(id));
     setEmpty(!isLiked);
@@ -49,43 +50,46 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   };
 
   return (
-    <Link to={`${ROUTES.TALKS}/${id}`}>
-      <div
-        className={clsx("agenda-item", {
-          "agenda-item__comment-version": commentVersion,
-        })}
-        style={{ backgroundColor, borderRadius, paddingRight }}
-      >
-        <div className="agenda-item__main">
-          <div
-            className={clsx("agenda-item__main__time", {
-              "agenda-item__main__time__comment-version": commentVersion,
-            })}
-          >
-            <div>{startDate}</div>
-            <div>{endDate}</div>
-          </div>
-          <div className="agenda-item__main__content">
-            <div className="agenda-item__main__content__title">{title}</div>
-            <div className="agenda-item__main__content__tagged">
-              {stage ? <Stage name={stage} /> : null}
-              {category ? (
-                <CategoryIndicator name={category || "no track"} />
-              ) : null}
-            </div>
-          </div>
+    <div
+      className={clsx("agenda-item", {
+        "agenda-item__comment-version": commentVersion,
+      })}
+      style={{ backgroundColor, borderRadius, paddingRight }}
+      onClick={() => {
+        if (!commentVersion) {
+          navigate(`${ROUTES.TALKS}/${id}`);
+        }
+      }}
+    >
+      <div className="agenda-item__main">
+        <div
+          className={clsx("agenda-item__main__time", {
+            "agenda-item__main__time__comment-version": commentVersion,
+          })}
+        >
+          <div>{startDate}</div>
+          <div>{endDate}</div>
         </div>
-        {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
-        <div className="agenda-item__content__heart-icon">
-          <HeartIcon
-            empty={empty}
-            onClick={() => {
-              handleClick();
-            }}
-          />
+        <div className="agenda-item__main__content">
+          <div className="agenda-item__main__content__title">{title}</div>
+          <div className="agenda-item__main__content__tagged">
+            {stage ? <Stage name={stage} /> : null}
+            {category ? (
+              <CategoryIndicator name={category || "no track"} />
+            ) : null}
+          </div>
         </div>
       </div>
-    </Link>
+      {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
+      <div className="agenda-item__content__heart-icon">
+        <HeartIcon
+          empty={empty}
+          onClick={() => {
+            handleClick();
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
