@@ -85,7 +85,7 @@ export const RESOURCE_IDS = new Map([
   ],
   [
     "cypherpunk-and-privacy",
-    "3109000000000000000000000000000000000000000000000000000000000000",
+    "00000",
   ],
   [
     "usability",
@@ -97,7 +97,7 @@ export const RESOURCE_IDS = new Map([
   ],
   [
     "applied-cryptography",
-    "ee01000000000000000000000000000000000000000000000000000000000000",
+    "000000",
   ],
   [
     "cryptoeconomics",
@@ -105,7 +105,7 @@ export const RESOURCE_IDS = new Map([
   ],
   [
     "coordination",
-    "6400000000000000000000000000000000000000000000000000000000000000",
+    "00000",
   ],
   [
     "developer-experience",
@@ -114,6 +114,10 @@ export const RESOURCE_IDS = new Map([
   [
     "security",
     "b30a000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "entertainment",
+    "00000"
   ],
   ["lobby", "000"],
 ]);
