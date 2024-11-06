@@ -19,6 +19,7 @@ import { TalkComments } from "../../types/talkComment";
 interface TalkItemProps {
   session: Session;
 }
+
 const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
   const {
     username,

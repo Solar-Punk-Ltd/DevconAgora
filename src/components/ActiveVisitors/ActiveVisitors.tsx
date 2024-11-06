@@ -6,7 +6,6 @@ import clsx from "clsx";
 interface ActiveVisitorsProps {
   number?: number;
   withIcon?: boolean;
-  activity?: boolean;
 }
 
 const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
