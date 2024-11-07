@@ -164,7 +164,7 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
   ["Lobby", "lobby"],
-  ["Entertainment", Entertainment],
+  ["Entertainment", "entertainment"],
 ]);
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
   oneDirectionCategoryNamesToIdMap
@@ -181,7 +181,7 @@ export const CATEGORY_IMAGES_MAP = new Map([
   ["Coordination", Coordination],
   ["Developer Experience", DeveloperExperience],
   ["Security", Security],
-  ["Entertainment", "entertainment"],
+  ["Entertainment", Entertainment],
 ]);
 
 export const DISCLAIMER_OF_LIABILITY_HEADER = "Disclaimer of Liability";
