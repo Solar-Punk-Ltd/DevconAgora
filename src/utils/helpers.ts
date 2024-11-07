@@ -18,7 +18,14 @@ export function shortenTitle(title?: string, maxTitleLength?: number): string {
 
 // From "2022-10-11T15:30:00.000Z" to "15:30"
 export function dateToTime(date?: string): string {
-  return !date ? "" : date.substring(11, 16);
+  if (!date) {
+    return "";
+  }
+  return new Date(date).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }
 
 export function getSessionsByDay(
