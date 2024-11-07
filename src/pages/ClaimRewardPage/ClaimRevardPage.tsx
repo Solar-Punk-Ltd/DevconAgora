@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
 import { ethers } from "ethers";
 import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
+import ClaimRewardExplanation from "../../components/ClaimRewardExplanation/ClaimRewardExplanation";
 
 const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
   const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement>(null);
   let nonceRequested = false;
 
@@ -103,7 +105,12 @@ const ClaimRewardPage: React.FC = () => {
         </div>
       </div>
       <div className="claim-reward__bottom-buttons">
-        <WelcomeButton type="white" onClick={() => navigate(ROUTES.HOME)}>
+        <WelcomeButton
+          type="white"
+          onClick={() => {
+            navigate(ROUTES.HOME);
+          }}
+        >
           Back
         </WelcomeButton>
         <WelcomeButton

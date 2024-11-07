@@ -9,7 +9,7 @@ interface RecentRoomsItemProps {
   numberOfActiveUsers: number;
 }
 
-const RecentRoomsItem: React.FC<RecentRoomsItemProps> = ({
+const SpacesItem: React.FC<RecentRoomsItemProps> = ({
   title,
   numberOfActiveUsers,
 }) => {
@@ -30,4 +30,4 @@ const RecentRoomsItem: React.FC<RecentRoomsItemProps> = ({
   );
 };
 
-export default RecentRoomsItem;
+export default SpacesItem;
