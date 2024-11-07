@@ -63,7 +63,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
             checked={isContentFilterEnabled}
             onClick={() => setIsContentFilterEnabled(!isContentFilterEnabled)}
           />{" "}
-          Content Filter enabled
+          USCVS enabled
         </div>
       ) : null}
 

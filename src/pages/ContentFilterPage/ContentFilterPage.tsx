@@ -18,7 +18,9 @@ const ContentFilterPage: React.FC = () => {
           />
         </div>
         <div className="content-filter-page__top">
-          <div className="content-filter-page__header">Content Filter</div>
+          <div className="content-filter-page__header">
+            User Side Content Visibility&nbsp;Sanitizer
+          </div>
           <ContentFilter />
         </div>
         <Link to={ROUTES.PROFILE}>

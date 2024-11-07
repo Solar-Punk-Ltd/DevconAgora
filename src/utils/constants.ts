@@ -34,6 +34,7 @@ import CryptoEconomics from "../assets/category-crypto-economics.png";
 import CoreProtocol from "../assets/category-core-protocol.png";
 import Coordination from "../assets/category-coordination.png";
 import AppliedCryptography from "../assets/category-applied-cryptography.png";
+import Entertainment from "../assets/category-entertainment.png";
 
 export enum ROUTES {
   APP = "/",
@@ -148,7 +149,7 @@ export const STAGES_MAP = new Map([
   // ["keynote", "Keynote"], // not used
   ["main-stage", "Main Stage"],
   ["music-stage", "Music stage"],
-  ["all", "All"],
+  ["all", "All stages"],
 ]);
 
 const oneDirectionCategoryNamesToIdMap = new Map([
@@ -163,7 +164,7 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
   ["Lobby", "lobby"],
-  ["Entertainment", "entertainment"],
+  ["Entertainment", Entertainment],
 ]);
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
   oneDirectionCategoryNamesToIdMap
@@ -195,7 +196,7 @@ export const DATA_STORAGE_TEXT =
 
 export const CONTENT_FILTER_HEADER = "Content Filter";
 export const CONTENT_FILTER_TEXT =
-  "An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this filter at their own discretion, but do so entirely at their own risk.";
+  "An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this option at their own discretion, but do so entirely at their own risk.";
 
 export const ACCEPTANCE_OF_TERMS_HEADER = "Acceptance of Terms";
 export const ACCEPTANCE_OF_TERMS_TEXT =

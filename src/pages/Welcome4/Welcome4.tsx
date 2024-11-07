@@ -31,7 +31,7 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom__text">
             <div>
-              With your unique code you can start your own node the easiest way
+              With your magic code you can start your own node the easiest way
               possible
             </div>
           </div>

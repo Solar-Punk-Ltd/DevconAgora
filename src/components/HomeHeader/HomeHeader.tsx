@@ -15,8 +15,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
   points,
   withGamification,
 }) => {
-  const { monogram, showGamification, setShowGamification, setPoints } =
-    useGlobalState();
+  const { monogram, setPoints } = useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
@@ -33,10 +32,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
           <button onClick={() => setPoints(5)}>5</button>
           <button onClick={() => setPoints(10)}>10</button>
         </div>
-        <div
-          className="home-header__points"
-          onClick={() => setShowGamification(!showGamification)}
-        >
+        <div className="home-header__points">
           {points ? points : 0}
           <img src={swarmIcon} alt="" width="15px" height="15px" />
         </div>

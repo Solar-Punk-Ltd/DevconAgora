@@ -120,30 +120,32 @@ const Agenda: React.FC = () => {
           onClick={(index) => setActiveStageTab(index)}
           changesWhenOpen={changesWhenOpenDropdown}
         />
-        <div className="agenda-page__content__banner">
-          <img
-            src={AgendaBanner}
-            alt=""
-            className="agenda-page__content__banner__img"
-          />
-          <div className="agenda-page__content__banner__text">
-            <div className="agenda-page__content__banner__text__main-text">
-              <b>Rooftop </b>
-              <span className="agenda-page__content__banner__text__main-text-regular">
-                &nbsp;Buzz
-              </span>
-            </div>
-            <div className="agenda-page__content__banner__text__sub-text">
-              Sunset &&nbsp;
-              <span className="agenda-page__content__banner__text__sub-text-bold">
-                <b>Chill</b>
-              </span>
-            </div>
-            <div className="agenda-page__content__banner__text__register-button">
-              Register now!
+        <a href="https://lu.ma/mq50gvnn">
+          <div className="agenda-page__content__banner">
+            <img
+              src={AgendaBanner}
+              alt=""
+              className="agenda-page__content__banner__img"
+            />
+            <div className="agenda-page__content__banner__text">
+              <div className="agenda-page__content__banner__text__main-text">
+                <b>Rooftop</b>
+                <span className="agenda-page__content__banner__text__main-text-regular">
+                  .Buzz
+                </span>
+              </div>
+              <div className="agenda-page__content__banner__text__sub-text">
+                Sunset &&nbsp;
+                <span className="agenda-page__content__banner__text__sub-text-bold">
+                  <b>Chill</b>
+                </span>
+              </div>
+              <div className="agenda-page__content__banner__text__register-button">
+                Register now!
+              </div>
             </div>
           </div>
-        </div>
+        </a>
         {activeAgendaItems.length > 0 ? (
           activeAgendaItems.map((session) => {
             return (

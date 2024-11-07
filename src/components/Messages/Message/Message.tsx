@@ -3,7 +3,7 @@ import clsx from "clsx";
 import "./Message.scss";
 import AvatarMonogram from "../../AvatarMonogram/AvatarMonogram";
 import LikeIcon from "../../icons/LikeIcon/LikeIcon";
-import { createMonogram } from "../../../utils/helpers";
+import { createMonogram, formatTime } from "../../../utils/helpers";
 import { MessageWithThread, ThreadId } from "../../../types/message";
 import {
   EthAddress,
@@ -92,7 +92,10 @@ const Message: React.FC<MessageProps> = ({
             own: actualUser === nickname,
           })}
         >
-          {data.username}
+          {data.username} &nbsp;
+          <p className="message__right-side__name-and-time__time">
+            {formatTime(data.timestamp)}
+          </p>
         </div>
 
         <p
