@@ -126,7 +126,7 @@ const PROD_RESOURCE_IDS = new Map([
   ],
 ]);
 
-export const BACKUP_RESOURCE_IDS = new Map([
+const BACKUP_RESOURCE_IDS = new Map([
   [
     "layer-2s",
     "9e0a000000000000000000000000000000000000000000000000000000000000",
@@ -177,54 +177,54 @@ export const BACKUP_RESOURCE_IDS = new Map([
   ],
 ]);
 
-export const TEST_RESOURCE_IDS = new Map([
+const TEST_RESOURCE_IDS = new Map([
   [
     "layer-2s",
-    "7e00000000000000000000000000000000000000000000000000000000000000",
+    "3801000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "core-protocol",
-    "fe07000000000000000000000000000000000000000000000000000000000000",
+    "c810000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "cypherpunk-and-privacy-0",
-    "fd00000000000000000000000000000000000000000000000000000000000000",
+    "2f03000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "usability",
-    "980d000000000000000000000000000000000000000000000000000000000000",
+    "910a000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "real-world-ethereum",
-    "0b14000000000000000000000000000000000000000000000000000000000000",
+    "8c0c000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "applied-cryptography-0",
-    "3b19000000000000000000000000000000000000000000000000000000000000",
+    "7109000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "cryptoeconomics",
-    "d209000000000000000000000000000000000000000000000000000000000000",
+    "b100000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "coordination-0",
-    "0205000000000000000000000000000000000000000000000000000000000000",
+    "c000000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "developer-experience",
-    "360a000000000000000000000000000000000000000000000000000000000000",
+    "1807000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "security",
-    "2001000000000000000000000000000000000000000000000000000000000000",
+    "400a000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "entertainment",
-    "710a000000000000000000000000000000000000000000000000000000000000",
+    "5100000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "lobby",
-    "2311000000000000000000000000000000000000000000000000000000000000"
+    "7912000000000000000000000000000000000000000000000000000000000000"
   ],
 ]);
 
@@ -259,7 +259,7 @@ export const STAGES_MAP = new Map([
   ["all", "All stages"],
 ]);
 
-const oneDirectionCategoryNamesToIdMap = new Map([
+const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Layer 2", "layer-2s"],
   ["Core Protocol", "core-protocol"],
   ["Cypherpunk & Privacy", "cypherpunk-and-privacy-0"],
@@ -270,11 +270,27 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Coordination", "coordination-0"],
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
-  ["Lobby", "lobby"],
   ["Entertainment", "entertainment"],
+  ["Lobby", "lobby"],
 ]);
+
+const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2", "layer-2s-test"],
+  ["Core Protocol", "core-protocol-test"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test"],
+  ["Usability", "usability-test"],
+  ["Real World Ethereum", "real-world-ethereum-test"],
+  ["Applied Cryptography", "applied-cryptography-test"],
+  ["Cryptoeconomics", "cryptoeconomics-test"],
+  ["Coordination", "coordination-test"],
+  ["Developer Experience", "developer-experience-test"],
+  ["Security", "security-test"],
+  ["Entertainment", "entertainment-test"],
+  ["Lobby", "lobby-test"],
+]);
+
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  oneDirectionCategoryNamesToIdMap
+  PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
