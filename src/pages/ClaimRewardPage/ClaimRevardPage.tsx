@@ -28,7 +28,7 @@ const ClaimRewardPage: React.FC = () => {
             console.log("nonce fetched", data);
             if (isUserRegistered()) {
               const wallet = new ethers.Wallet(getPrivateKey());
-              let flatSig = await wallet.signMessage(data);
+              const flatSig = await wallet.signMessage(data);
               try {
                 fetch(process.env.BACKEND_API_URL + "/redeem", {
                   method: "POST",
@@ -45,7 +45,9 @@ const ClaimRewardPage: React.FC = () => {
                   resp.text().then((data) => {
                     if (inputRef.current) {
                       inputRef.current.value = data;
-                      localStorage.setItem(GIFTCODE_KEY, data);
+                      if (resp.status === 200) {
+                        localStorage.setItem(GIFTCODE_KEY, data);
+                      }
                     }
                   })
                 );
