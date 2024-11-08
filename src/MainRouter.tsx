@@ -199,9 +199,9 @@ const MainRouter = (): ReactElement => {
     if (isFirstRender) {
       setIsFirstRender(false);
     } else {
-      // if (points === 1 || points === 5 || points === 10) {
-      setShowGamification(true);
-      // }
+      if (points === 1 || points === 5 || points === 10) {
+        setShowGamification(true);
+      }
     }
   }, [points]);
 
@@ -460,7 +460,10 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<SpacesPage />} />
-        <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork />} />
+        <Route
+          path={ROUTES.HOWDOESITWORK}
+          element={<HowDoesItWork toText={prevLocation} />}
+        />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
         <Route
           path={`${ROUTES.TALKS}/:talkId`}
