@@ -78,6 +78,57 @@ export const CATEGORIES = [
 export const RESOURCE_IDS = new Map([
   [
     "layer-2s",
+    "000",
+  ],
+  [
+    "core-protocol",
+    "000",
+  ],
+  [
+    "cypherpunk-and-privacy-0",
+    "000",
+  ],
+  [
+    "usability",
+    "000",
+  ],
+  [
+    "real-world-ethereum",
+    "000",
+  ],
+  [
+    "applied-cryptography-0",
+    "000",
+  ],
+  [
+    "cryptoeconomics",
+    "000",
+  ],
+  [
+    "coordination-0",
+    "000",
+  ],
+  [
+    "developer-experience",
+    "000",
+  ],
+  [
+    "security",
+    "000",
+  ],
+  [
+    "entertainment",
+    "000",
+  ],
+  [
+    "lobby",
+    "000"
+  ],
+]);
+
+export const BACKUP_RESOURCE_IDS = new Map([ // probably these are not backup resourceIDs yet, probably these are tests
+  [
+    "layer-2s",
     "3503000000000000000000000000000000000000000000000000000000000000",
   ],
   [
@@ -120,7 +171,10 @@ export const RESOURCE_IDS = new Map([
     "entertainment",
     "2600000000000000000000000000000000000000000000000000000000000000",
   ],
-  ["lobby", "190e000000000000000000000000000000000000000000000000000000000000"],
+  [
+    "lobby",
+    "190e000000000000000000000000000000000000000000000000000000000000"
+  ],
 ]);
 
 export const DATE_TO_DEVCON_DAY = new Map([
