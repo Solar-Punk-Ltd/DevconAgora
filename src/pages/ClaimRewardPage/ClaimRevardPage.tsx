@@ -19,10 +19,9 @@ const ClaimRewardPage: React.FC = () => {
 
   useEffect(() => {
     const code = localStorage.getItem(GIFTCODE_KEY);
-    if ( code !== null && inputRef.current) {
+    if (code !== null && inputRef.current) {
       inputRef.current.value = code;
-    } 
-    else if (!nonceRequested) {
+    } else if (!nonceRequested) {
       nonceRequested = true;
       try {
         fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
@@ -47,7 +46,8 @@ const ClaimRewardPage: React.FC = () => {
                   resp.text().then((data) => {
                     if (inputRef.current) {
                       inputRef.current.value = data;
-                      localStorage.setItem(GIFTCODE_KEY, data)
+                      if (resp.status === 200)
+                        localStorage.setItem(GIFTCODE_KEY, data);
                     }
                   })
                 );
