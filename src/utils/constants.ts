@@ -228,7 +228,7 @@ const TEST_RESOURCE_IDS = new Map([
   ],
 ]);
 
-export const RESOURCE_IDS = TEST_RESOURCE_IDS;
+export const RESOURCE_IDS = PROD_RESOURCE_IDS;
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-12").toDateString(), "Day 1"],
@@ -290,7 +290,7 @@ const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
+  PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
