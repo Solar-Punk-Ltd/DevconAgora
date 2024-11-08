@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+  height: 100%;
 }
 .claim-reward__main-content__header {
   font-family: "Poppins", sans-serif;
@@ -23,6 +24,14 @@
   text-align: center;
 }
 
+.claim-reward__main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  z-index: 2;
+}
+
 .claim-reward__text-emphasize {
   color: #ff8a50;
 }
@@ -31,6 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  padding-bottom: 30px;
 }
 
 .claim-reward__text-box {
@@ -43,6 +53,21 @@
   font-size: 14px;
   padding: 8px;
   line-height: 30px;
+}
+
+.claim-reward__text-box__link {
+  color: #ff8a50;
+  text-decoration: underline;
+}
+
+.claim-reward__text-box__link:hover {
+  color: #ff8a50;
+  text-decoration: underline;
+}
+
+.claim-reward__text-box__link:visited {
+  color: #ff8a50;
+  text-decoration: underline;
 }
 .claim-reward__background {
   position: absolute;

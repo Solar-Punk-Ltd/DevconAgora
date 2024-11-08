@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
 import { ethers } from "ethers";
 import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
-import ClaimRewardExplanation from "../../components/ClaimRewardExplanation/ClaimRewardExplanation";
 
 const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -29,7 +28,7 @@ const ClaimRewardPage: React.FC = () => {
             console.log("nonce fetched", data);
             if (isUserRegistered()) {
               const wallet = new ethers.Wallet(getPrivateKey());
-              let flatSig = await wallet.signMessage(data);
+              const flatSig = await wallet.signMessage(data);
               try {
                 fetch(process.env.BACKEND_API_URL + "/redeem", {
                   method: "POST",
@@ -46,8 +45,9 @@ const ClaimRewardPage: React.FC = () => {
                   resp.text().then((data) => {
                     if (inputRef.current) {
                       inputRef.current.value = data;
-                      if (resp.status === 200)
+                      if (resp.status === 200) {
                         localStorage.setItem(GIFTCODE_KEY, data);
+                      }
                     }
                   })
                 );
@@ -83,42 +83,56 @@ const ClaimRewardPage: React.FC = () => {
           Claim{" "}
           <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>
         </div>
-        <div className="claim-reward__main-content__content">
-          <div className="claim-reward__text-box">
-            This code is personalised for you only. Please save this code and
-            use it as described on the previous screen.
-          </div>
-          <div className="claim-reward__code">
-            <div className="claim-reward__code__header">Giftcode</div>
-            <div className="claim-reward__code__input-wrapper">
-              <input
-                type="text"
-                ref={inputRef}
-                className="claim-reward__code__input"
-              />
-              <CopyIcon onClick={handleCopyClick} />
+        <div className="claim-reward__main-content-wrapper">
+          <div className="claim-reward__main-content__content">
+            <div className="claim-reward__text-box">
+              This code is personalised for you only. Please save this code and
+              use it as described on the previous screen.
+            </div>
+            <div className="claim-reward__code">
+              <div className="claim-reward__code__header">Giftcode</div>
+              <div className="claim-reward__code__input-wrapper">
+                <input
+                  type="text"
+                  ref={inputRef}
+                  className="claim-reward__code__input"
+                />
+                <CopyIcon onClick={handleCopyClick} />
+              </div>
+            </div>
+            <div className="claim-reward__text-box">
+              You will find this information in your profile from now on.
+            </div>
+            <div className="claim-reward__text-box">
+              Available codes are limited. In case there are no more codes
+              available Swarm is still awesome. Check out the magic{" "}
+              <a
+                href="https://github.com/ethersphere/awesome-swarm"
+                className="claim-reward__text-box__link"
+              >
+                here!
+              </a>
             </div>
           </div>
-          <div className="claim-reward__text-box">
-            You will find this information in your profile from now on.
+          <div className="claim-reward__bottom-buttons">
+            <WelcomeButton
+              type="white"
+              onClick={() => {
+                navigate(ROUTES.HOME);
+              }}
+            >
+              Back
+            </WelcomeButton>
+            <WelcomeButton
+              type="orange"
+              onClick={() =>
+                (window.location.href = `${window.location.origin}/DevconAgora/public/subscription.html`)
+              }
+            >
+              Keep in touch
+            </WelcomeButton>
           </div>
         </div>
-      </div>
-      <div className="claim-reward__bottom-buttons">
-        <WelcomeButton
-          type="white"
-          onClick={() => {
-            navigate(ROUTES.HOME);
-          }}
-        >
-          Back
-        </WelcomeButton>
-        <WelcomeButton
-          type="orange"
-          onClick={() => navigate(ROUTES.STAYUPDATED)}
-        >
-          Keep in touch
-        </WelcomeButton>
       </div>
     </div>
   );

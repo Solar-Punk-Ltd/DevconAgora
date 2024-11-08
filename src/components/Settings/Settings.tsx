@@ -14,7 +14,7 @@ const Settings: React.FC = () => {
       {isOpen ? (
         <div className="settings__open__content">
           <Link to={ROUTES.CONTENTFILTER}>
-            <div className="settings__open__content__item">Content Filter</div>
+            <div className="settings__open__content__item">USCVS setting</div>
           </Link>
           <hr className="settings__open__content__item__divider" />
           <Link to={ROUTES.TERMSANDCONDITIONS}>

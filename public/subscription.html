@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="mc_embed_shell">
+      <link
+        href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <style type="text/css">
+        #mc_embed_signup {
+          overflow: auto;
+        }
+        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */</style
+      ><style type="text/css">
+        body {
+          margin: 0px;
+          height: 100vh;
+          background-color: #3c3c3c;
+        }
+        #mc-embedded-subscribe-form input[type="checkbox"] {
+          display: inline;
+          width: auto;
+          margin-right: 10px;
+        }
+
+        #mc_embed_signup form {
+          margin: 0px !important;
+          padding: 16px !important;
+        }
+        #mergeRow-gdpr {
+          margin-top: 20px;
+        }
+        #mergeRow-gdpr fieldset label {
+          font-weight: normal;
+        }
+        #mc-embedded-subscribe-form .mc_fieldset {
+          border: none;
+          min-height: 0px;
+          padding-bottom: 0px;
+        }
+        .main-container {
+          display: flex;
+          justify-content: center;
+          height: 100vh;
+          width: 100%;
+        }
+        .main-content {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          width: 100%;
+          background-color: black;
+          color: white;
+          margin: 0;
+          overflow: hidden;
+          font-family: "Inter";
+          padding-top: 40px;
+        }
+        @media (min-width: 480px) {
+          .main-content {
+            width: 480px;
+          }
+        }
+        .header {
+          font-family: "Poppins";
+          font-size: 32px;
+          font-weight: 700;
+          text-align: center;
+        }
+        .email-send-input {
+          width: 100%;
+          outline: none;
+          background-color: rgba(0, 0, 0, 0.9);
+          border: none !important;
+          border-bottom: 1px solid white !important;
+          color: white;
+          font-family: "Inter", sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          padding: 8px;
+          box-sizing: border-box;
+        }
+        .email-send-select {
+          width: 100%;
+          outline: none;
+          background-color: rgba(0, 0, 0, 0.9);
+          border: none !important;
+          border-bottom: 1px solid white !important;
+          color: white;
+          font-family: "Inter", sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          padding: 8px;
+          box-sizing: border-box;
+        }
+        .email-send-background {
+          position: absolute;
+          z-index: 0;
+        }
+        .email-send-background__img {
+          width: 100%;
+          height: 100%;
+        }
+        .email-send-buttons {
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+          margin-bottom: 58px;
+        }
+        .email-send__fields {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          font-size: 14px;
+        }
+        .email-error {
+          display: none;
+        }
+        .email-error-active {
+          height: 18px;
+          margin-top: 5px;
+          color: #e8303d;
+          display: block !important;
+        }
+        .first-name-error {
+          display: none;
+        }
+        .first-name-error-active {
+          height: 18px;
+          margin-top: 5px;
+          color: #e8303d;
+          display: block !important;
+        }
+        .email-marketing-error {
+          display: none;
+        }
+        .email-marketing-error-active {
+          height: 18px;
+          margin-top: 5px;
+          color: #e8303d;
+          display: block !important;
+        }
+
+        .button {
+          width: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          min-width: 80px !important;
+          height: 56px !important;
+          border-radius: 12px !important;
+          box-sizing: border-box !important;
+          font-size: 20px !important;
+          font-weight: 700 !important;
+          flex: 1 1 0 !important;
+          font-family: "Public Sans", sans-serif !important;
+          cursor: pointer !important;
+          transition: border-color 0.25s !important;
+          z-index: 1 !important;
+          position: relative !important;
+        }
+        .email-button-back {
+          border: 1px solid white !important;
+          color: white !important;
+          background: black !important;
+        }
+        .email-button-done__inactive {
+          border: none !important;
+          color: #a5adba !important;
+          background: #f2f2f2 !important;
+          cursor: not-allowed !important;
+        }
+        .email-button-done__active {
+          border: none !important;
+          color: white !important;
+          background: #ff8a50 !important;
+        }
+      </style>
+      <div class="main-container">
+        <div class="main-content">
+          <div class="email-send-background">
+            <img
+              src="../src/assets/registration-glass-effect.png"
+              alt=""
+              class="email-send-background__img"
+            />
+          </div>
+          <div class="header">Stay updated!</div>
+          <div id="mc_embed_signup">
+            <form
+              action="https://buzz.us17.list-manage.com/subscribe/post?u=f6d6f52cc34754fc4da8065ee&amp;id=78a8b44218&amp;v_id=4630&amp;f_id=0082e5e3f0"
+              method="post"
+              id="mc-embedded-subscribe-form"
+              name="mc-embedded-subscribe-form"
+              class="validate"
+              target="_self"
+              novalidate=""
+            >
+              <div id="mc_embed_signup_scroll" class="email-send__fields">
+                <div class="indicates-required">
+                  <span class="asterisk">*</span> indicates required
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-EMAIL"
+                    >Email Address <span class="asterisk">*</span></label
+                  ><input
+                    type="email"
+                    name="EMAIL"
+                    class="required email email-send-input"
+                    id="mce-EMAIL"
+                    required=""
+                    value=""
+                    onchange="validateFields()"
+                  />
+                  <div id="email-error" class="email-error">
+                    Email address must be a right format
+                  </div>
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-FNAME"
+                    >First Name <span class="asterisk">*</span></label
+                  ><input
+                    type="text"
+                    name="FNAME"
+                    class="required text email-send-input"
+                    id="mce-FNAME"
+                    required=""
+                    value=""
+                    onchange="validateFields()"
+                    oninput="validateFields()"
+                  />
+                  <div id="first-name-error" class="first-name-error">
+                    First name is required
+                  </div>
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-LNAME">Last Name </label
+                  ><input
+                    type="text"
+                    name="LNAME"
+                    class="text email-send-input"
+                    id="mce-LNAME"
+                    value=""
+                  />
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-COMPANY">Company name </label
+                  ><input
+                    type="text"
+                    name="COMPANY"
+                    class="text email-send-input"
+                    id="mce-COMPANY"
+                    value=""
+                  />
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-PHASE"
+                    >In which phase is your company in? </label
+                  ><select
+                    name="PHASE"
+                    class="email-send-select"
+                    id="mce-PHASE"
+                  >
+                    <option value=""></option>
+                    <option value="Concept">Concept</option>
+                    <option value="Alpha">Alpha</option>
+                    <option value="Beta">Beta</option>
+                    <option value="Launched">Launched</option>
+                  </select>
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-WWW">Website </label
+                  ><input
+                    type="text"
+                    name="WWW"
+                    class="text email-send-input"
+                    id="mce-WWW"
+                    value=""
+                  />
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-HELP"
+                    >Please describe in a few words what Solar Punk could help
+                    you </label
+                  ><input
+                    type="text"
+                    name="HELP"
+                    class="text email-send-input"
+                    id="mce-HELP"
+                    value=""
+                  />
+                </div>
+                <div
+                  id="mergeRow-gdpr"
+                  class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group"
+                >
+                  <div class="content__gdpr">
+                    <label
+                      >Marketing Permissions
+                      <span class="asterisk">*</span></label
+                    >
+                    <p>
+                      We value your privacy and want to ensure you are
+                      comfortable with how we contact you. By ticking the box
+                      below, you consent to receiving communication from us via
+                      the following channels: Email: Marketing updates, business
+                      development news, and invitations to events SMS: Brief
+                      notifications or invitations LinkedIn, Telegram, and
+                      Signal: Reaching out for relevant updates based on your
+                      preferences We use the information you provide to tailor
+                      our communications to your interests. Your data will be
+                      stored securely using Mailchimp and Pipedrive and will
+                      only be used for the purposes outlined above.
+                    </p>
+                    <fieldset
+                      class="mc_fieldset gdprRequired mc-field-group"
+                      name="interestgroup_field"
+                    >
+                      <label class="checkbox subfield" for="gdpr210252"
+                        ><input
+                          type="checkbox"
+                          id="gdpr_210252"
+                          name="gdpr[210252]"
+                          class="gdpr"
+                          value="Y"
+                          onchange="validateFields()"
+                          checked
+                        /><span>Email</span></label
+                      ><label class="checkbox subfield" for="gdpr210253"
+                        ><input
+                          type="checkbox"
+                          id="gdpr_210253"
+                          name="gdpr[210253]"
+                          class="gdpr"
+                          onchange="validateFields()"
+                          value="Y"
+                        /><span>SMS</span></label
+                      ><label class="checkbox subfield" for="gdpr210254"
+                        ><input
+                          type="checkbox"
+                          id="gdpr_210254"
+                          name="gdpr[210254]"
+                          class="gdpr"
+                          onchange="validateFields()"
+                          value="Y"
+                        /><span>Social Media</span></label
+                      >
+                    </fieldset>
+                    <div class="email-marketing-error">
+                      You have to choose one option to continue
+                    </div>
+                    <p>
+                      You can unsubscribe or update your preferences at any time
+                      by clicking the link in the footer of our emails. For
+                      information about our privacy practices, please visit our
+                      website.
+                    </p>
+                  </div>
+                  <div class="content__gdprLegal">
+                    <p>
+                      We use Mailchimp as our marketing platform. By clicking
+                      below to subscribe, you acknowledge that your information
+                      will be transferred to Mailchimp for processing.
+                      <a href="https://mailchimp.com/legal/terms">Learn more</a>
+                      about Mailchimp's privacy practices.
+                    </p>
+                  </div>
+                </div>
+                <div hidden="">
+                  <input type="hidden" name="tags" value="8331109" />
+                </div>
+                <div id="mce-responses" class="clear">
+                  <div
+                    class="response"
+                    id="mce-error-response"
+                    style="display: none"
+                  ></div>
+                  <div
+                    class="response"
+                    id="mce-success-response"
+                    style="display: none"
+                  ></div>
+                </div>
+                <div
+                  aria-hidden="true"
+                  style="position: absolute; left: -5000px"
+                >
+                  <input
+                    type="text"
+                    name="b_f6d6f52cc34754fc4da8065ee_78a8b44218"
+                    tabindex="-1"
+                    value=""
+                  />
+                </div>
+                <div class="clear email-send-buttons">
+                  <input
+                    type="button"
+                    name="back"
+                    id="mc-embedded-back"
+                    class="email-button-back button"
+                    value="Cancel"
+                    onclick="window.location.href='https://devcon.buzz'"
+                  />
+                  <input
+                    type="button"
+                    name="subscribe"
+                    id="mc-embedded-subscribe"
+                    class="email-button-done__inactive button"
+                    value="Done"
+                    onclick="submitForm()"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let error = true;
+      function validateFields() {
+        const gdprCheckboxes = document.querySelectorAll(".gdpr");
+        const doneButton = document.getElementById("mc-embedded-subscribe");
+        const emailInput = document.getElementById("mce-EMAIL");
+        const emailError = document.getElementById("email-error");
+        const firstNameInput = document.getElementById("mce-FNAME");
+        const firstNameError = document.getElementById("first-name-error");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailErrorResult = emailPattern.test(emailInput.value);
+        const firstNameErrorResult = firstNameInput.value === "";
+        let isGdprChecked = false;
+        if (!emailErrorResult) {
+          emailError.classList.add("email-error-active");
+        }
+        if (firstNameErrorResult) {
+          firstNameError.classList.add("first-name-error-active");
+        }
+        gdprCheckboxes.forEach((checkbox) => {
+          checkbox.addEventListener("change", () => {
+            gdprCheckboxes.forEach((checkbox) => {
+              if (checkbox.checked) {
+                isGdprChecked = true;
+              }
+            });
+          });
+        });
+        if (!emailErrorResult) {
+          emailError.classList.remove("email-error-inactive");
+          emailError.classList.add("email-error-active");
+          error = true;
+        }
+        if (emailErrorResult) {
+          emailError.classList.remove("email-error-active");
+          emailError.classList.add("email-error-inactive");
+          error = true;
+        }
+        if (firstNameErrorResult) {
+          firstNameError.classList.remove("first-name-error-inactive");
+          firstNameError.classList.add("first-name-error-active");
+          error = true;
+        }
+        if (!firstNameErrorResult) {
+          firstNameError.classList.remove("first-name-error-active");
+          firstNameError.classList.add("first-name-error-inactive");
+          error = true;
+        }
+        if (!emailErrorResult || firstNameErrorResult || isGdprChecked) {
+          doneButton.classList.remove("email-button-done__active");
+          doneButton.classList.add("email-button-done__inactive");
+          error = true;
+        } else {
+          doneButton.classList.remove("email-button-done__inactive");
+          doneButton.classList.add("email-button-done__active");
+          error = false;
+        }
+      }
+
+      function submitForm() {
+        if (!error) {
+          document.getElementById("mc-embedded-subscribe-form").submit();
+        }
+      }
+    </script>
+  </body>
+</html>

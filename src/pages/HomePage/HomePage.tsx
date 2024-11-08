@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGlobalState } from "../../GlobalStateContext";
 import "./HomePage.scss";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
@@ -7,7 +7,6 @@ import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-import HomeLoading from "../../components/HomeLoading/HomeLoading";
 import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
@@ -15,14 +14,12 @@ import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import { LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
 
 interface HomePageProps {
-  isLoaded?: boolean;
   withGamification?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
+const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const privKey = getPrivateKey();
   if (!privKey) {
@@ -48,39 +45,27 @@ const HomePage: React.FC<HomePageProps> = ({ isLoaded, withGamification }) => {
     else return 0;
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isLoaded) {
-        setIsLoading(false);
-      }
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="home-page">
-      {!isLoading ? (
-        <div className="home-page__background">
-          <img src={HomeBackground} alt="" width="100%" height="100%" />
-        </div>
-      ) : null}
+      <div className="home-page__background">
+        <img src={HomeBackground} alt="" width="100%" height="100%" />
+      </div>
+
       <HomeHeader points={points} withGamification={withGamification} />
-      {isLoading ? (
-        <HomeLoading />
-      ) : (
-        <div className="home-page__content">
-          <DevConMainBox
-            title="Devcon buzz space"
-            content="Share your thoughts, chat with anyone without moderation, and collect your reward."
-            showActiveVisitors={true}
-            activeVisitors={lobbyUserCount()}
-            bordered={true}
-            setSelectedChat={setSelectedChat}
-          />
-          <RecentSessions />
-          <Spaces list={orderedList} setSelectedChat={setSelectedChat} />
-        </div>
-      )}
+
+      <div className="home-page__content">
+        <DevConMainBox
+          title="Devcon buzz space"
+          content="Share your thoughts, chat with anyone without moderation, and collect your reward."
+          showActiveVisitors={true}
+          activeVisitors={lobbyUserCount()}
+          bordered={true}
+          setSelectedChat={setSelectedChat}
+        />
+        <RecentSessions />
+        <Spaces list={orderedList} setSelectedChat={setSelectedChat} />
+      </div>
+
       <NavigationFooter />
 
       {selectedChat && (
