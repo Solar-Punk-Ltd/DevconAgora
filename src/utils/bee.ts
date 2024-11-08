@@ -78,10 +78,10 @@ export async function updateFeed(
   }
 }
 
-// TOOD: remove test1
+// adds "live_x" suffix to the topic if raw is true, so that topics can be versioned if needed
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
-    return topic + "test1";
+    return topic + "live_1";
   }
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   return bee.makeFeedTopic(topic);
