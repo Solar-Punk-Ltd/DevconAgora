@@ -3,7 +3,7 @@ import { Session } from "../types/session";
 import {
   CATEGORY_NAMES_TO_ID_MAP,
   DATE_TO_DEVCON_DAY,
-  RESOURCE_IDS
+  RESOURCE_IDS,
 } from "../utils/constants";
 import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
@@ -188,7 +188,7 @@ export const getPrivateKey = () => {
   } else {
     return "";
   }
-}
+};
 
 export const isUserRegistered = () => {
   const privKey = getPrivateKey();
@@ -201,4 +201,4 @@ export const isUserRegistered = () => {
   )
     return true;
   else return false;
-}
+};

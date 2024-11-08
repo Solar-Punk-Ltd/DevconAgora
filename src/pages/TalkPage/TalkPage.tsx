@@ -13,7 +13,6 @@ interface TalkPageProps {
   toText: string | null;
 }
 
-// TODO: preupload talk feeds
 const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();

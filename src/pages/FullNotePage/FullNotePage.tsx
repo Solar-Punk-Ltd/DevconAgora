@@ -47,12 +47,6 @@ const FullNotePage: React.FC = () => {
       rawNoteTopic = currentNote.id;
     } else {
       if (currentNote.text && currentNote.text.length > 0) {
-        // TODO: is time needed?
-        // add timestamp so that the user cannot save the same note multiple times
-        // const time = new Date().getTime().toString();
-        // rawNoteTopic = hexlify(
-        //   Utils.keccak256Hash(currentNote.text.concat(time))
-        // ).slice(2);
         rawNoteTopic = hexlify(Utils.keccak256Hash(currentNote.text)).slice(2);
       }
     }
