@@ -1,4 +1,5 @@
 import React from "react";
+import "./EditIcon.scss";
 
 interface EditIconProps {
   color?: string;
@@ -7,7 +8,7 @@ interface EditIconProps {
 
 const EditIcon: React.FC<EditIconProps> = ({ color, onClick }) => {
   return (
-    <div onClick={onClick} style={{ display: "flex" }}>
+    <div onClick={onClick} className="edit-icon">
       <svg
         width="17"
         height="16"

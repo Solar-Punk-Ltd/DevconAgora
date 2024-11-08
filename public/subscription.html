@@ -244,6 +244,7 @@
                     required=""
                     value=""
                     onchange="validateFields()"
+                    oninput="validateFields()"
                   />
                   <div id="first-name-error" class="first-name-error">
                     First name is required
@@ -465,9 +466,19 @@
           emailError.classList.add("email-error-active");
           error = true;
         }
+        if (emailErrorResult) {
+          emailError.classList.remove("email-error-active");
+          emailError.classList.add("email-error-inactive");
+          error = true;
+        }
         if (firstNameErrorResult) {
           firstNameError.classList.remove("first-name-error-inactive");
           firstNameError.classList.add("first-name-error-active");
+          error = true;
+        }
+        if (!firstNameErrorResult) {
+          firstNameError.classList.remove("first-name-error-active");
+          firstNameError.classList.add("first-name-error-inactive");
           error = true;
         }
         if (!emailErrorResult || firstNameErrorResult || isGdprChecked) {

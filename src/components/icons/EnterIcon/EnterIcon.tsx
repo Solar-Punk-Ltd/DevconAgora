@@ -1,4 +1,5 @@
 import React from "react";
+import "./EnterIcon.scss";
 
 interface EnterIconProps {
   color?: string;
@@ -7,7 +8,7 @@ interface EnterIconProps {
 
 const EnterIcon: React.FC<EnterIconProps> = ({ color, onClick }) => {
   return (
-    <div onClick={onClick} style={{ display: "flex" }}>
+    <div onClick={onClick} className="enter-icon">
       <svg
         width="25"
         height="24"

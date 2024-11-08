@@ -118,7 +118,7 @@ export const RESOURCE_IDS = new Map([
   ],
   [
     "entertainment",
-    "2600000000000000000000000000000000000000000000000000000000000000"
+    "2600000000000000000000000000000000000000000000000000000000000000",
   ],
   ["lobby", "190e000000000000000000000000000000000000000000000000000000000000"],
 ]);
@@ -192,9 +192,9 @@ export const PERSONAL_DATA_TEXT =
   "The application does not collect or store any personal data. Users are identified by nicknames only.";
 export const DATA_STORAGE_HEADER = "Data Storage";
 export const DATA_STORAGE_TEXT =
-  "All data is stored on the Swarm network, a decentralized storage and distribution system, that is by design censorship-resistant and unstoppable. Content Filter An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this filter at their own discretion, but do so entirely at their own risk. Acceptance of Terms By using this application, you acknowledge that you have read, understood, and agree to be bound by the terms of this agreement. If you do not agree to these terms, do not use the application.";
+  "All data is stored on the Swarm network, a decentralized storage and distribution system, that is by design censorship-resistant and unstoppable.";
 
-export const CONTENT_FILTER_HEADER = "Content Filter";
+export const CONTENT_FILTER_HEADER = "User Side Content Visibility Sanitizer";
 export const CONTENT_FILTER_TEXT =
   "An AI-assisted content filter is enabled by default to block content that may violate local laws and regulations. Users may disable this option at their own discretion, but do so entirely at their own risk.";
 

@@ -102,7 +102,7 @@ const ClaimRewardPage: React.FC = () => {
               You will find this information in your profile from now on.
             </div>
             <div className="claim-reward__text-box">
-              Available codes are limted. In case there are no more codes
+              Available codes are limited. In case there are no more codes
               available Swarm is still awesome. Check out the magic{" "}
               <a
                 href="https://github.com/ethersphere/awesome-swarm"
