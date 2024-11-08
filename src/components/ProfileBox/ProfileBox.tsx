@@ -52,12 +52,12 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
       <div
         className={clsx({
           "profile-box__left-content": points < 10,
-          "profile-box__left-content__with-link": points === 10,
+          "profile-box__left-content__with-link": points >= 10,
         })}
       >
         <div className="profile-box__title">{title}</div>
 
-        {linkText && link && points === 10 && !shareable ? (
+        {linkText && link && points >= 10 && !shareable ? (
           <div>
             <div
               className="profile-box__link"
@@ -77,7 +77,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
           <div
             className={clsx({
               "profile-box__points-box": points < 10,
-              "profile-box__points-box__ten": points === 10,
+              "profile-box__points-box__ten": points >= 10,
             })}
           >
             {points}
