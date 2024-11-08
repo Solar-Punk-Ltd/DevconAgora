@@ -7,7 +7,7 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     define: {
-      'process.env.FEED_OWNER_ADDRESS': JSON.stringify(env.FEED_OWNER_ADDRESS) ?? JSON.stringify('6d6d50A17e0F4a28c74b6e4D4e83691077149bB9'),
+      'process.env.FEED_OWNER_ADDRESS': JSON.stringify(env.FEED_OWNER_ADDRESS) ?? JSON.stringify('f4ba07294929857359929d55bec87fc869487c73'),
       'process.env.STAMP': JSON.stringify(env.STAMP) ?? JSON.stringify('0000000000000000000000000000000000000000000000000000000000000000'),
       'process.env.PR_NUMBER': JSON.stringify(env.PR_NUMBER) ?? JSON.stringify('unknown-version'),
       'process.env.PR_TIMESTAMP': JSON.stringify(env.PR_TIMESTAMP) ?? JSON.stringify('unknown-timestamp'),
