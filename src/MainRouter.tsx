@@ -199,9 +199,9 @@ const MainRouter = (): ReactElement => {
     if (isFirstRender) {
       setIsFirstRender(false);
     } else {
-      if (points === 1 || points === 5 || points === 10) {
-        setShowGamification(true);
-      }
+      // if (points === 1 || points === 5 || points === 10) {
+      setShowGamification(true);
+      // }
     }
   }, [points]);
 
