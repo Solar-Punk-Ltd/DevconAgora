@@ -126,7 +126,7 @@ const ClaimRewardPage: React.FC = () => {
             <WelcomeButton
               type="orange"
               onClick={() =>
-                (window.location.href = `${window.location.origin}/DevconAgora/public/subscription.html`)
+                (window.location.href = `${window.location.origin}/subscription.html`)
               }
             >
               Keep in touch
