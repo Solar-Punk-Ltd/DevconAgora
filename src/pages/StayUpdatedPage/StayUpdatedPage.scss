@@ -87,6 +87,32 @@
   box-sizing: border-box;
 }
 
+.stay-updated__select {
+  width: 100%;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.stay-updated__select::after {
+  content: "▼"; /* Egyedi ikon hozzáadása */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .stay-updated__input::selection {
   background-color: #ff8a50;
 }

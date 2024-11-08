@@ -199,7 +199,9 @@ const MainRouter = (): ReactElement => {
     if (isFirstRender) {
       setIsFirstRender(false);
     } else {
-      setShowGamification(true);
+      if (points === 1 || points === 5 || points === 10) {
+        setShowGamification(true);
+      }
     }
   }, [points]);
 
@@ -315,7 +317,9 @@ const MainRouter = (): ReactElement => {
       const orderedRooms = roomsWithUserCount.sort(
         (a, b) => b.userCount! - a.userCount!
       );
-      const withoutLobby = orderedRooms.filter((room) => CATEGORY_NAMES_TO_ID_MAP.get(room.topic) !== LOBBY_TITLE);
+      const withoutLobby = orderedRooms.filter(
+        (room) => CATEGORY_NAMES_TO_ID_MAP.get(room.topic) !== LOBBY_TITLE
+      );
       setOrderedList(withoutLobby);
     }
 
