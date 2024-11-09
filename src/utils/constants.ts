@@ -75,7 +75,7 @@ export const CATEGORIES = [
   "Entertainment",
 ];
 
-export const RESOURCE_IDS = new Map([
+const PROD_RESOURCE_IDS = new Map([
   [
     "layer-2s",
     "3503000000000000000000000000000000000000000000000000000000000000",
@@ -120,8 +120,115 @@ export const RESOURCE_IDS = new Map([
     "entertainment",
     "2600000000000000000000000000000000000000000000000000000000000000",
   ],
-  ["lobby", "190e000000000000000000000000000000000000000000000000000000000000"],
+  [
+    "lobby",
+    "190e000000000000000000000000000000000000000000000000000000000000"
+  ],
 ]);
+
+const BACKUP_RESOURCE_IDS = new Map([
+  [
+    "layer-2s",
+    "9e0a000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "core-protocol",
+    "3113000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "cypherpunk-and-privacy-0",
+    "5301000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "usability",
+    "a004000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "real-world-ethereum",
+    "3007000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "applied-cryptography-0",
+    "8d07000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "cryptoeconomics",
+    "9d03000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "coordination-0",
+    "ef05000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "developer-experience",
+    "0301000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "security",
+    "8a00000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "entertainment",
+    "9702000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "lobby",
+    "9503000000000000000000000000000000000000000000000000000000000000"
+  ],
+]);
+
+const TEST_RESOURCE_IDS = new Map([
+  [
+    "layer-2s-test-1",
+    "2402000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "core-protocol-test-1",
+    "6906000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "cypherpunk-and-privacy-test-1",
+    "1f0e000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "usability-test-1",
+    "0504000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "real-world-ethereum-test-1",
+    "4207000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "applied-cryptography-test-1",
+    "e010000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "cryptoeconomics-test-1",
+    "2703000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "coordination-test-1",
+    "1a06000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "developer-experience-test-1",
+    "c514000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "security-test-1",
+    "5f00000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "entertainment-test-1",
+    "6d02000000000000000000000000000000000000000000000000000000000000",
+  ],
+  [
+    "lobby-test-1",
+    "e70e000000000000000000000000000000000000000000000000000000000000"
+  ],
+]);
+
+export const RESOURCE_IDS = PROD_RESOURCE_IDS;
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-12").toDateString(), "Day 1"],
@@ -152,7 +259,7 @@ export const STAGES_MAP = new Map([
   ["all", "All stages"],
 ]);
 
-const oneDirectionCategoryNamesToIdMap = new Map([
+const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Layer 2", "layer-2s"],
   ["Core Protocol", "core-protocol"],
   ["Cypherpunk & Privacy", "cypherpunk-and-privacy-0"],
@@ -163,11 +270,27 @@ const oneDirectionCategoryNamesToIdMap = new Map([
   ["Coordination", "coordination-0"],
   ["Developer Experience", "developer-experience"],
   ["Security", "security"],
-  ["Lobby", "lobby"],
   ["Entertainment", "entertainment"],
+  ["Lobby", "lobby"],
 ]);
+
+const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
+  ["Layer 2", "layer-2s-test"],
+  ["Core Protocol", "core-protocol-test"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test"],
+  ["Usability", "usability-test"],
+  ["Real World Ethereum", "real-world-ethereum-test"],
+  ["Applied Cryptography", "applied-cryptography-test"],
+  ["Cryptoeconomics", "cryptoeconomics-test"],
+  ["Coordination", "coordination-test"],
+  ["Developer Experience", "developer-experience-test"],
+  ["Security", "security-test"],
+  ["Entertainment", "entertainment-test"],
+  ["Lobby", "lobby-test"],
+]);
+
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  oneDirectionCategoryNamesToIdMap
+  PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
