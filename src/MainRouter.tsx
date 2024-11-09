@@ -33,7 +33,6 @@ import {
   FIVE_MINUTES,
   ADDRESS_HEX_LENGTH,
   DUMMY_STAMP,
-  MOCK_START_TIME,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
@@ -72,7 +71,7 @@ const MainRouter = (): ReactElement => {
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
-  const [time, setTime] = useState<number>(MOCK_START_TIME.getTime());
+  const [time, setTime] = useState<number>(new Date().getTime());
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
@@ -131,7 +130,6 @@ const MainRouter = (): ReactElement => {
   };
 
   useEffect(() => {
-    // TODO: what shall be the update time ?
     checkBee();
     const interval = setInterval(() => {
       checkBee();
@@ -208,10 +206,8 @@ const MainRouter = (): ReactElement => {
   // the uploaded sessions are already sorted by time and day
   // find the first session that starts after the current time
   const filterRecentSessions = () => {
-    const sessionsByDay = getSessionsByDay(
-      sessions,
-      MOCK_START_TIME.toDateString() // shall be time
-    );
+    const day = "all";
+    const sessionsByDay = getSessionsByDay(sessions, day);
     if (sessionsByDay.length != 0) {
       const mostRecentSessions = new Array<Session>(MAX_SESSIONS_SHOWN);
       let firstSessionIx = findSlotStartIx(
@@ -238,10 +234,8 @@ const MainRouter = (): ReactElement => {
   };
 
   useEffect(() => {
-    // TODO: what shall be the update time ?
     const interval = setInterval(async () => {
-      // TODO: remove this: increase current time by 10 minutes to see the change in recent sessions
-      setTime((time) => new Date(time + FIVE_MINUTES).getTime());
+      setTime(new Date().getTime());
     }, FIVE_MINUTES);
 
     return () => clearInterval(interval);
@@ -264,7 +258,7 @@ const MainRouter = (): ReactElement => {
         const signer = getSigner(wallet);
         // only load the talks that are not already loaded
         if (loadedTalks) {
-          // TODO: as of now talkids include a test suffix, remove it
+          // talkids include a "version" suffix
           const foundIx = loadedTalks.findIndex((talk) =>
             talk.talkId.includes(rawTalkTopic)
           );
