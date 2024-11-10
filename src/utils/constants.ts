@@ -81,20 +81,20 @@ const PROD_RESOURCE_IDS = new Map([
     "3503000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "core-protocol",
-    "b303000000000000000000000000000000000000000000000000000000000000",
+    "core-protocol-0",
+    "c609000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "cypherpunk-and-privacy-0",
     "c508000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "usability",
-    "e303000000000000000000000000000000000000000000000000000000000000",
+    "usability-0",
+    "fb0b000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "real-world-ethereum",
-    "8108000000000000000000000000000000000000000000000000000000000000",
+    "real-world-ethereum-0",
+    "ff00000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "applied-cryptography-0",
@@ -113,8 +113,8 @@ const PROD_RESOURCE_IDS = new Map([
     "3301000000000000000000000000000000000000000000000000000000000000",
   ],
   [
-    "security",
-    "b30a000000000000000000000000000000000000000000000000000000000000",
+    "security-0",
+    "2b00000000000000000000000000000000000000000000000000000000000000",
   ],
   [
     "entertainment",
@@ -261,15 +261,15 @@ export const STAGES_MAP = new Map([
 
 const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Layer 2", "layer-2s"],
-  ["Core Protocol", "core-protocol"],
+  ["Core Protocol", "core-protocol-0"],
   ["Cypherpunk & Privacy", "cypherpunk-and-privacy-0"],
-  ["Usability", "usability"],
-  ["Real World Ethereum", "real-world-ethereum"],
+  ["Usability", "usability-0"],
+  ["Real World Ethereum", "real-world-ethereum-0"],
   ["Applied Cryptography", "applied-cryptography-0"],
   ["Cryptoeconomics", "cryptoeconomics"],
   ["Coordination", "coordination-0"],
   ["Developer Experience", "developer-experience"],
-  ["Security", "security"],
+  ["Security", "security-0"],
   ["Entertainment", "entertainment"],
   ["Lobby", "lobby"],
 ]);
