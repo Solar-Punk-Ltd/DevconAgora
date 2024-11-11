@@ -277,18 +277,18 @@ const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
-  ["Layer 2", "layer-2s-test"],
-  ["Core Protocol", "core-protocol-test"],
-  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test"],
-  ["Usability", "usability-test"],
-  ["Real World Ethereum", "real-world-ethereum-test"],
-  ["Applied Cryptography", "applied-cryptography-test"],
-  ["Cryptoeconomics", "cryptoeconomics-test"],
-  ["Coordination", "coordination-test"],
-  ["Developer Experience", "developer-experience-test"],
-  ["Security", "security-test"],
-  ["Entertainment", "entertainment-test"],
-  ["Lobby", "lobby-test"],
+  ["Layer 2", "layer-2s-test-v3"],
+  ["Core Protocol", "core-protocol-test-v3"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test-v3"],
+  ["Usability", "usability-test-v3"],
+  ["Real World Ethereum", "real-world-ethereum-test-v3"],
+  ["Applied Cryptography", "applied-cryptography-test-v3"],
+  ["Cryptoeconomics", "cryptoeconomics-test-v3"],
+  ["Coordination", "coordination-test-v3"],
+  ["Developer Experience", "developer-experience-test-v3"],
+  ["Security", "security-test-v3"],
+  ["Entertainment", "entertainment-test-v3"],
+  ["Lobby", "lobby-test-v3"],
 ]);
 
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
