@@ -22,6 +22,8 @@ steps:
       - 'BACKEND_API_URL=${_BACKEND_API_URL}'
       - '--build-arg'
       - 'GATEWAY=${_GATEWAY}'
+      - '--build-arg'
+      - 'ENV=${_ENV}'
     id: Build
   - name: gcr.io/cloud-builders/docker
     args:
