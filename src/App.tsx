@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import MainRouter from "./MainRouter";
-import "./styles/global.scss";
 import { BrowserRouter } from "react-router-dom";
-import { GlobalStateProvider } from "./GlobalStateContext";
+
+import { GlobalStateProvider } from "./contexts/global";
+import MainRouter from "./router";
+
+import "./styles/global.scss";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

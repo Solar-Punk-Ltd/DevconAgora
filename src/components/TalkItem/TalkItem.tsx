@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CommentsWithIndex, UserComment } from "@solarpunkltd/comment-system";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";

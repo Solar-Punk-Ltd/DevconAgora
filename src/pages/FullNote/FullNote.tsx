@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { hexlify, Wallet } from "ethers";
 import { Utils } from "@ethersphere/bee-js";
-import { useGlobalState } from "../../GlobalStateContext";
-import "./FullNotePage.scss";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+import { hexlify, Wallet } from "ethers";
+
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
-import {
-  ROUTES,
-  ADDRESS_HEX_LENGTH,
-  MAX_CHARACTER_COUNT,
-} from "../../utils/constants";
-import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../utils/constants";
-import { getSigner, dateToTime, getPrivateKey } from "../../utils/helpers";
-import { updateFeed, uploadData } from "../../utils/bee";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
+import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import { useGlobalState } from "../../contexts/global";
+import { updateFeed, uploadData } from "../../utils/bee";
+import {
+  ADDRESS_HEX_LENGTH,
+  DUMMY_STAMP,
+  MAX_CHARACTER_COUNT,
+  ROUTES,
+  SELF_NOTE_TOPIC,
+} from "../../utils/constants";
+import { dateToTime, getPrivateKey, getSigner } from "../../utils/helpers";
+
+import "./FullNotePage.scss";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();

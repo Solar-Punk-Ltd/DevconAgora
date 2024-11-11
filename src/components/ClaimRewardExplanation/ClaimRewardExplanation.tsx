@@ -1,10 +1,12 @@
 import React from "react";
-import "./ClaimRewardExplanation.scss";
-import { useGlobalState } from "../../GlobalStateContext";
-import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
-import CloseIcon from "../icons/CloseIcon/CloseIcon";
 import { useNavigate } from "react-router-dom";
+
+import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
+import CloseIcon from "../icons/CloseIcon/CloseIcon";
+
+import "./ClaimRewardExplanation.scss";
 
 const ClaimRewardExplanation: React.FC = () => {
   const { setShowGamification } = useGlobalState();

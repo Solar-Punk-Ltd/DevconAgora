@@ -1,13 +1,18 @@
-import React from "react";
-import { useGlobalState } from "../../GlobalStateContext";
-import "./HomePage.scss";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentSessions from "../../components/RecentSessions/RecentSessions";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import HomeHeader from "../../components/HomeHeader/HomeHeader";
+import React, { useState } from "react";
+import { BatchId } from "@ethersphere/bee-js";
+
 import HomeBackground from "../../assets/welcome-glass-effect.png";
+import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
+import HomeHeader from "../../components/HomeHeader/HomeHeader";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import Spaces from "../../components/Spaces/Spaces";
-import { LOBBY_TITLE, CATEGORIES } from "../../utils/constants";
+import { useGlobalState } from "../../contexts/global";
+import { CATEGORY_NAMES_TO_ID_MAP, LOBBY_TITLE } from "../../utils/constants";
+import { getPrivateKey, getResourceId } from "../../utils/helpers";
+import Chat from "../Chat/Chat";
+
+import "./HomePage.scss";
 
 interface HomePageProps {
   withGamification?: boolean;

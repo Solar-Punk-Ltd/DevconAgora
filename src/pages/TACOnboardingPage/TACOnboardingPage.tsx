@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import "./TACOnboardingPage.scss";
+import { Link, useNavigate } from "react-router-dom";
+
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
-import { Link, useNavigate } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
+import { ROUTES } from "../../utils/constants";
+
+import "./TACOnboardingPage.scss";
 
 const TACOnboardingPage: React.FC = () => {
   const navigate = useNavigate();

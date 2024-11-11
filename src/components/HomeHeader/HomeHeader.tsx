@@ -1,10 +1,12 @@
 import React from "react";
-import "./HomeHeader.scss";
-import swarmIcon from "../../assets/swarm-icon.png";
-import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { Link } from "react-router-dom";
-import { useGlobalState } from "../../GlobalStateContext";
+
+import swarmIcon from "../../assets/swarm-icon.png";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
+import ProfilePicture from "../ProfilePicture/ProfilePicture";
+
+import "./HomeHeader.scss";
 
 interface HomeHeaderProps {
   points?: number;

@@ -1,12 +1,15 @@
-import React from "react";
-import "./SpacesPage.scss";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import { CATEGORIES } from "../../utils/constants";
-import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
-import { useGlobalState } from "../../GlobalStateContext";
+import React, { useState } from "react";
+import { BatchId } from "@ethersphere/bee-js";
+
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
+import { useGlobalState } from "../../contexts/global";
+import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { getPrivateKey, getResourceId } from "../../utils/helpers";
+import Chat from "../Chat/Chat";
+
+import "./SpacesPage.scss";
 
 const SpacesPage: React.FC = () => {
   const { spacesActivity } = useGlobalState();
