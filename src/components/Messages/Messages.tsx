@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Messages.scss";
-import Message from "./Message/Message";
-import { MessageWithThread, ThreadId } from "../../types/message";
-import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
-import { BatchId } from "@ethersphere/bee-js";
+import React, { useEffect, useRef, useState } from 'react';
+import { BatchId } from '@ethersphere/bee-js';
+import { EthAddress, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
+
+import { MessageWithThread, ThreadId } from '../../types/message';
+
+import Message from './Message/Message';
+
+import './Messages.scss';
 
 interface MessagesProps {
   messages: MessageWithThread[];
@@ -42,12 +45,12 @@ const Messages: React.FC<MessagesProps> = ({
   };
   useEffect(() => {
     if (chatBodyRef.current) {
-      chatBodyRef.current.addEventListener("scroll", handleScroll);
+      chatBodyRef.current.addEventListener('scroll', handleScroll);
     }
 
     return () => {
       if (chatBodyRef.current) {
-        chatBodyRef.current.removeEventListener("scroll", handleScroll);
+        chatBodyRef.current.removeEventListener('scroll', handleScroll);
       }
     };
   }, []);
@@ -60,7 +63,7 @@ const Messages: React.FC<MessagesProps> = ({
   if (messages.length === 0 || !chat) {
     return (
       <div className="messages messages__no-messages">
-        <p>{"Start the conversation!"}</p>
+        <p>{'Start the conversation!'}</p>
       </div>
     );
   }

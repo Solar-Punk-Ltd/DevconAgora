@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "smart contracts",
-    "security",
-    "development",
-    "technical"
-  ],
-  "speakers": [
-    "philip-daian"
-  ],
+  "tags": ["Security", "smart contracts", "security", "development", "technical"],
+  "speakers": ["philip-daian"],
   "sources_youtubeId": "yyb_uO7BKzg",
   "sources_ipfsHash": "QmZfqo56EW7ntCUb1GWEuMNBWr9AyGNsovasi4m2PDWaR4",
   "sources_swarmHash": "3b76dbead0349bbff4ccaa9f669c25db9cdb31a69d00767da2efdd1431e0d72d",

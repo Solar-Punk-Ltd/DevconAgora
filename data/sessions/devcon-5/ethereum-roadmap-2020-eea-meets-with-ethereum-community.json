@@ -7,17 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "EEA",
-    "enterprise",
-    "alliance",
-    "general"
-  ],
-  "speakers": [
-    "paul-dimarzio",
-    "ronald-resnick"
-  ],
+  "tags": ["Governance & Coordination", "EEA", "enterprise", "alliance", "general"],
+  "speakers": ["paul-dimarzio", "ronald-resnick"],
   "sources_youtubeId": "NwTXzZzZimE",
   "sources_ipfsHash": "QmQhrrzPPbErXYdswaEsRoMjHnGrY8yfR9rf1v6CYXipWh",
   "sources_swarmHash": "450cd8db233e50cc45e34bd6fb5e0a652a0d9d96064630034f2e3d95c1f1817c",

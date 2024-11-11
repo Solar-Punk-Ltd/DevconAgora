@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "Node ownership",
-    "Validation",
-    "Independence"
-  ],
-  "speakers": [
-    "maggie-love"
-  ],
+  "tags": ["Staking & Validator Experience", "Node ownership", "Validation", "Independence"],
+  "speakers": ["maggie-love"],
   "resources_slides": "/resources/6/launch-your-own-validator-node.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665745200000,

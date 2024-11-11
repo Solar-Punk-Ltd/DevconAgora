@@ -7,14 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "client",
-    "optimisation"
-  ],
-  "speakers": [
-    "alexey-akhunov"
-  ],
+  "tags": ["Layer 2s", "client", "optimisation"],
+  "speakers": ["alexey-akhunov"],
   "sources_youtubeId": "CSpc1vZQW2Q",
   "sources_ipfsHash": "QmcdFbNsLi4zuNc2sYp8BDe9z48ZeVh56NgbQdJuhXq4Rf",
   "sources_swarmHash": "a012bfb05b2f231206f3c828cd40bc9c0b7bd7c3914c38b3ba2d85920e6a5893",

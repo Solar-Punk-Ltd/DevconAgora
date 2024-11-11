@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Privacy",
-    "zero-knokwledge",
-    "recursion"
-  ],
-  "speakers": [
-    "ying-tong",
-    "nalin-bhardwaj"
-  ],
+  "tags": ["Privacy", "zero-knokwledge", "recursion"],
+  "speakers": ["ying-tong", "nalin-bhardwaj"],
   "resources_slides": "/resources/6/recursive-zk-applications-and-affordances.pdf",
   "slot_start": 1665595800000,
   "slot_end": 1665597600000,

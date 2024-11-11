@@ -7,19 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "cryptography",
-    "IACR",
-    "metadata",
-    "elixxir",
-    "praxxis",
-    "anonymity",
-    "general"
-  ],
-  "speakers": [
-    "david-chaum"
-  ],
+  "tags": ["Privacy", "cryptography", "IACR", "metadata", "elixxir", "praxxis", "anonymity", "general"],
+  "speakers": ["david-chaum"],
   "sources_youtubeId": "hvdxT_uO0dc",
   "sources_ipfsHash": "QmbPVEgDSeCdDFWMLA43L2toW5xLz85WnCx4T8ekSFzBJ3",
   "sources_swarmHash": "267be5c60bba8488d37224592977281c10fbbd173fcfa9e6af9f5e7bc6e0dd43",

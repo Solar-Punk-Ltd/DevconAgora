@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "fabian-vogelsteller"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["fabian-vogelsteller"],
   "sources_youtubeId": "pkwYVagytuA",
   "sources_ipfsHash": "QmYj1sE23xwPzYB15NuvVaF4vmx8dSqnA7zhP1K3zqypAs",
   "sources_swarmHash": "eeef5c34a45c758e086e1e7f65b090f6328c9c359a7d80e20d247c32e895265c",

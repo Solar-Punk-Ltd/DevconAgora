@@ -7,14 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "crypto-native",
-    "gaming"
-  ],
-  "speakers": [
-    "gubsheep"
-  ],
+  "tags": ["UX & Design", "crypto-native", "gaming"],
+  "speakers": ["gubsheep"],
   "resources_slides": "/resources/6/dark-forest-lessons-from-3-years-of-on-chain-gaming.pdf",
   "slot_start": 1665504000000,
   "slot_end": 1665505800000,

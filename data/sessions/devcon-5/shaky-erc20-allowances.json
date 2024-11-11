@@ -7,13 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "technical"
-  ],
-  "speakers": [
-    "paul-razvan-berg"
-  ],
+  "tags": ["Cryptoeconomics", "technical"],
+  "speakers": ["paul-razvan-berg"],
   "sources_youtubeId": "y9A8wHhNjJA",
   "sources_ipfsHash": "QmX3KPbaa5GMGd5KtqGomEna5VhgfEGJacGZiTLVWz7imG",
   "sources_swarmHash": "d5738e7cf4dbe8c1a7c7dbf3d30042d92bd354a8c486450910bb1ea109148618",

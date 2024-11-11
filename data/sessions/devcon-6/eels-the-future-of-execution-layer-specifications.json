@@ -7,14 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "execution",
-    "specifications"
-  ],
-  "speakers": [
-    "peter-davies"
-  ],
+  "tags": ["Layer 1 Protocol", "execution", "specifications"],
+  "speakers": ["peter-davies"],
   "resources_slides": "/resources/6/eels-the-future-of-execution-layer-specifications.pdf",
   "slot_start": 1665657000000,
   "slot_end": 1665658800000,

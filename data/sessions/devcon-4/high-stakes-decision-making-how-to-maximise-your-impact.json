@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "impact"
-  ],
-  "speakers": [
-    "liv-boeree",
-    "natalie-cargill"
-  ],
+  "tags": ["Governance & Coordination", "impact"],
+  "speakers": ["liv-boeree", "natalie-cargill"],
   "sources_youtubeId": "5SMh-hr2wgg",
   "sources_ipfsHash": "QmYP5H4dXze6yNUZW1vcif1wEP38tAgUutB2FXLYuRnXVN",
   "sources_swarmHash": "005032e8bc496a17caab2f507a5568ffbd49e91b2e0ae8fa236e46b8d1d3e90e",

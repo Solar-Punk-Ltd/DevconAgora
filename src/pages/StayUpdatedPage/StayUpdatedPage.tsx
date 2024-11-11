@@ -1,9 +1,11 @@
-import React from "react";
-import "./StayUpdatedPage.scss";
-import HomeBackground from "../../assets/registration-glass-effect.png";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import HomeBackground from '../../assets/registration-glass-effect.png';
+import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
+import { ROUTES } from '../../utils/constants';
+
+import './StayUpdatedPage.scss';
 
 declare global {
   interface Window {
@@ -15,15 +17,15 @@ declare global {
 }
 
 const StayUpdatedPage: React.FC = () => {
-  const [emailText, setEmailText] = React.useState<string>("");
+  const [emailText, setEmailText] = React.useState<string>('');
   const [emailError, setEmailError] = React.useState<boolean>(false);
-  const [firstNameText, setFirstNameText] = React.useState<string>("");
+  const [firstNameText, setFirstNameText] = React.useState<string>('');
   const [firstNameError, setFirstNameError] = React.useState<boolean>(false);
-  const [lastNameText, setLastNameText] = React.useState<string>("");
+  const [lastNameText, setLastNameText] = React.useState<string>('');
   const [lastNameError, setLastNameError] = React.useState<boolean>(false);
-  const [companyNameText, setCompanyNameText] = React.useState<string>("");
-  const [phaseText, setPhaseText] = React.useState<string>("");
-  const [websiteText, setWebsiteText] = React.useState<string>("");
+  const [companyNameText, setCompanyNameText] = React.useState<string>('');
+  const [phaseText, setPhaseText] = React.useState<string>('');
+  const [websiteText, setWebsiteText] = React.useState<string>('');
   const navigate = useNavigate();
 
   const validateEmail = (email: string) => {
@@ -32,7 +34,7 @@ const StayUpdatedPage: React.FC = () => {
   };
 
   const validateName = (name: string) => {
-    return name.trim() !== "";
+    return name.trim() !== '';
   };
 
   const handleEmailBlur = () => {
@@ -60,18 +62,14 @@ const StayUpdatedPage: React.FC = () => {
   return (
     <div className="stay-updated">
       <div className="stay-updated__background">
-        <img
-          src={HomeBackground}
-          alt=""
-          className="stay-updated__background__img"
-        />
+        <img src={HomeBackground} alt="" className="stay-updated__background__img" />
       </div>
 
       <div className="stay-updated__header">Stay updated!</div>
       <div className="stay-updated__main-content">
         <div className="stay-updated__text-box">
-          Be on the top of cutting edge web3 tech. Get insights and latest news
-          from the developers of the Devcon Buzz app
+          Be on the top of cutting edge web3 tech. Get insights and latest news from the developers of the Devcon Buzz
+          app
         </div>
         <div id="mc_embed_signup_scroll">
           <form
@@ -84,14 +82,8 @@ const StayUpdatedPage: React.FC = () => {
           >
             <div id="mc_embed_signup_scroll">
               <div id="" className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-EMAIL"
-                  className="stay-updated__input__header"
-                >
-                  Email{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-EMAIL" className="stay-updated__input__header">
+                  Email <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -101,22 +93,14 @@ const StayUpdatedPage: React.FC = () => {
                   onBlur={handleEmailBlur}
                 />
                 {emailError ? (
-                  <div className="stay-updated__input__error">
-                    Invalid email format
-                  </div>
+                  <div className="stay-updated__input__error">Invalid email format</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-FNAME"
-                  className="stay-updated__input__header"
-                >
-                  First name{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-FNAME" className="stay-updated__input__header">
+                  First name <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -126,22 +110,14 @@ const StayUpdatedPage: React.FC = () => {
                   onBlur={handleFirstNameBlur}
                 />
                 {firstNameError ? (
-                  <div className="stay-updated__input__error">
-                    First name is required
-                  </div>
+                  <div className="stay-updated__input__error">First name is required</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-LNAME"
-                  className="stay-updated__input__header"
-                >
-                  Last name{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-LNAME" className="stay-updated__input__header">
+                  Last name <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -151,19 +127,14 @@ const StayUpdatedPage: React.FC = () => {
                   onBlur={handleLastNameBlur}
                 />
                 {lastNameError ? (
-                  <div className="stay-updated__input__error">
-                    Last name is required
-                  </div>
+                  <div className="stay-updated__input__error">Last name is required</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__not-required-fields">
                 <div className="stay-updated__input-wrapper">
-                  <label
-                    htmlFor="mce-COMPANY"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-COMPANY" className="stay-updated__input__header">
                     Company name
                   </label>
                   <input
@@ -176,10 +147,7 @@ const StayUpdatedPage: React.FC = () => {
                   />
                 </div>
                 <div className="stay-updated__input-wrapper">
-                  <label
-                    htmlFor="mce-PHASE"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-PHASE" className="stay-updated__input__header">
                     In which phase is your company in?
                   </label>
                   <select
@@ -197,10 +165,7 @@ const StayUpdatedPage: React.FC = () => {
                   </select>
                 </div>
                 <div className="stay-updated__input-wrapper stay-updated__input-wrapper__bottom">
-                  <label
-                    htmlFor="mce-WWW"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-WWW" className="stay-updated__input__header">
                     Website
                   </label>
                   <input
@@ -214,24 +179,16 @@ const StayUpdatedPage: React.FC = () => {
                 </div>
               </div>
               <div className="stay-updated__bottom-buttons">
-                <WelcomeButton
-                  type="white"
-                  onClick={() => navigate(ROUTES.HOME)}
-                >
+                <WelcomeButton type="white" onClick={() => navigate(ROUTES.HOME)}>
                   Cancel
                 </WelcomeButton>
                 <WelcomeButton
                   type="orange"
                   onClick={() => navigate(ROUTES.HOME)}
                   version={
-                    !lastNameText ||
-                    !firstNameText ||
-                    !emailText ||
-                    emailError ||
-                    firstNameError ||
-                    lastNameError
-                      ? "inactive"
-                      : "filled"
+                    !lastNameText || !firstNameText || !emailText || emailError || firstNameError || lastNameError
+                      ? 'inactive'
+                      : 'filled'
                   }
                 >
                   Done

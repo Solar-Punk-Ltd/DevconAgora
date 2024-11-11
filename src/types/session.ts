@@ -1,4 +1,4 @@
-import { Speaker } from "./speaker";
+import { Speaker } from './speaker';
 
 export interface Session {
   id: string;

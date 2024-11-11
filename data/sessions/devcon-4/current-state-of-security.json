@@ -7,19 +7,8 @@
   "track": "Security",
   "type": "Panel",
   "expertise": "Expert",
-  "tags": [
-    "Security",
-    "panel",
-    "updates"
-  ],
-  "speakers": [
-    "matthew-di-ferrante",
-    "martin-swende",
-    "j-maurelian",
-    "dan-guido",
-    "phil-daian",
-    "kevin-seagraves"
-  ],
+  "tags": ["Security", "panel", "updates"],
+  "speakers": ["matthew-di-ferrante", "martin-swende", "j-maurelian", "dan-guido", "phil-daian", "kevin-seagraves"],
   "sources_youtubeId": "xYhf3jrQg00",
   "sources_ipfsHash": "QmXZBcfTsvxefscAVtxz4q2D7cY4NKhn17L7upRoN4BTPe",
   "sources_swarmHash": "f234afcf3e3b80b92eaa2025e760f51e59823d6b78e4ec328794d37307f3d6b4",

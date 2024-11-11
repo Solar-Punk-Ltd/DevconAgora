@@ -7,11 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "Autonomous",
-    "Worlds"
-  ],
+  "tags": ["Developer Infrastructure", "Autonomous", "Worlds"],
   "speakers": [
     "justin-glibert",
     "remy",

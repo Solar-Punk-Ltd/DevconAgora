@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "shayan-eskandari",
-    "sergii-kravchenko",
-    "john-mardlin",
-    "bernhard-mueller"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["shayan-eskandari", "sergii-kravchenko", "john-mardlin", "bernhard-mueller"],
   "sources_youtubeId": "Zs-P5FSJvGQ",
   "sources_ipfsHash": "QmcDMuJzoGdF56UTw374ywMtewPQmKMXexztNg7fJNGuqm",
   "sources_swarmHash": "b3a4ae2514595a2322f8f7360385919f925cffaeee03cf2a1e973a4bfda8def9",

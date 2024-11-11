@@ -7,16 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Governance & Coordination",
-    "governance",
-    "design",
-    "jam"
-  ],
-  "speakers": [
-    "0xdeniz",
-    "tiago-varandas"
-  ],
+  "tags": ["Governance & Coordination", "governance", "design", "jam"],
+  "speakers": ["0xdeniz", "tiago-varandas"],
   "resources_slides": "/resources/6/dao-governance-design-jam.pdf",
   "slot_start": 1665502200000,
   "slot_end": 1665509400000,

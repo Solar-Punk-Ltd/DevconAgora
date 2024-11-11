@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "Mobile",
-    "wallet connect"
-  ],
-  "speakers": [
-    "carolina-pinzon",
-    "bryan-moreno"
-  ],
+  "tags": ["Developer Infrastructure", "Mobile", "wallet connect"],
+  "speakers": ["carolina-pinzon", "bryan-moreno"],
   "resources_slides": "/resources/6/the-challenges-and-learnings-of-implementing-wallet-connection-on-mobile.pdf",
   "slot_start": 1665664200000,
   "slot_end": 1665664620000,

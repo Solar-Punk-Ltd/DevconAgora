@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "node",
-    "deploying",
-    "technical"
-  ],
-  "speakers": [
-    "carl-youngblood"
-  ],
+  "tags": ["Developer Infrastructure", "node", "deploying", "technical"],
+  "speakers": ["carl-youngblood"],
   "sources_youtubeId": "uRVk3VkMXfo",
   "sources_ipfsHash": "QmSxx2796D8bpbm8qvitgRYYBbqxc2bj2rS7Sz11hZ4qmu",
   "sources_swarmHash": "e9a1b81c7ff0f780ec0705b052a193a9f114caa906ff63d85ab8f1e5521008ca",

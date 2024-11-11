@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "garrett-macdonald"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["garrett-macdonald"],
   "sources_youtubeId": "vEq_9eoDT9o",
   "sources_ipfsHash": "QmeXdMLsPhNTT7aybdrKDuriynu8U6tWCaPuxbfRHVFyMf",
   "sources_swarmHash": "11dd32021cc60244660e6efadc30bc28e0566afee8ac4f232507e14b4ed60953",

@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Developer Infrastructure",
-    "linting",
-    "QA",
-    "testing"
-  ],
-  "speakers": [
-    "han-liu"
-  ],
+  "tags": ["Developer Infrastructure", "linting", "QA", "testing"],
+  "speakers": ["han-liu"],
   "sources_youtubeId": "tCZGgDSAMAs",
   "sources_ipfsHash": "QmXr16iMqccQuSioj81jRT3fwyR4zndaBbXdeCCtWEcbsy",
   "sources_swarmHash": "479c4177ae3e89d2d6e7a1dbf54ac80483cec49e051af823b1814de2c0f5f4b2",

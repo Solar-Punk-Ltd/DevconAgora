@@ -7,14 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Staking & Validator Experience",
-    "eth2",
-    "general"
-  ],
-  "speakers": [
-    "justin-drake"
-  ],
+  "tags": ["Staking & Validator Experience", "eth2", "general"],
+  "speakers": ["justin-drake"],
   "sources_youtubeId": "ixGeIEgdf4Y",
   "sources_ipfsHash": "Qmef3PjNcaPEg4Txr7X621PmCuQ6S3HYzGoTTk1WZcrXx9",
   "sources_swarmHash": "50fe977938d7eb44c4f25fe3c67a37147e5b7e54ba2616f2b03acb3c6c1760d8",

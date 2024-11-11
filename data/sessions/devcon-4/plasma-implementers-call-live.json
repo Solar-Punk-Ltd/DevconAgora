@@ -7,17 +7,8 @@
   "track": "Layer 2s",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "research",
-    "applications",
-    "payments",
-    "exchange",
-    "gas"
-  ],
-  "speakers": [
-    "karl-floersch"
-  ],
+  "tags": ["Layer 2s", "research", "applications", "payments", "exchange", "gas"],
+  "speakers": ["karl-floersch"],
   "sources_youtubeId": "fKs4IKkHpP4",
   "sources_ipfsHash": "QmdjK3UFSpCAH2ZeZvBjF5gf4m83CTH8Vb4FVzYuYyqfg4",
   "duration": 3221,

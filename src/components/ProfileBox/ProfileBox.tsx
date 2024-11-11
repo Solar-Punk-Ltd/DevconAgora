@@ -1,8 +1,10 @@
-import React from "react";
-import "./ProfileBox.scss";
-import { useNavigate } from "react-router-dom";
-import ReferalQRIcon from "../../assets/referal-qr.svg";
-import clsx from "clsx";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+
+import ReferalQRIcon from '../../assets/referal-qr.svg';
+
+import './ProfileBox.scss';
 
 interface ProfileBoxProps {
   title?: string;
@@ -33,36 +35,33 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
     if (navigator.share) {
       navigator
         .share({
-          title: "Check out this profile!",
-          text: "Here is some interesting content.",
+          title: 'Check out this profile!',
+          text: 'Here is some interesting content.',
           url: window.location.origin,
         })
         .then(() => {
-          console.log("Content shared successfully");
+          console.log('Content shared successfully');
         })
         .catch((error) => {
-          console.error("Error sharing content:", error);
+          console.error('Error sharing content:', error);
         });
     } else {
-      console.log("Web Share API not supported in this browser");
+      console.log('Web Share API not supported in this browser');
     }
   };
   return (
     <div className="profile-box">
       <div
         className={clsx({
-          "profile-box__left-content": points < 10,
-          "profile-box__left-content__with-link": points >= 10,
+          'profile-box__left-content': points < 10,
+          'profile-box__left-content__with-link': points >= 10,
         })}
       >
         <div className="profile-box__title">{title}</div>
 
         {linkText && link && points >= 10 && !shareable ? (
           <div>
-            <div
-              className="profile-box__link"
-              onClick={() => handleNavigation(link)}
-            >
+            <div className="profile-box__link" onClick={() => handleNavigation(link)}>
               {linkText}
             </div>
           </div>
@@ -76,8 +75,8 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
         <div className="profile-box__right-content">
           <div
             className={clsx({
-              "profile-box__points-box": points < 10,
-              "profile-box__points-box__ten": points >= 10,
+              'profile-box__points-box': points < 10,
+              'profile-box__points-box__ten': points >= 10,
             })}
           >
             {points}

@@ -7,12 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics"
-  ],
-  "speakers": [
-    "andy-milenius"
-  ],
+  "tags": ["Cryptoeconomics"],
+  "speakers": ["andy-milenius"],
   "sources_youtubeId": "L1erp9Gkesk",
   "sources_ipfsHash": "QmZDFKUZeRP95D8msCrdeseKF2KjzPZgy3A63Bxk96f7q5",
   "sources_swarmHash": "56a566fa33e64a24156f20f17b3ed33ba5c7da26479dc48fd9c98b464f73c2e5",

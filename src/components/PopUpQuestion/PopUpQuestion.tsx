@@ -1,6 +1,8 @@
-import React from "react";
-import "./PopUpQuestion.scss";
-import WelcomeButton from "../WelcomeButton/WelcomeButton";
+import React from 'react';
+
+import WelcomeButton from '../WelcomeButton/WelcomeButton';
+
+import './PopUpQuestion.scss';
 
 interface PopUpQuestionProps {
   question: string;

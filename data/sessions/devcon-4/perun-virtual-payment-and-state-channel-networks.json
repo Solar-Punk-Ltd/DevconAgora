@@ -7,20 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "payment",
-    "state channels",
-    "L2",
-    "layer 2",
-    ""
-  ],
-  "speakers": [
-    "sebastian-faust",
-    "stefan-dziembowski",
-    "lisa-eckey",
-    "kristina-hostakova"
-  ],
+  "tags": ["Layer 2s", "payment", "state channels", "L2", "layer 2", ""],
+  "speakers": ["sebastian-faust", "stefan-dziembowski", "lisa-eckey", "kristina-hostakova"],
   "sources_youtubeId": "cgeELCtqE2s",
   "sources_ipfsHash": "Qmamk2oJo4UebEZcTzdDYwxRJFanzg87rhbW7bmbpQYAsU",
   "sources_swarmHash": "fdf28e7af451ba6dea8745f4c0d04a5442daaae83cdf3eae7cd75aeaf516a4c3",

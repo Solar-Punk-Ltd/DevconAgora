@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "governance",
-    "public_goods",
-    "funding"
-  ],
-  "speakers": [
-    "ben-jones"
-  ],
+  "tags": ["Governance & Coordination", "governance", "public_goods", "funding"],
+  "speakers": ["ben-jones"],
   "resources_slides": "/resources/6/fixing-the-internet-with-layer-2-governance.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757500000,

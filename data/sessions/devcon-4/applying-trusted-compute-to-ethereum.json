@@ -7,13 +7,7 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "computation",
-    "trust",
-    "scalability",
-    "privacy"
-  ],
+  "tags": ["Security", "computation", "trust", "scalability", "privacy"],
   "speakers": [
     "sanjay-bakshi",
     "marley-gray",

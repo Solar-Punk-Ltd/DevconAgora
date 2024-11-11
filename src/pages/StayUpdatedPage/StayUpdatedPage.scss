@@ -9,7 +9,7 @@
 }
 
 .stay-updated__header {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 32px;
   color: white;
@@ -35,7 +35,7 @@
   color: white;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.9);
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   padding: 8px;
@@ -65,7 +65,7 @@
 
 .stay-updated__input__header {
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
 }
@@ -80,7 +80,7 @@
   border: none;
   border-bottom: 1px solid white;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   padding: 8px;
@@ -94,7 +94,7 @@
   border: none;
   border-bottom: 1px solid white;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   padding: 8px;
@@ -105,7 +105,7 @@
 }
 
 .stay-updated__select::after {
-  content: "▼"; /* Egyedi ikon hozzáadása */
+  content: '▼'; /* Egyedi ikon hozzáadása */
   position: absolute;
   right: 10px;
   top: 50%;
@@ -128,7 +128,7 @@
 
 .stay-updated__input__error {
   color: #e8303d;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
 }

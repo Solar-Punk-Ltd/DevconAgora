@@ -7,18 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "ethereumjs",
-    "roadmap"
-  ],
-  "speakers": [
-    "holger-drewes",
-    "jared-wasinger",
-    "casey-detrio",
-    "vinay-pulim",
-    "alex-beregszaszi"
-  ],
+  "tags": ["Developer Infrastructure", "ethereumjs", "roadmap"],
+  "speakers": ["holger-drewes", "jared-wasinger", "casey-detrio", "vinay-pulim", "alex-beregszaszi"],
   "sources_youtubeId": "4hcZVHzBV9A",
   "sources_ipfsHash": "QmPiWu8UQCcecPyZ9BkFgn9nQF2jiF3HUBtN9kDvgV89ad",
   "sources_swarmHash": "a7203ee3c27cb083fc950a4ac238e6eab2da923040ed4c7916ccd9efd1de126f",

@@ -17,9 +17,7 @@
     "validators",
     "stake at home"
   ],
-  "speakers": [
-    "diego-losada"
-  ],
+  "speakers": ["diego-losada"],
   "slot_start": 1665655200000,
   "slot_end": 1665658200000,
   "slot_roomId": "workshop-3",

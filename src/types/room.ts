@@ -6,8 +6,8 @@ export interface Room {
 }
 
 export interface RoomWithUserCounts {
-  url: string,
-  gateway: string,
-  topic: string,
-  userCount?: number
+  url: string;
+  gateway: string;
+  topic: string;
+  userCount?: number;
 }

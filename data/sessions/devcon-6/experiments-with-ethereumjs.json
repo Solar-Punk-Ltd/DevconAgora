@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Experiments",
-    "JavaScript",
-    "Execution"
-  ],
-  "speakers": [
-    "gabriel-rocheleau",
-    "scott-simpson"
-  ],
+  "tags": ["Developer Infrastructure", "Experiments", "JavaScript", "Execution"],
+  "speakers": ["gabriel-rocheleau", "scott-simpson"],
   "resources_slides": "/resources/6/experiments-with-ethereumjs.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665748800000,

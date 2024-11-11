@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "testnets",
-    "infrastructure",
-    "tooling"
-  ],
-  "speakers": [
-    "afri-schoedon"
-  ],
+  "tags": ["Developer Infrastructure", "testnets", "infrastructure", "tooling"],
+  "speakers": ["afri-schoedon"],
   "resources_slides": "/resources/6/post-merge-testnets.pdf",
   "slot_start": 1665495000000,
   "slot_end": 1665496800000,

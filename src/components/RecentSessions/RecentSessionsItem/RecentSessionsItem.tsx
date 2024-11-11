@@ -1,9 +1,11 @@
-import React from "react";
-import "./RecentSessionsItem.scss";
-import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
-import Stage from "../../Stage/Stage";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../../utils/constants";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { ROUTES } from '../../../utils/constants';
+import ActiveVisitors from '../../ActiveVisitors/ActiveVisitors';
+import Stage from '../../Stage/Stage';
+
+import './RecentSessionsItem.scss';
 
 interface RecentSessionsItemProps {
   id: string;
@@ -12,12 +14,7 @@ interface RecentSessionsItemProps {
   activity?: number;
 }
 
-const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({
-  id,
-  title,
-  stage,
-  activity,
-}) => {
+const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({ id, title, stage, activity }) => {
   return (
     <Link to={`${ROUTES.TALKS}/${id}`} className="recent-sessions-item">
       <div className="recent-sessions-item__title">{title}</div>

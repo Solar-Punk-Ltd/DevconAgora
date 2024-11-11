@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "joao-gabriel-carvalho",
-    "richard-moore",
-    "martin-swende",
-    "nick-johnson"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["joao-gabriel-carvalho", "richard-moore", "martin-swende", "nick-johnson"],
   "sources_youtubeId": "gAVKO6iTbOQ",
   "sources_ipfsHash": "QmYAqsivev1cbJhvxRiGK7KhKZ3T8UoRaLdMhx5XgUVzxq",
   "sources_swarmHash": "154e8ff9fbbb78ab198171fb1f4b22285406d55c7414cd24822fd897e60c1185",

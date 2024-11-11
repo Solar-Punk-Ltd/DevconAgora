@@ -8,7 +8,7 @@ steps:
       - .
       - '-f'
       - Dockerfile
-      - '--build-arg' 
+      - '--build-arg'
       - 'BEE_API_URL=${_BEE_API_URL}'
       - '--build-arg'
       - 'DEVCON6_SESSSIONS_HASH=${_DEVCON6_SESSSIONS_HASH}'

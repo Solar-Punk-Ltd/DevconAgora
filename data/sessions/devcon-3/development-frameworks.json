@@ -7,9 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
+  "tags": ["Developer Infrastructure"],
   "speakers": [
     "andy-milenius",
     "conor-svensson",

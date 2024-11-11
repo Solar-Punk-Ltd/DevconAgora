@@ -7,13 +7,8 @@
   "track": "ZKPs: Privacy, Identity, Infrastructure, & More",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "ZKPs: Privacy, Identity, Infrastructure, & More",
-    "zk"
-  ],
-  "speakers": [
-    "adrian-hamelink"
-  ],
+  "tags": ["ZKPs: Privacy, Identity, Infrastructure, & More", "zk"],
+  "speakers": ["adrian-hamelink"],
   "slot_start": 1665657600000,
   "slot_end": 1665658200000,
   "slot_roomId": "workshop-1",

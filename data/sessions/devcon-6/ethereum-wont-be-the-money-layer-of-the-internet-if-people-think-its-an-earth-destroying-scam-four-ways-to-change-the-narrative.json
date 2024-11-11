@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "web3 sentiment",
-    "messaging",
-    "society"
-  ],
-  "speakers": [
-    "james-beck"
-  ],
+  "tags": ["Opportunity & Global Impact", "web3 sentiment", "messaging", "society"],
+  "speakers": ["james-beck"],
   "resources_slides": "/resources/6/ethereum-wont-be-the-money-layer-of-the-internet-if-people-think-its-an-earth-destroying-scam-four-ways-to-change-the-narrative.pdf",
   "slot_start": 1665588600000,
   "slot_end": 1665590400000,

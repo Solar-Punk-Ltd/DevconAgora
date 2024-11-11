@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "MEV",
-    "Auction",
-    "DeFi"
-  ],
-  "speakers": [
-    "alex-vinyas"
-  ],
+  "tags": ["Cryptoeconomics", "MEV", "Auction", "DeFi"],
+  "speakers": ["alex-vinyas"],
   "resources_slides": "/resources/6/the-fight-for-mev.pdf",
   "slot_start": 1665572400000,
   "slot_end": 1665574200000,

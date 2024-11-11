@@ -7,13 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience"
-  ],
-  "speakers": [
-    "jacek-sieka",
-    "hsiao-wei-wang"
-  ],
+  "tags": ["Staking & Validator Experience"],
+  "speakers": ["jacek-sieka", "hsiao-wei-wang"],
   "sources_youtubeId": "0phnWn5ecyw",
   "sources_ipfsHash": "QmVYWcqQeWbBteVxQkYSBpcQGGmKGJgQ4pyrd162NXEYpz",
   "sources_swarmHash": "75f3e2c1ec35e578a78c374ffac9456760d8c22d9c7ee5100512b7e2104ca9ac",

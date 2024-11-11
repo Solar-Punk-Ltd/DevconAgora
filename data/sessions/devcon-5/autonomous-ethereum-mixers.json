@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "ivan-bogatyi"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["ivan-bogatyi"],
   "sources_youtubeId": "qNGskbgOY-E",
   "sources_ipfsHash": "QmUdsXy8F4AhKckGm6h2ub3Xwqj7WFgtuSws2PPfrBBcdJ",
   "sources_swarmHash": "e43687ddfd9af03292d176deab700a1a5a3c38cae64be6508d857787e7cd16dd",

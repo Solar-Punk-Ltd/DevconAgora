@@ -7,20 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "frontrunning",
-    "auctions",
-    "voting",
-    "open-source",
-    "gas"
-  ],
-  "speakers": [
-    "stephane-gosselin",
-    "shayan-eskandari",
-    "tyler-kell",
-    "lorenz-breidenbach"
-  ],
+  "tags": ["Privacy", "frontrunning", "auctions", "voting", "open-source", "gas"],
+  "speakers": ["stephane-gosselin", "shayan-eskandari", "tyler-kell", "lorenz-breidenbach"],
   "sources_youtubeId": "nrKeD44Johs",
   "sources_ipfsHash": "QmeQ9wEvYe52EX79D8irWom2iSN2ziAY7EM6wkfjDoCgfV",
   "sources_swarmHash": "d283fcc4333a3654f749894008d513bbc58868fc6090e7041eb655f89bbfd7a6",

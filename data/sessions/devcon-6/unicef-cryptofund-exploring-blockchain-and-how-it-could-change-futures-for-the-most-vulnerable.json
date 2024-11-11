@@ -7,16 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Cryptocurrency",
-    "impact",
-    "innovation"
-  ],
-  "speakers": [
-    "evelyn-casanova",
-    "sanna-bedi"
-  ],
+  "tags": ["Opportunity & Global Impact", "Cryptocurrency", "impact", "innovation"],
+  "speakers": ["evelyn-casanova", "sanna-bedi"],
   "resources_slides": "/resources/6/unicef-cryptofund-exploring-blockchain-and-how-it-could-change-futures-for-the-most-vulnerable.pdf",
   "slot_start": 1665510000000,
   "slot_end": 1665510600000,

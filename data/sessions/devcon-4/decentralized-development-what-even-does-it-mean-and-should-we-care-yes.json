@@ -7,18 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "dapps",
-    "architecture",
-    "process",
-    "network",
-    "consent"
-  ],
-  "speakers": [
-    "amber-baldet",
-    "patrick-nielsen"
-  ],
+  "tags": ["Developer Infrastructure", "dapps", "architecture", "process", "network", "consent"],
+  "speakers": ["amber-baldet", "patrick-nielsen"],
   "sources_youtubeId": "lpUQZp_QuqM",
   "sources_ipfsHash": "QmZxXUim8YvfTMgQGdtpdLC1fWZ9CLutd1uvCDC32LooCJ",
   "sources_swarmHash": "778739f774c87a3557791d312ef3fc5105a444f4b526dc30f957841fcec81e88",

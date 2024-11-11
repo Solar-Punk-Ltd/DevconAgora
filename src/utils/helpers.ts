@@ -1,17 +1,14 @@
-import { Wallet, hexlify } from "ethers";
-import { Session } from "../types/session";
-import {
-  CATEGORY_NAMES_TO_ID_MAP,
-  DATE_TO_DEVCON_DAY,
-  RESOURCE_IDS,
-} from "../utils/constants";
-import { Signer, Utils, Data } from "@ethersphere/bee-js";
+import { Data, Signer, Utils } from '@ethersphere/bee-js';
+import { hexlify, Wallet } from 'ethers';
+
+import { Session } from '../types/session';
+import { CATEGORY_NAMES_TO_ID_MAP, DATE_TO_DEVCON_DAY, RESOURCE_IDS } from '../utils/constants';
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
-  let shortTitle = title || "No title";
+  let shortTitle = title || 'No title';
   maxTitleLength = maxTitleLength || shortTitle.length;
   if (shortTitle.length > maxTitleLength) {
-    shortTitle = shortTitle.substring(0, maxTitleLength) + "...";
+    shortTitle = shortTitle.substring(0, maxTitleLength) + '...';
   }
   return shortTitle;
 }
@@ -19,28 +16,25 @@ export function shortenTitle(title?: string, maxTitleLength?: number): string {
 // From "2022-10-11T15:30:00.000Z" to "15:30"
 export function dateToTime(date?: string): string {
   if (!date) {
-    return "";
+    return '';
   }
   return new Date(date).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: '2-digit',
+    minute: '2-digit',
     hour12: false,
   });
 }
 
-export function getSessionsByDay(
-  sessions: Map<string, Session[]>,
-  day: string
-): Session[] {
-  if (day === "all") {
+export function getSessionsByDay(sessions: Map<string, Session[]>, day: string): Session[] {
+  if (day === 'all') {
     return Array.from(sessions.values()).flat();
   }
-  return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
+  return sessions.get(DATE_TO_DEVCON_DAY.get(day) || 'Day 1') || [];
 }
 
 export const createMonogram = (name: string) => {
-  const initials = name.split(" ").map((n) => n[0]);
-  return initials.join("").toUpperCase();
+  const initials = name.split(' ').map((n) => n[0]);
+  return initials.join('').toUpperCase();
 };
 
 export function formatTime(timestamp: number) {
@@ -49,13 +43,12 @@ export function formatTime(timestamp: number) {
 
   const formatHM = (date: Date) =>
     date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
+      hour: '2-digit',
+      minute: '2-digit',
       hour12: false,
     });
 
-  const formatDate = (date: Date) =>
-    date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const formatDate = (date: Date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
   if (isSameDay(date, now)) {
     return formatHM(date);
@@ -87,11 +80,11 @@ export function stringToBoolean(str: string | null): boolean {
   if (!str) {
     return false;
   }
-  return str.toLowerCase() === "true";
+  return str.toLowerCase() === 'true';
 }
 
 export function booleanToString(val: boolean): string {
-  return val ? "true" : "false";
+  return val ? 'true' : 'false';
 }
 
 // export function debounce(callback: () => void, delay: number) {
@@ -112,10 +105,10 @@ export function randomThreadId() {
 }
 
 export function textExtract(content: string): string {
-  const modifiedContent = content.replace(/[\s\n]+/g, " ");
+  const modifiedContent = content.replace(/[\s\n]+/g, ' ');
 
   if (modifiedContent.length > 34) {
-    return modifiedContent.substring(0, 34) + "...";
+    return modifiedContent.substring(0, 34) + '...';
   } else {
     return modifiedContent;
   }
@@ -133,10 +126,10 @@ export const getResourceId = (category: string) => {
     if (result) {
       return result;
     } else {
-      return "";
+      return '';
     }
   } else {
-    return "";
+    return '';
   }
 };
 
@@ -150,11 +143,7 @@ export function getSigner(wallet: Wallet): Signer {
   return signer;
 }
 
-export const handleKeyDown = (
-  e: React.KeyboardEvent,
-  key: string,
-  callback: () => void
-) => {
+export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () => void) => {
   if (e.key === key) {
     callback();
   }
@@ -167,11 +156,7 @@ export function isEmpty(obj?: object) {
   return Object.keys(obj).length === 0;
 }
 
-export const findSlotStartIx = (
-  startIx: number,
-  sessionsByDay: Session[],
-  time: number
-): number => {
+export const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time: number): number => {
   for (let i = startIx; i < sessionsByDay.length; i++) {
     const slotStart = sessionsByDay[i].slot_start;
     if (slotStart && new Date(slotStart).getTime() > time) {
@@ -182,23 +167,17 @@ export const findSlotStartIx = (
 };
 
 export const getPrivateKey = () => {
-  const privKey = localStorage.getItem("privKey");
+  const privKey = localStorage.getItem('privKey');
   if (privKey) {
     return privKey;
   } else {
-    return "";
+    return '';
   }
 };
 
 export const isUserRegistered = () => {
   const privKey = getPrivateKey();
-  const username = localStorage.getItem("username");
-  if (
-    privKey &&
-    privKey.slice(2).length === 64 &&
-    username &&
-    username.length > 0
-  )
-    return true;
+  const username = localStorage.getItem('username');
+  if (privKey && privKey.slice(2).length === 64 && username && username.length > 0) return true;
   else return false;
 };

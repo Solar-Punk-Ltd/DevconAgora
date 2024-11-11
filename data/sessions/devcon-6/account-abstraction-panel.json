@@ -7,18 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "banks",
-    "private sector"
-  ],
-  "speakers": [
-    "lightclient",
-    "julien-niset",
-    "yoav-weiss",
-    "vitalik-buterin",
-    "david-hoffman"
-  ],
+  "tags": ["Opportunity & Global Impact", "banks", "private sector"],
+  "speakers": ["lightclient", "julien-niset", "yoav-weiss", "vitalik-buterin", "david-hoffman"],
   "slot_start": 1665680400000,
   "slot_end": 1665684000000,
   "slot_roomId": "talk-5",

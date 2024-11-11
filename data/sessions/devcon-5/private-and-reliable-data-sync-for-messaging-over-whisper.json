@@ -7,16 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "whisper",
-    "messaging",
-    "technical"
-  ],
-  "speakers": [
-    "dean-eigenmann",
-    "oskar-thoren"
-  ],
+  "tags": ["Privacy", "whisper", "messaging", "technical"],
+  "speakers": ["dean-eigenmann", "oskar-thoren"],
   "sources_youtubeId": "zxN-PqYkZ1M",
   "sources_ipfsHash": "QmZ8wUWGcrdYazwD4QU83WWGoRbPwZGuorY1N9wSLhsMFp",
   "sources_swarmHash": "d4446b2756e0944a1f80c351803839dd2caba05c348c18098ed47223b5df09a9",

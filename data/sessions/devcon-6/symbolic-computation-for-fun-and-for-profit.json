@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "solidity",
-    "optimizor",
-    "smart-contracts"
-  ],
-  "speakers": [
-    "hari"
-  ],
+  "tags": ["Developer Infrastructure", "solidity", "optimizor", "smart-contracts"],
+  "speakers": ["hari"],
   "resources_slides": "/resources/6/symbolic-computation-for-fun-and-for-profit.pdf",
   "slot_start": 1665675000000,
   "slot_end": 1665676800000,

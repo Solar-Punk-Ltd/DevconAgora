@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity",
-    "Symbolic Execution",
-    "Formal Verification"
-  ],
-  "speakers": [
-    "leo-alt"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity", "Symbolic Execution", "Formal Verification"],
+  "speakers": ["leo-alt"],
   "resources_slides": "/resources/6/building-an-end-to-end-evm-symbolic-execution-engine-in-solidity.pdf",
   "slot_start": 1665745200000,
   "slot_end": 1665747000000,

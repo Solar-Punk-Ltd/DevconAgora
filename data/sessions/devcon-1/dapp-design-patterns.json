@@ -7,12 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "UX & Design"
-  ],
-  "speakers": [
-    "joris-bontje"
-  ],
+  "tags": ["UX & Design"],
+  "speakers": ["joris-bontje"],
   "sources_youtubeId": "XkJ8mg-R7C0",
   "sources_ipfsHash": "QmUtZe2wP3awzip9R9wrXacrUs3cnbGoXWmgunnKLcQQyk",
   "sources_swarmHash": "c175e8a4d70e027107daf62f8ec0ec262e59eba31122a4f98f82daffa30e822c",

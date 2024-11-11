@@ -7,13 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Cryptoeconomics",
-    "academic"
-  ],
-  "speakers": [
-    "shayan-eskandari"
-  ],
+  "tags": ["Cryptoeconomics", "academic"],
+  "speakers": ["shayan-eskandari"],
   "sources_youtubeId": "tVgto0GtA4I",
   "sources_ipfsHash": "QmRRERdpVFwoPbLfuCdBDDoXisKFz1toaBhquNUwzoTzhN",
   "sources_swarmHash": "8f3d0900d68d1cc528186ceb6f6d6808aa82a9619da5973d73e42f3b99ff8cd9",

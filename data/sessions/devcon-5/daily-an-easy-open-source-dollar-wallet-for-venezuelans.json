@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "alejandro-machado"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["alejandro-machado"],
   "sources_youtubeId": "B-45JJhgCFo",
   "sources_ipfsHash": "QmPyen3BcmY7xgBGevysHDn86agFwrQTwJscKZXDZ6upgo",
   "sources_swarmHash": "fcf63a9274e9c33dc98c172c261babaf5ac0533c094b097fe6668964f9642ca3",

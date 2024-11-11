@@ -7,14 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Privacy",
-    "Technical"
-  ],
-  "speakers": [
-    "konstantin-panarin",
-    "alexander-vlasov"
-  ],
+  "tags": ["Privacy", "Technical"],
+  "speakers": ["konstantin-panarin", "alexander-vlasov"],
   "sources_youtubeId": "a6Cx650qnDk",
   "sources_ipfsHash": "QmSfjLMWA3DTxeZMAb7wNWmXY4DEEcy144QyurWSwD5FmP",
   "sources_swarmHash": "4ce8cac6a5b7819ea026ddcbd97582de515604afbe471357734ea01d5eaf3659",

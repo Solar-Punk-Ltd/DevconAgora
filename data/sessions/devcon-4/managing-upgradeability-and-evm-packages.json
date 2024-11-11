@@ -7,14 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "Zeppelin",
-    "upgradeability"
-  ],
-  "speakers": [
-    "facundo-spagnuolo"
-  ],
+  "tags": ["Security", "Zeppelin", "upgradeability"],
+  "speakers": ["facundo-spagnuolo"],
   "sources_youtubeId": "J0DndcxqboA",
   "sources_ipfsHash": "QmSKrma4tC8z5D2o3uuP89FTvJoiieHpjyzLqUrqSCwNSR",
   "sources_swarmHash": "50d2774b8d1ec21240a5ffe06ae65aad1b118bfa35c86f8b9dd1e96c4d529923",

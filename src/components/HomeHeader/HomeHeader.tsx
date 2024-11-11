@@ -1,31 +1,26 @@
-import React from "react";
-import "./HomeHeader.scss";
-import swarmIcon from "../../assets/swarm-icon.png";
-import ProfilePicture from "../ProfilePicture/ProfilePicture";
-import { Link } from "react-router-dom";
-import { useGlobalState } from "../../GlobalStateContext";
-import { ROUTES } from "../../utils/constants";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import swarmIcon from '../../assets/swarm-icon.png';
+import { useGlobalState } from '../../GlobalStateContext';
+import { ROUTES } from '../../utils/constants';
+import ProfilePicture from '../ProfilePicture/ProfilePicture';
+
+import './HomeHeader.scss';
 
 interface HomeHeaderProps {
   points?: number;
   withGamification?: boolean;
 }
 
-const HomeHeader: React.FC<HomeHeaderProps> = ({
-  points,
-  withGamification,
-}) => {
+const HomeHeader: React.FC<HomeHeaderProps> = ({ points, withGamification }) => {
   const { monogram, setPoints } = useGlobalState();
   return (
     <div className="home-header">
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
-        <div
-          style={withGamification ? { display: "flex" } : { display: "none" }}
-        >
-          <div
-            style={{ fontSize: "10px", display: "flex", alignItems: "center" }}
-          >
+        <div style={withGamification ? { display: 'flex' } : { display: 'none' }}>
+          <div style={{ fontSize: '10px', display: 'flex', alignItems: 'center' }}>
             Version: {process.env.PR_NUMBER} - {process.env.PR_TIMESTAMP}
           </div>
           <button onClick={() => setPoints(1)}>1</button>

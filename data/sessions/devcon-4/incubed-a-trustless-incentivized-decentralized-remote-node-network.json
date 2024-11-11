@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "node",
-    "incentives",
-    "IoT"
-  ],
-  "speakers": [
-    "christoph-jentzsch"
-  ],
+  "tags": ["Layer 2s", "node", "incentives", "IoT"],
+  "speakers": ["christoph-jentzsch"],
   "sources_youtubeId": "Ig42qQHHI1Q",
   "sources_ipfsHash": "QmYQcuHPPxQA3dq14v9iBtrySiWRcFx7SxZPKu7rFezygY",
   "sources_swarmHash": "b6a55fa3b2eca8698cc37ab270c699b982668d11ef3d459b923416bc870a90f2",

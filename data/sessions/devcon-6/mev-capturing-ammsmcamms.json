@@ -7,16 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "AMMs",
-    "MEV",
-    "DEX",
-    ""
-  ],
-  "speakers": [
-    "federico-giacon"
-  ],
+  "tags": ["Layer 2s", "AMMs", "MEV", "DEX", ""],
+  "speakers": ["federico-giacon"],
   "resources_slides": "/resources/6/mev-capturing-ammsmcamms.pdf",
   "slot_start": 1665663000000,
   "slot_end": 1665663600000,

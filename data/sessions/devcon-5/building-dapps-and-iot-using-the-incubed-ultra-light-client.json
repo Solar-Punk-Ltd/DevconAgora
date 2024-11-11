@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "simon-jentzsch",
-    "steffen-kux"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["simon-jentzsch", "steffen-kux"],
   "sources_youtubeId": "a_i3huGvkis",
   "sources_ipfsHash": "QmZR7y1N7KeV7cZHvTyX8cuHE9V49ZzWPjeRYqSoArtpzw",
   "sources_swarmHash": "dfb8cd688c7e7b11f6595ddf09ae19bdf1fb8d21de9bac6e80d7225d40efbf12",

@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "dan-finlay",
-    "erik-marks",
-    "omna-toshniwal"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["dan-finlay", "erik-marks", "omna-toshniwal"],
   "sources_youtubeId": "8c2q9pBkqFU",
   "sources_ipfsHash": "Qmbh2shRMwyaM7inLR5ysXxVJJX9T4rPf83NPjAAE3nGfd",
   "sources_swarmHash": "07096d8e41fe5524de65b874deb50b454c09903d05999390a7a8868ab0861879",

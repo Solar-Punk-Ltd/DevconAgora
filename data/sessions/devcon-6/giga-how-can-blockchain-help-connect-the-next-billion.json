@@ -7,17 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "blockchain for good",
-    "connectivity",
-    "innovation"
-  ],
-  "speakers": [
-    "naroa",
-    "gerben-kijne",
-    "anda-ngcaba"
-  ],
+  "tags": ["Opportunity & Global Impact", "blockchain for good", "connectivity", "innovation"],
+  "speakers": ["naroa", "gerben-kijne", "anda-ngcaba"],
   "slot_start": 1665680400000,
   "slot_end": 1665683400000,
   "slot_roomId": "talk-1",

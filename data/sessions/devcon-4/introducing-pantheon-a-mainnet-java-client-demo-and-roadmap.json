@@ -7,17 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "java",
-    "client",
-    "mainnet"
-  ],
-  "speakers": [
-    "shahan-khatchadourian",
-    "rob-dawson",
-    "daniel-heyman"
-  ],
+  "tags": ["Layer 2s", "java", "client", "mainnet"],
+  "speakers": ["shahan-khatchadourian", "rob-dawson", "daniel-heyman"],
   "sources_youtubeId": "W0jKirZZzZU",
   "sources_ipfsHash": "QmNSx1C8N4NNE8xChbPwjB9h25e8faC1KDkkK2NqLgKhNp",
   "sources_swarmHash": "8e196872d80d910c5c1ec0cb66840653574005eee687da2f37c8e6937c7222e7",

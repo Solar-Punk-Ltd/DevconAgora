@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "ethereum",
-    "foundation"
-  ],
-  "speakers": [
-    "danny-ryan"
-  ],
+  "tags": ["Opportunity & Global Impact", "ethereum", "foundation"],
+  "speakers": ["danny-ryan"],
   "resources_slides": "/resources/6/opening-ceremonies-danny.pdf",
   "slot_start": 1665481500000,
   "slot_end": 1665490500000,

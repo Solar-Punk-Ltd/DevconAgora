@@ -7,17 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "front-running",
-    "miners",
-    "mining",
-    "open-source"
-  ],
-  "speakers": [
-    "lorenz-breidenbach",
-    "tyler-kell"
-  ],
+  "tags": ["Security", "front-running", "miners", "mining", "open-source"],
+  "speakers": ["lorenz-breidenbach", "tyler-kell"],
   "sources_youtubeId": "JxAgNeFg6QM",
   "sources_ipfsHash": "QmUH7SF5dpgdF3mpuaxoJY6QN8GpLYisG87vke49sjAYMe",
   "sources_swarmHash": "2cd6764c96ad47021ff5d3780662ccc4bfa50606402d7fa134946dc40d39601b",

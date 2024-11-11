@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity",
-    "Ethereum en español",
-    "Remix"
-  ],
-  "speakers": [
-    "moritz-stellmacher"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity", "Ethereum en español", "Remix"],
+  "speakers": ["moritz-stellmacher"],
   "resources_slides": "/resources/6/remix-intro-workshop-en-espanol.pdf",
   "slot_start": 1665568800000,
   "slot_end": 1665576000000,

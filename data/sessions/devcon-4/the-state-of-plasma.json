@@ -7,17 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "scaling",
-    "mvp",
-    "zk",
-    "zero knowledge"
-  ],
-  "speakers": [
-    "david-knott",
-    "kelvin-fichter"
-  ],
+  "tags": ["Developer Infrastructure", "scaling", "mvp", "zk", "zero knowledge"],
+  "speakers": ["david-knott", "kelvin-fichter"],
   "sources_youtubeId": "zbgsGI7Embs",
   "sources_ipfsHash": "QmNtrjgbo1y871X8QZgGdUTHuJ3gtZ3NFZf648r3DoHnnJ",
   "sources_swarmHash": "7258faeb92ea803b1b31d1425737afaaa4d0a4198012015f64421fc9e6208287",

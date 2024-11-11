@@ -7,13 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "networks"
-  ],
-  "speakers": [
-    "venkatesh-rao"
-  ],
+  "tags": ["Opportunity & Global Impact", "networks"],
+  "speakers": ["venkatesh-rao"],
   "resources_slides": "/resources/6/there-are-many-alternatives-unlocking-civilizational-hypercomplexity-with-ethereum.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665492900000,

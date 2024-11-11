@@ -1,14 +1,8 @@
-import { Bee, Signer, Reference } from "@ethersphere/bee-js";
-import {
-  FEEDTYPE_SEQUENCE,
-  ADDRESS_HEX_LENGTH,
-  DEFAULT_URL,
-} from "../utils/constants";
+import { Bee, Reference, Signer } from '@ethersphere/bee-js';
 
-export async function getFeedUpdate(
-  owner: string,
-  rawTopic: string
-): Promise<string> {
+import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEEDTYPE_SEQUENCE } from '../utils/constants';
+
+export async function getFeedUpdate(owner: string, rawTopic: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   const topic = bee.makeFeedTopic(rawTopic);
   const feedReader = bee.makeFeedReader(FEEDTYPE_SEQUENCE, topic, owner);
@@ -16,39 +10,36 @@ export async function getFeedUpdate(
     const feedUpdateRes = await feedReader.download();
     return feedUpdateRes.reference as string;
   } catch (e) {
-    console.log("feed download error", e);
-    return "";
+    console.log('feed download error', e);
+    return '';
   }
 }
 
 export async function getData(ref: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   if (ref.length !== ADDRESS_HEX_LENGTH) {
-    console.log("session hash invalid");
-    return "";
+    console.log('session hash invalid');
+    return '';
   }
 
   try {
     const data = (await bee.downloadData(ref)).text();
     return data;
   } catch (e) {
-    console.log("session " + ref + " download/cast error", e);
-    return "";
+    console.log('session ' + ref + ' download/cast error', e);
+    return '';
   }
 }
 
-export async function uploadData(
-  stamp: string,
-  data: string | Uint8Array
-): Promise<string> {
+export async function uploadData(stamp: string, data: string | Uint8Array): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   try {
-    console.log("uploading data to swarm");
+    console.log('uploading data to swarm');
     const sessionsReference = await bee.uploadData(stamp, data);
     return sessionsReference.reference;
   } catch (error) {
-    console.log("error data upload", error);
-    return "";
+    console.log('error data upload', error);
+    return '';
   }
 }
 
@@ -57,31 +48,26 @@ export async function updateFeed(
   signer: Signer,
   rawTopic: string,
   stamp: string,
-  ref: string
+  ref: string,
 ): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   const topic = bee.makeFeedTopic(rawTopic);
   try {
-    const feedManif = await bee.createFeedManifest(
-      stamp,
-      FEEDTYPE_SEQUENCE,
-      topic,
-      owner
-    );
-    console.log("created feed manifest", feedManif.reference);
+    const feedManif = await bee.createFeedManifest(stamp, FEEDTYPE_SEQUENCE, topic, owner);
+    console.log('created feed manifest', feedManif.reference);
     const feedWriter = bee.makeFeedWriter(FEEDTYPE_SEQUENCE, topic, signer);
     const feedUpdateRes = await feedWriter.upload(stamp, ref as Reference);
     return feedUpdateRes.reference;
   } catch (error) {
-    console.log("error feed update: ", error);
-    return "";
+    console.log('error feed update: ', error);
+    return '';
   }
 }
 
 // adds "live_x" suffix to the topic if raw is true, so that topics can be versioned if needed
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
-    return topic + "live_1";
+    return topic + 'live_1';
   }
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   return bee.makeFeedTopic(topic);

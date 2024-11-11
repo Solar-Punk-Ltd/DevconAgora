@@ -25,9 +25,7 @@
     "fork",
     "bribe"
   ],
-  "speakers": [
-    "vlad-zamfir"
-  ],
+  "speakers": ["vlad-zamfir"],
   "sources_youtubeId": "txJ4gXBCiYo",
   "sources_ipfsHash": "QmR4wquKNr9jnW7oj9gyGcbEh2tvdPoazeXL7NxV1uvZcs",
   "sources_swarmHash": "89530aa31cec6e49c4f341cb4bc5228370875cbaaf026effe5084c641eb399f8",

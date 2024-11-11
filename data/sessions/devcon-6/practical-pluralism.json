@@ -7,19 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "pluralism",
-    "developers"
-  ],
-  "speakers": [
-    "kevin-owocki",
-    "griff-green",
-    "auryn",
-    "karl-floersch",
-    "trent-van-epps",
-    "abbey"
-  ],
+  "tags": ["Developer Infrastructure", "pluralism", "developers"],
+  "speakers": ["kevin-owocki", "griff-green", "auryn", "karl-floersch", "trent-van-epps", "abbey"],
   "resources_slides": "/resources/6/practical-pluralism.pdf",
   "slot_start": 1665575400000,
   "slot_end": 1665576000000,

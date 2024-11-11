@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "viktor-tron",
-    "daniel-nagy",
-    "aron-fischer",
-    "louis-holbrook"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["viktor-tron", "daniel-nagy", "aron-fischer", "louis-holbrook"],
   "sources_youtubeId": "kT7BgOH49Sk",
   "sources_ipfsHash": "QmdXu1Vs2Gan9uLAFBgMnwqBGtRB1gMX4TPH1gss5A9GRD",
   "sources_swarmHash": "80ff2e9f01a127c0259b2bed425dbaeee64ef372e7ba76a8bf6d96a48f0733d0",

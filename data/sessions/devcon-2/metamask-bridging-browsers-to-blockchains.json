@@ -21,9 +21,7 @@
     "lessons",
     "society"
   ],
-  "speakers": [
-    "aaron-davis"
-  ],
+  "speakers": ["aaron-davis"],
   "sources_youtubeId": "EIc4UmRmQSg",
   "sources_ipfsHash": "QmYzYJxu9DabFM6meph8zreLNewnfTX66N6VZ82aZek7F3",
   "sources_swarmHash": "e70b0d35c269cff5128cd181e624893122c7cd8148c143c73d27240725ac921d",

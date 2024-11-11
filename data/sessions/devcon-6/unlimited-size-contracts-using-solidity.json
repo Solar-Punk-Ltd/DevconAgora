@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidigy",
-    "dev tools",
-    "smart contracts"
-  ],
-  "speakers": [
-    "igor-yalovoy"
-  ],
+  "tags": ["Developer Infrastructure", "Solidigy", "dev tools", "smart contracts"],
+  "speakers": ["igor-yalovoy"],
   "resources_slides": "/resources/6/unlimited-size-contracts-using-solidity.pdf",
   "slot_start": 1665495000000,
   "slot_end": 1665498600000,

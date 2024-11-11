@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "stefan-george"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["stefan-george"],
   "sources_youtubeId": "697rfPXMxM4",
   "sources_ipfsHash": "QmbFw1KnsAjYQ7QfYpy2R72E4mWVkR2FFME9GaHgGsL8HD",
   "sources_swarmHash": "3aabc5ace2f2334c55c257d89138379cc481a53be56aafd627006b90593045d3",

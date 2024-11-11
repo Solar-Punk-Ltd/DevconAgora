@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Governance & Coordination",
-    "Research",
-    "Public",
-    "Goods"
-  ],
-  "speakers": [
-    "connor-spelliscy"
-  ],
+  "tags": ["Governance & Coordination", "Research", "Public", "Goods"],
+  "speakers": ["connor-spelliscy"],
   "resources_slides": "/resources/6/open-sourcing-and-coordinating-dao-research-for-the-public-good.pdf",
   "slot_start": 1665595800000,
   "slot_end": 1665596400000,

@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "wayne-hennessy-barrett"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["wayne-hennessy-barrett"],
   "sources_youtubeId": "pfYYZLZG2vY",
   "sources_ipfsHash": "QmTu1NS7vUgJwcC6rAfDpHvNCLmDzvz5CMUjE5JdPjBQad",
   "sources_swarmHash": "5ae213756dfe441c625ea9e40eed0a44bae644ecb0ef355336842be4b275f3d3",

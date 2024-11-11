@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "Developer Experience",
-    "Developer Community"
-  ],
-  "speakers": [
-    "sam-flamini"
-  ],
+  "tags": ["Developer Infrastructure", "Developer Experience", "Developer Community"],
+  "speakers": ["sam-flamini"],
   "resources_slides": "/resources/6/building-a-thriving-developer-community.pdf",
   "slot_start": 1665669600000,
   "slot_end": 1665671400000,

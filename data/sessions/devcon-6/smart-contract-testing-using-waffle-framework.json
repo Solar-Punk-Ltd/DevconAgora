@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "smart contract testing",
-    "waffle",
-    "security"
-  ],
-  "speakers": [
-    "bartek-rutkowski"
-  ],
+  "tags": ["Developer Infrastructure", "smart contract testing", "waffle", "security"],
+  "speakers": ["bartek-rutkowski"],
   "resources_slides": "/resources/6/smart-contract-testing-using-waffle-framework.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665586800000,

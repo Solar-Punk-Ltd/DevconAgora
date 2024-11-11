@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "nullifiers",
-    "zero knowledge",
-    "signatures"
-  ],
-  "speakers": [
-    "aayush-gupta"
-  ],
+  "tags": ["Privacy", "nullifiers", "zero knowledge", "signatures"],
+  "speakers": ["aayush-gupta"],
   "resources_slides": "/resources/6/non-interactive-unique-nullifiers-the-key-to-the-next-era-of-zk.pdf",
   "slot_start": 1665669600000,
   "slot_end": 1665671400000,

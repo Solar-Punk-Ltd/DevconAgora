@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "dimitar-dimitrov",
-    "anton-permenev",
-    "hubert-ritzdorf",
-    "petar-tsankov"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["dimitar-dimitrov", "anton-permenev", "hubert-ritzdorf", "petar-tsankov"],
   "sources_youtubeId": "tq5XH3JedqM",
   "sources_ipfsHash": "QmPuX9NV1Yvv927pCaxjY5qWYpBTU6Bysph6XLx6LnegEg",
   "sources_swarmHash": "786ac5072ed758aaa24c57d4aad00059c72dd722f6c8d0137942d2a1a01a931e",

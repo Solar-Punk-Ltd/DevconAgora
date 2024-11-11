@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "web3",
-    "storage"
-  ],
-  "speakers": [
-    "qi-zhou"
-  ],
+  "tags": ["Developer Infrastructure", "web3", "storage"],
+  "speakers": ["qi-zhou"],
   "resources_slides": "/resources/6/on-the-future-of-web3-paving-the-way-to-end-to-end-fully-decentralized-web.pdf",
   "slot_start": 1665747000000,
   "slot_end": 1665747600000,

@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "metrics",
-    "consensus",
-    "software practices"
-  ],
-  "speakers": [
-    "cayman-nava"
-  ],
+  "tags": ["Layer 1 Protocol", "metrics", "consensus", "software practices"],
+  "speakers": ["cayman-nava"],
   "resources_slides": "/resources/6/lodestar-metrics-driven-development.pdf",
   "slot_start": 1665666000000,
   "slot_end": 1665667800000,

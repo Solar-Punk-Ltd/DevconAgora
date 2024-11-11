@@ -7,16 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "StarkNet",
-    "L2",
-    "ZKPs"
-  ],
-  "speakers": [
-    "omar-espejel",
-    "henri"
-  ],
+  "tags": ["Layer 2s", "StarkNet", "L2", "ZKPs"],
+  "speakers": ["omar-espejel", "henri"],
   "slot_start": 1665590400000,
   "slot_end": 1665594000000,
   "slot_roomId": "workshop-4",

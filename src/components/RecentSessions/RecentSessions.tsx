@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./RecentSessions.scss";
-import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
-import { useGlobalState } from "../../GlobalStateContext";
-import { ROUTES, STAGES_MAP } from "../../utils/constants";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { useGlobalState } from '../../GlobalStateContext';
+import { ROUTES, STAGES_MAP } from '../../utils/constants';
+
+import RecentSessionsItem from './RecentSessionsItem/RecentSessionsItem';
+
+import './RecentSessions.scss';
 
 const RecentSessions: React.FC = () => {
   const { recentSessions, talkActivity } = useGlobalState();
-  const [activity, setActivity] = useState<Map<string, number>>(
-    new Map<string, number>()
-  );
+  const [activity, setActivity] = useState<Map<string, number>>(new Map<string, number>());
 
   useEffect(() => {
     const tmpActivity = new Map<string, number>();
     for (let i = 0; i < recentSessions.length; i++) {
-      tmpActivity.set(
-        recentSessions[i].id,
-        talkActivity.get(recentSessions[i].id) || 0
-      );
+      tmpActivity.set(recentSessions[i].id, talkActivity.get(recentSessions[i].id) || 0);
     }
     setActivity(tmpActivity);
   }, [talkActivity]);
@@ -37,7 +35,7 @@ const RecentSessions: React.FC = () => {
               key={session.id}
               id={session.id}
               title={session.title}
-              stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
+              stage={STAGES_MAP.get(session.slot_roomId || '') || ''}
               activity={activity.get(session.id) || 0}
             />
           );

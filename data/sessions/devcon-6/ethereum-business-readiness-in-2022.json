@@ -7,16 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "business",
-    "enterprise",
-    "case study"
-  ],
-  "speakers": [
-    "dan-shaw",
-    "daniel-burnett"
-  ],
+  "tags": ["Opportunity & Global Impact", "business", "enterprise", "case study"],
+  "speakers": ["dan-shaw", "daniel-burnett"],
   "resources_slides": "/resources/6/ethereum-business-readiness-in-2022.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665493200000,

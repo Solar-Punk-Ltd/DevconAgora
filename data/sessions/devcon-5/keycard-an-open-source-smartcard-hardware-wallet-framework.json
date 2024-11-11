@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "michele-balistreri",
-    "andrea-franz",
-    "guy-louis-grau"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["michele-balistreri", "andrea-franz", "guy-louis-grau"],
   "sources_youtubeId": "D3uw3tyo99I",
   "sources_ipfsHash": "QmVLffNc4KPHDrUGtwamE294Zvx49n3bzecLj9NRp9xi2L",
   "sources_swarmHash": "a9988e65edc645cd5544cf7328fd88db9cc774061c6ce07b924b82c8bcbf1083",

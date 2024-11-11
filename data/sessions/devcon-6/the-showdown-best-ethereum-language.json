@@ -7,17 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "solidity",
-    "vyper",
-    "fe"
-  ],
-  "speakers": [
-    "hari",
-    "leo-alt",
-    "alex-beregszaszi"
-  ],
+  "tags": ["Developer Infrastructure", "solidity", "vyper", "fe"],
+  "speakers": ["hari", "leo-alt", "alex-beregszaszi"],
   "resources_slides": "/resources/6/the-showdown-best-ethereum-language.pdf",
   "slot_start": 1665680400000,
   "slot_end": 1665684000000,

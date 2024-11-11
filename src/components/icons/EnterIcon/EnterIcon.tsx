@@ -1,5 +1,6 @@
-import React from "react";
-import "./EnterIcon.scss";
+import React from 'react';
+
+import './EnterIcon.scss';
 
 interface EnterIconProps {
   color?: string;
@@ -9,13 +10,7 @@ interface EnterIconProps {
 const EnterIcon: React.FC<EnterIconProps> = ({ color, onClick }) => {
   return (
     <div onClick={onClick} className="enter-icon">
-      <svg
-        width="25"
-        height="24"
-        viewBox="0 0 25 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_2281_5995)">
           <path
             d="M0.5 8C0.5 3.58172 4.08172 0 8.5 0H16.5C20.9183 0 24.5 3.58172 24.5 8V16C24.5 20.4183 20.9183 24 16.5 24H8.5C4.08172 24 0.5 20.4183 0.5 16V8Z"
@@ -35,8 +30,8 @@ const EnterIcon: React.FC<EnterIconProps> = ({ color, onClick }) => {
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor={color ? color : "#8C72AE"} />
-            <stop offset="1" stopColor={color ? color : "#873DE7"} />
+            <stop stopColor={color ? color : '#8C72AE'} />
+            <stop offset="1" stopColor={color ? color : '#873DE7'} />
           </linearGradient>
           <clipPath id="clip0_2281_5995">
             <path

@@ -7,13 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "technical"
-  ],
-  "speakers": [
-    "james-prestwich"
-  ],
+  "tags": ["Staking & Validator Experience", "technical"],
+  "speakers": ["james-prestwich"],
   "sources_youtubeId": "1dmPPRkow_c",
   "sources_ipfsHash": "QmSy5Vz7Kb3HBWQ2A7pX7W1buU65BJekhsXsH5rhN5y9Jg",
   "sources_swarmHash": "bb338e3ca86f43f0098ab749f217af1476f93558a3da64f922a096b238086e9a",

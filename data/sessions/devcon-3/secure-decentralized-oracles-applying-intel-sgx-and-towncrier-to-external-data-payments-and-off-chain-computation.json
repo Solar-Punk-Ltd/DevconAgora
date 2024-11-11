@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "sergey-nazarov"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["sergey-nazarov"],
   "sources_youtubeId": "Zu6uZ1PnRU4",
   "sources_ipfsHash": "QmRqAc5eQua2pTDd5wEq5SvtN3UAxz1Cj9zWEEgsUqCEJm",
   "sources_swarmHash": "21a1761b82904dec5c20cd9b043558e40eedd1a70eecccf1ca95088a6b519c88",

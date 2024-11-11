@@ -7,18 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Cryptoeconomics",
-    "VC",
-    "venture",
-    "capital",
-    "funding",
-    "investing",
-    "general"
-  ],
-  "speakers": [
-    "jehan-chu"
-  ],
+  "tags": ["Cryptoeconomics", "VC", "venture", "capital", "funding", "investing", "general"],
+  "speakers": ["jehan-chu"],
   "sources_youtubeId": "Ex78bKxHYbM",
   "sources_ipfsHash": "QmSvdgpgwZPeQqgXqCG8RtR9nJs4pkAxczzh2MkUdQPfsJ",
   "sources_swarmHash": "781f96183c7b2f7e945d49625a10a1aa16d227b91feb9fe3af36fab3125d6d35",

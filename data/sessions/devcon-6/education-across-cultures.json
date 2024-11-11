@@ -7,19 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Education",
-    "Culture",
-    "Language"
-  ],
-  "speakers": [
-    "camila-garzon",
-    "yanyan-ho",
-    "divyanshu-dagar",
-    "ulas-erdogan",
-    "luka"
-  ],
+  "tags": ["Opportunity & Global Impact", "Education", "Culture", "Language"],
+  "speakers": ["camila-garzon", "yanyan-ho", "divyanshu-dagar", "ulas-erdogan", "luka"],
   "slot_start": 1665592500000,
   "slot_end": 1665594600000,
   "slot_roomId": "workshop-1",

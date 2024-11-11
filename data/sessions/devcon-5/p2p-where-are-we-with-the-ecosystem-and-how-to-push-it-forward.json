@@ -7,12 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Staking & Validator Experience"
-  ],
-  "speakers": [
-    "chris-waclawek"
-  ],
+  "tags": ["Staking & Validator Experience"],
+  "speakers": ["chris-waclawek"],
   "sources_youtubeId": "Dbhhpme0jVo",
   "sources_ipfsHash": "QmaQArKQTB14zvoF7NuWLwWqB4WbhGD5WtSWuiu2weqw8E",
   "duration": 13982,

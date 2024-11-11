@@ -7,16 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "DeSoc",
-    "Decentralization",
-    "Soulbound Tokens"
-  ],
-  "speakers": [
-    "puja-ohlhaver",
-    "paula-berman"
-  ],
+  "tags": ["Opportunity & Global Impact", "DeSoc", "Decentralization", "Soulbound Tokens"],
+  "speakers": ["puja-ohlhaver", "paula-berman"],
   "slot_start": 1665590400000,
   "slot_end": 1665597000000,
   "slot_roomId": "workshop-3",

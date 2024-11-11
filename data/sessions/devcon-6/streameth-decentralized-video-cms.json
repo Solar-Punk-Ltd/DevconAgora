@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "content distribution",
-    "opensource",
-    ""
-  ],
-  "speakers": [
-    "pablo-voorvaart"
-  ],
+  "tags": ["Opportunity & Global Impact", "content distribution", "opensource", ""],
+  "speakers": ["pablo-voorvaart"],
   "resources_slides": "/resources/6/streameth-decentralized-video-cms.pdf",
   "slot_start": 1665590400000,
   "slot_end": 1665591900000,

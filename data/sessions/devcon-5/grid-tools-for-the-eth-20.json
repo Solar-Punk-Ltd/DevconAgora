@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "marc-garreau"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["marc-garreau"],
   "sources_youtubeId": "orzj6gkqCqw",
   "sources_ipfsHash": "QmVjPCvGhkkTcdCZ4dpkfG5RXXLgUfqEsBYSUExhvLz9e5",
   "sources_swarmHash": "1088600e473c25582a9106fde1c5ca365cb110e21d14f5163c12844ac04485bc",

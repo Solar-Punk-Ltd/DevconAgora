@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "timothy-mccallum",
-    "hung-ying-tai",
-    "michael-yuan"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["timothy-mccallum", "hung-ying-tai", "michael-yuan"],
   "sources_youtubeId": "eSMyt8ceW2k",
   "sources_ipfsHash": "QmSwjhHGM4ozGfEQcwmEFZ323oJvRduxKQzfJnVA2SAMBM",
   "sources_swarmHash": "920d4e6a7200f46fc144323c48fb4f6c3026b9ee8317bd7d2f09d0cc72e13070",

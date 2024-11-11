@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "EFF",
-    "Privacy",
-    "Human Rights"
-  ],
-  "speakers": [
-    "kurt-opsahl"
-  ],
+  "tags": ["Opportunity & Global Impact", "EFF", "Privacy", "Human Rights"],
+  "speakers": ["kurt-opsahl"],
   "resources_slides": "/resources/6/closing-kurt-opsahl.pdf",
   "slot_start": 1665762000000,
   "slot_end": 1665765000000,

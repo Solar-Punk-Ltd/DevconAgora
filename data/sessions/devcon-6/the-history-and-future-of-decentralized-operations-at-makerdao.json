@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "MakerDAO",
-    "scalability",
-    "decentralization"
-  ],
-  "speakers": [
-    "wouter-kampmann"
-  ],
+  "tags": ["Governance & Coordination", "MakerDAO", "scalability", "decentralization"],
+  "speakers": ["wouter-kampmann"],
   "resources_slides": "/resources/6/the-history-and-future-of-decentralized-operations-at-makerdao.pdf",
   "slot_start": 1665748800000,
   "slot_end": 1665750300000,

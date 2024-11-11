@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "Fuel",
-    "Modular Execution Layer",
-    "Rollup"
-  ],
-  "speakers": [
-    "john-adler"
-  ],
+  "tags": ["Layer 2s", "Fuel", "Modular Execution Layer", "Rollup"],
+  "speakers": ["john-adler"],
   "resources_slides": "/resources/6/fuel-scaling-ethereum-with-the-fastest-modular-execution-layer.pdf",
   "slot_start": 1665509400000,
   "slot_end": 1665510900000,

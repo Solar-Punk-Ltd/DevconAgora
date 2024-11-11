@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "Decentralization",
-    "ICO",
-    "Whales"
-  ],
-  "speakers": [
-    "christine-kim"
-  ],
+  "tags": ["Staking & Validator Experience", "Decentralization", "ICO", "Whales"],
+  "speakers": ["christine-kim"],
   "resources_slides": "/resources/6/a-breakdown-of-ethereum-supply-distribution-since-genesis.pdf",
   "slot_start": 1665498600000,
   "slot_end": 1665500400000,

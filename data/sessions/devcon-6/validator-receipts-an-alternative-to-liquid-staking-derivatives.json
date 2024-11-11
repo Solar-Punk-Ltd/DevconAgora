@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "staking",
-    "tokenization",
-    "decentralization"
-  ],
-  "speakers": [
-    "steve-berryman"
-  ],
+  "tags": ["Cryptoeconomics", "staking", "tokenization", "decentralization"],
+  "speakers": ["steve-berryman"],
   "resources_slides": "/resources/6/validator-receipts-an-alternative-to-liquid-staking-derivatives.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665493200000,

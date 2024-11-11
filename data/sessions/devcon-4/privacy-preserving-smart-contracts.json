@@ -7,16 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "TEE",
-    "ZKP",
-    "zkproofs",
-    "sMPC"
-  ],
-  "speakers": [
-    "julian-koh"
-  ],
+  "tags": ["Privacy", "TEE", "ZKP", "zkproofs", "sMPC"],
+  "speakers": ["julian-koh"],
   "sources_youtubeId": "LIfdI3Bk7Sw",
   "sources_ipfsHash": "QmbyZXsBscnnoHtpK4JUa93PEoDd1nRn2kr28oMsFPduaH",
   "sources_swarmHash": "7c25e2d394418096a6254bfd2c90d55558e962433543e8f086879ba901500ea7",

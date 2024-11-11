@@ -7,14 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "security",
-    "technical"
-  ],
-  "speakers": [
-    "martin-holst-swende"
-  ],
+  "tags": ["Security", "security", "technical"],
+  "speakers": ["martin-holst-swende"],
   "sources_youtubeId": "wLcyIgblIxE",
   "sources_ipfsHash": "QmXwZLXAw1SughQibTF9oud3pij6paFNahSuMUS3nukHAx",
   "sources_swarmHash": "d27c6c1166c3c51d9cf17dc6b59e1f1ad66877d3cb2f7bbd1cd2d21a2ab4e6bf",

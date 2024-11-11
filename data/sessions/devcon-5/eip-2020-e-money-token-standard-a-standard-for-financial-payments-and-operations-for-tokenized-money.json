@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "daniel-lehrner",
-    "fernando-paris"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["daniel-lehrner", "fernando-paris"],
   "sources_youtubeId": "aqy1u3hRtsY",
   "sources_ipfsHash": "QmdJEPb2YWq9sKgKcTYEtchyEmfxHpxciR2mPmeDoVEqVw",
   "sources_swarmHash": "b696ad10f92e8ff9c6562670f4c80a2d7813d1503f481e7a4415e2862d58eff5",

@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity",
-    "Foundry",
-    "cross-chain applications (xapps)"
-  ],
-  "speakers": [
-    "odysseas"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity", "Foundry", "cross-chain applications (xapps)"],
+  "speakers": ["odysseas"],
   "resources_slides": "/resources/6/lessons-from-the-nomad-hack.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665743400000,

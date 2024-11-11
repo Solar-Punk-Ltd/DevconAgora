@@ -7,17 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "dapp",
-    "multichain",
-    "public goods",
-    "tools"
-  ],
-  "speakers": [
-    "justyna-broniszewska",
-    "michal-sieczkowski"
-  ],
+  "tags": ["Developer Infrastructure", "dapp", "multichain", "public goods", "tools"],
+  "speakers": ["justyna-broniszewska", "michal-sieczkowski"],
   "resources_slides": "/resources/6/how-to-build-a-multilayer-dapp-in-less-than-30-minutes.pdf",
   "slot_start": 1665666000000,
   "slot_end": 1665669600000,

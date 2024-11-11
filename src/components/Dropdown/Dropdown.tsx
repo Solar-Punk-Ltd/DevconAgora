@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
-import "./Dropdown.scss";
-import clsx from "clsx";
-import DropdownIcon from "../icons/DropdownIcon/DropdownIcon";
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
+
+import DropdownIcon from '../icons/DropdownIcon/DropdownIcon';
+
+import './Dropdown.scss';
 
 interface DropdownProps {
   items: string[];
@@ -10,12 +12,7 @@ interface DropdownProps {
   changesWhenOpen?: (isOpen: boolean) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  items,
-  activeItem,
-  onClick,
-  changesWhenOpen,
-}) => {
+const Dropdown: React.FC<DropdownProps> = ({ items, activeItem, onClick, changesWhenOpen }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const toggleDropdown = () => {
@@ -30,25 +27,25 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div onClick={toggleDropdown}>
       {isOpen ? <div className="dropdown__open__background"></div> : null}
-      <div className={clsx("dropdown__button", { dropdown__open: isOpen })}>
+      <div className={clsx('dropdown__button', { dropdown__open: isOpen })}>
         <div>{items[activeItem]}</div>
         <DropdownIcon isDown={!isOpen} />
         {isOpen ? (
           <div
             className="dropdown__open__items-container"
             style={{
-              display: "grid",
+              display: 'grid',
               gridTemplateColumns: `repeat(2, 1fr)`,
               gridTemplateRows: `repeat(${Math.ceil(items.length / 2)}, 1fr)`,
-              columnGap: "40px",
-              gridAutoFlow: "column",
+              columnGap: '40px',
+              gridAutoFlow: 'column',
             }}
           >
             {items.map((item, index) => {
               return (
                 <div
                   key={item}
-                  className={clsx("dropdown__open__item", {
+                  className={clsx('dropdown__open__item', {
                     dropdown__open__item__active: index === activeItem,
                   })}
                   onClick={() => onClick(index)}

@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "billy-rennekamp"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["billy-rennekamp"],
   "sources_youtubeId": "Y8Gcr_mrYFw",
   "sources_ipfsHash": "QmQrv9shyLt55LoZt5cAtDde8wayWiTZ29VCHguRAGgfYv",
   "sources_swarmHash": "65760ae8ad502a8d635d85b313068762860fcace4067cfd48c520cfd75fa194b",

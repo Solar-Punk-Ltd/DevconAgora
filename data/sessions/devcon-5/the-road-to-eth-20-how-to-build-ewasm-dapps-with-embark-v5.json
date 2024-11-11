@@ -7,17 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "michael-bradley",
-    "iuri-m",
-    "eric-mastro",
-    "pascal-precht",
-    "richard-ramos"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["michael-bradley", "iuri-m", "eric-mastro", "pascal-precht", "richard-ramos"],
   "sources_youtubeId": "t2LgFXxcFtc",
   "sources_ipfsHash": "QmQnbm36MntwUHNrzTv7pcsRThJcNTyzsURZzu3VxbKdLu",
   "sources_swarmHash": "f4e70f6d197792f37f8f65a98e0a240f93016e14381117bdd7eaf7a6bf2ee3d6",

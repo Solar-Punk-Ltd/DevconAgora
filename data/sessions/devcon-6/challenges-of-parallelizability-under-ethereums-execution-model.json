@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 1 Protocol",
-    "parallel execution",
-    "optimistic concurrency control",
-    "deterministic scheduling"
-  ],
-  "speakers": [
-    "peter-garamvolgyi"
-  ],
+  "tags": ["Layer 1 Protocol", "parallel execution", "optimistic concurrency control", "deterministic scheduling"],
+  "speakers": ["peter-garamvolgyi"],
   "resources_slides": "/resources/6/challenges-of-parallelizability-under-ethereums-execution-model.pdf",
   "slot_start": 1665655800000,
   "slot_end": 1665656400000,

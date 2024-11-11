@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy ",
-    "data",
-    "monetization",
-    "commodification"
-  ],
-  "speakers": [
-    "jesse-leimgruber"
-  ],
+  "tags": ["Privacy ", "data", "monetization", "commodification"],
+  "speakers": ["jesse-leimgruber"],
   "sources_youtubeId": "_bRSOC8K1kc",
   "sources_ipfsHash": "QmNsdPLVwp9Wa6MaNA3TjJCZ2MWc2sLpLHfTdf3g3oTtjt",
   "sources_swarmHash": "10d29bfd9d818bf9ec6b95785ad648d2b54fb4c6b69956cfab696f4b69181757",

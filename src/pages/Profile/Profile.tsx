@@ -1,13 +1,15 @@
-import React from "react";
-import "./Profile.scss";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { useGlobalState } from "../../GlobalStateContext";
-import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import ProfileBox from "../../components/ProfileBox/ProfileBox";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
-import Settings from "../../components/Settings/Settings";
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import HomeBackground from '../../assets/welcome-glass-effect.png';
+import NavigationHeader from '../../components/NavigationHeader/NavigationHeader';
+import ProfileBox from '../../components/ProfileBox/ProfileBox';
+import ProfilePicture from '../../components/ProfilePicture/ProfilePicture';
+import Settings from '../../components/Settings/Settings';
+import { useGlobalState } from '../../GlobalStateContext';
+import { ROUTES } from '../../utils/constants';
+
+import './Profile.scss';
 
 const Profile: React.FC = () => {
   const { username, monogram, points } = useGlobalState();
@@ -21,11 +23,7 @@ const Profile: React.FC = () => {
         </div>
         <div className="profile__content__datas">
           <div className="profile__content__background">
-            <img
-              src={HomeBackground}
-              alt=""
-              className="profile__content__background__image"
-            />
+            <img src={HomeBackground} alt="" className="profile__content__background__image" />
           </div>
           <div className="profile__content__datas__user">
             <div className="profile-creation__username">Nickname</div>
@@ -47,15 +45,8 @@ const Profile: React.FC = () => {
             showContent={true}
             shareable={true}
           />
-          <Link
-            to={ROUTES.HOWDOESITWORK}
-            className="profile__content__datas__how-does-it-work"
-          >
-            <ProfileBox
-              title="How does it work?"
-              showPoints={false}
-              showContent={false}
-            />
+          <Link to={ROUTES.HOWDOESITWORK} className="profile__content__datas__how-does-it-work">
+            <ProfileBox title="How does it work?" showPoints={false} showContent={false} />
           </Link>
         </div>
       </div>

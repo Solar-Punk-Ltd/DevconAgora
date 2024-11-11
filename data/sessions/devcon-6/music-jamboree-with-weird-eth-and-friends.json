@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "music",
-    "parody",
-    "weird"
-  ],
-  "speakers": [
-    "ben-jones"
-  ],
+  "tags": ["Opportunity & Global Impact", "music", "parody", "weird"],
+  "speakers": ["ben-jones"],
   "resources_slides": "/resources/6/music-jamboree-with-weird-eth-and-friends.pdf",
   "slot_start": 1665761400000,
   "slot_end": 1665762000000,

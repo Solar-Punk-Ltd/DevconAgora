@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Depression",
-    "Story Telling",
-    "Mental Health"
-  ],
-  "speakers": [
-    "piper-merriam"
-  ],
+  "tags": ["Opportunity & Global Impact", "Depression", "Story Telling", "Mental Health"],
+  "speakers": ["piper-merriam"],
   "resources_slides": "/resources/6/the-power-of-stories.pdf",
   "slot_start": 1665594000000,
   "slot_end": 1665594600000,

@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Cryptoeconomics",
-    "MEV",
-    "algorithmic game theory"
-  ],
-  "speakers": [
-    "tarun-chitra",
-    "guillermo-angeris"
-  ],
+  "tags": ["Cryptoeconomics", "MEV", "algorithmic game theory"],
+  "speakers": ["tarun-chitra", "guillermo-angeris"],
   "resources_slides": "/resources/6/cost-of-feudalism-towards-a-theory-of-mev.pdf",
   "slot_start": 1665588600000,
   "slot_end": 1665590400000,

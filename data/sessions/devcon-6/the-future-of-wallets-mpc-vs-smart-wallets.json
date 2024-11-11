@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "mpc",
-    "multi-party computation",
-    "ux",
-    "smart wallets"
-  ],
-  "speakers": [
-    "ivo-georgiev"
-  ],
+  "tags": ["Developer Infrastructure", "mpc", "multi-party computation", "ux", "smart wallets"],
+  "speakers": ["ivo-georgiev"],
   "resources_slides": "/resources/6/the-future-of-wallets-mpc-vs-smart-wallets.pdf",
   "slot_start": 1665750000000,
   "slot_end": 1665750600000,

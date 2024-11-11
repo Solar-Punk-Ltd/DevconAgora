@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "Formal",
-    "Verification",
-    "Bugs"
-  ],
-  "speakers": [
-    "uri-kirstein"
-  ],
+  "tags": ["Security", "Formal", "Verification", "Bugs"],
+  "speakers": ["uri-kirstein"],
   "resources_slides": "/resources/6/bad-proofs-in-formal-verification.pdf",
   "slot_start": 1665590400000,
   "slot_end": 1665592200000,

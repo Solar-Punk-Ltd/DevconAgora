@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "Staking",
-    "MEV",
-    "Derivatives"
-  ],
-  "speakers": [
-    "julian-traversa"
-  ],
+  "tags": ["Cryptoeconomics", "Staking", "MEV", "Derivatives"],
+  "speakers": ["julian-traversa"],
   "resources_slides": "/resources/6/amplifying-consensus-participation-with-blockspace-markets.pdf",
   "slot_start": 1665675000000,
   "slot_end": 1665676800000,

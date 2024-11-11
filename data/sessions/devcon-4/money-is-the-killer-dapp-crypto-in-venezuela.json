@@ -16,10 +16,7 @@
     "store of value",
     "currency"
   ],
-  "speakers": [
-    "alejandro-machado",
-    "eduardo-gomez"
-  ],
+  "speakers": ["alejandro-machado", "eduardo-gomez"],
   "sources_youtubeId": "aHe8xJK2lb0",
   "sources_ipfsHash": "QmdrbJ8m49vx895xcfAFzcrbxVzRRBHjASUR4rcnwPaNg6",
   "sources_swarmHash": "abb9ebaf67f87fccfedf390f3d25be76c882d04e40e5b06b587f13485f9f80f3",

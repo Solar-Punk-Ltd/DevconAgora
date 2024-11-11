@@ -1,7 +1,9 @@
-import React from "react";
-import "./NavigationHeader.scss";
-import { useNavigate } from "react-router-dom";
-import LeftNavigationIcon from "../icons/LeftNavigationIcon/LeftNavigationIcon";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import LeftNavigationIcon from '../icons/LeftNavigationIcon/LeftNavigationIcon';
+
+import './NavigationHeader.scss';
 
 interface NavigationHeaderProps {
   backgroundColor?: string;
@@ -23,7 +25,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     ? to.charAt(1).toUpperCase() + to.slice(2)
     : toText
     ? toText.charAt(1).toUpperCase() + toText.slice(2)
-    : "";
+    : '';
 
   const handleNavigation = () => {
     if (saveQuestionBeforeLeave) {
@@ -39,10 +41,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     }
   };
   return (
-    <div
-      className="navigation-header__wrapper"
-      style={{ backgroundColor: backgroundColor }}
-    >
+    <div className="navigation-header__wrapper" style={{ backgroundColor: backgroundColor }}>
       <div className="navigation-header" onClick={handleNavigation}>
         <div className="navigation-header__link">
           <LeftNavigationIcon />

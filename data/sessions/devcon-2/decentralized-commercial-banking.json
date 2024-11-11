@@ -21,9 +21,7 @@
     "fiat",
     "collateral"
   ],
-  "speakers": [
-    "dominic-williams"
-  ],
+  "speakers": ["dominic-williams"],
   "sources_youtubeId": "QVWjKX7P2FA",
   "sources_ipfsHash": "QmRKZc3JN27qWW8wd5gB8eeaDrL3LUkSPQR9uLu51nqQta",
   "sources_swarmHash": "5854d7f21ab7a3630cd52b16ce4830f10dfe94b03cca0bee82afab77d781fc3a",

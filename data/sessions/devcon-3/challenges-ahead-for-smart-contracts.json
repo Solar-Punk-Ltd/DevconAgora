@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "emin-gun-sirer"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["emin-gun-sirer"],
   "sources_youtubeId": "QguQmsSv33k",
   "sources_ipfsHash": "QmUMbtnMrT3e34AKMs9TaK7Sk1rMyfakhN2SVHhCtD2mJy",
   "sources_swarmHash": "02016348ed7b07eb21ba4726deeaae18d054ceca40895535eeb3fe90efa999ee",

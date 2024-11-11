@@ -1,6 +1,8 @@
-import React from "react";
-import "./CategoryIndicator.scss";
-import CategorySymbolIcon from "../icons/CategorySymbolIcon/CategorySymbolIcon";
+import React from 'react';
+
+import CategorySymbolIcon from '../icons/CategorySymbolIcon/CategorySymbolIcon';
+
+import './CategoryIndicator.scss';
 
 interface CategoryIndicatorProps {
   name: string;

@@ -21,9 +21,7 @@
     "monad",
     "metering"
   ],
-  "speakers": [
-    "lucius-greg-meredith"
-  ],
+  "speakers": ["lucius-greg-meredith"],
   "sources_youtubeId": "uzahKc_ukfM",
   "sources_ipfsHash": "QmPQESZ4X76yqranNMKmCACLGfhXdq8bYxrJHbLN3zCk2k",
   "sources_swarmHash": "09069b30b39b6429f79eb5b5a6a1c78f642743c2237f9135cfd2801bf8fa2566",

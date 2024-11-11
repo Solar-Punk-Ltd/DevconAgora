@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "node",
-    "decentralization",
-    "ethereum"
-  ],
-  "speakers": [
-    "johns-gresham"
-  ],
+  "tags": ["Staking & Validator Experience", "node", "decentralization", "ethereum"],
+  "speakers": ["johns-gresham"],
   "resources_slides": "/resources/6/why-and-how-to-run-a-node-no-eth-required.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665586200000,

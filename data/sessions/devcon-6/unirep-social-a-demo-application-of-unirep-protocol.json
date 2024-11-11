@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "zk"
-  ],
-  "speakers": [
-    "ya-wen-jeng"
-  ],
+  "tags": ["Privacy", "zk"],
+  "speakers": ["ya-wen-jeng"],
   "slot_start": 1665673200000,
   "slot_end": 1665673800000,
   "slot_roomId": "workshop-1",

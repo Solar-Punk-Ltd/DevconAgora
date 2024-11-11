@@ -7,18 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "airswap",
-    "trading",
-    "geth",
-    "infura",
-    "infrastructure"
-  ],
-  "speakers": [
-    "adam-link",
-    "don-mosites"
-  ],
+  "tags": ["Developer Infrastructure", "airswap", "trading", "geth", "infura", "infrastructure"],
+  "speakers": ["adam-link", "don-mosites"],
   "sources_youtubeId": "vl-ZCOEoYio",
   "sources_ipfsHash": "QmPKWauCMfzBQcUWhFsKYykV8ejVECp4SUd7ADb1Q7WSak",
   "sources_swarmHash": "a7ffd9c98a0a9abb458aeda2caf7b2ec335c94a4bb98531381cc4cf3adde67b2",

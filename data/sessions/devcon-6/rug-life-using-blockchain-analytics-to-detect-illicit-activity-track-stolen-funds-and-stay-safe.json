@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "hack",
-    "scam",
-    "rug"
-  ],
-  "speakers": [
-    "heidi-wilder"
-  ],
+  "tags": ["Security", "hack", "scam", "rug"],
+  "speakers": ["heidi-wilder"],
   "resources_slides": "/resources/6/rug-life-using-blockchain-analytics-to-detect-illicit-activity-track-stolen-funds-and-stay-safe.pdf",
   "slot_start": 1665594000000,
   "slot_end": 1665595800000,

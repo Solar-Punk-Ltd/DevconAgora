@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "solidity",
-    "updates"
-  ],
-  "speakers": [
-    "erik-kundt"
-  ],
+  "tags": ["Developer Infrastructure", "solidity", "updates"],
+  "speakers": ["erik-kundt"],
   "sources_youtubeId": "a3NBhuhNJaw",
   "sources_ipfsHash": "QmX84xKz8N5j8DDJkYGspgo77Ft7Cfc58TtE6NqgXoJFRq",
   "sources_swarmHash": "ce7f04761af5f3bb992297412475e047a29e1363b525ebbd2a5d1e91e782c9b0",

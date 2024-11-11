@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "jacob-eberhardt"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["jacob-eberhardt"],
   "sources_youtubeId": "sSlrywb5J_0",
   "sources_ipfsHash": "QmVsYC3bMktfFMLEhJDNmDqfCtkH5pgtvrs8VyY1zpdt8g",
   "sources_swarmHash": "4baa05c43bf6b4a7c1917d008d590c0afe02cb84c80e735537cb3813f96996de",

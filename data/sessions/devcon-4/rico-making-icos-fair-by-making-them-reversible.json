@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "ICO",
-    "initial coin offering"
-  ],
-  "speakers": [
-    "fabian-vogelsteller"
-  ],
+  "tags": ["Governance & Coordination", "ICO", "initial coin offering"],
+  "speakers": ["fabian-vogelsteller"],
   "sources_youtubeId": "3CA9kTX0Tb4",
   "sources_ipfsHash": "QmbRdCp6MSuJpoZjotRYh5KDMLmm3CZ3J7UiCtzfgubJL2",
   "sources_swarmHash": "e200687502e914a825478f3f70ce4e033b8bae01363a329da3c7c6fd80b1c86d",

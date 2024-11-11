@@ -7,16 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "explorer",
-    "validators",
-    "staking"
-  ],
-  "speakers": [
-    "patrick-pfeiffer",
-    "stefan-starflinger"
-  ],
+  "tags": ["Staking & Validator Experience", "explorer", "validators", "staking"],
+  "speakers": ["patrick-pfeiffer", "stefan-starflinger"],
   "resources_slides": "/resources/6/run-your-own-beaconchain.pdf",
   "slot_start": 1665505800000,
   "slot_end": 1665508800000,

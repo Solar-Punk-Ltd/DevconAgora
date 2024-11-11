@@ -7,16 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Opportunity & Global Impact",
-    "opensource",
-    "privacy",
-    "local-first-software",
-    "data-ownership"
-  ],
-  "speakers": [
-    "konstantinos-paparas"
-  ],
+  "tags": ["Opportunity & Global Impact", "opensource", "privacy", "local-first-software", "data-ownership"],
+  "speakers": ["konstantinos-paparas"],
   "resources_slides": "/resources/6/rotki-why-its-open-source-and-local-first-and-why-should-you-care.pdf",
   "slot_start": 1665757800000,
   "slot_end": 1665759300000,

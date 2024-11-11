@@ -1,17 +1,18 @@
-import React from "react";
-import { useState } from "react";
-import { useGlobalState } from "../../GlobalStateContext";
-import "./HomePage.scss";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentSessions from "../../components/RecentSessions/RecentSessions";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import HomeHeader from "../../components/HomeHeader/HomeHeader";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import Spaces from "../../components/Spaces/Spaces";
-import Chat from "../Chat/Chat";
-import { BatchId } from "@ethersphere/bee-js";
-import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import { LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import React, { useState } from 'react';
+import { BatchId } from '@ethersphere/bee-js';
+
+import HomeBackground from '../../assets/welcome-glass-effect.png';
+import DevConMainBox from '../../components/DevConMainBox/DevConMainBox';
+import HomeHeader from '../../components/HomeHeader/HomeHeader';
+import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
+import RecentSessions from '../../components/RecentSessions/RecentSessions';
+import Spaces from '../../components/Spaces/Spaces';
+import { useGlobalState } from '../../GlobalStateContext';
+import { CATEGORY_NAMES_TO_ID_MAP, LOBBY_TITLE } from '../../utils/constants';
+import { getPrivateKey, getResourceId } from '../../utils/helpers';
+import Chat from '../Chat/Chat';
+
+import './HomePage.scss';
 
 interface HomePageProps {
   withGamification?: boolean;
@@ -77,17 +78,12 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
           nickname={username}
           gsocResourceId={getResourceId(selectedChat)}
           gateway={
-            orderedList.find(
-              (room) =>
-                room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
-            )?.gateway || undefined
+            orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined
           }
           topMenuColor={undefined}
           backAction={() => setSelectedChat(null)}
           key={selectedChat}
-          activeNumber={anyRoomUserCount(
-            CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
-          )}
+          activeNumber={anyRoomUserCount(CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))}
         />
       )}
     </div>

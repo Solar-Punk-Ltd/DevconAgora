@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "Security techniques",
-    "code quality",
-    "rounding errors"
-  ],
-  "speakers": [
-    "raoul-schaffranek"
-  ],
+  "tags": ["Security", "Security techniques", "code quality", "rounding errors"],
+  "speakers": ["raoul-schaffranek"],
   "resources_slides": "/resources/6/tackling-rounding-errors-with-precision-analysis.pdf",
   "slot_start": 1665500400000,
   "slot_end": 1665502200000,

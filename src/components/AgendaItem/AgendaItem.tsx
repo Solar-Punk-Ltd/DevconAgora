@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "./AgendaItem.scss";
-import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
-import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
-import Stage from "../../components/Stage/Stage";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
-import { booleanToString, stringToBoolean } from "../../utils/helpers";
-import clsx from "clsx";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+
+import CategoryIndicator from '../../components/CategoryIndicator/CategoryIndicator';
+import HeartIcon from '../../components/icons/HeartIcon/HeartIcon';
+import Stage from '../../components/Stage/Stage';
+import { ROUTES } from '../../utils/constants';
+import { booleanToString, stringToBoolean } from '../../utils/helpers';
+
+import './AgendaItem.scss';
 
 interface AgendaItemProps {
   id: string;
@@ -51,8 +53,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
 
   return (
     <div
-      className={clsx("agenda-item", {
-        "agenda-item__comment-version": commentVersion,
+      className={clsx('agenda-item', {
+        'agenda-item__comment-version': commentVersion,
       })}
       style={{ backgroundColor, borderRadius, paddingRight }}
       onClick={() => {
@@ -63,8 +65,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
     >
       <div className="agenda-item__main">
         <div
-          className={clsx("agenda-item__main__time", {
-            "agenda-item__main__time__comment-version": commentVersion,
+          className={clsx('agenda-item__main__time', {
+            'agenda-item__main__time__comment-version': commentVersion,
           })}
         >
           <div>{startDate}</div>
@@ -74,9 +76,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           <div className="agenda-item__main__content__title">{title}</div>
           <div className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
-            {category ? (
-              <CategoryIndicator name={category || "no track"} />
-            ) : null}
+            {category ? <CategoryIndicator name={category || 'no track'} /> : null}
           </div>
         </div>
       </div>

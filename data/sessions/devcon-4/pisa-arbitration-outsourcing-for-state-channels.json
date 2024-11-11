@@ -7,13 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "state channels"
-  ],
-  "speakers": [
-    "patrick-mccorry"
-  ],
+  "tags": ["Layer 2s", "state channels"],
+  "speakers": ["patrick-mccorry"],
   "sources_youtubeId": "Om_zLYC8BvM",
   "sources_ipfsHash": "QmXi8pScLckmsRhDYbu3hfQDSbjanNxpKKEL3QHQ43GVUR",
   "sources_swarmHash": "e85e04c04a099886e96c740f7abba6b103245455b24d438f08d5924fedba9f91",

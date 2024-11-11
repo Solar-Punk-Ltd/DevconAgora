@@ -7,18 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "library",
-    "proposals"
-  ],
-  "speakers": [
-    "beltran-berrocal",
-    "aqeel-mohammad",
-    "alejandro-machado",
-    "laura-giron",
-    "gustavo-esquinca"
-  ],
+  "tags": ["UX & Design", "library", "proposals"],
+  "speakers": ["beltran-berrocal", "aqeel-mohammad", "alejandro-machado", "laura-giron", "gustavo-esquinca"],
   "sources_youtubeId": "TS6krLxJWr4",
   "sources_ipfsHash": "QmT64UdRvmAR75jWjeC33rJksgwJnLfZJ6Rh315tgkEaSC",
   "sources_swarmHash": "023272f2483c57df4d04a189e86b62caff2cc4e632fe673fc5263f3e787c6416",

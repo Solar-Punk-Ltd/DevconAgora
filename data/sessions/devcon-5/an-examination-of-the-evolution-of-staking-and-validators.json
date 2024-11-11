@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Staking & Validator Experience",
-    "staking",
-    "eth2",
-    "general"
-  ],
-  "speakers": [
-    "jun-soo-jk-kim"
-  ],
+  "tags": ["Staking & Validator Experience", "staking", "eth2", "general"],
+  "speakers": ["jun-soo-jk-kim"],
   "sources_youtubeId": "9qVpFMWWkHc",
   "sources_ipfsHash": "QmTGaZrv8NSaVLCB8UCXK8AXkDuzCYcBhWmGnfmqCvyVck",
   "sources_swarmHash": "389a3121054ffdb93e267545f90d05f52ae6673d03e50748780c5eda014741f3",

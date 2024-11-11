@@ -7,17 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "EIP",
-    "upgrades",
-    "implementation",
-    "technical"
-  ],
-  "speakers": [
-    "danno-ferrin",
-    "tim-beiko"
-  ],
+  "tags": ["Layer 1 Protocol", "EIP", "upgrades", "implementation", "technical"],
+  "speakers": ["danno-ferrin", "tim-beiko"],
   "sources_youtubeId": "vsA57h052hU",
   "sources_ipfsHash": "QmNQUwu7twByWV25sJKrbaB6465ou4Q1ZWc85VdwPnbMxC",
   "sources_swarmHash": "c8cdf6b3b8628a79ca4f5660544c70ea8087edbadcf42421611e4945753f4f23",

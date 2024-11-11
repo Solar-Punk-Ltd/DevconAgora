@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import "./ClaimRewardPage.scss";
-import HomeBackground from "../../assets/registration-glass-effect.png";
-import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../GlobalStateContext";
-import { useNavigate } from "react-router-dom";
-import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
-import { ethers } from "ethers";
-import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
+import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ethers } from 'ethers';
+
+import HomeBackground from '../../assets/registration-glass-effect.png';
+import CopyIcon from '../../components/icons/CopyIcon/CopyIcon';
+import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
+import { useGlobalState } from '../../GlobalStateContext';
+import { GIFTCODE_KEY, ROUTES } from '../../utils/constants';
+import { getPrivateKey, isUserRegistered } from '../../utils/helpers';
+
+import './ClaimRewardPage.scss';
 
 const ClaimRewardPage: React.FC = () => {
   const { username } = useGlobalState();
@@ -23,18 +25,18 @@ const ClaimRewardPage: React.FC = () => {
     } else if (!nonceRequested) {
       nonceRequested = true;
       try {
-        fetch(process.env.BACKEND_API_URL + "/nonce/" + username).then((resp) =>
+        fetch(process.env.BACKEND_API_URL + '/nonce/' + username).then((resp) =>
           resp.text().then(async (data) => {
-            console.log("nonce fetched", data);
+            console.log('nonce fetched', data);
             if (isUserRegistered()) {
               const wallet = new ethers.Wallet(getPrivateKey());
               const flatSig = await wallet.signMessage(data);
               try {
-                fetch(process.env.BACKEND_API_URL + "/redeem", {
-                  method: "POST",
+                fetch(process.env.BACKEND_API_URL + '/redeem', {
+                  method: 'POST',
                   headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
                     username: username,
@@ -49,16 +51,16 @@ const ClaimRewardPage: React.FC = () => {
                         localStorage.setItem(GIFTCODE_KEY, data);
                       }
                     }
-                  })
+                  }),
                 );
               } catch (error) {
-                console.log("error fetching redeem: ", error);
+                console.log('error fetching redeem: ', error);
               }
             }
-          })
+          }),
         );
       } catch (error) {
-        console.log("error fetching nonce: ", error);
+        console.log('error fetching nonce: ', error);
       }
     }
   });
@@ -72,44 +74,30 @@ const ClaimRewardPage: React.FC = () => {
   return (
     <div className="claim-reward">
       <div className="claim-reward__background">
-        <img
-          src={HomeBackground}
-          alt=""
-          className="claim-reward__background__img"
-        />
+        <img src={HomeBackground} alt="" className="claim-reward__background__img" />
       </div>
       <div className="claim-reward__main-content">
         <div className="claim-reward__main-content__header">
-          Claim{" "}
-          <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>
+          Claim <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>
         </div>
         <div className="claim-reward__main-content-wrapper">
           <div className="claim-reward__main-content__content">
             <div className="claim-reward__text-box">
-              This code is personalised for you only. Please save this code and
-              use it as described on the previous screen.
+              This code is personalised for you only. Please save this code and use it as described on the previous
+              screen.
             </div>
             <div className="claim-reward__code">
               <div className="claim-reward__code__header">Giftcode</div>
               <div className="claim-reward__code__input-wrapper">
-                <input
-                  type="text"
-                  ref={inputRef}
-                  className="claim-reward__code__input"
-                />
+                <input type="text" ref={inputRef} className="claim-reward__code__input" />
                 <CopyIcon onClick={handleCopyClick} />
               </div>
             </div>
+            <div className="claim-reward__text-box">You will find this information in your profile from now on.</div>
             <div className="claim-reward__text-box">
-              You will find this information in your profile from now on.
-            </div>
-            <div className="claim-reward__text-box">
-              Available codes are limited. In case there are no more codes
-              available Swarm is still awesome. Check out the magic{" "}
-              <a
-                href="https://github.com/ethersphere/awesome-swarm"
-                className="claim-reward__text-box__link"
-              >
+              Available codes are limited. In case there are no more codes available Swarm is still awesome. Check out
+              the magic{' '}
+              <a href="https://github.com/ethersphere/awesome-swarm" className="claim-reward__text-box__link">
                 here!
               </a>
             </div>
@@ -125,9 +113,7 @@ const ClaimRewardPage: React.FC = () => {
             </WelcomeButton>
             <WelcomeButton
               type="orange"
-              onClick={() =>
-                (window.location.href = `${window.location.origin}/subscription.html`)
-              }
+              onClick={() => (window.location.href = `${window.location.origin}/subscription.html`)}
             >
               Keep in touch
             </WelcomeButton>

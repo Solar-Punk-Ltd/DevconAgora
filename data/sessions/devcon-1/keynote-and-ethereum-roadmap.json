@@ -27,12 +27,7 @@
     "client",
     "browser"
   ],
-  "speakers": [
-    "vitalik-buterin",
-    "jeffrey-wilcke",
-    "alex-van-de-sande",
-    "gavin-wood"
-  ],
+  "speakers": ["vitalik-buterin", "jeffrey-wilcke", "alex-van-de-sande", "gavin-wood"],
   "sources_youtubeId": "BUARih8_f68",
   "sources_ipfsHash": "QmS8CnrCeFG21fgTQB9HRTPjHXyP5xNHMmE3jzG4M6ZpLf",
   "sources_swarmHash": "efabf2c7398f174679e3b0dbb739748c5a5a76d892f1ef3796f279e0ca2a3e0e",

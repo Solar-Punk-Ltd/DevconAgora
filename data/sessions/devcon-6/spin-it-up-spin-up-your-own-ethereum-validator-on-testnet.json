@@ -7,16 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "Validation",
-    "Infrastructure",
-    "Engineering"
-  ],
-  "speakers": [
-    "jennifer-parak",
-    "gabriella-sofia"
-  ],
+  "tags": ["Staking & Validator Experience", "Validation", "Infrastructure", "Engineering"],
+  "speakers": ["jennifer-parak", "gabriella-sofia"],
   "slot_start": 1665752400000,
   "slot_end": 1665759000000,
   "slot_roomId": "workshop-4",

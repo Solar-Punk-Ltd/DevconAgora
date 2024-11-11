@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "abigael-titcomb"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["abigael-titcomb"],
   "sources_youtubeId": "gvlxxkiZNDw",
   "sources_ipfsHash": "QmY4QCLmTwNDw67EzSibT537L2HUWwfbzhxbCFoX83Vhwa",
   "sources_swarmHash": "23758e38a840811974ab9e80c9451953b87b96eff9f5cc82865f7e494e377a39",

@@ -7,17 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "Casper",
-    "ETH2.0",
-    "formal verification",
-    "FFG/CBC",
-    "Technical"
-  ],
-  "speakers": [
-    "ryuya-nakamura"
-  ],
+  "tags": ["Security", "Casper", "ETH2.0", "formal verification", "FFG/CBC", "Technical"],
+  "speakers": ["ryuya-nakamura"],
   "sources_youtubeId": "3tqKqKtmQV8",
   "sources_ipfsHash": "QmS5xnt988JCXPPrBuUXExrz8wbxWwYXcR1vrwFDEAtacU",
   "sources_swarmHash": "f7eb252cc090d6737d95e5200499ec47289a84b80bbb09666504541a3a89a6b6",

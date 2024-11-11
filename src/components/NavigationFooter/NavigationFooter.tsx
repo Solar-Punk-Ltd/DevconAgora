@@ -1,26 +1,27 @@
-import React from "react";
-import "./NavigationFooter.scss";
-import { Link, useLocation } from "react-router-dom";
-import HomeIcon from "../icons/HomeIcon/HomeIcon";
-import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
-import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
-import { ROUTES } from "../../utils/constants";
-import clsx from "clsx";
-import NotesIcon from "../icons/NotesIcon/NotesIcon";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import clsx from 'clsx';
+
+import { ROUTES } from '../../utils/constants';
+import AgendaIcon from '../icons/AgendaIcon/AgendaIcon';
+import HomeIcon from '../icons/HomeIcon/HomeIcon';
+import NotesIcon from '../icons/NotesIcon/NotesIcon';
+import RoomsIcon from '../icons/RoomsIcon/RoomsIcon';
+
+import './NavigationFooter.scss';
 
 const NavigationFooter: React.FC = () => {
   const location = useLocation();
 
   const getColor = (path: string) => {
-    return location.pathname === path ? "#8C72AE" : "black";
+    return location.pathname === path ? '#8C72AE' : 'black';
   };
   return (
     <div className="navigation-footer">
       <Link to={ROUTES.HOME}>
         <div
-          className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.HOME,
+          className={clsx('navigation-footer__item-container', {
+            'navigation-footer__item-container__active': location.pathname === ROUTES.HOME,
           })}
         >
           <HomeIcon color={getColor(ROUTES.HOME)} />
@@ -29,9 +30,8 @@ const NavigationFooter: React.FC = () => {
       </Link>
       <Link to={ROUTES.AGENDA}>
         <div
-          className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.AGENDA,
+          className={clsx('navigation-footer__item-container', {
+            'navigation-footer__item-container__active': location.pathname === ROUTES.AGENDA,
           })}
         >
           <AgendaIcon color={getColor(ROUTES.AGENDA)} />
@@ -40,9 +40,8 @@ const NavigationFooter: React.FC = () => {
       </Link>
       <Link to={ROUTES.SPACES}>
         <div
-          className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.SPACES,
+          className={clsx('navigation-footer__item-container', {
+            'navigation-footer__item-container__active': location.pathname === ROUTES.SPACES,
           })}
         >
           <RoomsIcon color={getColor(ROUTES.SPACES)} />
@@ -51,9 +50,8 @@ const NavigationFooter: React.FC = () => {
       </Link>
       <Link to={ROUTES.NOTES}>
         <div
-          className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.NOTES,
+          className={clsx('navigation-footer__item-container', {
+            'navigation-footer__item-container__active': location.pathname === ROUTES.NOTES,
           })}
         >
           <NotesIcon color={getColor(ROUTES.NOTES)} />

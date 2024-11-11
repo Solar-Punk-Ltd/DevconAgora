@@ -19,9 +19,7 @@
     "communication",
     "collaboration"
   ],
-  "speakers": [
-    "vinay-gupta"
-  ],
+  "speakers": ["vinay-gupta"],
   "sources_youtubeId": "T6_30eKQeN8",
   "sources_ipfsHash": "QmTun3rbU8TQVQ3En498aAc69czpejxgsy4bppUXDyRw4K",
   "sources_swarmHash": "1cf5dffaf5faf6f7d4c164efbeef61eaff0763d75195848eba51c504e822fbfb",

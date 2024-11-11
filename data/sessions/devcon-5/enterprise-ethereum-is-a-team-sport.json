@@ -18,9 +18,7 @@
     "value",
     "general"
   ],
-  "speakers": [
-    "nadia-hewett"
-  ],
+  "speakers": ["nadia-hewett"],
   "sources_youtubeId": "e-CNFgwq24k",
   "sources_ipfsHash": "QmYSCNg7RPW7S26GXu3xcb82wDQjS66J1o6kqyta95Vkgb",
   "sources_swarmHash": "c84d9a9f0bfb768ff6943def948303d784d10a3d0f0af147bd561691d5982639",

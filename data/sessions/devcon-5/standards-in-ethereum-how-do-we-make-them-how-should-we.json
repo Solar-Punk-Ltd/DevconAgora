@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "daniel-burnett",
-    "jory-burson",
-    "nick-johnson",
-    "chaals-neville",
-    "charles-stlouis"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["daniel-burnett", "jory-burson", "nick-johnson", "chaals-neville", "charles-stlouis"],
   "sources_youtubeId": "zuUJ3J3SCEM",
   "sources_ipfsHash": "QmNtiYNdte85MhBhqv5hfWWXdP2Ksqc3GwmzpomEq5FzxC",
   "sources_swarmHash": "635295e7a82d6cac1e7bd8b5ed0fcce26318e0abdf64a8e658dea5172928216d",

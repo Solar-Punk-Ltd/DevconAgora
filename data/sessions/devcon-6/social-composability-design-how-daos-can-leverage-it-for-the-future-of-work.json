@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "social",
-    "DAO",
-    "app"
-  ],
-  "speakers": [
-    "dominic-emanuel-horn"
-  ],
+  "tags": ["UX & Design", "social", "DAO", "app"],
+  "speakers": ["dominic-emanuel-horn"],
   "resources_slides": "/resources/6/social-composability-design-how-daos-can-leverage-it-for-the-future-of-work.pdf",
   "slot_start": 1665595800000,
   "slot_end": 1665597600000,

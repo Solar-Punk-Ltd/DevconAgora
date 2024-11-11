@@ -1,9 +1,10 @@
-import React from "react";
-import "./HomeLoading.scss";
+import React from 'react';
+
+import './HomeLoading.scss';
 
 const HomeLoading: React.FC = () => {
   return (
-    <div style={{ padding: "15px" }} className="home-loading">
+    <div style={{ padding: '15px' }} className="home-loading">
       <div className="home-loading__main-box"></div>
       <div className="home-loading__recent-box">
         <div className="home-loading__recent-box__header">

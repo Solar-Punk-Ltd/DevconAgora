@@ -7,13 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "Technical"
-  ],
-  "speakers": [
-    "raymond-yeh"
-  ],
+  "tags": ["Governance & Coordination", "Technical"],
+  "speakers": ["raymond-yeh"],
   "sources_youtubeId": "_AdGdbfYOMU",
   "sources_ipfsHash": "QmTvLvUMQv7zAqVeq6tcG1GEVgL8yDLA5SeFVjxwJ1rDx2",
   "sources_swarmHash": "17a4288f977dbd9e8e1fd075e713497c4a3efcbbe4501152b71f62fbb107ec5c",

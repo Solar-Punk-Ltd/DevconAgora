@@ -7,18 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "EVM"
-  ],
-  "speakers": [
-    "alex-beregszaszi",
-    "casey-detrio",
-    "lane-rettig",
-    "gregory-colvin",
-    "danny-ryan",
-    "pawel-bylica"
-  ],
+  "tags": ["Developer Infrastructure", "EVM"],
+  "speakers": ["alex-beregszaszi", "casey-detrio", "lane-rettig", "gregory-colvin", "danny-ryan", "pawel-bylica"],
   "sources_youtubeId": "ALK3h73WYu0",
   "sources_ipfsHash": "Qme5zogJdrNReP4q62tcdo752zTFRJ3pKtUi1AxTJztafJ",
   "sources_swarmHash": "343bc7218a4e010729eefc0e3b64b733801c3368fb5705dcd60e9f268b415b35",

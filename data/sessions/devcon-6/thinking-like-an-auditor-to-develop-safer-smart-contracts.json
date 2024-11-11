@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Security",
-    "security",
-    "solidity",
-    "defi"
-  ],
-  "speakers": [
-    "dominic-bruetsch"
-  ],
+  "tags": ["Security", "security", "solidity", "defi"],
+  "speakers": ["dominic-bruetsch"],
   "resources_slides": "/resources/6/thinking-like-an-auditor-to-develop-safer-smart-contracts.pdf",
   "slot_start": 1665568800000,
   "slot_end": 1665572400000,

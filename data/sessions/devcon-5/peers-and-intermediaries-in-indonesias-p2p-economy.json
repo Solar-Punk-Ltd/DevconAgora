@@ -7,13 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Governance & Coordination",
-    "academic"
-  ],
-  "speakers": [
-    "sunniva-sandbukt"
-  ],
+  "tags": ["Governance & Coordination", "academic"],
+  "speakers": ["sunniva-sandbukt"],
   "sources_youtubeId": "CVA9069rO4I",
   "sources_ipfsHash": "QmQVYPeefAZ2oXA3BUrCGeAys7x8HnEY6jxzZ4DGoiaDNt",
   "sources_swarmHash": "05b3bdfd5ff44755bd39885bf86e11a7c7eef86ede55ad945eb3a70601f28c66",

@@ -7,19 +7,8 @@
   "track": "Security",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Security",
-    "Web3",
-    "Web2"
-  ],
-  "speakers": [
-    "mudit-gupta",
-    "spencer-macdonald",
-    "samczsun",
-    "cory-hardman",
-    "nassim-eddequiouaq",
-    "taylor-monahan"
-  ],
+  "tags": ["Security", "Web3", "Web2"],
+  "speakers": ["mudit-gupta", "spencer-macdonald", "samczsun", "cory-hardman", "nassim-eddequiouaq", "taylor-monahan"],
   "resources_slides": "/resources/6/web3-vs-web2-security-same-or-different.pdf",
   "slot_start": 1665496800000,
   "slot_end": 1665500400000,

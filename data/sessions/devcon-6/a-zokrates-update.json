@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "language",
-    "zksnark",
-    "zokrates"
-  ],
-  "speakers": [
-    "thibaut-schaeffer"
-  ],
+  "tags": ["Privacy", "language", "zksnark", "zokrates"],
+  "speakers": ["thibaut-schaeffer"],
   "resources_slides": "/resources/6/a-zokrates-update.pdf",
   "slot_start": 1665507600000,
   "slot_end": 1665509400000,

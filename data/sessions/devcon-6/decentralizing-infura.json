@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "api",
-    "infura",
-    "infrastructure"
-  ],
-  "speakers": [
-    "eg-galano",
-    "tim-myers"
-  ],
+  "tags": ["Developer Infrastructure", "api", "infura", "infrastructure"],
+  "speakers": ["eg-galano", "tim-myers"],
   "resources_slides": "/resources/6/decentralizing-infura.pdf",
   "slot_start": 1665743400000,
   "slot_end": 1665745200000,

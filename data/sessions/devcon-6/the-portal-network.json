@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 1 Protocol",
-    "Portal Network",
-    "Light Client",
-    "Protocol"
-  ],
-  "speakers": [
-    "piper-merriam"
-  ],
+  "tags": ["Layer 1 Protocol", "Portal Network", "Light Client", "Protocol"],
+  "speakers": ["piper-merriam"],
   "resources_slides": "/resources/6/the-portal-network.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665493200000,

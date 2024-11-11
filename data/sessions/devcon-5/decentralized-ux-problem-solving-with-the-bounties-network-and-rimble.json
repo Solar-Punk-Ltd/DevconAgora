@@ -7,16 +7,8 @@
   "track": "UX & Design",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "UX & Design"
-  ],
-  "speakers": [
-    "ryan-cordell",
-    "corwin-harrell",
-    "zach-kalman",
-    "sharon-kaziunas",
-    "mike-lockwitz"
-  ],
+  "tags": ["UX & Design"],
+  "speakers": ["ryan-cordell", "corwin-harrell", "zach-kalman", "sharon-kaziunas", "mike-lockwitz"],
   "sources_youtubeId": "msKKgHlIPfU",
   "sources_ipfsHash": "QmZw9RmicNQGm4tSMui1Ye6ZvHpA7iCJNXzz5NTFh9GyfQ",
   "sources_swarmHash": "de3be3cd005ecdbdbaeb122d35e7d8b37f84d2b6897f7954fbf5ccd8dad5e6f1",

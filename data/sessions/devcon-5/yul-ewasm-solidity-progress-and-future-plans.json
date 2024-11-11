@@ -7,13 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol",
-    "technical"
-  ],
-  "speakers": [
-    "christian-reitwiessner"
-  ],
+  "tags": ["Layer 1 Protocol", "technical"],
+  "speakers": ["christian-reitwiessner"],
   "sources_youtubeId": "xThLb7I-bhg",
   "sources_ipfsHash": "QmS7Jmcp5bibia7UC31TPdEtbVGxjgTaWQBcbxbk6RCmir",
   "sources_swarmHash": "4530eb8d274086fc51466308720c7b9d6e42bbb8ae727c55ebc64185997faa1e",

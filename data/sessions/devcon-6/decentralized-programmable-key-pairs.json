@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "decentralized compute",
-    "threshold cryptography",
-    "privacy"
-  ],
-  "speakers": [
-    "david-sneider",
-    "chris-cassano"
-  ],
+  "tags": ["Developer Infrastructure", "decentralized compute", "threshold cryptography", "privacy"],
+  "speakers": ["david-sneider", "chris-cassano"],
   "resources_slides": "/resources/6/decentralized-programmable-key-pairs.pdf",
   "slot_start": 1665588600000,
   "slot_end": 1665590400000,

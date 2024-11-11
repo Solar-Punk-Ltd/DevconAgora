@@ -1,15 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import "./ChatInput.scss";
-import {
-  EthAddress,
-  MessageData,
-  SwarmChat,
-} from "@solarpunkltd/swarm-decentralized-chat";
-import { BatchId } from "@ethersphere/bee-js";
-import SendIcon from "../icons/SendIcon/SendIcon";
-import { MessageWithThread, ThreadId } from "../../types/message";
-import { randomThreadId, handleKeyDown } from "../../utils/helpers";
-import InputLoading from "./InputLoading/InputLoading";
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { BatchId } from '@ethersphere/bee-js';
+import { EthAddress, MessageData, SwarmChat } from '@solarpunkltd/swarm-decentralized-chat';
+
+import { MessageWithThread, ThreadId } from '../../types/message';
+import { handleKeyDown, randomThreadId } from '../../utils/helpers';
+import SendIcon from '../icons/SendIcon/SendIcon';
+
+import InputLoading from './InputLoading/InputLoading';
+
+import './ChatInput.scss';
 
 interface ChatInputProps {
   chat: SwarmChat | null;
@@ -32,7 +31,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
   currentThread,
   setBeingSentMessages,
 }) => {
-  const [messageToSend, setMessageToSend] = useState<string>("");
+  const [messageToSend, setMessageToSend] = useState<string>('');
   const [reconnecting, setReconnecting] = useState<boolean>(false);
   const [sending, setSending] = useState<boolean>(false);
 
@@ -92,9 +91,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               nickName: nickname,
             })
             .then(() => console.info(`Registration request sent`))
-            .catch((err) =>
-              console.error(`Error while registering ${err.error}`)
-            );
+            .catch((err) => console.error(`Error while registering ${err.error}`));
 
         await chat.getNewUsers(topic);
         //await chat.initUsers(topic); // we might need this if reset queue does not work.
@@ -102,7 +99,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       } while (rounds < MAX_ROUNDS && !chat.isRegistered(ownAddress));
 
       if (rounds === MAX_ROUNDS) {
-        console.error("Registration did not go through");
+        console.error('Registration did not go through');
         setSending(false);
         setReconnecting(false);
         setBeingSentMessages([]);
@@ -114,7 +111,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
     setSending(true);
     await chat.sendMessage(ownAddress, topic, messageObj, stamp, privKey);
-    setMessageToSend("");
+    setMessageToSend('');
     setSending(false);
   };
 
@@ -130,7 +127,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       {reconnecting || sending ? (
         reconnecting ? (
           <div className="chat-input__connecting">
-            {"Connecting to chat..."}
+            {'Connecting to chat...'}
             <InputLoading />
           </div>
         ) : (
@@ -146,19 +143,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
             <input
               value={messageToSend}
               onChange={(e) => setMessageToSend(e.target.value)}
-              onKeyDown={(e) => handleKeyDown(e, "Enter", sendMessage)}
+              onKeyDown={(e) => handleKeyDown(e, 'Enter', sendMessage)}
               className="chat-input__input"
             />
-            <button
-              onClick={sendMessage}
-              className="chat-input__send-button"
-              disabled={reconnecting || sending}
-            >
-              {messageToSend !== "" ? (
-                <SendIcon />
-              ) : (
-                <SendIcon color="#A5ADBA" />
-              )}
+            <button onClick={sendMessage} className="chat-input__send-button" disabled={reconnecting || sending}>
+              {messageToSend !== '' ? <SendIcon /> : <SendIcon color="#A5ADBA" />}
             </button>
           </div>
         </>

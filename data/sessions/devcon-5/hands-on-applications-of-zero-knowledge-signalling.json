@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "beginner",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "wei-jie-koh"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["wei-jie-koh"],
   "sources_youtubeId": "7wd2aAN2jXI",
   "sources_ipfsHash": "QmWZKCAxddcrj37FViEmqHAnXikVLmFq2yeaR2SRjgWYuj",
   "sources_swarmHash": "c4e029c1e37c78b15b897fe2e7eebef35950d9c55c4b99a9e318530ce43eea25",

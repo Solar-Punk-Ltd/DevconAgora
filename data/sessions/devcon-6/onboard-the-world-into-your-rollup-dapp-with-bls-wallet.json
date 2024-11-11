@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "scaling",
-    "onboarding",
-    "dapp"
-  ],
-  "speakers": [
-    "jacob-caban-tomski"
-  ],
+  "tags": ["Layer 2s", "scaling", "onboarding", "dapp"],
+  "speakers": ["jacob-caban-tomski"],
   "resources_slides": "/resources/6/onboard-the-world-into-your-rollup-dapp-with-bls-wallet.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665493200000,

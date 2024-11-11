@@ -7,18 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "privacy",
-    ";",
-    "layer",
-    "2",
-    "applications"
-  ],
-  "speakers": [
-    "paul-brody",
-    "chaitanya-konda"
-  ],
+  "tags": ["Privacy", "privacy", ";", "layer", "2", "applications"],
+  "speakers": ["paul-brody", "chaitanya-konda"],
   "resources_slides": "/resources/6/scaling-privacy-with-starlight.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665743400000,

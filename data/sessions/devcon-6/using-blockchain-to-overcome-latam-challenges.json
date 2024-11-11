@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Impact",
-    "communities",
-    "empowerment"
-  ],
-  "speakers": [
-    "sandusky"
-  ],
+  "tags": ["Opportunity & Global Impact", "Impact", "communities", "empowerment"],
+  "speakers": ["sandusky"],
   "resources_slides": "/resources/6/using-blockchain-to-overcome-latam-challenges.pdf",
   "slot_start": 1665760800000,
   "slot_end": 1665761400000,

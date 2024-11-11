@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "NFTs",
-    "Female Empowerment and History of Art"
-  ],
-  "speakers": [
-    "soy-fira"
-  ],
+  "tags": ["Opportunity & Global Impact", "NFTs", "Female Empowerment and History of Art"],
+  "speakers": ["soy-fira"],
   "resources_slides": "/resources/6/art-reflects-what-happens-in-society.pdf",
   "slot_start": 1665758400000,
   "slot_end": 1665759000000,

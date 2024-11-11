@@ -7,18 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "latam",
-    "cities"
-  ],
-  "speakers": [
-    "jaime-pumarejo",
-    "diego-fernandez",
-    "mauricio-tovar",
-    "irais-reyes",
-    "alfredo-bateman"
-  ],
+  "tags": ["Opportunity & Global Impact", "latam", "cities"],
+  "speakers": ["jaime-pumarejo", "diego-fernandez", "mauricio-tovar", "irais-reyes", "alfredo-bateman"],
   "slot_start": 1665505800000,
   "slot_end": 1665508800000,
   "slot_roomId": "talk-1",

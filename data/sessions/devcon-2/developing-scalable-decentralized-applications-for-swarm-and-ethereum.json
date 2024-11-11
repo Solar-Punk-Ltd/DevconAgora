@@ -23,9 +23,7 @@
     "multimedia",
     "identity"
   ],
-  "speakers": [
-    "daniel-nagy"
-  ],
+  "speakers": ["daniel-nagy"],
   "sources_youtubeId": "xrw9rvee7rc",
   "sources_ipfsHash": "QmZteMFwmAnDDZASC5uW9aAcmG8SUBCLvy4QNmkXmTsaNQ",
   "sources_swarmHash": "cd7be841f009b031efd4abbe6c6a910abc7b3b891e94ed7c1253ee208122c17a",

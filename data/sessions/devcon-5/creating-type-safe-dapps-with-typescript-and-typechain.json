@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "chris-kaczor"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["chris-kaczor"],
   "sources_youtubeId": "Ho4dGNKVkTE",
   "sources_ipfsHash": "QmTA7UdMwKWixdL1fmwtis2kzVMLkV4Cm9zQHLximhrfB8",
   "sources_swarmHash": "bdc6368033115ca40607929a65e370ca27342f60b3b0405870633e5f90a7b1ec",

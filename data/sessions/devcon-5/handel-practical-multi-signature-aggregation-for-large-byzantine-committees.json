@@ -7,16 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "technical"
-  ],
-  "speakers": [
-    "olivier-begassat",
-    "nicolas-gailly",
-    "blazej-kolad",
-    "nicolas-liochon"
-  ],
+  "tags": ["Staking & Validator Experience", "technical"],
+  "speakers": ["olivier-begassat", "nicolas-gailly", "blazej-kolad", "nicolas-liochon"],
   "sources_youtubeId": "cmX8Fmbh9Yc",
   "sources_ipfsHash": "QmS5a6iENNn8J6F7zkTTUrp4PPt5dhz8eQB6oU3fBSvaSR",
   "sources_swarmHash": "720f47f6e8fc01bf49946b25abfae5b07802cc39ad46d5fa39b28feb418937aa",

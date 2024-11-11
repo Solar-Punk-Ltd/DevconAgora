@@ -7,16 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "Distributed Validator Technology",
-    "Staking",
-    "Validators"
-  ],
-  "speakers": [
-    "collin-myers",
-    "oisin-kyne"
-  ],
+  "tags": ["Staking & Validator Experience", "Distributed Validator Technology", "Staking", "Validators"],
+  "speakers": ["collin-myers", "oisin-kyne"],
   "resources_slides": "/resources/6/how-to-design-dvt-while-ensuring-non-correlation.pdf",
   "slot_start": 1665660600000,
   "slot_end": 1665662400000,

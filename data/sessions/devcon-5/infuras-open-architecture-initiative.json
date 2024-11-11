@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "jee-choi",
-    "eleazar-galano"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["jee-choi", "eleazar-galano"],
   "sources_youtubeId": "6h4vR-Uw5-8",
   "sources_ipfsHash": "QmU1YsUNhfcAiK1oFPkVcxY2vKvZeqRfYuX45oovaHkjrw",
   "sources_swarmHash": "52801d76ac81baf7d316d3ce590570d1cb7dcdcff34872be64e7d90fdd597a9c",

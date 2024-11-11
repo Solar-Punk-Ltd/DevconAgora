@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "mudit-gupta"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["mudit-gupta"],
   "sources_youtubeId": "z7NruBa2yFc",
   "sources_ipfsHash": "QmVGHQEefFH2fSseHHap6ayckceBWunECzGfqieGCfiiGA",
   "sources_swarmHash": "5bf6e64bc609753f0651cfe965e793f62a43c7e06099cf9068caac6e9cf3f1a9",

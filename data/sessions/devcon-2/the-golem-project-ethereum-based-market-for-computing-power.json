@@ -21,9 +21,7 @@
     "registry",
     "reward"
   ],
-  "speakers": [
-    "julian-zawistowski"
-  ],
+  "speakers": ["julian-zawistowski"],
   "sources_youtubeId": "DGinj5K3tcI",
   "sources_ipfsHash": "QmNWDSjk6Ueo1RcMKDNVmocNANWhW2HjpZVayndThRzczV",
   "sources_swarmHash": "115c960d14f8a99519c63af574986fdc120032a76a34de97ef123698e4be763d",

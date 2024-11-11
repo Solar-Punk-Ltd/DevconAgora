@@ -7,18 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "mist",
-    "developers"
-  ],
-  "speakers": [
-    "everton-fraga",
-    "alex-van-de-sande",
-    "marc-garreau",
-    "philipp-langhans",
-    "ryan-ghods"
-  ],
+  "tags": ["UX & Design", "mist", "developers"],
+  "speakers": ["everton-fraga", "alex-van-de-sande", "marc-garreau", "philipp-langhans", "ryan-ghods"],
   "sources_youtubeId": "rKoaiYYoNs4",
   "sources_ipfsHash": "QmZDSbdtVCPGNoLCmqnhJXJ8zPKn2X5DrsKSviop51kPTW",
   "sources_swarmHash": "9ffb9be208972d0d925041e29a98f352f8099a3a3c4d21890c6d314e84d2329b",

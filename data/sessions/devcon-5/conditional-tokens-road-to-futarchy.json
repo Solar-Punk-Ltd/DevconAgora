@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "technical"
-  ],
-  "speakers": [
-    "friederike-ernst",
-    "stefan-george"
-  ],
+  "tags": ["Governance & Coordination", "technical"],
+  "speakers": ["friederike-ernst", "stefan-george"],
   "sources_youtubeId": "SHmi6MdNmFo",
   "sources_ipfsHash": "QmXYas29fWbgKdDA5uwz7hX6LGxZTPA2TLFtRgD9CdWb8q",
   "sources_swarmHash": "e27219aa0a26c8f315cd74f5f68d3c8a45aa76e2d5c3ca2355b53ccb507993a8",

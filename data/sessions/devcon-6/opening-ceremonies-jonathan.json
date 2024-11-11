@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "ethereum",
-    "foundation"
-  ],
-  "speakers": [
-    "jonathan-mann"
-  ],
+  "tags": ["Opportunity & Global Impact", "ethereum", "foundation"],
+  "speakers": ["jonathan-mann"],
   "slot_start": 1665481500000,
   "slot_end": 1665490500000,
   "slot_roomId": "talk-5-opening-ceremonies",

@@ -7,20 +7,8 @@
   "track": "Privacy",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "ZKP",
-    "Zero Knowledge",
-    "Future of Ethereum",
-    "Scalability",
-    "Security"
-  ],
-  "speakers": [
-    "gubsheep",
-    "albert-ni",
-    "barry-whitehat",
-    "vitalik-buterin"
-  ],
+  "tags": ["Privacy", "ZKP", "Zero Knowledge", "Future of Ethereum", "Scalability", "Security"],
+  "speakers": ["gubsheep", "albert-ni", "barry-whitehat", "vitalik-buterin"],
   "resources_slides": "/resources/6/what-to-know-about-zero-knowledge.pdf",
   "slot_start": 1665500400000,
   "slot_end": 1665504000000,

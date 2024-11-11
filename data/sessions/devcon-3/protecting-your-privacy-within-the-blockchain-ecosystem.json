@@ -7,12 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy"
-  ],
-  "speakers": [
-    "robertas-visinskis"
-  ],
+  "tags": ["Privacy"],
+  "speakers": ["robertas-visinskis"],
   "sources_youtubeId": "1WrdRbsCEAA",
   "sources_ipfsHash": "QmRZWUDHe796Vbxyuhi1TrkAxfQPVDh2CRiz1GX1EqeWzJ",
   "sources_swarmHash": "ad5bdddd69b46cd62f09847ea783612764b412b91cdab5eef7acc638ac24e289",

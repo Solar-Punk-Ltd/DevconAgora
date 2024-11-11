@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "interchain",
-    "interblockchain",
-    "technical"
-  ],
-  "speakers": [
-    "christopher-goes"
-  ],
+  "tags": ["Staking & Validator Experience", "interchain", "interblockchain", "technical"],
+  "speakers": ["christopher-goes"],
   "sources_youtubeId": "pCg1NxCh6cM",
   "sources_ipfsHash": "Qmd6etXj335FMo46RAwYJStFCz8ci6ogruquk3V7NqHRqt",
   "sources_swarmHash": "13534ede311b4ddcc151356f612d04617a79359969236f443b966c9a774e37ad",

@@ -7,12 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Expert",
-  "tags": [
-    "Developer Infrastructure",
-    "eth2",
-    "eth 2.0",
-    "updates"
-  ],
+  "tags": ["Developer Infrastructure", "eth2", "eth 2.0", "updates"],
   "speakers": [
     "alex-beregszaszi",
     "guillaume-ballet",

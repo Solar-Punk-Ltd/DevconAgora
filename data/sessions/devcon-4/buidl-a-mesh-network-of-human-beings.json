@@ -7,16 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "mesh",
-    "network",
-    "p2p"
-  ],
-  "speakers": [
-    "kevin-owocki",
-    "vivek-singh"
-  ],
+  "tags": ["UX & Design", "mesh", "network", "p2p"],
+  "speakers": ["kevin-owocki", "vivek-singh"],
   "sources_youtubeId": "A4iYm5nkqGY",
   "sources_ipfsHash": "QmXBvnxWuZgvKk42j4pxfkuo5BjS2K8MsC75AGXrckY1j9",
   "sources_swarmHash": "cc562f9575b72d31f84a04cb518db42386bdb69311329e311f6f31cec90fff91",

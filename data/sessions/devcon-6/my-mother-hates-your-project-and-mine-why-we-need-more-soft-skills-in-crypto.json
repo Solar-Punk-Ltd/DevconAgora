@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Marketing",
-    "language",
-    "branding"
-  ],
-  "speakers": [
-    "vince-major"
-  ],
+  "tags": ["Opportunity & Global Impact", "Marketing", "language", "branding"],
+  "speakers": ["vince-major"],
   "resources_slides": "/resources/6/my-mother-hates-your-project-and-mine-why-we-need-more-soft-skills-in-crypto.pdf",
   "slot_start": 1665678600000,
   "slot_end": 1665680400000,

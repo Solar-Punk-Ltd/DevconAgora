@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "user research",
-    "usability",
-    "design"
-  ],
-  "speakers": [
-    "alex-van-de-sande"
-  ],
+  "tags": ["UX & Design", "user research", "usability", "design"],
+  "speakers": ["alex-van-de-sande"],
   "resources_slides": "/resources/6/how-to-talk-to-girls-users-at-parties-your-app-how-to-do-user-research-in-a-remote-environment.pdf",
   "slot_start": 1665669600000,
   "slot_end": 1665671100000,

@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
-import "./ActionButton.scss";
+import React, { ReactNode } from 'react';
+
+import './ActionButton.scss';
 
 interface ActionButtonProps {
   children?: ReactNode;

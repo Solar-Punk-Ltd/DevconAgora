@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Other",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "wendell-davis"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["wendell-davis"],
   "sources_youtubeId": "4jGqmlA4KEY",
   "sources_ipfsHash": "QmVoxWHRxjLbRTLSffrsnk3642qxiXSF8FZ2vZhbDQSPNJ",
   "sources_swarmHash": "89744ac1d17501c66f8017a4fcf868ecd32797ab2ae6db5bb33addae9ca6ecd0",

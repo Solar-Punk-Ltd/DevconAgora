@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "soul bound tokens",
-    "NFT certifications"
-  ],
-  "speakers": [
-    "rob-stupay"
-  ],
+  "tags": ["Developer Infrastructure", "soul bound tokens", "NFT certifications"],
+  "speakers": ["rob-stupay"],
   "resources_slides": "/resources/6/remix-rewards.pdf",
   "slot_start": 1665510000000,
   "slot_end": 1665510420000,

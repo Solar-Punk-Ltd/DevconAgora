@@ -1,14 +1,14 @@
-import { EthAddress, MessageData } from "@solarpunkltd/swarm-decentralized-chat"
+import { EthAddress, MessageData } from '@solarpunkltd/swarm-decentralized-chat';
 
 export interface MessageWithThread extends MessageData {
-    threadId: ThreadId | null;
-    messageId: MessageId | null;
-    parent: ThreadId | null;
-    text?: string;
-    replyCount: number;
-    likeTable: { [key: EthAddress]: boolean };
-    flagged?: boolean;
-    beingSent?: boolean;
+  threadId: ThreadId | null;
+  messageId: MessageId | null;
+  parent: ThreadId | null;
+  text?: string;
+  replyCount: number;
+  likeTable: { [key: EthAddress]: boolean };
+  flagged?: boolean;
+  beingSent?: boolean;
 }
 
 export type LikeMessage = string;

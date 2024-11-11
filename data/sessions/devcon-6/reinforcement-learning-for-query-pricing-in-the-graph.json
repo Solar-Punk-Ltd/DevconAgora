@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "reinforcement learning",
-    "dynamic pricing",
-    "automation"
-  ],
-  "speakers": [
-    "tomasz-kornuta"
-  ],
+  "tags": ["Cryptoeconomics", "reinforcement learning", "dynamic pricing", "automation"],
+  "speakers": ["tomasz-kornuta"],
   "resources_slides": "/resources/6/reinforcement-learning-for-query-pricing-in-the-graph.pdf",
   "slot_start": 1665568800000,
   "slot_end": 1665570600000,

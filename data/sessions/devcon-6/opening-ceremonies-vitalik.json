@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "ethereum",
-    "foundation"
-  ],
-  "speakers": [
-    "vitalik-buterin"
-  ],
+  "tags": ["Opportunity & Global Impact", "ethereum", "foundation"],
+  "speakers": ["vitalik-buterin"],
   "resources_slides": "https://hackmd.io/@vbuterin/ethereum_in_30_minutes",
   "slot_start": 1665481500000,
   "slot_end": 1665490500000,

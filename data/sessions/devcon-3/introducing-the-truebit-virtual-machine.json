@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "jason-teutsch"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["jason-teutsch"],
   "sources_youtubeId": "kwe_C_ei0hQ",
   "sources_ipfsHash": "QmfGtJx2TT51gxSGR26saSQ6Ut515LpX258zLFv8Y1Uu5U",
   "sources_swarmHash": "07325f9917ff3abe84d86a681ef5ed1885f2849fa658bd521a79ec093fb32a97",

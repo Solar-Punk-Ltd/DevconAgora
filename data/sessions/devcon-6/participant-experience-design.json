@@ -7,17 +7,8 @@
   "track": "UX & Design",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "UX & Design",
-    "user experience",
-    "public goods"
-  ],
-  "speakers": [
-    "althea-allen",
-    "rachel",
-    "scott-moore",
-    "hester"
-  ],
+  "tags": ["UX & Design", "user experience", "public goods"],
+  "speakers": ["althea-allen", "rachel", "scott-moore", "hester"],
   "resources_slides": "/resources/6/participant-experience-design.pdf",
   "slot_start": 1665579600000,
   "slot_end": 1665582600000,

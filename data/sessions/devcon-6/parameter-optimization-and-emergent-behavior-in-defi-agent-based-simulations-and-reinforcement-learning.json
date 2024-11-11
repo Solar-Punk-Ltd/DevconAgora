@@ -7,17 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Governance & Coordination",
-    "Protocol development",
-    "agent based models",
-    "validation"
-  ],
-  "speakers": [
-    "david-siska",
-    "marc",
-    "tom-mclean"
-  ],
+  "tags": ["Governance & Coordination", "Protocol development", "agent based models", "validation"],
+  "speakers": ["david-siska", "marc", "tom-mclean"],
   "resources_slides": "/resources/6/parameter-optimization-and-emergent-behavior-in-defi-agent-based-simulations-and-reinforcement-learning.pdf",
   "slot_start": 1665579600000,
   "slot_end": 1665586800000,

@@ -7,16 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "guillaume-ballet",
-    "maurice-von-glasenapp",
-    "eseoghene-mentie",
-    "benjamin-onuoha",
-    "rob-stupay"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["guillaume-ballet", "maurice-von-glasenapp", "eseoghene-mentie", "benjamin-onuoha", "rob-stupay"],
   "sources_youtubeId": "oQ60o-PP6t8",
   "sources_ipfsHash": "QmcbnvAfW2kXywYnytEZWwvuN449PqiJkupAvBNkgjzhvt",
   "sources_swarmHash": "1ebd6d955f2d6a758ea87ddc77821d1a2fe0cd9ba79cff00bae808d8b754b0d5",

@@ -15,12 +15,7 @@
     "philanthropy",
     "technical"
   ],
-  "speakers": [
-    "natalie-cargill",
-    "will-ruddick",
-    "adam-bornstein",
-    "lucas-geiger"
-  ],
+  "speakers": ["natalie-cargill", "will-ruddick", "adam-bornstein", "lucas-geiger"],
   "sources_youtubeId": "nnXfEr6KJEI",
   "sources_ipfsHash": "QmeHu8rXw6CUb4kiksHtoG84mLL2bLSVgECz11TgSbTzdu",
   "sources_swarmHash": "1d408aed5c3c965e671968b01024b1cadd3d1f6567e5f4c05e6528e8669a30e0",

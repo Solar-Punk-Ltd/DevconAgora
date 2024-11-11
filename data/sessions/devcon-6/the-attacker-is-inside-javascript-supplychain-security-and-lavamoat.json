@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "security",
-    "javascript",
-    "development"
-  ],
-  "speakers": [
-    "kumavis",
-    "naugtur"
-  ],
+  "tags": ["Security", "security", "javascript", "development"],
+  "speakers": ["kumavis", "naugtur"],
   "resources_slides": "/resources/6/the-attacker-is-inside-javascript-supplychain-security-and-lavamoat.pdf",
   "slot_start": 1665667800000,
   "slot_end": 1665669600000,
