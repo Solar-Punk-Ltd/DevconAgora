@@ -89,6 +89,9 @@ const PROD_RESOURCE_IDS = new Map([
   ['lobby', '190e000000000000000000000000000000000000000000000000000000000000'],
 ]);
 
+// @ts-ignore
+// eslint-disable-next-line
+// TODO
 const BACKUP_RESOURCE_IDS = new Map([
   ['layer-2s', '9e0a000000000000000000000000000000000000000000000000000000000000'],
   ['core-protocol', '3113000000000000000000000000000000000000000000000000000000000000'],
@@ -104,6 +107,9 @@ const BACKUP_RESOURCE_IDS = new Map([
   ['lobby', '9503000000000000000000000000000000000000000000000000000000000000'],
 ]);
 
+// @ts-ignore
+// eslint-disable-next-line
+// TODO
 const TEST_RESOURCE_IDS = new Map([
   ['layer-2s-test-1', '2402000000000000000000000000000000000000000000000000000000000000'],
   ['core-protocol-test-1', '6906000000000000000000000000000000000000000000000000000000000000'],
@@ -165,6 +171,9 @@ const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ['Lobby', 'lobby'],
 ]);
 
+// @ts-ignore
+// eslint-disable-next-line
+// TODO
 const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ['Layer 2', 'layer-2s-test'],
   ['Core Protocol', 'core-protocol-test'],

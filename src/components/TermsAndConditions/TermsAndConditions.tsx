@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import {
   ACCEPTANCE_OF_TERMS_HEADER,
   ACCEPTANCE_OF_TERMS_TEXT,

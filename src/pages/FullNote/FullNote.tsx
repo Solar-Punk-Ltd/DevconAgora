@@ -13,7 +13,7 @@ import { updateFeed, uploadData } from '../../utils/bee';
 import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from '../../utils/constants';
 import { dateToTime, getPrivateKey, getSigner } from '../../utils/helpers';
 
-import './FullNotePage.scss';
+import './FullNote.scss';
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
