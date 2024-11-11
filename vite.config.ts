@@ -17,6 +17,15 @@ export default defineConfig(({mode}) => {
       'process.env.GATEWAY': JSON.stringify(env.GATEWAY) ?? JSON.stringify(''),
       'process.versions': JSON.stringify({ node: 'browser-mock' }), // Mocking process.versions.node
     },
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: `assets/[name].js`,
+          chunkFileNames: `assets/[name].js`,
+          assetFileNames: `assets/[name].[ext]`
+        }
+      }
+    },
     plugins: [
       react(),
       nodePolyfills({
