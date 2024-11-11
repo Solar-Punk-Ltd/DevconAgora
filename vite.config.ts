@@ -16,6 +16,7 @@ export default defineConfig(({mode}) => {
       'process.env.BACKEND_API_URL': JSON.stringify(env.BACKEND_API_URL) ?? JSON.stringify('https://devcon-backend-1074429022647.asia-southeast1.run.app/'),
       'process.env.GATEWAY': JSON.stringify(env.GATEWAY) ?? JSON.stringify(''),
       'process.versions': JSON.stringify({ node: 'browser-mock' }), // Mocking process.versions.node
+      'process.env.ENV': JSON.stringify(env.ENV) ?? JSON.stringify('dev'),
     },
     plugins: [
       react(),
