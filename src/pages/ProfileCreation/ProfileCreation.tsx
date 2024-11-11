@@ -9,7 +9,7 @@ import EditIcon from '../../components/icons/EditIcon/EditIcon';
 import EnterIcon from '../../components/icons/EnterIcon/EnterIcon';
 import ProfilePicture from '../../components/ProfilePicture/ProfilePicture';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { ROUTES } from '../../utils/constants';
 import { createMonogram, getPrivateKey, handleKeyDown } from '../../utils/helpers';
 

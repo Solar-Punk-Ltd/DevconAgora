@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import swarmIcon from '../../assets/swarm-icon.png';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { ROUTES } from '../../utils/constants';
 import ProfilePicture from '../ProfilePicture/ProfilePicture';
 

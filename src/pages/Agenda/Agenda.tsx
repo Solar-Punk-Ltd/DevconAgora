@@ -9,7 +9,7 @@ import FilterIcon from '../../components/icons/FilterIcon/FilterIcon';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
 import TabPanel from '../../components/TabPanel/TabPanel';
 import TabPanelItem from '../../components/TabPanel/TabPanelItem/TabPanelItem';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { Session } from '../../types/session';
 import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from '../../utils/constants';
 import { dateToTime, getSessionsByDay, stringToBoolean } from '../../utils/helpers';

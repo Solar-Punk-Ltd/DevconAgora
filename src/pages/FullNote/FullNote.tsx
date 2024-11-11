@@ -8,7 +8,7 @@ import NavigationHeader from '../../components/NavigationHeader/NavigationHeader
 import { NoteItemProps } from '../../components/NoteItem/NoteItem';
 import PopUpQuestion from '../../components/PopUpQuestion/PopUpQuestion';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { updateFeed, uploadData } from '../../utils/bee';
 import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from '../../utils/constants';
 import { dateToTime, getPrivateKey, getSigner } from '../../utils/helpers';

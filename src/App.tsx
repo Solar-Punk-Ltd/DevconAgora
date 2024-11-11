@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-import { GlobalStateProvider } from './GlobalStateContext';
-import MainRouter from './MainRouter';
+import { GlobalStateProvider } from './contexts/global';
+import MainRouter from './router';
 
 import './styles/global.scss';
 

@@ -4,7 +4,7 @@ import { BatchId } from '@ethersphere/bee-js';
 import HomeBackground from '../../assets/welcome-glass-effect.png';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
 import SpacesItem from '../../components/Spaces/SpacesItem/SpacesItem';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from '../../utils/constants';
 import { getPrivateKey, getResourceId } from '../../utils/helpers';
 import Chat from '../Chat/Chat';

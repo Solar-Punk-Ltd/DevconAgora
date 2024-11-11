@@ -6,7 +6,7 @@ import ContentFilter from '../../components/ContentFilter/ContentFilter';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
 import { ROUTES } from '../../utils/constants';
 
-import './ContentFilterPage.scss';
+import './ContentFilter.scss';
 
 const ContentFilterPage: React.FC = () => {
   return (

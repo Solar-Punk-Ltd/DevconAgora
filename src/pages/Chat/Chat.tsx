@@ -11,7 +11,7 @@ import InputLoading from '../../components/ChatInput/InputLoading/InputLoading';
 import FilteredMessages from '../../components/FilteredMessages/FilteredMessages';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
 import NavigationHeader from '../../components/NavigationHeader/NavigationHeader';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { LikeMessage, MessageWithThread, ThreadId } from '../../types/message';
 
 import './Chat.scss';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import GamificationBackgroundTen from '../../assets/gamification-ten-points.png';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { ROUTES } from '../../utils/constants';
 import CloseIcon from '../icons/CloseIcon/CloseIcon';
 

@@ -5,13 +5,13 @@ import { ethers } from 'ethers';
 import HomeBackground from '../../assets/registration-glass-effect.png';
 import CopyIcon from '../../components/icons/CopyIcon/CopyIcon';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { GIFTCODE_KEY, ROUTES } from '../../utils/constants';
 import { getPrivateKey, isUserRegistered } from '../../utils/helpers';
 
-import './ClaimRewardPage.scss';
+import './ClaimReward.scss';
 
-const ClaimRewardPage: React.FC = () => {
+const ClaimReward: React.FC = () => {
   const { username } = useGlobalState();
   const navigate = useNavigate();
 
@@ -124,4 +124,4 @@ const ClaimRewardPage: React.FC = () => {
   );
 };
 
-export default ClaimRewardPage;
+export default ClaimReward;

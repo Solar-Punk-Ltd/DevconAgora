@@ -1,54 +1,53 @@
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { CommentsWithIndex } from '@solarpunkltd/comment-system';
 import { loadLatestComments } from '@solarpunkltd/comment-system-ui';
+import { CommentsWithIndex } from '@solarpunkltd/comment-system';
 import { Wallet } from 'ethers';
-
-import Gamification from './components/Gamification/Gamification';
-import { NoteItemProps } from './components/NoteItem/NoteItem';
-import Agenda from './pages/Agenda/Agenda';
-import ClaimRewardPage from './pages/ClaimRewardPage/ClaimRevardPage';
-import ContentFilterPage from './pages/ContentFilterPage/ContentFilterPage';
-import FullNotePage from './pages/FullNotePage/FullNotePage';
-import HomePage from './pages/HomePage/HomePage';
-import HowDoesItWork from './pages/HowDoesItWork/HowDoesItWork';
-import App from './pages/Intro/App';
-import NotesPage from './pages/NotesPage/NotesPage';
-import Profile from './pages/Profile/Profile';
-import ProfileCreation from './pages/ProfileCreation/ProfileCreation';
-import SpacesPage from './pages/SpacesPage/SpacesPage';
-import StayUpdatedPage from './pages/StayUpdatedPage/StayUpdatedPage';
-import TACOnboardingPage from './pages/TACOnboardingPage/TACOnboardingPage';
-import TalkPage from './pages/TalkPage/TalkPage';
-import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
+import { useGlobalState } from './contexts/global';
+import App from './pages/Intro/Intro';
 import Welcome1 from './pages/Welcome1/Welcome1';
 import Welcome2 from './pages/Welcome2/Welcome2';
 import Welcome3 from './pages/Welcome3/Welcome3';
 import Welcome4 from './pages/Welcome4/Welcome4';
-import { RoomWithUserCounts } from './types/room';
+import ProfileCreation from './pages/ProfileCreation/ProfileCreation';
+import HomePage from './pages/HomePage/HomePage';
+import Profile from './pages/Profile/Profile';
+import Gamification from './components/Gamification/Gamification';
+import Agenda from './pages/Agenda/Agenda';
+import SpacesPage from './pages/SpacesPage/SpacesPage';
+import TalkPage from './pages/TalkPage/TalkPage';
 import { Session } from './types/session';
+import HowDoesItWork from './pages/HowDoesItWork/HowDoesItWork';
+import ClaimRewardPage from './pages/ClaimReward/ClaimRevard';
+import ContentFilterPage from './pages/ContentFilter/ContentFilterPage';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage/TermsAndConditionsPage';
+import NotesPage from './pages/NotesPage/NotesPage';
+import FullNotePage from './pages/FullNote/FullNote';
+import TACOnboardingPage from './pages/TACOnboardingPage/TACOnboardingPage';
+import StayUpdatedPage from './pages/StayUpdatedPage/StayUpdatedPage';
 import { TalkComments } from './types/talkComment';
-import { getData, getFeedUpdate, getTopic } from './utils/bee';
+import { getFeedUpdate, getData, getTopic } from './utils/bee';
+import { NoteItemProps } from './components/NoteItem/NoteItem';
 import {
-  ADDRESS_HEX_LENGTH,
-  CATEGORY_NAMES_TO_ID_MAP,
-  DUMMY_STAMP,
+  ROUTES,
   FIVE_MINUTES,
-  LOBBY_TITLE,
+  ADDRESS_HEX_LENGTH,
+  DUMMY_STAMP,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
-  ROUTES,
   SELF_NOTE_TOPIC,
+  LOBBY_TITLE,
+  CATEGORY_NAMES_TO_ID_MAP,
 } from './utils/constants';
 import {
-  findSlotStartIx,
-  getPrivateKey,
   getSessionsByDay,
   getSigner,
   getWallet,
+  findSlotStartIx,
   isUserRegistered,
+  getPrivateKey,
 } from './utils/helpers';
-import { useGlobalState } from './GlobalStateContext';
+import { RoomWithUserCounts } from './types/room';
 
 const MainRouter = (): ReactElement => {
   const {

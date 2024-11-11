@@ -1,11 +1,11 @@
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-import { NoteItemProps } from './components/NoteItem/NoteItem';
-import { RoomWithUserCounts } from './types/room';
-import { Session } from './types/session';
-import { TalkComments } from './types/talkComment';
-import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from './utils/constants';
-import { createMonogram } from './utils/helpers';
+import { NoteItemProps } from '../components/NoteItem/NoteItem';
+import { RoomWithUserCounts } from '../types/room';
+import { Session } from '../types/session';
+import { TalkComments } from '../types/talkComment';
+import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from '../utils/constants';
+import { createMonogram } from '../utils/helpers';
 
 interface GlobalState {
   username: string;

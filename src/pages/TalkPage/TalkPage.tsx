@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import NavigationFooter from '../../components/NavigationFooter/NavigationFooter';
 import NavigationHeader from '../../components/NavigationHeader/NavigationHeader';
 import TalkItem from '../../components/TalkItem/TalkItem';
-import { useGlobalState } from '../../GlobalStateContext';
+import { useGlobalState } from '../../contexts/global';
 import { Session } from '../../types/session';
 import { DATE_TO_DEVCON_DAY, ROUTES } from '../../utils/constants';
 import { getSessionsByDay } from '../../utils/helpers';
