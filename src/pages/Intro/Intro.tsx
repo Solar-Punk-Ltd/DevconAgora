@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { TEXTS } from '../../../textConstants';
+import { TEXTS } from '../../constants/text';
 import { ROUTES } from '../../utils/constants';
 import { isUserRegistered } from '../../utils/helpers';
 
