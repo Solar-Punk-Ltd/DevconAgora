@@ -90,8 +90,8 @@ const Messages: React.FC<MessagesProps> = ({
       {messages.map((msg, ind) => (
         <Message
           data={msg}
-          nickname={nickname}
-          ownAddress={ownAddress}
+          nickname={msg.username}
+          ownAddress={msg.address}
           chat={chat}
           topic={topic}
           stamp={stamp}
