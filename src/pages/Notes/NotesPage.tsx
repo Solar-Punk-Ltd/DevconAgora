@@ -9,9 +9,9 @@ import NoteItem from "../../components/NoteItem/NoteItem";
 import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
 
-import "./NotesPage.scss";
+import "./Notes.scss";
 
-const NotesPage: React.FC = () => {
+const Notes: React.FC = () => {
   const { notes } = useGlobalState();
 
   return (
@@ -44,4 +44,4 @@ const NotesPage: React.FC = () => {
   );
 };
 
-export default NotesPage;
+export default Notes;

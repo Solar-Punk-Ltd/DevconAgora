@@ -7,9 +7,9 @@ import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
 
-import "./TACOnboardingPage.scss";
+import "./TACOnboarding.scss";
 
-const TACOnboardingPage: React.FC = () => {
+const TACOnboarding: React.FC = () => {
   const navigate = useNavigate();
   const { setIsTermsAndConditionsAccepted } = useGlobalState();
   const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] =
@@ -62,4 +62,4 @@ const TACOnboardingPage: React.FC = () => {
   );
 };
 
-export default TACOnboardingPage;
+export default TACOnboarding;
