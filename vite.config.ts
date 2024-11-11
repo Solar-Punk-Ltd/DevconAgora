@@ -9,6 +9,7 @@ export default defineConfig(({mode}) => {
     define: {
       'process.env.FEED_OWNER_ADDRESS': JSON.stringify(env.FEED_OWNER_ADDRESS) ?? JSON.stringify('f4ba07294929857359929d55bec87fc869487c73'),
       'process.env.STAMP': JSON.stringify(env.STAMP) ?? JSON.stringify('0000000000000000000000000000000000000000000000000000000000000000'),
+      'process.env.ASSETS_URL': JSON.stringify(env.ASSETS_URL) ?? JSON.stringify('/bzz/8251e48ed72020483bca94037f24127332d24efa7afee96424544738a249b3ff/'),
       'process.env.PR_NUMBER': JSON.stringify(env.PR_NUMBER) ?? JSON.stringify('unknown-version'),
       'process.env.PR_TIMESTAMP': JSON.stringify(env.PR_TIMESTAMP) ?? JSON.stringify('unknown-timestamp'),
       'process.env.HEALTH_CHECK_DATA_REF': JSON.stringify(env.HEALTH_CHECK_DATA_REF) ?? JSON.stringify('2fdbf84ba761d65f3b848f22cf3c0f6899c61ada4347b9a1b3fcf0ea27dde6b3'),
