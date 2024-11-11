@@ -6,7 +6,7 @@ import TermsAndConditions from '../../components/TermsAndConditions/TermsAndCond
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
 import { ROUTES } from '../../utils/constants';
 
-import './TermsAndConditionsPage.scss';
+import './TermsAndConditions.scss';
 
 const TermsAndConditionsPage: React.FC = () => {
   return (

@@ -12,13 +12,13 @@ import { CATEGORY_NAMES_TO_ID_MAP, LOBBY_TITLE } from '../../utils/constants';
 import { getPrivateKey, getResourceId } from '../../utils/helpers';
 import Chat from '../Chat/Chat';
 
-import './HomePage.scss';
+import './Home.scss';
 
 interface HomePageProps {
   withGamification?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
+const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
@@ -90,4 +90,4 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   );
 };
 
-export default HomePage;
+export default Home;

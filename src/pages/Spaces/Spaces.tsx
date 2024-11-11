@@ -9,9 +9,9 @@ import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from '../../utils/constants';
 import { getPrivateKey, getResourceId } from '../../utils/helpers';
 import Chat from '../Chat/Chat';
 
-import './SpacesPage.scss';
+import './Spaces.scss';
 
-const SpacesPage: React.FC = () => {
+const Spaces: React.FC = () => {
   const { username, orderedList } = useGlobalState();
   const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
@@ -65,4 +65,4 @@ const SpacesPage: React.FC = () => {
   );
 };
 
-export default SpacesPage;
+export default Spaces;
