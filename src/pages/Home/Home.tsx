@@ -12,13 +12,13 @@ import { CATEGORIES, LOBBY_TITLE } from "../../utils/constants";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import Chat from "../Chat/Chat";
 
-import "./HomePage.scss";
+import "./Home.scss";
 
 interface HomePageProps {
   withGamification?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
+const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, spacesActivity } = useGlobalState();
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
   return (
@@ -51,4 +51,4 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   );
 };
 
-export default HomePage;
+export default Home;

@@ -9,13 +9,13 @@ import { Session } from "../../types/session";
 import { DATE_TO_DEVCON_DAY, ROUTES } from "../../utils/constants";
 import { getSessionsByDay } from "../../utils/helpers";
 
-import "./TalkPage.scss";
+import "./Talk.scss";
 
 interface TalkPageProps {
   toText: string | null;
 }
 
-const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
+const Talk: React.FC<TalkPageProps> = ({ toText }) => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
   const [session, setSession] = useState<Session | null>(null);
@@ -80,4 +80,4 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   );
 };
 
-export default TalkPage;
+export default Talk;

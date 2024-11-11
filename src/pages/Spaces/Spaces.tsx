@@ -13,7 +13,7 @@ import {
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import Chat from "../Chat/Chat";
 
-import "./SpacesPage.scss";
+import "./Spaces.scss";
 import { useNavigate } from "react-router-dom";
 
 const SpacesPage: React.FC = () => {
@@ -47,4 +47,4 @@ const SpacesPage: React.FC = () => {
   );
 };
 
-export default SpacesPage;
+export default Spaces;
