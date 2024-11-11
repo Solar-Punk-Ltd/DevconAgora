@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./intro.scss";
-import "../../styles/global.scss";
-import { ROUTES } from "../../utils/constants";
 
-import backgroundVideo from "../../assets/opening.mp4";
-import bySolarPunk from "../../assets/by-solar-punk.png";
-import videoGlassEffect from "../../assets/video-glass-effect.png";
-import dc7Logo from "../../assets/dc7.png";
-import { TEXTS } from "../../../textConstants";
+import { TEXTS } from "../../constants/text";
+import { ROUTES } from "../../utils/constants";
 import { isUserRegistered } from "../../utils/helpers";
+
+import bySolarPunk from "./assets/by-solar-punk.png";
+import dc7Logo from "./assets/dc7.png";
+import backgroundVideo from "./assets/opening.mp4";
+import videoGlassEffect from "./assets/video-glass-effect.png";
+
+import "./intro.scss";
+import "../src/styles/global.scss";
 
 function Intro() {
   const navigate = useNavigate();
