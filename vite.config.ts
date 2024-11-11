@@ -2,6 +2,20 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
+const cssPlugin = (mode: string) => {
+  return {
+      name: 'css-transform',
+      transform(src: string, id: string) {
+          if (/\.(css)$/.test(id)) {
+              const env = loadEnv(mode, process.cwd(), '');
+              const a = src.replace(/%(.*?)%/g, (match, p1) => "");
+              console.log(a);
+              return src;
+          }
+      }
+  }
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -28,10 +42,11 @@ export default defineConfig(({mode}) => {
       }
     },
     plugins: [
+      cssPlugin(mode),
       react(),
       nodePolyfills({
         globals: { process: true, Buffer: true }
-      })
+      }),
     ],
     base: env.BASE_URL ?? '/DevconAgora/',
     resolve: {
