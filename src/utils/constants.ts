@@ -36,6 +36,11 @@ import Coordination from "../assets/category-coordination.png";
 import AppliedCryptography from "../assets/category-applied-cryptography.png";
 import Entertainment from "../assets/category-entertainment.png";
 
+const enum ENV {
+  DEV = "dev",
+  PROD = "prod",
+}
+
 export enum ROUTES {
   APP = "/",
   WELCOME1 = "/welcome1",
@@ -290,7 +295,10 @@ const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
+  process.env.ENV === ENV.PROD ? 
+    PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP 
+  : 
+    TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
