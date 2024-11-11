@@ -5,7 +5,6 @@ import { Utils } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 import "./FullNotePage.scss";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
 import {
@@ -187,7 +186,7 @@ const FullNotePage: React.FC = () => {
   return (
     <div className="full-note-page">
       <div className="full-note-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
+        <img src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"} alt="" width="100%" height="100%" />
       </div>
       {showRemovePopUp && (
         <PopUpQuestion

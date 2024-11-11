@@ -5,7 +5,6 @@ import "./NotesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NoteItem from "../../components/NoteItem/NoteItem";
 import { ROUTES } from "../../utils/constants";
 
@@ -15,7 +14,7 @@ const NotesPage: React.FC = () => {
   return (
     <div className="notes-page">
       <div className="notes-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
+        <img src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"} alt="" width="100%" height="100%" />
       </div>
       <div className="notes-page__header">Notes</div>
       <Link to={`${ROUTES.NOTES}${ROUTES.NEW_NOTE}`}>

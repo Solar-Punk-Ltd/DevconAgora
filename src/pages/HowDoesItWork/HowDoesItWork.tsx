@@ -1,10 +1,6 @@
 import React from "react";
 import "./HowDoesItWork.scss";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import CollectPointsImg from "../../assets/collect-points.png";
-import ProfileGetBZZImg from "../../assets/profile-get-BZZ.png";
-// import { ROUTES } from "../../utils/constants";
 
 interface HowDoesItWorkProps {
   toText?: string;
@@ -17,7 +13,7 @@ const HowDoesItWork: React.FC<HowDoesItWorkProps> = ({ toText }) => {
       <div className="how-does-it-work-page__content">
         <div className="how-does-it-work-page__content__background">
           <img
-            src={HomeBackground}
+            src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
             alt=""
             className="how-does-it-work-page__box__img"
           />
@@ -31,7 +27,7 @@ const HowDoesItWork: React.FC<HowDoesItWorkProps> = ({ toText }) => {
           </div>
           <div>
             <img
-              src={CollectPointsImg}
+              src={process.env.ASSETS_URL + "/assets/collect-points.png"}
               alt=""
               className="how-does-it-work-page__box__img"
             />
@@ -46,7 +42,7 @@ const HowDoesItWork: React.FC<HowDoesItWorkProps> = ({ toText }) => {
           </div>
           <div>
             <img
-              src={ProfileGetBZZImg}
+              src={process.env.ASSETS_URL + "/assets/profile-get-BZZ.png"}
               alt=""
               className="how-does-it-work-page__box__img"
             />

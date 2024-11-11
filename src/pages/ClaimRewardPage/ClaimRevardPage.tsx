@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import "./ClaimRewardPage.scss";
-import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../GlobalStateContext";
@@ -73,7 +72,7 @@ const ClaimRewardPage: React.FC = () => {
     <div className="claim-reward">
       <div className="claim-reward__background">
         <img
-          src={HomeBackground}
+          src={process.env.ASSETS_URL + "/assets/registration-glass-effect.png"}
           alt=""
           className="claim-reward__background__img"
         />

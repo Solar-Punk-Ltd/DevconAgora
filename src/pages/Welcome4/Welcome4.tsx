@@ -1,10 +1,8 @@
 import React from "react";
 import "./Welcome4.scss";
 import { Link } from "react-router-dom";
-import welcome4img from "../../assets/welcome4img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
-import WelcomeMask from "../../assets/welcome-glass-effect.png";
 import { ROUTES } from "../../utils/constants";
 
 const Welcome1: React.FC = () => {
@@ -15,13 +13,13 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
             <img
-              src={welcome4img}
+              src={process.env.ASSETS_URL + "/assets/welcome4img.png"}
               alt=""
               className="welcome-page__main-image"
             />
             <div className="welcome-page__effect">
               <img
-                src={WelcomeMask}
+                src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
                 alt=""
                 className="welcome-page__effect-mask"
               />

@@ -3,7 +3,6 @@ import "./Profile.scss";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { useGlobalState } from "../../GlobalStateContext";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -22,7 +21,7 @@ const Profile: React.FC = () => {
         <div className="profile__content__datas">
           <div className="profile__content__background">
             <img
-              src={HomeBackground}
+              src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
               alt=""
               className="profile__content__background__image"
             />

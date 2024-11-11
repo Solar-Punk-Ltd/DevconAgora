@@ -1,6 +1,5 @@
 import React from "react";
 import "./HomeHeader.scss";
-import swarmIcon from "../../assets/swarm-icon.png";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { Link } from "react-router-dom";
 import { useGlobalState } from "../../GlobalStateContext";
@@ -34,7 +33,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({
         </div>
         <div className="home-header__points">
           {points ? points : 0}
-          <img src={swarmIcon} alt="" width="15px" height="15px" />
+          <img src={process.env.ASSETS_URL + "/assets/swarm-icon.png"} alt="" width="15px" height="15px" />
         </div>
         <Link to={ROUTES.PROFILE}>
           <div className="home-header__profile">

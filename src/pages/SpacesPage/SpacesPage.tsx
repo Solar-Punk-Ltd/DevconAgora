@@ -7,7 +7,6 @@ import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
 import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 
 const SpacesPage: React.FC = () => {
   const { username, orderedList } = useGlobalState();
@@ -29,7 +28,7 @@ const SpacesPage: React.FC = () => {
       <NavigationFooter />
       <div className="spaces__background">
         <img
-          src={HomeBackground}
+          src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
           alt=""
           width="100%"
           height="100%"

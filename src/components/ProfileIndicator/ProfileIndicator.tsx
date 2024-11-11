@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProfileIndicator.scss";
-import miniProfileIcon from "../../assets/mini-profile-icon.png";
 import ProfileAlert from "./ProfileAlert/ProfileAlert";
 
 interface ProfileIndicatorProps {
@@ -17,7 +16,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ alertValue }) => {
       }}
     >
       <div style={{ height: "40px" }}>
-        <img src={miniProfileIcon} alt="" width="40px" height="40px" />
+        <img src={process.env.ASSETS_URL + "/assets/mini-profile-icon.png"} alt="" width="40px" height="40px" />
         <ProfileAlert value={alertValue} />
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import "./ContentFilterPage.scss";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { Link } from "react-router-dom";
 import ContentFilter from "../../components/ContentFilter/ContentFilter";
@@ -12,7 +11,7 @@ const ContentFilterPage: React.FC = () => {
       <div className="content-filter-page">
         <div className="content-filter-page__background">
           <img
-            src={HomeBackground}
+            src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
             alt=""
             className="content-filter-page__background__image"
           />

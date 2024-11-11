@@ -1,6 +1,5 @@
 import React from "react";
 import "./StayUpdatedPage.scss";
-import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -61,7 +60,7 @@ const StayUpdatedPage: React.FC = () => {
     <div className="stay-updated">
       <div className="stay-updated__background">
         <img
-          src={HomeBackground}
+          src={process.env.ASSETS_URL + "/assets/registration-glass-effect.png"}
           alt=""
           className="stay-updated__background__img"
         />

@@ -6,7 +6,6 @@ import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import Spaces from "../../components/Spaces/Spaces";
 import Chat from "../Chat/Chat";
 import { BatchId } from "@ethersphere/bee-js";
@@ -48,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   return (
     <div className="home-page">
       <div className="home-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
+        <img src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"} alt="" width="100%" height="100%" />
       </div>
 
       <HomeHeader points={points} withGamification={withGamification} />

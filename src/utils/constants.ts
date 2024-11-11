@@ -24,17 +24,17 @@ export const MAX_SESSIONS_SHOWN = 9;
 export const LOBBY_TITLE = "Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
 
-import Layer2s from "../assets/category-layer-2s.png";
-import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
-import Security from "../assets/category-security.png";
-import Usability from "../assets/category-usability.png";
-import DeveloperExperience from "../assets/category-developer-experience.png";
-import CypherpunkAndPrivacy from "../assets/category-cypherpunk-and-privacy.png";
-import CryptoEconomics from "../assets/category-crypto-economics.png";
-import CoreProtocol from "../assets/category-core-protocol.png";
-import Coordination from "../assets/category-coordination.png";
-import AppliedCryptography from "../assets/category-applied-cryptography.png";
-import Entertainment from "../assets/category-entertainment.png";
+const Layer2s = process.env.ASSETS_URL + "/assets/category-layer-2s.png";
+const RealWorldEthereum = process.env.ASSETS_URL + "/assets/category-real-world-ethereum.png";
+const Security = process.env.ASSETS_URL + "/assets/category-security.png";
+const Usability = process.env.ASSETS_URL + "/assets/category-usability.png";
+const DeveloperExperience = process.env.ASSETS_URL + "/assets/category-developer-experience.png";
+const CypherpunkAndPrivacy = process.env.ASSETS_URL + "/assets/category-cypherpunk-and-privacy.png";
+const CryptoEconomics = process.env.ASSETS_URL + "/assets/category-crypto-economics.png";
+const CoreProtocol = process.env.ASSETS_URL + "/assets/category-core-protocol.png";
+const Coordination = process.env.ASSETS_URL + "/assets/category-coordination.png";
+const AppliedCryptography = process.env.ASSETS_URL + "/assets/category-applied-cryptography.png";
+const Entertainment = process.env.ASSETS_URL + "/assets/category-entertainment.png";
 
 export enum ROUTES {
   APP = "/",

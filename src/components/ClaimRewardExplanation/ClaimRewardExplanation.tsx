@@ -1,7 +1,6 @@
 import React from "react";
 import "./ClaimRewardExplanation.scss";
 import { useGlobalState } from "../../GlobalStateContext";
-import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
 import CloseIcon from "../icons/CloseIcon/CloseIcon";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -22,7 +21,7 @@ const ClaimRewardExplanation: React.FC = () => {
       </div>
       <div>
         <img
-          src={GamificationBackgroundTen}
+          src={process.env.ASSETS_URL + "/assets/gamification-ten-points.png"}
           alt=""
           className="claim-reward-explanation__img"
         />

@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import "./Gamification.scss";
 
-import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
-import GamificationBackgroundFive from "../../assets/gamification-five-points.png";
-import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
 import CloseIcon from "../icons/CloseIcon/CloseIcon";
 import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
@@ -14,6 +11,10 @@ import ClaimRewardExplanation from "../ClaimRewardExplanation/ClaimRewardExplana
 interface GamificationProps {
   points: number;
 }
+
+const GamificationBackgroundOne = process.env.ASSETS_URL + "/assets/gamification-first-point.png";
+const GamificationBackgroundFive = process.env.ASSETS_URL + "/assets/gamification-five-points.png";
+const GamificationBackgroundTen = process.env.ASSETS_URL + "/assets/gamification-ten-points.png";
 
 const Gamification: React.FC<GamificationProps> = ({ points }) => {
   const { setShowGamification } = useGlobalState();

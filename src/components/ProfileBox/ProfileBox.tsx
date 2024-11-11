@@ -1,7 +1,6 @@
 import React from "react";
 import "./ProfileBox.scss";
 import { useNavigate } from "react-router-dom";
-import ReferalQRIcon from "../../assets/referal-qr.svg";
 import clsx from "clsx";
 
 interface ProfileBoxProps {
@@ -86,7 +85,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
       ) : showContent ? (
         <div className="profile-box__right-content">
           <div>
-            <img src={ReferalQRIcon} alt="" />
+            <img src={process.env.ASSETS_URL + "/assets/referal-qr.svg"} alt="" />
           </div>
         </div>
       ) : null}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./TACOnboardingPage.scss";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -24,7 +23,7 @@ const TACOnboardingPage: React.FC = () => {
       <div className="terms-and-conditions-onboarding-page">
         <div className="terms-and-conditions-onboarding-page__background">
           <img
-            src={HomeBackground}
+            src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
             alt=""
             className="terms-and-conditions-onboarding-page__background__image"
           />

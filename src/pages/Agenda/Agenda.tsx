@@ -19,9 +19,10 @@ import {
   stringToBoolean,
 } from "../../utils/helpers";
 import { useGlobalState } from "../../GlobalStateContext";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import AgendaBanner from "../../assets/side-event-banner.png";
 import clsx from "clsx";
+
+const HomeBackground = process.env.ASSETS_URL + "/assets/welcome-glass-effect.png";
+const AgendaBanner = process.env.ASSETS_URL + "/assets/side-event-banner.png";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();

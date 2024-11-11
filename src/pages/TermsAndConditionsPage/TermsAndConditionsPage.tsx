@@ -1,7 +1,6 @@
 import React from "react";
 import "./TermsAndConditionsPage.scss";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -12,7 +11,7 @@ const TermsAndConditionsPage: React.FC = () => {
       <div className="terms-and-conditions-page">
         <div className="terms-and-conditions-page__background">
           <img
-            src={HomeBackground}
+            src={process.env.ASSETS_URL + "/assets/welcome-glass-effect.png"}
             alt=""
             className="terms-and-conditions-page__background__image"
           />

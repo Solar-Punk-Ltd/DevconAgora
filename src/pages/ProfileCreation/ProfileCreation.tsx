@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ethers } from "ethers";
-import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
-import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import "./ProfileCreation.scss";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
@@ -128,7 +126,7 @@ const ProfileCreation: React.FC = () => {
           </div>
           <div className="profile-creation__background-effect">
             <img
-              src={createYourProfileEffect}
+              src={process.env.ASSETS_URL + "/assets/create-your-profile-effect.png"}
               alt=""
               className="profile-creation__backgorund-effect__img"
             />
@@ -172,7 +170,7 @@ const ProfileCreation: React.FC = () => {
                 <div className="profile-creation__user-input__error-container">
                   <div className="profile-creation__user-input__error-container__error">
                     <img
-                      src={errorAlertIcon}
+                      src={process.env.ASSETS_URL + "/assets/input-validation-alert-icon.png"}
                       alt=""
                       className="profile-creation__user-input__error-container__error-icon"
                     />

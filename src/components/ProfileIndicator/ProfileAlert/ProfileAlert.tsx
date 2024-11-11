@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProfileAlert.scss";
-// import miniProfileIcon from "../../assets/mini-profile-icon.png";
 
 interface ProfileAlertProps {
   value: number;
