@@ -36,7 +36,7 @@ import Coordination from "../assets/category-coordination.png";
 import AppliedCryptography from "../assets/category-applied-cryptography.png";
 import Entertainment from "../assets/category-entertainment.png";
 
-const enum ENV {
+export enum ENV {
   DEV = "dev",
   PROD = "prod",
 }
@@ -233,7 +233,7 @@ const TEST_RESOURCE_IDS = new Map([
   ],
 ]);
 
-export const RESOURCE_IDS = PROD_RESOURCE_IDS;
+export const RESOURCE_IDS = ENV.PROD ? PROD_RESOURCE_IDS : TEST_RESOURCE_IDS;
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-12").toDateString(), "Day 1"],
@@ -280,18 +280,18 @@ const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
-  ["Layer 2", "layer-2s-test"],
-  ["Core Protocol", "core-protocol-test"],
-  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test"],
-  ["Usability", "usability-test"],
-  ["Real World Ethereum", "real-world-ethereum-test"],
-  ["Applied Cryptography", "applied-cryptography-test"],
-  ["Cryptoeconomics", "cryptoeconomics-test"],
-  ["Coordination", "coordination-test"],
-  ["Developer Experience", "developer-experience-test"],
-  ["Security", "security-test"],
-  ["Entertainment", "entertainment-test"],
-  ["Lobby", "lobby-test"],
+  ["Layer 2", "layer-2s-test-1"],
+  ["Core Protocol", "core-protocol-test-1"],
+  ["Cypherpunk & Privacy", "cypherpunk-and-privacy-test-1"],
+  ["Usability", "usability-test-1"],
+  ["Real World Ethereum", "real-world-ethereum-test-1"],
+  ["Applied Cryptography", "applied-cryptography-test-1"],
+  ["Cryptoeconomics", "cryptoeconomics-test-1"],
+  ["Coordination", "coordination-test-1"],
+  ["Developer Experience", "developer-experience-test-1"],
+  ["Security", "security-test-1"],
+  ["Entertainment", "entertainment-test-1"],
+  ["Lobby", "lobby-test-1"],
 ]);
 
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
