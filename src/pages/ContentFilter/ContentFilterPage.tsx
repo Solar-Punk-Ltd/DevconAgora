@@ -1,10 +1,12 @@
 import React from "react";
-import "./ContentFilterPage.scss";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { Link } from "react-router-dom";
+
+import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ContentFilter from "../../components/ContentFilter/ContentFilter";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
+
+import "./ContentFilter.scss";
 
 const ContentFilterPage: React.FC = () => {
   return (

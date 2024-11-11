@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import "./ContentFilter.scss";
+
+import { useGlobalState } from "../../contexts/global";
 import { CONTENT_FILTER_TEXT } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
-import { useGlobalState } from "../../GlobalStateContext";
+
+import "./ContentFilter.scss";
 
 const ContentFilter: React.FC = () => {
   const { isContentFilterEnabled, setIsContentFilterEnabled } =

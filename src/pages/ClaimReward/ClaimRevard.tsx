@@ -1,15 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import "./ClaimRewardPage.scss";
+import { useNavigate } from "react-router-dom";
+import { ethers } from "ethers";
+
 import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../GlobalStateContext";
-import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../../contexts/global";
 import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
-import { ethers } from "ethers";
 import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
 
-const ClaimRewardPage: React.FC = () => {
+import "./ClaimReward.scss";
+
+const ClaimReward: React.FC = () => {
   const { username } = useGlobalState();
   const navigate = useNavigate();
 
@@ -141,4 +143,4 @@ const ClaimRewardPage: React.FC = () => {
   );
 };
 
-export default ClaimRewardPage;
+export default ClaimReward;

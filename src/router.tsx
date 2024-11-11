@@ -1,10 +1,10 @@
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
-import { useGlobalState } from "./GlobalStateContext";
-import Intro from "./pages/Intro/Intro";
+import { useGlobalState } from "./contexts/global";
+import App from "./pages/Intro/Intro";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
@@ -18,11 +18,11 @@ import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import TalkPage from "./pages/TalkPage/TalkPage";
 import { Session } from "./types/session";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
-import ClaimRewardPage from "./pages/ClaimRewardPage/ClaimRevardPage";
-import ContentFilterPage from "./pages/ContentFilterPage/ContentFilterPage";
+import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
+import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndConditionsPage";
 import NotesPage from "./pages/NotesPage/NotesPage";
-import FullNotePage from "./pages/FullNotePage/FullNotePage";
+import FullNotePage from "./pages/FullNote/FullNote";
 import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
 import StayUpdatedPage from "./pages/StayUpdatedPage/StayUpdatedPage";
 import { TalkComments } from "./types/talkComment";
@@ -36,7 +36,8 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
-  CATEGORIES,
+  LOBBY_TITLE,
+  CATEGORY_NAMES_TO_ID_MAP,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -46,6 +47,7 @@ import {
   isUserRegistered,
   getPrivateKey,
 } from "./utils/helpers";
+import { RoomWithUserCounts } from "./types/room";
 
 const MainRouter = (): ReactElement => {
   const {

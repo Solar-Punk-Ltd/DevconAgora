@@ -1,13 +1,15 @@
 import React from "react";
-import "./Profile.scss";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { useGlobalState } from "../../GlobalStateContext";
-import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/constants";
+
+import HomeBackground from "../../assets/welcome-glass-effect.png";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+import ProfileBox from "../../components/ProfileBox/ProfileBox";
+import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import Settings from "../../components/Settings/Settings";
+import { useGlobalState } from "../../contexts/global";
+import { ROUTES } from "../../utils/constants";
+
+import "./Profile.scss";
 
 const Profile: React.FC = () => {
   const { username, monogram, points } = useGlobalState();

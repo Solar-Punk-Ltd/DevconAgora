@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
-import "./Agenda.scss";
+import clsx from "clsx";
+
+import AgendaBanner from "../../assets/side-event-banner.png";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
+import AgendaItem from "../../components/AgendaItem/AgendaItem";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
-import Categories from "../Categories/Categories";
-import Dropdown from "../../components/Dropdown/Dropdown";
+import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import {
-  STAGES_MAP,
   CATEGORIES,
   DATE_TO_DEVCON_DAY,
+  STAGES_MAP,
 } from "../../utils/constants";
-import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import {
-  getSessionsByDay,
   dateToTime,
+  getSessionsByDay,
   stringToBoolean,
 } from "../../utils/helpers";
-import { useGlobalState } from "../../GlobalStateContext";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
-import AgendaBanner from "../../assets/side-event-banner.png";
-import clsx from "clsx";
+import Categories from "../Categories/Categories";
+
+import "./Agenda.scss";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();

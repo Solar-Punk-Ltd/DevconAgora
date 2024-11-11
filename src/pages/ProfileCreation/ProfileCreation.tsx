@@ -1,17 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import { ethers } from "ethers";
+
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
-import "./ProfileCreation.scss";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import EditIcon from "../../components/icons/EditIcon/EditIcon";
-import clsx from "clsx";
-import { useGlobalState } from "../../GlobalStateContext";
-import { ROUTES } from "../../utils/constants";
-import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
+import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import { useGlobalState } from "../../contexts/global";
+import { ROUTES } from "../../utils/constants";
+import {
+  createMonogram,
+  getPrivateKey,
+  handleKeyDown,
+} from "../../utils/helpers";
+
+import "./ProfileCreation.scss";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -65,7 +71,7 @@ const ProfileCreation: React.FC = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({username, key: getPrivateKey()}),
+        body: JSON.stringify({ username, key: getPrivateKey() }),
       });
     } catch (error) {
       setUserNameSetError(true);

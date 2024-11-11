@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./RecentSessions.scss";
-import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
-import { useGlobalState } from "../../GlobalStateContext";
+
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES, STAGES_MAP } from "../../utils/constants";
+
+import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
+
+import "./RecentSessions.scss";
 
 const RecentSessions: React.FC = () => {
   const { recentSessions, talkActivity } = useGlobalState();
