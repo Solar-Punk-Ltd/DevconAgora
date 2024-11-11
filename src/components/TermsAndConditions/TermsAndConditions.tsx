@@ -1,5 +1,6 @@
 import React from "react";
-import "./TermsAndConditions.scss";
+
+import { useGlobalState } from "../../contexts/global";
 import {
   DISCLAIMER_OF_LIABILITY_HEADER,
   DISCLAIMER_OF_LIABILITY_TEXT,

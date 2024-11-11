@@ -11,7 +11,6 @@ import backgroundVideo from "../../assets/opening.mp4";
 import videoGlassEffect from "../../assets/video-glass-effect.png";
 
 import "./intro.scss";
-import "../../styles/global.scss";
 
 function Intro() {
   const navigate = useNavigate();
