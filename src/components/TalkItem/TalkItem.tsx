@@ -20,9 +20,10 @@ import './TalkItem.scss';
 
 interface TalkItemProps {
   session: Session;
+  isSpacesTalk: boolean;
 }
 
-const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
+const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, isContentFilterEnabled } =
     useGlobalState();
   const [comments, setComments] = useState<CommentsWithIndex | undefined>(undefined);
@@ -120,6 +121,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           paddingRight={'16px'}
           stage={STAGES_MAP.get(session.slot_roomId || '') || ''}
           commentVersion={true}
+          isSpacesTalk={isSpacesTalk}
         />
       )}
       {/* either use a local stamp from the env or a dummy can be sent to the
