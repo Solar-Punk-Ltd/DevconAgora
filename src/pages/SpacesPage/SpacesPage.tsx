@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 
 const SpacesPage: React.FC = () => {
-  const { orderedList } = useGlobalState();
+  const { talkActivity } = useGlobalState();
   const navigate = useNavigate();
 
   return (
@@ -30,9 +30,7 @@ const SpacesPage: React.FC = () => {
           <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
             <SpacesItem
               title={c}
-              numberOfActiveUsers={
-                orderedList.find((room) => room.topic === c)?.userCount || 0
-              }
+              numberOfActiveUsers={talkActivity.get(c) || 0}
             />
           </div>
         ))}

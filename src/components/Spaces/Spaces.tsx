@@ -27,9 +27,7 @@ const Spaces: React.FC<SpacesProps> = ({ list }) => {
           >
             <SpacesItem
               title={room.topic}
-              numberOfActiveUsers={
-                room.userCount !== undefined ? room.userCount : -1
-              }
+              numberOfActiveUsers={room.userCount || 0}
             />
           </div>
         ))}

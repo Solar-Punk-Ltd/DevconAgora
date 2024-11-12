@@ -315,9 +315,9 @@ const MainRouter = (): ReactElement => {
     preLoadTalks();
   }, [recentSessions]);
 
-  const calcActivity = () => {
+  const calcActivity = async () => {
+    const tmpActiveVisitors = new Map<string, number>();
     if (loadedTalks) {
-      const tmpActiveVisitors = new Map<string, number>();
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) =>
           talk.talkId.includes(recentSessions[i].id)
@@ -330,6 +330,39 @@ const MainRouter = (): ReactElement => {
         }
       }
       setTalkActivity(tmpActiveVisitors);
+    }
+
+    const spacesSessions = getSessionsByDay(sessions, "spaces");
+    const spacesPromises: Promise<CommentsWithIndex>[] = [];
+    const stamp = process.env.STAMP || DUMMY_STAMP;
+    try {
+      for (let i = 0; i < spacesSessions.length; i++) {
+        const rawTalkTopic = getTopic(spacesSessions[i].id, true);
+        const wallet = getWallet(rawTalkTopic);
+        const signer = getSigner(wallet);
+        spacesPromises.push(
+          loadLatestComments(
+            stamp,
+            rawTalkTopic,
+            signer,
+            process.env.BEE_API_URL,
+            MAX_COMMENTS_LOADED
+          )
+        );
+      }
+
+      await Promise.allSettled(spacesPromises).then((results) => {
+        results.forEach((result, i) => {
+          if (result.status === "fulfilled") {
+            tmpActiveVisitors.set(spacesSessions[i].id, result.value.nextIndex);
+          } else {
+            console.log(`fetching user count of talks error: `, result.reason);
+          }
+        });
+      });
+      setTalkActivity(tmpActiveVisitors);
+    } catch (error) {
+      console.log("fetching user count of talks error: ", error);
     }
   };
 
