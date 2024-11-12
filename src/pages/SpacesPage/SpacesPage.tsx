@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
-import Chat from "../Chat/Chat";
-import { BatchId } from "@ethersphere/bee-js";
 import { useGlobalState } from "../../GlobalStateContext";
-import { getPrivateKey, getResourceId } from "../../utils/helpers";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
+import TalkItem from "../../components/TalkItem/TalkItem";
+import { Session } from "../../types/session";
 
 const SpacesPage: React.FC = () => {
-  const { username, orderedList } = useGlobalState();
-  const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const { orderedList } = useGlobalState();
+  const [selectedTalk, setSelectedTalk] = useState<string | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
-  const privKey = getPrivateKey();
-  if (!privKey) {
-    return (
-      <div className="spaces-page-error">
-        No private key found
-        <NavigationFooter />
-      </div>
-    );
-  }
-
+  const handleOnClick = (category: string) => {
+    const sess: Session = {
+      id: category,
+      sourceId: category,
+      title: category,
+      track: category,
+      slot_start: new Date().toLocaleString(),
+      slot_end: new Date().toLocaleString(),
+      slot_roomId: category,
+    };
+    setSelectedTalk(category);
+    setSession(sess);
+  };
 
   return (
     <div className="spaces">
@@ -38,27 +41,19 @@ const SpacesPage: React.FC = () => {
       </div>
 
       <div className="spaces__content">
-        {CATEGORIES.map((category) => (
-          <div key={category} onClick={() => setSelectedChat(category)}>
-            <SpacesItem title={category} numberOfActiveUsers={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(category))?.userCount || 0} />
+        {CATEGORIES.map((c) => (
+          <div key={c} onClick={() => handleOnClick(c)}>
+            <SpacesItem
+              title={c}
+              numberOfActiveUsers={
+                orderedList.find((room) => room.topic === c)?.userCount || 0
+              }
+            />
           </div>
         ))}
       </div>
 
-      {selectedChat && (
-        <Chat
-          title={selectedChat}
-          topic={CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
-          privKey={privKey}
-          stamp={process.env.STAMP as BatchId}
-          nickname={username}
-          gsocResourceId={getResourceId(selectedChat)}
-          gateway={orderedList.find((room) => room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat))?.gateway || undefined}
-          topMenuColor={undefined}
-          backAction={() => setSelectedChat(null)}
-          key={selectedChat}
-        />
-      )}
+      {selectedTalk && session && <TalkItem session={session} />}
     </div>
   );
 };

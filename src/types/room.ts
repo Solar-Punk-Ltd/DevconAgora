@@ -1,13 +1,11 @@
 export interface Room {
-  name: string;
-  description: string;
-  info: string;
-  capacity: string;
+  topic: string;
+  userCount?: number;
 }
 
 export interface RoomWithUserCounts {
-  url: string,
-  gateway: string,
-  topic: string,
-  userCount?: number
+  url: string;
+  gateway: string;
+  topic: string;
+  userCount?: number;
 }

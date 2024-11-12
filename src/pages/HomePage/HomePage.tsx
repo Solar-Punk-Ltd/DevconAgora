@@ -8,34 +8,31 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import Spaces from "../../components/Spaces/Spaces";
-import Chat from "../Chat/Chat";
-import { BatchId } from "@ethersphere/bee-js";
-import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import { LOBBY_TITLE, CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { Session } from "../../types/session";
+import { LOBBY_TITLE } from "../../utils/constants";
+import TalkItem from "../../components/TalkItem/TalkItem";
 
 interface HomePageProps {
   withGamification?: boolean;
 }
 
 const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
-  const { points, username, orderedList } = useGlobalState();
-  const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const { points, orderedList } = useGlobalState();
+  const [selectedTalk, setSelectedTalk] = useState<string | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
-  const privKey = getPrivateKey();
-  if (!privKey) {
-    return (
-      <div className="home-page-error">
-        No private key found
-        <NavigationFooter />
-      </div>
-    );
-  }
-
-  const anyRoomUserCount = (roomName: string): number => {
-    const anyRoom = orderedList.find((room) => room.topic === roomName);
-    if (!anyRoom) return 0;
-    if (anyRoom.userCount) return anyRoom.userCount;
-    else return 0;
+  const handleOnClick = (category: string) => {
+    const sess: Session = {
+      id: category,
+      sourceId: category,
+      title: category,
+      track: category,
+      slot_start: new Date().toLocaleString(),
+      slot_end: new Date().toLocaleString(),
+      slot_roomId: category,
+    };
+    setSelectedTalk(category);
+    setSession(sess);
   };
 
   const lobbyUserCount = (): number => {
@@ -60,36 +57,15 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
           showActiveVisitors={true}
           activeVisitors={lobbyUserCount()}
           bordered={true}
-          setSelectedChat={setSelectedChat}
+          setSelectedTalk={handleOnClick}
         />
         <RecentSessions />
-        <Spaces list={orderedList} setSelectedChat={setSelectedChat} />
+        <Spaces list={orderedList} setSelectedTalk={handleOnClick} />
       </div>
 
       <NavigationFooter />
 
-      {selectedChat && (
-        <Chat
-          title={selectedChat}
-          topic={CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)}
-          privKey={privKey}
-          stamp={process.env.STAMP as BatchId}
-          nickname={username}
-          gsocResourceId={getResourceId(selectedChat)}
-          gateway={
-            orderedList.find(
-              (room) =>
-                room.topic === CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
-            )?.gateway || undefined
-          }
-          topMenuColor={undefined}
-          backAction={() => setSelectedChat(null)}
-          key={selectedChat}
-          activeNumber={anyRoomUserCount(
-            CATEGORY_NAMES_TO_ID_MAP.get(selectedChat)
-          )}
-        />
-      )}
+      {selectedTalk && session && <TalkItem session={session} />}
     </div>
   );
 };

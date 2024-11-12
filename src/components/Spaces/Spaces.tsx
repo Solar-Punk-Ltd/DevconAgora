@@ -1,18 +1,16 @@
 import React from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { RoomWithUserCounts } from "../../types/room";
-import { CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+// import { CATEGORIES } from "../../utils/constants";
+import { Room } from "../../types/room";
 
 interface SpacesProps {
-  list: RoomWithUserCounts[];
-  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>;
+  list: Room[];
+  setSelectedTalk: (category: string) => void;
 }
 
 /** Ordered Spaces list (ordered by activity) */
-const Spaces: React.FC<SpacesProps> = ({ list, setSelectedChat }) => {
-
-  console.log("list: (Spaces)", list);
+const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
   return (
     <div>
       <div className="recent-rooms">
@@ -20,14 +18,14 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedChat }) => {
       </div>
 
       <div>
-        {list.map((room) => { console.log("CATEGORY_NAMES_TO_ID_MAP.get(room.topic)", CATEGORY_NAMES_TO_ID_MAP.get(room.topic)); return (
-          <div key={room.topic} onClick={() => setSelectedChat(CATEGORY_NAMES_TO_ID_MAP.get(room.topic))}>
+        {list.map((room) => (
+          <div key={room.topic} onClick={() => setSelectedTalk(room.topic)}>
             <SpacesItem
-              title={CATEGORY_NAMES_TO_ID_MAP.get(room.topic)}
-              numberOfActiveUsers={room.userCount!}
+              title={room.topic}
+              numberOfActiveUsers={room.userCount || -1} // TODO: active users
             />
           </div>
-        )})}
+        ))}
       </div>
     </div>
   );

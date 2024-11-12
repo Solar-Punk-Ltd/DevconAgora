@@ -10,7 +10,7 @@ interface DevConMainBoxProps {
   showActiveVisitors?: boolean;
   activeVisitors?: number;
   bordered?: boolean;
-  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>
+  setSelectedTalk: (category: string) => void;
 }
 
 const DevConMainBox: React.FC<DevConMainBoxProps> = ({
@@ -19,10 +19,10 @@ const DevConMainBox: React.FC<DevConMainBoxProps> = ({
   showActiveVisitors,
   activeVisitors,
   bordered,
-  setSelectedChat
+  setSelectedTalk,
 }) => {
   return (
-    <div onClick={() => setSelectedChat(LOBBY_TITLE)} >
+    <div onClick={() => setSelectedTalk(LOBBY_TITLE)}>
       <div
         className={clsx("devcon-main-box", {
           "devcon-main-box__border": bordered,
