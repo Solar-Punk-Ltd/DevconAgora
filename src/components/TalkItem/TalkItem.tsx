@@ -124,7 +124,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
       )}
       {/* either use a local stamp from the env or a dummy can be sent to the
       gateway */}
-{/*       {!loading && (
+      {!loading && (
         <SwarmCommentSystem
           stamp={process.env.STAMP || DUMMY_STAMP}
           topic={rawTalkTopic}
@@ -138,7 +138,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session }) => {
           numOfComments={MAX_COMMENTS_LOADED}
           maxCharacterCount={MAX_CHARACTER_COUNT}
         />
-      )} */}
+      )}
     </>
   );
 };
