@@ -1,18 +1,18 @@
 import React from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-import { RoomWithUserCounts } from "../../types/room";
-import { CATEGORY_NAMES_TO_ID_MAP } from "../../utils/constants";
+import { Room } from "../../types/room";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 interface SpacesProps {
-  list: RoomWithUserCounts[];
-  setSelectedChat: React.Dispatch<React.SetStateAction<string | null>>;
+  list: Room[];
 }
 
 /** Ordered Spaces list (ordered by activity) */
-const Spaces: React.FC<SpacesProps> = ({ list, setSelectedChat }) => {
+const Spaces: React.FC<SpacesProps> = ({ list }) => {
+  const navigate = useNavigate();
 
-  console.log("list: (Spaces)", list);
   return (
     <div>
       <div className="recent-rooms">
@@ -20,14 +20,17 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedChat }) => {
       </div>
 
       <div>
-        {list.map((room) => { console.log("CATEGORY_NAMES_TO_ID_MAP.get(room.topic)", CATEGORY_NAMES_TO_ID_MAP.get(room.topic)); return (
-          <div key={room.topic} onClick={() => setSelectedChat(CATEGORY_NAMES_TO_ID_MAP.get(room.topic))}>
+        {list.map((room) => (
+          <div
+            key={room.topic}
+            onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}
+          >
             <SpacesItem
-              title={CATEGORY_NAMES_TO_ID_MAP.get(room.topic)}
-              numberOfActiveUsers={room.userCount!}
+              title={room.topic}
+              numberOfActiveUsers={room.userCount || 0}
             />
           </div>
-        )})}
+        ))}
       </div>
     </div>
   );

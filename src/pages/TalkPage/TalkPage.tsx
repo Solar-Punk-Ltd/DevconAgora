@@ -17,18 +17,34 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   const { sessions } = useGlobalState();
   const { talkId } = useParams();
   const [session, setSession] = useState<Session | null>(null);
+  const [isSpacesTalk, setIsSpacesTalk] = useState<boolean>(false)
   // in case a reload the path is the talk id, choose AGENDA instead
   const toTextFixed = toText?.startsWith(ROUTES.TALKS) ? ROUTES.AGENDA : toText;
 
-  const findSessionId = (id: string): Session | null => {
+  const findSessionId = (id: string): {
+    isSpaceSession: boolean,
+    session: Session
+  } | null => {
+    const spacesSessions = getSessionsByDay(sessions, "spaces");
     for (let i = 0; i < sessions.size; i++) {
       const sessionsByDay = getSessionsByDay(
         sessions,
         Array.from(DATE_TO_DEVCON_DAY.keys())[i]
       );
-      for (let j = 0; j < sessionsByDay.length; j++) {
-        if (sessionsByDay[j].id === id) {
-          return sessionsByDay[j];
+      
+     const daySession = sessionsByDay.find((s) => s.id === id);
+     const spaceSession = spacesSessions.find((s) => s.id === id);
+
+      if(daySession) {
+        return {
+          isSpaceSession: false,
+          session: daySession,
+        }
+      }
+      if(spaceSession) {
+        return {
+          isSpaceSession: true,
+          session: spaceSession,
         }
       }
     }
@@ -40,7 +56,8 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
     if (talkId) {
       const sessionItem = findSessionId(talkId);
       if (sessionItem) {
-        setSession(sessionItem);
+        setSession(sessionItem.session);
+        setIsSpacesTalk(sessionItem.isSpaceSession)
       }
     }
   }, [talkId, sessions]);
@@ -52,7 +69,7 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
         backgroundColor="#F1F2F4"
       />
       <div className="talk__content">
-        {session && <TalkItem session={session} />}
+        {session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}
       </div>
       <NavigationFooter />
     </div>

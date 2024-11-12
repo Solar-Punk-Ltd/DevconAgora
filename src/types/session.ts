@@ -3,14 +3,14 @@ import { Speaker } from "./speaker";
 export interface Session {
   id: string;
   sourceId: string;
-  eventId: string;
+  eventId?: string;
   title: string;
-  description: string;
+  description?: string;
   track: string;
-  type: string;
-  expertise: string;
+  type?: string;
+  expertise?: string;
   featured?: boolean;
-  tags: string;
+  tags?: string;
   speakers?: Speaker[];
   resources_slides?: string;
   slot_start?: string;
@@ -19,7 +19,7 @@ export interface Session {
   sources_ipfsHash?: string;
   sources_youtubeId?: string;
   sources_swarmHash?: string;
-  duration: string;
-  language: string;
-  liked: boolean;
+  duration?: string;
+  language?: string;
+  liked?: boolean;
 }

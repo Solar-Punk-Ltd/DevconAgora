@@ -9,8 +9,6 @@ import { Session } from "./types/session";
 import { TalkComments } from "./types/talkComment";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { createMonogram } from "./utils/helpers";
-import { RoomWithUserCounts } from "./types/room";
-import { CATEGORIES, CATEGORY_NAMES_TO_ID_MAP } from "./utils/constants";
 
 interface GlobalState {
   username: string;
@@ -39,8 +37,6 @@ interface GlobalState {
   setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
   talkActivity: Map<string, number>;
   setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
-  orderedList: RoomWithUserCounts[];
-  setOrderedList: React.Dispatch<React.SetStateAction<RoomWithUserCounts[]>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -87,16 +83,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   const [talkActivity, setTalkActivity] = useState<Map<string, number>>(
     new Map<string, number>()
-  );
-
-  // List of room, ordered by user count
-  const [orderedList, setOrderedList] = useState<RoomWithUserCounts[]>(
-    CATEGORIES.map((catName) => ({
-      topic: CATEGORY_NAMES_TO_ID_MAP.get(catName),
-      url: "null",
-      gateway: "",
-      userCount: undefined,
-    }))
   );
 
   useEffect(() => {
@@ -156,8 +142,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setNotes,
         talkActivity,
         setTalkActivity,
-        orderedList,
-        setOrderedList
       }}
     >
       {children}

@@ -21,6 +21,7 @@ interface AgendaItemProps {
   borderRadius?: string;
   paddingRight: string;
   commentVersion?: boolean;
+  isSpacesTalk: boolean;
 }
 
 const AgendaItem: React.FC<AgendaItemProps> = ({
@@ -35,6 +36,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
   borderRadius,
   paddingRight,
   commentVersion,
+  isSpacesTalk,
 }) => {
   const [empty, setEmpty] = useState<boolean>(!liked);
   const navigate = useNavigate();
@@ -61,15 +63,17 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         }
       }}
     >
-      <div className="agenda-item__main">
-        <div
-          className={clsx("agenda-item__main__time", {
-            "agenda-item__main__time__comment-version": commentVersion,
-          })}
-        >
-          <div>{startDate}</div>
-          <div>{endDate}</div>
-        </div>
+      <div className={clsx('agenda-item__main', isSpacesTalk ? 'agenda-item-padded__main' : '')}>
+        {!isSpacesTalk &&
+          <div
+            className={clsx("agenda-item__main__time", {
+              "agenda-item__main__time__comment-version": commentVersion,
+            })}
+          >
+            <div>{startDate}</div>
+            <div>{endDate}</div>
+          </div>
+        }
         <div className="agenda-item__main__content">
           <div className="agenda-item__main__content__title">{title}</div>
           <div className="agenda-item__main__content__tagged">
@@ -81,14 +85,17 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         </div>
       </div>
       {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
-      <div className="agenda-item__content__heart-icon">
-        <HeartIcon
-          empty={empty}
-          onClick={() => {
-            handleClick();
-          }}
-        />
-      </div>
+      {!isSpacesTalk &&
+        <div className="agenda-item__content__heart-icon">
+          <HeartIcon
+            empty={empty}
+            onClick={() => {
+              handleClick();
+            }}
+          />
+         </div>
+      }
+     
     </div>
   );
 };

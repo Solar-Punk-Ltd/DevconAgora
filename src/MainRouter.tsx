@@ -36,8 +36,7 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
-  LOBBY_TITLE,
-  CATEGORY_NAMES_TO_ID_MAP,
+  CATEGORIES,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -47,7 +46,6 @@ import {
   isUserRegistered,
   getPrivateKey,
 } from "./utils/helpers";
-import { RoomWithUserCounts } from "./types/room";
 
 const MainRouter = (): ReactElement => {
   const {
@@ -65,8 +63,6 @@ const MainRouter = (): ReactElement => {
     notes,
     setNotes,
     setTalkActivity,
-    orderedList,
-    setOrderedList,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
@@ -180,6 +176,22 @@ const MainRouter = (): ReactElement => {
         return;
       }
       const data = new Map<string, Session[]>(Object.entries(dataStr));
+
+      const spacesSessions: Session[] = [];
+      for (let i = 0; i < CATEGORIES.length; i++) {
+        const cat = CATEGORIES[i];
+        spacesSessions.push({
+          id: cat,
+          sourceId: cat,
+          title: cat,
+          track: cat,
+          slot_start: new Date().toLocaleString(),
+          slot_end: new Date().toLocaleString(),
+          slot_roomId: cat,
+        });
+      }
+
+      data.set("spaces", spacesSessions);
       if (data.size !== 0) {
         console.log("session data updated");
         setSessions(() => data);
@@ -299,35 +311,13 @@ const MainRouter = (): ReactElement => {
     }
   };
 
-  // User count refreshes every 15 minutes on backend. With this function, we fetch the stored values.
-  const fetchUserCount = async () => {
-    const roomsWithUserCount: RoomWithUserCounts[] = await fetch(
-      process.env.BACKEND_API_URL + "/user-count"
-    )
-      .then((res) => res.json())
-      .catch((err) => console.error("Error fetching user counts ", err));
-
-    if (roomsWithUserCount !== undefined && roomsWithUserCount.length > 0) {
-      const orderedRooms = roomsWithUserCount.sort(
-        (a, b) => b.userCount! - a.userCount!
-      );
-      const withoutLobby = orderedRooms.filter(
-        (room) => CATEGORY_NAMES_TO_ID_MAP.get(room.topic) !== LOBBY_TITLE
-      );
-      setOrderedList(withoutLobby);
-    }
-
-    console.log("Rooms with user counts: ", orderedList);
-  };
-
   useEffect(() => {
     preLoadTalks();
-    fetchUserCount();
   }, [recentSessions]);
 
-  const calcActivity = () => {
+  const calcActivity = async () => {
+    const tmpActiveVisitors = new Map<string, number>();
     if (loadedTalks) {
-      const tmpActiveVisitors = new Map<string, number>();
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) =>
           talk.talkId.includes(recentSessions[i].id)
@@ -340,6 +330,39 @@ const MainRouter = (): ReactElement => {
         }
       }
       setTalkActivity(tmpActiveVisitors);
+    }
+
+    const spacesSessions = getSessionsByDay(sessions, "spaces");
+    const spacesPromises: Promise<CommentsWithIndex>[] = [];
+    const stamp = process.env.STAMP || DUMMY_STAMP;
+    try {
+      for (let i = 0; i < spacesSessions.length; i++) {
+        const rawTalkTopic = getTopic(spacesSessions[i].id, true);
+        const wallet = getWallet(rawTalkTopic);
+        const signer = getSigner(wallet);
+        spacesPromises.push(
+          loadLatestComments(
+            stamp,
+            rawTalkTopic,
+            signer,
+            process.env.BEE_API_URL,
+            MAX_COMMENTS_LOADED
+          )
+        );
+      }
+
+      await Promise.allSettled(spacesPromises).then((results) => {
+        results.forEach((result, i) => {
+          if (result.status === "fulfilled") {
+            tmpActiveVisitors.set(spacesSessions[i].id, result.value.nextIndex);
+          } else {
+            console.log(`fetching user count of talks error: `, result.reason);
+          }
+        });
+      });
+      setTalkActivity(tmpActiveVisitors);
+    } catch (error) {
+      console.log("fetching user count of talks error: ", error);
     }
   };
 

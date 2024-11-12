@@ -3,9 +3,7 @@ const createBiDirectionaltMap = (map: Map<string, string>) => {
 
   map.forEach((value: string, key: string) => {
     biDirectionalMap.set(key, value);
-    console.log("biDirectionalMap (1)", biDirectionalMap);
     biDirectionalMap.set(value, key);
-    console.log("biDirectionalMap (2)", biDirectionalMap);
   });
 
   return biDirectionalMap;
@@ -80,6 +78,7 @@ export const CATEGORIES = [
   "Developer Experience",
   "Security",
   "Entertainment",
+  "Lobby",
 ];
 
 const PROD_RESOURCE_IDS = new Map([
@@ -292,10 +291,9 @@ const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
 ]);
 
 export const CATEGORY_NAMES_TO_ID_MAP = createBiDirectionaltMap(
-  process.env.ENV === ENV.PROD ?
-    PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
-      :
-    TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
+  process.env.ENV === ENV.PROD
+    ? PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
+    : TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP
 );
 
 export const CATEGORY_IMAGES_MAP = new Map([
