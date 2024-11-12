@@ -1,31 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SpacesPage.scss";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import { CATEGORIES } from "../../utils/constants";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { useGlobalState } from "../../GlobalStateContext";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-import TalkItem from "../../components/TalkItem/TalkItem";
-import { Session } from "../../types/session";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 const SpacesPage: React.FC = () => {
   const { orderedList } = useGlobalState();
-  const [selectedTalk, setSelectedTalk] = useState<string | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-
-  const handleOnClick = (category: string) => {
-    const sess: Session = {
-      id: category,
-      sourceId: category,
-      title: category,
-      track: category,
-      slot_start: new Date().toLocaleString(),
-      slot_end: new Date().toLocaleString(),
-      slot_roomId: category,
-    };
-    setSelectedTalk(category);
-    setSession(sess);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="spaces">
@@ -42,7 +27,7 @@ const SpacesPage: React.FC = () => {
 
       <div className="spaces__content">
         {CATEGORIES.map((c) => (
-          <div key={c} onClick={() => handleOnClick(c)}>
+          <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
             <SpacesItem
               title={c}
               numberOfActiveUsers={
@@ -52,8 +37,6 @@ const SpacesPage: React.FC = () => {
           </div>
         ))}
       </div>
-
-      {selectedTalk && session && <TalkItem session={session} />}
     </div>
   );
 };

@@ -21,14 +21,16 @@ const TalkPage: React.FC<TalkPageProps> = ({ toText }) => {
   const toTextFixed = toText?.startsWith(ROUTES.TALKS) ? ROUTES.AGENDA : toText;
 
   const findSessionId = (id: string): Session | null => {
+    const spacesSessions = getSessionsByDay(sessions, "spaces");
     for (let i = 0; i < sessions.size; i++) {
       const sessionsByDay = getSessionsByDay(
         sessions,
         Array.from(DATE_TO_DEVCON_DAY.keys())[i]
       );
-      for (let j = 0; j < sessionsByDay.length; j++) {
-        if (sessionsByDay[j].id === id) {
-          return sessionsByDay[j];
+      const allSessions = sessionsByDay.concat(spacesSessions);
+      for (let j = 0; j < allSessions.length; j++) {
+        if (allSessions[j].id === id) {
+          return allSessions[j];
         }
       }
     }

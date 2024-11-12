@@ -7,11 +7,10 @@ import { ROUTES } from "../../utils/constants";
 
 interface SpacesProps {
   list: Room[];
-  setSelectedTalk: (category: string) => void;
 }
 
 /** Ordered Spaces list (ordered by activity) */
-const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
+const Spaces: React.FC<SpacesProps> = ({ list }) => {
   const navigate = useNavigate();
 
   return (
@@ -22,7 +21,10 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
 
       <div>
         {list.map((room) => (
-          <div key={room.topic} onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}>
+          <div
+            key={room.topic}
+            onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}
+          >
             <SpacesItem
               title={room.topic}
               numberOfActiveUsers={
