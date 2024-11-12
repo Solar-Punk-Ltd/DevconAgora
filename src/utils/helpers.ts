@@ -35,6 +35,9 @@ export function getSessionsByDay(
   if (day === "all") {
     return Array.from(sessions.values()).flat();
   }
+  if (day === "spaces") {
+    return sessions.get("spaces") || [];
+  }
   return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
 }
 

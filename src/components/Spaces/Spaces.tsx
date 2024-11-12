@@ -1,7 +1,6 @@
 import React from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-// import { CATEGORIES } from "../../utils/constants";
 import { Room } from "../../types/room";
 
 interface SpacesProps {
@@ -22,7 +21,9 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
           <div key={room.topic} onClick={() => setSelectedTalk(room.topic)}>
             <SpacesItem
               title={room.topic}
-              numberOfActiveUsers={room.userCount || -1} // TODO: active users
+              numberOfActiveUsers={
+                room.userCount !== undefined ? room.userCount : -1
+              }
             />
           </div>
         ))}
