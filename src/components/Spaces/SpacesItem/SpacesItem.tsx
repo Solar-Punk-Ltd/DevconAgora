@@ -15,7 +15,7 @@ const SpacesItem: React.FC<RecentRoomsItemProps> = ({
 }) => {
   const imageUrl = CATEGORY_IMAGES_MAP.get(title);
   return (
-    <div style={{}} className="recent-rooms-item">
+    <div className="recent-rooms-item">
       <div className="recent-rooms-item__category">
         {imageUrl ? (
           <img src={imageUrl} alt="" width="24px" height="24px" />

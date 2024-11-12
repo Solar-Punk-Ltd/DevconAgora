@@ -1,8 +1,9 @@
 import React from "react";
 import "./Spaces.scss";
 import SpacesItem from "./SpacesItem/SpacesItem";
-// import { CATEGORIES } from "../../utils/constants";
 import { Room } from "../../types/room";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../utils/constants";
 
 interface SpacesProps {
   list: Room[];
@@ -11,6 +12,8 @@ interface SpacesProps {
 
 /** Ordered Spaces list (ordered by activity) */
 const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="recent-rooms">
@@ -19,7 +22,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
 
       <div>
         {list.map((room) => (
-          <div key={room.topic} onClick={() => setSelectedTalk(room.topic)}>
+          <div key={room.topic} onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}>
             <SpacesItem
               title={room.topic}
               numberOfActiveUsers={room.userCount || -1} // TODO: active users
