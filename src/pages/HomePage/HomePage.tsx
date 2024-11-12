@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useGlobalState } from "../../GlobalStateContext";
 import "./HomePage.scss";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
@@ -8,9 +7,7 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import Spaces from "../../components/Spaces/Spaces";
-import { Session } from "../../types/session";
 import { LOBBY_TITLE } from "../../utils/constants";
-import TalkItem from "../../components/TalkItem/TalkItem";
 
 interface HomePageProps {
   withGamification?: boolean;
@@ -18,22 +15,6 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, orderedList } = useGlobalState();
-  const [selectedTalk, setSelectedTalk] = useState<string | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-
-  const handleOnClick = (category: string) => {
-    const sess: Session = {
-      id: category,
-      sourceId: category,
-      title: category,
-      track: category,
-      slot_start: new Date().toLocaleString(),
-      slot_end: new Date().toLocaleString(),
-      slot_roomId: category,
-    };
-    setSelectedTalk(category);
-    setSession(sess);
-  };
 
   const lobbyUserCount = (): number => {
     const lobby = orderedList.find((room) => room.topic === LOBBY_TITLE);
@@ -57,15 +38,12 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
           showActiveVisitors={true}
           activeVisitors={lobbyUserCount()}
           bordered={true}
-          setSelectedTalk={handleOnClick}
         />
         <RecentSessions />
-        <Spaces list={orderedList} setSelectedTalk={handleOnClick} />
+        <Spaces list={orderedList} />
       </div>
 
       <NavigationFooter />
-
-      {selectedTalk && session && <TalkItem session={session} />}
     </div>
   );
 };

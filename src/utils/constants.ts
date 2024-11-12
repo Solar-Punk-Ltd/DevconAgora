@@ -78,6 +78,7 @@ export const CATEGORIES = [
   "Developer Experience",
   "Security",
   "Entertainment",
+  "Lobby",
 ];
 
 const PROD_RESOURCE_IDS = new Map([
