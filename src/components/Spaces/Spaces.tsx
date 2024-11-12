@@ -25,7 +25,9 @@ const Spaces: React.FC<SpacesProps> = ({ list, setSelectedTalk }) => {
           <div key={room.topic} onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}>
             <SpacesItem
               title={room.topic}
-              numberOfActiveUsers={room.userCount || -1} // TODO: active users
+              numberOfActiveUsers={
+                room.userCount !== undefined ? room.userCount : -1
+              }
             />
           </div>
         ))}

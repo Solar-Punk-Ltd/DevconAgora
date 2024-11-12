@@ -36,6 +36,7 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
+  CATEGORIES,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -175,6 +176,22 @@ const MainRouter = (): ReactElement => {
         return;
       }
       const data = new Map<string, Session[]>(Object.entries(dataStr));
+
+      const spacesSessions: Session[] = [];
+      for (let i = 0; i < CATEGORIES.length; i++) {
+        const cat = CATEGORIES[i];
+        spacesSessions.push({
+          id: cat,
+          sourceId: cat,
+          title: cat,
+          track: cat,
+          slot_start: new Date().toLocaleString(),
+          slot_end: new Date().toLocaleString(),
+          slot_roomId: cat,
+        });
+      }
+
+      data.set("spaces", spacesSessions);
       if (data.size !== 0) {
         console.log("session data updated");
         setSessions(() => data);
