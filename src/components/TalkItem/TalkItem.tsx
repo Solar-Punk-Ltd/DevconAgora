@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { CommentsWithIndex, UserComment } from '@solarpunkltd/comment-system';
-import { SwarmCommentSystem } from '@solarpunkltd/comment-system-ui';
+import React, { useEffect, useState } from "react";
+import { CommentsWithIndex, UserComment } from "@solarpunkltd/comment-system";
+import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 
-import { useGlobalState } from '../../GlobalStateContext';
-import { Session } from '../../types/session';
-import { TalkComments } from '../../types/talkComment';
-import { getTopic } from '../../utils/bee';
+import { useGlobalState } from "../../GlobalStateContext";
+import { Session } from "../../types/session";
+import { TalkComments } from "../../types/talkComment";
+import { getTopic } from "../../utils/bee";
 import {
+  CATEGORIES,
   DUMMY_STAMP,
   MAX_CHARACTER_COUNT,
   MAX_COMMENTS_LOADED,
   MAX_PRELOADED_TALKS,
   STAGES_MAP,
-} from '../../utils/constants';
-import { dateToTime, getSigner, getWallet } from '../../utils/helpers';
-import AgendaItem from '../AgendaItem/AgendaItem';
+} from "../../utils/constants";
+import { dateToTime, getSigner, getWallet } from "../../utils/helpers";
+import AgendaItem from "../AgendaItem/AgendaItem";
 
-import './TalkItem.scss';
+import "./TalkItem.scss";
 
 interface TalkItemProps {
   session: Session;
@@ -24,9 +25,19 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, isContentFilterEnabled } =
-    useGlobalState();
-  const [comments, setComments] = useState<CommentsWithIndex | undefined>(undefined);
+  const {
+    username,
+    loadedTalks,
+    setLoadedTalks,
+    talkActivity,
+    setTalkActivity,
+    spacesActivity,
+    setSpacesActivity,
+    isContentFilterEnabled,
+  } = useGlobalState();
+  const [comments, setComments] = useState<CommentsWithIndex | undefined>(
+    undefined
+  );
   const [loading, setLoading] = useState<boolean>(true);
 
   const rawTalkTopic = getTopic(session.id, true);
@@ -35,7 +46,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
 
   // update the loaded talk comments with the newly read/written comment
   // if the talk is not found, then replace the oldest talk with the new one
-  const updateTalks = (newComments: UserComment[], isHistory: boolean, next: number | undefined) => {
+  const updateTalks = (
+    newComments: UserComment[],
+    isHistory: boolean,
+    next: number | undefined
+  ) => {
     let updatedComments: UserComment[] = [];
     if (isHistory) {
       updatedComments = [...newComments, ...(comments?.comments || [])];
@@ -45,7 +60,9 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     const newLoadedTalks = [...(loadedTalks || [])];
     const nextIx = next === undefined ? 0 : next;
     if (loadedTalks && loadedTalks.length > 0) {
-      const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
+      const foundIx = loadedTalks.findIndex((talk) =>
+        talk.talkId.includes(session.id)
+      );
 
       // update the already loaded talk
       if (foundIx > -1) {
@@ -71,11 +88,18 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     setLoadedTalks(newLoadedTalks);
   };
 
-  const handleOnComment = (newComment: UserComment, next: number | undefined) => {
+  const handleOnComment = (
+    newComment: UserComment,
+    next: number | undefined
+  ) => {
     updateTalks([newComment], false, next);
   };
 
-  const handleOnRead = (newComments: UserComment[], isHistory: boolean, next: number | undefined) => {
+  const handleOnRead = (
+    newComments: UserComment[],
+    isHistory: boolean,
+    next: number | undefined
+  ) => {
     updateTalks(newComments, isHistory, next);
   };
 
@@ -97,12 +121,25 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   useEffect(() => {
     if (loadedTalks) {
       // update active visitors of the talk
-      const tmpActiveVisitors = new Map(talkActivity);
-      const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
-      if (foundIx > -1) {
-        tmpActiveVisitors.set(session.id, loadedTalks[foundIx].nextIndex);
+      let tmpActivity: Map<string, number>;
+      const isSpacesTalk = CATEGORIES.find((c) => c === session.id);
+      if (!isSpacesTalk) {
+        tmpActivity = new Map(talkActivity);
+      } else {
+        tmpActivity = new Map(spacesActivity);
       }
-      setTalkActivity(tmpActiveVisitors);
+      const foundIx = loadedTalks.findIndex((talk) =>
+        talk.talkId.includes(session.id)
+      );
+      if (foundIx > -1) {
+        tmpActivity.set(session.id, loadedTalks[foundIx].nextIndex);
+      }
+
+      if (!isSpacesTalk) {
+        setTalkActivity(tmpActivity);
+      } else {
+        setSpacesActivity(tmpActivity);
+      }
     }
   }, [comments]);
 
@@ -118,8 +155,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           category={session.track}
           roomId={session.slot_roomId}
           liked={session.liked}
-          paddingRight={'16px'}
-          stage={STAGES_MAP.get(session.slot_roomId || '') || ''}
+          paddingRight={"16px"}
+          stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
           commentVersion={true}
           isSpacesTalk={isSpacesTalk}
         />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./RecentSessions.scss";
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
@@ -7,20 +7,6 @@ import { ROUTES, STAGES_MAP } from "../../utils/constants";
 
 const RecentSessions: React.FC = () => {
   const { recentSessions, talkActivity } = useGlobalState();
-  const [activity, setActivity] = useState<Map<string, number>>(
-    new Map<string, number>()
-  );
-
-  useEffect(() => {
-    const tmpActivity = new Map<string, number>();
-    for (let i = 0; i < recentSessions.length; i++) {
-      tmpActivity.set(
-        recentSessions[i].id,
-        talkActivity.get(recentSessions[i].id) || 0
-      );
-    }
-    setActivity(tmpActivity);
-  }, [talkActivity]);
 
   return (
     <div>
@@ -38,7 +24,7 @@ const RecentSessions: React.FC = () => {
               id={session.id}
               title={session.title}
               stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
-              activity={activity.get(session.id) || 0}
+              activity={talkActivity.get(session.id) || 0}
             />
           );
         })}
