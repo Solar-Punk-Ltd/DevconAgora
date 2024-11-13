@@ -20,6 +20,9 @@ const ClaimRewardPage: React.FC = () => {
     const code = localStorage.getItem(GIFTCODE_KEY);
     if (code !== null && inputRef.current) {
       inputRef.current.value = code;
+      if (code === "already redeemed") {
+        localStorage.removeItem(GIFTCODE_KEY);
+      }
     } else if (!nonceRequested) {
       nonceRequested = true;
       try {
@@ -61,7 +64,7 @@ const ClaimRewardPage: React.FC = () => {
         console.log("error fetching nonce: ", error);
       }
     }
-  });
+  }, []);
 
   const handleCopyClick = async () => {
     if (inputRef.current) {
