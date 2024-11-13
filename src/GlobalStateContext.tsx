@@ -37,6 +37,8 @@ interface GlobalState {
   setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
   talkActivity: Map<string, number>;
   setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
+  spacesActivity: Map<string, number>;
+  setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -82,6 +84,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
 
   const [talkActivity, setTalkActivity] = useState<Map<string, number>>(
+    new Map<string, number>()
+  );
+
+  const [spacesActivity, setSpacesActivity] = useState<Map<string, number>>(
     new Map<string, number>()
   );
 
@@ -142,6 +148,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
         setNotes,
         talkActivity,
         setTalkActivity,
+        spacesActivity,
+        setSpacesActivity,
       }}
     >
       {children}

@@ -63,6 +63,7 @@ const MainRouter = (): ReactElement => {
     notes,
     setNotes,
     setTalkActivity,
+    setSpacesActivity,
   } = useGlobalState();
   const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
@@ -316,7 +317,24 @@ const MainRouter = (): ReactElement => {
   }, [recentSessions]);
 
   const calcActivity = async () => {
-    const tmpActiveVisitors = new Map<string, number>();
+    if (loadedTalks) {
+      const tmpActiveVisitors = new Map<string, number>();
+      for (let i = 0; i < recentSessions.length; i++) {
+        const foundIx = loadedTalks.findIndex((talk) =>
+          talk.talkId.includes(recentSessions[i].id)
+        );
+        if (foundIx > -1) {
+          tmpActiveVisitors.set(
+            recentSessions[i].id,
+            loadedTalks[foundIx].nextIndex
+          );
+        }
+      }
+      setTalkActivity(tmpActiveVisitors);
+    }
+  };
+
+  const calcSapcesActivity = async () => {
     const spacesSessions = getSessionsByDay(sessions, "spaces");
     const spacesPromises: Promise<CommentsWithIndex>[] = [];
     const stamp = process.env.STAMP || DUMMY_STAMP;
@@ -336,38 +354,28 @@ const MainRouter = (): ReactElement => {
         );
       }
 
+      const tmpActivity = new Map<string, number>();
       await Promise.allSettled(spacesPromises).then((results) => {
         results.forEach((result, i) => {
           if (result.status === "fulfilled") {
-            tmpActiveVisitors.set(spacesSessions[i].id, result.value.nextIndex);
+            tmpActivity.set(spacesSessions[i].id, result.value.nextIndex);
           } else {
             console.log(`fetching user count of talks error: `, result.reason);
           }
         });
       });
-      setTalkActivity(tmpActiveVisitors);
+      setSpacesActivity(tmpActivity);
     } catch (error) {
       console.log("fetching user count of talks error: ", error);
-    }
-
-    if (loadedTalks) {
-      for (let i = 0; i < recentSessions.length; i++) {
-        const foundIx = loadedTalks.findIndex((talk) =>
-          talk.talkId.includes(recentSessions[i].id)
-        );
-        if (foundIx > -1) {
-          tmpActiveVisitors.set(
-            recentSessions[i].id,
-            loadedTalks[foundIx].nextIndex
-          );
-        }
-      }
-      setTalkActivity(tmpActiveVisitors);
     }
   };
 
   useEffect(() => {
     calcActivity();
+  }, [loadedTalks]);
+
+  useEffect(() => {
+    calcSapcesActivity();
   }, [recentSessions]);
 
   const fetchNotes = async () => {
