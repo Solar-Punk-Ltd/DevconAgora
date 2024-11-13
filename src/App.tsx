@@ -46,9 +46,6 @@ function App() {
 
             <img src={bySolarPunk} alt="" height="30px" width="104px" />
           </div>
-          <div className="opening-page__footer">
-            <img src={dc7Logo} alt="" height="57px" width="160px" />
-          </div>
         </div>
       </div>
     </>
