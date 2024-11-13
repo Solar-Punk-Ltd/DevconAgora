@@ -368,7 +368,7 @@ const MainRouter = (): ReactElement => {
 
   useEffect(() => {
     calcActivity();
-  }, [loadedTalks, recentSessions]);
+  }, [recentSessions]);
 
   const fetchNotes = async () => {
     const privKey = getPrivateKey();
