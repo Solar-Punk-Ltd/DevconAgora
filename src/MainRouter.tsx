@@ -317,21 +317,6 @@ const MainRouter = (): ReactElement => {
 
   const calcActivity = async () => {
     const tmpActiveVisitors = new Map<string, number>();
-    if (loadedTalks) {
-      for (let i = 0; i < recentSessions.length; i++) {
-        const foundIx = loadedTalks.findIndex((talk) =>
-          talk.talkId.includes(recentSessions[i].id)
-        );
-        if (foundIx > -1) {
-          tmpActiveVisitors.set(
-            recentSessions[i].id,
-            loadedTalks[foundIx].nextIndex
-          );
-        }
-      }
-      setTalkActivity(tmpActiveVisitors);
-    }
-
     const spacesSessions = getSessionsByDay(sessions, "spaces");
     const spacesPromises: Promise<CommentsWithIndex>[] = [];
     const stamp = process.env.STAMP || DUMMY_STAMP;
@@ -363,6 +348,21 @@ const MainRouter = (): ReactElement => {
       setTalkActivity(tmpActiveVisitors);
     } catch (error) {
       console.log("fetching user count of talks error: ", error);
+    }
+
+    if (loadedTalks) {
+      for (let i = 0; i < recentSessions.length; i++) {
+        const foundIx = loadedTalks.findIndex((talk) =>
+          talk.talkId.includes(recentSessions[i].id)
+        );
+        if (foundIx > -1) {
+          tmpActiveVisitors.set(
+            recentSessions[i].id,
+            loadedTalks[foundIx].nextIndex
+          );
+        }
+      }
+      setTalkActivity(tmpActiveVisitors);
     }
   };
 

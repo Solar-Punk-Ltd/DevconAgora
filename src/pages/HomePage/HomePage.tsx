@@ -15,7 +15,7 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, talkActivity } = useGlobalState();
-
+  const activity = talkActivity.get(LOBBY_TITLE) || 0;
   return (
     <div className="home-page">
       <div className="home-page__background">
@@ -28,8 +28,8 @@ const HomePage: React.FC<HomePageProps> = ({ withGamification }) => {
         <DevConMainBox
           title="Devcon buzz space"
           content="Share your thoughts, chat with anyone without moderation, and collect your reward."
-          showActiveVisitors={true}
-          activeVisitors={talkActivity.get(LOBBY_TITLE) || 0}
+          showActiveVisitors={activity > 0}
+          activeVisitors={activity}
           bordered={true}
         />
         <RecentSessions />
