@@ -1,9 +1,11 @@
+@use '../../styles/global.scss';
 .terms-and-conditions {
   background-color: white;
   border-radius: 16px;
   padding: 16px;
   height: 100%;
-  box-shadow: 0px 2px 8px 0px #1f1f2326;
+  @extend .box-shadow-type2;
+  // box-shadow: 0px 2px 8px 0px #1f1f2326;
   overflow-y: scroll;
   z-index: 1;
   position: relative;
@@ -11,14 +13,14 @@
 }
 
 .terms-and-conditions__text__header {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 6px;
 }
 
 .terms-and-conditions__text {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   margin-bottom: 50px;

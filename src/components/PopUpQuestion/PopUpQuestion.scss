@@ -21,7 +21,7 @@
   backdrop-filter: blur(3px);
 }
 .pop-up-question__header {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
 }

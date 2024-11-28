@@ -6,13 +6,13 @@
 }
 
 .recent-sessions__title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 14px;
 }
 
 .recent-sessions__all {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   text-decoration: underline;

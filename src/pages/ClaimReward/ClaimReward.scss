@@ -33,7 +33,7 @@
 }
 
 .claim-reward__text-emphasize {
-  color: #ff8a50;
+  color: var(--swarm-color);
 }
 
 .claim-reward__main-content__content {
@@ -48,7 +48,7 @@
   color: white;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.9);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   padding: 8px;
@@ -56,17 +56,17 @@
 }
 
 .claim-reward__text-box__link {
-  color: #ff8a50;
+  color: var(--swarm-color);
   text-decoration: underline;
 }
 
 .claim-reward__text-box__link:hover {
-  color: #ff8a50;
+  color: var(--swarm-color);
   text-decoration: underline;
 }
 
 .claim-reward__text-box__link:visited {
-  color: #ff8a50;
+  color: var(--swarm-color);
   text-decoration: underline;
 }
 .claim-reward__background {
@@ -90,7 +90,7 @@
 
 .claim-reward__code__header {
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
 }
@@ -102,14 +102,14 @@
   border: none;
   border-bottom: 1px solid white;
   color: white;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
   padding: 8px;
 }
 
 .claim-reward__code__input::selection {
-  background-color: #ff8a50;
+  background-color: var(--swarm-color);
 }
 
 .claim-reward__code__input-wrapper {

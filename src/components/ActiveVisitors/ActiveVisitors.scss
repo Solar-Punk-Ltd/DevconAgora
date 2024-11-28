@@ -1,7 +1,7 @@
 .active-visitors {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   color: #4a2875;
-  background-color: #f7f8fa;
+  background-color: var(--primary-grey);
   padding: 4px 12px;
   font-size: 12px;
   font-weight: 400;

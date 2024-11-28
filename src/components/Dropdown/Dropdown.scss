@@ -1,9 +1,10 @@
+@use '../../../src/styles/global.scss';
 .dropdown__button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 12px;
   height: 32px;
@@ -12,6 +13,7 @@
   color: white;
   padding: 8px;
   background-color: #4a2875;
+  @extend .box-shadow-type1;
   box-shadow: 0px 2px 4px 0px #1f1f231a;
   position: relative;
   z-index: 3;
@@ -40,7 +42,7 @@
 
 .dropdown__open__item {
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
   padding: 14px;
@@ -49,7 +51,7 @@
   justify-content: center;
   gap: 2px;
   color: black;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .dropdown__open__item:last-child {
@@ -57,12 +59,12 @@
 }
 
 .dropdown__open__item__active {
-  color: #8c72ae;
+  color: var(--purple-to-text-color);
 }
 
 .dropdown__open__background {
   position: absolute;
-  background-color: rgba(21, 21, 21, 0.6);
+  background-color: #15151599;
   backdrop-filter: blur(3px);
   top: 0px;
   left: 0px;

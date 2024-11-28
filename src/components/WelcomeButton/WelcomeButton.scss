@@ -28,8 +28,8 @@
 }
 
 .welcome-button--outlined {
-  border: 1px solid #8c72ae;
-  color: #8c72ae;
+  border: 1px solid var(--purple-to-text-color);
+  color: var(--purple-to-text-color);
   background: white;
 }
 
@@ -42,7 +42,7 @@
 .welcome-button--orange {
   border: none;
   color: white;
-  background: #ff8a50;
+  background: var(--swarm-color);
 }
 
 .welcome-button--inactive {

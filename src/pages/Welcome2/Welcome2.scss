@@ -53,12 +53,12 @@
 .welcome2-page__content__text {
   font-weight: 400;
   font-size: 16px;
-  font-family: Inter;
+  font-family: var(--font-family-base);
   z-index: 1;
 }
 
 .welcome2-page__bottom-text {
-  font-family: Inter;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
   color: #000000;

@@ -1,9 +1,12 @@
+@use '../../../src/styles/';
+
 .agenda-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px 0px #1f1f231a;
+  @extend .box-shadow-type1;
+  // box-shadow: 0px 2px 4px 0px #1f1f231a;
   gap: 6px;
   padding: 8px;
   box-sizing: border-box;
@@ -18,7 +21,8 @@
   width: 100%;
   position: relative;
   padding: 16px 0px;
-  box-shadow: 0px 2px 8px 0px #1f1f2326;
+  @extend .box-shadow-type2;
+  // box-shadow: 0px 2px 8px 0px #1f1f2326;
 }
 
 .agenda-item__main {
@@ -33,7 +37,7 @@
 }
 
 .agenda-item__main__content__title {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
