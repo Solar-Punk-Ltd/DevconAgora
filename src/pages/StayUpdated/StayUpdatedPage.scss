@@ -27,7 +27,7 @@
 }
 
 .stay-updated__text-emphasize {
-  color: #ff8a50;
+  color: var(--swarm-color);
 }
 
 .stay-updated__text-box {
@@ -35,7 +35,7 @@
   color: white;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.9);
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   padding: 8px;
@@ -65,12 +65,12 @@
 
 .stay-updated__input__header {
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
 }
 .stay-updated__input__header__requred {
-  color: #e8303d;
+  color: var(--primary-accent-color);
 }
 
 .stay-updated__input {
@@ -80,7 +80,7 @@
   border: none;
   border-bottom: 1px solid white;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
   padding: 8px;
@@ -94,7 +94,7 @@
   border: none;
   border-bottom: 1px solid white;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
   padding: 8px;
@@ -114,7 +114,7 @@
 }
 
 .stay-updated__input::selection {
-  background-color: #ff8a50;
+  background-color: var(--swarm-color);
 }
 .stay-updated__bottom-buttons {
   display: flex;
@@ -127,8 +127,8 @@
 }
 
 .stay-updated__input__error {
-  color: #e8303d;
-  font-family: "Inter", sans-serif;
+  color: var(--primary-accent-color);
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
 }

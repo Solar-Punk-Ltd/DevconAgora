@@ -12,6 +12,47 @@
   --primary-accent-color: #ff5a1f;
   --primary-grey: #f7f8fa;
   --text-terniary: #666666;
+  --box-shadow-color1: #1f1f231a;
+  --box-shadow-color1: #1f1f2326;
+  --border-color: #e0e0e0;
+  --border-color2: #a5adba;
+  --darker-purple: #4a2875;
+  
+  /* Typography */
+  --font-family-base: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --line-height-base: 1.5;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 16px;
+  
+  /* Box Shadows */
+  --box-shadow-small: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  --box-shadow-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  --box-shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.font-basic {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal)
+}
+
+.box-shadow-type1 {
+  box-shadow: 0px 2px 4px 0px var(--box-shadow-color1);
+}
+
+.box-shadow-type2{
+  box-shadow: 0px 2px 8px 0px var(--box-shadow-color2);
 }
 
 .bold {
