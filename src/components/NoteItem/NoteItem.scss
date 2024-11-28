@@ -1,3 +1,4 @@
+@use "../../../src/styles/global.scss";
 .note-item {
   background-color: white;
   position: relative;
@@ -6,25 +7,26 @@
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 2px 4px 0px #1f1f231a;
+  @extend .box-shadow-type1;
+  // box-shadow: 0px 2px 4px 0px #1f1f231a;
 }
 
 .note-item__extract {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
   color: #2b2e36;
 }
 
 .note-item__timestamp__date {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 400;
   color: #4a2875;
 }
 
 .note-item__timestamp__time {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
   color: #2b2e36;

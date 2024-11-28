@@ -1,3 +1,5 @@
+@use "../../../src/styles/global.scss";
+
 .claim-reward-explanation {
   position: relative;
   display: flex;
@@ -8,12 +10,13 @@
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: 0px 2px 4px 0px rgba(31, 31, 35, 0.1019607843);
+  @extend .box-shadow-type1;
+  // box-shadow: 0px 2px 4px 0px #1f1f231a;
   border-radius: 12px;
 }
 
 .claim-reward-explanation__header {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
   color: #e0e0e0;
@@ -22,12 +25,12 @@
 }
 
 .claim-reward-explanation__header__emphasize {
-  color: #ff8a50;
+  color: var(--swarm-color);
 }
 
 .claim-reward-explanation__claim-button {
   border-radius: 8px;
-  background-color: #ff8a50;
+  background-color: var(--swarm-color);
   height: 40px;
   padding: 8px 24px;
   font-family: "Public Sans", sans-serif;
@@ -39,10 +42,10 @@
 }
 
 .claim-reward-explanation__content {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 14px;
   font-weight: 400;
-  color: #f7f8fa;
+  color: var(--primary-grey);
   line-height: 30px;
   padding: 16px;
   position: relative;

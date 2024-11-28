@@ -1,8 +1,10 @@
+@use "../../../src/styles/global.scss";
 .devcon-main-box {
   padding: 10px;
   background-color: white;
   border-radius: 16px;
   box-sizing: border-box;
+  @extend .box-shadow-type2;
   box-shadow: 0px 2px 8px 0px #1f1f2326;
   margin-bottom: 20px;
   cursor: pointer;
@@ -16,25 +18,14 @@
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
 }
 
 .devcon-main-box__content {
   font-size: 12px;
   margin-bottom: 8px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
 }
-
-// .devcon-main-box__active-visitors {
-//   font-family: "Inter", sans-serif;
-//   color: #4a2875;
-//   background-color: #f7f8fa;
-//   padding: 4px 12px;
-//   font-size: 12px;
-//   font-weight: 400;
-//   display: inline-flex;
-//   border-radius: 6px;
-// }

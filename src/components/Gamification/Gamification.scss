@@ -1,3 +1,4 @@
+@use "../../../src/styles/global.scss";
 .gamification {
   position: absolute;
   background-color: rgba(21, 21, 21, 0.6);
@@ -19,6 +20,7 @@
   display: flex;
   box-sizing: border-box;
   overflow: hidden;
+  @extend .box-shadow-type1;
   box-shadow: 0px 2px 4px 0px #1f1f231a;
   border-radius: 12px;
 }
@@ -55,7 +57,7 @@
 // }
 
 .gamification__modal__content__header {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
   color: #e0e0e0;
@@ -63,18 +65,18 @@
 }
 
 .gamification__modal__content__header__emphasize {
-  color: #ff8a50;
+  color: var(--swarm-color);
 }
 
 .gamification__modal__content__emphasize {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
-  color: #ff8a50;
+  color: var(--swarm-color);
   font-size: 20px;
 }
 
 .gamification__modal__content__tokens {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 16px;
   color: #e0e0e0;
@@ -86,10 +88,10 @@
 }
 
 .gamification__modal__content_how {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
-  color: #f7f8fa;
+  color: var(--primary-grey);
   text-decoration: underline;
 }
 
@@ -101,7 +103,7 @@
 
 .gamification__modal__content__claim-button {
   border-radius: 8px;
-  background-color: #ff8a50;
+  background-color: var(--swarm-color);
   height: 40px;
   padding: 8px 24px;
   font-family: "Public Sans", sans-serif;

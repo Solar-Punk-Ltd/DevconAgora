@@ -9,7 +9,7 @@
 }
 
 .default-button__filled {
-  background-color: #8c72ae;
+  background-color: var(--purple-to-text-color);
   color: white;
   border: 1px solid transparent;
 }
@@ -17,5 +17,5 @@
 .default-button__outlined {
   background-color: white;
   color: #a5adba;
-  border: 1px solid #a5adba;
+  border: 1px solid var(--border-color2);
 }

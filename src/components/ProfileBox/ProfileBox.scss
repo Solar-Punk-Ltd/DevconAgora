@@ -1,3 +1,4 @@
+@use "../../../src/styles/global.scss";
 .profile-box {
   width: 100%;
   display: flex;
@@ -7,7 +8,8 @@
   background-color: white;
   border-radius: 16px;
   box-sizing: border-box;
-  box-shadow: 0px 2px 8px 0px #1f1f2326;
+  @extend .box-shadow-type2;
+  // box-shadow: 0px 2px 8px 0px #1f1f2326;
   z-index: 1;
 }
 
@@ -18,30 +20,30 @@
 .profile-box__title {
   font-size: 20px;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
 }
 
 .profile-box__content {
   font-size: 12px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
 }
 
 .profile-box__link {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 14px;
   text-decoration: underline;
 }
 
 .profile-box__points-box {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: #f7f8fa;
+  background-color: var(--primary-grey);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -50,11 +52,11 @@
 }
 
 .profile-box__points-box__ten {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: #ff8a50;
+  background-color: var(--swarm-color);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -65,7 +67,7 @@
 
 .profile-box__content__points-emphasize {
   font-weight: 700;
-  color: #8c72ae;
+  color: var(--purple-to-text-color);
 }
 
 .profile-box__left-content {
