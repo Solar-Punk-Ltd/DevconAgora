@@ -4,7 +4,7 @@ import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
 import { useGlobalState } from "./GlobalStateContext";
-import App from "./pages/Intro/App";
+import Intro from "./pages/Intro/Intro";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
@@ -471,7 +471,7 @@ const MainRouter = (): ReactElement => {
     <>
       {showGamification ? <Gamification points={points} /> : null}
       <Routes>
-        <Route path={ROUTES.APP} element={<App />} />
+        <Route path={ROUTES.APP} element={<Intro />} />
         <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
         <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
         <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
