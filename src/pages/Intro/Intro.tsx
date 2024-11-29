@@ -5,13 +5,13 @@ import { TEXTS } from "../../constants/text";
 import { ROUTES } from "../../utils/constants";
 import { isUserRegistered } from "../../utils/helpers";
 
-import bySolarPunk from "./assets/by-solar-punk.png";
-import dc7Logo from "./assets/dc7.png";
-import backgroundVideo from "./assets/opening.mp4";
-import videoGlassEffect from "./assets/video-glass-effect.png";
+import bySolarPunk from "../../assets/by-solar-punk.png";
+import dc7Logo from "../../assets/dc7.png";
+import backgroundVideo from "../../assets/opening.mp4";
+import videoGlassEffect from "../../assets/video-glass-effect.png";
 
 import "./intro.scss";
-import "../src/styles/global.scss";
+import "../../styles/global.scss";
 
 function Intro() {
   const navigate = useNavigate();
