@@ -13,7 +13,7 @@ import {
   ACCEPTANCE_OF_TERMS_TEXT,
 } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 
 interface TermsAndConditionsProps {
   contentFilterCheckBox?: boolean;

@@ -1,10 +1,10 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
 import { useGlobalState } from "./contexts/global";
-import App from "./pages/Intro/Intro";
+import Intro from "./pages/Intro/Intro";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
@@ -18,12 +18,12 @@ import SpacesPage from "./pages/SpacesPage/SpacesPage";
 import TalkPage from "./pages/TalkPage/TalkPage";
 import { Session } from "./types/session";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
-import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
-import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage/TermsAndConditionsPage";
 import NotesPage from "./pages/NotesPage/NotesPage";
-import FullNotePage from "./pages/FullNote/FullNote";
 import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
+import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
+import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
+import FullNotePage from "./pages/FullNote/FullNote";
 import StayUpdatedPage from "./pages/StayUpdatedPage/StayUpdatedPage";
 import { TalkComments } from "./types/talkComment";
 import { getFeedUpdate, getData, getTopic } from "./utils/bee";
@@ -36,9 +36,7 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
-  LOBBY_TITLE,
   CATEGORIES,
-  CATEGORY_NAMES_TO_ID_MAP,
 } from "./utils/constants";
 import {
   getSessionsByDay,
@@ -48,8 +46,6 @@ import {
   isUserRegistered,
   getPrivateKey,
 } from "./utils/helpers";
-import { RoomWithUserCounts } from "./types/room";
-import Intro from "./pages/Intro/Intro";
 
 const MainRouter = (): ReactElement => {
   const {

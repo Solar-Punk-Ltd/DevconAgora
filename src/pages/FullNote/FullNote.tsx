@@ -19,7 +19,7 @@ import {
 } from "../../utils/constants";
 import { dateToTime, getPrivateKey, getSigner } from "../../utils/helpers";
 
-import "./FullNotePage.scss";
+import "./FullNote.scss";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
