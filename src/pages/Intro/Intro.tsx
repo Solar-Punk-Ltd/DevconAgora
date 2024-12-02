@@ -10,7 +10,7 @@ import dc7Logo from "../../assets/dc7.png";
 import backgroundVideo from "../../assets/opening.mp4";
 import videoGlassEffect from "../../assets/video-glass-effect.png";
 
-import "./intro.scss";
+import "./Intro.scss";
 
 function Intro() {
   const navigate = useNavigate();

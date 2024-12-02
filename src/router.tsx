@@ -21,7 +21,7 @@ import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
 import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndConditions";
-import NotesPage from "./pages/Notes/NotesPage";
+import NotesPage from "./pages/Notes/Notes";
 import FullNotePage from "./pages/FullNote/FullNote";
 import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
 import StayUpdatedPage from "./pages/StayUpdated/StayUpdatedPage";

@@ -13,6 +13,7 @@ import {
   ACCEPTANCE_OF_TERMS_TEXT,
 } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
+import "./TermsAndConditions.scss";
 import { useGlobalState } from "../../contexts/global";
 
 interface TermsAndConditionsProps {
