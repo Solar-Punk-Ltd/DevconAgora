@@ -16,7 +16,7 @@ import Chat from "../Chat/Chat";
 import "./Spaces.scss";
 import { useNavigate } from "react-router-dom";
 
-const SpacesPage: React.FC = () => {
+const Spaces: React.FC = () => {
   const { spacesActivity } = useGlobalState();
   const navigate = useNavigate();
 
