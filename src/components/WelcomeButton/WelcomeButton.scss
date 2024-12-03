@@ -19,7 +19,7 @@
 
 .welcome-button--filled {
   border: none;
-  color: white;
+  color: #ffffff;
   background: linear-gradient(0deg, #8c72ae 0%, #873de7 100%);
 }
 
@@ -30,24 +30,24 @@
 .welcome-button--outlined {
   border: 1px solid var(--purple-to-text-color);
   color: var(--purple-to-text-color);
-  background: white;
+  background: #ffffff;
 }
 
 .welcome-button--white {
-  border: 1px solid white;
-  color: white;
-  background: black;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background: #000000;
 }
 
 .welcome-button--orange {
   border: none;
-  color: white;
+  color: #ffffff;
   background: var(--swarm-color);
 }
 
 .welcome-button--inactive {
   border: none;
-  color: #a5adba;
-  background: #f2f2f2;
+  color: var(--lighter-color);
+  background: var(--background-color-primary);
   cursor: not-allowed;
 }

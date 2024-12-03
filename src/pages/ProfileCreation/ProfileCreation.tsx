@@ -117,7 +117,6 @@ const ProfileCreation: React.FC = () => {
   };
 
   const validateInput = (name: string) => {
-    // const regex = /^[a-zA-Z0-9 ]*$/;
     const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])?[a-zA-Z0-9 ]*$/;
     return regex.test(name);
   };

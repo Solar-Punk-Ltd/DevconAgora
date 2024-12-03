@@ -1,35 +1,33 @@
-@use "../../../src/styles/global.scss";
 .note-item {
-  background-color: white;
+  background-color: #ffffff;
   position: relative;
   padding: 16px;
   z-index: 3;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  @extend .box-shadow-type1;
-  // box-shadow: 0px 2px 4px 0px #1f1f231a;
+  box-shadow: var(--box-shadow-type1);
 }
 
 .note-item__extract {
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
-  color: #2b2e36;
+  color: var(--darker-purple-secondary);
 }
 
 .note-item__timestamp__date {
   font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 400;
-  color: #4a2875;
+  color: var(--darker-purple);
 }
 
 .note-item__timestamp__time {
   font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
-  color: #2b2e36;
+  color: var(--darker-purple-secondary);
   display: flex;
   justify-content: end;
 }

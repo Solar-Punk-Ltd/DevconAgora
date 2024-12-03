@@ -65,26 +65,6 @@ const Messages: React.FC<MessagesProps> = ({
     );
   }
 
-  // const isScrolledToBottom = () => {
-  //   if (chatBodyRef.current) {
-  //     const { scrollTop, scrollHeight, clientHeight } = chatBodyRef.current;
-  //     const threshold = clientHeight * 2;
-  //     return Math.abs(scrollHeight - clientHeight - scrollTop) < threshold;
-  //   }
-  //   return false;
-  // };
-
-  // const scrollToBottom = () => {
-  //   if (chatBodyRef.current) {
-  //     chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-  //   }
-  // };
-
-  // // Schedule a scroll after the state update if we're already at the bottom
-  // if (true || isScrolledToBottom()) {
-  //   setTimeout(scrollToBottom, 0);
-  // }
-
   return (
     <div className="messages" ref={chatBodyRef}>
       {messages.map((msg, ind) => (

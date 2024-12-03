@@ -1,14 +1,14 @@
 .profile-picture {
   width: 121px;
   height: 121px;
-  background-color: var(--primary-grey);
+  background-color: var(--grey-primary);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   font-size: 32px;
   font-weight: 700;
-  color: #4a2875;
+  color: var(--darker-purple);
   z-index: 1;
   overflow-wrap: anywhere;
 }

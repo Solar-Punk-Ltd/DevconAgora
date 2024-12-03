@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import welcome1img from "../../assets/welcome1img.png";
-// import welcome1ColorEffectImg from "../../assets/welcome1-color-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import WelcomeMask from "../../assets/welcome-glass-effect.png";

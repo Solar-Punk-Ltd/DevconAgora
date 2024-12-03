@@ -1,17 +1,14 @@
-@use "../../../src/styles/global.scss";
-
 .claim-reward-explanation {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: #000000;
   width: 100%;
   min-height: 170px;
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  @extend .box-shadow-type1;
-  // box-shadow: 0px 2px 4px 0px #1f1f231a;
+  box-shadow: var(--box-shadow-type1);
   border-radius: 12px;
 }
 
@@ -19,7 +16,7 @@
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
-  color: #e0e0e0;
+  color: var(--lighter-color);
   text-align: center;
   line-height: 22px;
 }
@@ -36,7 +33,7 @@
   font-family: "Public Sans", sans-serif;
   font-weight: 700;
   font-size: 14px;
-  color: white;
+  color: #ffffff;
   border: none;
   margin-top: 15px;
 }
@@ -45,7 +42,7 @@
   font-family: var(--font-family-base);
   font-size: 14px;
   font-weight: 400;
-  color: var(--primary-grey);
+  color: var(--grey-primary);
   line-height: 30px;
   padding: 16px;
   position: relative;

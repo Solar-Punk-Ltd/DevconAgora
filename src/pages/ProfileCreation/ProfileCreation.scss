@@ -21,7 +21,7 @@ profile-creation .profile-creation {
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: #666666;
+  color: var(--text-tertiary);
   text-align: center;
 }
 
@@ -49,7 +49,7 @@ profile-creation .profile-creation {
   color: #000000;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
   width: 267px;
   height: 40px;
   padding: 8px 10px;
@@ -57,14 +57,14 @@ profile-creation .profile-creation {
 }
 
 .profile-creation__user-input__input::selection {
-  color: white;
+  color: #ffffff;
   background: var(--purple-to-text-color);
 }
 
 .profile-creation__user-input__input__disabled {
-  background-color: #f2f2f2;
-  color: #a5adba;
-  border-bottom: 1px solid #a5adba;
+  background-color: var(--background-color-primary);
+  color: var(--grey-secondary);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .profile-creation__user-input__input::placeholder {
@@ -73,7 +73,7 @@ profile-creation .profile-creation {
   font-weight: 400;
   line-height: 35.52px;
   text-align: center;
-  color: #e0e0e0;
+  color: var(--lighter-color);
 }
 
 .profile-creation__user-input__input:focus-visible {
@@ -91,11 +91,6 @@ profile-creation .profile-creation {
   align-content: end;
   bottom: 0px;
 }
-// @media (min-width: 600px) {
-//   .profile-creation__bottom {
-//     width: 567px;
-//   }
-// }
 
 .profile-creation__background-effect {
   position: absolute;

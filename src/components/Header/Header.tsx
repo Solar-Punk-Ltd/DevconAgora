@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.scss";
-// import AlertIndicator from "./AlertIndicator/AlertIndicator";
 import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";

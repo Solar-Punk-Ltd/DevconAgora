@@ -4,7 +4,6 @@ import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
 import { Wallet } from "ethers";
 import { useGlobalState } from "./contexts/global";
-import App from "./pages/Intro/Intro";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
@@ -48,7 +47,6 @@ import {
   isUserRegistered,
   getPrivateKey,
 } from "./utils/helpers";
-import { RoomWithUserCounts } from "./types/room";
 import Intro from "./pages/Intro/Intro";
 
 const MainRouter = (): ReactElement => {

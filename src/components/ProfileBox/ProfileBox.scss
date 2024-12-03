@@ -1,15 +1,13 @@
-@use "../../../src/styles/global.scss";
 .profile-box {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 16px;
   gap: 10%;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 16px;
   box-sizing: border-box;
-  @extend .box-shadow-type2;
-  // box-shadow: 0px 2px 8px 0px #1f1f2326;
+  box-shadow: var(--box-shadow-type2);
   z-index: 1;
 }
 
@@ -44,7 +42,7 @@
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: var(--primary-grey);
+  background-color: var(--grey-primary);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -63,7 +61,7 @@
   justify-content: center;
   align-items: center;
   width: 60px;
-  color: white;
+  color: #ffffff;
 }
 
 .profile-box__content__points-emphasize {

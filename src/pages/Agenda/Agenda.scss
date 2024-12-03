@@ -1,5 +1,3 @@
-@use "../../styles/global.scss";
-
 .agenda-page {
   height: calc(calc(var(--vh, 1vh) * 100) - 56px);
   display: flex;
@@ -11,7 +9,7 @@
   flex-direction: column;
   row-gap: 16px;
   padding: 16px;
-  background-color: #f1f2f4;
+  background-color: var(--background-color-secondary);
   position: relative;
   z-index: 2;
 }
@@ -52,8 +50,7 @@
   border-radius: 16px;
   display: flex;
   position: relative;
-  @extend .box-shadow-type2;
-  // box-shadow: 0px 2px 8px 0px #1f1f2326;
+  box-shadow: var(--box-shadow-type2);
 }
 
 .agenda-page__content__banner__img {
@@ -77,13 +74,13 @@
 .agenda-page__content__banner__text__main-text {
   font-family: var(--font-family-base);
   font-size: 32px;
-  color: white;
+  color: #ffffff;
 }
 
 .agenda-page__content__banner__text__sub-text {
   font-family: var(--font-family-base);
   font-size: 24px;
-  color: white;
+  color: #ffffff;
 }
 
 .agenda-page__content__banner__text__register-button {
@@ -91,7 +88,7 @@
   font-size: 16px;
   border-radius: 30px;
   background-color: var(--swarm-color);
-  color: white;
+  color: #ffffff;
   border: none;
   padding: 6px 16px;
   margin-top: 5px;
