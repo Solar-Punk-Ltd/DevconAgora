@@ -1,5 +1,5 @@
 .stay-updated {
-  background-color: black;
+  background-color: #000000;
   height: 100%;
   padding: 40px 16px;
   display: flex;
@@ -9,10 +9,10 @@
 }
 
 .stay-updated__header {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family-secondary);
   font-weight: 700;
   font-size: 32px;
-  color: white;
+  color: #ffffff;
   z-index: 2;
   padding: 0px 40px;
   text-align: center;
@@ -32,7 +32,7 @@
 
 .stay-updated__text-box {
   border-radius: 16px;
-  color: white;
+  color: #ffffff;
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.9);
   font-family: var(--font-family-base);
@@ -55,7 +55,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  color: white;
+  color: #ffffff;
   z-index: 2;
 }
 
@@ -64,22 +64,22 @@
 }
 
 .stay-updated__input__header {
-  color: white;
+  color: #ffffff;
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
 }
 .stay-updated__input__header__requred {
-  color: var(--primary-accent-color);
+  color: var(--accent-color-primary);
 }
 
 .stay-updated__input {
   width: 100%;
   outline: none;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #000000e6;
   border: none;
-  border-bottom: 1px solid white;
-  color: white;
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
@@ -90,10 +90,10 @@
 .stay-updated__select {
   width: 100%;
   outline: none;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #000000e6;
   border: none;
-  border-bottom: 1px solid white;
-  color: white;
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
@@ -105,7 +105,7 @@
 }
 
 .stay-updated__select::after {
-  content: "▼"; /* Egyedi ikon hozzáadása */
+  content: "▼";
   position: absolute;
   right: 10px;
   top: 50%;
@@ -118,7 +118,6 @@
 }
 .stay-updated__bottom-buttons {
   display: flex;
-  // position: absolute;
   bottom: 0;
   width: 100%;
   box-sizing: border-box;
@@ -127,7 +126,7 @@
 }
 
 .stay-updated__input__error {
-  color: var(--primary-accent-color);
+  color: var(--accent-color-primary);
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;

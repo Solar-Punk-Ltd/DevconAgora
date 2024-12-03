@@ -6,7 +6,6 @@ import { ROUTES } from "../../utils/constants";
 import { isUserRegistered } from "../../utils/helpers";
 
 import bySolarPunk from "../../assets/by-solar-punk.png";
-import dc7Logo from "../../assets/dc7.png";
 import backgroundVideo from "../../assets/opening.mp4";
 import videoGlassEffect from "../../assets/video-glass-effect.png";
 
@@ -47,9 +46,6 @@ function Intro() {
 
             <img src={bySolarPunk} alt="" height="30px" width="104px" />
           </div>
-          {/* <div className="opening-page__footer">
-            <img src={dc7Logo} alt="" height="57px" width="160px" />
-          </div> */}
         </div>
       </div>
     </>

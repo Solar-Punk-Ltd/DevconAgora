@@ -31,7 +31,7 @@
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: #666666;
+  color: var(--text-tertiary);
   text-align: center;
 }
 
@@ -51,9 +51,9 @@
   z-index: 1;
   font-family: var(--font-family-base);
   color: #000000;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--lighter-color);
   box-sizing: border-box;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .profile__username {
@@ -63,16 +63,16 @@
   color: #000000;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
   width: 267px;
   height: 40px;
   padding: 8px 10px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .profile__username::selection {
-  color: white;
+  color: #ffffff;
   background: var(--purple-to-text-color);
 }
 

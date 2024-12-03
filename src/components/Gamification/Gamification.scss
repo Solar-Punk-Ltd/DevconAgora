@@ -1,7 +1,6 @@
-@use "../../../src/styles/global.scss";
 .gamification {
   position: absolute;
-  background-color: rgba(21, 21, 21, 0.6);
+  background-color: #15151599;
   backdrop-filter: blur(3px);
   top: 0px;
   left: 0px;
@@ -14,14 +13,12 @@
 }
 .gamification__modal {
   position: relative;
-  background-color: black;
+  background-color: #000000;
   width: 100%;
-  // min-height: 223px;
   display: flex;
   box-sizing: border-box;
   overflow: hidden;
-  @extend .box-shadow-type1;
-  box-shadow: 0px 2px 4px 0px #1f1f231a;
+  box-shadow: var(--box-shadow-type1);
   border-radius: 12px;
 }
 .gamification__modal__img {
@@ -29,7 +26,7 @@
   object-fit: contain;
   position: absolute;
   top: 0px;
-  background-color: black;
+  background-color: #000000;
 }
 
 .gamification__modal_img__ten-points {
@@ -50,17 +47,11 @@
   box-sizing: border-box;
 }
 
-// @media (min-width: 480px) {
-//   .gamification__modal__content {
-//     height: auto;
-//   }
-// }
-
 .gamification__modal__content__header {
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 700;
-  color: #e0e0e0;
+  color: var(--lighter-color);
   text-align: center;
 }
 
@@ -79,7 +70,7 @@
   font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 16px;
-  color: #e0e0e0;
+  color: var(--lighter-color);
 }
 
 .gamification__modal__content__tokens_img {
@@ -91,7 +82,7 @@
   font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
-  color: var(--primary-grey);
+  color: var(--grey-primary);
   text-decoration: underline;
 }
 
@@ -109,7 +100,7 @@
   font-family: "Public Sans", sans-serif;
   font-weight: 700;
   font-size: 14px;
-  color: white;
+  color: #ffffff;
   border: none;
 }
 

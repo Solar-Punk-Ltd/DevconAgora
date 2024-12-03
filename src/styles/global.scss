@@ -1,7 +1,6 @@
 @use "./fonts.scss";
 
 :root {
-  /* height: 100%; */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   /* Colors */
@@ -9,18 +8,25 @@
   --validation-error-text-color: #e8303d;
   --swarm-color: #ff8a50;
   --default-purple: #8c72ae;
-  --primary-accent-color: #ff5a1f;
-  --primary-grey: #f7f8fa;
-  --text-terniary: #666666;
+  --accent-color-primary: #ff5a1f;
+  --grey-primary: #f7f8fa;
+  --grey-secondary: #a5adba;
+  --grey-tertiary: #333333;
+  --text-tertiary: #666666;
   --box-shadow-color1: #1f1f231a;
   --box-shadow-color2: #1f1f2326;
-
+  --lighter-color: #e0e0e0;
   --border-color: #e0e0e0;
   --border-color2: #a5adba;
   --darker-purple: #4a2875;
+  --darker-purple-secondary: #2b2e36;
+  --background-color-primary: #f2f2f2;
+  --background-color-secondary: #f1f2f4;
 
   /* Typography */
   --font-family-base: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-secondary: "Poppins", sans-serif;
+  --font-family-tertiary: "Bebas Neue", sans-serif;
   --font-size-base: 16px;
   --font-size-small: 14px;
   --font-size-large: 18px;
@@ -37,9 +43,8 @@
   --border-radius-large: 16px;
 
   /* Box Shadows */
-  --box-shadow-small: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  --box-shadow-medium: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
-  --box-shadow-large: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  --box-shadow-type1: 0px 2px 4px 0px var(--box-shadow-color1);
+  --box-shadow-type2: 0px 2px 8px 0px var(--box-shadow-color2);
 }
 
 .font-basic {
@@ -76,7 +81,7 @@ body,
   body {
     width: 480px;
     position: relative;
-    background-color: white;
+    background-color: #ffffff;
   }
   html {
     display: flex;
@@ -94,8 +99,7 @@ a,
 a:hover,
 a:visited {
   font-weight: 500;
-  /* color: #646cff; */
-  color: black;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -111,7 +115,7 @@ html {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  background-color: white;
+  background-color: #ffffff;
   text-align: center;
   box-sizing: border-box;
   padding: 40px 0px;
@@ -163,8 +167,8 @@ html {
 }
 
 .welcome-page__bottom {
-  background-color: white;
-  box-shadow: 0px -11px 30px 26px white;
+  background-color: #ffffff;
+  box-shadow: 0px -11px 30px 26px #ffffff;
   width: 100%;
   position: absolute;
   display: flex;
@@ -272,7 +276,7 @@ html {
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    background-color: white;
+    background-color: #ffffff;
     text-align: center;
     box-sizing: border-box;
     padding: 40px 0px;

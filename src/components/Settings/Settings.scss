@@ -31,7 +31,7 @@
   top: 62px;
   right: 44px;
   padding: 16px;
-  background-color: white;
+  background-color: #ffffff;
   z-index: 3;
   border-radius: 16px;
 }
@@ -48,5 +48,5 @@
 
 .settings__open__content__item__divider {
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }
