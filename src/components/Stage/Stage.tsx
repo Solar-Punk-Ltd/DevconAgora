@@ -1,6 +1,8 @@
 import React from "react";
-import "./Stage.scss";
+
 import PlaceIcon from "../icons/PlaceIcon/PlaceIcon";
+
+import "./Stage.scss";
 
 interface HomeHeaderProps {
   name?: string;

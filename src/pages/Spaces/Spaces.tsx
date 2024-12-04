@@ -1,16 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { useGlobalState } from "../../contexts/global";
-import {
-  CATEGORIES,
-  ROUTES,
-} from "../../utils/constants";
+import { CATEGORIES, ROUTES } from "../../utils/constants";
 
 import "./Spaces.scss";
-import { useNavigate } from "react-router-dom";
 
 const Spaces: React.FC = () => {
   const { spacesActivity } = useGlobalState();

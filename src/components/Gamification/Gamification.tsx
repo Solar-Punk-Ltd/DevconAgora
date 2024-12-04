@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import "./Gamification.scss";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
 import GamificationBackgroundFive from "../../assets/gamification-five-points.png";
@@ -10,8 +11,6 @@ import ClaimRewardExplanation from "../ClaimRewardExplanation/ClaimRewardExplana
 import CloseIcon from "../icons/CloseIcon/CloseIcon";
 
 import "./Gamification.scss";
-import clsx from "clsx";
-import { Link } from "react-router-dom";
 
 interface GamificationProps {
   points: number;

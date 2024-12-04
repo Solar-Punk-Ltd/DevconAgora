@@ -1,8 +1,10 @@
 import React from "react";
-import "./ProfileBox.scss";
 import { useNavigate } from "react-router-dom";
-import ReferalQRIcon from "../../assets/referal-qr.svg";
 import clsx from "clsx";
+
+import ReferalQRIcon from "../../assets/referal-qr.svg";
+
+import "./ProfileBox.scss";
 
 interface ProfileBoxProps {
   title?: string;

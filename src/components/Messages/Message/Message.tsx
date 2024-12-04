@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import clsx from "clsx";
-import "./Message.scss";
-import AvatarMonogram from "../../AvatarMonogram/AvatarMonogram";
-import LikeIcon from "../../icons/LikeIcon/LikeIcon";
-import { createMonogram, formatTime } from "../../../utils/helpers";
-import { MessageWithThread, ThreadId } from "../../../types/message";
+import { BatchId } from "@ethersphere/bee-js";
 import {
   EthAddress,
   MessageData,
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
-import { BatchId } from "@ethersphere/bee-js";
+import clsx from "clsx";
+
+import { MessageWithThread, ThreadId } from "../../../types/message";
+import { createMonogram, formatTime } from "../../../utils/helpers";
+import AvatarMonogram from "../../AvatarMonogram/AvatarMonogram";
+import LikeIcon from "../../icons/LikeIcon/LikeIcon";
 import LikeIconFilled from "../../icons/LikeIconFilled/LikeIconFilled";
+
+import "./Message.scss";
 
 interface MessageProps {
   data: MessageWithThread;

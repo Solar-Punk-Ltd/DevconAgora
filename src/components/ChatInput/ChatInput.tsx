@@ -1,15 +1,18 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import "./ChatInput.scss";
+import { BatchId } from "@ethersphere/bee-js";
 import {
   EthAddress,
   MessageData,
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
-import { BatchId } from "@ethersphere/bee-js";
-import SendIcon from "../icons/SendIcon/SendIcon";
+
 import { MessageWithThread, ThreadId } from "../../types/message";
-import { randomThreadId, handleKeyDown } from "../../utils/helpers";
+import { handleKeyDown, randomThreadId } from "../../utils/helpers";
+import SendIcon from "../icons/SendIcon/SendIcon";
+
 import InputLoading from "./InputLoading/InputLoading";
+
+import "./ChatInput.scss";
 
 interface ChatInputProps {
   chat: SwarmChat | null;

@@ -1,8 +1,10 @@
 import React from "react";
-import "./Header.scss";
-import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
 import { Link } from "react-router-dom";
+
+import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
 import { ROUTES } from "../../utils/constants";
+
+import "./Header.scss";
 
 interface HeaderProps {
   name: string;

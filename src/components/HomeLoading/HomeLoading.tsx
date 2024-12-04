@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./HomeLoading.scss";
 
 const HomeLoading: React.FC = () => {

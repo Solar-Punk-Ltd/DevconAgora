@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Messages.scss";
-import Message from "./Message/Message";
-import { MessageWithThread, ThreadId } from "../../types/message";
-import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
 import { BatchId } from "@ethersphere/bee-js";
+import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
+
+import { MessageWithThread, ThreadId } from "../../types/message";
+
+import Message from "./Message/Message";
+
+import "./Messages.scss";
 
 interface MessagesProps {
   messages: MessageWithThread[];
