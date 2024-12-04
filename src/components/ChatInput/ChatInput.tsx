@@ -157,7 +157,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
               {messageToSend !== "" ? (
                 <SendIcon />
               ) : (
-                <SendIcon color="#A5ADBA" />
+                <SendIcon color="var(--grey-secondary)" />
               )}
             </button>
           </div>

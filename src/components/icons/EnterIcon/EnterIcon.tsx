@@ -35,7 +35,7 @@ const EnterIcon: React.FC<EnterIconProps> = ({ color, onClick }) => {
             y2="0"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor={color ? color : "#8C72AE"} />
+            <stop stopColor={color ? color : "var(--default-purple)"} />
             <stop offset="1" stopColor={color ? color : "#873DE7"} />
           </linearGradient>
           <clipPath id="clip0_2281_5995">
