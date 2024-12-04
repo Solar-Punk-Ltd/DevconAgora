@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "payments"
-  ],
-  "speakers": [
-    "liz-steininger"
-  ],
+  "tags": ["Privacy", "payments"],
+  "speakers": ["liz-steininger"],
   "sources_youtubeId": "UqgBNqJ4aYM",
   "sources_ipfsHash": "QmYohjBZVAZtWDEYZi8HqUcuX4s9XCz9c5iWBEobz8Nmyd",
   "sources_swarmHash": "fe0c709b0368b29e70a0793330a86f5b3f44958dcf56f79fee90d9273fa676d8",

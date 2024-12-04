@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "phil-barry"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["phil-barry"],
   "sources_youtubeId": "GFSknHNquOQ",
   "sources_ipfsHash": "QmPUL9LSBvdTCAqospgvjsCRCbhDDbPSrbuwoomMwx1RfL",
   "sources_swarmHash": "8dddf167eb12027a53a6cca38b201529ec4fe0bf5462bfd775ae06d2e98a384b",

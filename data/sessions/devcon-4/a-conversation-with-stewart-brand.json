@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "society"
-  ],
-  "speakers": [
-    "stewart-brand"
-  ],
+  "tags": ["Developer Infrastructure", "society"],
+  "speakers": ["stewart-brand"],
   "sources_youtubeId": "oLGZdLpHl1w",
   "sources_ipfsHash": "QmNdYkjrya3DWTGxoyyeB751phmfkESyMRnoQZHezbZktm",
   "sources_swarmHash": "fcb72c55b03fa10e5463b01ae9700eebc8135eb62be2c492f2c641e8315fdc69",

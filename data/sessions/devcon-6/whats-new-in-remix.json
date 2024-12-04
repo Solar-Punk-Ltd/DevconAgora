@@ -12,9 +12,7 @@
     "Remix IDE",
     "Smart Contract Development"
   ],
-  "speakers": [
-    "rob-stupay"
-  ],
+  "speakers": ["rob-stupay"],
   "resources_slides": "/resources/6/whats-new-in-remix.pdf",
   "slot_start": 1665585000000,
   "slot_end": 1665586800000,

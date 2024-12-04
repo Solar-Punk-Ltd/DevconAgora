@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "joseph-lubin"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["joseph-lubin"],
   "sources_youtubeId": "XLBjPj6ewsY",
   "sources_ipfsHash": "QmZpMULbQPhH4kucUpdJLsZhQisVZh5HhL2oVWvgic7SBF",
   "sources_swarmHash": "bf3a907a3749d4f4a3b7eea4647ba5f6f74b7077872edb36801b99c323323767",

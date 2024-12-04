@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "Verification",
-    "Zero-Knowledge",
-    "Security"
-  ],
-  "speakers": [
-    "jon-stephens"
-  ],
+  "tags": ["Privacy", "Verification", "Zero-Knowledge", "Security"],
+  "speakers": ["jon-stephens"],
   "resources_slides": "/resources/6/are-your-zero-knowledge-proofs-correct.pdf",
   "slot_start": 1665581400000,
   "slot_end": 1665583200000,

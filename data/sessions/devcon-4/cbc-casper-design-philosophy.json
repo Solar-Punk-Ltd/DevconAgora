@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Security",
-    "casper",
-    "cryptoeconomics",
-    "philosophy"
-  ],
-  "speakers": [
-    "vlad-zamfir"
-  ],
+  "tags": ["Security", "casper", "cryptoeconomics", "philosophy"],
+  "speakers": ["vlad-zamfir"],
   "sources_youtubeId": "2zGAF2VsveY",
   "sources_ipfsHash": "QmcdgFB4oqywyxWhvUnBfEegDeodua2sT7MySeWRmPatdT",
   "sources_swarmHash": "b2dcf770cdfa2ee909a3dec3c1cb891f73b2c2531bd6999d9af62ef39dd5b2fe",

@@ -25,9 +25,7 @@
     "updates",
     "dapps"
   ],
-  "speakers": [
-    "tj-saw"
-  ],
+  "speakers": ["tj-saw"],
   "sources_youtubeId": "m0NxbVKgggs",
   "sources_ipfsHash": "QmZ34gEQB4XTCAyLvKGTNfrE2PzvDH8fk9BxkEjWFxEvCb",
   "sources_swarmHash": "64c4118d3f79156b8667042726be38467b4f8f14f768f9bd53e9fddff69a8659",

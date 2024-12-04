@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "build",
-    "dapp",
-    "technical"
-  ],
-  "speakers": [
-    "thibaut-sardan"
-  ],
+  "tags": ["Developer Infrastructure", "build", "dapp", "technical"],
+  "speakers": ["thibaut-sardan"],
   "sources_youtubeId": "di3WfuKWFsc",
   "sources_ipfsHash": "QmZq2dCxGFcK8SMj9i141TznW3MRSZ72z5QUbyUHxRJFVY",
   "sources_swarmHash": "d75cd854278b329f67c83bfbfd51e10b231fdb22510b481f13ba826be7fb2fdc",

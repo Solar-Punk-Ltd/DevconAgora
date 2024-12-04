@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "dapps"
-  ],
-  "speakers": [
-    "iuri-matias"
-  ],
+  "tags": ["Developer Infrastructure", "dapps"],
+  "speakers": ["iuri-matias"],
   "sources_youtubeId": "lyNrzUTDkKg",
   "sources_ipfsHash": "QmQ5AYQGgq5ULZ2SdkC5jM7KEP6CTAXmLWFv2WNksoRzFW",
   "sources_swarmHash": "3914af9407536f9e71d03166bef721cc57572adf274e7aea021116f0f53f4242",

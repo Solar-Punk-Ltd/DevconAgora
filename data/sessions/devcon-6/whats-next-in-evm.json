@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "evm",
-    "solidity"
-  ],
-  "speakers": [
-    "alex-beregszaszi",
-    "pawel-bylica"
-  ],
+  "tags": ["Developer Infrastructure", "evm", "solidity"],
+  "speakers": ["alex-beregszaszi", "pawel-bylica"],
   "slot_start": 1665577200000,
   "slot_end": 1665577620000,
   "slot_roomId": "talk-4",

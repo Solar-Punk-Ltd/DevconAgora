@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "henning-diedrich"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["henning-diedrich"],
   "sources_youtubeId": "H4s91y8UzsQ",
   "sources_ipfsHash": "QmQAEMCmwEPA6ZEcNUKtU8Vr58jTFqe3q4H8173AWKw1za",
   "sources_swarmHash": "e31035fa8224314c810068c60ceef1678e7cb68fc0a575e210f73bc007537d85",

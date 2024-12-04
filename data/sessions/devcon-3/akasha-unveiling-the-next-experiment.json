@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "mihai-alisie",
-    "marius-darila"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["mihai-alisie", "marius-darila"],
   "sources_youtubeId": "Xyzx3yMdDAg",
   "sources_ipfsHash": "QmPrjwQSj2GrP4ts6KAPuaP5NJXZ1NiAzJwE5bp9wgFEr7",
   "sources_swarmHash": "04a32305e5987849fbc3adf4d613d06e06a2f74d469b82e954490d3acde10cf0",

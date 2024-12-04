@@ -35,9 +35,7 @@
     "filtering",
     "api"
   ],
-  "speakers": [
-    "gavin-wood"
-  ],
+  "speakers": ["gavin-wood"],
   "sources_youtubeId": "BrWlAtfqF6s",
   "sources_ipfsHash": "QmYspqXBufeBibJavB8t5K3FkxqCGCgcHF8wKzjBQe52Tk",
   "sources_swarmHash": "36790461af14831298988d8ff7e9171fefcde3bb5c69d0c7f58904403421811f",

@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 2s",
-    "zkEVM",
-    "zkrollup",
-    "EVM"
-  ],
-  "speakers": [
-    "ignasi-ramos"
-  ],
+  "tags": ["Layer 2s", "zkEVM", "zkrollup", "EVM"],
+  "speakers": ["ignasi-ramos"],
   "resources_slides": "/resources/6/zkevm-vs-evm-full-equivalence.pdf",
   "slot_start": 1665585000000,
   "slot_end": 1665586800000,

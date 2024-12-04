@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Cryptoeconomics",
-    "Gas",
-    "Pricing",
-    "Optimization"
-  ],
-  "speakers": [
-    "theo-diamandis"
-  ],
+  "tags": ["Cryptoeconomics", "Gas", "Pricing", "Optimization"],
+  "speakers": ["theo-diamandis"],
   "resources_slides": "/resources/6/a-mechanism-for-pricing-non-fungible-resources-toward-multi-dimensional-fee-markets.pdf",
   "slot_start": 1665759600000,
   "slot_end": 1665761100000,

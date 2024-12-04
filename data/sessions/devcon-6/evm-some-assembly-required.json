@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity",
-    "Assembly",
-    "EVM"
-  ],
-  "speakers": [
-    "alex-bazhenov"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity", "Assembly", "EVM"],
+  "speakers": ["alex-bazhenov"],
   "resources_slides": "/resources/6/evm-some-assembly-required.pdf",
   "slot_start": 1665680400000,
   "slot_end": 1665682200000,

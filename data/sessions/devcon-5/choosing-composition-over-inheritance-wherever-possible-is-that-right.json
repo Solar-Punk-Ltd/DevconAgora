@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "alice-henshaw"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["alice-henshaw"],
   "sources_youtubeId": "qzLoE_Mbo2c",
   "sources_ipfsHash": "QmSoBLhygxc9XLmWcjLE3gRKbfzSejkBDZbZqhHyuzBg8C",
   "sources_swarmHash": "5bb0724c012cb2dcab2a97b6a5c454cc7f4b6ff197a1c8392518b05ad00dcb84",

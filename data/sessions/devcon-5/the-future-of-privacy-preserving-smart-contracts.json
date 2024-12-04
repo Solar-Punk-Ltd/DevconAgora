@@ -7,14 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "john-pacific",
-    "ravital-solomon"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["john-pacific", "ravital-solomon"],
   "sources_youtubeId": "djrYx8w0zbg",
   "sources_ipfsHash": "QmT48zpVJpovSwFoaorXhazxhbStMRWZsxP1LgHn8aukdz",
   "sources_swarmHash": "c1bc74e96144de5d15ec7709424565552f960767b74825a008aebca0de1d4ca8",

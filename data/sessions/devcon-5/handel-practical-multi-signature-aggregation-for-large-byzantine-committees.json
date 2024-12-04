@@ -7,10 +7,7 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "technical"
-  ],
+  "tags": ["Staking & Validator Experience", "technical"],
   "speakers": [
     "olivier-begassat",
     "nicolas-gailly",

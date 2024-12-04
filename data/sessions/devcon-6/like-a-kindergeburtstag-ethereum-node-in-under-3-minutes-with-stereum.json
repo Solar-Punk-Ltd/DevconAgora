@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "nodes",
-    "staking",
-    "network"
-  ],
-  "speakers": [
-    "stefan-kobrc"
-  ],
+  "tags": ["Staking & Validator Experience", "nodes", "staking", "network"],
+  "speakers": ["stefan-kobrc"],
   "resources_slides": "/resources/6/like-a-kindergeburtstag-ethereum-node-in-under-3-minutes-with-stereum.pdf",
   "slot_start": 1665662400000,
   "slot_end": 1665662820000,

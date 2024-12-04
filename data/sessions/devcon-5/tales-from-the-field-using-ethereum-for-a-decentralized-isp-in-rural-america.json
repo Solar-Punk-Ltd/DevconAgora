@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "deborah-simpier"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["deborah-simpier"],
   "sources_youtubeId": "YN6tAFIK3aU",
   "sources_ipfsHash": "QmNP53hLjbFYUWAgUvrWwaRo1ciWKHeCREQKorBSgZuXgR",
   "sources_swarmHash": "3babc22e3def422706b3151f842d1c9efea329cac727f1aec8eb46f0c2ac3bf3",

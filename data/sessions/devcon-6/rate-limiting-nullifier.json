@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "zk",
-    "spam",
-    "anonymous"
-  ],
-  "speakers": [
-    "atheartengineer"
-  ],
+  "tags": ["Privacy", "zk", "spam", "anonymous"],
+  "speakers": ["atheartengineer"],
   "resources_slides": "/resources/6/rate-limiting-nullifier.pdf",
   "slot_start": 1665680400000,
   "slot_end": 1665681000000,

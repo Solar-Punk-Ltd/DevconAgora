@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 1 Protocol",
-    "MEV",
-    "consensus layer",
-    "PBS"
-  ],
-  "speakers": [
-    "terence-tsao"
-  ],
+  "tags": ["Layer 1 Protocol", "MEV", "consensus layer", "PBS"],
+  "speakers": ["terence-tsao"],
   "resources_slides": "/resources/6/hybrid-pbs-from-cls-perspective.pdf",
   "slot_start": 1665658800000,
   "slot_end": 1665660600000,

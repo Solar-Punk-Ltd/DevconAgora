@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "daenam-kim"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["daenam-kim"],
   "sources_youtubeId": "qyvq9-dPMH4",
   "sources_ipfsHash": "QmSL9Zfz11xtVV1DrKMYVRiMV4kZiNJLKwaNoCHFXkgHx9",
   "sources_swarmHash": "ccee3125c05da5bffcb9a78d8125985f2097b35d70469373f672359235e5ad2a",

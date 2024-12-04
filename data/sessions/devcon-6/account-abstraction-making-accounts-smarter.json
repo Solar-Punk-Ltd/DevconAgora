@@ -13,10 +13,7 @@
     "ERC 4337",
     "Developer infrastructure"
   ],
-  "speakers": [
-    "liraz",
-    "dror-tirosh"
-  ],
+  "speakers": ["liraz", "dror-tirosh"],
   "slot_start": 1665586200000,
   "slot_end": 1665587700000,
   "slot_roomId": "workshop-1",

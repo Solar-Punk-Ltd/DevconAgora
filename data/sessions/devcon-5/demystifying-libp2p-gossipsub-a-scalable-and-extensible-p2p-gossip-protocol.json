@@ -7,13 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "technical"
-  ],
-  "speakers": [
-    "raul-kripalani"
-  ],
+  "tags": ["Staking & Validator Experience", "technical"],
+  "speakers": ["raul-kripalani"],
   "sources_youtubeId": "b8AZBVdrCC0",
   "sources_ipfsHash": "QmdrrLSzPkGen8wBaDDvzbSJoJ6Ne2EaxQNn26ocfjr28H",
   "sources_swarmHash": "b9fefca926d54e09c5d813678476421bec152f6008a69a2b443e6bd6f55630bd",

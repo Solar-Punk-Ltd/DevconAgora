@@ -7,12 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security"
-  ],
-  "speakers": [
-    "manuel-araoz"
-  ],
+  "tags": ["Security"],
+  "speakers": ["manuel-araoz"],
   "sources_youtubeId": "1EWvebDU66U",
   "sources_ipfsHash": "QmdDsqBf875pVL2vQFXpqf6KypAj2QLUH6CHcz5neM4iX6",
   "sources_swarmHash": "ca771e0a2227a81db784d88c487da4702f843b5bba8414b66705ff62b3e42648",

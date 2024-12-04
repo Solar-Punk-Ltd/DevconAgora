@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "account",
-    "abstraction"
-  ],
-  "speakers": [
-    "liraz"
-  ],
+  "tags": ["Developer Infrastructure", "account", "abstraction"],
+  "speakers": ["liraz"],
   "slot_start": 1665495000000,
   "slot_end": 1665498000000,
   "slot_roomId": "workshop-4",

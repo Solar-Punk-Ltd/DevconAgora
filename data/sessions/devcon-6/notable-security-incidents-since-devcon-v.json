@@ -7,18 +7,8 @@
   "track": "Security",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Security",
-    "security",
-    "lessons learned",
-    "countermeasures"
-  ],
-  "speakers": [
-    "lane-rettig",
-    "ryan-lackey",
-    "tom-howard",
-    "arun-devabhaktuni"
-  ],
+  "tags": ["Security", "security", "lessons learned", "countermeasures"],
+  "speakers": ["lane-rettig", "ryan-lackey", "tom-howard", "arun-devabhaktuni"],
   "slot_start": 1665568800000,
   "slot_end": 1665572400000,
   "slot_roomId": "talk-2",

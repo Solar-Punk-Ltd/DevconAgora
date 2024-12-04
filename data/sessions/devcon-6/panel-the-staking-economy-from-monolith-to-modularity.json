@@ -7,11 +7,7 @@
   "track": "Staking & Validator Experience",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Staking & Validator Experience",
-    "Staking",
-    "Validators"
-  ],
+  "tags": ["Staking & Validator Experience", "Staking", "Validators"],
   "speakers": [
     "collin-myers",
     "sreeram-kannan",

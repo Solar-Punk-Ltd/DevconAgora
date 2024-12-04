@@ -7,14 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "Awards"
-  ],
-  "speakers": [
-    "aqeel-mohammad",
-    "ethereum-foundation"
-  ],
+  "tags": ["UX & Design", "Awards"],
+  "speakers": ["aqeel-mohammad", "ethereum-foundation"],
   "resources_slides": "/resources/6/deva-awards.pdf",
   "slot_start": 1665759600000,
   "slot_end": 1665761100000,

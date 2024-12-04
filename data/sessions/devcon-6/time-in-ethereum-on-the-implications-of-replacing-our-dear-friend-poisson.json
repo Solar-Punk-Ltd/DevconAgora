@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "L1 research",
-    "reorgs",
-    "fork choice"
-  ],
-  "speakers": [
-    "caspar-schwarz-schilling"
-  ],
+  "tags": ["Layer 1 Protocol", "L1 research", "reorgs", "fork choice"],
+  "speakers": ["caspar-schwarz-schilling"],
   "resources_slides": "/resources/6/time-in-ethereum-on-the-implications-of-replacing-our-dear-friend-poisson.pdf",
   "slot_start": 1665592200000,
   "slot_end": 1665593700000,

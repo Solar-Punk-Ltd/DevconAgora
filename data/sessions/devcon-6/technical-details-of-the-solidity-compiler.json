@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity"
-  ],
-  "speakers": [
-    "daniel"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity"],
+  "speakers": ["daniel"],
   "resources_slides": "/resources/6/technical-details-of-the-solidity-compiler.pdf",
   "slot_start": 1665498600000,
   "slot_end": 1665500400000,

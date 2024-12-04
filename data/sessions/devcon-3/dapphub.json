@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "andy-milenius"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["andy-milenius"],
   "sources_youtubeId": "rKQCvUp5q1w",
   "sources_ipfsHash": "QmTAY5dTar2HadkjvS22gnKfpTC4cBFZYR8dhXMbTFDy3X",
   "sources_swarmHash": "3a03dbb3bace8b5a68e10cc6e66dace2c2f3fcb66799800fd98d7f69b200f872",

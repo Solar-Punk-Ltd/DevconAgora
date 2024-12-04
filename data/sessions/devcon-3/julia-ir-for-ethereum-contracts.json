@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "alex-beregszaszi"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["alex-beregszaszi"],
   "sources_youtubeId": "zXriQW1ATFI",
   "sources_ipfsHash": "QmTSEufe2FvAkRST4AJK4s2eWeBNqHp6kwRXQkmGzzfaRv",
   "sources_swarmHash": "860c4fd1e091783f78338bae99a3ce63c619cb6aed3fb8d02c1bad0e88da739a",

@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol",
-    "merge",
-    "client",
-    "architecture"
-  ],
-  "speakers": [
-    "adrian-sutton"
-  ],
+  "tags": ["Layer 1 Protocol", "merge", "client", "architecture"],
+  "speakers": ["adrian-sutton"],
   "resources_slides": "/resources/6/post-merge-ethereum-client-architecture.pdf",
   "slot_start": 1665748800000,
   "slot_end": 1665750600000,

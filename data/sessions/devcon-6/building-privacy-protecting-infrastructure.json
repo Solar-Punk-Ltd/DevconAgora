@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "p2p",
-    "zkp",
-    "messaging"
-  ],
-  "speakers": [
-    "oskar-thoren"
-  ],
+  "tags": ["Privacy", "p2p", "zkp", "messaging"],
+  "speakers": ["oskar-thoren"],
   "resources_slides": "/resources/6/building-privacy-protecting-infrastructure.pdf",
   "slot_start": 1665572400000,
   "slot_end": 1665574200000,

@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "zk"
-  ],
-  "speakers": [
-    "yi-sun"
-  ],
+  "tags": ["Privacy", "zk"],
+  "speakers": ["yi-sun"],
   "slot_start": 1665655800000,
   "slot_end": 1665657300000,
   "slot_roomId": "workshop-1",

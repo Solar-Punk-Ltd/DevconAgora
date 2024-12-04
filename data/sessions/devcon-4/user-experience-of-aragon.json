@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "adoption",
-    "dapps",
-    "developers"
-  ],
-  "speakers": [
-    "jouni-helminen"
-  ],
+  "tags": ["UX & Design", "adoption", "dapps", "developers"],
+  "speakers": ["jouni-helminen"],
   "sources_youtubeId": "WQ_wUfRIP3A",
   "sources_ipfsHash": "QmZMApnXN7W9y3ZCucSSmf9nJZtH1dVfRADiHK9bjv7Sgk",
   "sources_swarmHash": "46cfbfe9c549c3359049e5c6b5c158a4b59bd6f0bc29200ac897a17b00dd3e93",

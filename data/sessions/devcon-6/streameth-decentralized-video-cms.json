@@ -13,9 +13,7 @@
     "opensource",
     ""
   ],
-  "speakers": [
-    "pablo-voorvaart"
-  ],
+  "speakers": ["pablo-voorvaart"],
   "resources_slides": "/resources/6/streameth-decentralized-video-cms.pdf",
   "slot_start": 1665590400000,
   "slot_end": 1665591900000,

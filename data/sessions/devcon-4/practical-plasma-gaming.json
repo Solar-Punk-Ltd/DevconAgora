@@ -7,17 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "games",
-    "sidechains",
-    "UI",
-    "UX",
-    "L2"
-  ],
-  "speakers": [
-    "matthew-campbell"
-  ],
+  "tags": ["Layer 2s", "games", "sidechains", "UI", "UX", "L2"],
+  "speakers": ["matthew-campbell"],
   "sources_youtubeId": "Epd3aMQtfZQ",
   "sources_ipfsHash": "QmR1wHnnua8xFSfYMMqZcZym3ESMkjQRNa9SRJnPF8BdQi",
   "sources_swarmHash": "bb1c6311d22bf2abb2b7db4cd069a993dff4888fe129ed0f2430fd3bb48f046e",

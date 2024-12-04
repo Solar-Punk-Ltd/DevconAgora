@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "roman-mandeleil"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["roman-mandeleil"],
   "sources_youtubeId": "uNnshJQF4x8",
   "sources_ipfsHash": "QmepuwifSa3hy2uQ99e7D2B3nzuDQ9kHo9y8VbcB8CDK7s",
   "sources_swarmHash": "a5273f145f7cda13206049fd5e492f4ce664af9f0684b0f315faca46f77686d7",

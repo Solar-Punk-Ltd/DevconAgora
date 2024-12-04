@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "wallet",
-    "user experience",
-    "web3"
-  ],
-  "speakers": [
-    "taylor-monahan"
-  ],
+  "tags": ["UX & Design", "wallet", "user experience", "web3"],
+  "speakers": ["taylor-monahan"],
   "resources_slides": "/resources/6/the-original-sin.pdf",
   "slot_start": 1665594000000,
   "slot_end": 1665595800000,

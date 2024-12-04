@@ -29,10 +29,7 @@
     "light client",
     "proof"
   ],
-  "speakers": [
-    "vlad-zamfir",
-    "vitalik-buterin"
-  ],
+  "speakers": ["vlad-zamfir", "vitalik-buterin"],
   "sources_youtubeId": "fwEsXBDFk6c",
   "sources_ipfsHash": "QmbDij6HsJhAYYZBztT4PRZCu8zVRvNAe41HxAxmDDLRJT",
   "sources_swarmHash": "80f97e739a92b6d9ca43fa6d9b048d6793702ab4f8e78d31e62ce87a55f11dd5",

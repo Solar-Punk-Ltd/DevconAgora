@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "zero knowledge",
-    "languages",
-    "scaling"
-  ],
-  "speakers": [
-    "maxim-vezenov"
-  ],
+  "tags": ["Privacy", "zero knowledge", "languages", "scaling"],
+  "speakers": ["maxim-vezenov"],
   "resources_slides": "/resources/6/private-value-transfer-in-10-lines.pdf",
   "slot_start": 1665667800000,
   "slot_end": 1665669600000,

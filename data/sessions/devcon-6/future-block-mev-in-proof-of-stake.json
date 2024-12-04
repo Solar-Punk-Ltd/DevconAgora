@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Security",
-    "MEV",
-    "PoS",
-    "security"
-  ],
-  "speakers": [
-    "torgin-mackinga"
-  ],
+  "tags": ["Security", "MEV", "PoS", "security"],
+  "speakers": ["torgin-mackinga"],
   "resources_slides": "/resources/6/future-block-mev-in-proof-of-stake.pdf",
   "slot_start": 1665508200000,
   "slot_end": 1665508800000,

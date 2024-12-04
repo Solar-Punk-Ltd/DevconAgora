@@ -31,9 +31,7 @@
     "fstar",
     "sdk"
   ],
-  "speakers": [
-    "marley-gray"
-  ],
+  "speakers": ["marley-gray"],
   "sources_youtubeId": "3_tyrfI7BJI",
   "sources_ipfsHash": "QmY4rNvjaLiTW2RHnfRZTzyBMKToCECo4Sr2C7UcM6NXi1",
   "sources_swarmHash": "354e393e43523cefff8ddc688cbabb3ecb6bad41da362a01070a2dc0327a61d7",

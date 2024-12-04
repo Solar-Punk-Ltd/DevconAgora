@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol",
-    "EVM",
-    "JSON-RPC",
-    "COMPATIBILITY"
-  ],
-  "speakers": [
-    "danno-ferrin"
-  ],
+  "tags": ["Layer 1 Protocol", "EVM", "JSON-RPC", "COMPATIBILITY"],
+  "speakers": ["danno-ferrin"],
   "resources_slides": "/resources/6/what-alternative-blockchains-compatibility-with-ethereum-tooling-can-teach-us-about-ethereums-future.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757500000,

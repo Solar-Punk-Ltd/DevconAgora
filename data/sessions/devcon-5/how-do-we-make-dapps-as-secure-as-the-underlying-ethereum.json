@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "weiwu-zhang"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["weiwu-zhang"],
   "sources_youtubeId": "caBSufgaj4Q",
   "sources_ipfsHash": "QmWTPm4om3narsoEw8hi97SAvzTm8QrJJv2Rvu7tcLCt13",
   "sources_swarmHash": "64f6bc8da032dc95d0ab5adf6c030443a195bda651b46fc07e086d4bc3bf5a6f",

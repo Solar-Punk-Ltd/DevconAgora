@@ -7,12 +7,7 @@
   "track": "Devcon",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Devcon",
-    "tracks",
-    "categories",
-    "song"
-  ],
+  "tags": ["Devcon", "tracks", "categories", "song"],
   "speakers": [
     "jonathan-mann",
     "hsiao-wei-wang",

@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "China",
-    "Community"
-  ],
-  "speakers": [
-    "guo-haoyun",
-    "yanyan-ho"
-  ],
+  "tags": ["Opportunity & Global Impact", "China", "Community"],
+  "speakers": ["guo-haoyun", "yanyan-ho"],
   "resources_slides": "/resources/6/building-ethereum-community-together-in-china.pdf",
   "slot_start": 1665759000000,
   "slot_end": 1665759600000,

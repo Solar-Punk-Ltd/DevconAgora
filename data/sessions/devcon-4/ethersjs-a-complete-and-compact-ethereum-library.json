@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "library",
-    "javascript"
-  ],
-  "speakers": [
-    "richard-moore"
-  ],
+  "tags": ["Developer Infrastructure", "library", "javascript"],
+  "speakers": ["richard-moore"],
   "sources_youtubeId": "P-UzQTDfdXY",
   "sources_ipfsHash": "QmZF3KF3JNrGib2o4FtqvMErZrJXCYYtp1zyTVDJP8sisZ",
   "sources_swarmHash": "da3f15bd017634bac7b979a5099779d585b0fc73e61c7a2e810abb9f8cbda201",

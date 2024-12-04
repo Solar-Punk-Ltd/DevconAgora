@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "regina-cai",
-    "hart-lambur",
-    "allison-lu"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["regina-cai", "hart-lambur", "allison-lu"],
   "sources_youtubeId": "TjeB27zIn4g",
   "sources_ipfsHash": "Qme9M8ZmXm8Z12meC8fLK8vHre7nzJxyV4TQJrtS3P9KLm",
   "sources_swarmHash": "13c83525eaf2f66ced9f092d65b353fda56eecbae702a6fddbd591c3d63b5910",

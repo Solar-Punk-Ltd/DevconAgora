@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "jack-peterson"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["jack-peterson"],
   "sources_youtubeId": "jS07CZvPySg",
   "sources_ipfsHash": "QmakoYhgVgugShe42ftDDyz5wbUvKugA3stv5JHR9X3aag",
   "sources_swarmHash": "af0c6aec234a79966a9e28df632f92da81e8f2286e791c4ddfb454fca35cca20",

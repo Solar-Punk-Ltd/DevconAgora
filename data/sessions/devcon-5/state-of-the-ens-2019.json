@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "ENS",
-    "updates",
-    "technical"
-  ],
-  "speakers": [
-    "nick-johnson"
-  ],
+  "tags": ["UX & Design", "ENS", "updates", "technical"],
+  "speakers": ["nick-johnson"],
   "sources_youtubeId": "tHN-bU2aIek",
   "sources_ipfsHash": "QmTXsDjbBDQv8LisrLrj52srU97AAJRU8bMamQ62wcDfFf",
   "sources_swarmHash": "8593a082ed1defbb5dcaeda6d41f7109d487a35e2e2bc6b4277e875b9c0dbe12",

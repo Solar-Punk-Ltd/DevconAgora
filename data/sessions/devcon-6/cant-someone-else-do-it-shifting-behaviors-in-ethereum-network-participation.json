@@ -13,9 +13,7 @@
     "validators",
     "network participation"
   ],
-  "speakers": [
-    "aqeel-mohammad"
-  ],
+  "speakers": ["aqeel-mohammad"],
   "resources_slides": "/resources/6/cant-someone-else-do-it-shifting-behaviors-in-ethereum-network-participation.pdf",
   "slot_start": 1665507600000,
   "slot_end": 1665509400000,

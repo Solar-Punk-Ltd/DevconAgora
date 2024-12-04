@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "DeFi",
-    "general"
-  ],
-  "speakers": [
-    "rune-christensen"
-  ],
+  "tags": ["Governance & Coordination", "DeFi", "general"],
+  "speakers": ["rune-christensen"],
   "sources_youtubeId": "NR5LhdIjxzg",
   "sources_ipfsHash": "QmSA6g4yyeUK1regygtH3xbfawC4KNiE5dykoKD7QcvQdp",
   "sources_swarmHash": "f5016c387986d885ff1c6f9db07dda5badadb7263d8ea27d0601ecf689caa8ac",

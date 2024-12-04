@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "martin-allen",
-    "kristoffer-josefsson",
-    "irakli-safareli"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["martin-allen", "kristoffer-josefsson", "irakli-safareli"],
   "sources_youtubeId": "QO0Nu2XFLwg",
   "sources_ipfsHash": "Qmdm6EM8mMyc8DkgK1M4x8G4ySbuCmJF1yaeuLoPVfki6B",
   "sources_swarmHash": "c8481ee50662c51b27df3b22198430bc25516729867552664c073604c76f0bc6",

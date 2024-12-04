@@ -7,16 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 1 Protocol",
-    "Merge",
-    "testing",
-    "fuzzing"
-  ],
-  "speakers": [
-    "david-searle",
-    "will-wilson"
-  ],
+  "tags": ["Layer 1 Protocol", "Merge", "testing", "fuzzing"],
+  "speakers": ["david-searle", "will-wilson"],
   "resources_slides": "/resources/6/debugging-the-ethereum-merge-with-parallel-universes.pdf",
   "slot_start": 1665493200000,
   "slot_end": 1665495000000,

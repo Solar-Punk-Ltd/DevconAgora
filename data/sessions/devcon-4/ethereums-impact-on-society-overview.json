@@ -17,9 +17,7 @@
     "law",
     "identity"
   ],
-  "speakers": [
-    "rhys-lindmark"
-  ],
+  "speakers": ["rhys-lindmark"],
   "sources_youtubeId": "aCrpt3t7MxU",
   "sources_ipfsHash": "QmQegLQ7QXGouMKpySdHnyAhsWdxyYyGaCNP4NDQF8ocSC",
   "sources_swarmHash": "f3ae49cbff1ba905d2665862d2e211737c538e859248cdc9e6cbc8dc3b26ceda",

@@ -7,16 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "quadratic",
-    "voting",
-    "academic"
-  ],
-  "speakers": [
-    "sota-ishii",
-    "masahiro-yasu"
-  ],
+  "tags": ["Governance & Coordination", "quadratic", "voting", "academic"],
+  "speakers": ["sota-ishii", "masahiro-yasu"],
   "sources_youtubeId": "S-gP9FVNnVc",
   "sources_ipfsHash": "QmfJEFZFpyaRb6JxuUaApNKxpWmtYfd8GCRfwj9oWjP6Ys",
   "sources_swarmHash": "981bfac7f56841b52626f6588e4bd43b49d72491b3feea7dc4258c58e0cc4a0d",

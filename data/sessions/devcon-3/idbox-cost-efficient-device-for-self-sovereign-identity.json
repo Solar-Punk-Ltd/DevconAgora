@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "julien-bouteloup"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["julien-bouteloup"],
   "sources_youtubeId": "h1Oz3oEtZxE",
   "sources_ipfsHash": "QmaxVfZmUE5h9fM4JLC4kcc1zPwFdPaATbrCYJwB9aroW8",
   "sources_swarmHash": "1b63d1d5649eb0aae46d30903feeefd948bb6787baef6971f259ddf9c9ca0b38",

@@ -7,12 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Security"
-  ],
-  "speakers": [
-    "phil-daian"
-  ],
+  "tags": ["Security"],
+  "speakers": ["phil-daian"],
   "sources_youtubeId": "4GDTFugtW6k",
   "sources_ipfsHash": "QmbA1kECxLsqJTZjfpmAg2Q1Rw1HG1esR9ruWkw5SHY1CW",
   "sources_swarmHash": "7e10061eaa5bed2c2f036288754ebe8de357ba574b827058e1a5fc2acbdab70a",

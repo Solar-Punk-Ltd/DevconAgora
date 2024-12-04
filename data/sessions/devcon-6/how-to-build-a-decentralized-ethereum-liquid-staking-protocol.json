@@ -7,14 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Staking & Validator Experience",
-    "decentralized",
-    "staking"
-  ],
-  "speakers": [
-    "darren-langley"
-  ],
+  "tags": ["Staking & Validator Experience", "decentralized", "staking"],
+  "speakers": ["darren-langley"],
   "resources_slides": "/resources/6/how-to-build-a-decentralized-ethereum-liquid-staking-protocol.pdf",
   "slot_start": 1665570600000,
   "slot_end": 1665572400000,

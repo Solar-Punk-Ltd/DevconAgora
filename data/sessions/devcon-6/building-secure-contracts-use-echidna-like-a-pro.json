@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Security",
-    "fuzzing",
-    "vulnerability",
-    "testing"
-  ],
-  "speakers": [
-    "josselin-feist",
-    "gustavo-grieco"
-  ],
+  "tags": ["Security", "fuzzing", "vulnerability", "testing"],
+  "speakers": ["josselin-feist", "gustavo-grieco"],
   "resources_slides": "/resources/6/building-secure-contracts-use-echidna-like-a-pro.pdf",
   "slot_start": 1665752400000,
   "slot_end": 1665759600000,

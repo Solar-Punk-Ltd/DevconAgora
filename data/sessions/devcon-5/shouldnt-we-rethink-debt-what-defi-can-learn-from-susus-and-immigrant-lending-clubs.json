@@ -7,12 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Lightning Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Cryptoeconomics"
-  ],
-  "speakers": [
-    "james-beck"
-  ],
+  "tags": ["Cryptoeconomics"],
+  "speakers": ["james-beck"],
   "sources_youtubeId": "YLqn2UtnT50",
   "sources_ipfsHash": "QmWwiFPoJq9ZRxj34xRDZC9q23mhG4TsbE7qPBed7dJoDV",
   "sources_swarmHash": "48b6a4a18aa68db6df9e193133259c138aedc582d2fc9c76f442f51b89eddf88",

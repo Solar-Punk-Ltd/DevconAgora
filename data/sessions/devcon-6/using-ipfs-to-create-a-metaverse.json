@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "IPFS",
-    "metaverse",
-    "content"
-  ],
-  "speakers": [
-    "agustina-aldasoro"
-  ],
+  "tags": ["Developer Infrastructure", "IPFS", "metaverse", "content"],
+  "speakers": ["agustina-aldasoro"],
   "slot_start": 1665749400000,
   "slot_end": 1665750000000,
   "slot_roomId": "talk-4",

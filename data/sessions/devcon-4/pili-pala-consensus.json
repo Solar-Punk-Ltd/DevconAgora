@@ -14,9 +14,7 @@
     "voting",
     "thunder"
   ],
-  "speakers": [
-    "elaine-shi"
-  ],
+  "speakers": ["elaine-shi"],
   "sources_youtubeId": "JAHfui4GS44",
   "sources_ipfsHash": "QmURpBmHuRfQKzaN1uSmhjDko8LkijDkBkHPKZN8yGVSwJ",
   "sources_swarmHash": "304dcbac375562c413173c066ac0afcdf107b878658217d67809b2a1d29ca29f",

@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "L2",
-    "standards"
-  ],
-  "speakers": [
-    "tas-dienes",
-    "dan-shaw"
-  ],
+  "tags": ["Layer 2s", "L2", "standards"],
+  "speakers": ["tas-dienes", "dan-shaw"],
   "resources_slides": "/resources/6/a-layer-2-standards-working-group.pdf",
   "slot_start": 1665508800000,
   "slot_end": 1665509400000,

@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "terminology",
-    "communication",
-    "education"
-  ],
-  "speakers": [
-    "oliver-jl-renwick"
-  ],
+  "tags": ["UX & Design", "terminology", "communication", "education"],
+  "speakers": ["oliver-jl-renwick"],
   "resources_slides": "/resources/6/positive-framing-and-communication-for-web3.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757800000,

@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "ZK",
-    "SBT",
-    "DID"
-  ],
-  "speakers": [
-    "dhadrien"
-  ],
+  "tags": ["Privacy", "ZK", "SBT", "DID"],
+  "speakers": ["dhadrien"],
   "resources_slides": "/resources/6/zk-badges-a-new-primitive-for-self-sovereign-identities.pdf",
   "slot_start": 1665743400000,
   "slot_end": 1665744900000,

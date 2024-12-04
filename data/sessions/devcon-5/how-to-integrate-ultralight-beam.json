@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "dean-eigenmann",
-    "greg-markou",
-    "eric-tu"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["dean-eigenmann", "greg-markou", "eric-tu"],
   "sources_youtubeId": "_8B0sy5fqYs",
   "sources_ipfsHash": "QmfAghxY9R13XV8VcBEGdAhwkfTgkjFBCD46XdVx42mK46",
   "sources_swarmHash": "279af616f6fdaae56ce740dba72b4058d73ce7edad3270a85ce7cd69a9038f8d",

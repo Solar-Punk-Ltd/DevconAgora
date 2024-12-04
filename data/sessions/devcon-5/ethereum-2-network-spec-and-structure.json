@@ -14,9 +14,7 @@
     "eth2",
     "technical"
   ],
-  "speakers": [
-    "zahary-karadjov"
-  ],
+  "speakers": ["zahary-karadjov"],
   "sources_youtubeId": "srAUIsEmqMA",
   "sources_ipfsHash": "QmT4UcQoeiNCtK3wKS317foECzxNgaEUsqKLVAaidHgKg2",
   "sources_swarmHash": "9c59144c04cd47518d2ee0f17e980943507c0829745dcf7687e2543618a0bbdb",

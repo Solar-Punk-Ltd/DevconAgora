@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "compiler",
-    "language"
-  ],
-  "speakers": [
-    "athanasios-thanasis-konstantinidis"
-  ],
+  "tags": ["Developer Infrastructure", "compiler", "language"],
+  "speakers": ["athanasios-thanasis-konstantinidis"],
   "sources_youtubeId": "0LaGkVX0p4M",
   "sources_ipfsHash": "QmU1yjTKfRotn5uFULghTQoVw7gbmU1H5JceedUrmkoHRU",
   "sources_swarmHash": "5ba906534b6d37aebfb11c299dfe3d6c0c98a92e169cb1e2a33853936eaa496f",

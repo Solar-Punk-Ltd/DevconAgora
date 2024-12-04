@@ -7,16 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Cryptoeconomics",
-    "mev",
-    "nfts",
-    "arbitrage",
-    "research"
-  ],
-  "speakers": [
-    "franz"
-  ],
+  "tags": ["Cryptoeconomics", "mev", "nfts", "arbitrage", "research"],
+  "speakers": ["franz"],
   "resources_slides": "/resources/6/mev-nft-erc-721-fork-for-blocking-atomic-arbitrage.pdf",
   "slot_start": 1665663000000,
   "slot_end": 1665663420000,

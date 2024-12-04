@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Security",
-    "trust",
-    "golem",
-    "privacy"
-  ],
-  "speakers": [
-    "piotr-janiuk"
-  ],
+  "tags": ["Security", "trust", "golem", "privacy"],
+  "speakers": ["piotr-janiuk"],
   "sources_youtubeId": "w0bYO8DOT8A",
   "sources_ipfsHash": "QmZgBM6cWVv8FPMwDCHQxAEHTks5dWPyxQ2CH1SmRnpz4g",
   "sources_swarmHash": "f5bc927c8a2ae5a96bd178cca3a6f89da4c861bc30629cd84f3f5fc62bbfedf3",

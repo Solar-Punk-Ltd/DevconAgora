@@ -14,9 +14,7 @@
     "coordination",
     "biomimicry"
   ],
-  "speakers": [
-    "simona-pop"
-  ],
+  "speakers": ["simona-pop"],
   "resources_slides": "/resources/6/daos-and-biomimicry.pdf",
   "slot_start": 1665500400000,
   "slot_end": 1665502200000,

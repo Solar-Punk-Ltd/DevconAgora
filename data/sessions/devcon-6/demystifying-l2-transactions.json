@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "rollups",
-    "transactions",
-    "gas"
-  ],
-  "speakers": [
-    "chris-buckland"
-  ],
+  "tags": ["Layer 2s", "rollups", "transactions", "gas"],
+  "speakers": ["chris-buckland"],
   "resources_slides": "/resources/6/demystifying-l2-transactions.pdf",
   "slot_start": 1665568800000,
   "slot_end": 1665572400000,

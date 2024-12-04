@@ -19,9 +19,7 @@
     "resilience",
     "init"
   ],
-  "speakers": [
-    "henning-diedrich"
-  ],
+  "speakers": ["henning-diedrich"],
   "sources_youtubeId": "Yae9ZIVwa8w",
   "sources_ipfsHash": "QmZpZrkVd2FNZy8p6Dvap5q12jhKiCTXt4ZCyGXagsqecv",
   "sources_swarmHash": "7ec9fc89a5f713c4dc7f9aaaace6c58d0681ac0398f27b5ef7ff2e4c6a910c5d",

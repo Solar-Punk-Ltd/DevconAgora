@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "zero knowledge",
-    "privacy",
-    "smart contracts"
-  ],
-  "speakers": [
-    "mike-connor"
-  ],
+  "tags": ["Privacy", "zero knowledge", "privacy", "smart contracts"],
+  "speakers": ["mike-connor"],
   "resources_slides": "/resources/6/public-private-composability.pdf",
   "slot_start": 1665671400000,
   "slot_end": 1665673200000,

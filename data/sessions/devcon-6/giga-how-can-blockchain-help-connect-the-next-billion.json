@@ -13,11 +13,7 @@
     "connectivity",
     "innovation"
   ],
-  "speakers": [
-    "naroa",
-    "gerben-kijne",
-    "anda-ngcaba"
-  ],
+  "speakers": ["naroa", "gerben-kijne", "anda-ngcaba"],
   "slot_start": 1665680400000,
   "slot_end": 1665683400000,
   "slot_roomId": "talk-1",

@@ -25,9 +25,7 @@
     "sync",
     "poa"
   ],
-  "speakers": [
-    "arkadiy-paronyan"
-  ],
+  "speakers": ["arkadiy-paronyan"],
   "sources_youtubeId": "xcajGEmC20A",
   "sources_ipfsHash": "QmYTQKFnqHhs8fKqguoAWkEzq9P51yr9ihbjMeQ2qEC9mu",
   "sources_swarmHash": "969f3191cb298c224f79c1b1fa76ec2afabb10ea655e9d18d22c02ba9fc851e8",

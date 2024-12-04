@@ -7,14 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Staking & Validator Experience",
-    "validators",
-    "staking"
-  ],
-  "speakers": [
-    "pol"
-  ],
+  "tags": ["Staking & Validator Experience", "validators", "staking"],
+  "speakers": ["pol"],
   "resources_slides": "/resources/6/everything-a-solo-staker-should-know-for-the-next-phase-of-ethereum.pdf",
   "slot_start": 1665496800000,
   "slot_end": 1665498300000,

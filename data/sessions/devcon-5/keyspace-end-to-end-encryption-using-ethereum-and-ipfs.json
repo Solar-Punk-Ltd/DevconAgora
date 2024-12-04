@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "samuel-walker"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["samuel-walker"],
   "sources_youtubeId": "jmE9RXBquJQ",
   "sources_ipfsHash": "QmTfqvJX8YvZRcL2xyoKBdY7ai6PvUTftyhsxirfykoi3N",
   "sources_swarmHash": "a7d315cda169a8cfd672c62a07886fb800d6d5ef0bdf79c57c148fa90b6134fb",

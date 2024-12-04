@@ -13,9 +13,7 @@
     "decentralization",
     "nodes"
   ],
-  "speakers": [
-    "pablo-larguia"
-  ],
+  "speakers": ["pablo-larguia"],
   "resources_slides": "/resources/6/client-diversity-matters-thinking-independently-together.pdf",
   "slot_start": 1665683400000,
   "slot_end": 1665683820000,

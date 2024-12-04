@@ -7,12 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Security"
-  ],
-  "speakers": [
-    "clement-lesaege"
-  ],
+  "tags": ["Security"],
+  "speakers": ["clement-lesaege"],
   "sources_youtubeId": "GvXwD7SY7dw",
   "sources_ipfsHash": "QmcbZtfUuuVqMPeR2Tt9KFQqnAt2TmgotCRvenGiSk8N6n",
   "sources_swarmHash": "b3062b787921ccddfa0842ed1dcc5ad5a594a36dc2526f163a3211646d012248",

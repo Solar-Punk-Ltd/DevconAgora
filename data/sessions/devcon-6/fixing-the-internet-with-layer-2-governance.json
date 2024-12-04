@@ -13,9 +13,7 @@
     "public_goods",
     "funding"
   ],
-  "speakers": [
-    "ben-jones"
-  ],
+  "speakers": ["ben-jones"],
   "resources_slides": "/resources/6/fixing-the-internet-with-layer-2-governance.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757500000,

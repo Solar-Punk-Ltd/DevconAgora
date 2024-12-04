@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "hudson-jameson"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["hudson-jameson"],
   "sources_youtubeId": "uh8g5BrqFxY",
   "sources_ipfsHash": "QmVyE7bKhMSXzXrAZDX9QvBvB7XoENKpDvNjzSGFsYMLiX",
   "sources_swarmHash": "3f6b8ccd32b05b176584339101864a6458e221c3fb429c44960e29355b8acf04",

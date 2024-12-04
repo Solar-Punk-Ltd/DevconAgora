@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "kobi-gurkan",
-    "wei-jie-koh",
-    "barry-whitehat"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["kobi-gurkan", "wei-jie-koh", "barry-whitehat"],
   "sources_youtubeId": "GzVT16lFOHU",
   "sources_ipfsHash": "QmexzfCyLca4XwjstsJ9cqEVVkjzzzvXmdK73DUww9hWrU",
   "sources_swarmHash": "d31be1615014a5b9f0f6cece52fb5b55f2061e628a1454c15935f198ebc84243",

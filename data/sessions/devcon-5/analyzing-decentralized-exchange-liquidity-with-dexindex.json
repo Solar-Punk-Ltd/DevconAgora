@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "shawn-kim"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["shawn-kim"],
   "sources_youtubeId": "h82oO2_jsCc",
   "sources_ipfsHash": "QmUVgPpF4iaLn85nU7MM2VGTMU6PYo3ZCrYcAETHDvb4tr",
   "sources_swarmHash": "a35763974af1cecc3cb72ef692505dea7ce88818878fbf36edeecef60a03cc34",

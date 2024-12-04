@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "usable",
-    "security",
-    "human-centered design"
-  ],
-  "speakers": [
-    "antonela"
-  ],
+  "tags": ["Security", "usable", "security", "human-centered design"],
+  "speakers": ["antonela"],
   "resources_slides": "/resources/6/usable-security-in-web3.pdf",
   "slot_start": 1665747000000,
   "slot_end": 1665748800000,

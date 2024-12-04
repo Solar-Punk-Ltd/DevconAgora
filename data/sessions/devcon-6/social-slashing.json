@@ -13,9 +13,7 @@
     "Censorship resistance",
     "Governance"
   ],
-  "speakers": [
-    "eric-wall"
-  ],
+  "speakers": ["eric-wall"],
   "resources_slides": "/resources/6/social-slashing.pdf",
   "slot_start": 1665675000000,
   "slot_end": 1665676800000,

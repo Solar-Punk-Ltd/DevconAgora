@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "rob-mulholand"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["rob-mulholand"],
   "sources_youtubeId": "VZX0nN7VFfI",
   "sources_ipfsHash": "QmajRD8G6RfVToVdPAgdvpsPHWTd7QkXDMeThE2qeWgpE5",
   "sources_swarmHash": "9e08b282ab03b327dac7ab2a0ecf0b940c015bcb2c0f534ad642b65a5dddb10b",

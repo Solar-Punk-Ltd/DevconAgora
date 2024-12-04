@@ -7,15 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "security",
-    "crosschain",
-    "multichain"
-  ],
-  "speakers": [
-    "layne-haber"
-  ],
+  "tags": ["Security", "security", "crosschain", "multichain"],
+  "speakers": ["layne-haber"],
   "resources_slides": "/resources/6/crosschain-security-considerations-for-the-degen-in-all-of-us.pdf",
   "slot_start": 1665504000000,
   "slot_end": 1665505800000,

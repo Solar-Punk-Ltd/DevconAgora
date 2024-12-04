@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "Anonymity",
-    "Token standards"
-  ],
-  "speakers": [
-    "wei-dai",
-    "kyle-charbonnet"
-  ],
+  "tags": ["Privacy", "Anonymity", "Token standards"],
+  "speakers": ["wei-dai", "kyle-charbonnet"],
   "resources_slides": "/resources/6/towards-a-feature-complete-and-backwards-compatible-privacy-layer-for-ethereum.pdf",
   "slot_start": 1665745200000,
   "slot_end": 1665747000000,

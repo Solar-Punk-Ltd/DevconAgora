@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "sergio-lerner"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["sergio-lerner"],
   "sources_youtubeId": "pioxtzPxQMg",
   "sources_ipfsHash": "QmTwvMEiXUXURd1V5U7wYgfjKoLFW6RaXUQNX8VCbPn9yZ",
   "sources_swarmHash": "11f9c5d993cf4acdc5d969451dedb2590bd94f9bb1fce927cdf6c71bd110f7d8",

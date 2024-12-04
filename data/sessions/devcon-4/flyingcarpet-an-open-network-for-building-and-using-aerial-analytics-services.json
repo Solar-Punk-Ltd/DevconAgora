@@ -16,9 +16,7 @@
     "distribution",
     "philanthropy"
   ],
-  "speakers": [
-    "julien-bouteloup"
-  ],
+  "speakers": ["julien-bouteloup"],
   "sources_youtubeId": "OT6sgOqMV_s",
   "sources_ipfsHash": "QmZ7jsJsn69RXXc2QxFPuXsM18yxV1wdZDbHYNEqD3RUbW",
   "sources_swarmHash": "3d80a14cf67027409aaf181db36ae0a7e64fedc49c0988661fba704543b766a1",

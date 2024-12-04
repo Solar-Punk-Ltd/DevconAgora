@@ -7,18 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "sharding",
-    "python",
-    "eth2",
-    "casper",
-    "developers"
-  ],
-  "speakers": [
-    "hsiao-wei-wang",
-    "raul-jordan"
-  ],
+  "tags": ["Layer 2s", "sharding", "python", "eth2", "casper", "developers"],
+  "speakers": ["hsiao-wei-wang", "raul-jordan"],
   "sources_youtubeId": "91ZAFIoha2w",
   "sources_ipfsHash": "QmfGMijtwp5gqsTmdEGNeyNUcBuV8QAf67nU3D3qyRxHeJ",
   "sources_swarmHash": "134b1f2046d5b1565d5b26161b2c4d60dae2428aa9b7223e3a8fef3f42e6f2b7",

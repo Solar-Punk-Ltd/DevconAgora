@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "junghyun-kim",
-    "donghwan-kwon",
-    "sangmin-seo"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["junghyun-kim", "donghwan-kwon", "sangmin-seo"],
   "sources_youtubeId": "vTosteA2J9c",
   "sources_ipfsHash": "QmTynYbuPLGgcBGwi2Y7KUZTSgefgF58FPe1xkdzXSWdrT",
   "sources_swarmHash": "449c5d183a11f9bbd6bc7178bb5140eb3fe26a803347173a5cd5df2b39e4106a",

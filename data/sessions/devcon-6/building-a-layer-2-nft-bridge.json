@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "NFTS",
-    "Bridge",
-    "Arbitrum"
-  ],
-  "speakers": [
-    "daniel-zachary-goldman"
-  ],
+  "tags": ["Layer 2s", "NFTS", "Bridge", "Arbitrum"],
+  "speakers": ["daniel-zachary-goldman"],
   "slot_start": 1665658800000,
   "slot_end": 1665662400000,
   "slot_roomId": "workshop-3",

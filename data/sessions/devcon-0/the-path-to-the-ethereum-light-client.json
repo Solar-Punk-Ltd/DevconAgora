@@ -28,10 +28,7 @@
     "dht",
     ""
   ],
-  "speakers": [
-    "vitalik-buterin",
-    "gavin-wood"
-  ],
+  "speakers": ["vitalik-buterin", "gavin-wood"],
   "sources_youtubeId": "WD2sRXbmims",
   "sources_ipfsHash": "QmSjejeZ9pVLjXVzVrj5mjCw3gz32xhmY7uSVfVJBvM77D",
   "sources_swarmHash": "d806232cee4a1220fe019d20cc6d99dad6665bf702d2bd5bc7fd325722f27757",

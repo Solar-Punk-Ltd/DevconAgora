@@ -7,13 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 2s",
-    "scaling"
-  ],
-  "speakers": [
-    "patrick-mccorry"
-  ],
+  "tags": ["Layer 2s", "scaling"],
+  "speakers": ["patrick-mccorry"],
   "slot_start": 1665502200000,
   "slot_end": 1665505200000,
   "slot_roomId": "workshop-4",

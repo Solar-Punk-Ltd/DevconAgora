@@ -7,14 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "technical"
-  ],
-  "speakers": [
-    "greg-markou",
-    "cayman-nava"
-  ],
+  "tags": ["Staking & Validator Experience", "technical"],
+  "speakers": ["greg-markou", "cayman-nava"],
   "sources_youtubeId": "IWecr0FFH0c",
   "sources_ipfsHash": "QmWM33Bw4geDxkh8BACmZcxzfn8E95DkhGwaL3rqPBQkJt",
   "sources_swarmHash": "6fa86543376e1ee75c769be9419f62322dc7a61f39d59901f3f1fdba6995889d",

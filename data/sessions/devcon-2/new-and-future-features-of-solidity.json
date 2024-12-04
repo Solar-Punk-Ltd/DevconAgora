@@ -22,9 +22,7 @@
     "abi",
     "templates"
   ],
-  "speakers": [
-    "christian-reitwiessner"
-  ],
+  "speakers": ["christian-reitwiessner"],
   "sources_youtubeId": "sr9B1x6zvuU",
   "sources_ipfsHash": "Qma9VUQXiAuwVJLrUn948GknREymHWZZ9MGQjbWxKNtLbX",
   "sources_swarmHash": "a29df4f7ef8d441a86ff360878fc937a35e6287a372a65cffb332d8bfbfe19d1",

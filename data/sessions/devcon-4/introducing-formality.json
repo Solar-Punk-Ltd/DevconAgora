@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "formality",
-    "language",
-    "programming"
-  ],
-  "speakers": [
-    "victor-maia",
-    "leonardo-souza"
-  ],
+  "tags": ["Security", "formality", "language", "programming"],
+  "speakers": ["victor-maia", "leonardo-souza"],
   "sources_youtubeId": "0fg1QbeeqNU",
   "sources_ipfsHash": "Qmb1BMqvEWJATcd6ZF5cfHBWKfvqw3h7vvYaRG2rQBN2jL",
   "sources_swarmHash": "2edb439ceec76f167b12b041b259050aa3543488edae6a0074ec78bd19f5c002",

@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "nick-dodson"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["nick-dodson"],
   "sources_youtubeId": "xUd8O-ybVdU",
   "sources_ipfsHash": "QmWFRzGA9hoVeh7uFr2VXyin9YRrN4WwkaLhN5KqJyhUnK",
   "sources_swarmHash": "0f3937c1f80afb5ac6bdd6f2740c37d4c319346a15269be57e712ac00bc542ba",

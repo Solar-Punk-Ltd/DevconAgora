@@ -7,16 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "music",
-    "coordination",
-    "culture"
-  ],
-  "speakers": [
-    "kevin-owocki",
-    "justin-holmes"
-  ],
+  "tags": ["Opportunity & Global Impact", "music", "coordination", "culture"],
+  "speakers": ["kevin-owocki", "justin-holmes"],
   "resources_slides": "/resources/6/the-coordination-song.pdf",
   "slot_start": 1665597000000,
   "slot_end": 1665597600000,

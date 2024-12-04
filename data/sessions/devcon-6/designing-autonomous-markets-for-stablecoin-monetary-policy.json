@@ -13,10 +13,7 @@
     "AMMs",
     "Protocol Controlled Value"
   ],
-  "speakers": [
-    "ariah-klages-mundt",
-    "steffen-schuldenzucker"
-  ],
+  "speakers": ["ariah-klages-mundt", "steffen-schuldenzucker"],
   "resources_slides": "/resources/6/designing-autonomous-markets-for-stablecoin-monetary-policy.pdf",
   "slot_start": 1665673200000,
   "slot_end": 1665675000000,

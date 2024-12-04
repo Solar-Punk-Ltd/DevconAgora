@@ -24,10 +24,7 @@
     "community",
     "vote"
   ],
-  "speakers": [
-    "hudson-jameson",
-    "piper-merriam"
-  ],
+  "speakers": ["hudson-jameson", "piper-merriam"],
   "sources_youtubeId": "kx_TgcWgbkw",
   "sources_ipfsHash": "QmWzi337JqFcYehrTKhKv42u49XN9tP2LFxKXcEAR3xb33",
   "sources_swarmHash": "a5b5bbbca3f8515bdde8cc2cf60e2ddf5ffb1ed08510d0eb8f8c19bfe547f90e",

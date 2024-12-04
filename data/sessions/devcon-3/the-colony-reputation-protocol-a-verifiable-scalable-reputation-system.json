@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "aron-fischer"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["aron-fischer"],
   "sources_youtubeId": "pdK5fTo0N90",
   "sources_ipfsHash": "QmQitgHjhPqMqVBpmPHtLdKjAi5kK6JaHDpmtRPcsvfw8e",
   "sources_swarmHash": "1c14ea476f619073f249691f9126cfe79f542f62a84e1a63f098e849759fc3dc",

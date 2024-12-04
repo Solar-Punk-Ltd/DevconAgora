@@ -7,11 +7,7 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "mist",
-    "developers"
-  ],
+  "tags": ["UX & Design", "mist", "developers"],
   "speakers": [
     "everton-fraga",
     "alex-van-de-sande",

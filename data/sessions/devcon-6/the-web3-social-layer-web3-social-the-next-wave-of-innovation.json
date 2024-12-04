@@ -13,9 +13,7 @@
     "NFTs",
     "Social Media"
   ],
-  "speakers": [
-    "stani-kulechov"
-  ],
+  "speakers": ["stani-kulechov"],
   "resources_slides": "/resources/6/the-web3-social-layer-web3-social-the-next-wave-of-innovation.pdf",
   "slot_start": 1665752400000,
   "slot_end": 1665753900000,

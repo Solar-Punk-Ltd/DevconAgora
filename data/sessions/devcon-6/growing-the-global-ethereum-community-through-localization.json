@@ -13,9 +13,7 @@
     "accessibility",
     "translation"
   ],
-  "speakers": [
-    "luka-kropec"
-  ],
+  "speakers": ["luka-kropec"],
   "resources_slides": "/resources/6/growing-the-global-ethereum-community-through-localization.pdf",
   "slot_start": 1665747000000,
   "slot_end": 1665748500000,

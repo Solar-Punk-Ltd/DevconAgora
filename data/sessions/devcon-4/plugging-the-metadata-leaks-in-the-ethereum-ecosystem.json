@@ -7,17 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Privacy",
-    "metadata",
-    "dapps",
-    "nodes",
-    "aggregators",
-    "safety"
-  ],
-  "speakers": [
-    "peter-szilagyi"
-  ],
+  "tags": ["Privacy", "metadata", "dapps", "nodes", "aggregators", "safety"],
+  "speakers": ["peter-szilagyi"],
   "sources_youtubeId": "J1JenTo7oLE",
   "sources_ipfsHash": "QmVRmU99z1o9Viyo4V4ekGRXpLN7XhjrmdCeHfy1MaUN4n",
   "sources_swarmHash": "7e45b9f6c17a34fe38c3d751229ad6ca20fecb00b7c68830748b103849fdf1b2",

@@ -7,14 +7,7 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "payment",
-    "state channels",
-    "L2",
-    "layer 2",
-    ""
-  ],
+  "tags": ["Layer 2s", "payment", "state channels", "L2", "layer 2", ""],
   "speakers": [
     "sebastian-faust",
     "stefan-dziembowski",

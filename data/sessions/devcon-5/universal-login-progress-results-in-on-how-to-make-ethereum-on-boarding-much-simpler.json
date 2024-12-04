@@ -7,12 +7,8 @@
   "track": "UX & Design",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design"
-  ],
-  "speakers": [
-    "alex-van-de-sande"
-  ],
+  "tags": ["UX & Design"],
+  "speakers": ["alex-van-de-sande"],
   "sources_youtubeId": "8rr8HkKleeY",
   "sources_ipfsHash": "QmNQyNHwkheCEXFTa7bc5uc9aPJ3hyKXt5GEiiVggk5YxA",
   "sources_swarmHash": "722c3a57e09bcbfa632199f08c686e2a044ed838f3b1290b812dcacd2e7aa021",

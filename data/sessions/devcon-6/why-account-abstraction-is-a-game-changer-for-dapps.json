@@ -7,16 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "UX",
-    "security",
-    "Dapps"
-  ],
-  "speakers": [
-    "julien-niset",
-    "itamar-lesuisse"
-  ],
+  "tags": ["UX & Design", "UX", "security", "Dapps"],
+  "speakers": ["julien-niset", "itamar-lesuisse"],
   "resources_slides": "/resources/6/why-account-abstraction-is-a-game-changer-for-dapps.pdf",
   "slot_start": 1665655200000,
   "slot_end": 1665657000000,

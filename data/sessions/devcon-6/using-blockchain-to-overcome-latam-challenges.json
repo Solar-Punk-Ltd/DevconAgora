@@ -13,9 +13,7 @@
     "communities",
     "empowerment"
   ],
-  "speakers": [
-    "sandusky"
-  ],
+  "speakers": ["sandusky"],
   "resources_slides": "/resources/6/using-blockchain-to-overcome-latam-challenges.pdf",
   "slot_start": 1665760800000,
   "slot_end": 1665761400000,

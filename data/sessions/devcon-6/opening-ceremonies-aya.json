@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "ethereum",
-    "foundation"
-  ],
-  "speakers": [
-    "aya-miyaguchi"
-  ],
+  "tags": ["Opportunity & Global Impact", "ethereum", "foundation"],
+  "speakers": ["aya-miyaguchi"],
   "resources_slides": "/resources/6/opening-ceremonies-aya.pdf",
   "slot_start": 1665481500000,
   "slot_end": 1665490500000,

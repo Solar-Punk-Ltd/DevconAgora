@@ -7,13 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Staking & Validator Experience"
-  ],
-  "speakers": [
-    "alex-beregszaszi",
-    "casey-detrio"
-  ],
+  "tags": ["Staking & Validator Experience"],
+  "speakers": ["alex-beregszaszi", "casey-detrio"],
   "sources_youtubeId": "GewMfM6cqzI",
   "sources_ipfsHash": "QmNui91GKMaZKEoETAaNAZwaWzjyH4HgXXeKtbJUQHJnGj",
   "sources_swarmHash": "28511916950d58e5afb1def7fef7a005dcbe0edb811cc2fee03cf07281ef3d9b",

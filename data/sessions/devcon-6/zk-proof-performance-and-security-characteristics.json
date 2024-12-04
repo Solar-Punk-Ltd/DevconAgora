@@ -13,9 +13,7 @@
     "performance and security metrics",
     "data analysis"
   ],
-  "speakers": [
-    "brian-wilkes-cfa"
-  ],
+  "speakers": ["brian-wilkes-cfa"],
   "resources_slides": "/resources/6/zk-proof-performance-and-security-characteristics.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665585000000,

@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "lilin-sun"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["lilin-sun"],
   "sources_youtubeId": "hUR21MwL6IA",
   "sources_ipfsHash": "QmPMFHMCGg1iwhT5TBeL7gUr73BEAqFhuWpwx4wNtzMXtn",
   "sources_swarmHash": "b40c5ec353a9fc4e685d4658c5730ce96c12f9e7a893fd4a7742e55fa1fa053f",

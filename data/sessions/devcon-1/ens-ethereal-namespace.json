@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "ryan-casey"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["ryan-casey"],
   "sources_youtubeId": "M7nyBYSEYXE",
   "sources_ipfsHash": "QmQuaK17HrBuVHgnCF5syF82HV7ui9WHbwdsEYnRv7UHmT",
   "sources_swarmHash": "c9709dfc134a5c070d2a11026254a795296e9d258f2dec31c72718c6f88921df",

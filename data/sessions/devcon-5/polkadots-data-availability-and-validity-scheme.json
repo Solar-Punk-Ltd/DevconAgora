@@ -7,15 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "polkadot",
-    "dot",
-    "technical"
-  ],
-  "speakers": [
-    "alistair-stewart"
-  ],
+  "tags": ["Staking & Validator Experience", "polkadot", "dot", "technical"],
+  "speakers": ["alistair-stewart"],
   "sources_youtubeId": "Ex_1XXF29Yo",
   "sources_ipfsHash": "QmWySTfYxtzfcwEXnpA6gGMtYYVk1FhvEaY6PefrQGN7mM",
   "sources_swarmHash": "95dfdb36e5ac8300829afd0850e6fe0000270558d8eeed3bda31272df22d80d9",

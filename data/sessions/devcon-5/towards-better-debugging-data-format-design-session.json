@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "harry-altman",
-    "g-nicholas-dandrea"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["harry-altman", "g-nicholas-dandrea"],
   "sources_youtubeId": "oz5_SyouLt4",
   "sources_ipfsHash": "QmcVtCvoD6BXztggLeAmyire8gg6GGGZydhRBgxMaRsfeB",
   "sources_swarmHash": "448a5f9fda9f37c4fae455efea24d09c2cfa0bf057709be1e70521468396361b",

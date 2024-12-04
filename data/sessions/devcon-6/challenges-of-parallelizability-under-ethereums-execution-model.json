@@ -13,9 +13,7 @@
     "optimistic concurrency control",
     "deterministic scheduling"
   ],
-  "speakers": [
-    "peter-garamvolgyi"
-  ],
+  "speakers": ["peter-garamvolgyi"],
   "resources_slides": "/resources/6/challenges-of-parallelizability-under-ethereums-execution-model.pdf",
   "slot_start": 1665655800000,
   "slot_end": 1665656400000,

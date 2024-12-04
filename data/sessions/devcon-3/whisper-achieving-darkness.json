@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy"
-  ],
-  "speakers": [
-    "vlad-gluhovsky",
-    "guillaume-ballet"
-  ],
+  "tags": ["Privacy"],
+  "speakers": ["vlad-gluhovsky", "guillaume-ballet"],
   "sources_youtubeId": "koZizelOUeI",
   "sources_ipfsHash": "QmY3ZxJQQeUwqj78HxeTSzqfKenHpUL8RTjzyZNYk8csFN",
   "sources_swarmHash": "f905ba597e40cde8edcd1a460c18b90ca6fc454f13b938f14a7a2565d351129c",

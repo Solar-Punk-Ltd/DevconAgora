@@ -7,9 +7,7 @@
   "track": "Layer 1 Protocol",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol"
-  ],
+  "tags": ["Layer 1 Protocol"],
   "speakers": [
     "guillaume-ballet",
     "alex-beregszaszi",

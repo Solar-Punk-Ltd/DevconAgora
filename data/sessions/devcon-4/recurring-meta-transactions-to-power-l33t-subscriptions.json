@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "dapps",
-    "adoption",
-    "gas"
-  ],
-  "speakers": [
-    "austin-griffith"
-  ],
+  "tags": ["UX & Design", "dapps", "adoption", "gas"],
+  "speakers": ["austin-griffith"],
   "sources_youtubeId": "FI-p5Ru-K3E",
   "sources_ipfsHash": "QmW4RJ3cbyVQxWdNGebnSDqegTcVR8acPebtgjgtNNNJJa",
   "sources_swarmHash": "e01260cd4d588de673c4fad6147c27e1d17047453f64dfcedbf7ae0d19b3d8e1",

@@ -7,14 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "dapps",
-    "onboarding"
-  ],
-  "speakers": [
-    "nicholas-salloum"
-  ],
+  "tags": ["UX & Design", "dapps", "onboarding"],
+  "speakers": ["nicholas-salloum"],
   "sources_youtubeId": "f8jbMCuR40o",
   "sources_ipfsHash": "QmQbJLyq1jJjdg3abpLRaj676Gy4NLFQGtN6YV42RV2DNS",
   "sources_swarmHash": "2f5ac2964beeb0bb149487dab6c34ac501195c50fd8cb3e7d01a9266b20ff23f",

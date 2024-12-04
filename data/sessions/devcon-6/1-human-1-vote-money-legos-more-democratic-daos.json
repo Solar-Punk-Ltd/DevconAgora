@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "sybil",
-    "dao",
-    "democracy"
-  ],
-  "speakers": [
-    "kevin-owocki"
-  ],
+  "tags": ["Developer Infrastructure", "sybil", "dao", "democracy"],
+  "speakers": ["kevin-owocki"],
   "resources_slides": "/resources/6/1-human-1-vote-money-legos-more-democratic-daos.pdf",
   "slot_start": 1665495000000,
   "slot_end": 1665498600000,

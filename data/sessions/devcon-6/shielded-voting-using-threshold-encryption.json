@@ -7,16 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Governance & Coordination",
-    "privacy",
-    "encryption",
-    "snapshot"
-  ],
-  "speakers": [
-    "luis-bezzenberger",
-    "jannik-luhn"
-  ],
+  "tags": ["Governance & Coordination", "privacy", "encryption", "snapshot"],
+  "speakers": ["luis-bezzenberger", "jannik-luhn"],
   "slot_start": 1665682200000,
   "slot_end": 1665682620000,
   "slot_roomId": "talk-3",

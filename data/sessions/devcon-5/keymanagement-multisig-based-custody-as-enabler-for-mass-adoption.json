@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "christoph-jentzsch"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["christoph-jentzsch"],
   "sources_youtubeId": "rNnjQd6_HsQ",
   "sources_ipfsHash": "QmTFonpgF1KNvzvTXEnWMqJ7QBbU2sUGEAL3REESvwPuHB",
   "sources_swarmHash": "5b325d6afe43e6220b8b6f1d34c55b59ebf3aee031476ab89de78c06733547f3",

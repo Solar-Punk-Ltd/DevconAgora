@@ -7,10 +7,7 @@
   "track": "Devcon",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Devcon",
-    "Ethereum Foundation"
-  ],
+  "tags": ["Devcon", "Ethereum Foundation"],
   "speakers": [],
   "sources_ipfsHash": "QmPoyCNTcLfX4hAtrRE8tjsWA5uxGPF3bs1N4VrTHD2bYM",
   "sources_youtubeId": "YzSRT8S_SCg",

@@ -7,13 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 1 Protocol"
-  ],
-  "speakers": [
-    "amanda-gutterman",
-    "riley-kim"
-  ],
+  "tags": ["Layer 1 Protocol"],
+  "speakers": ["amanda-gutterman", "riley-kim"],
   "sources_youtubeId": "cHgC0jTfTBw",
   "sources_ipfsHash": "QmSTcKrvk3s2bGkKGmF3qNtfiKhJTUyveyoPxL5ihYDrph",
   "sources_swarmHash": "ab44b0e73f14b44c386f0bfbec7e982f37c6fe9bcd8fae4309151162094fb3f6",

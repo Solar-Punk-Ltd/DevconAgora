@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "fiat on-ramps",
-    "fiat gateways",
-    "research"
-  ],
-  "speakers": [
-    "thijs-maas"
-  ],
+  "tags": ["Layer 2s", "fiat on-ramps", "fiat gateways", "research"],
+  "speakers": ["thijs-maas"],
   "resources_slides": "/resources/6/the-state-of-fiat-on-ramps-for-layer-2s.pdf",
   "slot_start": 1665509400000,
   "slot_end": 1665510000000,

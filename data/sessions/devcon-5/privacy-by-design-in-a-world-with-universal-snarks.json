@@ -7,12 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy"
-  ],
-  "speakers": [
-    "zachary-williamson"
-  ],
+  "tags": ["Privacy"],
+  "speakers": ["zachary-williamson"],
   "sources_youtubeId": "r2Atzapgpes",
   "sources_ipfsHash": "QmcxLK8NHE8CZjqXBgXJSQEXqp7eKb35tpShob2FYwxRCv",
   "sources_swarmHash": "46e069624fa9361eb306927aecdcdb9306a2b00923d6cca1fedf5678afc8046e",

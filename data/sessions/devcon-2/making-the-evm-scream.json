@@ -23,9 +23,7 @@
     "boost",
     "arithmetic"
   ],
-  "speakers": [
-    "greg-colvin"
-  ],
+  "speakers": ["greg-colvin"],
   "sources_youtubeId": "p30mjDMhmlE",
   "sources_ipfsHash": "QmcGjifvJB8C7G82k1TobZ9UfDyExE95QnGAsXSFJeqrGQ",
   "sources_swarmHash": "760f11653dec423bb88f7b8a53ddd7ec2c9d5389205a251fd8be67304d856def",

@@ -7,13 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "gregory-landua",
-    "risto-karjalainen"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["gregory-landua", "risto-karjalainen"],
   "sources_youtubeId": "9w1lYZfP5d8",
   "sources_ipfsHash": "QmWzoyutXP61vnA3yhX6tNBMK5gPbCcmsWCmm84iwg9DLc",
   "sources_swarmHash": "3bfb320e8030ec65195fcd41d07c5804670a877bebc902eee269e9b56dd0c030",

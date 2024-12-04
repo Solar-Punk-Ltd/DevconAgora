@@ -15,9 +15,7 @@
     "Arbitrum",
     "instant finality"
   ],
-  "speakers": [
-    "mahsa-moosavi"
-  ],
+  "speakers": ["mahsa-moosavi"],
   "resources_slides": "/resources/6/fast-and-furious-withdrawals-from-optimistic-rollups.pdf",
   "slot_start": 1665588600000,
   "slot_end": 1665590400000,

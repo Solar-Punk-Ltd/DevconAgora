@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "dominic-tarr"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["dominic-tarr"],
   "sources_youtubeId": "GN57bs1eAck",
   "sources_ipfsHash": "QmRsb8L1UpujjUADB3oQZPWiMcbSFupMVMGg4wExVF1M7r",
   "sources_swarmHash": "82abb92bfac911c93d9c188be7fc35ac7dd0595f72a3d6743cb2e285c2e2e196",

@@ -18,9 +18,7 @@
     "zksnark",
     "general"
   ],
-  "speakers": [
-    "vitalik-buterin"
-  ],
+  "speakers": ["vitalik-buterin"],
   "sources_youtubeId": "GQR1xjQn5Pg",
   "sources_ipfsHash": "QmdKCNFWeyddX5T4gt9RLr4hpZ4oiXBDq9dVp57JMeukX9",
   "sources_swarmHash": "dfc9a02325c361efd8c96aef3f6341c1d5588592b785cacb684c9cf15853b583",

@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "patricio-palladino"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["patricio-palladino"],
   "sources_youtubeId": "24O8cDDGDQI",
   "sources_ipfsHash": "Qmb94tZ5ViHmUajyfYZMfzU5GFuKXvDfLVUPxsECYfsTer",
   "sources_swarmHash": "420519c7c7f1602d210c8264fe8f6739c3302b665bb90254880e46be7d9c80b2",

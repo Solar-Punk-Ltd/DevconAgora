@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "Layer 2",
-    "zkEVM",
-    "EVM-equivalent"
-  ],
-  "speakers": [
-    "ye-zhang"
-  ],
+  "tags": ["Layer 2s", "Layer 2", "zkEVM", "EVM-equivalent"],
+  "speakers": ["ye-zhang"],
   "resources_slides": "/resources/6/scroll-pre-alpha-testnet-upgrade.pdf",
   "slot_start": 1665658800000,
   "slot_end": 1665660600000,

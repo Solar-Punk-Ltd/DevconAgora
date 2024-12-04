@@ -13,9 +13,7 @@
     "hardhat",
     "nomic"
   ],
-  "speakers": [
-    "franco-zeoli"
-  ],
+  "speakers": ["franco-zeoli"],
   "resources_slides": "/resources/6/hardhat-and-nomic-foundation-the-creation-of-an-ethereum-non-profit.pdf",
   "slot_start": 1665671400000,
   "slot_end": 1665673200000,

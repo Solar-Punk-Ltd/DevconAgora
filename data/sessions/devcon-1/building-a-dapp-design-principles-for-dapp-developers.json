@@ -7,12 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design"
-  ],
-  "speakers": [
-    "alex-van-de-sande"
-  ],
+  "tags": ["UX & Design"],
+  "speakers": ["alex-van-de-sande"],
   "sources_youtubeId": "nPpi9BPkRbo",
   "sources_ipfsHash": "QmZhJBCuM5QwAnaeNFKrqTnaGxhPLEFEpaFY6HCMgeyyEc",
   "sources_swarmHash": "727d8dd729f14ddb7576d21b375f5a8813026e5616bc78fbb24ee2d8ca75edb9",

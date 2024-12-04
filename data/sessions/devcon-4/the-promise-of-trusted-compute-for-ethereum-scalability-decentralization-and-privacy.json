@@ -7,14 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "privacy"
-  ],
-  "speakers": [
-    "sanjay-bakshi",
-    "andreas-freund"
-  ],
+  "tags": ["Layer 2s", "privacy"],
+  "speakers": ["sanjay-bakshi", "andreas-freund"],
   "sources_youtubeId": "tn-Hswpp9qc",
   "sources_ipfsHash": "QmW6JULHY1rxm4uvYLyfcoVEpgY8WcLGJXTvfXaWNgH93v",
   "sources_swarmHash": "207e77c4ddc82dd823f4c1af94a1469c129586d205176344e61b5585e30ceb14",

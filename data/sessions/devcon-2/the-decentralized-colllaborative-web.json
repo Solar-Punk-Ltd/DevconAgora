@@ -22,9 +22,7 @@
     "backfeed",
     "systems"
   ],
-  "speakers": [
-    "matan-field"
-  ],
+  "speakers": ["matan-field"],
   "sources_youtubeId": "8i_mB96J6wc",
   "sources_ipfsHash": "QmX442HXCunWBoM9x68L42GEFtF18bwJgqALSSMBE7VWta",
   "sources_swarmHash": "6ea3e831c67c83d74a78d471428a01c9586c02949fd248a79ce2fa06acf89287",

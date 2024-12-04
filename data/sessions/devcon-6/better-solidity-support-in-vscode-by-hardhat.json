@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "developer",
-    "infrastructure"
-  ],
-  "speakers": [
-    "john-kane"
-  ],
+  "tags": ["Developer Infrastructure", "developer", "infrastructure"],
+  "speakers": ["john-kane"],
   "resources_slides": "/resources/6/better-solidity-support-in-vscode-by-hardhat.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665585000000,

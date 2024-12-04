@@ -7,12 +7,8 @@
   "track": "UX & Design",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design"
-  ],
-  "speakers": [
-    "plinio-braga"
-  ],
+  "tags": ["UX & Design"],
+  "speakers": ["plinio-braga"],
   "sources_youtubeId": "8CAL-Vyc-wc",
   "sources_ipfsHash": "Qme8WbpVNRRBPPcVN3zDWNLZn4tcgXy2HU8ZkeNJWbtvUT",
   "sources_swarmHash": "ae834177e7ea868364395baf89ee40fee46d3cfa378eae746e520efe9bb9269d",

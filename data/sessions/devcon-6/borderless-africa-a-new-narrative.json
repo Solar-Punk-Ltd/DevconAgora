@@ -13,9 +13,7 @@
     "borderless",
     "permissionless"
   ],
-  "speakers": [
-    "yoseph-ayele"
-  ],
+  "speakers": ["yoseph-ayele"],
   "resources_slides": "/resources/6/borderless-africa-a-new-narrative.pdf",
   "slot_start": 1665657000000,
   "slot_end": 1665658800000,

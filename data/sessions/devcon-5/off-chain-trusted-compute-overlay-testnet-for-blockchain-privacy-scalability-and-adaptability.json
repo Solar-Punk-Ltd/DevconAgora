@@ -7,10 +7,7 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
+  "tags": ["Privacy", "technical"],
   "speakers": [
     "sanjay-bakshi",
     "jean-charles-cabelguen",

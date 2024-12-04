@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "mario-cao",
-    "gorka-irazoqui",
-    "adan-sanchez-de-pedro-crespo"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["mario-cao", "gorka-irazoqui", "adan-sanchez-de-pedro-crespo"],
   "sources_youtubeId": "NZxUDFwmbGA",
   "sources_ipfsHash": "QmVrQ5QqR5xLagbX132gEfWe8a3tCrYt5RuDxEYvzNmkw4",
   "sources_swarmHash": "2e5f148084ccd7bcfbe530ece9675f7411928303303179365603a2e227831104",

@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "marcus-ligi"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["marcus-ligi"],
   "sources_youtubeId": "M3kh1cLo768",
   "sources_ipfsHash": "QmQTY4qmECQ4hXAfD12QMq4ZE2JExpuxwjv7f2a34Q9zCx",
   "sources_swarmHash": "b7d313122eeda1650672973329ca0dc871b2b508d010e664c79f338748505dc7",

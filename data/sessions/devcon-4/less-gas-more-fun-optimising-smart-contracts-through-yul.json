@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Layer 2s",
-    "gas",
-    "gwei",
-    "fees"
-  ],
-  "speakers": [
-    "christian-reitwiessner"
-  ],
+  "tags": ["Layer 2s", "gas", "gwei", "fees"],
+  "speakers": ["christian-reitwiessner"],
   "sources_youtubeId": "VH4MgZDyZJU",
   "sources_ipfsHash": "QmcpGRbhEN1TqMJZNQo5B3Ad5uaq3TKUc5QtVpNXJ7ignK",
   "sources_swarmHash": "dfa9bbd81b0d377f9be134978b6e639e9748c89c43976cc70950adf9c0ea36a1",

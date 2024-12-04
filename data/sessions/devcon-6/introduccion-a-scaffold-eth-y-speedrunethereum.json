@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "tooling",
-    "education"
-  ],
-  "speakers": [
-    "carlos"
-  ],
+  "tags": ["Developer Infrastructure", "tooling", "education"],
+  "speakers": ["carlos"],
   "resources_slides": "/resources/6/introduccion-a-scaffold-eth-y-speedrunethereum.pdf",
   "slot_start": 1665491400000,
   "slot_end": 1665495000000,

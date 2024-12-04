@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "jarrad-hope"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["jarrad-hope"],
   "sources_youtubeId": "aCg6kR75mkM",
   "sources_ipfsHash": "QmPwGuwL5SiLg1grahDcMV2u1PTd3B8o8LVqu1zhf8wrLt",
   "sources_swarmHash": "2f444f1b6e67ede6d8570358deb2ad4ed175e53e29bfbbd8b10caed0e4dab759",

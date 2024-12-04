@@ -7,9 +7,7 @@
   "track": "Layer 1 Protocol",
   "type": "Panel",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol"
-  ],
+  "tags": ["Layer 1 Protocol"],
   "speakers": [
     "emin-gun-sirer",
     "peter-czaban",

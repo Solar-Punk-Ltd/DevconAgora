@@ -7,16 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "barry",
-    "whitehat",
-    "security",
-    "technical"
-  ],
-  "speakers": [
-    "barry-whitehat"
-  ],
+  "tags": ["Privacy", "barry", "whitehat", "security", "technical"],
+  "speakers": ["barry-whitehat"],
   "sources_youtubeId": "zBUo7G95wYE",
   "sources_ipfsHash": "QmVUB6qx6Z1w2TRxNyhGXfTubZeXxV4SVqeBj2ghD3AYfc",
   "sources_swarmHash": "1bd3d489f8357080fc18dd497ff9c13215fb3dc7ad2e3ffa70b75c309c7516a0",

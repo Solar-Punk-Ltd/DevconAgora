@@ -24,9 +24,7 @@
     "mobile",
     "library"
   ],
-  "speakers": [
-    "peter-szilagyi"
-  ],
+  "speakers": ["peter-szilagyi"],
   "sources_youtubeId": "R0Ia1U9Gxjg",
   "sources_ipfsHash": "QmQRuKPKWWJAamrMqAp9rytX6Q4NvcXUKkhvu3kuREKqXR",
   "sources_swarmHash": "3138faff40293938dd5be09b1c183b5183bec614137357dc4bf1d48aff747b08",

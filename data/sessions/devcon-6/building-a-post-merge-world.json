@@ -13,12 +13,7 @@
     "Developer infrastructure",
     "Staking"
   ],
-  "speakers": [
-    "diego-losada",
-    "nixorokish",
-    "kris-kaczor",
-    "paul-hauner"
-  ],
+  "speakers": ["diego-losada", "nixorokish", "kris-kaczor", "paul-hauner"],
   "slot_start": 1665583500000,
   "slot_end": 1665585600000,
   "slot_roomId": "workshop-1",

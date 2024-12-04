@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "0age-0age"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["0age-0age"],
   "sources_youtubeId": "2pW2LACPtJ4",
   "sources_ipfsHash": "QmZW8wYUJDkQ6NsjKksF3hKM5CRBE4rCneUqM8MPCVvwcr",
   "sources_swarmHash": "6808f34a4f23693523caa33f394b99b38262a01750075c10bdcea4523cb43508",

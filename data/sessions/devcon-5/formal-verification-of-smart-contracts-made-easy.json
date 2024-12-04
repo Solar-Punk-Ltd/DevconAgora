@@ -7,10 +7,7 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
+  "tags": ["Security", "technical"],
   "speakers": [
     "dimitar-dimitrov",
     "anton-permenev",

@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Indexing",
-    "MEV",
-    "Geth"
-  ],
-  "speakers": [
-    "benjamin-memisevic"
-  ],
+  "tags": ["Developer Infrastructure", "Indexing", "MEV", "Geth"],
+  "speakers": ["benjamin-memisevic"],
   "resources_slides": "/resources/6/blockchain-analytics-101-building-an-indexer-from-scratch.pdf",
   "slot_start": 1665579600000,
   "slot_end": 1665583200000,

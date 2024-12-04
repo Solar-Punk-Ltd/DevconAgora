@@ -7,11 +7,7 @@
   "track": "Opportunity & Global Impact",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "banks",
-    "private sector"
-  ],
+  "tags": ["Opportunity & Global Impact", "banks", "private sector"],
   "speakers": [
     "lightclient",
     "julien-niset",

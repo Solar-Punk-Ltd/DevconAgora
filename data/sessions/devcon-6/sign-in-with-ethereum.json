@@ -13,9 +13,7 @@
     "Developer infrastructure",
     "Developer experience"
   ],
-  "speakers": [
-    "anukriti-kunwar"
-  ],
+  "speakers": ["anukriti-kunwar"],
   "slot_start": 1665581400000,
   "slot_end": 1665582900000,
   "slot_roomId": "workshop-1",

@@ -7,13 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Opportunity & Global Impact",
-    "web3"
-  ],
-  "speakers": [
-    "agustin-matteri"
-  ],
+  "tags": ["Opportunity & Global Impact", "web3"],
+  "speakers": ["agustin-matteri"],
   "resources_slides": "/resources/6/climate-change-or-social-change-the-role-of-blockchain.pdf",
   "slot_start": 1665745200000,
   "slot_end": 1665746700000,
