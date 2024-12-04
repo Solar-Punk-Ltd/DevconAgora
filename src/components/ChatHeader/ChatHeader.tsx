@@ -1,7 +1,9 @@
 import React from "react";
-import "./ChatHeader.scss";
-import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
+
 import { CATEGORY_IMAGES_MAP, LOBBY_TITLE } from "../../utils/constants";
+import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
+
+import "./ChatHeader.scss";
 
 interface ChatHeaderProps {
   category?: string;

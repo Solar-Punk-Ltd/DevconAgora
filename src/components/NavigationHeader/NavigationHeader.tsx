@@ -1,7 +1,9 @@
 import React from "react";
-import "./NavigationHeader.scss";
 import { useNavigate } from "react-router-dom";
+
 import LeftNavigationIcon from "../icons/LeftNavigationIcon/LeftNavigationIcon";
+
+import "./NavigationHeader.scss";
 
 interface NavigationHeaderProps {
   backgroundColor?: string;

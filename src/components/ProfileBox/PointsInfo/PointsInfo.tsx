@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./PointsInfo.scss";
 
 interface PointsInfoProps {

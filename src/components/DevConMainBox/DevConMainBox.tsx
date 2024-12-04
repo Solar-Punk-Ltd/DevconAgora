@@ -1,10 +1,11 @@
 import React from "react";
-import "./DevConMainBox.scss";
 import { useNavigate } from "react-router-dom";
-import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 import clsx from "clsx";
-import { LOBBY_TITLE } from "../../utils/constants";
-import { ROUTES } from "../../utils/constants";
+
+import { LOBBY_TITLE, ROUTES } from "../../utils/constants";
+import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
+
+import "./DevConMainBox.scss";
 
 interface DevConMainBoxProps {
   title: string;

@@ -1,6 +1,7 @@
 import React from "react";
-import "./ProfilePicture.scss";
 import clsx from "clsx";
+
+import "./ProfilePicture.scss";
 
 interface ProfilePictureProps {
   name: string;

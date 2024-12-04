@@ -1,7 +1,9 @@
 import React from "react";
-import "./ActiveVisitors.scss";
-import VisitorsIcon from "../icons/VisitorsIcon/VisitorsIcon";
 import clsx from "clsx";
+
+import VisitorsIcon from "../icons/VisitorsIcon/VisitorsIcon";
+
+import "./ActiveVisitors.scss";
 
 interface ActiveVisitorsProps {
   number?: number;

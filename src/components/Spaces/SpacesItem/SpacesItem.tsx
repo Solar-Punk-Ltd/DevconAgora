@@ -1,8 +1,10 @@
 import React from "react";
-import "./SpacesItem.scss";
+
+import { CATEGORY_IMAGES_MAP } from "../../../utils/constants";
 import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
 import RightArrowIcon from "../../icons/RightArrowIcon/RightArrowIcon";
-import { CATEGORY_IMAGES_MAP } from "../../../utils/constants";
+
+import "./SpacesItem.scss";
 
 interface RecentRoomsItemProps {
   title: string;

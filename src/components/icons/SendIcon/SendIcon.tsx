@@ -1,6 +1,7 @@
 import React from "react";
-import "./SendIcon.scss";
 import clsx from "clsx";
+
+import "./SendIcon.scss";
 
 interface SendIconProps {
   color?: string;

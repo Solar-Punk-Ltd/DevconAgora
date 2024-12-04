@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import "./Dropdown.scss";
 import clsx from "clsx";
+
 import DropdownIcon from "../icons/DropdownIcon/DropdownIcon";
+
+import "./Dropdown.scss";
 
 interface DropdownProps {
   items: string[];

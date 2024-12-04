@@ -1,6 +1,7 @@
 import React from "react";
-import "./TabPanel.scss";
 import clsx from "clsx";
+
+import "./TabPanel.scss";
 
 interface TabPanelProps {
   version?: "underlined" | "filled" | "outlined";

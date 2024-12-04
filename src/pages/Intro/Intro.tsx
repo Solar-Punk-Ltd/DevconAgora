@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { TEXTS } from "../../constants/text";
-import { ROUTES } from "../../utils/constants";
-import { isUserRegistered } from "../../utils/helpers";
-
 import bySolarPunk from "../../assets/by-solar-punk.png";
 import backgroundVideo from "../../assets/opening.mp4";
 import videoGlassEffect from "../../assets/video-glass-effect.png";
+import { TEXTS } from "../../constants/text";
+import { ROUTES } from "../../utils/constants";
+import { isUserRegistered } from "../../utils/helpers";
 
 import "./Intro.scss";
 

@@ -1,9 +1,11 @@
 import React from "react";
-import "./StayUpdatedPage.scss";
+import { useNavigate } from "react-router-dom";
+
 import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
+
+import "./StayUpdatedPage.scss";
 
 declare global {
   interface Window {

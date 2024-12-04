@@ -1,51 +1,52 @@
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { CommentsWithIndex } from "@solarpunkltd/comment-system";
+import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { Wallet } from "ethers";
+
+import Gamification from "./components/Gamification/Gamification";
+import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { useGlobalState } from "./contexts/global";
+import Agenda from "./pages/Agenda/Agenda";
+import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
+import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
+import FullNotePage from "./pages/FullNote/FullNote";
+import HomePage from "./pages/Home/Home";
+import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
+import Intro from "./pages/Intro/Intro";
+import NotesPage from "./pages/Notes/Notes";
+import Profile from "./pages/Profile/Profile";
+import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
+import SpacesPage from "./pages/Spaces/Spaces";
+import StayUpdatedPage from "./pages/StayUpdated/StayUpdatedPage";
+import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
+import TalkPage from "./pages/Talk/Talk";
+import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndConditions";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
-import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
-import HomePage from "./pages/Home/Home";
-import Profile from "./pages/Profile/Profile";
-import Gamification from "./components/Gamification/Gamification";
-import Agenda from "./pages/Agenda/Agenda";
-import SpacesPage from "./pages/Spaces/Spaces";
-import TalkPage from "./pages/Talk/Talk";
 import { Session } from "./types/session";
-import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
-import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
-import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
-import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndConditions";
-import NotesPage from "./pages/Notes/Notes";
-import FullNotePage from "./pages/FullNote/FullNote";
-import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
-import StayUpdatedPage from "./pages/StayUpdated/StayUpdatedPage";
 import { TalkComments } from "./types/talkComment";
-import { getFeedUpdate, getData, getTopic } from "./utils/bee";
-import { NoteItemProps } from "./components/NoteItem/NoteItem";
+import { getData, getFeedUpdate, getTopic } from "./utils/bee";
 import {
-  ROUTES,
-  FIVE_MINUTES,
   ADDRESS_HEX_LENGTH,
+  CATEGORIES,
   DUMMY_STAMP,
+  FIVE_MINUTES,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
+  ROUTES,
   SELF_NOTE_TOPIC,
-  CATEGORIES,
 } from "./utils/constants";
 import {
+  findSlotStartIx,
+  getPrivateKey,
   getSessionsByDay,
   getSigner,
   getWallet,
-  findSlotStartIx,
   isUserRegistered,
-  getPrivateKey,
 } from "./utils/helpers";
-import Intro from "./pages/Intro/Intro";
 
 const MainRouter = (): ReactElement => {
   const {

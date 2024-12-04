@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./BackArrow.scss";
 
 interface BackArrowProps {

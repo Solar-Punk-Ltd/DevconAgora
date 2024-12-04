@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./AgendaItem.scss";
-import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
-import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
-import Stage from "../../components/Stage/Stage";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
+
+import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
+import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
+import Stage from "../../components/Stage/Stage";
 import { ROUTES } from "../../utils/constants";
 import { booleanToString, stringToBoolean } from "../../utils/helpers";
-import clsx from "clsx";
+
+import "./AgendaItem.scss";
 
 interface AgendaItemProps {
   id: string;
