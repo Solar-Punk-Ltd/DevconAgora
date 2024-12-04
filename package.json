@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "clean" : "rm -rf ./dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ethersphere/bee-js": "^8.1.0",
+    "@solarpunkltd/comment-system-ui": "^0.1.6",
     "@solarpunkltd/comment-system": "^1.2.1",
-    "@solarpunkltd/comment-system-ui": "^0.1.7",
     "@solarpunkltd/swarm-decentralized-chat": "^0.1.13",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
@@ -36,7 +39,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "sass-embedded": "^1.82.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.32",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.1.0",
     "vite": "^5.4.8",
