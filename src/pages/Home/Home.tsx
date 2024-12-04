@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { BatchId } from "@ethersphere/bee-js";
+import React from "react";
 
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
@@ -9,8 +8,6 @@ import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import Spaces from "../../components/Spaces/Spaces";
 import { useGlobalState } from "../../contexts/global";
 import { CATEGORIES, LOBBY_TITLE } from "../../utils/constants";
-import { getPrivateKey, getResourceId } from "../../utils/helpers";
-import Chat from "../Chat/Chat";
 
 import "./Home.scss";
 

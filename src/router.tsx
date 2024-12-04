@@ -35,9 +35,7 @@ import {
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   SELF_NOTE_TOPIC,
-  LOBBY_TITLE,
   CATEGORIES,
-  CATEGORY_NAMES_TO_ID_MAP,
 } from "./utils/constants";
 import {
   getSessionsByDay,

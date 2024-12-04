@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@ethersphere/bee-js": "^8.1.0",
-    "@solarpunkltd/comment-system-ui": "^0.1.7",
     "@solarpunkltd/comment-system": "^1.2.1",
+    "@solarpunkltd/comment-system-ui": "^0.1.7",
     "@solarpunkltd/swarm-decentralized-chat": "^0.1.13",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
@@ -36,6 +36,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "sass-embedded": "^1.82.0",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.1.0",
     "vite": "^5.4.8",
