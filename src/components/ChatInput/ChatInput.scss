@@ -1,4 +1,4 @@
-@use '../../styles/global.scss';
+@use "../../styles/global.scss";
 .chat-input__wrapper {
   padding: 0px 16px;
   padding-bottom: 16px;
@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid var(--border-color1);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 8px;
   position: relative;
@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: row;
   justify-content: end;
-  border: 1px solid var(--border-color1);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 8px;
   position: relative;
@@ -55,7 +55,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid var(--border-color1);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 8px;
   position: relative;

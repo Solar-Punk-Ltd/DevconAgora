@@ -7,7 +7,7 @@
 .chat-input__loading-square {
   width: 8px;
   height: 8px;
-  background-color: #e0e0e0;
+  background-color: var(--lighter-color);
   animation: changeColor 1.2s infinite;
 }
 
@@ -22,7 +22,7 @@
 @keyframes changeColor {
   0%,
   100% {
-    background-color: #e0e0e0;
+    background-color: var(--lighter-color);
   }
   50% {
     background-color: var(--swarm-color);

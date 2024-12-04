@@ -20,7 +20,7 @@
 .welcome-button--filled {
   border: none;
   color: #ffffff;
-  background: linear-gradient(0deg, #8c72ae 0%, #873de7 100%);
+  background: linear-gradient(0deg, var(--default-purple) 0%, #873de7 100%);
 }
 
 .welcome-button--filled:active {
@@ -28,8 +28,8 @@
 }
 
 .welcome-button--outlined {
-  border: 1px solid var(--purple-to-text-color);
-  color: var(--purple-to-text-color);
+  border: 1px solid var(--default-purple);
+  color: var(--default-purple);
   background: #ffffff;
 }
 

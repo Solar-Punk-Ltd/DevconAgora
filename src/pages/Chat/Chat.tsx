@@ -254,7 +254,7 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <div className="chat-page__header">
         <NavigationHeader
-          backgroundColor="#F1F2F4"
+          backgroundColor="var(--chat-and-talk-background-color)"
           to={location.pathname}
           saveQuestionBeforeLeave={true}
           handlerInCaseOfSave={

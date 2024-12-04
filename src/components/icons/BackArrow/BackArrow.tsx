@@ -22,7 +22,7 @@ const BackArrow: React.FC<BackArrowProps> = ({ color, backgroundColor }) => {
         <g clipPath="url(#clip0_2_406)">
           <path
             d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z"
-            fill={color || "#FF8A50"}
+            fill={color || "var(--swarm-color)"}
           />
         </g>
         <defs>

@@ -70,7 +70,7 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
     <div className="talk">
       <NavigationHeader
         toText={toTextFixed ? toTextFixed : ""}
-        backgroundColor="#F1F2F4"
+        backgroundColor="var(--chat-and-talk-background-color)"
       />
       <div className="talk__content">
         {session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}

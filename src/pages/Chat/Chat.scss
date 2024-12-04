@@ -21,7 +21,7 @@
   display: flex;
   height: calc(calc(var(--vh, 1vh) * 100) - 56px);
   backdrop-filter: blur(3px);
-  background-color: #15151599;
+  background-color: var(--strongly-dark-purple);
   z-index: 1;
   flex-direction: column;
   justify-content: space-around;
