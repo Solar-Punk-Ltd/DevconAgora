@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./EnterIcon.scss";
 
 interface EnterIconProps {
@@ -37,7 +36,10 @@ const EnterIcon: React.FC<EnterIconProps> = ({ color, onClick }) => {
             gradientUnits="userSpaceOnUse"
           >
             <stop stopColor={color ? color : "var(--default-purple)"} />
-            <stop offset="1" stopColor={color ? color : "#873DE7"} />
+            <stop
+              offset="1"
+              stopColor={color ? color : "var(--lighter-purple)"}
+            />
           </linearGradient>
           <clipPath id="clip0_2281_5995">
             <path
