@@ -10,6 +10,8 @@ import ClaimRewardExplanation from "../ClaimRewardExplanation/ClaimRewardExplana
 import CloseIcon from "../icons/CloseIcon/CloseIcon";
 
 import "./Gamification.scss";
+import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 interface GamificationProps {
   points: number;
