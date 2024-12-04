@@ -7,16 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "development",
-    "devex",
-    "plasma"
-  ],
-  "speakers": [
-    "ameen-soleimani",
-    "arjun-bhupati"
-  ],
+  "tags": ["Layer 2s", "development", "devex", "plasma"],
+  "speakers": ["ameen-soleimani", "arjun-bhupati"],
   "sources_youtubeId": "Z3TCTnmd-tQ",
   "sources_ipfsHash": "QmXjzZLi4TmhqEwLzWBnykNKTunfqEYk8C6kVW6mVZqEQr",
   "sources_swarmHash": "7354ab47941618efdc38df8eeabb011f1677f6eb66c91be4aec88ca0f23247eb",

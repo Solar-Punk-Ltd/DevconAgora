@@ -7,14 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "ZKPs"
-  ],
-  "speakers": [
-    "joe-andrews",
-    "jan-benes"
-  ],
+  "tags": ["Privacy", "ZKPs"],
+  "speakers": ["joe-andrews", "jan-benes"],
   "resources_slides": "/resources/6/a-new-defi-primitive-private-trading-with-aztec-connect.pdf",
   "slot_start": 1665675000000,
   "slot_end": 1665676800000,

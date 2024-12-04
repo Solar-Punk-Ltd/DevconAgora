@@ -7,13 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "democracy"
-  ],
-  "speakers": [
-    "juan-david-reyes"
-  ],
+  "tags": ["Opportunity & Global Impact", "democracy"],
+  "speakers": ["juan-david-reyes"],
   "resources_slides": "/resources/6/ethereum-event-showcase.pdf",
   "slot_start": 1665752400000,
   "slot_end": 1665753900000,

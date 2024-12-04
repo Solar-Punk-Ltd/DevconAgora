@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "yutaro-mori"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["yutaro-mori"],
   "sources_youtubeId": "W8KaCUnQsko",
   "sources_ipfsHash": "QmQhiKVi8YzQXesxT2seCz9AyjvPBuK5QwMfhVHY682of7",
   "sources_swarmHash": "017103f562c0caa7976016213558b3e175e85fea39b9e3d95232a87c43cbe2f6",

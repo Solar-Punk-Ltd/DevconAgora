@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "dr-christian-reitwiessner"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["dr-christian-reitwiessner"],
   "sources_youtubeId": "8ejHUqMHTcA",
   "sources_ipfsHash": "QmbpUFAuBjctwULGhryEmABehY8BiXV4aPHr5hFBNyPfQM",
   "sources_swarmHash": "e198eef9d7f3981e75ac24722ea36ceff87eb7203fa01dafcbfb3b07d7a3d657",

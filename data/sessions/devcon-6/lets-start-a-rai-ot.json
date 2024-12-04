@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Stablecoins",
-    "DeFi"
-  ],
-  "speakers": [
-    "fabio-hildebrand"
-  ],
+  "tags": ["Opportunity & Global Impact", "Stablecoins", "DeFi"],
+  "speakers": ["fabio-hildebrand"],
   "resources_slides": "/resources/6/lets-start-a-rai-ot.pdf",
   "slot_start": 1665657000000,
   "slot_end": 1665658500000,

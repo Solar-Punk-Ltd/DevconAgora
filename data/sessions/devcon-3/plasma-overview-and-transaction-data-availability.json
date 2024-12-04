@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "joseph-poon"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["joseph-poon"],
   "sources_youtubeId": "yjySP0t6lYo",
   "sources_ipfsHash": "QmQkuGKiuVuyqY35AXqa5KvJSca4btmt2DzLBTCAY7Y3C1",
   "sources_swarmHash": "a51e7641d89591cc5dcb070180e6e4dc3c03b0a364d6ded9477c8be08c009f0b",

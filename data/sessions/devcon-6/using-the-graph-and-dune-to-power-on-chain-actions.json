@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Indexing",
-    "Data",
-    "Development"
-  ],
-  "speakers": [
-    "christian-stlouis",
-    "mattias-lightstone"
-  ],
+  "tags": ["Developer Infrastructure", "Indexing", "Data", "Development"],
+  "speakers": ["christian-stlouis", "mattias-lightstone"],
   "resources_slides": "/resources/6/using-the-graph-and-dune-to-power-on-chain-actions.pdf",
   "slot_start": 1665590400000,
   "slot_end": 1665594000000,

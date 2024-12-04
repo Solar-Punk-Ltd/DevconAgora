@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "don-tapscott"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["don-tapscott"],
   "sources_youtubeId": "bLzwYthfcVc",
   "sources_ipfsHash": "QmNhS4wKpxacoCeWiRTvBm52zRxvgoHCFm97THD2szWqjK",
   "sources_swarmHash": "8e68c47537edf420bef08f2e44bd7f8759a9d17b5f9fb5d373563a3e47ee0bd7",

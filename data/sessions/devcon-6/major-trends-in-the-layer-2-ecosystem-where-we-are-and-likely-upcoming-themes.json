@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "Layer 2",
-    "Rollups",
-    "protocol development"
-  ],
-  "speakers": [
-    "faina-shalts"
-  ],
+  "tags": ["Layer 2s", "Layer 2", "Rollups", "protocol development"],
+  "speakers": ["faina-shalts"],
   "resources_slides": "/resources/6/major-trends-in-the-layer-2-ecosystem-where-we-are-and-likely-upcoming-themes.pdf",
   "slot_start": 1665507600000,
   "slot_end": 1665508200000,

@@ -7,18 +7,8 @@
   "track": "Layer 2s",
   "type": "Panel",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "L2s",
-    "EVM",
-    "experimentation"
-  ],
-  "speakers": [
-    "rahul-kothari",
-    "nick-dodson",
-    "joe-andrews",
-    "louis-guthmann"
-  ],
+  "tags": ["Layer 2s", "L2s", "EVM", "experimentation"],
+  "speakers": ["rahul-kothari", "nick-dodson", "joe-andrews", "louis-guthmann"],
   "resources_slides": "/resources/6/new-paradigms-by-non-evm-compatible-l2s.pdf",
   "slot_start": 1665581400000,
   "slot_end": 1665584400000,

@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "jacek-sieka"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["jacek-sieka"],
   "sources_youtubeId": "QtsCwRjtbrQ",
   "sources_ipfsHash": "QmQzXaUPLXeV3YyUioRgivqtiCK9HbsxNbvMZLJKzJgZUW",
   "sources_swarmHash": "9ebbe703593e69234fddd6227ae99fde060e175a7281e03a02fd2fab2399e0d6",

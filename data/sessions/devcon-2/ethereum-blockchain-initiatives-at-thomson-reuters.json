@@ -41,9 +41,7 @@
     "security",
     "entitlement"
   ],
-  "speakers": [
-    "tim-nugent"
-  ],
+  "speakers": ["tim-nugent"],
   "sources_youtubeId": "cOmcWlTBqOw",
   "sources_ipfsHash": "QmdZb5jxKsJudYnUK4QcVjgksCQMpWQSBbozuTC42prYRf",
   "sources_swarmHash": "0010fb8e957e80715df5e81be00f58753c3c23071686ee15c8f71a20359da765",

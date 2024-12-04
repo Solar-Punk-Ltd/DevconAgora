@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "bridges",
-    "interoperability",
-    "L2"
-  ],
-  "speakers": [
-    "georgios-gontikas"
-  ],
+  "tags": ["Layer 2s", "bridges", "interoperability", "L2"],
+  "speakers": ["georgios-gontikas"],
   "slot_start": 1665507000000,
   "slot_end": 1665507420000,
   "slot_roomId": "talk-4",

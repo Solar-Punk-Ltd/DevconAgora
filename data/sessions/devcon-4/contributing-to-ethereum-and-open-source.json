@@ -13,9 +13,7 @@
     "onboarding",
     "participating"
   ],
-  "speakers": [
-    "danny-ryan"
-  ],
+  "speakers": ["danny-ryan"],
   "sources_youtubeId": "KMNRinLvBjI",
   "sources_ipfsHash": "QmXoy4AfqDFihS8BwB6jLkRHCTL1SPqkLASHjB8fnbKaSw",
   "sources_swarmHash": "02d1c11be2dbc71858ad7d52e662f6fccbd1aebb4c284a893d3041a8ad3107b2",

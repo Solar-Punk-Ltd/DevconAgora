@@ -7,13 +7,8 @@
   "track": "Layer 2s",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 2s",
-    "technical"
-  ],
-  "speakers": [
-    "jordi-baylina"
-  ],
+  "tags": ["Layer 2s", "technical"],
+  "speakers": ["jordi-baylina"],
   "sources_youtubeId": "Gp2aIcLNFVk",
   "sources_ipfsHash": "QmeXYJKHkUhVubjtwfwK3dyAUNbhPyNT1kDzGuMd5U13Yc",
   "sources_swarmHash": "1e334636b78fff835a722e2bcc79fcd5b73afd52799a32b086709b7795b81918",

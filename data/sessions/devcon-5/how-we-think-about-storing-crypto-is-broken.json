@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "storage",
-    "wallets",
-    "general"
-  ],
-  "speakers": [
-    "cameron-robertson"
-  ],
+  "tags": ["Governance & Coordination", "storage", "wallets", "general"],
+  "speakers": ["cameron-robertson"],
   "sources_youtubeId": "DIdXITuTbVY",
   "sources_ipfsHash": "QmY3oyakXpMHHEZzKwPJex597B6j81Q67iTFouEwxxpifw",
   "sources_swarmHash": "a3cd149859b9b50aa0d8fe374c06a19a5b3f7dc4b0eea2f322a7cd4a5c48c0be",

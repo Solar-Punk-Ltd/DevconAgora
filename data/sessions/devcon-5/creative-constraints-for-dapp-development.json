@@ -7,13 +7,8 @@
   "track": "UX & Design",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "technical"
-  ],
-  "speakers": [
-    "ann-kilzer"
-  ],
+  "tags": ["UX & Design", "technical"],
+  "speakers": ["ann-kilzer"],
   "sources_youtubeId": "Biv2166qBjg",
   "sources_ipfsHash": "QmWrRywfZjE9TzcyyaFz2gvFmSNT8JorJGiFXYk2nc2LVm",
   "sources_swarmHash": "b7370f556e16b364caa18e144bfd658320f5c74095f436bd58d45a92248309ed",

@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "accounts",
-    "abstraction",
-    "starknet"
-  ],
-  "speakers": [
-    "martin-triay"
-  ],
+  "tags": ["Layer 2s", "accounts", "abstraction", "starknet"],
+  "speakers": ["martin-triay"],
   "resources_slides": "/resources/6/account-abstraction-on-starknet.pdf",
   "slot_start": 1665510600000,
   "slot_end": 1665511200000,

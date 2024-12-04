@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Quadratic Funding",
-    "Public Goods"
-  ],
-  "speakers": [
-    "connor-oday"
-  ],
+  "tags": ["Opportunity & Global Impact", "Quadratic Funding", "Public Goods"],
+  "speakers": ["connor-oday"],
   "resources_slides": "/resources/6/new-applications-for-quadratic-funding.pdf",
   "slot_start": 1665509400000,
   "slot_end": 1665511200000,

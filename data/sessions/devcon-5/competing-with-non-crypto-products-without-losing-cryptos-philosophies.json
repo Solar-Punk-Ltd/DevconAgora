@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "philosophy",
-    "ethics",
-    "general"
-  ],
-  "speakers": [
-    "taylor-monahan"
-  ],
+  "tags": ["UX & Design", "philosophy", "ethics", "general"],
+  "speakers": ["taylor-monahan"],
   "sources_youtubeId": "kbTZkQERSaQ",
   "sources_ipfsHash": "QmYQJTYJS4BtUKigdB9ArrcsopSi6JHftqU1RrH2mosfQ6",
   "sources_swarmHash": "5b83da671455b09a70fae47d01b1dc259a6da3bef7e5ca93ff0decc2f835e94c",

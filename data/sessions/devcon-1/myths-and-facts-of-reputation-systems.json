@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "andres-junge"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["andres-junge"],
   "sources_youtubeId": "W63oB4fbnEg",
   "sources_ipfsHash": "QmNim5qFLzcDteGsav13AYFwnzTD9QhnxRfAFFkGpUTPZz",
   "sources_swarmHash": "94fa7148181c231a72debbbfe5944da76c33095a7eb41d80e776792e0a4d5412",

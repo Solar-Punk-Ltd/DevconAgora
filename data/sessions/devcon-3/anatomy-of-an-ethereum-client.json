@@ -7,12 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol"
-  ],
-  "speakers": [
-    "andrei-maiboroda"
-  ],
+  "tags": ["Layer 1 Protocol"],
+  "speakers": ["andrei-maiboroda"],
   "sources_youtubeId": "TOhvBIeSdnU",
   "sources_ipfsHash": "QmRJLnr6JAaC5RM1BXRj4ksyFHzCvikapG9QNW1LcZ43tZ",
   "sources_swarmHash": "f4f7b6c3e481353dd1f9f6f3a6820dd4347f5b642520cbacc029203369efebdd",

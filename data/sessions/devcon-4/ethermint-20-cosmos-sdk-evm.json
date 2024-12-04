@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Developer Infrastructure",
-    "tendermint",
-    "dapps",
-    "architecture"
-  ],
-  "speakers": [
-    "chris-goes"
-  ],
+  "tags": ["Developer Infrastructure", "tendermint", "dapps", "architecture"],
+  "speakers": ["chris-goes"],
   "sources_youtubeId": "VCLbS1Oks8A",
   "sources_ipfsHash": "QmReYVuaUKyCXXQcoEt47peR7PA3ARJHCTKSMuWDbYGwbM",
   "sources_swarmHash": "d6b006a1cf144322e3c6925ce1a2ceda78cbed20b2ad6204707b6dc316c3c664",

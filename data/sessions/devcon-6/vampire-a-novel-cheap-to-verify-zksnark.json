@@ -7,14 +7,8 @@
   "track": "Privacy",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Privacy",
-    "zero-knowledge",
-    "zkSNARK"
-  ],
-  "speakers": [
-    "michal-zajac"
-  ],
+  "tags": ["Privacy", "zero-knowledge", "zkSNARK"],
+  "speakers": ["michal-zajac"],
   "resources_slides": "/resources/6/vampire-a-novel-cheap-to-verify-zksnark.pdf",
   "slot_start": 1665681600000,
   "slot_end": 1665682200000,

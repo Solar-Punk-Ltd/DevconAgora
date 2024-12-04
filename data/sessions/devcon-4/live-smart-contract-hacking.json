@@ -7,13 +7,7 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Security",
-    "hackers",
-    "builders",
-    "bugs",
-    "audit"
-  ],
+  "tags": ["Security", "hackers", "builders", "bugs", "audit"],
   "speakers": [
     "martin-holst-swende",
     "nick-johnson",

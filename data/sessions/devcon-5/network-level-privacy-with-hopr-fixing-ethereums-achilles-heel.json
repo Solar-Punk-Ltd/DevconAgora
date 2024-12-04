@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "sebastian-buergel"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["sebastian-buergel"],
   "sources_youtubeId": "wH48dy6PjVg",
   "sources_ipfsHash": "QmVTsNVwJ7CtrQZvMcDEn8cxA92x4oFsYSszcxWg1vvaYi",
   "sources_swarmHash": "1170f180f65d2d9ef52dfcaa5701a5b59c4d3cf8569427639997b2b9aa4b8ff8",

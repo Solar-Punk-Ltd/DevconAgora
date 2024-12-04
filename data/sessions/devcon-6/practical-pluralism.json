@@ -7,11 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "pluralism",
-    "developers"
-  ],
+  "tags": ["Developer Infrastructure", "pluralism", "developers"],
   "speakers": [
     "kevin-owocki",
     "griff-green",

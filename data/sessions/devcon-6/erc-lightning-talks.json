@@ -16,10 +16,7 @@
     "nft",
     "privacy"
   ],
-  "speakers": [
-    "timdaub",
-    "anett-rolikova"
-  ],
+  "speakers": ["timdaub", "anett-rolikova"],
   "slot_start": 1665752400000,
   "slot_end": 1665761400000,
   "slot_roomId": "workshop-3",

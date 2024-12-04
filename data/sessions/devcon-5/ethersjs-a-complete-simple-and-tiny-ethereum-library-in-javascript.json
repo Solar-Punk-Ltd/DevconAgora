@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "richard-moore"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["richard-moore"],
   "sources_youtubeId": "r1ldSzcqaHo",
   "sources_ipfsHash": "QmeMs8QSRoAj9AMcvHGWL99tc7nmyVPWM8wxoFLtgqnxrb",
   "sources_swarmHash": "1254cc064585a56539fed6e29fb086a56c3013ddf353ef2124a3fd04ce51991a",

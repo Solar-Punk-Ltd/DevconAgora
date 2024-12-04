@@ -14,9 +14,7 @@
     "trust",
     "technical"
   ],
-  "speakers": [
-    "benedikt-bunz"
-  ],
+  "speakers": ["benedikt-bunz"],
   "sources_youtubeId": "N90SWM-lrhQ",
   "sources_ipfsHash": "QmaCqEcB4nxac52sJodVJhbXCaBjaNUAYGZy3dLTbXhMd6",
   "sources_swarmHash": "1985f6af0b941d34e314e1dca9572ed4cc379b892678a0782e5e9db6acce6286",

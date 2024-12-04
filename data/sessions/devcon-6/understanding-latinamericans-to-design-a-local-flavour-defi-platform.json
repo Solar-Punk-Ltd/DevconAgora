@@ -7,16 +7,8 @@
   "track": "UX & Design",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "multicultural",
-    "research",
-    "latam",
-    ""
-  ],
-  "speakers": [
-    "diego-mazo"
-  ],
+  "tags": ["UX & Design", "multicultural", "research", "latam", ""],
+  "speakers": ["diego-mazo"],
   "resources_slides": "/resources/6/understanding-latinamericans-to-design-a-local-flavour-defi-platform.pdf",
   "slot_start": 1665682200000,
   "slot_end": 1665682800000,

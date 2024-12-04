@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 1 Protocol",
-    "pyspec",
-    "consensus",
-    "beacon chain"
-  ],
-  "speakers": [
-    "hsiao-wei-wang"
-  ],
+  "tags": ["Layer 1 Protocol", "pyspec", "consensus", "beacon chain"],
+  "speakers": ["hsiao-wei-wang"],
   "resources_slides": "/resources/6/how-to-use-executable-consensus-pyspec.pdf",
   "slot_start": 1665656400000,
   "slot_end": 1665657000000,

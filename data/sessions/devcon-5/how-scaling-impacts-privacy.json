@@ -7,12 +7,8 @@
   "track": "Privacy",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy"
-  ],
-  "speakers": [
-    "liz-steininger"
-  ],
+  "tags": ["Privacy"],
+  "speakers": ["liz-steininger"],
   "sources_youtubeId": "4f28MRzG_bs",
   "sources_ipfsHash": "Qmcdzh9CE12TLERBQbDo8g3xGjiA6XKsPLHz4iLjDRRXSH",
   "sources_swarmHash": "cca8789ab2b2e519bacfebc27bffb3feae592a9dea33193432091887867fa5d8",

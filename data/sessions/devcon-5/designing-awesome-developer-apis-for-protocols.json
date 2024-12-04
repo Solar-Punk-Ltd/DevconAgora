@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "APIs",
-    "protocols",
-    "technical"
-  ],
-  "speakers": [
-    "nikil-viswanathan"
-  ],
+  "tags": ["Developer Infrastructure", "APIs", "protocols", "technical"],
+  "speakers": ["nikil-viswanathan"],
   "sources_youtubeId": "AUFGcgJbAuI",
   "sources_ipfsHash": "QmWYLkKoorVyNjpuaY89fpRZEwYKAqnq2WoomAgDWRo7p9",
   "sources_swarmHash": "d2e6d7f3cdc7a0bc60cd10f683269ccbb2105e90257954b78522f7af9bb09b24",

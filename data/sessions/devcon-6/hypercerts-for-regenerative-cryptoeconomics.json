@@ -7,14 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "cryptoeconomics",
-    "infrastructure"
-  ],
-  "speakers": [
-    "evan-miyazono"
-  ],
+  "tags": ["Cryptoeconomics", "cryptoeconomics", "infrastructure"],
+  "speakers": ["evan-miyazono"],
   "resources_slides": "/resources/6/hypercerts-for-regenerative-cryptoeconomics.pdf",
   "slot_start": 1665669600000,
   "slot_end": 1665671400000,

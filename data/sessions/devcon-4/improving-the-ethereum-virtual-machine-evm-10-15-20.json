@@ -7,10 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "EVM"
-  ],
+  "tags": ["Developer Infrastructure", "EVM"],
   "speakers": [
     "alex-beregszaszi",
     "casey-detrio",

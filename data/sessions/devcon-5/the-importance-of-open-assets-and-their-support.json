@@ -7,13 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "technical"
-  ],
-  "speakers": [
-    "hiroyuki-hara"
-  ],
+  "tags": ["Governance & Coordination", "technical"],
+  "speakers": ["hiroyuki-hara"],
   "sources_youtubeId": "qLt3N30kouI",
   "sources_ipfsHash": "QmaswQpvpxxCdJGpcCMALzoevE3w71W4VPbJsppHow8V3o",
   "sources_swarmHash": "f357f056f49e784915f96b0dbdf813d1b46c95179ba70aeb13dd69978912c65a",

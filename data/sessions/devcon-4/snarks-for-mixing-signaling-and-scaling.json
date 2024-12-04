@@ -7,14 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "scaling",
-    "dapps"
-  ],
-  "speakers": [
-    "barry-whitehat"
-  ],
+  "tags": ["Layer 2s", "scaling", "dapps"],
+  "speakers": ["barry-whitehat"],
   "sources_youtubeId": "lv6iK9qezBY",
   "sources_ipfsHash": "Qmbk5e6tnib2j8fHCZEZgbx3cExjtKXWgRqHfhS4pwLxyq",
   "sources_swarmHash": "ed215b07fc50b745e38fd6e1355c4151e03b701724be3149976b140be5b8d6f2",

@@ -13,9 +13,7 @@
     "proposer-builder separation",
     "block building"
   ],
-  "speakers": [
-    "alex-stokes"
-  ],
+  "speakers": ["alex-stokes"],
   "resources_slides": "/resources/6/block-building-after-the-merge.pdf",
   "slot_start": 1665586800000,
   "slot_end": 1665588300000,

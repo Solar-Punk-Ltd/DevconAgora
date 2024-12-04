@@ -7,12 +7,7 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "privacy",
-    "nightfall",
-    "technical"
-  ],
+  "tags": ["Privacy", "privacy", "nightfall", "technical"],
   "speakers": [
     "duncan-westland",
     "chaitanya-konda",

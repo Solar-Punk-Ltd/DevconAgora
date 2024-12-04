@@ -7,16 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "ackee",
-    "dev",
-    "tools",
-    "kit"
-  ],
-  "speakers": [
-    "josef-gattermayer"
-  ],
+  "tags": ["Developer Infrastructure", "ackee", "dev", "tools", "kit"],
+  "speakers": ["josef-gattermayer"],
   "sources_youtubeId": "t3apYrmxaD8",
   "sources_ipfsHash": "QmcQNEPnCebPbZ1ioXunMBR7A9emX6H2TBRo16ARAhaxQ7",
   "sources_swarmHash": "ac2c56ca125b3dbd815e034aef61e85f5b471416bec91bf6a42df20d6f262397",

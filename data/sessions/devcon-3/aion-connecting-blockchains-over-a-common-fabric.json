@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "matt-spoke"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["matt-spoke"],
   "sources_youtubeId": "RELXo6tm2h0",
   "sources_ipfsHash": "Qma9Ryqq7ypkqmbSzGxvAmxKKHKAtHJH7FHnmLNJZajuAy",
   "sources_swarmHash": "983844650d45251a4c4517109ac58af334f8806099f3357aa6698d3d1ce3aa25",

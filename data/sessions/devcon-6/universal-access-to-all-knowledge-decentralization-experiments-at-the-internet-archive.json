@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Opportunity & Global Impact",
-    "storage",
-    "knowledge",
-    "scale"
-  ],
-  "speakers": [
-    "arkadiy-kukarkin"
-  ],
+  "tags": ["Opportunity & Global Impact", "storage", "knowledge", "scale"],
+  "speakers": ["arkadiy-kukarkin"],
   "resources_slides": "/resources/6/universal-access-to-all-knowledge-decentralization-experiments-at-the-internet-archive.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757800000,

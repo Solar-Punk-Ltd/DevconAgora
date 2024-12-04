@@ -35,10 +35,7 @@
     "spdy",
     "webrtc"
   ],
-  "speakers": [
-    "david-dias",
-    "juan-benet"
-  ],
+  "speakers": ["david-dias", "juan-benet"],
   "sources_youtubeId": "HxueJbeMVG4",
   "sources_ipfsHash": "QmVzoVuo47YHGDwXJp9jfmbyTCThCMfXSCG7Ya3YX8mk8T",
   "sources_swarmHash": "692ab275d227cd463a3c6182e181eac8753796b38dab8c9984ffdbbe551e09be",

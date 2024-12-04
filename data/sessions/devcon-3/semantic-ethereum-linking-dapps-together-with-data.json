@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "james-pitts"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["james-pitts"],
   "sources_youtubeId": "k1gQTNxSFB8",
   "sources_ipfsHash": "QmNr2BwkMwcDyFScuRVsrcjChmzSK6JrE5EWkWED476QFV",
   "sources_swarmHash": "f00c07aa9148be7092cb7d5a1fa4568b8fc7bb1220c10b253134433b92b772b0",

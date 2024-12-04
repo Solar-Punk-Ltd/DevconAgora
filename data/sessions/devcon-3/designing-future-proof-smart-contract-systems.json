@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "jorge-izquierdo"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["jorge-izquierdo"],
   "sources_youtubeId": "sJ7VECqHFAg",
   "sources_ipfsHash": "QmQpYwTDod5sfb8vg7XZytrjofA2otZC7iWG72s2Fzb2Cd",
   "sources_swarmHash": "e946ad334e53ea2317fd2c6fcff3d2e7471a6e141a5def21a0abf80e888dd3e2",

@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "Bridge",
-    "Security",
-    "L2"
-  ],
-  "speakers": [
-    "martin-derka"
-  ],
+  "tags": ["Layer 2s", "Bridge", "Security", "L2"],
+  "speakers": ["martin-derka"],
   "resources_slides": "/resources/6/the-blockchain-bridge-that-you-dream-about.pdf",
   "slot_start": 1665662400000,
   "slot_end": 1665663000000,

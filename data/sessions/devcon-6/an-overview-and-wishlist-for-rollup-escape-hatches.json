@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "rollup",
-    "escape hatch",
-    "layer two"
-  ],
-  "speakers": [
-    "jan-gorzny"
-  ],
+  "tags": ["Layer 2s", "rollup", "escape hatch", "layer two"],
+  "speakers": ["jan-gorzny"],
   "resources_slides": "/resources/6/an-overview-and-wishlist-for-rollup-escape-hatches.pdf",
   "slot_start": 1665663600000,
   "slot_end": 1665664200000,

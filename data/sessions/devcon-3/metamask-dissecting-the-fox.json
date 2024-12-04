@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "aaron-davis",
-    "frankie-pangilinan"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["aaron-davis", "frankie-pangilinan"],
   "sources_youtubeId": "P6Bosg9QKnw",
   "sources_ipfsHash": "QmUT7kjQ7kEZVZALaBZTSQLgnVhbvRA8eW5cqkYBCD7men",
   "sources_swarmHash": "3a3be4302464e730f333e36b1e80fb83a6526e814b65467cdb0c0449d88e407b",

@@ -15,9 +15,7 @@
     "subgraphs",
     "substreams"
   ],
-  "speakers": [
-    "alexandre-bourget"
-  ],
+  "speakers": ["alexandre-bourget"],
   "resources_slides": "/resources/6/introducing-the-graph-substreams-for-high-performance-indexing.pdf",
   "slot_start": 1665682200000,
   "slot_end": 1665684000000,

@@ -7,17 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Governance & Coordination",
-    "governance",
-    "research",
-    "DAOs"
-  ],
-  "speakers": [
-    "eugene-leventhal",
-    "joshua-tan",
-    "ellie-rennie"
-  ],
+  "tags": ["Governance & Coordination", "governance", "research", "DAOs"],
+  "speakers": ["eugene-leventhal", "joshua-tan", "ellie-rennie"],
   "resources_slides": "/resources/6/open-problems-in-dao-science-workshop.pdf",
   "slot_start": 1665498600000,
   "slot_end": 1665502200000,

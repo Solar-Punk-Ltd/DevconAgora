@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "zsolt-felfoldi"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["zsolt-felfoldi"],
   "sources_youtubeId": "h-bl0slW4kU",
   "sources_ipfsHash": "QmRte4DBUxRomhWSWus3wREfDp6QU92unaV9hhDZAW9civ",
   "sources_swarmHash": "2f8778b5d6e6a3f338345458328a5fdc41509b3b798631d445d6a9fc9648da0a",

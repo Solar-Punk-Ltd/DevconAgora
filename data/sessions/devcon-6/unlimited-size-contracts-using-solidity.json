@@ -13,9 +13,7 @@
     "dev tools",
     "smart contracts"
   ],
-  "speakers": [
-    "igor-yalovoy"
-  ],
+  "speakers": ["igor-yalovoy"],
   "resources_slides": "/resources/6/unlimited-size-contracts-using-solidity.pdf",
   "slot_start": 1665495000000,
   "slot_end": 1665498600000,

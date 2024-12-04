@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Privacy",
-    "zero-knowledge",
-    "Circom"
-  ],
-  "speakers": [
-    "jesus-ligero",
-    "carlos-matallana"
-  ],
+  "tags": ["Privacy", "zero-knowledge", "Circom"],
+  "speakers": ["jesus-ligero", "carlos-matallana"],
   "resources_slides": "/resources/6/introduction-to-circom20.pdf",
   "slot_start": 1665502200000,
   "slot_end": 1665505800000,

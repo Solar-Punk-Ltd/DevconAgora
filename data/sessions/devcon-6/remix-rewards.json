@@ -12,9 +12,7 @@
     "soul bound tokens",
     "NFT certifications"
   ],
-  "speakers": [
-    "rob-stupay"
-  ],
+  "speakers": ["rob-stupay"],
   "resources_slides": "/resources/6/remix-rewards.pdf",
   "slot_start": 1665510000000,
   "slot_end": 1665510420000,

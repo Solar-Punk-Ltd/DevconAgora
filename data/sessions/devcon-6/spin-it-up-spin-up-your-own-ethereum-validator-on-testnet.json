@@ -13,10 +13,7 @@
     "Infrastructure",
     "Engineering"
   ],
-  "speakers": [
-    "jennifer-parak",
-    "gabriella-sofia"
-  ],
+  "speakers": ["jennifer-parak", "gabriella-sofia"],
   "slot_start": 1665752400000,
   "slot_end": 1665759000000,
   "slot_roomId": "workshop-4",

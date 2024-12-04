@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Lightning Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 2s",
-    "Onboarding",
-    "Rollups",
-    "Layer-2"
-  ],
-  "speakers": [
-    "matt-pearring"
-  ],
+  "tags": ["Layer 2s", "Onboarding", "Rollups", "Layer-2"],
+  "speakers": ["matt-pearring"],
   "resources_slides": "/resources/6/ups-and-downs-onboarding-a-million-users-to-layer-2.pdf",
   "slot_start": 1665508200000,
   "slot_end": 1665508800000,

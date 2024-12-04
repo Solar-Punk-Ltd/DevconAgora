@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "upgrades",
-    "hard fork",
-    "technical"
-  ],
-  "speakers": [
-    "wei-tang"
-  ],
+  "tags": ["Layer 1 Protocol", "upgrades", "hard fork", "technical"],
+  "speakers": ["wei-tang"],
   "sources_youtubeId": "5r165pzFj-Y",
   "sources_ipfsHash": "QmbseLcGtGQZ5LFq3PKesp3JQTwLRm3BZ9svHm1Uq2mUQE",
   "sources_swarmHash": "ae266f73b1c556a83e460a67f9e6c7e8bb08f599847f515f35fbbb7cc6dd8a5c",

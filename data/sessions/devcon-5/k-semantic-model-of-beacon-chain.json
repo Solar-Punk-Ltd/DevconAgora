@@ -7,14 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 1 Protocol",
-    "beacon",
-    "technical"
-  ],
-  "speakers": [
-    "daejun-park"
-  ],
+  "tags": ["Layer 1 Protocol", "beacon", "technical"],
+  "speakers": ["daejun-park"],
   "sources_youtubeId": "nYCKOK79ogs",
   "sources_ipfsHash": "Qmb7aG9JiiWZfQ5Vsbs9HXXCdwbz2tFe261L895SJ9223D",
   "sources_swarmHash": "119b0a50bbb9713dc4102bc68a8e5f79e0c964a5363e76d3a97b06d51802ffa5",

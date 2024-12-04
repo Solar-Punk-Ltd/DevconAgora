@@ -7,14 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
-  "speakers": [
-    "dave-hrycyszyn",
-    "jedrzej-stuczynski"
-  ],
+  "tags": ["Privacy", "technical"],
+  "speakers": ["dave-hrycyszyn", "jedrzej-stuczynski"],
   "sources_youtubeId": "PveslzdXZhE",
   "sources_ipfsHash": "QmcXk91UBMZMpfDgTSp5yL6AytS5H6neaJkpRmjUJM1S2q",
   "sources_swarmHash": "8e25016d3cbe89a4bb5fcf0d7b4b6beef4490be0ad8cc995ce4c2a09dbcd3f6e",

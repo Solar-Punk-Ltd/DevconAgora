@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Governance & Coordination",
-    "academic"
-  ],
-  "speakers": [
-    "mally-anderson",
-    "everett-muzzy"
-  ],
+  "tags": ["Governance & Coordination", "academic"],
+  "speakers": ["mally-anderson", "everett-muzzy"],
   "sources_youtubeId": "a55JLF0uEaA",
   "sources_ipfsHash": "Qmc3udcq1x845HKtgT2xNJmt2unGRLwihQ8QS5qiWDvFDY",
   "sources_swarmHash": "9589da69219d8b33c4801fbbf175c2c74e87e39f14b033c2475d740d59b5b5ee",

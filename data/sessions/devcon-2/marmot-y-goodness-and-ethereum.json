@@ -33,10 +33,7 @@
     "swarm",
     "dependency"
   ],
-  "speakers": [
-    "rj-catalano",
-    "zach-ramsey"
-  ],
+  "speakers": ["rj-catalano", "zach-ramsey"],
   "sources_youtubeId": "I29lQ9G4ItI",
   "sources_ipfsHash": "QmXWJCYBKw4r9NLRZcijJQHyqPp7QVLvJyZ4uUXf4919Ph",
   "sources_swarmHash": "cd69b608b4b2b14769357709c46db5c7684abf9538222de9325ac5689b501e57",

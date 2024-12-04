@@ -7,13 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "kei-kreutler",
-    "yalda-mousavinia"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["kei-kreutler", "yalda-mousavinia"],
   "sources_youtubeId": "I2dWKKBdTAU",
   "sources_ipfsHash": "QmQQ5oRWeYuUq7scg2JLnYhkC6zHEktfeFyan6onBfbm7a",
   "sources_swarmHash": "58035422783b13cf5537f5bcfe800b0b1b2c3b2ae5a0d84ef31ef87554cfca93",

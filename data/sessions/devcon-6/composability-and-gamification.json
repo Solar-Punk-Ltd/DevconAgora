@@ -13,9 +13,7 @@
     "gamification",
     "composability"
   ],
-  "speakers": [
-    "andy-boyan"
-  ],
+  "speakers": ["andy-boyan"],
   "resources_slides": "/resources/6/composability-and-gamification.pdf",
   "slot_start": 1665595200000,
   "slot_end": 1665595800000,

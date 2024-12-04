@@ -13,10 +13,7 @@
     "Staking",
     "Validators"
   ],
-  "speakers": [
-    "collin-myers",
-    "oisin-kyne"
-  ],
+  "speakers": ["collin-myers", "oisin-kyne"],
   "resources_slides": "/resources/6/how-to-design-dvt-while-ensuring-non-correlation.pdf",
   "slot_start": 1665660600000,
   "slot_end": 1665662400000,

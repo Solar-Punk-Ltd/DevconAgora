@@ -7,12 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Security"
-  ],
-  "speakers": [
-    "shane-fontaine"
-  ],
+  "tags": ["Security"],
+  "speakers": ["shane-fontaine"],
   "sources_youtubeId": "O5SEZL_A01I",
   "sources_ipfsHash": "QmfAMTo6eW5PCRAMThp5iKaFK7Pm7jfUxQ9e2WbtRRe8r1",
   "sources_swarmHash": "dea10c1bba412782a8e06ebb871c77115003d38f7db74a8c716df6207f0e5b9d",

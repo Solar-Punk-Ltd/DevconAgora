@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "Danksharding",
-    "KZG Ceremony",
-    "Trusted Setup"
-  ],
-  "speakers": [
-    "carl-beekhuizen"
-  ],
+  "tags": ["Layer 1 Protocol", "Danksharding", "KZG Ceremony", "Trusted Setup"],
+  "speakers": ["carl-beekhuizen"],
   "resources_slides": "/resources/6/the-kzg-ceremony-or-how-i-learnt-to-stop-worrying-and-love-trusted-setups.pdf",
   "slot_start": 1665673200000,
   "slot_end": 1665674700000,

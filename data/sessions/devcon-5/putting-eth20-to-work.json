@@ -7,14 +7,8 @@
   "track": "Staking & Validator Experience",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Staking & Validator Experience",
-    "eth2",
-    "technical"
-  ],
-  "speakers": [
-    "alex-stokes"
-  ],
+  "tags": ["Staking & Validator Experience", "eth2", "technical"],
+  "speakers": ["alex-stokes"],
   "sources_youtubeId": "nPA37JmOt7A",
   "sources_ipfsHash": "Qmf7tnNY9PhDzU2g1kcFcFDhaikHcnHGmzdVqDNZkmuoyP",
   "sources_swarmHash": "f44a4cd22b27c92f67a547c4fdc981e139a2d809ae6eb3d4938ec7b3a04aa0ed",

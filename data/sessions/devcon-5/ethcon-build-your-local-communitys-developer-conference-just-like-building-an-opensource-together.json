@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "brian-cheong",
-    "tiger-kim",
-    "wanseob-lim"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["brian-cheong", "tiger-kim", "wanseob-lim"],
   "sources_youtubeId": "s7cI6nmYFlM",
   "sources_ipfsHash": "QmXjJYa9UkCv9keC1p689ypxTW9GARKqHeNhBWGWMEJ3vW",
   "sources_swarmHash": "a88a010c522a4f45dc058a937e8b6c77cae605972de30b94258e27a4d85c48a6",

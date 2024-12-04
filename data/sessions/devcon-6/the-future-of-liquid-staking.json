@@ -13,9 +13,7 @@
     "DeFi",
     "Validator"
   ],
-  "speakers": [
-    "vasiliy-shapovalov"
-  ],
+  "speakers": ["vasiliy-shapovalov"],
   "resources_slides": "/resources/6/the-future-of-liquid-staking.pdf",
   "slot_start": 1665576000000,
   "slot_end": 1665577800000,

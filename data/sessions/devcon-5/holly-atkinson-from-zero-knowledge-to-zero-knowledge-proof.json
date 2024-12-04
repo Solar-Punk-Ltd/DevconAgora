@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "holly-atkinson"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["holly-atkinson"],
   "sources_youtubeId": "9n5mopN5cUA",
   "sources_ipfsHash": "QmQWvi5XsqF3ekLBhkMCAAeRpootsvBbfR5y4TixpPwcHt",
   "sources_swarmHash": "63440ca0a4f4eb63070413c1c91442cc2969c1e6c8a21c779450d0511bb2525e",

@@ -7,17 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "tools",
-    "developers",
-    "devs",
-    "funded"
-  ],
-  "speakers": [
-    "josef-gattermayer",
-    "jan-misar"
-  ],
+  "tags": ["Developer Infrastructure", "tools", "developers", "devs", "funded"],
+  "speakers": ["josef-gattermayer", "jan-misar"],
   "sources_youtubeId": "VFACx0Cs-Ew",
   "sources_ipfsHash": "QmatudQ8SSPKsxErmwMPtBghhenfZ6T9BnzfDZ7SJpqq3K",
   "sources_swarmHash": "27fc0eeaaf99312029d4de3a1ad54b58cc333f70ad55fb0060616bcf3a0ea044",

@@ -7,16 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "Infura",
-    "mainnet",
-    "launch time",
-    "technical"
-  ],
-  "speakers": [
-    "jason-carver"
-  ],
+  "tags": ["Layer 1 Protocol", "Infura", "mainnet", "launch time", "technical"],
+  "speakers": ["jason-carver"],
   "sources_youtubeId": "Be0oRAjYvbw",
   "sources_ipfsHash": "Qmaqnha9qUmDVNPE3CyKA5pVFapMgMBbytfCSa8gkhFPgF",
   "sources_swarmHash": "05222974cdcb6c9b5a9597457246457c5246c0eaeea12e511becad07515df998",

@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 1 Protocol",
-    "decompiled",
-    "smart contracts",
-    "general"
-  ],
-  "speakers": [
-    "tomasz-kolinko"
-  ],
+  "tags": ["Layer 1 Protocol", "decompiled", "smart contracts", "general"],
+  "speakers": ["tomasz-kolinko"],
   "sources_youtubeId": "KRHlf4sCZJc",
   "sources_ipfsHash": "QmY2n4XpBxsBzxZKtAF8Fm8xmVLBCDPWMujW3uFoF1iubb",
   "sources_swarmHash": "552960ea5e229b3f16f31da02b26cd83fe4fb33af5f91d8950381cb384d97d0d",

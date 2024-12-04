@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "ethereum",
-    "transactions",
-    "decoding"
-  ],
-  "speakers": [
-    "lefteris-karapetsas"
-  ],
+  "tags": ["Developer Infrastructure", "ethereum", "transactions", "decoding"],
+  "speakers": ["lefteris-karapetsas"],
   "resources_slides": "/resources/6/understanding-transactions-in-evm-compatible-blockchains-powered-by-opensource.pdf",
   "slot_start": 1665502200000,
   "slot_end": 1665504000000,

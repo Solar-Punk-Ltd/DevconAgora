@@ -7,15 +7,8 @@
   "track": "Privacy",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Privacy",
-    "zero-knowledge",
-    "application"
-  ],
-  "speakers": [
-    "yi-sun",
-    "lakshman-sankar"
-  ],
+  "tags": ["Privacy", "zero-knowledge", "application"],
+  "speakers": ["yi-sun", "lakshman-sankar"],
   "resources_slides": "/resources/6/zk-application-design-patterns.pdf",
   "slot_start": 1665676800000,
   "slot_end": 1665678600000,

@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Seaport",
-    "Marketplace",
-    "EVM"
-  ],
-  "speakers": [
-    "zero-age"
-  ],
+  "tags": ["Developer Infrastructure", "Seaport", "Marketplace", "EVM"],
+  "speakers": ["zero-age"],
   "sources_ipfsHash": "QmTJA95AeJsu7arXZtLpujiEkXdLNxxnRoPJcVvSDAQ7iS",
   "sources_youtubeId": "YLWnaSymFHA",
   "duration": 3174,

@@ -15,9 +15,7 @@
     "casper",
     "sharding"
   ],
-  "speakers": [
-    "robert-habermeier"
-  ],
+  "speakers": ["robert-habermeier"],
   "sources_youtubeId": "YDJCezRzaXg",
   "sources_ipfsHash": "QmYYciMnamnfxZUGxuVy1MaKAeyX6y3vxszFeJEfKWzofg",
   "sources_swarmHash": "21c9adaac1027ef2ea8fbada284bb7fc734890cbcc9533ec35a8da321dc0b6c1",

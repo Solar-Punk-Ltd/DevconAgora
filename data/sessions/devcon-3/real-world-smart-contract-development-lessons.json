@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "raine-revere"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["raine-revere"],
   "sources_youtubeId": "pGh7UAiKTGo",
   "sources_ipfsHash": "Qmf8bGC1aF2ScQjAx1mK1vCFT8jEhu9PmyDXc9skGKnbNj",
   "sources_swarmHash": "8692073b55ccc83a8bcf607a0b6e67ffafbbe816fe8aa1c057c183711a30124c",

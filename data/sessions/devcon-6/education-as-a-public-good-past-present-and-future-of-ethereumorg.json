@@ -7,14 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "UX & Design",
-    "Education",
-    "Community"
-  ],
-  "speakers": [
-    "sam-richards"
-  ],
+  "tags": ["UX & Design", "Education", "Community"],
+  "speakers": ["sam-richards"],
   "resources_slides": "/resources/6/education-as-a-public-good-past-present-and-future-of-ethereumorg.pdf",
   "slot_start": 1665678600000,
   "slot_end": 1665680400000,

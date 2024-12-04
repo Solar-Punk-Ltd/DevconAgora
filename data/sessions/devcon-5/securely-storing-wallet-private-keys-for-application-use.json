@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "adam-link"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["adam-link"],
   "sources_youtubeId": "suGACevZVAs",
   "sources_ipfsHash": "QmYSGVxHnPPtZBAD2DoUmTTjtQmNZdzmbRHWpEfsWiittx",
   "sources_swarmHash": "cf888fad636dfb01c48a460768826ae560bf5667825105201b02fee80f984d1c",

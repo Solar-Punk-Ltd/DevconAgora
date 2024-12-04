@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Layer 2s",
-    "zkEVM",
-    "Zero Knowledge",
-    "rollup"
-  ],
-  "speakers": [
-    "jordi-baylina"
-  ],
+  "tags": ["Layer 2s", "zkEVM", "Zero Knowledge", "rollup"],
+  "speakers": ["jordi-baylina"],
   "resources_slides": "/resources/6/technical-details-of-the-opcode-compatible-zkevm.pdf",
   "slot_start": 1665745200000,
   "slot_end": 1665746700000,

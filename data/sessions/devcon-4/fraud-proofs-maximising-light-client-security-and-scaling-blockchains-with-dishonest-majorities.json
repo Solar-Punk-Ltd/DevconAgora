@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 2s",
-    "validating",
-    "consensus",
-    "trust"
-  ],
-  "speakers": [
-    "mustafa-al-bassam"
-  ],
+  "tags": ["Layer 2s", "validating", "consensus", "trust"],
+  "speakers": ["mustafa-al-bassam"],
   "sources_youtubeId": "niqAo4dSLWw",
   "sources_ipfsHash": "QmVRJQwmY8x786VSPetPAfNUx5u5SQHUUK26bRRrvm6wGT",
   "sources_swarmHash": "9b0a532fd212a0ca09bdbbab15d70043f53e340751c47e20445fc2afc86ca703",

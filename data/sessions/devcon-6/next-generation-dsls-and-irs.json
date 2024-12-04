@@ -7,10 +7,7 @@
   "track": "Privacy",
   "type": "Panel",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy",
-    "zk"
-  ],
+  "tags": ["Privacy", "zk"],
   "speakers": [
     "jordi-baylina",
     "ying-tong",

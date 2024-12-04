@@ -7,14 +7,8 @@
   "track": "UX & Design",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "UX & Design",
-    "Product",
-    "Development"
-  ],
-  "speakers": [
-    "alim-khamisa"
-  ],
+  "tags": ["UX & Design", "Product", "Development"],
+  "speakers": ["alim-khamisa"],
   "resources_slides": "/resources/6/a-playbook-for-product-development-in-defi.pdf",
   "slot_start": 1665683400000,
   "slot_end": 1665683820000,

@@ -7,9 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
+  "tags": ["Developer Infrastructure"],
   "speakers": [
     "phil-daian",
     "everett-hildenbrandt",

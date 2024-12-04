@@ -13,11 +13,7 @@
     "development",
     "blockchain for good"
   ],
-  "speakers": [
-    "shane-oconnor",
-    "naroa",
-    "gerben-kijne"
-  ],
+  "speakers": ["shane-oconnor", "naroa", "gerben-kijne"],
   "resources_slides": "/resources/6/building-blockchain-products-for-unicef-how-to-get-involved.pdf",
   "slot_start": 1665498600000,
   "slot_end": 1665501600000,

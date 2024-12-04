@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "mev",
-    "decentralizaton",
-    "research"
-  ],
-  "speakers": [
-    "philip-daian"
-  ],
+  "tags": ["Layer 1 Protocol", "mev", "decentralizaton", "research"],
+  "speakers": ["philip-daian"],
   "resources_slides": "/resources/6/mev-for-the-next-billion-its-time-to-get-serious.pdf",
   "slot_start": 1665750600000,
   "slot_end": 1665752400000,

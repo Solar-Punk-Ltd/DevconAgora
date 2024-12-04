@@ -23,10 +23,7 @@
     "litigation",
     "insured"
   ],
-  "speakers": [
-    "viktor-tron",
-    "aron-fischer"
-  ],
+  "speakers": ["viktor-tron", "aron-fischer"],
   "sources_youtubeId": "DZbhjnhP5g4",
   "sources_ipfsHash": "QmSt3Gd6vrYpSqFddjbTJDVtkaBx764qq2GvWhWgAGC9r3",
   "sources_swarmHash": "9e42a156426310cf87400dd5e6352baf154fc6c1b4004e0a197c0dee14c4cc16",

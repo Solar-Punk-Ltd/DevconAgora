@@ -13,9 +13,7 @@
     "smart contracts",
     "product development"
   ],
-  "speakers": [
-    "sasha-tanase"
-  ],
+  "speakers": ["sasha-tanase"],
   "resources_slides": "/resources/6/the-future-of-web3ux-a-paradigm-shift-for-a-better-collaboration-between-design-and-development.pdf",
   "slot_start": 1665502200000,
   "slot_end": 1665504000000,

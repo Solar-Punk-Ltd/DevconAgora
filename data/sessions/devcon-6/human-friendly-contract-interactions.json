@@ -13,9 +13,7 @@
     "contract verification",
     "contract metadata"
   ],
-  "speakers": [
-    "kaan"
-  ],
+  "speakers": ["kaan"],
   "resources_slides": "/resources/6/human-friendly-contract-interactions.pdf",
   "slot_start": 1665496800000,
   "slot_end": 1665498600000,

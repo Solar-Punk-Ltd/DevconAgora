@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "infrastructure",
-    "community",
-    "ethical"
-  ],
-  "speakers": [
-    "corey-petty"
-  ],
+  "tags": ["Layer 1 Protocol", "infrastructure", "community", "ethical"],
+  "speakers": ["corey-petty"],
   "resources_slides": "/resources/6/how-to-ethically-build-public-good-infrastructure.pdf",
   "slot_start": 1665594000000,
   "slot_end": 1665595500000,

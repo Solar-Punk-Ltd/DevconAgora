@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "will-warren"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["will-warren"],
   "sources_youtubeId": "9d019RycObk",
   "sources_ipfsHash": "QmXEBrkxniSbPQjuzWrbX13WvJXquJ55PTZXGtrFbe7V5p",
   "sources_swarmHash": "73238a03f604a6ff3cf2877c202755170cbe28a9ce3b3cbb3cb2593665331e6c",

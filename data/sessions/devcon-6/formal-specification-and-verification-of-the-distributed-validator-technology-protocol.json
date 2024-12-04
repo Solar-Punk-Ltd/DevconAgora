@@ -13,9 +13,7 @@
     "formal verification",
     "Dafny"
   ],
-  "speakers": [
-    "roberto-saltini"
-  ],
+  "speakers": ["roberto-saltini"],
   "resources_slides": "/resources/6/formal-specification-and-verification-of-the-distributed-validator-technology-protocol.pdf",
   "slot_start": 1665667800000,
   "slot_end": 1665669600000,

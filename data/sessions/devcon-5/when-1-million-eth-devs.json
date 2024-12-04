@@ -14,9 +14,7 @@
     "developers",
     "general"
   ],
-  "speakers": [
-    "joseph-lubin"
-  ],
+  "speakers": ["joseph-lubin"],
   "sources_youtubeId": "Sp8ZjaWgCmg",
   "sources_ipfsHash": "QmWQXJUXtVSebK6R4NikV4UDHQiYZhi3AHkLet1rnopUEs",
   "sources_swarmHash": "3d9a69ef6b366cef4f90d6b4f1ce6b3202ad2e963db11a136435a7ae3c797b17",

@@ -13,9 +13,7 @@
     "Ethereum",
     "core devs"
   ],
-  "speakers": [
-    "trent-van-epps"
-  ],
+  "speakers": ["trent-van-epps"],
   "resources_slides": "/resources/6/funding-ethereum-with-the-protocol-guild.pdf",
   "slot_start": 1665585000000,
   "slot_end": 1665586500000,

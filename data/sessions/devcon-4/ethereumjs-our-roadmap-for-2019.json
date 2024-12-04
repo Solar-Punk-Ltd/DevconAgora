@@ -7,11 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "ethereumjs",
-    "roadmap"
-  ],
+  "tags": ["Developer Infrastructure", "ethereumjs", "roadmap"],
   "speakers": [
     "holger-drewes",
     "jared-wasinger",

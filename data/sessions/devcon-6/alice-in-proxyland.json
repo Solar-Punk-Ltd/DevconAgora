@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "proxies",
-    "upgradeability"
-  ],
-  "speakers": [
-    "alejandro-santander"
-  ],
+  "tags": ["Developer Infrastructure", "proxies", "upgradeability"],
+  "speakers": ["alejandro-santander"],
   "resources_slides": "/resources/6/alice-in-proxyland.pdf",
   "slot_start": 1665500400000,
   "slot_end": 1665502200000,

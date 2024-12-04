@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "bedrock",
-    "rollup",
-    "optimism"
-  ],
-  "speakers": [
-    "kelvin-fichter"
-  ],
+  "tags": ["Developer Infrastructure", "bedrock", "rollup", "optimism"],
+  "speakers": ["kelvin-fichter"],
   "resources_slides": "/resources/6/modular-rollup-theory-through-the-lens-of-the-op-stack.pdf",
   "slot_start": 1665581400000,
   "slot_end": 1665582900000,

@@ -7,14 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Governance & Coordination",
-    "academic"
-  ],
-  "speakers": [
-    "ariah-klages-mundt",
-    "andreea-minca"
-  ],
+  "tags": ["Governance & Coordination", "academic"],
+  "speakers": ["ariah-klages-mundt", "andreea-minca"],
   "sources_youtubeId": "qOi50UtxL7A",
   "sources_ipfsHash": "QmbyXixmb8FxruUg8pkn3t2hAaoKPGiiCu6p8cC1ppemMg",
   "sources_swarmHash": "362b9f864b342ea1dd9d06904da7ce29639c2a9d559ffca097c5c7585b6ad048",

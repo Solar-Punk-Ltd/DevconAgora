@@ -32,9 +32,7 @@
     "sidechain",
     "energy"
   ],
-  "speakers": [
-    "gilles-fedak"
-  ],
+  "speakers": ["gilles-fedak"],
   "sources_youtubeId": "aCpv3qLZJWU",
   "sources_ipfsHash": "QmcvZTn796P3qoiQ7SgiSQsSahpd2KsQfyj49dyPJVg5zu",
   "sources_swarmHash": "86170c23a0c2dc4ac96e88300d2b156f2a1fda43019f0049b73ca13b96efbf05",

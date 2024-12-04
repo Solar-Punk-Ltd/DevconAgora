@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "shuhei-hiya",
-    "yuriko-nishijima"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["shuhei-hiya", "yuriko-nishijima"],
   "sources_youtubeId": "ylVkoa_hUe0",
   "sources_ipfsHash": "QmP1XQMkgAFVFL3YwzmptnLrWCVHcEWun6HYuvJcCBugiL",
   "sources_swarmHash": "d2c711a4791de6b7ef5519e4cf0ea063184cf82b439ec0752b7d4448d0d6dfcf",

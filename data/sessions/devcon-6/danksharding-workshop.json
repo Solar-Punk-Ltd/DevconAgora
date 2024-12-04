@@ -7,12 +7,7 @@
   "track": "Layer 1 Protocol",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Layer 1 Protocol",
-    "danksharding",
-    "das",
-    "scalability"
-  ],
+  "tags": ["Layer 1 Protocol", "danksharding", "das", "scalability"],
   "speakers": [
     "ansgar-dietrichs",
     "hsiao-wei-wang",

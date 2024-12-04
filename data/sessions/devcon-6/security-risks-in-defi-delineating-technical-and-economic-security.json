@@ -7,17 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "DeFi",
-    "Security Risk",
-    "Incentives"
-  ],
-  "speakers": [
-    "daniel-perez",
-    "ariah-klages-mundt",
-    "lewis-gudgeon"
-  ],
+  "tags": ["Cryptoeconomics", "DeFi", "Security Risk", "Incentives"],
+  "speakers": ["daniel-perez", "ariah-klages-mundt", "lewis-gudgeon"],
   "resources_slides": "/resources/6/security-risks-in-defi-delineating-technical-and-economic-security.pdf",
   "slot_start": 1665756000000,
   "slot_end": 1665757500000,

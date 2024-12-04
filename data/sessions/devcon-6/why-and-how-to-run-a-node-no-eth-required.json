@@ -13,9 +13,7 @@
     "decentralization",
     "ethereum"
   ],
-  "speakers": [
-    "johns-gresham"
-  ],
+  "speakers": ["johns-gresham"],
   "resources_slides": "/resources/6/why-and-how-to-run-a-node-no-eth-required.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665586200000,

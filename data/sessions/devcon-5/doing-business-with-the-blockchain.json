@@ -7,12 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "enrico-talin"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["enrico-talin"],
   "sources_youtubeId": "AP53GXuEHH8",
   "sources_ipfsHash": "QmaoHq86pgijR18sDDL7tqaFNjdy5jVeHrcYSoxgp9ZsDZ",
   "sources_swarmHash": "b71494276a161f977b2e751fc883ad4de71934c7a9aa38166dfdaebcdbe32780",

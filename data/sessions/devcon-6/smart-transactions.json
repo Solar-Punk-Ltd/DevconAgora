@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Transactions",
-    "MEV",
-    "time"
-  ],
-  "speakers": [
-    "vlad-zamfir"
-  ],
+  "tags": ["Opportunity & Global Impact", "Transactions", "MEV", "time"],
+  "speakers": ["vlad-zamfir"],
   "resources_slides": "/resources/6/smart-transactions.pdf",
   "slot_start": 1665504000000,
   "slot_end": 1665505500000,

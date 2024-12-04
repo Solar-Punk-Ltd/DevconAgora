@@ -7,13 +7,8 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Privacy"
-  ],
-  "speakers": [
-    "jacob-eberhardt",
-    "thibaut-schaeffer"
-  ],
+  "tags": ["Privacy"],
+  "speakers": ["jacob-eberhardt", "thibaut-schaeffer"],
   "sources_youtubeId": "pB3Hh1pwMaI",
   "sources_ipfsHash": "Qmbpgu27L1wDi9DVFNPsNE4CfbWNNvi26n4hinpye7B49v",
   "sources_swarmHash": "04aace7de6f07ba16515079db35bdc8fc0952670749e6ecd880780af1ac51837",

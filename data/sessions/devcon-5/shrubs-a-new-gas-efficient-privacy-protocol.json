@@ -7,10 +7,7 @@
   "track": "Privacy",
   "type": "Breakout",
   "expertise": "advanced",
-  "tags": [
-    "Privacy",
-    "technical"
-  ],
+  "tags": ["Privacy", "technical"],
   "speakers": [
     "alex-gluchowski",
     "kobi-gurkan",

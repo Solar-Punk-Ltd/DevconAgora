@@ -13,9 +13,7 @@
     "Validation",
     "Independence"
   ],
-  "speakers": [
-    "maggie-love"
-  ],
+  "speakers": ["maggie-love"],
   "resources_slides": "/resources/6/launch-your-own-validator-node.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665745200000,

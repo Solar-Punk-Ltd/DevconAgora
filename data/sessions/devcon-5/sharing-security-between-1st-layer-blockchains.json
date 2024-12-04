@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "Advanced",
-  "tags": [
-    "Security",
-    "Academic"
-  ],
-  "speakers": [
-    "sora-suegami"
-  ],
+  "tags": ["Security", "Academic"],
+  "speakers": ["sora-suegami"],
   "sources_youtubeId": "1RUltXnmHVY",
   "sources_ipfsHash": "QmYHrTw1rJGFP42dvLYaZmxXdhaLark2ssJxnjhv9Bfmtb",
   "sources_swarmHash": "e4bc570170be0726e9451013d634abe7169f87cc2f57353a7439927337a77e3f",

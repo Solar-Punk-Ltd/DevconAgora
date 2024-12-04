@@ -13,10 +13,7 @@
     "Real-world",
     "Business model"
   ],
-  "speakers": [
-    "evelyn-casanova",
-    "shane-oconnor"
-  ],
+  "speakers": ["evelyn-casanova", "shane-oconnor"],
   "resources_slides": "/resources/6/the-role-unicef-plays-in-encouraging-the-impact-trinity-real-world-use-cases-open-source-software-and-for-profit-business-models.pdf",
   "slot_start": 1665583200000,
   "slot_end": 1665586200000,

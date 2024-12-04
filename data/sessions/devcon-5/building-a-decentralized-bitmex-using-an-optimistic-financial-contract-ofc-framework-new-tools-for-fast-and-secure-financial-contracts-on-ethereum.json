@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "hart-lambur",
-    "allison-lu"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["hart-lambur", "allison-lu"],
   "sources_youtubeId": "4Uwznzfne1w",
   "sources_ipfsHash": "QmNSyCjqV1VVzasJN1osy5e9ghbspoFhzXD72r8xgbc6tf",
   "sources_swarmHash": "c2cd978ed5f4272d7da54dcfe04ca1544a4b6408e78a9d717ceb8499d66dadef",

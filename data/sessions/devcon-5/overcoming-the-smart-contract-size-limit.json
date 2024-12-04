@@ -7,13 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "technical"
-  ],
-  "speakers": [
-    "mudit-gupta"
-  ],
+  "tags": ["Layer 1 Protocol", "technical"],
+  "speakers": ["mudit-gupta"],
   "sources_youtubeId": "5W33u2OS92Q",
   "sources_ipfsHash": "QmRaV5wJ9UoTFLHZqaxjizepwkqEtyodAargqDjDzmQQg2",
   "sources_swarmHash": "8321c3b3a33c4742d1d4ae8ec74b6c5c811b55995a101baedff3ad36f3475e91",

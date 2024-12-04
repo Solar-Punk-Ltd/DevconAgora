@@ -7,13 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Taxation"
-  ],
-  "speakers": [
-    "luis-carlos"
-  ],
+  "tags": ["Opportunity & Global Impact", "Taxation"],
+  "speakers": ["luis-carlos"],
   "slot_start": 1665759600000,
   "slot_end": 1665761100000,
   "slot_roomId": "talk-2",

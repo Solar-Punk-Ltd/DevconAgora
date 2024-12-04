@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Layer 2s",
-    "rollups",
-    "bridges",
-    "layer-2"
-  ],
-  "speakers": [
-    "patrick-mccorry"
-  ],
+  "tags": ["Layer 2s", "rollups", "bridges", "layer-2"],
+  "speakers": ["patrick-mccorry"],
   "resources_slides": "/resources/6/a-better-mental-model-for-rollups-plasma-and-validating-bridges.pdf",
   "slot_start": 1665493200000,
   "slot_end": 1665495000000,

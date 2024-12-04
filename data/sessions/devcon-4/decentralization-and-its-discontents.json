@@ -7,17 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination",
-    "web",
-    "censorship",
-    "POW",
-    "DPOS",
-    ""
-  ],
-  "speakers": [
-    "sarah-friend"
-  ],
+  "tags": ["Governance & Coordination", "web", "censorship", "POW", "DPOS", ""],
+  "speakers": ["sarah-friend"],
   "sources_youtubeId": "9mRhvltGs8A",
   "sources_ipfsHash": "QmbLu9B7MuCzUQyYSoMuVgC11BvwFAqP5BPLLxgLh6a9jh",
   "sources_swarmHash": "efd262a4fcd344ea84a537187ec5171829a04ee777e3df16d28a95b344a850af",

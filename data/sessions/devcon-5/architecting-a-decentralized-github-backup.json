@@ -7,13 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
-  "speakers": [
-    "shawn-wilkinson"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
+  "speakers": ["shawn-wilkinson"],
   "sources_youtubeId": "Id0bEdsPkEA",
   "sources_ipfsHash": "QmQwKtuh9JySbVZhteyUWRdgC6eFS1XJc5C5Yd6zLHsqtw",
   "sources_swarmHash": "d2bac8e5aac0cd00d3af1c1ae8281b90de899875934e2631febf506576a879d2",

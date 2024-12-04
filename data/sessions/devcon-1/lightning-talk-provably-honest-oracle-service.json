@@ -7,12 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure"
-  ],
-  "speakers": [
-    "thomas-bertani"
-  ],
+  "tags": ["Developer Infrastructure"],
+  "speakers": ["thomas-bertani"],
   "sources_youtubeId": "PDQuXwspMa0",
   "sources_ipfsHash": "QmYB7XS4qCKCMCP7XzTpGFp7VXtoeRjmf1iv2bTubNoWXX",
   "sources_swarmHash": "c44bb91bbeb73bbcd68cd1f715bc20fe5996fedef0e3787c03cc17f41664be5d",

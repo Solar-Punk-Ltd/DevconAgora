@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "advanced",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "shane-fontaine"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["shane-fontaine"],
   "sources_youtubeId": "yAm8rDPcdrA",
   "sources_ipfsHash": "QmbqRFZsSekjKGTYHX256vNCzZsxFKn422etmpAJhZSdd6",
   "sources_swarmHash": "fd3c096888737a12f24c8069674ae12cbdf3e00ff4e0042325179ace90ead1d4",

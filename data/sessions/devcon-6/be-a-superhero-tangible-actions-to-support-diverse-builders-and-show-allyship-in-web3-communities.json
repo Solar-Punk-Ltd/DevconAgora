@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Developers",
-    "DEI",
-    "community"
-  ],
-  "speakers": [
-    "gloria-kimbwala"
-  ],
+  "tags": ["Opportunity & Global Impact", "Developers", "DEI", "community"],
+  "speakers": ["gloria-kimbwala"],
   "resources_slides": "/resources/6/be-a-superhero-tangible-actions-to-support-diverse-builders-and-show-allyship-in-web3-communities.pdf",
   "slot_start": 1665586800000,
   "slot_end": 1665590400000,

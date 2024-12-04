@@ -7,12 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Cryptoeconomics"
-  ],
-  "speakers": [
-    "collin-myers"
-  ],
+  "tags": ["Cryptoeconomics"],
+  "speakers": ["collin-myers"],
   "sources_youtubeId": "9LlNUC68e8I",
   "sources_ipfsHash": "QmdqTwJyts8seVSgUPcCYETGLZLYyyzP6gDMyB4o9c9w1N",
   "sources_swarmHash": "35439860af754036d21e609969662abefafbaaf4a3dec0885b75f325f1af5569",

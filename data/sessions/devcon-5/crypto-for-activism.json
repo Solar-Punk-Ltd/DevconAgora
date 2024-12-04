@@ -19,10 +19,7 @@
     "adversarial",
     "general"
   ],
-  "speakers": [
-    "micah-white",
-    "amir-taaki"
-  ],
+  "speakers": ["micah-white", "amir-taaki"],
   "sources_youtubeId": "78XNSvXlk8U",
   "sources_ipfsHash": "QmUpTLV1RXyx5mxbeyjKAT6iaQhZY5ntmN3XFMvqUjwiZN",
   "sources_swarmHash": "cf6433e160d0c33a7fa6619da31d3434dbcab2709f269b58184a9af9bbce19fe",

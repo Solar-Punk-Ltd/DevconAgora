@@ -7,13 +7,8 @@
   "track": "Security",
   "type": "Breakout",
   "expertise": "intermediate",
-  "tags": [
-    "Security",
-    "technical"
-  ],
-  "speakers": [
-    "fabian-vogelsteller"
-  ],
+  "tags": ["Security", "technical"],
+  "speakers": ["fabian-vogelsteller"],
   "sources_youtubeId": "vQTOjXJK8LE",
   "sources_ipfsHash": "QmVNeyjgWaVPKtR1Qtya9K117i4i9MFqXBBNivvpWwge6Q",
   "sources_swarmHash": "e0f8ba0a03c1aa50ce92ce6acb23adf2feca5f4633a4427ef55fa90acc81db53",

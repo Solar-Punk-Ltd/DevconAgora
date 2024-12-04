@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "UX",
-    "DevEx"
-  ],
-  "speakers": [
-    "brooklyn-zelenka"
-  ],
+  "tags": ["Developer Infrastructure", "UX", "DevEx"],
+  "speakers": ["brooklyn-zelenka"],
   "sources_youtubeId": "N_QdraCtsMc",
   "sources_ipfsHash": "QmZZUhE9CNqq7FyhbrMYTXuxDCY7pfsKvufHoLbzwhsYNP",
   "sources_swarmHash": "8e79d22880d9acd163fba59ba3f67c5ca2ed18d247cf73fbeff53c9053a0dd2f",

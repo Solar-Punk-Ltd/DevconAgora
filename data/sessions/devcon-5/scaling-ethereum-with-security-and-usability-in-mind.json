@@ -7,12 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Security"
-  ],
-  "speakers": [
-    "jayntibhai-kanani"
-  ],
+  "tags": ["Security"],
+  "speakers": ["jayntibhai-kanani"],
   "sources_youtubeId": "9JVuHtJ7Dow",
   "sources_ipfsHash": "QmQdULWL2ZTGMQHG35shTLgWNsLPFtr5g6wgtm3fySiRFL",
   "sources_swarmHash": "ee1637217891e8dfb62d8870cf881dc6f0b4b3b956f4a5a3ecafb4ca6a724be4",

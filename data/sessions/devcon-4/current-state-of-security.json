@@ -7,11 +7,7 @@
   "track": "Security",
   "type": "Panel",
   "expertise": "Expert",
-  "tags": [
-    "Security",
-    "panel",
-    "updates"
-  ],
+  "tags": ["Security", "panel", "updates"],
   "speakers": [
     "matthew-di-ferrante",
     "martin-swende",

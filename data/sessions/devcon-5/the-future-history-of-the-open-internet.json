@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Governance & Coordination",
-    "open internet",
-    "future",
-    "general"
-  ],
-  "speakers": [
-    "kevin-owocki"
-  ],
+  "tags": ["Governance & Coordination", "open internet", "future", "general"],
+  "speakers": ["kevin-owocki"],
   "sources_youtubeId": "RZ3PjPkKQko",
   "sources_ipfsHash": "QmUJi2oL2uqqwpt5BMLwrSJFhiGqXWgEso2yKBW1v4TQs6",
   "sources_swarmHash": "90171d316cc4a2a176bbcf32757e80d4dbfbaffd93107686130f10775b278bc5",

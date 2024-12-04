@@ -7,14 +7,8 @@
   "track": "Security",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Security",
-    "multisig",
-    "verification"
-  ],
-  "speakers": [
-    "santiago-palladino"
-  ],
+  "tags": ["Security", "multisig", "verification"],
+  "speakers": ["santiago-palladino"],
   "resources_slides": "/resources/6/being-a-responsible-multisig-signer-verify-dont-trust.pdf",
   "slot_start": 1665680400000,
   "slot_end": 1665681000000,

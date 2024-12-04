@@ -7,16 +7,8 @@
   "track": "Security",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Security",
-    "Layer 2",
-    "sidechains",
-    "L2",
-    "general"
-  ],
-  "speakers": [
-    "georgios-konstantopoulos"
-  ],
+  "tags": ["Security", "Layer 2", "sidechains", "L2", "general"],
+  "speakers": ["georgios-konstantopoulos"],
   "sources_youtubeId": "oJUVOtESviw",
   "sources_ipfsHash": "QmWhjJzBYhCJAyGsyrCVQr6QEszf5Pcxsg9gYDJZ3qWguX",
   "sources_swarmHash": "51ada1c187476d6ce358a245dbe4b0e27381692367b90a87ad8662cacefa67f5",

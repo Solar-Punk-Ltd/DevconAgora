@@ -7,14 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "Subgraphs",
-    "on chain data"
-  ],
-  "speakers": [
-    "vincent-wen"
-  ],
+  "tags": ["Developer Infrastructure", "Subgraphs", "on chain data"],
+  "speakers": ["vincent-wen"],
   "resources_slides": "/resources/6/the-road-to-standardized-subgraphs.pdf",
   "slot_start": 1665748200000,
   "slot_end": 1665748620000,

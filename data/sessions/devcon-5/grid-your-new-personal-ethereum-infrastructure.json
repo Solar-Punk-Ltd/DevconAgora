@@ -7,10 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "technical"
-  ],
+  "tags": ["Developer Infrastructure", "technical"],
   "speakers": [
     "everton-fraga",
     "marc-garreau",

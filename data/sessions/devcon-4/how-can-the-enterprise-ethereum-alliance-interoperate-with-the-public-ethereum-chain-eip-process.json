@@ -7,13 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Panel",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "EEA",
-    "EIP",
-    "improvement",
-    "proposal"
-  ],
+  "tags": ["Developer Infrastructure", "EEA", "EIP", "improvement", "proposal"],
   "speakers": [
     "boris-mann",
     "nick-johnson",

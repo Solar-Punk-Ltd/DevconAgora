@@ -7,15 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "UBI",
-    "Identity",
-    "DeSoc"
-  ],
-  "speakers": [
-    "santiago-siri"
-  ],
+  "tags": ["Opportunity & Global Impact", "UBI", "Identity", "DeSoc"],
+  "speakers": ["santiago-siri"],
   "resources_slides": "/resources/6/universal-basic-income-for-humanity.pdf",
   "slot_start": 1665657000000,
   "slot_end": 1665658800000,

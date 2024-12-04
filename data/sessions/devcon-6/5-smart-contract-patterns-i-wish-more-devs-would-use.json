@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "",
-  "tags": [
-    "Developer Infrastructure",
-    "Solidity",
-    "ERC",
-    "tricks"
-  ],
-  "speakers": [
-    "hadrien-croubois"
-  ],
+  "tags": ["Developer Infrastructure", "Solidity", "ERC", "tricks"],
+  "speakers": ["hadrien-croubois"],
   "resources_slides": "/resources/6/5-smart-contract-patterns-i-wish-more-devs-would-use.pdf",
   "slot_start": 1665574800000,
   "slot_end": 1665575400000,

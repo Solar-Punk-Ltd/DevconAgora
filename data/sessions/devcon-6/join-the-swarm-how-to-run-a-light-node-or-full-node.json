@@ -7,15 +7,8 @@
   "track": "Layer 2s",
   "type": "Workshop",
   "expertise": "",
-  "tags": [
-    "Layer 2s",
-    "decentralized",
-    "censorship-resistant",
-    "storage"
-  ],
-  "speakers": [
-    "attila-gazso"
-  ],
+  "tags": ["Layer 2s", "decentralized", "censorship-resistant", "storage"],
+  "speakers": ["attila-gazso"],
   "slot_start": 1665586800000,
   "slot_end": 1665589800000,
   "slot_roomId": "workshop-4",

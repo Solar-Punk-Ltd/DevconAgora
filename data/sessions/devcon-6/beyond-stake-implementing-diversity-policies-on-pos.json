@@ -12,9 +12,7 @@
     "Staking policies",
     "consensus layer generalisation"
   ],
-  "speakers": [
-    "klaus-kursawe"
-  ],
+  "speakers": ["klaus-kursawe"],
   "resources_slides": "/resources/6/beyond-stake-implementing-diversity-policies-on-pos.pdf",
   "slot_start": 1665495000000,
   "slot_end": 1665496800000,

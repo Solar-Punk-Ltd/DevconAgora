@@ -7,10 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure",
-    "geth"
-  ],
+  "tags": ["Developer Infrastructure", "geth"],
   "speakers": [
     "marius-van-der-wijden",
     "lightclient",

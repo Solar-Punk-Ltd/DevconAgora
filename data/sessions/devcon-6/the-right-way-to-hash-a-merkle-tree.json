@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Talk",
   "expertise": "Advanced",
-  "tags": [
-    "Developer Infrastructure",
-    "Assembly",
-    "sha256",
-    "vectorization"
-  ],
-  "speakers": [
-    "potuz"
-  ],
+  "tags": ["Developer Infrastructure", "Assembly", "sha256", "vectorization"],
+  "speakers": ["potuz"],
   "resources_slides": "/resources/6/the-right-way-to-hash-a-merkle-tree.pdf",
   "slot_start": 1665505800000,
   "slot_end": 1665507600000,

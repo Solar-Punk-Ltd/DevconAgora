@@ -7,13 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Cryptoeconomics",
-    "stablecoin"
-  ],
-  "speakers": [
-    "steven-valeri"
-  ],
+  "tags": ["Cryptoeconomics", "stablecoin"],
+  "speakers": ["steven-valeri"],
   "resources_slides": "/resources/6/gho.pdf",
   "slot_start": 1665658800000,
   "slot_end": 1665660300000,

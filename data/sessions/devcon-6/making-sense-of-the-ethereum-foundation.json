@@ -7,14 +7,8 @@
   "track": "Opportunity & Global Impact",
   "type": "Talk",
   "expertise": "Beginner",
-  "tags": [
-    "Opportunity & Global Impact",
-    "Ethereum Foundation",
-    "what it do"
-  ],
-  "speakers": [
-    "josh-stark"
-  ],
+  "tags": ["Opportunity & Global Impact", "Ethereum Foundation", "what it do"],
+  "speakers": ["josh-stark"],
   "resources_slides": "/resources/6/slides/making-sense-of-the-ethereum-foundation.pdf",
   "slot_start": 1665493200000,
   "slot_end": 1665494700000,

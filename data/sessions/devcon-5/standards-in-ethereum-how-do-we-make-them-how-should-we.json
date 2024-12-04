@@ -7,9 +7,7 @@
   "track": "Developer Infrastructure",
   "type": "Breakout",
   "expertise": "Beginner",
-  "tags": [
-    "Developer Infrastructure"
-  ],
+  "tags": ["Developer Infrastructure"],
   "speakers": [
     "daniel-burnett",
     "jory-burson",

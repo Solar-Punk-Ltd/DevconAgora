@@ -7,15 +7,8 @@
   "track": "Layer 1 Protocol",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Layer 1 Protocol",
-    "verkle",
-    "stateless",
-    "state"
-  ],
-  "speakers": [
-    "guillaume-ballet"
-  ],
+  "tags": ["Layer 1 Protocol", "verkle", "stateless", "state"],
+  "speakers": ["guillaume-ballet"],
   "resources_slides": "/resources/6/stateless-ethereum-how-verkle-trees-make-ethereum-lean-and-mean.pdf",
   "slot_start": 1665572400000,
   "slot_end": 1665574200000,

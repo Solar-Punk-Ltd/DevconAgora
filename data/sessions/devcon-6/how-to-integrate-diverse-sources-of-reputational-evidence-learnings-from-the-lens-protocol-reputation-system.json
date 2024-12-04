@@ -7,15 +7,8 @@
   "track": "Developer Infrastructure",
   "type": "Lightning Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Developer Infrastructure",
-    "machine learning",
-    "data",
-    "lens"
-  ],
-  "speakers": [
-    "pedro-alcocer"
-  ],
+  "tags": ["Developer Infrastructure", "machine learning", "data", "lens"],
+  "speakers": ["pedro-alcocer"],
   "resources_slides": "/resources/6/how-to-integrate-diverse-sources-of-reputational-evidence-learnings-from-the-lens-protocol-reputation-system.pdf",
   "slot_start": 1665663600000,
   "slot_end": 1665664020000,

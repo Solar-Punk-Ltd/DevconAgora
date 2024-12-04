@@ -18,9 +18,7 @@
     "culture",
     "whisper"
   ],
-  "speakers": [
-    "jarrad-hope"
-  ],
+  "speakers": ["jarrad-hope"],
   "sources_youtubeId": "cSiuddKWoCQ",
   "sources_ipfsHash": "QmaCzvz6dQfZkPn1pBagXYLsWCoKm2huShJy61UFc69nqG",
   "sources_swarmHash": "d8408f07460c0d35bfd699e3cd56843e7a2b5ead801b6082441de2dffb56a895",

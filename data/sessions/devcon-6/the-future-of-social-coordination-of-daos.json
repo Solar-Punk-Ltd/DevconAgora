@@ -13,9 +13,7 @@
     "community growth",
     "smart rewards"
   ],
-  "speakers": [
-    "chandler-de-kock"
-  ],
+  "speakers": ["chandler-de-kock"],
   "resources_slides": "/resources/6/the-future-of-social-coordination-of-daos.pdf",
   "slot_start": 1665745200000,
   "slot_end": 1665747000000,

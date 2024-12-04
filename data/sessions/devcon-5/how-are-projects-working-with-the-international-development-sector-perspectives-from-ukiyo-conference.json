@@ -7,15 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Governance & Coordination"
-  ],
-  "speakers": [
-    "kelsie-naben",
-    "anna-george",
-    "mayato-hattori",
-    "asuka-uesaka"
-  ],
+  "tags": ["Governance & Coordination"],
+  "speakers": ["kelsie-naben", "anna-george", "mayato-hattori", "asuka-uesaka"],
   "sources_youtubeId": "OprTtIUR3JA",
   "sources_ipfsHash": "QmSUEQJGCXiHpMY5wwaKe4CcUiwLrH2maw6YW85AZt6LBc",
   "sources_swarmHash": "974d3004e300ede9033f3f774494e1f66cc042b3d27ebce0d47998b9815b4cfc",

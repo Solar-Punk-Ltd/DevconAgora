@@ -7,15 +7,8 @@
   "track": "UX & Design",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "UX & Design",
-    "blockchain",
-    "tokens",
-    "web3"
-  ],
-  "speakers": [
-    "weiwu-zhang"
-  ],
+  "tags": ["UX & Design", "blockchain", "tokens", "web3"],
+  "speakers": ["weiwu-zhang"],
   "resources_slides": "/resources/6/tokenizing-brands-3-key-learnings.pdf",
   "slot_start": 1665655200000,
   "slot_end": 1665657000000,

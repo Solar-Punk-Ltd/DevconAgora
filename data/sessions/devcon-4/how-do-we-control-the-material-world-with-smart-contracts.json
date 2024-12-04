@@ -7,16 +7,8 @@
   "track": "Governance & Coordination",
   "type": "Talk",
   "expertise": "Expert",
-  "tags": [
-    "Governance & Coordination",
-    "community",
-    "assets",
-    "fiat",
-    "legal"
-  ],
-  "speakers": [
-    "vinay-gupta"
-  ],
+  "tags": ["Governance & Coordination", "community", "assets", "fiat", "legal"],
+  "speakers": ["vinay-gupta"],
   "sources_youtubeId": "uoFRfA0TKSg",
   "sources_ipfsHash": "Qmd5S8CRJHjCKL2gURzQzNm3jFDvEJkrVtG9mxDM6jgBJo",
   "sources_swarmHash": "e26f4801f7a9faab4d055dbcbdf126134b6cdc1400ec093889f7f3691193c389",

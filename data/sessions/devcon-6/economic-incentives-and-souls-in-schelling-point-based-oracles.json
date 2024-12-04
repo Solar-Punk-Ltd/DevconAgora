@@ -7,15 +7,8 @@
   "track": "Cryptoeconomics",
   "type": "Talk",
   "expertise": "Intermediate",
-  "tags": [
-    "Cryptoeconomics",
-    "oracles",
-    "soulbound",
-    "incentives"
-  ],
-  "speakers": [
-    "william-george"
-  ],
+  "tags": ["Cryptoeconomics", "oracles", "soulbound", "incentives"],
+  "speakers": ["william-george"],
   "resources_slides": "/resources/6/economic-incentives-and-souls-in-schelling-point-based-oracles.pdf",
   "slot_start": 1665741600000,
   "slot_end": 1665743100000,
