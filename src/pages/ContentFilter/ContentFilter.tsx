@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import HomeBackground from "../../assets/welcome-glass-effect.png";
-import ContentFilter from "../../components/ContentFilter/ContentFilter";
+import ContentFilterBox from "../../components/ContentFilterBox/ContentFilterBox";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
 
 import "./ContentFilter.scss";
 
-const ContentFilterPage: React.FC = () => {
+const ContentFilter: React.FC = () => {
   return (
     <>
       <div className="content-filter-page">
@@ -23,7 +23,7 @@ const ContentFilterPage: React.FC = () => {
           <div className="content-filter-page__header">
             User Side Content Visibility&nbsp;Sanitizer
           </div>
-          <ContentFilter />
+          <ContentFilterBox />
         </div>
         <Link to={ROUTES.PROFILE}>
           <div className="content-filter-page__bottom">
@@ -35,4 +35,4 @@ const ContentFilterPage: React.FC = () => {
   );
 };
 
-export default ContentFilterPage;
+export default ContentFilter;

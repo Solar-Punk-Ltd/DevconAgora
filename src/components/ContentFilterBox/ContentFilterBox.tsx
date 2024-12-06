@@ -4,9 +4,9 @@ import { useGlobalState } from "../../contexts/global";
 import { CONTENT_FILTER_TEXT } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
 
-import "./ContentFilter.scss";
+import "./ContentFilterBox.scss";
 
-const ContentFilter: React.FC = () => {
+const ContentFilterBox: React.FC = () => {
   const { isContentFilterEnabled, setIsContentFilterEnabled } =
     useGlobalState();
 
@@ -30,4 +30,4 @@ const ContentFilter: React.FC = () => {
   );
 };
 
-export default ContentFilter;
+export default ContentFilterBox;
