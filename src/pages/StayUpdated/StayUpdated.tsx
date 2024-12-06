@@ -5,7 +5,7 @@ import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
 
-import "./StayUpdatedPage.scss";
+import "./StayUpdated.scss";
 
 declare global {
   interface Window {
@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-const StayUpdatedPage: React.FC = () => {
+const StayUpdated: React.FC = () => {
   const [emailText, setEmailText] = React.useState<string>("");
   const [emailError, setEmailError] = React.useState<boolean>(false);
   const [firstNameText, setFirstNameText] = React.useState<string>("");
@@ -247,4 +247,4 @@ const StayUpdatedPage: React.FC = () => {
   );
 };
 
-export default StayUpdatedPage;
+export default StayUpdated;

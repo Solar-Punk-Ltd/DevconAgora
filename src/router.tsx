@@ -9,7 +9,7 @@ import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { useGlobalState } from "./contexts/global";
 import Agenda from "./pages/Agenda/Agenda";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
-import ContentFilterPage from "./pages/ContentFilter/ContentFilterPage";
+import ContentFilter from "./pages/ContentFilter/ContentFilter";
 import FullNotePage from "./pages/FullNote/FullNote";
 import HomePage from "./pages/Home/Home";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
@@ -18,7 +18,7 @@ import NotesPage from "./pages/Notes/Notes";
 import Profile from "./pages/Profile/Profile";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import SpacesPage from "./pages/Spaces/Spaces";
-import StayUpdatedPage from "./pages/StayUpdated/StayUpdatedPage";
+import StayUpdated from "./pages/StayUpdated/StayUpdated";
 import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
 import TalkPage from "./pages/Talk/Talk";
 import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndConditions";
@@ -497,11 +497,11 @@ const MainRouter = (): ReactElement => {
           path={`${ROUTES.TALKS}/:talkId`}
           element={<TalkPage toText={prevLocation} />}
         />
-        <Route path={ROUTES.CONTENTFILTER} element={<ContentFilterPage />} />
+        <Route path={ROUTES.CONTENTFILTER} element={<ContentFilter />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
-        <Route path={ROUTES.STAYUPDATED} element={<StayUpdatedPage />} />
+        <Route path={ROUTES.STAYUPDATED} element={<StayUpdated />} />
         <Route
           path={ROUTES.TERMSANDCONDITIONS}
           element={<TermsAndConditionsPage />}
