@@ -15,7 +15,7 @@ const HomeIcon: React.FC<HomeIconProps> = ({ color }) => {
     >
       <path
         d="M7.41 1.41L6 0L0 6L6 12L7.41 10.59L2.83 6L7.41 1.41Z"
-        fill={color ? color : "#FF8A50"}
+        fill={color ? color : "var(--swarm-color)"}
       />
     </svg>
   );

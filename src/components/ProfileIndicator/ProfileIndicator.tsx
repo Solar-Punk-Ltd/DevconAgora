@@ -1,7 +1,10 @@
 import React from "react";
-import "./ProfileIndicator.scss";
+
 import miniProfileIcon from "../../assets/mini-profile-icon.png";
+
 import ProfileAlert from "./ProfileAlert/ProfileAlert";
+
+import "./ProfileIndicator.scss";
 
 interface ProfileIndicatorProps {
   alertValue: number;

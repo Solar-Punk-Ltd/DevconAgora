@@ -1,10 +1,11 @@
 import React from "react";
-import "./HowDoesItWork.scss";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+
 import CollectPointsImg from "../../assets/collect-points.png";
 import ProfileGetBZZImg from "../../assets/profile-get-BZZ.png";
-// import { ROUTES } from "../../utils/constants";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+
+import "./HowDoesItWork.scss";
 
 interface HowDoesItWorkProps {
   toText?: string;

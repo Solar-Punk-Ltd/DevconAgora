@@ -1,19 +1,21 @@
 import React from "react";
-import "./TermsAndConditions.scss";
+
+import { useGlobalState } from "../../contexts/global";
 import {
+  ACCEPTANCE_OF_TERMS_HEADER,
+  ACCEPTANCE_OF_TERMS_TEXT,
+  CONTENT_FILTER_HEADER,
+  CONTENT_FILTER_TEXT,
+  DATA_STORAGE_HEADER,
+  DATA_STORAGE_TEXT,
   DISCLAIMER_OF_LIABILITY_HEADER,
   DISCLAIMER_OF_LIABILITY_TEXT,
   PERSONAL_DATA_HEADER,
   PERSONAL_DATA_TEXT,
-  DATA_STORAGE_HEADER,
-  DATA_STORAGE_TEXT,
-  CONTENT_FILTER_HEADER,
-  CONTENT_FILTER_TEXT,
-  ACCEPTANCE_OF_TERMS_HEADER,
-  ACCEPTANCE_OF_TERMS_TEXT,
 } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
-import { useGlobalState } from "../../GlobalStateContext";
+
+import "./TermsAndConditions.scss";
 
 interface TermsAndConditionsProps {
   contentFilterCheckBox?: boolean;

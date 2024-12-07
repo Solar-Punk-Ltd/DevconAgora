@@ -1,6 +1,7 @@
 import React from "react";
-import "./TabPanelItem.scss";
 import clsx from "clsx";
+
+import "./TabPanelItem.scss";
 
 interface TabPanelItemProps {
   label: string;

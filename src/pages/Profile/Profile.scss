@@ -28,10 +28,10 @@
 }
 
 .profile-creation__username {
-  font-family: "Inter";
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: #666666;
+  color: var(--text-tertiary);
   text-align: center;
 }
 
@@ -49,31 +49,31 @@
   font-size: 24px;
   font-weight: 600;
   z-index: 1;
-  font-family: "Inter";
+  font-family: var(--font-family-base);
   color: #000000;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--lighter-color);
   box-sizing: border-box;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .profile__username {
-  font-family: "Inter";
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
   color: #000000;
   text-align: center;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
   width: 267px;
   height: 40px;
   padding: 8px 10px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .profile__username::selection {
-  color: white;
-  background: #8c72ae;
+  color: #ffffff;
+  background: var(--default-purple);
 }
 
 .profile__content__background {

@@ -1,8 +1,9 @@
-import { Bee, Signer, Reference } from "@ethersphere/bee-js";
+import { Bee, Reference, Signer } from "@ethersphere/bee-js";
+
 import {
-  FEEDTYPE_SEQUENCE,
   ADDRESS_HEX_LENGTH,
   DEFAULT_URL,
+  FEEDTYPE_SEQUENCE,
 } from "../utils/constants";
 
 export async function getFeedUpdate(

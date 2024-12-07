@@ -1,6 +1,7 @@
 import React from "react";
-import "./WelcomeButton.scss";
 import clsx from "clsx";
+
+import "./WelcomeButton.scss";
 
 interface WelcomeButtonProps {
   children: string;

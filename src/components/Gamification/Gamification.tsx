@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import "./Gamification.scss";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
 import GamificationBackgroundFive from "../../assets/gamification-five-points.png";
 import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
-import CloseIcon from "../icons/CloseIcon/CloseIcon";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
-import { Link } from "react-router-dom";
-import clsx from "clsx";
 import ClaimRewardExplanation from "../ClaimRewardExplanation/ClaimRewardExplanation";
+import CloseIcon from "../icons/CloseIcon/CloseIcon";
+
+import "./Gamification.scss";
 
 interface GamificationProps {
   points: number;

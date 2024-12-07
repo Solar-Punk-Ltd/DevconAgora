@@ -1,23 +1,23 @@
 import React from "react";
-import { MessageWithThread, ThreadId } from "../../types/message";
-import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
 import { BatchId } from "@ethersphere/bee-js";
+import { EthAddress, SwarmChat } from "@solarpunkltd/swarm-decentralized-chat";
+
+import { MessageWithThread, ThreadId } from "../../types/message";
 import Messages from "../Messages/Messages";
 
 interface FilteredMessagesProps {
-    messages: MessageWithThread[];
-    nickname: string;
-    ownAddress: EthAddress;
-    chat: SwarmChat | null;
-    topic: string;
-    stamp: BatchId;
-    privKey: string;
-    currentThread: ThreadId | null;
-    filteringEnabled: boolean;
-    setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
-    filterFunction: (message: MessageWithThread) => boolean;
+  messages: MessageWithThread[];
+  nickname: string;
+  ownAddress: EthAddress;
+  chat: SwarmChat | null;
+  topic: string;
+  stamp: BatchId;
+  privKey: string;
+  currentThread: ThreadId | null;
+  filteringEnabled: boolean;
+  setThreadId: React.Dispatch<React.SetStateAction<string | null>>;
+  filterFunction: (message: MessageWithThread) => boolean;
 }
-
 
 const FilteredMessages: React.FC<FilteredMessagesProps> = ({
   messages,
@@ -30,12 +30,11 @@ const FilteredMessages: React.FC<FilteredMessagesProps> = ({
   currentThread,
   filteringEnabled,
   setThreadId,
-  filterFunction
+  filterFunction,
 }) => {
   const filteredMessages = messages.filter((msg) => filterFunction(msg));
 
   if (!chat) return <></>;
-
 
   return (
     <Messages
@@ -49,8 +48,8 @@ const FilteredMessages: React.FC<FilteredMessagesProps> = ({
       currentThread={currentThread}
       setThreadId={setThreadId}
       key={`${currentThread}-${filteredMessages.length}`}
-  />
-  )
-}
+    />
+  );
+};
 
 export default FilteredMessages;

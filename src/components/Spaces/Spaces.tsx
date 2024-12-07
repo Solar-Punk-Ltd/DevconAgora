@@ -1,9 +1,12 @@
 import React from "react";
-import "./Spaces.scss";
-import SpacesItem from "./SpacesItem/SpacesItem";
-import { Room } from "../../types/room";
 import { useNavigate } from "react-router-dom";
+
+import { Room } from "../../types/room";
 import { ROUTES } from "../../utils/constants";
+
+import SpacesItem from "./SpacesItem/SpacesItem";
+
+import "./Spaces.scss";
 
 interface SpacesProps {
   list: Room[];

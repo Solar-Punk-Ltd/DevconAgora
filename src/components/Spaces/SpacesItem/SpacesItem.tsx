@@ -1,8 +1,10 @@
 import React from "react";
-import "./SpacesItem.scss";
+
+import { CATEGORY_IMAGES_MAP } from "../../../utils/constants";
 import ActiveVisitors from "../../ActiveVisitors/ActiveVisitors";
 import RightArrowIcon from "../../icons/RightArrowIcon/RightArrowIcon";
-import { CATEGORY_IMAGES_MAP } from "../../../utils/constants";
+
+import "./SpacesItem.scss";
 
 interface RecentRoomsItemProps {
   title: string;
@@ -23,7 +25,9 @@ const SpacesItem: React.FC<RecentRoomsItemProps> = ({
         <div className="recent-rooms__item__title">{title}</div>
       </div>
       <div className="recent-rooms-item__right">
-      {numberOfActiveUsers > 0 ? <ActiveVisitors number={numberOfActiveUsers} withIcon={true}/> : <></>  }
+        {numberOfActiveUsers > 0 ? (
+          <ActiveVisitors number={numberOfActiveUsers} withIcon={true} />
+        ) : null}
         <RightArrowIcon />
       </div>
     </div>

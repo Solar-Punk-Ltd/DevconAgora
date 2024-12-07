@@ -1,17 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import { ethers } from "ethers";
+
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
-import "./ProfileCreation.scss";
-import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import EditIcon from "../../components/icons/EditIcon/EditIcon";
-import clsx from "clsx";
-import { useGlobalState } from "../../GlobalStateContext";
-import { ROUTES } from "../../utils/constants";
-import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
+import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
+import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import { useGlobalState } from "../../contexts/global";
+import { ROUTES } from "../../utils/constants";
+import {
+  createMonogram,
+  getPrivateKey,
+  handleKeyDown,
+} from "../../utils/helpers";
+
+import "./ProfileCreation.scss";
 
 const ProfileCreation: React.FC = () => {
   const { username, setUsername, monogram, setMonogram } = useGlobalState();
@@ -65,7 +71,7 @@ const ProfileCreation: React.FC = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({username, key: getPrivateKey()}),
+        body: JSON.stringify({ username, key: getPrivateKey() }),
       });
     } catch (error) {
       setUserNameSetError(true);
@@ -111,7 +117,6 @@ const ProfileCreation: React.FC = () => {
   };
 
   const validateInput = (name: string) => {
-    // const regex = /^[a-zA-Z0-9 ]*$/;
     const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])?[a-zA-Z0-9 ]*$/;
     return regex.test(name);
   };
@@ -122,9 +127,7 @@ const ProfileCreation: React.FC = () => {
         <div className="profile-creation__top">
           <div className="welcome-page__header">
             Create <br />
-            <span style={{ color: "var(--purple-to-text-color)" }}>
-              Your profile
-            </span>
+            <span style={{ color: "var(--default-purple)" }}>Your profile</span>
           </div>
           <div className="profile-creation__background-effect">
             <img

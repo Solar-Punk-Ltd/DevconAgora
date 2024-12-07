@@ -1,6 +1,7 @@
 import React from "react";
-import "./DefaultButton.scss";
 import clsx from "clsx";
+
+import "./DefaultButton.scss";
 
 interface DefaultButtonProps {
   children: string;

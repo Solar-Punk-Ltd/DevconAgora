@@ -1,23 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Chat.scss";
+import { useLocation } from "react-router-dom";
+import { BatchId } from "@ethersphere/bee-js";
 import {
   EthAddress,
   EVENTS,
   MessageData,
   SwarmChat,
 } from "@solarpunkltd/swarm-decentralized-chat";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import ChatInput from "../../components/ChatInput/ChatInput";
-import { Wallet } from "ethers";
-import { BatchId } from "@ethersphere/bee-js";
-import { LikeMessage, MessageWithThread, ThreadId } from "../../types/message";
-import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
-import ChatHeader from "../../components/ChatHeader/ChatHeader";
-import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
-import { useLocation } from "react-router-dom";
-import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
-import { useGlobalState } from "../../GlobalStateContext";
 import { MINUTE } from "@solarpunkltd/swarm-decentralized-chat/constants.js";
+import { Wallet } from "ethers";
+
+import ChatHeader from "../../components/ChatHeader/ChatHeader";
+import ChatInput from "../../components/ChatInput/ChatInput";
+import InputLoading from "../../components/ChatInput/InputLoading/InputLoading";
+import FilteredMessages from "../../components/FilteredMessages/FilteredMessages";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
+import { useGlobalState } from "../../contexts/global";
+import { LikeMessage, MessageWithThread, ThreadId } from "../../types/message";
+
+import "./Chat.scss";
 
 interface ChatProps {
   title: string | undefined;
@@ -197,7 +199,9 @@ const Chat: React.FC<ChatProps> = ({
             (msg) => msg.threadId === msgObj.parent
           );
           if (parentIndex === -1) {
-            console.warn("This thread does not exist (will not increase replyCount)");
+            console.warn(
+              "This thread does not exist (will not increase replyCount)"
+            );
           } else {
             threadCapableMessages[parentIndex].replyCount++;
           }
@@ -250,7 +254,7 @@ const Chat: React.FC<ChatProps> = ({
     <div className="chat-page">
       <div className="chat-page__header">
         <NavigationHeader
-          backgroundColor="#F1F2F4"
+          backgroundColor="var(--chat-and-talk-background-color)"
           to={location.pathname}
           saveQuestionBeforeLeave={true}
           handlerInCaseOfSave={

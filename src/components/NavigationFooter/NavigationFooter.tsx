@@ -1,18 +1,20 @@
 import React from "react";
-import "./NavigationFooter.scss";
 import { Link, useLocation } from "react-router-dom";
-import HomeIcon from "../icons/HomeIcon/HomeIcon";
-import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
-import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
-import { ROUTES } from "../../utils/constants";
 import clsx from "clsx";
+
+import { ROUTES } from "../../utils/constants";
+import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
+import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import NotesIcon from "../icons/NotesIcon/NotesIcon";
+import RoomsIcon from "../icons/RoomsIcon/RoomsIcon";
+
+import "./NavigationFooter.scss";
 
 const NavigationFooter: React.FC = () => {
   const location = useLocation();
 
   const getColor = (path: string) => {
-    return location.pathname === path ? "#8C72AE" : "black";
+    return location.pathname === path ? "var(--default-purple)" : "black";
   };
   return (
     <div className="navigation-footer">

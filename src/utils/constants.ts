@@ -24,17 +24,17 @@ export const MAX_SESSIONS_SHOWN = 9;
 export const LOBBY_TITLE = "Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
 
+import AppliedCryptography from "../assets/category-applied-cryptography.png";
+import Coordination from "../assets/category-coordination.png";
+import CoreProtocol from "../assets/category-core-protocol.png";
+import CryptoEconomics from "../assets/category-crypto-economics.png";
+import CypherpunkAndPrivacy from "../assets/category-cypherpunk-and-privacy.png";
+import DeveloperExperience from "../assets/category-developer-experience.png";
+import Entertainment from "../assets/category-entertainment.png";
 import Layer2s from "../assets/category-layer-2s.png";
 import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
 import Security from "../assets/category-security.png";
 import Usability from "../assets/category-usability.png";
-import DeveloperExperience from "../assets/category-developer-experience.png";
-import CypherpunkAndPrivacy from "../assets/category-cypherpunk-and-privacy.png";
-import CryptoEconomics from "../assets/category-crypto-economics.png";
-import CoreProtocol from "../assets/category-core-protocol.png";
-import Coordination from "../assets/category-coordination.png";
-import AppliedCryptography from "../assets/category-applied-cryptography.png";
-import Entertainment from "../assets/category-entertainment.png";
 
 const enum ENV {
   DEV = "dev",
@@ -129,6 +129,9 @@ const PROD_RESOURCE_IDS = new Map([
   ["lobby", "190e000000000000000000000000000000000000000000000000000000000000"],
 ]);
 
+// @ts-ignore
+
+// TODO
 const BACKUP_RESOURCE_IDS = new Map([
   [
     "layer-2s",
@@ -177,6 +180,9 @@ const BACKUP_RESOURCE_IDS = new Map([
   ["lobby", "9503000000000000000000000000000000000000000000000000000000000000"],
 ]);
 
+// @ts-ignore
+
+// TODO
 const TEST_RESOURCE_IDS = new Map([
   [
     "layer-2s-test-1",
@@ -275,6 +281,9 @@ const PROD_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Lobby", "lobby"],
 ]);
 
+// @ts-ignore
+
+// TODO
 const TEST_ONE_DIRECTION_CATEGORY_NAMES_TO_ID_MAP = new Map([
   ["Layer 2", "layer-2s-test"],
   ["Core Protocol", "core-protocol-test"],

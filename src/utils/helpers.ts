@@ -1,11 +1,12 @@
-import { Wallet, hexlify } from "ethers";
+import { Data, Signer, Utils } from "@ethersphere/bee-js";
+import { hexlify, Wallet } from "ethers";
+
 import { Session } from "../types/session";
 import {
   CATEGORY_NAMES_TO_ID_MAP,
   DATE_TO_DEVCON_DAY,
   RESOURCE_IDS,
 } from "../utils/constants";
-import { Signer, Utils, Data } from "@ethersphere/bee-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
