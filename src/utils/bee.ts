@@ -79,7 +79,7 @@ export async function updateFeed(
   }
 }
 
-// adds "live_x" suffix to the topic if raw is true, so that topics can be versioned if needed
+// adds ENV suffix to the topic if raw is true, so that dev and prod topics can be separated
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
     return topic + process.env.ENV;

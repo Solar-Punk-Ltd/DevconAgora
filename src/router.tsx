@@ -17,7 +17,7 @@ import Intro from "./pages/Intro/Intro";
 import NotesPage from "./pages/Notes/Notes";
 import Profile from "./pages/Profile/Profile";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
-import SpacesPage from "./pages/Spaces/Spaces";
+import Spaces from "./pages/Spaces/Spaces";
 import StayUpdated from "./pages/StayUpdated/StayUpdated";
 import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
 import TalkPage from "./pages/Talk/Talk";
@@ -485,7 +485,7 @@ const MainRouter = (): ReactElement => {
         />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
-        <Route path={ROUTES.SPACES} element={<SpacesPage />} />
+        <Route path={ROUTES.SPACES} element={<Spaces />} />
         <Route
           path={ROUTES.HOWDOESITWORK}
           element={

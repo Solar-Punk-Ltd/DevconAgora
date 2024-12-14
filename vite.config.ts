@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
         ),
       "process.env.GATEWAY": JSON.stringify(env.GATEWAY) ?? JSON.stringify(""),
       "process.versions": JSON.stringify({ node: "browser-mock" }), // Mocking process.versions.node
+      "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
     },
     plugins: [
       react(),
