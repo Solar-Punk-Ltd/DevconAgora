@@ -15,7 +15,10 @@ export async function getFeedUpdate(
   const feedReader = bee.makeFeedReader(FEEDTYPE_SEQUENCE, topic, owner);
   try {
     const feedUpdateRes = await feedReader.download();
-    return feedUpdateRes.reference as string;
+    const { feedIndex, feedIndexNext, ...data } = feedUpdateRes;
+    console.log("feedIndex: ", feedIndex.toString())
+    console.log("feedIndexNext: ", feedIndexNext.toString())
+    return JSON.stringify(data);
   } catch (e) {
     console.log("feed download error", e);
     return "";
@@ -79,7 +82,7 @@ export async function updateFeed(
   }
 }
 
-// adds ENV suffix to the topic if raw is true, so that dev and prod topics can be separated
+// adds ENV suffix to the topic if raw is true, so that environments can be separated
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
     return topic + process.env.ENV;
