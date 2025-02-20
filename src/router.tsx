@@ -17,7 +17,7 @@ import Intro from "./pages/Intro/Intro";
 import NotesPage from "./pages/Notes/Notes";
 import Profile from "./pages/Profile/Profile";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
-import SpacesPage from "./pages/Spaces/Spaces";
+import Spaces from "./pages/Spaces/Spaces";
 import StayUpdated from "./pages/StayUpdated/StayUpdated";
 import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
 import TalkPage from "./pages/Talk/Talk";
@@ -28,11 +28,10 @@ import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import { Session } from "./types/session";
 import { TalkComments } from "./types/talkComment";
-import { getData, getFeedUpdate, getTopic } from "./utils/bee";
+import { getFeedUpdate, getTopic } from "./utils/bee";
 import {
   ADDRESS_HEX_LENGTH,
   CATEGORIES,
-  DUMMY_STAMP,
   FIVE_MINUTES,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
@@ -43,7 +42,6 @@ import {
   findSlotStartIx,
   getPrivateKey,
   getSessionsByDay,
-  getSigner,
   getWallet,
   isUserRegistered,
 } from "./utils/helpers";
@@ -66,7 +64,6 @@ const MainRouter = (): ReactElement => {
     setTalkActivity,
     setSpacesActivity,
   } = useGlobalState();
-  const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
@@ -146,38 +143,11 @@ const MainRouter = (): ReactElement => {
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
       const rawFeedTopicSession = "sessions";
-      const ref = await getFeedUpdate(
+      const dataStr = await getFeedUpdate(
         process.env.FEED_OWNER_ADDRESS as string,
         rawFeedTopicSession
       );
-      if (ref.length === ADDRESS_HEX_LENGTH && ref !== sessionsReference) {
-        console.log("sessions reference updated: ", ref);
-        setSessionsReference(() => ref);
-      }
-    }
-  }, [isBeeRunning]);
-
-  useEffect(() => {
-    fetchFeedUpdate();
-    const interval = setInterval(async () => {
-      fetchFeedUpdate();
-    }, FIVE_MINUTES);
-
-    return () => clearInterval(interval);
-  }, [fetchFeedUpdate]);
-
-  const fetchSessions = useCallback(async () => {
-    if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
-      let dataStr;
-      try {
-        dataStr = JSON.parse(await getData(sessionsReference));
-      } catch (error) {
-        console.log(
-          `error parsing session, ref ${sessionsReference}:\n ${error}`
-        );
-        return;
-      }
-      const data = new Map<string, Session[]>(Object.entries(dataStr));
+      const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
@@ -201,11 +171,16 @@ const MainRouter = (): ReactElement => {
         console.log("session data empty");
       }
     }
-  }, [sessionsReference]);
+  }, [isBeeRunning]);
 
   useEffect(() => {
-    fetchSessions();
-  }, [fetchSessions]);
+    fetchFeedUpdate();
+    const interval = setInterval(async () => {
+      fetchFeedUpdate();
+    }, FIVE_MINUTES);
+
+    return () => clearInterval(interval);
+  }, [fetchFeedUpdate]);
 
   useEffect(() => {
     if (isFirstRender) {
@@ -261,7 +236,6 @@ const MainRouter = (): ReactElement => {
 
   const preLoadTalks = async () => {
     try {
-      const stamp = process.env.STAMP || DUMMY_STAMP;
       const preLoadedTalks: TalkComments[] = [];
       const commentPromises: Promise<CommentsWithIndex>[] = [];
       const talkIds: string[] = [];
@@ -269,7 +243,6 @@ const MainRouter = (): ReactElement => {
         const sessionId = recentSessions[i].id;
         const rawTalkTopic = getTopic(sessionId, true);
         const wallet = getWallet(rawTalkTopic);
-        const signer = getSigner(wallet);
         // only load the talks that are not already loaded
         if (loadedTalks) {
           // talkids include a "version" suffix
@@ -283,9 +256,8 @@ const MainRouter = (): ReactElement => {
         }
         commentPromises.push(
           loadLatestComments(
-            stamp,
             rawTalkTopic,
-            signer,
+            wallet.address,
             process.env.BEE_API_URL,
             MAX_COMMENTS_LOADED
           )
@@ -338,17 +310,14 @@ const MainRouter = (): ReactElement => {
   const calcSapcesActivity = async () => {
     const spacesSessions = getSessionsByDay(sessions, "spaces");
     const spacesPromises: Promise<CommentsWithIndex>[] = [];
-    const stamp = process.env.STAMP || DUMMY_STAMP;
     try {
       for (let i = 0; i < spacesSessions.length; i++) {
         const rawTalkTopic = getTopic(spacesSessions[i].id, true);
         const wallet = getWallet(rawTalkTopic);
-        const signer = getSigner(wallet);
         spacesPromises.push(
           loadLatestComments(
-            stamp,
             rawTalkTopic,
-            signer,
+            wallet.address,
             process.env.BEE_API_URL,
             MAX_COMMENTS_LOADED
           )
@@ -393,19 +362,8 @@ const MainRouter = (): ReactElement => {
       feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
     }
 
-    const dataRefPromises: Promise<string>[] = [];
-    await Promise.allSettled(feedPromises).then((results) => {
-      results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          dataRefPromises.push(getData(result.value));
-        } else {
-          console.log(`fetching note ref error: `, result.reason);
-        }
-      });
-    });
-
     const notesArray: string[] = [];
-    await Promise.allSettled(dataRefPromises).then((results) => {
+    await Promise.allSettled(feedPromises).then((results) => {
       results.forEach((result) => {
         if (result.status === "fulfilled") {
           notesArray.push(result.value);
@@ -485,7 +443,7 @@ const MainRouter = (): ReactElement => {
         />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
-        <Route path={ROUTES.SPACES} element={<SpacesPage />} />
+        <Route path={ROUTES.SPACES} element={<Spaces />} />
         <Route
           path={ROUTES.HOWDOESITWORK}
           element={
