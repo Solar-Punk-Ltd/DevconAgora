@@ -14,7 +14,10 @@ export async function getFeedUpdate(
   const feedReader = bee.makeFeedReader(FEEDTYPE_SEQUENCE, topic, owner);
   try {
     const feedUpdateRes = await feedReader.download();
-    return feedUpdateRes.reference as string;
+    const { feedIndex, feedIndexNext, ...data } = feedUpdateRes;
+    console.log("feedIndex: ", feedIndex.toString())
+    console.log("feedIndexNext: ", feedIndexNext.toString())
+    return JSON.stringify(data);
   } catch (e) {
     console.log("feed download error", e);
     return "";
@@ -24,7 +27,7 @@ export async function getFeedUpdate(
 export async function getData(ref: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   if (ref.length !== ADDRESS_HEX_LENGTH) {
-    console.log("session hash invalid");
+    console.log("ref invalid");
     return "";
   }
 
@@ -78,7 +81,7 @@ export async function updateFeed(
   }
 }
 
-// adds "live_x" suffix to the topic if raw is true, so that topics can be versioned if needed
+// adds ENV suffix to the topic if raw is true, so that environments can be separated
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
     return topic + process.env.ENV;

@@ -26,7 +26,7 @@ import FullNotePage from "./pages/FullNotePage/FullNotePage";
 import TACOnboardingPage from "./pages/TACOnboardingPage/TACOnboardingPage";
 import StayUpdatedPage from "./pages/StayUpdatedPage/StayUpdatedPage";
 import { TalkComments } from "./types/talkComment";
-import { getFeedUpdate, getData, getTopic } from "./utils/bee";
+import { getFeedUpdate, getTopic } from "./utils/bee";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import {
   ROUTES,
@@ -65,7 +65,6 @@ const MainRouter = (): ReactElement => {
     setTalkActivity,
     setSpacesActivity,
   } = useGlobalState();
-  const [sessionsReference, setSessionsReference] = useState<string>("");
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
@@ -145,38 +144,11 @@ const MainRouter = (): ReactElement => {
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
       const rawFeedTopicSession = "sessions";
-      const ref = await getFeedUpdate(
+      const dataStr = await getFeedUpdate(
         process.env.FEED_OWNER_ADDRESS as string,
         rawFeedTopicSession
       );
-      if (ref.length === ADDRESS_HEX_LENGTH && ref !== sessionsReference) {
-        console.log("sessions reference updated: ", ref);
-        setSessionsReference(() => ref);
-      }
-    }
-  }, [isBeeRunning]);
-
-  useEffect(() => {
-    fetchFeedUpdate();
-    const interval = setInterval(async () => {
-      fetchFeedUpdate();
-    }, FIVE_MINUTES);
-
-    return () => clearInterval(interval);
-  }, [fetchFeedUpdate]);
-
-  const fetchSessions = useCallback(async () => {
-    if (sessionsReference.length === ADDRESS_HEX_LENGTH) {
-      let dataStr;
-      try {
-        dataStr = JSON.parse(await getData(sessionsReference));
-      } catch (error) {
-        console.log(
-          `error parsing session, ref ${sessionsReference}:\n ${error}`
-        );
-        return;
-      }
-      const data = new Map<string, Session[]>(Object.entries(dataStr));
+      const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
@@ -200,11 +172,16 @@ const MainRouter = (): ReactElement => {
         console.log("session data empty");
       }
     }
-  }, [sessionsReference]);
+  }, [isBeeRunning]);
 
   useEffect(() => {
-    fetchSessions();
-  }, [fetchSessions]);
+    fetchFeedUpdate();
+    const interval = setInterval(async () => {
+      fetchFeedUpdate();
+    }, FIVE_MINUTES);
+
+    return () => clearInterval(interval);
+  }, [fetchFeedUpdate]);
 
   useEffect(() => {
     if (isFirstRender) {
@@ -268,7 +245,6 @@ const MainRouter = (): ReactElement => {
         const sessionId = recentSessions[i].id;
         const rawTalkTopic = getTopic(sessionId, true);
         const wallet = getWallet(rawTalkTopic);
-        const signer = getSigner(wallet);
         // only load the talks that are not already loaded
         if (loadedTalks) {
           // talkids include a "version" suffix
@@ -282,9 +258,8 @@ const MainRouter = (): ReactElement => {
         }
         commentPromises.push(
           loadLatestComments(
-            stamp,
             rawTalkTopic,
-            signer,
+            wallet.address,
             process.env.BEE_API_URL,
             MAX_COMMENTS_LOADED
           )
@@ -337,17 +312,14 @@ const MainRouter = (): ReactElement => {
   const calcSapcesActivity = async () => {
     const spacesSessions = getSessionsByDay(sessions, "spaces");
     const spacesPromises: Promise<CommentsWithIndex>[] = [];
-    const stamp = process.env.STAMP || DUMMY_STAMP;
     try {
       for (let i = 0; i < spacesSessions.length; i++) {
         const rawTalkTopic = getTopic(spacesSessions[i].id, true);
         const wallet = getWallet(rawTalkTopic);
-        const signer = getSigner(wallet);
         spacesPromises.push(
           loadLatestComments(
-            stamp,
             rawTalkTopic,
-            signer,
+            wallet.address,
             process.env.BEE_API_URL,
             MAX_COMMENTS_LOADED
           )
@@ -392,19 +364,8 @@ const MainRouter = (): ReactElement => {
       feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
     }
 
-    const dataRefPromises: Promise<string>[] = [];
-    await Promise.allSettled(feedPromises).then((results) => {
-      results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          dataRefPromises.push(getData(result.value));
-        } else {
-          console.log(`fetching note ref error: `, result.reason);
-        }
-      });
-    });
-
     const notesArray: string[] = [];
-    await Promise.allSettled(dataRefPromises).then((results) => {
+    await Promise.allSettled(feedPromises).then((results) => {
       results.forEach((result) => {
         if (result.status === "fulfilled") {
           notesArray.push(result.value);
