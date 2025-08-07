@@ -14,17 +14,9 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__header">Share your thoughts</div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
-            <img
-              src={welcome2img}
-              alt=""
-              className="welcome-page__main-image"
-            />
+            <img src={welcome2img} alt="" className="welcome-page__main-image" />
             <div className="welcome-page__effect">
-              <img
-                src={WelcomeMask}
-                alt=""
-                className="welcome-page__effect-mask"
-              />
+              <img src={WelcomeMask} alt="" className="welcome-page__effect-mask" />
             </div>
           </div>
         </div>
@@ -35,16 +27,10 @@ const Welcome1: React.FC = () => {
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={1} />
             <div className="welcome-page_bottom-bottom__buttons">
-              <Link
-                to={ROUTES.WELCOME1}
-                className="welcome-page__navigation-button-link"
-              >
+              <Link to={ROUTES.WELCOME1} className="welcome-page__navigation-button-link">
                 <WelcomeButton version="outlined">Back</WelcomeButton>
               </Link>
-              <Link
-                to={ROUTES.WELCOME3}
-                className="welcome-page__navigation-button-link"
-              >
+              <Link to={ROUTES.WELCOME3} className="welcome-page__navigation-button-link">
                 <WelcomeButton version="filled">Next</WelcomeButton>
               </Link>
             </div>

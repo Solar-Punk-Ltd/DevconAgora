@@ -17,22 +17,13 @@ const Spaces: React.FC = () => {
     <div className="spaces">
       <NavigationFooter />
       <div className="spaces__background">
-        <img
-          src={HomeBackground}
-          alt=""
-          width="100%"
-          height="100%"
-          className="spaces__background__img"
-        />
+        <img src={HomeBackground} alt="" width="100%" height="100%" className="spaces__background__img" />
       </div>
 
       <div className="spaces__content">
         {CATEGORIES.map((c) => (
           <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
-            <SpacesItem
-              title={c}
-              numberOfActiveUsers={spacesActivity.get(c) || 0}
-            />
+            <SpacesItem title={c} numberOfActiveUsers={spacesActivity.get(c)?.toBigInt() || 0n} />
           </div>
         ))}
       </div>

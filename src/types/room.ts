@@ -1,11 +1,11 @@
 export interface Room {
   topic: string;
-  userCount?: number;
+  userCount?: bigint;
 }
 
 export interface RoomWithUserCounts {
   url: string;
   gateway: string;
   topic: string;
-  userCount?: number;
+  userCount?: bigint;
 }

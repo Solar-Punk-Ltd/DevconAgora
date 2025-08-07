@@ -24,14 +24,8 @@ const Spaces: React.FC<SpacesProps> = ({ list }) => {
 
       <div>
         {list.map((room) => (
-          <div
-            key={room.topic}
-            onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}
-          >
-            <SpacesItem
-              title={room.topic}
-              numberOfActiveUsers={room.userCount || 0}
-            />
+          <div key={room.topic} onClick={() => navigate(`${ROUTES.TALKS}/${room.topic}`)}>
+            <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0n} />
           </div>
         ))}
       </div>

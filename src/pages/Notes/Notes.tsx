@@ -28,15 +28,7 @@ const Notes: React.FC = () => {
       </Link>
       <div className="notes-page__note-items">
         {notes.map((note, ix) => {
-          return (
-            <NoteItem
-              key={ix}
-              id={note.id}
-              text={note.text}
-              date={note.date}
-              time={note.time}
-            />
-          );
+          return <NoteItem key={ix} id={note.id} text={note.text} date={note.date} time={note.time} />;
         })}
       </div>
       <NavigationFooter />

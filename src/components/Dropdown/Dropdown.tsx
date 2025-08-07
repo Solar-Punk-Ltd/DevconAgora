@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import clsx from "clsx";
+import React, { useEffect } from "react";
 
 import DropdownIcon from "../icons/DropdownIcon/DropdownIcon";
 
@@ -12,12 +12,7 @@ interface DropdownProps {
   changesWhenOpen?: (isOpen: boolean) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  items,
-  activeItem,
-  onClick,
-  changesWhenOpen,
-}) => {
+const Dropdown: React.FC<DropdownProps> = ({ items, activeItem, onClick, changesWhenOpen }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const toggleDropdown = () => {

@@ -1,19 +1,16 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 import VisitorsIcon from "../icons/VisitorsIcon/VisitorsIcon";
 
 import "./ActiveVisitors.scss";
 
 interface ActiveVisitorsProps {
-  number?: number;
+  number?: bigint;
   withIcon?: boolean;
 }
 
-const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
-  number,
-  withIcon,
-}) => {
+const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({ number, withIcon }) => {
   return (
     <div
       className={clsx("active-visitors", {
@@ -21,7 +18,7 @@ const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
       })}
     >
       {withIcon ? <VisitorsIcon /> : null}
-      {number}
+      {Number(number)}
       {!withIcon ? " activity" : null}
     </div>
   );

@@ -18,41 +18,26 @@ const ClaimRewardExplanation: React.FC = () => {
           <CloseIcon color="white" onClick={() => setShowGamification(false)} />
         </div>
         <div className="claim-reward-explanation__header">
-          On&nbsp;the&nbsp;next&nbsp;screen&nbsp;you <br /> will get your magic
-          code
+          On&nbsp;the&nbsp;next&nbsp;screen&nbsp;you <br /> will get your magic code
         </div>
       </div>
       <div>
-        <img
-          src={GamificationBackgroundTen}
-          alt=""
-          className="claim-reward-explanation__img"
-        />
+        <img src={GamificationBackgroundTen} alt="" className="claim-reward-explanation__img" />
       </div>
       <div className="claim-reward-explanation__content-wrapper">
         <div className="claim-reward-explanation__content">
-          <b>
-            Make use of it and experience how to upload and download from Swarm,
-            the infrastructure behind devcon.buzz.
-          </b>
+          <b>Make use of it and experience how to upload and download from Swarm, the infrastructure behind devcon.buzz.</b>
           <br />
-          1. Download and install Swarm Desktop from{" "}
-          <span className="text-decoration-underline">
-            https://desktop.ethswarm.org/
-          </span>
+          1. Download and install Swarm Desktop from <span className="text-decoration-underline">https://desktop.ethswarm.org/</span>
           .
           <br />
-          2. Open Swarm Desktop and ensure your node is connected (look for the
-          “Node OK” status at the bottom left).
+          2. Open Swarm Desktop and ensure your node is connected (look for the “Node OK” status at the bottom left).
           <br />
-          3. On the left side of the dashboard, find and click on “Redeem gift
-          code” from the menu.
+          3. On the left side of the dashboard, find and click on “Redeem gift code” from the menu.
           <br />
-          4. In the “Top-up with gift code” section, paste your gift code into
-          the input field.
+          4. In the “Top-up with gift code” section, paste your gift code into the input field.
           <br />
-          5. Click “Proceed” to complete the top-up. Stay on the top of cutting
-          edge web3 tech. Get insights and laterst news from the developers of
+          5. Click “Proceed” to complete the top-up. Stay on the top of cutting edge web3 tech. Get insights and laterst news from the developers of
           the Devcon Buzz app
         </div>
         <div className="claim-reward-explanation__claim-button-wrapper">

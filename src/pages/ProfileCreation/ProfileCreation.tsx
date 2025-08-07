@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { ethers } from "ethers";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
@@ -11,11 +11,7 @@ import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
-import {
-  createMonogram,
-  getPrivateKey,
-  handleKeyDown,
-} from "../../utils/helpers";
+import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
 
 import "./ProfileCreation.scss";
 
@@ -75,23 +71,17 @@ const ProfileCreation: React.FC = () => {
       });
     } catch (error) {
       setUserNameSetError(true);
-      console.log("error saving username: ", error);
+      console.error("error saving username: ", error);
     }
   };
 
   const handleOkClick = async () => {
-    if (
-      validateInput(username) &&
-      username.length > 0 &&
-      username.trim() !== ""
-    ) {
+    if (validateInput(username) && username.length > 0 && username.trim() !== "") {
       setError(false);
       setIsEdit(false);
       setMonogram(createMonogram(username));
       try {
-        const response = await fetch(
-          process.env.BACKEND_API_URL + "/username/" + username
-        );
+        const response = await fetch(process.env.BACKEND_API_URL + "/username/" + username);
         if (response.status === 200) {
           setButtonActive(true);
           setError(false);
@@ -108,7 +98,7 @@ const ProfileCreation: React.FC = () => {
         setButtonActive(false);
         setError(true);
         setOtherError(true);
-        console.log(`error fetching username "${username}" :`, err);
+        console.error(`error fetching username "${username}" :`, err);
       }
     } else {
       setButtonActive(false);
@@ -130,16 +120,10 @@ const ProfileCreation: React.FC = () => {
             <span style={{ color: "var(--default-purple)" }}>Your profile</span>
           </div>
           <div className="profile-creation__background-effect">
-            <img
-              src={createYourProfileEffect}
-              alt=""
-              className="profile-creation__backgorund-effect__img"
-            />
+            <img src={createYourProfileEffect} alt="" className="profile-creation__backgorund-effect__img" />
           </div>
           <div className="profile-creation__main-content">
-            <ProfilePicture
-              name={monogram ? monogram : createMonogram(username)}
-            />
+            <ProfilePicture name={monogram ? monogram : createMonogram(username)} />
             <div
               style={{
                 display: "flex",
@@ -165,34 +149,23 @@ const ProfileCreation: React.FC = () => {
                   />
                 </div>
 
-                {!isEdit ? (
-                  <EditIcon onClick={handleEditClick} />
-                ) : (
-                  <EnterIcon onClick={handleOkClick} />
-                )}
+                {!isEdit ? <EditIcon onClick={handleEditClick} /> : <EnterIcon onClick={handleOkClick} />}
               </div>
               {error ? (
                 <div className="profile-creation__user-input__error-container">
                   <div className="profile-creation__user-input__error-container__error">
-                    <img
-                      src={errorAlertIcon}
-                      alt=""
-                      className="profile-creation__user-input__error-container__error-icon"
-                    />
+                    <img src={errorAlertIcon} alt="" className="profile-creation__user-input__error-container__error-icon" />
                     {userNameSetError ? (
                       <div className="profile-creation__user-input__error-container__error-text">
                         The username is already taken. Please try another one.
                       </div>
                     ) : otherError ? (
                       <div className="profile-creation__user-input__error-container__error-text">
-                        Something happened during username validation. Please
-                        try again.
+                        Something happened during username validation. Please try again.
                       </div>
                     ) : (
                       <div className="profile-creation__user-input__error-container__error-text">
-                        The name can only contain alphanumeric characters, must
-                        include alphanumeric characters, and cannot have more
-                        than 2 spaces.
+                        The name can only contain alphanumeric characters, must include alphanumeric characters, and cannot have more than 2 spaces.
                       </div>
                     )}
                   </div>

@@ -27,7 +27,7 @@ const RecentSessions: React.FC = () => {
               id={session.id}
               title={session.title}
               stage={STAGES_MAP.get(session.slot_roomId || "") || ""}
-              activity={talkActivity.get(session.id) || 0}
+              activity={talkActivity.get(session.id)?.toBigInt() || 0n}
             />
           );
         })}

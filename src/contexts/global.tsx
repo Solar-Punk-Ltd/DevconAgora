@@ -1,10 +1,5 @@
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { FeedIndex } from "@ethersphere/bee-js";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { Session } from "../types/session";
@@ -25,21 +20,17 @@ interface GlobalState {
   recentSessions: Session[];
   setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
   loadedTalks: TalkComments[] | undefined;
-  setLoadedTalks: React.Dispatch<
-    React.SetStateAction<TalkComments[] | undefined>
-  >;
+  setLoadedTalks: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   isTermsAndConditionsAccepted: boolean;
-  setIsTermsAndConditionsAccepted: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
+  setIsTermsAndConditionsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
   notes: NoteItemProps[];
   setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
-  talkActivity: Map<string, number>;
-  setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
-  spacesActivity: Map<string, number>;
-  setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
+  talkActivity: Map<string, FeedIndex>;
+  setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, FeedIndex>>>;
+  spacesActivity: Map<string, FeedIndex>;
+  setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, FeedIndex>>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -48,9 +39,7 @@ interface GlobalStateProviderProps {
   children: ReactNode;
 }
 
-export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
-  children,
-}) => {
+export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   const [username, setUsername] = useState<string>(() => {
     return localStorage.getItem("username") || "";
   });
@@ -63,20 +52,15 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
     return storedPoints ? parseInt(storedPoints, 10) : 0;
   });
 
-  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState<boolean>(
-    () => {
-      const storedValue = localStorage.getItem("isContentFilterEnabled");
-      return storedValue === null ? true : storedValue === "true";
-    }
-  );
+  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState<boolean>(() => {
+    const storedValue = localStorage.getItem("isContentFilterEnabled");
+    return storedValue === null ? true : storedValue === "true";
+  });
 
   const [showGamification, setShowGamification] = useState<boolean>(false);
-  const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] =
-    useState<boolean>(false);
+  const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] = useState<boolean>(false);
 
-  const [sessions, setSessions] = useState<Map<string, Session[]>>(
-    new Map<string, Session[]>()
-  );
+  const [sessions, setSessions] = useState<Map<string, Session[]>>(new Map<string, Session[]>());
 
   const [recentSessions, setRecentSessions] = useState<Session[]>([]);
 
@@ -84,13 +68,9 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
 
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
 
-  const [talkActivity, setTalkActivity] = useState<Map<string, number>>(
-    new Map<string, number>()
-  );
+  const [talkActivity, setTalkActivity] = useState<Map<string, FeedIndex>>(new Map<string, FeedIndex>());
 
-  const [spacesActivity, setSpacesActivity] = useState<Map<string, number>>(
-    new Map<string, number>()
-  );
+  const [spacesActivity, setSpacesActivity] = useState<Map<string, FeedIndex>>(new Map<string, FeedIndex>());
 
   useEffect(() => {
     localStorage.setItem("username", username);
@@ -102,24 +82,20 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({
   }, [points]);
 
   useEffect(() => {
-    localStorage.setItem(
-      "isContentFilterEnabled",
-      isContentFilterEnabled.toString()
-    );
+    localStorage.setItem("isContentFilterEnabled", isContentFilterEnabled.toString());
   }, [isContentFilterEnabled]);
 
   useEffect(() => {
     if (!username) {
       try {
-        fetch(process.env.BACKEND_API_URL + "/username/" + username).then(
-          (resp) =>
-            resp.text().then((data) => {
-              setUsername(data);
-              setMonogram(createMonogram(data));
-            })
+        fetch(process.env.BACKEND_API_URL + "/username/" + username).then((resp) =>
+          resp.text().then((data) => {
+            setUsername(data);
+            setMonogram(createMonogram(data));
+          })
         );
       } catch (err) {
-        console.log(`error fetching username "${username}" :`, err);
+        console.error(`error fetching username "${username}" :`, err);
       }
     }
   }, []);

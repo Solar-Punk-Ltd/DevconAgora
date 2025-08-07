@@ -31,10 +31,7 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
   } | null => {
     const spacesSessions = getSessionsByDay(sessions, "spaces");
     for (let i = 0; i < sessions.size; i++) {
-      const sessionsByDay = getSessionsByDay(
-        sessions,
-        Array.from(DATE_TO_DEVCON_DAY.keys())[i]
-      );
+      const sessionsByDay = getSessionsByDay(sessions, Array.from(DATE_TO_DEVCON_DAY.keys())[i]);
 
       const daySession = sessionsByDay.find((s) => s.id === id);
       const spaceSession = spacesSessions.find((s) => s.id === id);
@@ -68,13 +65,8 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
 
   return (
     <div className="talk">
-      <NavigationHeader
-        toText={toTextFixed ? toTextFixed : ""}
-        backgroundColor="var(--chat-and-talk-background-color)"
-      />
-      <div className="talk__content">
-        {session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}
-      </div>
+      <NavigationHeader toText={toTextFixed ? toTextFixed : ""} backgroundColor="var(--chat-and-talk-background-color)" />
+      <div className="talk__content">{session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}</div>
       <NavigationFooter />
     </div>
   );

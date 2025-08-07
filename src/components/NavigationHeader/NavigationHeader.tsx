@@ -13,19 +13,9 @@ interface NavigationHeaderProps {
   handlerInCaseOfSave?: () => void;
 }
 
-const NavigationHeader: React.FC<NavigationHeaderProps> = ({
-  backgroundColor,
-  to,
-  toText,
-  saveQuestionBeforeLeave,
-  handlerInCaseOfSave,
-}) => {
+const NavigationHeader: React.FC<NavigationHeaderProps> = ({ backgroundColor, to, toText, saveQuestionBeforeLeave, handlerInCaseOfSave }) => {
   const navigate = useNavigate();
-  const formattedTo = to
-    ? to.charAt(1).toUpperCase() + to.slice(2)
-    : toText
-    ? toText.charAt(1).toUpperCase() + toText.slice(2)
-    : "";
+  const formattedTo = to ? to.charAt(1).toUpperCase() + to.slice(2) : toText ? toText.charAt(1).toUpperCase() + toText.slice(2) : "";
 
   const handleNavigation = () => {
     if (saveQuestionBeforeLeave) {
@@ -41,10 +31,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
     }
   };
   return (
-    <div
-      className="navigation-header__wrapper"
-      style={{ backgroundColor: backgroundColor }}
-    >
+    <div className="navigation-header__wrapper" style={{ backgroundColor: backgroundColor }}>
       <div className="navigation-header" onClick={handleNavigation}>
         <div className="navigation-header__link">
           <LeftNavigationIcon />
