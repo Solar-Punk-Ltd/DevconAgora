@@ -1,5 +1,5 @@
-import { Bytes } from "@ethersphere/bee-js";
-import { hexlify, Wallet } from "ethers";
+import { Bytes, PrivateKey } from "@ethersphere/bee-js";
+import { hexlify, keccak256, Wallet } from "ethers";
 import React from "react";
 
 import { Session } from "../types/session";
@@ -91,16 +91,6 @@ export function booleanToString(val: boolean): string {
   return val ? "true" : "false";
 }
 
-// export function debounce(callback: () => void, delay: number) {
-//   let timeoutId;
-//   return function (...args) {
-//     clearTimeout(timeoutId);
-//     timeoutId = setTimeout(() => {
-//       callback.apply(this, args);
-//     }, delay);
-//   };
-// }
-
 export function randomThreadId() {
   const randomPart = Math.random().toString(36).substr(2, 9);
   const timestampPart = Date.now().toString(36);
@@ -121,6 +111,16 @@ export function textExtract(content: string): string {
 export function getWallet(input: string): Wallet {
   const privateKey = new Bytes(input).toString();
   return new Wallet(hexlify(privateKey));
+}
+
+export function getSigner(input: string): PrivateKey {
+  const normalized = input.trim().toLowerCase();
+
+  const hash = keccak256(Buffer.from(normalized, "utf-8"));
+
+  const privateKeyHex = hash.slice(2);
+
+  return new PrivateKey(privateKeyHex);
 }
 
 export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () => void) => {

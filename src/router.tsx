@@ -1,6 +1,4 @@
 import { FeedIndex } from "@ethersphere/bee-js";
-import { CommentsWithIndex } from "@solarpunkltd/comment-system";
-import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { Wallet } from "ethers";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";

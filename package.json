@@ -19,6 +19,7 @@
     "@solarpunkltd/swarm-comment-js": "^0.0.3",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
+    "emoji-picker-react": "^4.13.2",
     "ethers": "^6.13.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

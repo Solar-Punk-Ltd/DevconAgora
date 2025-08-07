@@ -53,7 +53,7 @@ const prettierRecommended = {
 
 export default [
   {
-    ignores: ["**/node_modules/**", "**/dist/**", "eslint.config.mjs", "eslint-compat.cjs", "**/icons/**"],
+    ignores: ["**/node_modules/**", "**/dist/**", "eslint.config.mjs", "eslint-compat.cjs", "**/icons/**, **/assets/**"],
   },
   {
     settings: {

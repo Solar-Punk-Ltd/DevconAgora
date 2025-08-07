@@ -1,14 +1,13 @@
-import { FeedIndex, PrivateKey } from "@ethersphere/bee-js";
-import { CommentsWithIndex, UserComment } from "@solarpunkltd/comment-system";
-import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
+import { FeedIndex } from "@ethersphere/bee-js";
 import React, { useEffect, useState } from "react";
 
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
-import { CATEGORIES, DUMMY_STAMP, MAX_CHARACTER_COUNT, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS, STAGES_MAP } from "../../utils/constants";
-import { dateToTime } from "../../utils/helpers";
+import { CATEGORIES, MAX_PRELOADED_TALKS, STAGES_MAP } from "../../utils/constants";
+import { Comment } from "../Comment/Comment";
+import { dateToTime, getSigner } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
@@ -19,13 +18,12 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity, isContentFilterEnabled } =
-    useGlobalState();
+  const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } = useGlobalState();
   const [comments, setComments] = useState<CommentsWithIndex | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
   const rawTalkTopic = getTopic(session.id, true);
-  const signer = new PrivateKey(rawTalkTopic);
+  const signer = getSigner(username);
 
   // update the loaded talk comments with the newly read/written comment
   // if the talk is not found, then replace the oldest talk with the new one
@@ -131,21 +129,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
       )}
       {/* either use a local stamp from the env or a dummy can be sent to the
       gateway */}
-      {!loading && (
-        <SwarmCommentSystem
-          stamp={process.env.STAMP || DUMMY_STAMP}
-          topic={rawTalkTopic}
-          signer={signer}
-          beeApiUrl={process.env.BEE_API_URL}
-          username={username}
-          preloadedCommnets={comments}
-          onComment={handleOnComment}
-          onRead={handleOnRead}
-          filterEnabled={isContentFilterEnabled}
-          numOfComments={MAX_COMMENTS_LOADED}
-          maxCharacterCount={MAX_CHARACTER_COUNT}
-        />
-      )}
+      {!loading && <Comment topic={rawTalkTopic} signer={signer} username={username} />}
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { CommentsWithIndex } from "@solarpunkltd/comment-system";
+import { MessageData } from "@solarpunkltd/comment-system";
 
-export interface TalkComments extends CommentsWithIndex {
+export interface TalkComments extends MessageData {
   talkId: string;
 }
