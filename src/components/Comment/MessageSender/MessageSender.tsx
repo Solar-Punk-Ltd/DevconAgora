@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { SendMessageIcon } from "@/components/icons/SendMessageIcon/SendMessageIcon";
-import { InputLoading } from "@/components/InputLoading/InputLoading";
 import { ReactionToolbar } from "./ReactionToolbar/ReactionToolbar";
 
 import "./MessageSender.scss";
+
+import { SendMessageIcon } from "@/components/icons/SendMessageIcon/SendMessageIcon";
+import { InputLoading } from "@/components/InputLoading/InputLoading";
 
 interface MessageSenderProps {
   onSend?: (text: string) => Promise<void> | void;

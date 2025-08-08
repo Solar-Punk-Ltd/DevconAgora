@@ -8,11 +8,7 @@ interface ProfilePictureProps {
   ownMessage?: boolean;
 }
 
-export function ProfilePicture({
-  name,
-  color,
-  ownMessage = false,
-}: ProfilePictureProps) {
+export function ProfilePicture({ name, color, ownMessage = false }: ProfilePictureProps) {
   const initial = name.charAt(0).toUpperCase();
   return (
     <div

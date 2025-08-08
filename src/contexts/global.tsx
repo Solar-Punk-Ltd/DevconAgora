@@ -1,4 +1,3 @@
-import { FeedIndex } from "@ethersphere/bee-js";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
@@ -19,7 +18,7 @@ interface GlobalState {
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
   recentSessions: Session[];
   setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
-  loadedTalks: TalkComments[] | undefined;
+  loadedTalks: TalkComments[] | undefined; // todo: rename to globalTalks
   setLoadedTalks: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,10 +26,10 @@ interface GlobalState {
   setIsTermsAndConditionsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
   notes: NoteItemProps[];
   setNotes: React.Dispatch<React.SetStateAction<NoteItemProps[]>>;
-  talkActivity: Map<string, FeedIndex>;
-  setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, FeedIndex>>>;
-  spacesActivity: Map<string, FeedIndex>;
-  setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, FeedIndex>>>;
+  talkActivity: Map<string, bigint>;
+  setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, bigint>>>;
+  spacesActivity: Map<string, bigint>;
+  setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, bigint>>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -68,9 +67,9 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
 
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
 
-  const [talkActivity, setTalkActivity] = useState<Map<string, FeedIndex>>(new Map<string, FeedIndex>());
+  const [talkActivity, setTalkActivity] = useState<Map<string, bigint>>(new Map<string, bigint>());
 
-  const [spacesActivity, setSpacesActivity] = useState<Map<string, FeedIndex>>(new Map<string, FeedIndex>());
+  const [spacesActivity, setSpacesActivity] = useState<Map<string, bigint>>(new Map<string, bigint>());
 
   useEffect(() => {
     localStorage.setItem("username", username);

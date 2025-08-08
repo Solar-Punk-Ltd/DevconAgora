@@ -10,7 +10,7 @@ import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
 import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
-import { dateToTime, getPrivateKey } from "../../utils/helpers";
+import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 
 import "./FullNote.scss";
 
@@ -80,7 +80,7 @@ const FullNotePage: React.FC = () => {
     navigate(ROUTES.NOTES);
   };
 
-  const privKey = getPrivateKey();
+  const privKey = getLocalPrivateKey();
   if (!privKey) {
     return (
       <div className="full-note-page__top__header">

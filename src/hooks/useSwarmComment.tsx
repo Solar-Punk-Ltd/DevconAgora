@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { MessageData, MessageType } from "@solarpunkltd/comment-system";
-import { EVENTS, SwarmComment, CommentSettings } from "@solarpunkltd/swarm-comment-js";
+import { CommentSettings, EVENTS, SwarmComment } from "@solarpunkltd/swarm-comment-js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -76,12 +76,17 @@ const calculateActiveReactions = (
   return newReactions;
 };
 
-export const useSwarmComment = ({ user, infra }: CommentSettings) => {
+export interface ExtendedCommentSettings extends CommentSettings {
+  onMessageReceived?: (messages: VisibleMessage[]) => void;
+}
+
+export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedCommentSettings) => {
   const commentRef = useRef<SwarmComment | null>(null);
 
   const [messages, setMessages] = useState<VisibleMessage[]>([]);
   const [commentLoading, setCommentLoading] = useState<boolean>(true);
   const [messagesLoading, setMessagesLoading] = useState<boolean>(false);
+  const [isPreloaded, setIsPreloaded] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
 
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
@@ -130,10 +135,19 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
         const data = typeof d === "string" ? JSON.parse(d) : d;
         const newMessage = { ...data, ...updates } as VisibleMessage;
         addMessage(newMessage);
+        // todo: is setMessages reflected here within the same callback? -> onMessageReceived needs to be called after setMessages
+        if (updates.received) {
+          onMessageReceived?.(messages);
+        }
       };
     },
-    [addMessage]
+    [addMessage, onMessageReceived]
   );
+
+  const setPreloadedMessages = useCallback((messages: VisibleMessage[]) => {
+    setMessages(messages);
+    setIsPreloaded(true);
+  }, []);
 
   useEffect(() => {
     if (commentRef.current) return;
@@ -155,7 +169,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
       createMessageHandler({
         error: false,
         uploaded: true,
-        received: true,
+        received: true, // todo: received here?
       })
     );
 
@@ -173,6 +187,8 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
+    // TOOD: update start() to accept isPreloaded
+    // commentRef.current.start(!isPreloaded);
     commentRef.current.start();
 
     return () => {
@@ -220,8 +236,9 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
     threadMessages,
     reactionMessages,
     groupedReactions,
-    getThreadMessages,
     error,
+    setPreloadedMessages,
+    getThreadMessages,
     sendMessage,
     sendReaction,
     sendReply,

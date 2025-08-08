@@ -53,7 +53,7 @@ const prettierRecommended = {
 
 export default [
   {
-    ignores: ["**/node_modules/**", "**/dist/**", "eslint.config.mjs", "eslint-compat.cjs", "**/icons/**, **/assets/**"],
+    ignores: ["**/node_modules/**", "**/dist/**", "eslint.config.mjs", "eslint-compat.cjs", "**/icons/**", "**/assets/**"],
   },
   {
     settings: {
@@ -91,6 +91,10 @@ export default [
         HTMLImageElement: "readonly",
         HTMLAnchorElement: "readonly",
         MouseEvent: "readonly",
+        HTMLButtonElement: "readonly",
+        MutationObserver: "readonly",
+        requestAnimationFrame: "readonly",
+        Node: "readonly",
       },
     },
   },

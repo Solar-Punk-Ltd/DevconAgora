@@ -1,4 +1,3 @@
-import { FeedIndex } from "@ethersphere/bee-js";
 import React from "react";
 
 import HomeBackground from "../../assets/welcome-glass-effect.png";
@@ -18,7 +17,7 @@ interface HomePageProps {
 
 const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   const { points, spacesActivity } = useGlobalState();
-  const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || FeedIndex.fromBigInt(0n);
+  const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0n;
   return (
     <div className="home-page">
       <div className="home-page__background">
@@ -31,15 +30,15 @@ const Home: React.FC<HomePageProps> = ({ withGamification }) => {
         <DevConMainBox
           title="Devcon buzz space"
           content="Share your thoughts, chat with anyone without moderation, and collect your reward."
-          showActiveVisitors={lobbyActivity > FeedIndex.fromBigInt(0n)}
-          activeVisitors={lobbyActivity.toBigInt()}
+          showActiveVisitors={lobbyActivity > 0n}
+          activeVisitors={lobbyActivity}
           bordered={true}
         />
         <RecentSessions />
         <Spaces
           list={CATEGORIES.map((c) => ({
             topic: c,
-            userCount: spacesActivity.get(c)?.toBigInt() || 0n,
+            userCount: spacesActivity.get(c) || 0n,
           }))}
         />
       </div>

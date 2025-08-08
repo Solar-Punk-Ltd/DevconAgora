@@ -1,10 +1,10 @@
+import "./ThreadView.scss";
+
 import { Button } from "@/components/Button/Button";
 import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessage";
 import { MessageSender } from "@/components/Comment/MessageSender/MessageSender";
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
-import { VisibleMessage, ReactionData } from "@/hooks/useSwarmComment";
-
-import "./ThreadView.scss";
+import { ReactionData, VisibleMessage } from "@/hooks/useSwarmComment";
 
 interface ThreadViewProps {
   originalMessage: VisibleMessage;
@@ -54,18 +54,10 @@ export function ThreadView({
           profileColor={getColorForName(originalMessage.username)}
           ownMessage={originalMessage.address === currentUserAddress}
           reactions={originalMessageReactions}
-          onEmojiReaction={(emoji) =>
-            onEmojiReaction(originalMessage.id, emoji)
-          }
+          onEmojiReaction={(emoji) => onEmojiReaction(originalMessage.id, emoji)}
           onRetry={() => onRetry(originalMessage)}
-          isReactionLoading={Object.keys(reactionLoadingState).some((key) =>
-            key.startsWith(originalMessage.id)
-          )}
-          loadingReactionEmoji={
-            Object.entries(reactionLoadingState).find(([key]) =>
-              key.startsWith(originalMessage.id)
-            )?.[1] || ""
-          }
+          isReactionLoading={Object.keys(reactionLoadingState).some((key) => key.startsWith(originalMessage.id))}
+          loadingReactionEmoji={Object.entries(reactionLoadingState).find(([key]) => key.startsWith(originalMessage.id))?.[1] || ""}
           disabled={disabled}
         />
       </div>
@@ -86,14 +78,8 @@ export function ThreadView({
                 reactions={groupedReactions[item.id] || []}
                 onEmojiReaction={(emoji) => onEmojiReaction(item.id, emoji)}
                 onRetry={() => onRetry(item)}
-                isReactionLoading={Object.keys(reactionLoadingState).some(
-                  (key) => key.startsWith(item.id)
-                )}
-                loadingReactionEmoji={
-                  Object.entries(reactionLoadingState).find(([key]) =>
-                    key.startsWith(item.id)
-                  )?.[1] || ""
-                }
+                isReactionLoading={Object.keys(reactionLoadingState).some((key) => key.startsWith(item.id))}
+                loadingReactionEmoji={Object.entries(reactionLoadingState).find(([key]) => key.startsWith(item.id))?.[1] || ""}
                 disabled={disabled}
               />
             )}

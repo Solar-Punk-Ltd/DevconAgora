@@ -11,7 +11,7 @@ import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
-import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
+import { createMonogram, getLocalPrivateKey, handleKeyDown } from "../../utils/helpers";
 
 import "./ProfileCreation.scss";
 
@@ -67,7 +67,7 @@ const ProfileCreation: React.FC = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, key: getPrivateKey() }),
+        body: JSON.stringify({ username, key: getLocalPrivateKey() }),
       });
     } catch (error) {
       setUserNameSetError(true);

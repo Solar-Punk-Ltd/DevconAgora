@@ -1,13 +1,14 @@
-import { useState } from "react";
 import clsx from "clsx";
+import { useState } from "react";
 
-import { ProfilePicture } from "./ProfilePicture/ProfilePicture";
 import { MessageActions } from "./MessageActions/MessageActions";
 import { MessageReactionsWrapper } from "./MessageReactionsWrapper/MessageReactionsWrapper";
 import { MessageThreadWrapper } from "./MessageThreadWrapper/MessageThreadWrapper";
-import { ReactionData } from "@/hooks/useSwarmComment";
+import { ProfilePicture } from "./ProfilePicture/ProfilePicture";
 
 import "./CommentMessage.scss";
+
+import { ReactionData } from "@/hooks/useSwarmComment";
 
 interface CommentMessageProps {
   message: string;
@@ -45,15 +46,8 @@ export function CommentMessage({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className={clsx("comment-message", { "own-message": ownMessage })}
-      onClick={() => setIsHovered((prev) => !prev)}
-    >
-      <ProfilePicture
-        name={name}
-        color={profileColor}
-        ownMessage={ownMessage}
-      />
+    <div className={clsx("comment-message", { "own-message": ownMessage })} onClick={() => setIsHovered((prev) => !prev)}>
+      <ProfilePicture name={name} color={profileColor} ownMessage={ownMessage} />
 
       <div
         className={clsx("comment-message-text", {
@@ -78,11 +72,7 @@ export function CommentMessage({
           disabled={disabled}
         />
 
-        <MessageThreadWrapper
-          threadCount={threadCount}
-          onThreadClick={onThreadReply}
-          disabled={disabled}
-        />
+        <MessageThreadWrapper threadCount={threadCount} onThreadClick={onThreadReply} disabled={disabled} />
       </div>
 
       <MessageActions

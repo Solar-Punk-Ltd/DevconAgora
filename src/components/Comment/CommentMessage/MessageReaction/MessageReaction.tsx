@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import React from "react";
+
 import "./MessageReaction.scss";
 
 interface MessageReactionProps {
@@ -10,14 +12,7 @@ interface MessageReactionProps {
   disabled?: boolean;
 }
 
-export function MessageReaction({
-  emoji,
-  count,
-  isUserReaction = false,
-  onClick,
-  isLoading = false,
-  disabled = false,
-}: MessageReactionProps) {
+export function MessageReaction({ emoji, count, isUserReaction = false, onClick, isLoading = false, disabled = false }: MessageReactionProps) {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     if (!isLoading && !disabled) {
@@ -34,13 +29,7 @@ export function MessageReaction({
       })}
       onClick={handleClick}
       disabled={isLoading || disabled}
-      title={
-        disabled
-          ? "Reactions disabled while loading"
-          : isLoading
-          ? "Sending reaction..."
-          : `${count} reaction${count > 1 ? "s" : ""}`
-      }
+      title={disabled ? "Reactions disabled while loading" : isLoading ? "Sending reaction..." : `${count} reaction${count > 1 ? "s" : ""}`}
     >
       <span className="reaction-emoji">{isLoading ? "⏳" : emoji}</span>
       <span className="reaction-count">{count}</span>

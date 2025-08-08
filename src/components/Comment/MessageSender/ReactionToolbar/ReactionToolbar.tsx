@@ -1,9 +1,5 @@
-import { useState, useEffect } from "react";
-import EmojiPicker, {
-  EmojiClickData,
-  Theme,
-  EmojiStyle,
-} from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData, EmojiStyle, Theme } from "emoji-picker-react";
+import { useEffect, useState } from "react";
 
 import "./ReactionToolbar.scss";
 
@@ -17,9 +13,7 @@ export function ReactionToolbar({ onEmojiSelect }: ReactionToolbarProps) {
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
-      const expandButton = document.querySelector(
-        'button[aria-label="Show all Emojis"]'
-      );
+      const expandButton = document.querySelector('button[aria-label="Show all Emojis"]');
 
       if (expandButton && !expandButton.hasAttribute("data-listener-added")) {
         expandButton.setAttribute("data-listener-added", "true");

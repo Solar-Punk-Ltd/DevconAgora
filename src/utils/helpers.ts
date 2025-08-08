@@ -1,5 +1,5 @@
-import { Bytes, PrivateKey } from "@ethersphere/bee-js";
-import { hexlify, keccak256, Wallet } from "ethers";
+import { PrivateKey } from "@ethersphere/bee-js";
+import { keccak256 } from "ethers";
 import React from "react";
 
 import { Session } from "../types/session";
@@ -91,13 +91,6 @@ export function booleanToString(val: boolean): string {
   return val ? "true" : "false";
 }
 
-export function randomThreadId() {
-  const randomPart = Math.random().toString(36).substr(2, 9);
-  const timestampPart = Date.now().toString(36);
-
-  return `${timestampPart}-${randomPart}`;
-}
-
 export function textExtract(content: string): string {
   const modifiedContent = content.replace(/[\s\n]+/g, " ");
 
@@ -108,11 +101,7 @@ export function textExtract(content: string): string {
   }
 }
 
-export function getWallet(input: string): Wallet {
-  const privateKey = new Bytes(input).toString();
-  return new Wallet(hexlify(privateKey));
-}
-
+// TODO: probably .fromUtf8() is sufficient
 export function getSigner(input: string): PrivateKey {
   const normalized = input.trim().toLowerCase();
 
@@ -129,13 +118,6 @@ export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () 
   }
 };
 
-export function isEmpty(obj?: object) {
-  if (!obj) {
-    return true;
-  }
-  return Object.keys(obj).length === 0;
-}
-
 export const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time: number): number => {
   for (let i = startIx; i < sessionsByDay.length; i++) {
     const slotStart = sessionsByDay[i].slot_start;
@@ -146,7 +128,7 @@ export const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time:
   return -1;
 };
 
-export const getPrivateKey = () => {
+export const getLocalPrivateKey = () => {
   const privKey = localStorage.getItem("privKey");
   if (privKey) {
     return privKey;
@@ -156,7 +138,7 @@ export const getPrivateKey = () => {
 };
 
 export const isUserRegistered = () => {
-  const privKey = getPrivateKey();
+  const privKey = getLocalPrivateKey();
   const username = localStorage.getItem("username");
   if (privKey && privKey.slice(2).length === 64 && username && username.length > 0) return true;
   else return false;

@@ -1,11 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
 import clsx from "clsx";
-import EmojiPicker, {
-  EmojiClickData,
-  Theme,
-  EmojiStyle,
-} from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData, EmojiStyle, Theme } from "emoji-picker-react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import "./MessageActions.scss";
 
@@ -59,9 +55,7 @@ export function MessageActions({
     };
   }, [showEmojiPicker]);
 
-  const handleEmojiButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleEmojiButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
     // Prevent opening picker while reaction is loading or globally disabled
@@ -73,9 +67,7 @@ export function MessageActions({
       const pickerHeight = 350;
 
       // Detect Safari for specific adjustments
-      const isSafari = /^((?!chrome|android).)*safari/i.test(
-        navigator.userAgent
-      );
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
       let top = buttonRect.bottom + 4; // Start below the button
       let left = buttonRect.left;
@@ -106,10 +98,7 @@ export function MessageActions({
       if (isSafari) {
         // Add extra buffer for Safari's rendering quirks
         top = Math.max(20, top);
-        left = Math.max(
-          20,
-          Math.min(left, window.innerWidth - pickerWidth - 20)
-        );
+        left = Math.max(20, Math.min(left, window.innerWidth - pickerWidth - 20));
       }
 
       setPickerPosition({ top, left });
@@ -139,13 +128,7 @@ export function MessageActions({
           className="action-button emoji-button"
           onClick={handleEmojiButtonClick}
           disabled={isReactionLoading || disabled}
-          title={
-            disabled
-              ? "Reactions disabled while loading"
-              : isReactionLoading
-              ? "Sending reaction..."
-              : "Add reaction"
-          }
+          title={disabled ? "Reactions disabled while loading" : isReactionLoading ? "Sending reaction..." : "Add reaction"}
         >
           {isReactionLoading ? "⏳" : "😊"}
         </button>
@@ -160,9 +143,7 @@ export function MessageActions({
               }
             }}
             disabled={disabled}
-            title={
-              disabled ? "Replies disabled while loading" : "Reply in thread"
-            }
+            title={disabled ? "Replies disabled while loading" : "Reply in thread"}
           >
             💬
           </button>

@@ -1,17 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { VisibleMessage } from "@/hooks/useSwarmComment";
 
 import "./ScrollableMessageList.scss";
+
+import { VisibleMessage } from "@/hooks/useSwarmComment";
 
 interface ScrollableMessageListProps {
   items: VisibleMessage[];
   renderItem: (item: VisibleMessage) => React.ReactNode;
 }
 
-export function ScrollableMessageList({
-  items,
-  renderItem,
-}: ScrollableMessageListProps) {
+export function ScrollableMessageList({ items, renderItem }: ScrollableMessageListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const previousItemsLengthRef = useRef<number>(0);
   const lastScrolledItemsLengthRef = useRef<number>(0);

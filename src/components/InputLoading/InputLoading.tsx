@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './InputLoading.scss';
+import "./InputLoading.scss";
 
 export const InputLoading: React.FC = () => {
   return (

@@ -1,4 +1,3 @@
-import { FeedIndex } from "@ethersphere/bee-js";
 import { Wallet } from "ethers";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
@@ -32,14 +31,16 @@ import {
   ADDRESS_HEX_LENGTH,
   CATEGORIES,
   FIVE_MINUTES,
-  MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   RAW_FEED_TOPIC_SESSIONS,
   ROUTES,
   SELF_NOTE_TOPIC,
 } from "./utils/constants";
-import { findSlotStartIx, getPrivateKey, getSessionsByDay, getWallet, isUserRegistered } from "./utils/helpers";
+import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, getSigner, isUserRegistered } from "./utils/helpers";
 
+import { ExtendedCommentSettings, useSwarmComment } from "@/hooks/useSwarmComment";
+
+// TODO: refactor mainrouter, everything is dumped here
 const MainRouter = (): ReactElement => {
   const {
     showGamification,
@@ -67,6 +68,21 @@ const MainRouter = (): ReactElement => {
   const [prevLocation, setPrevLocation] = useState<string | null>(null);
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
+  const beeUrl = process.env.BEE_API_URL;
+  const privKey = getLocalPrivateKey();
+  const userSigner = getSigner(username);
+  const defaultCommentConfig: ExtendedCommentSettings = {
+    user: {
+      username,
+      privateKey: userSigner.toHex(),
+    },
+    infra: {
+      beeUrl: beeUrl || "",
+      stamp: process.env.STAMP,
+      topic: "unknown",
+    },
+  };
+
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -85,10 +101,10 @@ const MainRouter = (): ReactElement => {
       window.removeEventListener("resize", setVhVariable);
     };
   }, []);
-
-  const checkBee = async () => {
+  // TODO: useNetworkStatus from swarm-comment-react-example
+  const checkBee = async (url: string) => {
     try {
-      await fetch(process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF);
+      await fetch(url + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF);
       if (!isBeeRunning) {
         setBeeRunning(true);
         console.debug("Bee is running");
@@ -116,9 +132,14 @@ const MainRouter = (): ReactElement => {
   };
 
   useEffect(() => {
-    checkBee();
+    if (!beeUrl) {
+      console.error("BEE API URL is not configured.");
+      return;
+    }
+
+    checkBee(beeUrl);
     const interval = setInterval(() => {
-      checkBee();
+      checkBee(beeUrl);
     }, FIVE_MINUTES);
     return () => clearInterval(interval);
   }, []);
@@ -212,39 +233,64 @@ const MainRouter = (): ReactElement => {
   }, [sessions, time]);
 
   const preLoadTalks = async () => {
+    // todo: handle this better
+    if (!beeUrl) {
+      console.error("Critical error: BEE API URL is not configured.");
+      return;
+    }
+
     try {
       const preLoadedTalks: TalkComments[] = [];
-      const commentPromises: Promise<CommentsWithIndex>[] = [];
-      const talkIds: string[] = [];
+      const fetchPromises: Promise<{ talkId: string; messages: any[] }>[] = [];
+
       for (let i = 0; i < recentSessions.length; i++) {
-        const sessionId = recentSessions[i].id;
-        const rawTalkTopic = getTopic(sessionId, true);
-        const wallet = getWallet(rawTalkTopic); // TODO: privkey
+        const talkId = getTopic(recentSessions[i].id, true);
+
         // only load the talks that are not already loaded
         if (loadedTalks) {
           // talkids include a "version" suffix
-          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(rawTalkTopic));
+          // todo: .find(talkId)
+          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(talkId));
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
           }
         }
-        commentPromises.push(loadLatestComments(rawTalkTopic, wallet.address, process.env.BEE_API_URL, MAX_COMMENTS_LOADED));
-        talkIds.push(rawTalkTopic);
+
+        defaultCommentConfig.infra.topic = talkId;
+        const swarmCommentHook = useSwarmComment(defaultCommentConfig);
+        const { fetchPreviousMessages } = swarmCommentHook;
+
+        if (!fetchPreviousMessages) {
+          console.error(`Cannot fetch previous messages for talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchResult = fetchPreviousMessages();
+        if (!fetchResult) {
+          console.error(`fetchPreviousMessages returned undefined for talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchPromise = fetchResult.then(() => ({
+          talkId,
+          messages: swarmCommentHook.allMessages,
+        }));
+
+        fetchPromises.push(fetchPromise);
       }
 
-      await Promise.allSettled(commentPromises).then((results) => {
-        results.forEach((result, i) => {
-          if (result.status === "fulfilled") {
-            preLoadedTalks.push({
-              talkId: talkIds[i],
-              comments: result.value.comments,
-              nextIndex: result.value.nextIndex,
-            });
-          } else {
-            console.error(`preloading talks error: `, result.reason);
-          }
-        });
+      const results = await Promise.allSettled(fetchPromises);
+
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          preLoadedTalks.push({
+            talkId: result.value.talkId,
+            messages: result.value.messages,
+          });
+        } else {
+          console.error("preloading talks error: ", result.reason);
+        }
       });
 
       setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
@@ -259,37 +305,58 @@ const MainRouter = (): ReactElement => {
 
   const calcActivity = async () => {
     if (loadedTalks) {
-      const tmpActiveVisitors = new Map<string, FeedIndex>();
+      const tmpActiveVisitors = new Map<string, bigint>();
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(recentSessions[i].id));
         if (foundIx > -1) {
-          tmpActiveVisitors.set(recentSessions[i].id, new FeedIndex(loadedTalks[foundIx].nextIndex));
+          tmpActiveVisitors.set(recentSessions[i].id, BigInt(loadedTalks[foundIx].messages.length));
         }
       }
       setTalkActivity(tmpActiveVisitors);
     }
   };
 
-  const calcSapcesActivity = async () => {
+  const calcSpacesActivity = async () => {
     const spacesSessions = getSessionsByDay(sessions, "spaces");
-    const spacesPromises: Promise<CommentsWithIndex>[] = [];
     try {
+      const tmpActivity = new Map<string, bigint>();
+      const fetchPromises: Promise<{ sessionId: string; messageCount: bigint }>[] = [];
+
       for (let i = 0; i < spacesSessions.length; i++) {
-        const rawTalkTopic = getTopic(spacesSessions[i].id, true);
-        const wallet = getWallet(rawTalkTopic); // TODO: privkey
-        spacesPromises.push(loadLatestComments(rawTalkTopic, wallet.address, process.env.BEE_API_URL, MAX_COMMENTS_LOADED));
+        const talkId = getTopic(spacesSessions[i].id, true);
+        defaultCommentConfig.infra.topic = talkId;
+        const swarmCommentHook = useSwarmComment(defaultCommentConfig);
+        const { fetchPreviousMessages } = swarmCommentHook;
+
+        if (!fetchPreviousMessages) {
+          console.error(`Cannot fetch previous messages for spaces talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchResult = fetchPreviousMessages();
+        if (!fetchResult) {
+          console.error(`fetchPreviousMessages returned undefined for spaces talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchPromise = fetchResult.then(() => ({
+          sessionId: spacesSessions[i].id,
+          messageCount: BigInt(swarmCommentHook.allMessages.length),
+        }));
+
+        fetchPromises.push(fetchPromise);
       }
 
-      const tmpActivity = new Map<string, FeedIndex>();
-      await Promise.allSettled(spacesPromises).then((results) => {
-        results.forEach((result, i) => {
-          if (result.status === "fulfilled") {
-            tmpActivity.set(spacesSessions[i].id, new FeedIndex(result.value.nextIndex));
-          } else {
-            console.error(`fetching user count of talks error: `, result.reason);
-          }
-        });
+      const results = await Promise.allSettled(fetchPromises);
+
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          tmpActivity.set(result.value.sessionId, BigInt(result.value.messageCount));
+        } else {
+          console.error(`fetching user count of talks error: `, result.reason);
+        }
       });
+
       setSpacesActivity(tmpActivity);
     } catch (error) {
       console.error("fetching user count of talks error: ", error);
@@ -301,17 +368,16 @@ const MainRouter = (): ReactElement => {
   }, [loadedTalks]);
 
   useEffect(() => {
-    calcSapcesActivity();
+    calcSpacesActivity();
   }, [recentSessions]);
 
   const fetchNotes = async () => {
-    const privKey = getPrivateKey();
     if (!privKey) {
       console.error("private key not found - cannot fetch notes");
       return;
     }
 
-    const wallet = new Wallet(privKey);
+    const wallet = new Wallet(privKey); // TODO: remove wallet and use PrivateKey everywhere
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
@@ -366,7 +432,6 @@ const MainRouter = (): ReactElement => {
   }, [noteRawTopics]);
 
   useEffect(() => {
-    const privKey = localStorage.getItem("privKey");
     const noRedirectedPaths = [ROUTES.WELCOME1, ROUTES.WELCOME2, ROUTES.WELCOME3, ROUTES.WELCOME4, ROUTES.TACONBOARDING, ROUTES.PROFILECREATION];
     if (!privKey && !noRedirectedPaths.includes(location.pathname as ROUTES)) {
       navigate(ROUTES.APP);

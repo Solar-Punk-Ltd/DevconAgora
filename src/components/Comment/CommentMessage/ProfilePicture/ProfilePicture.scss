@@ -1,7 +1,9 @@
-@use "@/styles/globals.scss";
+@use "@/styles/global.scss";
 
 .profile-picture {
-  @extend .flex-center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   flex-shrink: 0;
   width: 24px;

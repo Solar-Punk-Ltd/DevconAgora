@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { Wallet } from "ethers";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { GIFTCODE_KEY, ROUTES } from "../../utils/constants";
-import { getPrivateKey, isUserRegistered } from "../../utils/helpers";
+import { getLocalPrivateKey, isUserRegistered } from "../../utils/helpers";
 
 import "./ClaimReward.scss";
 
@@ -32,7 +32,7 @@ const ClaimReward: React.FC = () => {
           resp.text().then(async (data) => {
             console.debug("nonce fetched", data);
             if (isUserRegistered()) {
-              const wallet = new ethers.Wallet(getPrivateKey());
+              const wallet = new Wallet(getLocalPrivateKey()); // TODO: use PrivateKey
               const flatSig = await wallet.signMessage(data);
               try {
                 fetch(process.env.BACKEND_API_URL + "/redeem", {

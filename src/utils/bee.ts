@@ -11,7 +11,15 @@ export async function getFeedUpdate(owner: string, rawTopic: string): Promise<st
 }
 
 export async function getFeedData(owner: string, rawTopic: string, index?: bigint, options?: BeeRequestOptions): Promise<FeedResultWithIndex> {
-  const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
+  if (!process.env.BEE_API_URL) {
+    console.error("BEE_API_URL is not configured.");
+    return {
+      feedIndex: FeedIndex.MINUS_ONE,
+      feedIndexNext: FEED_INDEX_ZERO,
+      payload: SWARM_ZERO_ADDRESS,
+    };
+  }
+  const bee = new Bee(process.env.BEE_API_URL);
 
   try {
     const topic = new Topic(rawTopic);
@@ -86,7 +94,7 @@ export async function updateFeed(owner: string, signer: PrivateKey, rawTopic: st
   }
 }
 
-// adds ENV suffix to the topic if raw is true, so that environments can be separated
+// adds ENV suffix to the topic if raw is true, so that environments can be separated: talkId == sessionId + ENV
 export function getTopic(topic: string, raw: boolean): string {
   if (raw) {
     return topic + process.env.ENV;

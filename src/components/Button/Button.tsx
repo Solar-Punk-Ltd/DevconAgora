@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./Button.scss";
 
 export enum ButtonVariant {
@@ -13,21 +15,9 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export function Button({
-  children,
-  onClick,
-  className,
-  variant = ButtonVariant.PRIMARY,
-  disabled,
-}: ButtonProps) {
+export function Button({ children, onClick, className, variant = ButtonVariant.PRIMARY, disabled }: ButtonProps) {
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`button ${variant} ${className ? className : ""} ${
-        disabled ? "disabled" : ""
-      }`.trim()}
-    >
+    <button onClick={onClick} disabled={disabled} className={`button ${variant} ${className ? className : ""} ${disabled ? "disabled" : ""}`.trim()}>
       {children}
     </button>
   );

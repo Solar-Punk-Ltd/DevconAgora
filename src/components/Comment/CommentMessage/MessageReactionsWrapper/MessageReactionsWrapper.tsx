@@ -1,6 +1,8 @@
 import { MessageReaction } from "../MessageReaction/MessageReaction";
-import { ReactionData } from "@/hooks/useSwarmComment";
+
 import "./MessageReactionsWrapper.scss";
+
+import { ReactionData } from "@/hooks/useSwarmComment";
 
 interface MessageReactionsWrapperProps {
   reactions: ReactionData[];
@@ -24,9 +26,7 @@ export function MessageReactionsWrapper({
   }
 
   return (
-    <div
-      className={`message-reactions-wrapper ${ownMessage ? "own-message" : ""}`}
-    >
+    <div className={`message-reactions-wrapper ${ownMessage ? "own-message" : ""}`}>
       {reactions.map((reaction) => (
         <MessageReaction
           key={reaction.emoji}

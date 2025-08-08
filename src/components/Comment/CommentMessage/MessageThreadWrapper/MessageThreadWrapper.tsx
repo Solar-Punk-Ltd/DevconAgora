@@ -6,11 +6,7 @@ interface MessageThreadWrapperProps {
   disabled?: boolean;
 }
 
-export function MessageThreadWrapper({
-  threadCount,
-  onThreadClick,
-  disabled = false,
-}: MessageThreadWrapperProps) {
+export function MessageThreadWrapper({ threadCount, onThreadClick, disabled = false }: MessageThreadWrapperProps) {
   if (threadCount === 0) {
     return null;
   }
