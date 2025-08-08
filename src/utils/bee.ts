@@ -7,7 +7,7 @@ import { isNotFoundError } from "./helpers";
 
 export async function getFeedUpdate(owner: string, rawTopic: string): Promise<string> {
   const { payload } = await getFeedData(owner, rawTopic);
-  return payload.toString();
+  return JSON.stringify(payload.toJSON());
 }
 
 export async function getFeedData(owner: string, rawTopic: string, index?: bigint, options?: BeeRequestOptions): Promise<FeedResultWithIndex> {
@@ -22,7 +22,7 @@ export async function getFeedData(owner: string, rawTopic: string, index?: bigin
   const bee = new Bee(process.env.BEE_API_URL);
 
   try {
-    const topic = new Topic(rawTopic);
+    const topic = Topic.fromString(rawTopic);
     let data: FeedPayloadResult;
     const feedReader = bee.makeFeedReader(topic.toUint8Array(), owner, options);
     if (index !== undefined) {
@@ -95,10 +95,6 @@ export async function updateFeed(owner: string, signer: PrivateKey, rawTopic: st
 }
 
 // adds ENV suffix to the topic if raw is true, so that environments can be separated: talkId == sessionId + ENV
-export function getTopic(topic: string, raw: boolean): string {
-  if (raw) {
-    return topic + process.env.ENV;
-  }
-
-  return new Topic(topic).toString();
+export function getTopic(topic: string): string {
+  return topic + process.env.ENV;
 }

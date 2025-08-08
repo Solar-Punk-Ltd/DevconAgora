@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-# todo: remove tsbuildinfo
+# TODO: remove tsbuildinfo
 tsconfig.tsbuildinfo
 
 # Editor directories and files

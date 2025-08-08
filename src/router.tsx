@@ -5,6 +5,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Gamification from "./components/Gamification/Gamification";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { useGlobalState } from "./contexts/global";
+import { useCalcActivity } from "./hooks/useCalcActivity";
+import { useCalcSpacesActivity } from "./hooks/useCalcSpacesActivity";
 import Agenda from "./pages/Agenda/Agenda";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
 import ContentFilter from "./pages/ContentFilter/ContentFilter";
@@ -25,8 +27,7 @@ import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import { Session } from "./types/session";
-import { TalkComments } from "./types/talkComment";
-import { getFeedUpdate, getTopic } from "./utils/bee";
+import { getFeedUpdate } from "./utils/bee";
 import {
   ADDRESS_HEX_LENGTH,
   CATEGORIES,
@@ -36,29 +37,12 @@ import {
   ROUTES,
   SELF_NOTE_TOPIC,
 } from "./utils/constants";
-import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, getSigner, isUserRegistered } from "./utils/helpers";
-
-import { ExtendedCommentSettings, useSwarmComment } from "@/hooks/useSwarmComment";
+import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
 
 // TODO: refactor mainrouter, everything is dumped here
 const MainRouter = (): ReactElement => {
-  const {
-    showGamification,
-    setShowGamification,
-    points,
-    setPoints,
-    username,
-    sessions,
-    setSessions,
-    recentSessions,
-    setRecentSessions,
-    loadedTalks,
-    setLoadedTalks,
-    notes,
-    setNotes,
-    setTalkActivity,
-    setSpacesActivity,
-  } = useGlobalState();
+  const { showGamification, setShowGamification, points, setPoints, username, sessions, setSessions, setRecentSessions, notes, setNotes } =
+    useGlobalState();
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
@@ -70,18 +54,10 @@ const MainRouter = (): ReactElement => {
 
   const beeUrl = process.env.BEE_API_URL;
   const privKey = getLocalPrivateKey();
-  const userSigner = getSigner(username);
-  const defaultCommentConfig: ExtendedCommentSettings = {
-    user: {
-      username,
-      privateKey: userSigner.toHex(),
-    },
-    infra: {
-      beeUrl: beeUrl || "",
-      stamp: process.env.STAMP,
-      topic: "unknown",
-    },
-  };
+
+  // Use hooks for activity calculations
+  const { calcActivity } = useCalcActivity();
+  const { calcSpacesActivity } = useCalcSpacesActivity();
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
@@ -154,8 +130,9 @@ const MainRouter = (): ReactElement => {
 
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
-      // todo: unnecessary payload.tostring() then back to json
+      // TODO: unnecessary payload.tostring() then back to json
       const dataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS);
+      console.log("bagoy dataStr: ", dataStr);
       const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
 
       const spacesSessions: Session[] = [];
@@ -232,145 +209,6 @@ const MainRouter = (): ReactElement => {
     filterRecentSessions();
   }, [sessions, time]);
 
-  const preLoadTalks = async () => {
-    // todo: handle this better
-    if (!beeUrl) {
-      console.error("Critical error: BEE API URL is not configured.");
-      return;
-    }
-
-    try {
-      const preLoadedTalks: TalkComments[] = [];
-      const fetchPromises: Promise<{ talkId: string; messages: any[] }>[] = [];
-
-      for (let i = 0; i < recentSessions.length; i++) {
-        const talkId = getTopic(recentSessions[i].id, true);
-
-        // only load the talks that are not already loaded
-        if (loadedTalks) {
-          // talkids include a "version" suffix
-          // todo: .find(talkId)
-          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(talkId));
-          if (foundIx > -1) {
-            preLoadedTalks.push(loadedTalks[foundIx]);
-            continue;
-          }
-        }
-
-        defaultCommentConfig.infra.topic = talkId;
-        const swarmCommentHook = useSwarmComment(defaultCommentConfig);
-        const { fetchPreviousMessages } = swarmCommentHook;
-
-        if (!fetchPreviousMessages) {
-          console.error(`Cannot fetch previous messages for talkId: ${talkId}`);
-          continue;
-        }
-
-        const fetchResult = fetchPreviousMessages();
-        if (!fetchResult) {
-          console.error(`fetchPreviousMessages returned undefined for talkId: ${talkId}`);
-          continue;
-        }
-
-        const fetchPromise = fetchResult.then(() => ({
-          talkId,
-          messages: swarmCommentHook.allMessages,
-        }));
-
-        fetchPromises.push(fetchPromise);
-      }
-
-      const results = await Promise.allSettled(fetchPromises);
-
-      results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          preLoadedTalks.push({
-            talkId: result.value.talkId,
-            messages: result.value.messages,
-          });
-        } else {
-          console.error("preloading talks error: ", result.reason);
-        }
-      });
-
-      setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
-    } catch (error) {
-      console.error("preloading talks error: ", error);
-    }
-  };
-
-  useEffect(() => {
-    preLoadTalks();
-  }, [recentSessions]);
-
-  const calcActivity = async () => {
-    if (loadedTalks) {
-      const tmpActiveVisitors = new Map<string, bigint>();
-      for (let i = 0; i < recentSessions.length; i++) {
-        const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(recentSessions[i].id));
-        if (foundIx > -1) {
-          tmpActiveVisitors.set(recentSessions[i].id, BigInt(loadedTalks[foundIx].messages.length));
-        }
-      }
-      setTalkActivity(tmpActiveVisitors);
-    }
-  };
-
-  const calcSpacesActivity = async () => {
-    const spacesSessions = getSessionsByDay(sessions, "spaces");
-    try {
-      const tmpActivity = new Map<string, bigint>();
-      const fetchPromises: Promise<{ sessionId: string; messageCount: bigint }>[] = [];
-
-      for (let i = 0; i < spacesSessions.length; i++) {
-        const talkId = getTopic(spacesSessions[i].id, true);
-        defaultCommentConfig.infra.topic = talkId;
-        const swarmCommentHook = useSwarmComment(defaultCommentConfig);
-        const { fetchPreviousMessages } = swarmCommentHook;
-
-        if (!fetchPreviousMessages) {
-          console.error(`Cannot fetch previous messages for spaces talkId: ${talkId}`);
-          continue;
-        }
-
-        const fetchResult = fetchPreviousMessages();
-        if (!fetchResult) {
-          console.error(`fetchPreviousMessages returned undefined for spaces talkId: ${talkId}`);
-          continue;
-        }
-
-        const fetchPromise = fetchResult.then(() => ({
-          sessionId: spacesSessions[i].id,
-          messageCount: BigInt(swarmCommentHook.allMessages.length),
-        }));
-
-        fetchPromises.push(fetchPromise);
-      }
-
-      const results = await Promise.allSettled(fetchPromises);
-
-      results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          tmpActivity.set(result.value.sessionId, BigInt(result.value.messageCount));
-        } else {
-          console.error(`fetching user count of talks error: `, result.reason);
-        }
-      });
-
-      setSpacesActivity(tmpActivity);
-    } catch (error) {
-      console.error("fetching user count of talks error: ", error);
-    }
-  };
-
-  useEffect(() => {
-    calcActivity();
-  }, [loadedTalks]);
-
-  useEffect(() => {
-    calcSpacesActivity();
-  }, [recentSessions]);
-
   const fetchNotes = async () => {
     if (!privKey) {
       console.error("private key not found - cannot fetch notes");
@@ -381,6 +219,8 @@ const MainRouter = (): ReactElement => {
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
+      console.log("bagoy address: ", wallet.address);
+      console.log("bagoy rawTopic: ", rawTopic);
       feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
     }
 
@@ -426,6 +266,14 @@ const MainRouter = (): ReactElement => {
       setNoteRawTopics(tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH));
     }
   }, []);
+
+  useEffect(() => {
+    calcActivity();
+  }, [calcActivity]);
+
+  useEffect(() => {
+    calcSpacesActivity();
+  }, [calcSpacesActivity]);
 
   useEffect(() => {
     fetchNotes();

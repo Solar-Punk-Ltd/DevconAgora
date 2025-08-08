@@ -1,6 +1,10 @@
-import { MessageData, MessageType } from "@solarpunkltd/comment-system";
+import { MessageData, MessageType } from "@solarpunkltd/comment-system"; // TODO: maybe export messageData from swarm-comment-js
 import { CommentSettings, EVENTS, SwarmComment } from "@solarpunkltd/swarm-comment-js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import { useGlobalState } from "@/contexts/global";
+import { getTopic } from "@/utils/bee";
+import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -75,19 +79,27 @@ const calculateActiveReactions = (
 
   return newReactions;
 };
-
-export interface ExtendedCommentSettings extends CommentSettings {
-  onMessageReceived?: (messages: VisibleMessage[]) => void;
-}
-
-export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedCommentSettings) => {
+// TODO: handle legacy object transformation to new messageData
+export const useSwarmComment = ({ user, infra }: CommentSettings) => {
   const commentRef = useRef<SwarmComment | null>(null);
+  const { loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } = useGlobalState();
+  const sessionId = infra.topic;
+  const talkId = getTopic(sessionId);
 
-  const [messages, setMessages] = useState<VisibleMessage[]>([]);
+  const preloadedMessages = useMemo(() => {
+    if (loadedTalks) {
+      const talk = loadedTalks.find((talk: any) => talk.talkId === talkId);
+      return talk?.messages;
+    }
+    return undefined;
+  }, [loadedTalks, talkId]);
+
+  const [messages, setMessages] = useState<VisibleMessage[]>(preloadedMessages || []);
   const [commentLoading, setCommentLoading] = useState<boolean>(true);
   const [messagesLoading, setMessagesLoading] = useState<boolean>(false);
-  const [isPreloaded, setIsPreloaded] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
+
+  const isPreloaded = useMemo(() => preloadedMessages !== undefined, [preloadedMessages]);
 
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
 
@@ -111,8 +123,56 @@ export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedComm
 
   const groupedReactions = useMemo(() => {
     const reactionGroups = buildReactionGroups(reactionMessages);
-    return calculateActiveReactions(reactionGroups, user.username);
-  }, [reactionMessages, user.username]);
+    return calculateActiveReactions(reactionGroups, user.nickname);
+  }, [reactionMessages, user.nickname]);
+
+  const updateTalkActivity = useCallback(() => {
+    if (loadedTalks) {
+      let tmpActivity: Map<string, bigint>;
+      const isSpacesTalk = CATEGORIES.find((c: string) => c === sessionId);
+      if (!isSpacesTalk) {
+        tmpActivity = new Map(talkActivity);
+      } else {
+        tmpActivity = new Map(spacesActivity);
+      }
+      const foundIx = loadedTalks.findIndex((talk: any) => talk.talkId === talkId);
+      if (foundIx > -1) {
+        tmpActivity.set(sessionId, BigInt(loadedTalks[foundIx].messages.length));
+      }
+
+      if (!isSpacesTalk) {
+        setTalkActivity(tmpActivity);
+      } else {
+        setSpacesActivity(tmpActivity);
+      }
+    }
+  }, [loadedTalks, sessionId, talkActivity, spacesActivity, setTalkActivity, setSpacesActivity]);
+
+  const updateLoadedTalks = useCallback(
+    (messages: VisibleMessage[]) => {
+      const prevLoadedTalks = [...(loadedTalks || [])];
+      const newTalk = {
+        talkId: sessionId,
+        messages,
+      };
+      if (!loadedTalks || loadedTalks.length < MAX_PRELOADED_TALKS) {
+        prevLoadedTalks.push(newTalk);
+      } else {
+        prevLoadedTalks.splice(0, 1, newTalk);
+      }
+
+      setLoadedTalks(prevLoadedTalks);
+    },
+    [loadedTalks, sessionId, setLoadedTalks]
+  );
+
+  const onMessageReceived = useCallback(
+    (messages: VisibleMessage[]) => {
+      updateTalkActivity();
+      updateLoadedTalks(messages);
+    },
+    [updateTalkActivity, updateLoadedTalks]
+  );
 
   const addMessage = useCallback((newMessage: VisibleMessage) => {
     setMessages((prevMessages) => {
@@ -135,19 +195,14 @@ export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedComm
         const data = typeof d === "string" ? JSON.parse(d) : d;
         const newMessage = { ...data, ...updates } as VisibleMessage;
         addMessage(newMessage);
-        // todo: is setMessages reflected here within the same callback? -> onMessageReceived needs to be called after setMessages
+        // TODO: is setMessages reflected here within the same callback? -> onMessageReceived needs to be called after setMessages
         if (updates.received) {
-          onMessageReceived?.(messages);
+          onMessageReceived(messages);
         }
       };
     },
-    [addMessage, onMessageReceived]
+    [addMessage, onMessageReceived, messages]
   );
-
-  const setPreloadedMessages = useCallback((messages: VisibleMessage[]) => {
-    setMessages(messages);
-    setIsPreloaded(true);
-  }, []);
 
   useEffect(() => {
     if (commentRef.current) return;
@@ -183,13 +238,19 @@ export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedComm
 
     on(EVENTS.MESSAGE_REQUEST_ERROR, createMessageHandler({ error: true }));
 
-    on(EVENTS.LOADING_INIT, (loading: boolean) => setCommentLoading(loading));
+    on(EVENTS.LOADING_INIT, (loading: boolean) => {
+      if (!isPreloaded) {
+        setCommentLoading(loading);
+      }
+    });
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
-    // TOOD: update start() to accept isPreloaded
-    // commentRef.current.start(!isPreloaded);
-    commentRef.current.start();
+    commentRef.current.start(!isPreloaded);
+
+    if (isPreloaded) {
+      setCommentLoading(false);
+    }
 
     return () => {
       if (commentRef.current) {
@@ -197,7 +258,7 @@ export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedComm
         commentRef.current = null;
       }
     };
-  }, [user.privateKey, createMessageHandler]);
+  }, [user.privateKey, createMessageHandler, isPreloaded]);
 
   const sendMessage = useCallback((message: string) => {
     return commentRef.current?.sendMessage(message, MessageType.TEXT);
@@ -237,7 +298,6 @@ export const useSwarmComment = ({ user, infra, onMessageReceived }: ExtendedComm
     reactionMessages,
     groupedReactions,
     error,
-    setPreloadedMessages,
     getThreadMessages,
     sendMessage,
     sendReaction,

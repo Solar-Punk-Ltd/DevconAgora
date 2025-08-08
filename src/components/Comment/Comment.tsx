@@ -1,5 +1,5 @@
 import { PrivateKey } from "@ethersphere/bee-js";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import "./Comment.scss";
 
@@ -8,11 +8,7 @@ import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessa
 import { MessageSender } from "@/components/Comment/MessageSender/MessageSender";
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
-import { useGlobalState } from "@/contexts/global"; // todo: replace all relative imports with @
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
-import { TalkComments } from "@/types/talkComment";
-import { getTopic } from "@/utils/bee";
-import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
 
 interface CommentProps {
   sessionId: string;
@@ -39,14 +35,11 @@ function getColorForName(name: string): string {
 }
 
 export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username }) => {
-  const { loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } = useGlobalState();
   const [selectedMessage, setSelectedMessage] = useState<VisibleMessage | null>(null);
   const [isThreadView, setIsThreadView] = useState(false);
   const [reactionLoadingState, setReactionLoadingState] = useState<Record<string, string>>({});
   const [isSendingMessage, setIsSendingMessage] = useState(false);
   const [isSendingThreadMessage, setIsSendingThreadMessage] = useState(false);
-
-  const topic = getTopic(sessionId, true);
 
   // TODO: why can it be undefined?
   const beeUrl = process.env.BEE_API_URL;
@@ -58,59 +51,11 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     );
   }
 
-  // todo: useCallback if loadedTalks changes?
-  const updateTalkActivity = () => {
-    if (loadedTalks) {
-      let tmpActivity: Map<string, bigint>;
-      const isSpacesTalk = CATEGORIES.find((c) => c === sessionId);
-      if (!isSpacesTalk) {
-        tmpActivity = new Map(talkActivity);
-      } else {
-        tmpActivity = new Map(spacesActivity);
-      }
-      const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(sessionId));
-      if (foundIx > -1) {
-        tmpActivity.set(sessionId, BigInt(loadedTalks[foundIx].messages.length));
-      }
-
-      if (!isSpacesTalk) {
-        setTalkActivity(tmpActivity);
-      } else {
-        setSpacesActivity(tmpActivity);
-      }
-    }
-  };
-
-  // todo: useCallback if loadedTalks changes?
-  const updateLoadedTalks = (messages: VisibleMessage[]) => {
-    const prevLoadedTalks = [...(loadedTalks || [])];
-    const newTalk: TalkComments = {
-      talkId: sessionId,
-      messages,
-    };
-    if (!loadedTalks || loadedTalks.length < MAX_PRELOADED_TALKS) {
-      prevLoadedTalks.push(newTalk);
-    } else {
-      prevLoadedTalks.splice(0, 1, newTalk);
-    }
-
-    setLoadedTalks(prevLoadedTalks);
-  };
-
-  const onMessageReceived = useCallback(
-    (messages: VisibleMessage[]) => {
-      updateTalkActivity();
-      updateLoadedTalks(messages);
-    },
-    [loadedTalks, talkActivity, spacesActivity, sessionId, setTalkActivity, setSpacesActivity, setLoadedTalks]
-  );
-
   const {
     commentLoading,
     messagesLoading,
     groupedReactions,
     simpleMessages,
-    setPreloadedMessages,
     getThreadMessages,
     sendMessage,
     sendReaction,
@@ -121,32 +66,15 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     error,
   } = useSwarmComment({
     user: {
-      username,
+      nickname: username,
       privateKey: signer.toHex(),
     },
     infra: {
       beeUrl,
       stamp: process.env.STAMP,
-      topic,
+      topic: sessionId,
     },
-    onMessageReceived,
   });
-
-  const setPreloadedTalks = useCallback(() => {
-    if (loadedTalks) {
-      const talk = loadedTalks.find((talk) => talk.talkId.includes(sessionId));
-      if (talk) {
-        setPreloadedMessages(talk.messages);
-      }
-    }
-  }, [loadedTalks, sessionId, setPreloadedMessages]);
-
-  // TODO: set history load flag to false
-  useEffect(() => {
-    if (!commentLoading) {
-      setPreloadedTalks();
-    }
-  }, [commentLoading, setPreloadedTalks]);
 
   const handleMessageSending = async (text: string) => {
     try {

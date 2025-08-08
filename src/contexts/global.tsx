@@ -18,7 +18,7 @@ interface GlobalState {
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
   recentSessions: Session[];
   setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
-  loadedTalks: TalkComments[] | undefined; // todo: rename to globalTalks
+  loadedTalks: TalkComments[] | undefined; // TODO: rename to globalTalks
   setLoadedTalks: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
