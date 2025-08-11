@@ -1,5 +1,5 @@
 import { PrivateKey } from "@ethersphere/bee-js";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 import "./Comment.scss";
 
@@ -77,6 +77,10 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
       pollInterval: TWO_SECONDS,
     },
   });
+
+  const shouldShowLoadMore = useMemo(() => {
+    return !commentLoading && hasPreviousMessages();
+  }, [commentLoading, hasPreviousMessages]);
 
   const handleMessageSending = async (text: string) => {
     try {
@@ -161,7 +165,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
               <div className="comment-loading">Loading comments...</div>
             </div>
           )}
-          {!commentLoading && hasPreviousMessages() && (
+          {shouldShowLoadMore && (
             <Button onClick={fetchPreviousMessages} className="comment-load-more">
               Load more messages
             </Button>

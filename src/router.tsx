@@ -36,10 +36,11 @@ import {
   RAW_FEED_TOPIC_SESSIONS,
   ROUTES,
   SELF_NOTE_TOPIC,
+  SPACES_KEY,
   TWO_SECONDS,
 } from "./utils/constants";
 import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
-// import { usePreloadTalks } from "./hooks/usePreloadTalks";
+import { usePreloadTalks } from "./hooks/usePreloadTalks";
 import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
 
 // TODO: refactor mainrouter, everything is dumped here
@@ -146,7 +147,7 @@ const MainRouter = (): ReactElement => {
         });
       }
 
-      data.set("spaces", spacesSessions);
+      data.set(SPACES_KEY, spacesSessions);
       if (data.size !== 0) {
         console.debug("session data updated");
         setSessions(() => data);
@@ -264,24 +265,26 @@ const MainRouter = (): ReactElement => {
 
   const privKey = getLocalPrivateKey();
 
-  // // todo: use global beeUrl, signer, stamp
-  // // todo: privkey probably not set here?
-  // const defaultCommentConfig: CommentSettings = {
-  //   user: {
-  //     nickname: username,
-  //     privateKey: privKey,
-  //   },
-  //   infra: {
-  //     beeUrl: beeUrl || "",
-  //     stamp: process.env.STAMP,
-  //     topic: "unknown",
-  //     pollInterval: TWO_SECONDS,
-  //   },
-  // };
+  // todo: use global beeUrl, signer, stamp
+  // todo: privkey probably not set here?
+  const defaultCommentConfig: CommentSettings = {
+    user: {
+      privateKey: privKey,
+      nickname: username,
+    },
+    infra: {
+      beeUrl: beeUrl || "",
+      stamp: process.env.STAMP,
+      topic: "unknown",
+      pollInterval: TWO_SECONDS,
+    },
+  };
 
-  // useEffect(() => {
-  //   usePreloadTalks(defaultCommentConfig);
-  // }, [usePreloadTalks]);
+  const { preLoadTalks } = usePreloadTalks(defaultCommentConfig);
+
+  useEffect(() => {
+    preLoadTalks();
+  }, [preLoadTalks]);
 
   // const { calcTalkActivity } = useCalcTalkActivity(defaultCommentConfig);
   // const { calcSpacesActivity } = useCalcSpacesActivity(defaultCommentConfig);

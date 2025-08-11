@@ -1,17 +1,17 @@
-// import { SwarmComment } from "@solarpunkltd/swarm-comment-js";
 import { useCallback } from "react";
 
 import { useGlobalState } from "@/contexts/global";
-import { getLocalPrivateKey, getSessionsByDay } from "@/utils/helpers";
+import { getSessionsByDay } from "@/utils/helpers";
 import { getTopic } from "@/utils/bee";
 import { useSwarmComment } from "./useSwarmComment";
 import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
+import { SPACES_KEY } from "@/utils/constants";
 
 export const useCalcSpacesActivity = (settings: CommentSettings) => {
-  const { sessions, setSpacesActivity, username } = useGlobalState();
+  const { sessions, setSpacesActivity } = useGlobalState();
 
   const calcSpacesActivity = useCallback(async () => {
-    const spacesSessions = getSessionsByDay(sessions, "spaces");
+    const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
     try {
       const tmpActivity = new Map<string, bigint>();
       const fetchPromises: Promise<{ sessionId: string; messageCount: bigint }>[] = [];

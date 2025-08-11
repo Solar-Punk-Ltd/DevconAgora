@@ -1,7 +1,8 @@
 import React from "react";
 
 import { Session } from "../types/session";
-import { DATE_TO_DEVCON_DAY } from "../utils/constants";
+import { DATE_TO_DEVCON_DAY, SPACES_KEY } from "../utils/constants";
+import { PrivateKey } from "@ethersphere/bee-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -28,8 +29,8 @@ export function getSessionsByDay(sessions: Map<string, Session[]>, day: string):
   if (day === "all") {
     return Array.from(sessions.values()).flat();
   }
-  if (day === "spaces") {
-    return sessions.get("spaces") || [];
+  if (day === SPACES_KEY) {
+    return sessions.get(SPACES_KEY) || [];
   }
   return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
 }
@@ -117,11 +118,19 @@ export const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time:
 
 export const getLocalPrivateKey = () => {
   const privKey = localStorage.getItem("privKey");
-  if (privKey) {
-    return privKey;
-  } else {
+  if (!privKey) {
+    console.error("Private key not found in local storage");
     return "";
   }
+
+  try {
+    new PrivateKey(privKey)
+  } catch (error: any) {
+    console.error("Invalid private key in local storage: ", error);
+    return "";
+  }
+
+   return privKey;
 };
 
 export const isUserRegistered = () => {

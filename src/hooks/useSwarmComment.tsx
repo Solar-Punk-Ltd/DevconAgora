@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useGlobalState } from "@/contexts/global";
 import { getTopic } from "@/utils/bee";
 import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
+import { FeedIndex } from "@ethersphere/bee-js";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -79,8 +80,8 @@ const calculateActiveReactions = (
 
   return newReactions;
 };
-// TODO: handle legacy object transformation to new messageData
-export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: boolean) => {
+
+export const useSwarmComment = ({ user, infra }: CommentSettings) => {
   const commentRef = useRef<SwarmComment | null>(null);
   const { loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } = useGlobalState();
 
@@ -88,16 +89,14 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: b
   const sessionId = infra.topic;
   const talkId = getTopic(sessionId);
 
-  // const preloadedMessages = useMemo(() => {
-  //   if (loadedTalks) {
-  //     const talk = loadedTalks.find((t) => t.talkId === talkId);
-  //     return talk?.messages ?? [];
-  //   }
-  //   return undefined;
-  // }, [loadedTalks, talkId]);
-  // const isPreloaded = useMemo(() => preloadedMessages !== undefined, [preloadedMessages]);
+  const preloadedMessages = useMemo(() => {
+    if (loadedTalks) {
+      const talk = loadedTalks.find((t) => t.talkId === talkId);
+      return talk?.messages ?? [];
+    }
+    return undefined;
+  }, [loadedTalks, talkId]);
 
-  // const [messages, setMessages] = useState<VisibleMessage[]>(preloadedMessages || []);
   const [messages, setMessages] = useState<VisibleMessage[]>([]);
   const [commentLoading, setCommentLoading] = useState<boolean>(true);
   const [messagesLoading, setMessagesLoading] = useState<boolean>(false);
@@ -168,13 +167,13 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: b
     [loadedTalks, sessionId, setLoadedTalks]
   );
 
-  const onMessageReceived = useCallback(
-    (currentMessages: VisibleMessage[]) => {
-      updateTalkActivity();
-      updateLoadedTalks(currentMessages);
-    },
-    [updateTalkActivity, updateLoadedTalks]
-  );
+  // const onMessageReceived = useCallback(
+  //   (currentMessages: VisibleMessage[]) => {
+  //     updateTalkActivity();
+  //     updateLoadedTalks(currentMessages);
+  //   },
+  //   [updateTalkActivity, updateLoadedTalks]
+  // );
 
   const addMessage = useCallback((newMessage: VisibleMessage) => {
     setMessages((prevMessages) => {
@@ -249,7 +248,15 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: b
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
-    commentRef.current.start();
+    let startIx: bigint | undefined;
+    let latestIx: bigint | undefined;
+    if (preloadedMessages && preloadedMessages.length > 0) {
+      startIx = new FeedIndex(preloadedMessages[0].index).toBigInt();
+      latestIx = new FeedIndex(preloadedMessages[preloadedMessages.length - 1].index).toBigInt();
+      console.log("bagoy useSwarmComment preloadedMessages startIx: ", startIx);
+    }
+
+    commentRef.current.start(startIx, latestIx);
 
     return () => {
       if (commentRef.current) {
@@ -257,8 +264,8 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: b
         commentRef.current = null;
       }
     };
-    // }, [user.privateKey, infra.topic, addMessage, onMessageReceived]); // Stable dependencies only
-  }, [user.privateKey, infra.topic, addMessage]); // Stable dependencies only
+    // }, [user.privateKey, infra.topic, addMessage, onMessageReceived]);
+  }, [user.privateKey, infra.topic, addMessage]);
 
   const sendMessage = useCallback((message: string) => {
     return commentRef.current?.sendMessage(message, MessageType.TEXT);

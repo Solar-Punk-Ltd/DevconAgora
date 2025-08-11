@@ -18,11 +18,11 @@ interface TalkItemProps {
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const { username } = useGlobalState();
 
-  const privKey = getLocalPrivateKey(); // TODO: verify PK safely
+  const privKey = getLocalPrivateKey();
   if (!privKey) {
-    console.error("Private key not found");
     return null;
   }
+
   const userSigner = new PrivateKey(privKey);
 
   return (

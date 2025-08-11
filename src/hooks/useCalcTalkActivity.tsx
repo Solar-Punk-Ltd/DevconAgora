@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 
 import { useGlobalState } from "@/contexts/global";
-import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
+import { FeedIndex } from "@ethersphere/bee-js";
 
-export const useCalcTalkActivity = (settings: CommentSettings) => {
+export const useCalcTalkActivity = () => {
   const { loadedTalks, setTalkActivity, recentSessions } = useGlobalState();
 
   const calcTalkActivity = useCallback(async () => {
@@ -12,7 +12,8 @@ export const useCalcTalkActivity = (settings: CommentSettings) => {
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(recentSessions[i].id));
         if (foundIx > -1) {
-          tmpActiveVisitors.set(recentSessions[i].id, BigInt(loadedTalks[foundIx].messages.length));
+          const messageCount = new FeedIndex(loadedTalks[foundIx].messages[-1].index).toBigInt();
+          tmpActiveVisitors.set(recentSessions[i].id, messageCount);
         }
       }
       setTalkActivity(tmpActiveVisitors);

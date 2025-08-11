@@ -1,43 +1,36 @@
 import { useCallback } from "react";
 
 import { useGlobalState } from "@/contexts/global";
-import { Session } from "@/types/session";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { getLocalPrivateKey } from "@/utils/helpers";
-import { PrivateKey } from "@ethersphere/bee-js";
+import { FeedIndex } from "@ethersphere/bee-js";
 import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
-import { useSwarmComment } from "./useSwarmComment";
+import { VisibleMessage } from "./useSwarmComment";
+import { getPrivateKeyFromIdentifier, Options, readCommentsInRange, readSingleComment } from "@solarpunkltd/comment-system";
+import { CATEGORIES, FEED_INDEX_ZERO, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
+import { getSessionsByDay } from "@/utils/helpers";
 
+// TODO: reaction state handling
 export const usePreloadTalks = (settings: CommentSettings) => {
-  const { loadedTalks, setLoadedTalks, recentSessions } = useGlobalState();
-  const beeUrl = process.env.BEE_API_URL;
-
-  const privKey = getLocalPrivateKey();
-  if (!privKey || privKey.length !== PrivateKey.LENGTH * 2) {
-    console.error("Private key not found");
-    return null;
-  }
-
-  const userSigner = new PrivateKey(privKey);
+  const { loadedTalks, setLoadedTalks, recentSessions, sessions, setSpacesActivity, setTalkActivity } = useGlobalState();
+  const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
+  const mergedSessions = [...spacesSessions, ...recentSessions];
 
   const preLoadTalks = useCallback(async () => {
-    if (!beeUrl || !recentSessions.length) {
-      return;
-    }
-
     try {
+      const tmpSpacesActivity = new Map<string, bigint>();
+      const tmpTalkActivity = new Map<string, bigint>();
       const preLoadedTalks: TalkComments[] = [];
-      const fetchPromises: Promise<{ talkId: string; messages: any[] }>[] = [];
+      const commentPromises: Promise<VisibleMessage[] | undefined>[] = [];
+      const talkIds: string[] = [];
+      const sessionIds: string[] = [];
 
-      for (let i = 0; i < recentSessions.length; i++) {
-        const talkId = getTopic(recentSessions[i].id);
+      for (let i = 0; i < mergedSessions.length; i++) {
+        const sessionId = mergedSessions[i].id;
+        const talkId = getTopic(sessionId);
 
-        // only load the talks that are not already loaded
         if (loadedTalks) {
-          // talkids include a "version" suffix
-          // todo: .find(talkId)
-          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(talkId));
+          const foundIx = loadedTalks.findIndex((t) => t.talkId === talkId);
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
@@ -45,46 +38,67 @@ export const usePreloadTalks = (settings: CommentSettings) => {
         }
 
         settings.infra.topic = talkId;
-        const swarmCommentHook = useSwarmComment(settings, false);
-        const { fetchPreviousMessages } = swarmCommentHook;
+        const signer = getPrivateKeyFromIdentifier(settings.infra.topic);
+        const options: Options = {
+          identifier: talkId,
+          address: signer.publicKey().address().toString(),
+          beeApiUrl: settings.infra.beeUrl,
+        };
+        const latest = await readSingleComment(undefined, options);
 
-        if (!fetchPreviousMessages) {
-          console.error(`Cannot fetch previous messages for talkId: ${talkId}`);
+        if (!latest?.nextIndex || new FeedIndex(latest.nextIndex) === FEED_INDEX_ZERO) {
+          console.log(`No latest comment found for talkId: ${talkId}`);
           continue;
         }
+        const latestIx = new FeedIndex(latest.nextIndex).toBigInt();
+        const startIx = latestIx > MAX_COMMENTS_LOADED ? latestIx - MAX_COMMENTS_LOADED : 0n;
+        const cp = readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
 
-        const fetchResult = fetchPreviousMessages();
-        if (!fetchResult) {
-          console.error(`fetchPreviousMessages returned undefined for talkId: ${talkId}`);
-          continue;
-        }
-
-        const fetchPromise = fetchResult.then(() => ({
-          talkId,
-          messages: swarmCommentHook.allMessages,
-        }));
-
-        fetchPromises.push(fetchPromise);
+        commentPromises.push(cp);
+        talkIds.push(talkId);
+        sessionIds.push(sessionId);
       }
 
-      const results = await Promise.allSettled(fetchPromises);
+      const results = await Promise.allSettled(commentPromises);
 
-      results.forEach((result) => {
+      results.forEach((result, i) => {
         if (result.status === "fulfilled") {
+          if (!result.value) {
+            console.error(`preloading talks: invalid comments found for talkId: ${talkIds[i]}`);
+            return;
+          }
+
+          const messages = [...result.value];
+
+          const isSpacesSession = CATEGORIES.find((c) => c === sessionIds[i]);
+          const latestIx = new FeedIndex(messages[messages.length - 1].index).toBigInt();
+          if (isSpacesSession) {
+            tmpSpacesActivity.set(sessionIds[i], latestIx);
+          } else {
+            tmpTalkActivity.set(talkIds[i], latestIx);
+          }
+
+          for (const message of messages) {
+            message.received = true;
+          }
+
           preLoadedTalks.push({
-            talkId: result.value.talkId,
-            messages: result.value.messages,
+            talkId: talkIds[i],
+            messages,
           });
         } else {
-          console.error("preloading talks error: ", result.reason);
+          console.log(`preloading talks error: `, result.reason);
         }
       });
 
+      // TODO: why undef ? can be []
+      setSpacesActivity(tmpSpacesActivity);
+      setTalkActivity(tmpTalkActivity);
       setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
     } catch (error) {
-      console.error("preloading talks error: ", error);
+      console.log("preloading talks error: ", error);
     }
-  }, [recentSessions, loadedTalks, beeUrl, userSigner, setLoadedTalks]);
+  }, [recentSessions, sessions, loadedTalks, setLoadedTalks]);
 
   return { preLoadTalks };
 };

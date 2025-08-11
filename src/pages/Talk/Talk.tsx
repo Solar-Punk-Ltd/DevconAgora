@@ -6,7 +6,7 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import TalkItem from "../../components/TalkItem/TalkItem";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
-import { DATE_TO_DEVCON_DAY, ROUTES } from "../../utils/constants";
+import { DATE_TO_DEVCON_DAY, ROUTES, SPACES_KEY } from "../../utils/constants";
 import { getSessionsByDay } from "../../utils/helpers";
 
 import "./Talk.scss";
@@ -29,7 +29,7 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
     isSpaceSession: boolean;
     session: Session;
   } | null => {
-    const spacesSessions = getSessionsByDay(sessions, "spaces");
+    const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
     for (let i = 0; i < sessions.size; i++) {
       const sessionsByDay = getSessionsByDay(sessions, Array.from(DATE_TO_DEVCON_DAY.keys())[i]);
 
