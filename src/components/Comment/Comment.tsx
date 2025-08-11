@@ -9,6 +9,7 @@ import { MessageSender } from "@/components/Comment/MessageSender/MessageSender"
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
+import { TWO_SECONDS } from "@/utils/constants";
 
 interface CommentProps {
   sessionId: string;
@@ -73,6 +74,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
       beeUrl,
       stamp: process.env.STAMP,
       topic: sessionId,
+      pollInterval: TWO_SECONDS,
     },
   });
 

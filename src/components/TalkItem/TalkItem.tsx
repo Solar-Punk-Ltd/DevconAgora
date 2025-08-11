@@ -3,11 +3,12 @@ import React from "react";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { STAGES_MAP } from "../../utils/constants";
-import { dateToTime, getSigner } from "../../utils/helpers";
+import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Comment } from "../Comment/Comment";
 
 import "./TalkItem.scss";
+import { PrivateKey } from "@ethersphere/bee-js";
 
 interface TalkItemProps {
   session: Session;
@@ -16,7 +17,13 @@ interface TalkItemProps {
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const { username } = useGlobalState();
-  const userSigner = getSigner(username);
+
+  const privKey = getLocalPrivateKey(); // TODO: verify PK safely
+  if (!privKey) {
+    console.error("Private key not found");
+    return null;
+  }
+  const userSigner = new PrivateKey(privKey);
 
   return (
     <>

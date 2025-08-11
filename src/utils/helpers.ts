@@ -1,5 +1,3 @@
-import { PrivateKey } from "@ethersphere/bee-js";
-import { keccak256 } from "ethers";
 import React from "react";
 
 import { Session } from "../types/session";
@@ -99,17 +97,6 @@ export function textExtract(content: string): string {
   } else {
     return modifiedContent;
   }
-}
-
-// TODO: probably .fromUtf8() is sufficient
-export function getSigner(input: string): PrivateKey {
-  const normalized = input.trim().toLowerCase();
-
-  const hash = keccak256(Buffer.from(normalized, "utf-8"));
-
-  const privateKeyHex = hash.slice(2);
-
-  return new PrivateKey(privateKeyHex);
 }
 
 export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () => void) => {

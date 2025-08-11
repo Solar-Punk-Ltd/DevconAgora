@@ -1,11 +1,12 @@
 import { useCallback } from "react";
 
 import { useGlobalState } from "@/contexts/global";
+import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
 
-export const useCalcActivity = () => {
+export const useCalcTalkActivity = (settings: CommentSettings) => {
   const { loadedTalks, setTalkActivity, recentSessions } = useGlobalState();
 
-  const calcActivity = useCallback(async () => {
+  const calcTalkActivity = useCallback(async () => {
     if (loadedTalks && recentSessions) {
       const tmpActiveVisitors = new Map<string, bigint>();
       for (let i = 0; i < recentSessions.length; i++) {
@@ -18,5 +19,5 @@ export const useCalcActivity = () => {
     }
   }, [loadedTalks, recentSessions, setTalkActivity]);
 
-  return { calcActivity };
+  return { calcTalkActivity };
 };

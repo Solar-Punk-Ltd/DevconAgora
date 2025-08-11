@@ -4,12 +4,22 @@ import { useGlobalState } from "@/contexts/global";
 import { Session } from "@/types/session";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { getSigner } from "@/utils/helpers";
+import { getLocalPrivateKey } from "@/utils/helpers";
+import { PrivateKey } from "@ethersphere/bee-js";
+import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
+import { useSwarmComment } from "./useSwarmComment";
 
-export const usePreloadTalks = (recentSessions: Session[], username: string) => {
-  const { loadedTalks, setLoadedTalks } = useGlobalState();
+export const usePreloadTalks = (settings: CommentSettings) => {
+  const { loadedTalks, setLoadedTalks, recentSessions } = useGlobalState();
   const beeUrl = process.env.BEE_API_URL;
-  const userSigner = getSigner(username);
+
+  const privKey = getLocalPrivateKey();
+  if (!privKey || privKey.length !== PrivateKey.LENGTH * 2) {
+    console.error("Private key not found");
+    return null;
+  }
+
+  const userSigner = new PrivateKey(privKey);
 
   const preLoadTalks = useCallback(async () => {
     if (!beeUrl || !recentSessions.length) {
@@ -17,29 +27,58 @@ export const usePreloadTalks = (recentSessions: Session[], username: string) => 
     }
 
     try {
-      // Simply ensure we have placeholder entries for all recent sessions
-      // The actual message loading will be handled by individual useSwarmComment hooks
       const preLoadedTalks: TalkComments[] = [];
+      const fetchPromises: Promise<{ talkId: string; messages: any[] }>[] = [];
 
       for (let i = 0; i < recentSessions.length; i++) {
-        const sessionId = recentSessions[i].id;
-        const talkId = getTopic(sessionId);
+        const talkId = getTopic(recentSessions[i].id);
 
-        // Check if already loaded
+        // only load the talks that are not already loaded
         if (loadedTalks) {
-          const foundIx = loadedTalks.findIndex((talk) => talk.talkId === talkId);
+          // talkids include a "version" suffix
+          // todo: .find(talkId)
+          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(talkId));
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
           }
         }
 
-        // Create placeholder entry
-        preLoadedTalks.push({
+        settings.infra.topic = talkId;
+        const swarmCommentHook = useSwarmComment(settings, false);
+        const { fetchPreviousMessages } = swarmCommentHook;
+
+        if (!fetchPreviousMessages) {
+          console.error(`Cannot fetch previous messages for talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchResult = fetchPreviousMessages();
+        if (!fetchResult) {
+          console.error(`fetchPreviousMessages returned undefined for talkId: ${talkId}`);
+          continue;
+        }
+
+        const fetchPromise = fetchResult.then(() => ({
           talkId,
-          messages: [], // Will be populated by useSwarmComment hooks
-        });
+          messages: swarmCommentHook.allMessages,
+        }));
+
+        fetchPromises.push(fetchPromise);
       }
+
+      const results = await Promise.allSettled(fetchPromises);
+
+      results.forEach((result) => {
+        if (result.status === "fulfilled") {
+          preLoadedTalks.push({
+            talkId: result.value.talkId,
+            messages: result.value.messages,
+          });
+        } else {
+          console.error("preloading talks error: ", result.reason);
+        }
+      });
 
       setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
     } catch (error) {

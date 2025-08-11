@@ -80,26 +80,28 @@ const calculateActiveReactions = (
   return newReactions;
 };
 // TODO: handle legacy object transformation to new messageData
-export const useSwarmComment = ({ user, infra }: CommentSettings) => {
+export const useSwarmComment = ({ user, infra }: CommentSettings, startFetch?: boolean) => {
   const commentRef = useRef<SwarmComment | null>(null);
   const { loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } = useGlobalState();
+
+  // todo: does sessionId need to be a state ?
   const sessionId = infra.topic;
   const talkId = getTopic(sessionId);
 
-  const preloadedMessages = useMemo(() => {
-    if (loadedTalks) {
-      const talk = loadedTalks.find((talk: any) => talk.talkId === talkId);
-      return talk?.messages;
-    }
-    return undefined;
-  }, [loadedTalks, talkId]);
+  // const preloadedMessages = useMemo(() => {
+  //   if (loadedTalks) {
+  //     const talk = loadedTalks.find((t) => t.talkId === talkId);
+  //     return talk?.messages ?? [];
+  //   }
+  //   return undefined;
+  // }, [loadedTalks, talkId]);
+  // const isPreloaded = useMemo(() => preloadedMessages !== undefined, [preloadedMessages]);
 
-  const [messages, setMessages] = useState<VisibleMessage[]>(preloadedMessages || []);
+  // const [messages, setMessages] = useState<VisibleMessage[]>(preloadedMessages || []);
+  const [messages, setMessages] = useState<VisibleMessage[]>([]);
   const [commentLoading, setCommentLoading] = useState<boolean>(true);
   const [messagesLoading, setMessagesLoading] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
-
-  const isPreloaded = useMemo(() => preloadedMessages !== undefined, [preloadedMessages]);
 
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
 
@@ -167,9 +169,9 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
   );
 
   const onMessageReceived = useCallback(
-    (messages: VisibleMessage[]) => {
+    (currentMessages: VisibleMessage[]) => {
       updateTalkActivity();
-      updateLoadedTalks(messages);
+      updateLoadedTalks(currentMessages);
     },
     [updateTalkActivity, updateLoadedTalks]
   );
@@ -189,27 +191,30 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
     });
   }, []);
 
-  const createMessageHandler = useCallback(
-    (updates: Partial<VisibleMessage>) => {
-      return (d: MessageData | string) => {
-        const data = typeof d === "string" ? JSON.parse(d) : d;
-        const newMessage = { ...data, ...updates } as VisibleMessage;
-        addMessage(newMessage);
-        // TODO: is setMessages reflected here within the same callback? -> onMessageReceived needs to be called after setMessages
-        if (updates.received) {
-          onMessageReceived(messages);
-        }
-      };
-    },
-    [addMessage, onMessageReceived, messages]
-  );
-
   useEffect(() => {
     if (commentRef.current) return;
 
     commentRef.current = new SwarmComment({ user, infra });
 
     const { on } = commentRef.current.getEmitter();
+
+    // Move createMessageHandler inside useEffect to avoid dependency issues
+    const createMessageHandler = (updates: Partial<VisibleMessage>) => {
+      return (d: MessageData | string) => {
+        const data = typeof d === "string" ? JSON.parse(d) : d;
+        const newMessage = { ...data, ...updates } as VisibleMessage;
+        addMessage(newMessage);
+        // Use setTimeout to ensure state updates are reflected
+        // if (updates.received) {
+        //   setTimeout(() => {
+        //     setMessages((currentMessages) => {
+        //       onMessageReceived(currentMessages);
+        //       return currentMessages;
+        //     });
+        //   }, 0);
+        // }
+      };
+    };
 
     on(
       EVENTS.MESSAGE_REQUEST_INITIATED,
@@ -224,7 +229,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
       createMessageHandler({
         error: false,
         uploaded: true,
-        received: true, // todo: received here?
+        received: true,
       })
     );
 
@@ -239,18 +244,12 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
     on(EVENTS.MESSAGE_REQUEST_ERROR, createMessageHandler({ error: true }));
 
     on(EVENTS.LOADING_INIT, (loading: boolean) => {
-      if (!isPreloaded) {
-        setCommentLoading(loading);
-      }
+      setCommentLoading(loading);
     });
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
-    commentRef.current.start(!isPreloaded);
-
-    if (isPreloaded) {
-      setCommentLoading(false);
-    }
+    commentRef.current.start();
 
     return () => {
       if (commentRef.current) {
@@ -258,7 +257,8 @@ export const useSwarmComment = ({ user, infra }: CommentSettings) => {
         commentRef.current = null;
       }
     };
-  }, [user.privateKey, createMessageHandler, isPreloaded]);
+    // }, [user.privateKey, infra.topic, addMessage, onMessageReceived]); // Stable dependencies only
+  }, [user.privateKey, infra.topic, addMessage]); // Stable dependencies only
 
   const sendMessage = useCallback((message: string) => {
     return commentRef.current?.sendMessage(message, MessageType.TEXT);

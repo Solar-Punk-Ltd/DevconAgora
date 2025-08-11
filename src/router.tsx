@@ -5,8 +5,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Gamification from "./components/Gamification/Gamification";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { useGlobalState } from "./contexts/global";
-import { useCalcActivity } from "./hooks/useCalcActivity";
-import { useCalcSpacesActivity } from "./hooks/useCalcSpacesActivity";
+// import { useCalcTalkActivity } from "./hooks/useCalcTalkActivity";
+// import { useCalcSpacesActivity } from "./hooks/useCalcSpacesActivity";
 import Agenda from "./pages/Agenda/Agenda";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
 import ContentFilter from "./pages/ContentFilter/ContentFilter";
@@ -36,8 +36,11 @@ import {
   RAW_FEED_TOPIC_SESSIONS,
   ROUTES,
   SELF_NOTE_TOPIC,
+  TWO_SECONDS,
 } from "./utils/constants";
 import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
+// import { usePreloadTalks } from "./hooks/usePreloadTalks";
+import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
 
 // TODO: refactor mainrouter, everything is dumped here
 const MainRouter = (): ReactElement => {
@@ -53,11 +56,6 @@ const MainRouter = (): ReactElement => {
   const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
   const beeUrl = process.env.BEE_API_URL;
-  const privKey = getLocalPrivateKey();
-
-  // Use hooks for activity calculations
-  const { calcActivity } = useCalcActivity();
-  const { calcSpacesActivity } = useCalcSpacesActivity();
 
   const setVhVariable = () => {
     const vh = window.innerHeight * 0.01;
@@ -132,7 +130,6 @@ const MainRouter = (): ReactElement => {
     if (isBeeRunning) {
       // TODO: unnecessary payload.tostring() then back to json
       const dataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS);
-      console.log("bagoy dataStr: ", dataStr);
       const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
 
       const spacesSessions: Session[] = [];
@@ -219,8 +216,6 @@ const MainRouter = (): ReactElement => {
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      console.log("bagoy address: ", wallet.address);
-      console.log("bagoy rawTopic: ", rawTopic);
       feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
     }
 
@@ -267,13 +262,37 @@ const MainRouter = (): ReactElement => {
     }
   }, []);
 
-  useEffect(() => {
-    calcActivity();
-  }, [calcActivity]);
+  const privKey = getLocalPrivateKey();
 
-  useEffect(() => {
-    calcSpacesActivity();
-  }, [calcSpacesActivity]);
+  // // todo: use global beeUrl, signer, stamp
+  // // todo: privkey probably not set here?
+  // const defaultCommentConfig: CommentSettings = {
+  //   user: {
+  //     nickname: username,
+  //     privateKey: privKey,
+  //   },
+  //   infra: {
+  //     beeUrl: beeUrl || "",
+  //     stamp: process.env.STAMP,
+  //     topic: "unknown",
+  //     pollInterval: TWO_SECONDS,
+  //   },
+  // };
+
+  // useEffect(() => {
+  //   usePreloadTalks(defaultCommentConfig);
+  // }, [usePreloadTalks]);
+
+  // const { calcTalkActivity } = useCalcTalkActivity(defaultCommentConfig);
+  // const { calcSpacesActivity } = useCalcSpacesActivity(defaultCommentConfig);
+
+  // useEffect(() => {
+  //   calcTalkActivity();
+  // // }, [calcTalkActivity]);
+
+  // useEffect(() => {
+  //   calcSpacesActivity();
+  // }, [calcSpacesActivity]);
 
   useEffect(() => {
     fetchNotes();
