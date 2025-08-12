@@ -1,12 +1,10 @@
 import { Wallet } from "ethers";
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import Gamification from "./components/Gamification/Gamification";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
 import { useGlobalState } from "./contexts/global";
-// import { useCalcTalkActivity } from "./hooks/useCalcTalkActivity";
-// import { useCalcSpacesActivity } from "./hooks/useCalcSpacesActivity";
 import Agenda from "./pages/Agenda/Agenda";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
 import ContentFilter from "./pages/ContentFilter/ContentFilter";
@@ -37,11 +35,9 @@ import {
   ROUTES,
   SELF_NOTE_TOPIC,
   SPACES_KEY,
-  TWO_SECONDS,
 } from "./utils/constants";
 import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
 import { usePreloadTalks } from "./hooks/usePreloadTalks";
-import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
 
 // TODO: refactor mainrouter, everything is dumped here
 const MainRouter = (): ReactElement => {
@@ -51,6 +47,7 @@ const MainRouter = (): ReactElement => {
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
+  const hasPreloadedRef = useRef(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [prevLocation, setPrevLocation] = useState<string | null>(null);
@@ -130,8 +127,8 @@ const MainRouter = (): ReactElement => {
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
       // TODO: unnecessary payload.tostring() then back to json
-      const dataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS);
-      const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
+      const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS);
+      const sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
@@ -147,10 +144,10 @@ const MainRouter = (): ReactElement => {
         });
       }
 
-      data.set(SPACES_KEY, spacesSessions);
-      if (data.size !== 0) {
+      sessionData.set(SPACES_KEY, spacesSessions);
+      if (sessionData.size !== 0) {
         console.debug("session data updated");
-        setSessions(() => data);
+        setSessions(() => sessionData);
       } else {
         console.debug("session data empty");
       }
@@ -221,14 +218,13 @@ const MainRouter = (): ReactElement => {
     }
 
     const notesArray: string[] = [];
-    await Promise.allSettled(feedPromises).then((results) => {
-      results.forEach((result) => {
-        if (result.status === "fulfilled") {
-          notesArray.push(result.value);
-        } else {
-          console.error(`fetching note data error: `, result.reason);
-        }
-      });
+    const results = await Promise.allSettled(feedPromises);
+    results.forEach((result) => {
+      if (result.status === "fulfilled") {
+        notesArray.push(result.value);
+      } else {
+        console.error(`fetching note data error: `, result.reason);
+      }
     });
 
     const tmpNotes: NoteItemProps[] = [...notes];
@@ -265,37 +261,15 @@ const MainRouter = (): ReactElement => {
 
   const privKey = getLocalPrivateKey();
 
-  // todo: use global beeUrl, signer, stamp
-  // todo: privkey probably not set here?
-  const defaultCommentConfig: CommentSettings = {
-    user: {
-      privateKey: privKey,
-      nickname: username,
-    },
-    infra: {
-      beeUrl: beeUrl || "",
-      stamp: process.env.STAMP,
-      topic: "unknown",
-      pollInterval: TWO_SECONDS,
-    },
-  };
-
-  const { preLoadTalks } = usePreloadTalks(defaultCommentConfig);
+  const { preLoadTalks } = usePreloadTalks();
 
   useEffect(() => {
-    preLoadTalks();
-  }, [preLoadTalks]);
-
-  // const { calcTalkActivity } = useCalcTalkActivity(defaultCommentConfig);
-  // const { calcSpacesActivity } = useCalcSpacesActivity(defaultCommentConfig);
-
-  // useEffect(() => {
-  //   calcTalkActivity();
-  // // }, [calcTalkActivity]);
-
-  // useEffect(() => {
-  //   calcSpacesActivity();
-  // }, [calcSpacesActivity]);
+    // Trigger once only when sessions data is loaded
+    if (sessions && sessions.size > 0 && !hasPreloadedRef.current) {
+      preLoadTalks();
+      hasPreloadedRef.current = true;
+    }
+  }, [sessions]);
 
   useEffect(() => {
     fetchNotes();

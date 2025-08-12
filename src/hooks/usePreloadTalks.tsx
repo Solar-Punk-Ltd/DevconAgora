@@ -3,15 +3,14 @@ import { useCallback } from "react";
 import { useGlobalState } from "@/contexts/global";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { FeedIndex } from "@ethersphere/bee-js";
-import { CommentSettings } from "@solarpunkltd/swarm-comment-js";
+import { FeedIndex, Topic } from "@ethersphere/bee-js";
 import { VisibleMessage } from "./useSwarmComment";
 import { getPrivateKeyFromIdentifier, Options, readCommentsInRange, readSingleComment } from "@solarpunkltd/comment-system";
-import { CATEGORIES, FEED_INDEX_ZERO, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
+import { CATEGORIES, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
 import { getSessionsByDay } from "@/utils/helpers";
 
 // TODO: reaction state handling
-export const usePreloadTalks = (settings: CommentSettings) => {
+export const usePreloadTalks = () => {
   const { loadedTalks, setLoadedTalks, recentSessions, sessions, setSpacesActivity, setTalkActivity } = useGlobalState();
   const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
   const mergedSessions = [...spacesSessions, ...recentSessions];
@@ -29,30 +28,32 @@ export const usePreloadTalks = (settings: CommentSettings) => {
         const sessionId = mergedSessions[i].id;
         const talkId = getTopic(sessionId);
 
+        // todo: is this check need or totally skip preloading if it exists
         if (loadedTalks) {
           const foundIx = loadedTalks.findIndex((t) => t.talkId === talkId);
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
+            console.debug("found preloaded talk, skipping it: ", loadedTalks[foundIx].talkId);
             continue;
           }
         }
 
-        settings.infra.topic = talkId;
-        const signer = getPrivateKeyFromIdentifier(settings.infra.topic);
+        const signer = getPrivateKeyFromIdentifier(talkId);
         const options: Options = {
-          identifier: talkId,
+          identifier: Topic.fromString(talkId).toString(),
           address: signer.publicKey().address().toString(),
-          beeApiUrl: settings.infra.beeUrl,
+          beeApiUrl: process.env.BEE_API_URL,
         };
         const latest = await readSingleComment(undefined, options);
 
-        if (!latest?.nextIndex || new FeedIndex(latest.nextIndex) === FEED_INDEX_ZERO) {
-          console.log(`No latest comment found for talkId: ${talkId}`);
+        if (!latest || new FeedIndex(latest.index).equals(FeedIndex.MINUS_ONE)) {
+          console.debug(`No comment found for talkId: ${talkId}`);
           continue;
         }
-        const latestIx = new FeedIndex(latest.nextIndex).toBigInt();
-        const startIx = latestIx > MAX_COMMENTS_LOADED ? latestIx - MAX_COMMENTS_LOADED : 0n;
-        const cp = readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
+
+        const latestIx = new FeedIndex(latest.index);
+        const startIx = latestIx.toBigInt() > MAX_COMMENTS_LOADED ? latestIx.toBigInt() - MAX_COMMENTS_LOADED : 0n;
+        const cp = readCommentsInRange(FeedIndex.fromBigInt(startIx), latestIx, options);
 
         commentPromises.push(cp);
         talkIds.push(talkId);
@@ -87,18 +88,19 @@ export const usePreloadTalks = (settings: CommentSettings) => {
             messages,
           });
         } else {
-          console.log(`preloading talks error: `, result.reason);
+          console.error(`preloading talks error: `, result.reason);
         }
       });
 
       // TODO: why undef ? can be []
+      // TODO: set them one by one as they get loaded not in a batch?
       setSpacesActivity(tmpSpacesActivity);
       setTalkActivity(tmpTalkActivity);
       setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
     } catch (error) {
-      console.log("preloading talks error: ", error);
+      console.error("preloading talks error: ", error);
     }
-  }, [recentSessions, sessions, loadedTalks, setLoadedTalks]);
+  }, [recentSessions, sessions]);
 
   return { preLoadTalks };
 };

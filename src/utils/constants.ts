@@ -15,7 +15,7 @@ import Usability from "../assets/category-usability.png";
 export const BATCH_ID_HEX_LENGTH = 64;
 export const ADDRESS_HEX_LENGTH = 64;
 export const FIVE_MINUTES = 1000 * 60 * 5;
-export const TWO_SECONDS = 2000;
+export const FIVE_SECONDS = 5000;
 export const DEFAULT_URL = "http://localhost:1633/";
 export const DUMMY_STAMP = "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
 export const SELF_NOTE_TOPIC = "selfNoteTopics";

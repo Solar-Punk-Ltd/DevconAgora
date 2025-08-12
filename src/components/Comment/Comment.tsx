@@ -9,7 +9,8 @@ import { MessageSender } from "@/components/Comment/MessageSender/MessageSender"
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
-import { TWO_SECONDS } from "@/utils/constants";
+import { FIVE_SECONDS } from "@/utils/constants";
+import { getTopic } from "@/utils/bee";
 
 interface CommentProps {
   sessionId: string;
@@ -52,9 +53,27 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     );
   }
 
+  const topic = getTopic(sessionId);
+  const commentConfig = useMemo(
+    () => ({
+      user: {
+        nickname: username,
+        privateKey: signer.toHex(),
+      },
+      infra: {
+        beeUrl,
+        stamp: process.env.STAMP,
+        topic,
+        pollInterval: FIVE_SECONDS * 100, // todo: FIVE_SECONDS, now set for debugging
+      },
+    }),
+    [username, signer, topic, beeUrl]
+  );
+
   const {
     commentLoading,
     messagesLoading,
+    swarmCommentReady,
     groupedReactions,
     simpleMessages,
     getThreadMessages,
@@ -65,22 +84,11 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     hasPreviousMessages,
     retrySendMessage,
     error,
-  } = useSwarmComment({
-    user: {
-      nickname: username,
-      privateKey: signer.toHex(),
-    },
-    infra: {
-      beeUrl,
-      stamp: process.env.STAMP,
-      topic: sessionId,
-      pollInterval: TWO_SECONDS,
-    },
-  });
+  } = useSwarmComment(commentConfig, sessionId);
 
   const shouldShowLoadMore = useMemo(() => {
-    return !commentLoading && hasPreviousMessages();
-  }, [commentLoading, hasPreviousMessages]);
+    return !commentLoading && swarmCommentReady && hasPreviousMessages();
+  }, [commentLoading, swarmCommentReady, hasPreviousMessages]);
 
   const handleMessageSending = async (text: string) => {
     try {
@@ -172,7 +180,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
           )}
 
           {messagesLoading && <div className="comment-loading">Loading messages...</div>}
-          {!messagesLoading && simpleMessages.length > 0 && (
+          {simpleMessages.length > 0 && (
             <ScrollableMessageList
               items={simpleMessages}
               renderItem={(item) => (
