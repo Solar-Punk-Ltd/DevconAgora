@@ -1,8 +1,8 @@
+import { PrivateKey } from "@ethersphere/bee-js";
 import React from "react";
 
 import { Session } from "../types/session";
 import { DATE_TO_DEVCON_DAY, SPACES_KEY } from "../utils/constants";
-import { PrivateKey } from "@ethersphere/bee-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -124,13 +124,13 @@ export const getLocalPrivateKey = () => {
   }
 
   try {
-    new PrivateKey(privKey)
+    new PrivateKey(privKey);
   } catch (error: any) {
     console.error("Invalid private key in local storage: ", error);
     return "";
   }
 
-   return privKey;
+  return privKey;
 };
 
 export const isUserRegistered = () => {

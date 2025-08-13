@@ -29,7 +29,7 @@ export const SWARM_ZERO_ADDRESS = new Reference(NULL_ADDRESS);
 export const FEED_INDEX_ZERO = FeedIndex.fromBigInt(0n);
 export const RAW_FEED_TOPIC_SESSIONS = "sessions";
 export const DEFAULT_POLL_INTERVAL_5_SECONDS = 5000;
-export const SPACES_KEY = "spaces"
+export const SPACES_KEY = "spaces";
 
 export enum ROUTES {
   APP = "/",

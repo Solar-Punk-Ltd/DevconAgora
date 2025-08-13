@@ -1,10 +1,10 @@
+import { FeedIndex } from "@ethersphere/bee-js";
 import { MessageData, MessageType } from "@solarpunkltd/comment-system";
 import { CommentSettings, EVENTS, SwarmComment } from "@solarpunkltd/swarm-comment-js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useGlobalState } from "@/contexts/global";
 import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
-import { FeedIndex } from "@ethersphere/bee-js";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -255,16 +255,18 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
-    let startIx: bigint | undefined;
-    let latestIx: bigint | undefined;
+    let firstIndex: bigint | undefined;
+    let latestIndex: bigint | undefined;
+    let reactionIndex: bigint | undefined;
     if (preloadedMessages && preloadedMessages.length > 0) {
-      startIx = new FeedIndex(preloadedMessages[0].index).toBigInt();
-      latestIx = new FeedIndex(preloadedMessages[preloadedMessages.length - 1].index).toBigInt();
-      console.log("bagoy startIx:", startIx, "latestIx:", latestIx);
+      firstIndex = new FeedIndex(preloadedMessages[0].index).toBigInt();
+      latestIndex = new FeedIndex(preloadedMessages[preloadedMessages.length - 1].index).toBigInt();
+      // reactionIndex = new FeedIndex(reactionMessages[reactionMessages.length - 1].index).toBigInt();
+      console.log("bagoy startIx:", firstIndex, "latestIx:", latestIndex, "reactionIx:", reactionIndex);
       setMessages(preloadedMessages);
     }
 
-    commentRef.current.start(startIx, latestIx);
+    commentRef.current.start({ firstIndex, latestIndex, reactionIndex });
     setSwarmCommentReady(true);
 
     return () => {

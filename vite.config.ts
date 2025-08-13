@@ -49,7 +49,7 @@ export default defineConfig(({ mode }) => {
         usePolling: true,
       },
       headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        "Cache-Control": "no-cache, no-store, must-revalidate",
       },
       host: true,
       strictPort: true,

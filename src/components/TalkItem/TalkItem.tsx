@@ -1,3 +1,4 @@
+import { PrivateKey } from "@ethersphere/bee-js";
 import React from "react";
 
 import { useGlobalState } from "../../contexts/global";
@@ -8,7 +9,6 @@ import AgendaItem from "../AgendaItem/AgendaItem";
 import { Comment } from "../Comment/Comment";
 
 import "./TalkItem.scss";
-import { PrivateKey } from "@ethersphere/bee-js";
 
 interface TalkItemProps {
   session: Session;

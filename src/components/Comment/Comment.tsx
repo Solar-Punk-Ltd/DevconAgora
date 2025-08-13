@@ -1,5 +1,5 @@
 import { PrivateKey } from "@ethersphere/bee-js";
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 
 import "./Comment.scss";
 
@@ -9,8 +9,8 @@ import { MessageSender } from "@/components/Comment/MessageSender/MessageSender"
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
-import { FIVE_SECONDS } from "@/utils/constants";
 import { getTopic } from "@/utils/bee";
+import { FIVE_SECONDS } from "@/utils/constants";
 
 interface CommentProps {
   sessionId: string;
