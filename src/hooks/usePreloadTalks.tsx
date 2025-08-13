@@ -5,7 +5,14 @@ import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
 import { FeedIndex, Topic } from "@ethersphere/bee-js";
 import { VisibleMessage } from "./useSwarmComment";
-import { getPrivateKeyFromIdentifier, Options, readCommentsInRange, readSingleComment } from "@solarpunkltd/comment-system";
+import {
+  getPrivateKeyFromIdentifier,
+  getReactionFeedId,
+  Options,
+  readCommentsInRange,
+  readReactionsWithIndex,
+  readSingleComment,
+} from "@solarpunkltd/comment-system";
 import { CATEGORIES, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
 import { getSessionsByDay } from "@/utils/helpers";
 
@@ -23,6 +30,7 @@ export const usePreloadTalks = () => {
       const commentPromises: Promise<VisibleMessage[] | undefined>[] = [];
       const talkIds: string[] = [];
       const sessionIds: string[] = [];
+      const optionsArr: Options[] = [];
 
       for (let i = 0; i < mergedSessions.length; i++) {
         const sessionId = mergedSessions[i].id;
@@ -44,29 +52,31 @@ export const usePreloadTalks = () => {
           address: signer.publicKey().address().toString(),
           beeApiUrl: process.env.BEE_API_URL,
         };
-        const latest = await readSingleComment(undefined, options);
+        // todo: this can be parallel for each comment feed
+        const latestComment = await readSingleComment(undefined, options);
 
-        if (!latest || new FeedIndex(latest.index).equals(FeedIndex.MINUS_ONE)) {
-          console.debug(`No comment found for talkId: ${talkId}`);
+        if (!latestComment) {
           continue;
         }
 
-        const latestIx = new FeedIndex(latest.index);
+        const latestIx = new FeedIndex(latestComment.index);
         const startIx = latestIx.toBigInt() > MAX_COMMENTS_LOADED ? latestIx.toBigInt() - MAX_COMMENTS_LOADED : 0n;
         const cp = readCommentsInRange(FeedIndex.fromBigInt(startIx), latestIx, options);
 
         commentPromises.push(cp);
+        optionsArr.push(options);
         talkIds.push(talkId);
         sessionIds.push(sessionId);
       }
 
       const results = await Promise.allSettled(commentPromises);
 
-      results.forEach((result, i) => {
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i];
         if (result.status === "fulfilled") {
           if (!result.value) {
             console.error(`preloading talks: invalid comments found for talkId: ${talkIds[i]}`);
-            return;
+            break;
           }
 
           const messages = [...result.value];
@@ -79,18 +89,32 @@ export const usePreloadTalks = () => {
             tmpTalkActivity.set(talkIds[i], latestIx);
           }
 
+          const reactionFeedId = getReactionFeedId(Topic.fromString(talkIds[i]).toString()).toString();
+          const options = optionsArr[i];
+          const reactionState = await readReactionsWithIndex(undefined, { ...options, identifier: reactionFeedId });
+
+          let reactions: VisibleMessage[] = [];
+          if (reactionState.nextIndex !== FeedIndex.MINUS_ONE.toString()) {
+            reactions = [...reactionState.messages];
+          }
+
+          // todo: find a better way instead of looping all the time...
           for (const message of messages) {
             message.received = true;
+          }
+          for (const reaction of reactions) {
+            reaction.received = true;
           }
 
           preLoadedTalks.push({
             talkId: talkIds[i],
             messages,
+            reactions,
           });
         } else {
           console.error(`preloading talks error: `, result.reason);
         }
-      });
+      }
 
       // TODO: why undef ? can be []
       // TODO: set them one by one as they get loaded not in a batch?

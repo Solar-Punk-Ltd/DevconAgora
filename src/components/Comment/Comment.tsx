@@ -173,7 +173,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
               <div className="comment-loading">Loading comments...</div>
             </div>
           )}
-          {shouldShowLoadMore && (
+          {shouldShowLoadMore && !messagesLoading && (
             <Button onClick={fetchPreviousMessages} className="comment-load-more">
               Load more messages
             </Button>

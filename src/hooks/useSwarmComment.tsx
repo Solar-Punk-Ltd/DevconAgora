@@ -123,6 +123,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     return calculateActiveReactions(reactionGroups, user.nickname);
   }, [reactionMessages, user.nickname]);
 
+  // todo: does a reaction count as an activity or just the comment ?
   const updateTalkActivity = useCallback(
     (messages: VisibleMessage[]) => {
       if (messages.length === 0) return;
@@ -154,9 +155,11 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
         const currentLoadedTalks = [...(prevLoadedTalks || [])];
         const existingTalkIndex = currentLoadedTalks.findIndex((talk) => talk.talkId === infra.topic);
 
+        // todo: improve performance
         const newTalk = {
           talkId: infra.topic,
-          messages,
+          messages: messages.filter((msg) => msg.type === MessageType.TEXT || msg.type === MessageType.THREAD),
+          reactions: messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId),
         };
 
         if (existingTalkIndex !== -1) {
@@ -211,7 +214,6 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
     const { on } = commentRef.current.getEmitter();
 
-    // Move createMessageHandler inside useEffect to avoid dependency issues
     const createMessageHandler = (updates: Partial<VisibleMessage>) => {
       return (d: MessageData | string) => {
         const data = typeof d === "string" ? JSON.parse(d) : d;
