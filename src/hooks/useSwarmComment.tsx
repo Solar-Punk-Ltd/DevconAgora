@@ -1,10 +1,11 @@
 import { FeedIndex } from "@ethersphere/bee-js";
 import { MessageData, MessageType } from "@solarpunkltd/comment-system";
-import { CommentSettings, EVENTS, SwarmComment } from "@solarpunkltd/swarm-comment-js";
+import { CommentSettings, EVENTS, PreloadOptions, SwarmComment } from "@solarpunkltd/swarm-comment-js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useGlobalState } from "@/contexts/global";
 import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
+import { getActivityHelper } from "./usePreloadTalks";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -84,18 +85,36 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   const commentRef = useRef<SwarmComment | null>(null);
   const { loadedTalks, setLoadedTalks, setTalkActivity, setSpacesActivity } = useGlobalState();
 
-  const preloadedMessages = useMemo(() => {
+  const preloadedData = useMemo(() => {
     if (loadedTalks) {
       const talk = loadedTalks.find((t) => t.talkId === infra.topic);
-      return talk?.messages ?? [];
+      return {
+        messages: talk?.messages ?? [],
+        reactions: talk?.reactions ?? [],
+        isPreloaded: true,
+      };
     }
-    return undefined;
+    return {
+      messages: [],
+      reactions: [],
+      isPreloaded: false,
+    };
   }, [loadedTalks, infra.topic]);
 
-  const [messages, setMessages] = useState<VisibleMessage[]>([]);
-  const [commentLoading, setCommentLoading] = useState<boolean>(preloadedMessages === undefined);
+  const initialMessages = useMemo(() => {
+    // Combine preloaded messages and reactions into a single array with proper VisibleMessage format
+    const allMessages: VisibleMessage[] = [
+      ...preloadedData.messages.map((msg) => ({ ...msg, received: true })),
+      ...preloadedData.reactions.map((reaction) => ({ ...reaction, received: true })),
+    ];
+
+    // Sort by timestamp to maintain chronological order
+    return allMessages.sort((a, b) => a.timestamp - b.timestamp);
+  }, [preloadedData]);
+
+  const [messages, setMessages] = useState<VisibleMessage[]>(initialMessages);
+  const [commentLoading, setCommentLoading] = useState<boolean>(!preloadedData.isPreloaded);
   const [messagesLoading, setMessagesLoading] = useState<boolean>(false);
-  const [swarmCommentReady, setSwarmCommentReady] = useState<boolean>(false); // todo: is this needed ?remove if not
   const [error, setError] = useState<any | null>(null);
 
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
@@ -130,12 +149,12 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
       const latestMessage = messages[messages.length - 1];
       const latestIndex = new FeedIndex(latestMessage.index).toBigInt();
-      const isSpacesTalk = CATEGORIES.find((c: string) => c === sessionId);
+      const isSpacesTalk = CATEGORIES.includes(sessionId);
 
       if (!isSpacesTalk) {
         setTalkActivity((prevActivity) => {
           const newActivity = new Map(prevActivity);
-          newActivity.set(sessionId, latestIndex);
+          newActivity.set(infra.topic, latestIndex);
           return newActivity;
         });
       } else {
@@ -155,19 +174,18 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
         const currentLoadedTalks = [...(prevLoadedTalks || [])];
         const existingTalkIndex = currentLoadedTalks.findIndex((talk) => talk.talkId === infra.topic);
 
-        // todo: improve performance
         const newTalk = {
           talkId: infra.topic,
           messages: messages.filter((msg) => msg.type === MessageType.TEXT || msg.type === MessageType.THREAD),
           reactions: messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId),
         };
-
+        // todo: do not replace spaces talks
         if (existingTalkIndex !== -1) {
           currentLoadedTalks[existingTalkIndex] = newTalk;
         } else if (currentLoadedTalks.length < MAX_PRELOADED_TALKS) {
           currentLoadedTalks.push(newTalk);
         } else {
-          currentLoadedTalks.splice(0, 1, newTalk);
+          currentLoadedTalks[currentLoadedTalks.length - 1] = newTalk;
         }
 
         return currentLoadedTalks;
@@ -193,19 +211,10 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
   useEffect(() => {
     if (messages.length > 0) {
-      const latestMessage = messages[messages.length - 1];
-
-      // Only update if the messages have actually changed
-      if (latestMessage.received) {
-        const isPreloadedMessagesDifferent = !preloadedMessages || preloadedMessages[preloadedMessages.length - 1].id !== latestMessage.id;
-
-        if (isPreloadedMessagesDifferent) {
-          updateLoadedTalks(messages);
-          updateTalkActivity(messages);
-        }
-      }
+      updateLoadedTalks(messages);
+      updateTalkActivity(messages);
     }
-  }, [messages, updateLoadedTalks, preloadedMessages]);
+  }, [messages, updateLoadedTalks, updateTalkActivity]);
 
   useEffect(() => {
     if (commentRef.current) return;
@@ -250,30 +259,24 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     on(EVENTS.MESSAGE_REQUEST_ERROR, createMessageHandler({ error: true }));
 
     on(EVENTS.LOADING_INIT, (loading: boolean) => {
-      setCommentLoading(loading && !preloadedMessages);
+      setCommentLoading(loading && !preloadedData.isPreloaded);
     });
     on(EVENTS.LOADING_PREVIOUS_MESSAGES, (loading: boolean) => setMessagesLoading(loading));
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
-    let firstIndex: bigint | undefined;
-    let latestIndex: bigint | undefined;
-    let reactionIndex: bigint | undefined;
-    if (preloadedMessages && preloadedMessages.length > 0) {
-      firstIndex = new FeedIndex(preloadedMessages[0].index).toBigInt();
-      latestIndex = new FeedIndex(preloadedMessages[preloadedMessages.length - 1].index).toBigInt();
-      // reactionIndex = new FeedIndex(reactionMessages[reactionMessages.length - 1].index).toBigInt();
-      console.log("bagoy startIx:", firstIndex, "latestIx:", latestIndex, "reactionIx:", reactionIndex);
-      setMessages(preloadedMessages);
+    const preloadOptions: PreloadOptions = {};
+    if (preloadedData.isPreloaded) {
+      preloadOptions.firstIndex = getActivityHelper(preloadedData.messages, false);
+      preloadOptions.latestIndex = getActivityHelper(preloadedData.messages, true);
+      preloadOptions.reactionIndex = getActivityHelper(preloadedData.reactions, true);
     }
 
-    commentRef.current.start({ firstIndex, latestIndex, reactionIndex });
-    setSwarmCommentReady(true);
+    commentRef.current.start(preloadOptions);
 
     return () => {
       if (commentRef.current) {
         commentRef.current.stop();
         commentRef.current = null;
-        setSwarmCommentReady(false);
       }
     };
   }, [user.privateKey, user.nickname, infra.topic, infra.beeUrl, infra.stamp, infra.pollInterval]);
@@ -296,8 +299,8 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   }, []);
 
   const hasPreviousMessages = useCallback(() => {
-    return swarmCommentReady && commentRef.current ? commentRef.current.hasPreviousMessages() : false;
-  }, [swarmCommentReady]);
+    return commentRef.current ? commentRef.current.hasPreviousMessages() : false;
+  }, []);
 
   const fetchPreviousMessages = useCallback(() => {
     return commentRef.current ? commentRef.current.fetchPreviousMessages() : Promise.resolve();
@@ -312,7 +315,6 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   return {
     commentLoading,
     messagesLoading,
-    swarmCommentReady,
     allMessages: messages,
     simpleMessages,
     threadMessages,

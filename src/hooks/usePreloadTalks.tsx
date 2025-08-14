@@ -18,8 +18,9 @@ import { getTopic } from "@/utils/bee";
 import { CATEGORIES, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
 import { getSessionsByDay } from "@/utils/helpers";
 
-const getActivityHelper = (messages: VisibleMessage[]): bigint => {
-  return messages.length > 0 ? new FeedIndex(messages[messages.length - 1].index).toBigInt() : 0n;
+export const getActivityHelper = (messages: VisibleMessage[], last: boolean): bigint => {
+  const index = last ? messages.length - 1 : 0;
+  return messages.length > 0 ? new FeedIndex(messages[index].index).toBigInt() : -1n;
 };
 
 const processSessionComments = async (
@@ -35,7 +36,7 @@ const processSessionComments = async (
         return {
           talkComments: loadedTalks[foundIx],
           isSpacesSession: CATEGORIES.includes(sessionId),
-          activity: getActivityHelper(loadedTalks[foundIx].messages),
+          activity: getActivityHelper(loadedTalks[foundIx].messages, true),
         };
       }
     }
@@ -75,7 +76,7 @@ const processSessionComments = async (
         messages: visibleMessages,
         reactions: [],
       },
-      activity: getActivityHelper(messages),
+      activity: getActivityHelper(messages, true),
       isSpacesSession,
     };
   } catch (error) {

@@ -73,7 +73,6 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   const {
     commentLoading,
     messagesLoading,
-    swarmCommentReady,
     groupedReactions,
     simpleMessages,
     getThreadMessages,
@@ -87,8 +86,8 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   } = useSwarmComment(commentConfig, sessionId);
 
   const shouldShowLoadMore = useMemo(() => {
-    return !commentLoading && swarmCommentReady && hasPreviousMessages();
-  }, [commentLoading, swarmCommentReady, hasPreviousMessages]);
+    return !commentLoading && hasPreviousMessages();
+  }, [commentLoading, hasPreviousMessages]);
 
   const handleMessageSending = async (text: string) => {
     try {
