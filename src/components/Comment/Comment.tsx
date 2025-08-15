@@ -43,7 +43,6 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   const [isSendingMessage, setIsSendingMessage] = useState(false);
   const [isSendingThreadMessage, setIsSendingThreadMessage] = useState(false);
 
-  // TODO: why can it be undefined?
   const beeUrl = process.env.BEE_API_URL;
   if (!beeUrl) {
     return (
@@ -83,13 +82,15 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     hasPreviousMessages,
     retrySendMessage,
     error,
+    isSwarmCommentReady,
   } = useSwarmComment(commentConfig, sessionId);
 
   const shouldShowLoadMore = useMemo(() => {
-    return !commentLoading && hasPreviousMessages();
-  }, [commentLoading, hasPreviousMessages]);
-
+    return !commentLoading && isSwarmCommentReady && hasPreviousMessages();
+  }, [commentLoading, isSwarmCommentReady, hasPreviousMessages]);
   const handleMessageSending = async (text: string) => {
+    if (!isSwarmCommentReady) return;
+
     try {
       setIsSendingMessage(true);
       await sendMessage(text);
@@ -99,6 +100,8 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   };
 
   const handleEmojiReaction = async (messageId: string, emoji: string) => {
+    if (!isSwarmCommentReady) return;
+
     // Prevent multiple reactions on the same message-emoji combination
     const loadingKey = `${messageId}-${emoji}`;
     if (reactionLoadingState[loadingKey]) return;
@@ -128,13 +131,13 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   };
 
   const handleThreadMessageSending = async (text: string) => {
-    if (selectedMessage) {
-      try {
-        setIsSendingThreadMessage(true);
-        await sendReply(selectedMessage.id, text);
-      } finally {
-        setIsSendingThreadMessage(false);
-      }
+    if (!isSwarmCommentReady || !selectedMessage) return;
+
+    try {
+      setIsSendingThreadMessage(true);
+      await sendReply(selectedMessage.id, text);
+    } finally {
+      setIsSendingThreadMessage(false);
     }
   };
 

@@ -7,6 +7,7 @@ import {
   readReactionsWithIndex,
   readSingleComment,
 } from "@solarpunkltd/comment-system";
+import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 import { useCallback } from "react";
 
 import { VisibleMessage } from "./useSwarmComment";
@@ -15,28 +16,27 @@ import { useGlobalState } from "@/contexts/global";
 import { Session } from "@/types/session";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { CATEGORIES, MAX_COMMENTS_LOADED, SPACES_KEY } from "@/utils/constants";
-import { getSessionsByDay } from "@/utils/helpers";
-
-export const getActivityHelper = (messages: VisibleMessage[], last: boolean): bigint => {
-  const index = last ? messages.length - 1 : 0;
-  return messages.length > 0 ? new FeedIndex(messages[index].index).toBigInt() : -1n;
-};
+import { CATEGORIES, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS, SPACES_KEY } from "@/utils/constants";
+import { getActivityHelper, getSessionsByDay } from "@/utils/helpers";
 
 const processSessionComments = async (
   sessionId: string,
   talkId: string,
-  loadedTalks: TalkComments[] | undefined
+  currentLoadedTalks: TalkComments[] | undefined
 ): Promise<{ talkComments?: TalkComments; activity: bigint; isSpacesSession: boolean } | null> => {
   try {
-    if (loadedTalks) {
-      const foundIx = loadedTalks.findIndex((t) => t.talkId === talkId);
+    if (currentLoadedTalks && currentLoadedTalks.length >= MAX_PRELOADED_TALKS) {
+      return null;
+    }
+
+    if (currentLoadedTalks) {
+      const foundIx = currentLoadedTalks.findIndex((t) => t.talkId === talkId);
       if (foundIx > -1) {
-        console.debug("found preloaded talk, skipping it: ", loadedTalks[foundIx].talkId);
+        console.debug("found preloaded talk, skipping it: ", currentLoadedTalks[foundIx].talkId);
         return {
-          talkComments: loadedTalks[foundIx],
+          talkComments: currentLoadedTalks[foundIx],
           isSpacesSession: CATEGORIES.includes(sessionId),
-          activity: getActivityHelper(loadedTalks[foundIx].messages, true),
+          activity: getActivityHelper(currentLoadedTalks[foundIx].messages, true),
         };
       }
     }
@@ -46,20 +46,21 @@ const processSessionComments = async (
       identifier: Topic.fromString(talkId).toString(),
       address: signer.publicKey().address().toString(),
       beeApiUrl: process.env.BEE_API_URL,
+      signer,
     };
 
     const latestComment = await readSingleComment(undefined, options);
-    if (!latestComment) {
+    const latestIx = indexStrToBigint(latestComment?.index);
+    if (!latestComment || !latestIx) {
       return null;
     }
 
-    const latestIx = new FeedIndex(latestComment.index);
-    const startIx = latestIx.toBigInt() > MAX_COMMENTS_LOADED ? latestIx.toBigInt() - MAX_COMMENTS_LOADED : 0n;
+    const startIx = latestIx > MAX_COMMENTS_LOADED ? latestIx - MAX_COMMENTS_LOADED : 0n;
 
-    const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx), latestIx, options);
+    const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
 
     if (!messages) {
-      console.error(`preloading talks: invalid comments found for talkId: ${talkId}`);
+      console.error(`preloading talks: no comments found for talkId: ${talkId}`);
       return null;
     }
 
@@ -74,7 +75,6 @@ const processSessionComments = async (
       talkComments: {
         talkId,
         messages: visibleMessages,
-        reactions: [],
       },
       activity: getActivityHelper(messages, true),
       isSpacesSession,
@@ -98,7 +98,12 @@ const processReactions = async (talkId: string): Promise<VisibleMessage[]> => {
     const reactionState = await readReactionsWithIndex(undefined, options);
     let reactions: VisibleMessage[] = [];
 
-    if (reactionState.nextIndex !== FeedIndex.MINUS_ONE.toString()) {
+    const nextIxBigInt = indexStrToBigint(reactionState.nextIndex);
+    if (!nextIxBigInt) {
+      return [];
+    }
+
+    if (!FeedIndex.fromBigInt(nextIxBigInt).equals(FeedIndex.MINUS_ONE)) {
       reactions = reactionState.messages.map((reaction) => ({
         ...reaction,
         received: true,
@@ -123,14 +128,20 @@ const usePreloadSessions = (sessions: Session[] | undefined, isSpacesMode: boole
       return;
     }
 
+    const currentLoadedTalks = loadedTalks;
+    if (currentLoadedTalks && currentLoadedTalks.length >= MAX_PRELOADED_TALKS) {
+      console.debug(`Maximum number of preloaded talks (#${MAX_PRELOADED_TALKS}) reached, skipping ${debugName} preloading`);
+      return;
+    }
+
     const tmpActivity = new Map<string, bigint>();
     const promises = sessions.map((session) => {
       const talkId = getTopic(session.id);
-      return processSessionComments(session.id, talkId, loadedTalks);
+      return processSessionComments(session.id, talkId, currentLoadedTalks);
     });
 
     const results = await Promise.allSettled(promises);
-    const updatedTalks: TalkComments[] = [...(loadedTalks || [])];
+    const updatedTalks: TalkComments[] = [...(currentLoadedTalks || [])];
 
     for (let i = 0; i < results.length; i++) {
       const result = results[i];
@@ -157,6 +168,7 @@ const usePreloadSessions = (sessions: Session[] | undefined, isSpacesMode: boole
     } else {
       setTalkActivity(tmpActivity);
     }
+
     setLoadedTalks(updatedTalks);
   }, [sessions, setLoadedTalks, setSpacesActivity, setTalkActivity, isSpacesMode]);
 
@@ -191,7 +203,6 @@ export const usePreloadReactions = () => {
 
     const reactionPromises = loadedTalks.map((talk) => processReactions(talk.talkId));
 
-    // Promise.allSettled is already safe - it never rejects
     const results = await Promise.allSettled(reactionPromises);
     const updatedTalks: TalkComments[] = [...loadedTalks];
 
@@ -207,14 +218,12 @@ export const usePreloadReactions = () => {
       }
     }
 
-    // State update is synchronous and safe
     setLoadedTalks(updatedTalks);
   }, [setLoadedTalks]);
 
   return { preloadReactions };
 };
 
-// Legacy hook for backward compatibility - now orchestrates the three functions
 export const usePreloadTalks = () => {
   const { preloadSpacesSessions } = usePreloadSpacesSessions();
   const { preloadRecentSessions } = usePreloadRecentSessions();

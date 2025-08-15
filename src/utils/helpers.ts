@@ -3,6 +3,8 @@ import React from "react";
 
 import { Session } from "../types/session";
 import { DATE_TO_DEVCON_DAY, SPACES_KEY } from "../utils/constants";
+import { MessageData } from "@solarpunkltd/comment-system";
+import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -143,3 +145,16 @@ export const isUserRegistered = () => {
 export function isNotFoundError(error: any): boolean {
   return error.stack?.includes("404") || error.message?.includes("Not Found") || error.message?.includes("404");
 }
+
+export const getActivityHelper = (messages: MessageData[] | undefined, last: boolean): bigint => {
+  if (!messages || messages.length === 0) return 0n;
+
+  const validMessages = messages.filter(msg => msg.index !== undefined);
+
+  if (validMessages.length === 0) return 0n;
+
+  const index = last ? validMessages.length - 1 : 0;
+  const parsedIndex = indexStrToBigint(validMessages[index].index);
+
+  return parsedIndex ?? 0n;
+};

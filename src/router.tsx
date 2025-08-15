@@ -7,7 +7,7 @@ import { useBeePing } from "./hooks/useBeePing";
 import { useGamification } from "./hooks/useGamification";
 import { useNotes } from "./hooks/useNotes";
 import { usePoints } from "./hooks/usePoints";
-import { usePreloadReactions, usePreloadRecentSessions, usePreloadSpacesSessions } from "./hooks/usePreloadTalks";
+import { usePreloadRecentSessions, usePreloadSpacesSessions } from "./hooks/usePreloadTalks";
 import { usePrevLocation } from "./hooks/usePrevLocation";
 import { useRouteProtection } from "./hooks/useRouteProtection";
 import { useSessionData } from "./hooks/useSessionData";
@@ -47,10 +47,9 @@ const MainRouter = (): ReactElement => {
       filterRecentSessions(sessions);
     }
   }, [sessions, filterRecentSessions]);
-
+  // not preloading reactions state, it can be loaded on demand
   const { preloadSpacesSessions } = usePreloadSpacesSessions();
   const { preloadRecentSessions } = usePreloadRecentSessions();
-  const { preloadReactions } = usePreloadReactions();
 
   useEffect(() => {
     if (isBeeRunning && sessions && sessions.size > 0) {
@@ -64,11 +63,6 @@ const MainRouter = (): ReactElement => {
     }
   }, [recentSessions, preloadRecentSessions]);
 
-  useEffect(() => {
-    if (sessions && sessions.size > 0 && recentSessions && recentSessions.length > 0) {
-      preloadReactions();
-    }
-  }, [sessions, recentSessions, preloadReactions]);
   const { prevLocation } = usePrevLocation(location);
 
   useViewportHeight();
