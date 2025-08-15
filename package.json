@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "clean": "rm -rf ./dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "pnpm run lint -- --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview"
@@ -16,6 +16,7 @@
   "dependencies": {
     "@ethersphere/bee-js": "^9.8.1",
     "@solarpunkltd/comment-system": "^1.8.8",
+    "@solarpunkltd/comment-system-ui": "^0.2.0",
     "@solarpunkltd/swarm-comment-js": "^0.0.6",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
