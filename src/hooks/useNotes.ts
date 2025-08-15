@@ -1,3 +1,4 @@
+import { Wallet } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
@@ -5,7 +6,6 @@ import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
 import { ADDRESS_HEX_LENGTH, SELF_NOTE_TOPIC } from "../utils/constants";
 import { getLocalPrivateKey } from "../utils/helpers";
-import { PrivateKey } from "@ethersphere/bee-js";
 
 export const useNotes = () => {
   const { notes, setNotes } = useGlobalState();
@@ -18,26 +18,24 @@ export const useNotes = () => {
       return;
     }
 
-    const wallet = new PrivateKey(privKey);
+    const wallet = new Wallet(privKey); // TODO: remove wallet and use PrivateKey everywhere
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic));
+      feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
     }
 
     const notesArray: string[] = [];
     const results = await Promise.allSettled(feedPromises);
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        if (result.value.length > 0) {
-          notesArray.push(result.value);
-        }
+        notesArray.push(result.value);
       } else {
         console.error(`fetching note data error: `, result.reason);
       }
     });
 
-    const tmpNotes: NoteItemProps[] = [];
+    const tmpNotes: NoteItemProps[] = [...notes];
     for (let i = 0; i < notesArray.length; i++) {
       let note: NoteItemProps | undefined = undefined;
       try {
@@ -46,8 +44,8 @@ export const useNotes = () => {
         console.error(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
-      const exists = notes.some((n) => n.id === note.id);
-      if (!exists && note !== undefined) {
+      const found = notes.find((n) => n.id === note.id);
+      if (!found && note !== undefined) {
         tmpNotes.push(note);
       }
     }

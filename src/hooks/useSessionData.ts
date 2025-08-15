@@ -15,10 +15,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
     if (isBeeRunning) {
       // TODO: unnecessary payload.tostring() then back to json
       const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS);
-      let sessionData: Map<string, Session[]> = new Map();
-      if (sessionDataStr.length > 0) {
-        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
-      }
+      const sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
