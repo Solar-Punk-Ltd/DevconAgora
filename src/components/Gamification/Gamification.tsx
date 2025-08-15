@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import clsx from "clsx";
 
 import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
 import GamificationBackgroundFive from "../../assets/gamification-five-points.png";
@@ -57,13 +57,7 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
         ) : (
           <div className="gamification__modal" ref={imageContainerRef}>
             <img
-              src={
-                points === 1
-                  ? GamificationBackgroundOne
-                  : points === 5
-                  ? GamificationBackgroundFive
-                  : GamificationBackgroundTen
-              }
+              src={points === 1 ? GamificationBackgroundOne : points === 5 ? GamificationBackgroundFive : GamificationBackgroundTen}
               alt=""
               ref={imageRef}
               className={clsx("gamification__modal__img", {
@@ -72,43 +66,28 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
             />
             <div className="gamification__modal__content" ref={contentRef}>
               <div className="gamification__modal__content__close">
-                <CloseIcon
-                  color="white"
-                  onClick={() => setShowGamification(false)}
-                />
+                <CloseIcon color="white" onClick={() => setShowGamification(false)} />
               </div>
 
               <div className="gamification__modal__content_main">
                 <div className="gamification__modal__content__header">
                   {points === 1 ? (
                     <>
-                      You&nbsp;have&nbsp;just&nbsp;made&nbsp;your&nbsp;first&nbsp;comment
-                      and your first step towards your&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">
-                        magic&nbsp;code.
-                      </span>
+                      You&nbsp;have&nbsp;just&nbsp;made&nbsp;your&nbsp;first&nbsp;comment and your first step towards your&nbsp;
+                      <span className="gamification__modal__content__header__emphasize">magic&nbsp;code.</span>
                       &nbsp;Still 9 to go.
                     </>
                   ) : points === 5 ? (
                     <>
-                      Five comments made brought you to the half of your road.
-                      There is{" "}
-                      <span className="gamification__modal__content__header__emphasize">
-                        only&nbsp;5&nbsp;more
-                      </span>{" "}
-                      to&nbsp;get&nbsp;your&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">
-                        magic&nbsp;code.
-                      </span>
+                      Five comments made brought you to the half of your road. There is{" "}
+                      <span className="gamification__modal__content__header__emphasize">only&nbsp;5&nbsp;more</span> to&nbsp;get&nbsp;your&nbsp;
+                      <span className="gamification__modal__content__header__emphasize">magic&nbsp;code.</span>
                     </>
                   ) : (
                     <>
                       You&nbsp;have&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">
-                        unlocked your magic code!
-                      </span>{" "}
-                      You can start your own node and participate yourself in
-                      the Swarm network.
+                      <span className="gamification__modal__content__header__emphasize">unlocked your magic code!</span> You can start your own node
+                      and participate yourself in the Swarm network.
                     </>
                   )}
                 </div>
@@ -124,13 +103,8 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
                 ) : null}
               </div>
               <div>
-                <Link
-                  to={ROUTES.HOWDOESITWORK}
-                  onClick={() => setShowGamification(false)}
-                >
-                  <div className="gamification__modal__content_how">
-                    How does it work?
-                  </div>
+                <Link to={ROUTES.HOWDOESITWORK} onClick={() => setShowGamification(false)}>
+                  <div className="gamification__modal__content_how">How does it work?</div>
                 </Link>
               </div>
             </div>

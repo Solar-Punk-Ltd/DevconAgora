@@ -7,8 +7,7 @@ import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
 import "./ContentFilterBox.scss";
 
 const ContentFilterBox: React.FC = () => {
-  const { isContentFilterEnabled, setIsContentFilterEnabled } =
-    useGlobalState();
+  const { isContentFilterEnabled, setIsContentFilterEnabled } = useGlobalState();
 
   const [checked, setIsChecked] = useState<boolean>(isContentFilterEnabled);
 
@@ -20,10 +19,7 @@ const ContentFilterBox: React.FC = () => {
     <div className="content-filter">
       <div className="content-filter__text">{CONTENT_FILTER_TEXT}</div>
       <div className="content-filter__setting">
-        <CheckBoxIcon
-          checked={checked}
-          onClick={() => handleClick(isContentFilterEnabled, checked)}
-        />
+        <CheckBoxIcon checked={checked} onClick={() => handleClick(isContentFilterEnabled, checked)} />
         <div className="content-filter__text__header">USCVS enabled</div>
       </div>
     </div>

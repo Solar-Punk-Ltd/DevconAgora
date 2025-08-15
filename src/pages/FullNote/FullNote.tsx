@@ -1,7 +1,6 @@
+import { PrivateKey, Topic } from "@ethersphere/bee-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Utils } from "@ethersphere/bee-js";
-import { hexlify, Wallet } from "ethers";
 
 import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
@@ -10,14 +9,8 @@ import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
-import {
-  ADDRESS_HEX_LENGTH,
-  DUMMY_STAMP,
-  MAX_CHARACTER_COUNT,
-  ROUTES,
-  SELF_NOTE_TOPIC,
-} from "../../utils/constants";
-import { dateToTime, getPrivateKey, getSigner } from "../../utils/helpers";
+import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
+import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 
 import "./FullNote.scss";
 
@@ -50,7 +43,7 @@ const FullNotePage: React.FC = () => {
       rawNoteTopic = currentNote.id;
     } else {
       if (currentNote.text && currentNote.text.length > 0) {
-        rawNoteTopic = hexlify(Utils.keccak256Hash(currentNote.text)).slice(2);
+        rawNoteTopic = new Topic(currentNote.text).toString();
       }
     }
     return rawNoteTopic;
@@ -87,7 +80,7 @@ const FullNotePage: React.FC = () => {
     navigate(ROUTES.NOTES);
   };
 
-  const privKey = getPrivateKey();
+  const privKey = getLocalPrivateKey();
   if (!privKey) {
     return (
       <div className="full-note-page__top__header">
@@ -97,12 +90,9 @@ const FullNotePage: React.FC = () => {
     );
   }
 
-  const addRemoveTopicToLocalStore = (
-    rawNoteTopic: string,
-    remove: boolean
-  ) => {
+  const addRemoveTopicToLocalStore = (rawNoteTopic: string, remove: boolean) => {
     if (rawNoteTopic.length !== ADDRESS_HEX_LENGTH) {
-      console.log("invalid topic: ", rawNoteTopic);
+      console.error("invalid topic: ", rawNoteTopic);
       return;
     }
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC) || "";
@@ -148,19 +138,9 @@ const FullNotePage: React.FC = () => {
       time: dateToTime(date.toISOString()),
     };
     setSaving(true);
-    const dataRef = await uploadData(
-      process.env.STAMP || DUMMY_STAMP,
-      JSON.stringify(noteObj)
-    );
-    const wallet = new Wallet(privKey);
-    const signer = getSigner(wallet);
-    await updateFeed(
-      wallet.address,
-      signer,
-      rawNoteTopic,
-      process.env.STAMP || DUMMY_STAMP,
-      dataRef
-    );
+    const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
+    const signer = new PrivateKey(privKey);
+    await updateFeed(signer.publicKey().address.toString(), signer, rawNoteTopic, process.env.STAMP || DUMMY_STAMP, dataRef);
 
     const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
     const tmpNotes = [...notes];
@@ -216,12 +196,7 @@ const FullNotePage: React.FC = () => {
             to={ROUTES.NOTES}
             saveQuestionBeforeLeave={true}
             handlerInCaseOfSave={() => {
-              if (
-                !currentNote.text ||
-                currentNote.text.length === 0 ||
-                saved ||
-                saving
-              ) {
+              if (!currentNote.text || currentNote.text.length === 0 || saved || saving) {
                 return navigate(ROUTES.NOTES);
               } else {
                 return setShowUnsavedPopUp(true);
@@ -229,32 +204,21 @@ const FullNotePage: React.FC = () => {
             }}
           />
           <div className="full-note-page__top__header__counter">
-            <span className="bold">{currentNote.text?.length || 0}</span>/
-            {MAX_CHARACTER_COUNT.toString()}
+            <span className="bold">{currentNote.text?.length || 0}</span>/{MAX_CHARACTER_COUNT.toString()}
           </div>
         </div>
         <div className="full-note-page__input">
-          <textarea
-            value={currentNote.text}
-            onChange={(e) => handleOnChange(e.target.value)}
-          />
+          <textarea value={currentNote.text} onChange={(e) => handleOnChange(e.target.value)} />
         </div>
       </div>
       <div className="full-note-page__bottom">
         <WelcomeButton
-          version={
-            saving || (noteId == ROUTES.NEW_NOTE.slice(1) && !saved)
-              ? "inactive"
-              : "outlined"
-          }
+          version={saving || (noteId == ROUTES.NEW_NOTE.slice(1) && !saved) ? "inactive" : "outlined"}
           onClick={() => setShowRemovePopUp(true)}
         >
           Remove
         </WelcomeButton>
-        <WelcomeButton
-          version={saving || saved ? "inactive" : "filled"}
-          onClick={() => handleSave()}
-        >
+        <WelcomeButton version={saving || saved ? "inactive" : "filled"} onClick={() => handleSave()}>
           Save
         </WelcomeButton>
       </div>

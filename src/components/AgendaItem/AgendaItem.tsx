@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
 
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
@@ -65,12 +65,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         }
       }}
     >
-      <div
-        className={clsx(
-          "agenda-item__main",
-          isSpacesTalk ? "agenda-item-padded__main" : ""
-        )}
-      >
+      <div className={clsx("agenda-item__main", isSpacesTalk ? "agenda-item-padded__main" : "")}>
         {!isSpacesTalk && (
           <div
             className={clsx("agenda-item__main__time", {
@@ -85,9 +80,7 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
           <div className="agenda-item__main__content__title">{title}</div>
           <div className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
-            {category ? (
-              <CategoryIndicator name={category || "no track"} />
-            ) : null}
+            {category ? <CategoryIndicator name={category || "no track"} /> : null}
           </div>
         </div>
       </div>

@@ -62,18 +62,13 @@ const StayUpdated: React.FC = () => {
   return (
     <div className="stay-updated">
       <div className="stay-updated__background">
-        <img
-          src={HomeBackground}
-          alt=""
-          className="stay-updated__background__img"
-        />
+        <img src={HomeBackground} alt="" className="stay-updated__background__img" />
       </div>
 
       <div className="stay-updated__header">Stay updated!</div>
       <div className="stay-updated__main-content">
         <div className="stay-updated__text-box">
-          Be on the top of cutting edge web3 tech. Get insights and latest news
-          from the developers of the Devcon Buzz app
+          Be on the top of cutting edge web3 tech. Get insights and latest news from the developers of the Devcon Buzz app
         </div>
         <div id="mc_embed_signup_scroll">
           <form
@@ -86,14 +81,8 @@ const StayUpdated: React.FC = () => {
           >
             <div id="mc_embed_signup_scroll">
               <div id="" className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-EMAIL"
-                  className="stay-updated__input__header"
-                >
-                  Email{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-EMAIL" className="stay-updated__input__header">
+                  Email <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -103,22 +92,14 @@ const StayUpdated: React.FC = () => {
                   onBlur={handleEmailBlur}
                 />
                 {emailError ? (
-                  <div className="stay-updated__input__error">
-                    Invalid email format
-                  </div>
+                  <div className="stay-updated__input__error">Invalid email format</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-FNAME"
-                  className="stay-updated__input__header"
-                >
-                  First name{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-FNAME" className="stay-updated__input__header">
+                  First name <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -128,22 +109,14 @@ const StayUpdated: React.FC = () => {
                   onBlur={handleFirstNameBlur}
                 />
                 {firstNameError ? (
-                  <div className="stay-updated__input__error">
-                    First name is required
-                  </div>
+                  <div className="stay-updated__input__error">First name is required</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__input-wrapper">
-                <label
-                  htmlFor="mce-LNAME"
-                  className="stay-updated__input__header"
-                >
-                  Last name{" "}
-                  <span className="stay-updated__input__header__requred">
-                    *
-                  </span>
+                <label htmlFor="mce-LNAME" className="stay-updated__input__header">
+                  Last name <span className="stay-updated__input__header__requred">*</span>
                 </label>
                 <input
                   type="text"
@@ -153,19 +126,14 @@ const StayUpdated: React.FC = () => {
                   onBlur={handleLastNameBlur}
                 />
                 {lastNameError ? (
-                  <div className="stay-updated__input__error">
-                    Last name is required
-                  </div>
+                  <div className="stay-updated__input__error">Last name is required</div>
                 ) : (
                   <div className="stay-updated__input__error__placeholder"></div>
                 )}
               </div>
               <div className="stay-updated__not-required-fields">
                 <div className="stay-updated__input-wrapper">
-                  <label
-                    htmlFor="mce-COMPANY"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-COMPANY" className="stay-updated__input__header">
                     Company name
                   </label>
                   <input
@@ -178,10 +146,7 @@ const StayUpdated: React.FC = () => {
                   />
                 </div>
                 <div className="stay-updated__input-wrapper">
-                  <label
-                    htmlFor="mce-PHASE"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-PHASE" className="stay-updated__input__header">
                     In which phase is your company in?
                   </label>
                   <select
@@ -199,10 +164,7 @@ const StayUpdated: React.FC = () => {
                   </select>
                 </div>
                 <div className="stay-updated__input-wrapper stay-updated__input-wrapper__bottom">
-                  <label
-                    htmlFor="mce-WWW"
-                    className="stay-updated__input__header"
-                  >
+                  <label htmlFor="mce-WWW" className="stay-updated__input__header">
                     Website
                   </label>
                   <input
@@ -216,25 +178,13 @@ const StayUpdated: React.FC = () => {
                 </div>
               </div>
               <div className="stay-updated__bottom-buttons">
-                <WelcomeButton
-                  type="white"
-                  onClick={() => navigate(ROUTES.HOME)}
-                >
+                <WelcomeButton type="white" onClick={() => navigate(ROUTES.HOME)}>
                   Cancel
                 </WelcomeButton>
                 <WelcomeButton
                   type="orange"
                   onClick={() => navigate(ROUTES.HOME)}
-                  version={
-                    !lastNameText ||
-                    !firstNameText ||
-                    !emailText ||
-                    emailError ||
-                    firstNameError ||
-                    lastNameError
-                      ? "inactive"
-                      : "filled"
-                  }
+                  version={!lastNameText || !firstNameText || !emailText || emailError || firstNameError || lastNameError ? "inactive" : "filled"}
                 >
                   Done
                 </WelcomeButton>

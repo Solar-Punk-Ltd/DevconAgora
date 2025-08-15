@@ -13,13 +13,7 @@ interface BackProps {
   action?: () => void | undefined | null;
 }
 
-const Back: React.FC<BackProps> = ({
-  title,
-  where,
-  link,
-  backgroundColor,
-  action,
-}) => {
+const Back: React.FC<BackProps> = ({ title, where, link, backgroundColor, action }) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (action) {
       e.preventDefault();

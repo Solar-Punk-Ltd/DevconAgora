@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import clsx from "clsx";
 
 import ReferalQRIcon from "../../assets/referal-qr.svg";
 
@@ -18,15 +18,7 @@ interface ProfileBoxProps {
   shareable?: boolean;
 }
 
-const ProfileBox: React.FC<ProfileBoxProps> = ({
-  title,
-  linkText,
-  link,
-  points = 10,
-  showPoints,
-  showContent,
-  shareable,
-}) => {
+const ProfileBox: React.FC<ProfileBoxProps> = ({ title, linkText, link, points = 10, showPoints, showContent, shareable }) => {
   const navigate = useNavigate();
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -40,13 +32,13 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
           url: window.location.origin,
         })
         .then(() => {
-          console.log("Content shared successfully");
+          console.debug("Content shared successfully");
         })
         .catch((error) => {
           console.error("Error sharing content:", error);
         });
     } else {
-      console.log("Web Share API not supported in this browser");
+      console.info("Web Share API not supported in this browser");
     }
   };
   return (
@@ -61,10 +53,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
 
         {linkText && link && points >= 10 && !shareable ? (
           <div>
-            <div
-              className="profile-box__link"
-              onClick={() => handleNavigation(link)}
-            >
+            <div className="profile-box__link" onClick={() => handleNavigation(link)}>
               {linkText}
             </div>
           </div>
