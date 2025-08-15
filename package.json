@@ -16,6 +16,7 @@
   "dependencies": {
     "@ethersphere/bee-js": "^9.8.1",
     "@solarpunkltd/comment-system": "^1.8.8",
+    "@solarpunkltd/comment-system-ui": "^0.2.0",
     "@solarpunkltd/swarm-comment-js": "^0.0.6",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
