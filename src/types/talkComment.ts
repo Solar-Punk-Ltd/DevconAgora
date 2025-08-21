@@ -1,7 +1,7 @@
-import { MessageData } from "@solarpunkltd/comment-system";
+import { VisibleMessage } from "@/hooks/useSwarmComment";
 
 export interface TalkComments {
-  messages?: MessageData[];
-  reactions?: MessageData[];
+  messages?: VisibleMessage[];
+  reactions?: VisibleMessage[];
   talkId: string;
 }

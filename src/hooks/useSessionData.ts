@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
-import { CATEGORIES, FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS, SPACES_KEY } from "../utils/constants";
+import { ALL_SESSIONS_KEY, CATEGORIES, FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS, SPACES_KEY } from "../utils/constants";
 import { findSlotStartIx, getSessionsByDay } from "../utils/helpers";
 
 export const useSessionData = (isBeeRunning: boolean) => {
@@ -43,7 +43,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
 
   const filterRecentSessions = useCallback(
     (sessions: Map<string, Session[]>) => {
-      const day = "all";
+      const day = ALL_SESSIONS_KEY;
       const sessionsByDay = getSessionsByDay(sessions, day);
       if (sessionsByDay.length != 0) {
         const mostRecentSessions = new Array<Session>(MAX_SESSIONS_SHOWN);
