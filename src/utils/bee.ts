@@ -81,12 +81,13 @@ export async function uploadData(stamp: string, data: string | Uint8Array): Prom
 
 export async function updateFeed(owner: string, signer: PrivateKey, rawTopic: string, stamp: string, ref: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
-  const topic = new Topic(rawTopic);
+  const topicBytes = Topic.fromString(rawTopic);
+
   try {
-    await bee.createFeedManifest(stamp, topic, owner);
-    const feedWriter = bee.makeFeedWriter(topic, signer);
-    const feedUpdateRes = await feedWriter.upload(stamp, ref);
-    return feedUpdateRes.reference.toString();
+    await bee.createFeedManifest(stamp, topicBytes, owner);
+    const feedWriter = bee.makeFeedWriter(topicBytes, signer);
+    const uploadReferenceResult = await feedWriter.uploadReference(stamp, ref);
+    return uploadReferenceResult.reference.toString();
   } catch (error) {
     console.error("error feed update: ", error);
     return "";

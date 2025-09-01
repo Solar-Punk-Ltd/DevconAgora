@@ -1,4 +1,3 @@
-import { Topic } from "@ethersphere/bee-js";
 import { getPrivateKeyFromIdentifier } from "@solarpunkltd/comment-system";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -44,7 +43,7 @@ const FullNotePage: React.FC = () => {
       rawNoteTopic = currentNote.id;
     } else {
       if (currentNote.text && currentNote.text.length > 0) {
-        rawNoteTopic = new Topic(currentNote.text).toString();
+        rawNoteTopic = currentNote.text;
       }
     }
     return rawNoteTopic;
@@ -154,6 +153,7 @@ const FullNotePage: React.FC = () => {
       setNotes(tmpNotes);
       setCurrentNote(noteObj);
     }
+
     setSaving(false);
     setSaved(true);
   };
