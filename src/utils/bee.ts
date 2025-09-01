@@ -1,12 +1,17 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Topic } from "@ethersphere/bee-js";
 
-import { FeedPayloadResult, FeedResultWithIndex } from "../types/common";
+import { FeedResultWithIndex } from "../types/common";
 import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
 
 import { isNotFoundError } from "./helpers";
 
 export async function getFeedUpdate(owner: string, rawTopic: string): Promise<string> {
   const { payload } = await getFeedData(owner, rawTopic);
+  if (SWARM_ZERO_ADDRESS.equals(payload)) {
+    console.error("feed data is empty for topic: ", rawTopic);
+    return "";
+  }
+
   return JSON.stringify(payload.toJSON());
 }
 
@@ -23,13 +28,8 @@ export async function getFeedData(owner: string, rawTopic: string, index?: bigin
 
   try {
     const topic = Topic.fromString(rawTopic);
-    let data: FeedPayloadResult;
     const feedReader = bee.makeFeedReader(topic.toUint8Array(), owner, options);
-    if (index !== undefined) {
-      data = await feedReader.download({ index: FeedIndex.fromBigInt(index) });
-    } else {
-      data = await feedReader.download();
-    }
+    const data = await feedReader.download(index ? { index: FeedIndex.fromBigInt(index) } : {});
 
     return {
       feedIndex: data.feedIndex,
@@ -83,8 +83,7 @@ export async function updateFeed(owner: string, signer: PrivateKey, rawTopic: st
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   const topic = new Topic(rawTopic);
   try {
-    const feedManif = await bee.createFeedManifest(stamp, topic, owner);
-    console.debug("created feed manifest", feedManif);
+    await bee.createFeedManifest(stamp, topic, owner);
     const feedWriter = bee.makeFeedWriter(topic, signer);
     const feedUpdateRes = await feedWriter.upload(stamp, ref);
     return feedUpdateRes.reference.toString();
