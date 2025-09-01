@@ -1,5 +1,4 @@
-import { PrivateKey } from "@ethersphere/bee-js";
-import { MessageData } from "@solarpunkltd/comment-system";
+import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-system";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { Wallet } from "ethers";
 import { ReactElement, useCallback, useEffect, useState } from "react";
@@ -33,6 +32,7 @@ import { getFeedUpdate, getTopic } from "./utils/bee";
 import {
   ADDRESS_HEX_LENGTH,
   CATEGORIES,
+  DEFAULT_URL,
   FIVE_MINUTES,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
@@ -40,7 +40,7 @@ import {
   SELF_NOTE_TOPIC,
   SPACES_KEY,
 } from "./utils/constants";
-import { findSlotStartIx, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
+import { findSlotStartIx, getActivityHelper, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
 
 const MainRouter = (): ReactElement => {
   const {
@@ -137,7 +137,10 @@ const MainRouter = (): ReactElement => {
     if (isBeeRunning) {
       const rawFeedTopicSession = "sessions";
       const dataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, rawFeedTopicSession);
-      const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
+      let data: Map<string, Session[]> = new Map();
+      if (dataStr.length > 0) {
+        data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
+      }
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
@@ -216,12 +219,14 @@ const MainRouter = (): ReactElement => {
   const preLoadTalks = async () => {
     try {
       const preLoadedTalks: TalkComments[] = [];
-      const commentPromises: Promise<{ talkId: string; messages: any[] }>[] = [];
+      const commentPromises: Promise<MessageData[]>[] = [];
       const talkIds: string[] = [];
+      const signerAddresses: string[] = [];
       for (let i = 0; i < recentSessions.length; i++) {
         const sessionId = recentSessions[i].id;
         const rawTalkTopic = getTopic(sessionId);
-        const signer = new PrivateKey(rawTalkTopic);
+        const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
+        const signerAddress = signer.publicKey().address().toString();
         // only load the talks that are not already loaded
         if (loadedTalks) {
           // talkids include a "version" suffix
@@ -231,8 +236,9 @@ const MainRouter = (): ReactElement => {
             continue;
           }
         }
-        commentPromises.push(loadLatestComments(rawTalkTopic, signer.publicKey().address.toString(), process.env.BEE_API_URL, MAX_COMMENTS_LOADED));
+        commentPromises.push(loadLatestComments(rawTalkTopic, signerAddress, process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED));
         talkIds.push(rawTalkTopic);
+        signerAddresses.push(signerAddress);
       }
 
       await Promise.allSettled(commentPromises).then((results) => {
@@ -240,7 +246,7 @@ const MainRouter = (): ReactElement => {
           if (result.status === "fulfilled") {
             preLoadedTalks.push({
               talkId: talkIds[i],
-              messages: result.value.messages,
+              messages: result.value,
             });
           } else {
             console.debug(`preloading talks error: `, result.reason);
@@ -248,7 +254,7 @@ const MainRouter = (): ReactElement => {
         });
       });
 
-      setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
+      setLoadedTalks(preLoadedTalks);
     } catch (error) {
       console.debug("preloading talks error: ", error);
     }
@@ -264,7 +270,7 @@ const MainRouter = (): ReactElement => {
       for (let i = 0; i < recentSessions.length; i++) {
         const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(recentSessions[i].id));
         if (foundIx > -1) {
-          tmpActiveVisitors.set(recentSessions[i].id, loadedTalks[foundIx].messages?.length ?? 0);
+          tmpActiveVisitors.set(recentSessions[i].id, Number(getActivityHelper(loadedTalks[foundIx].messages, true)));
         }
       }
       setTalkActivity(tmpActiveVisitors);
@@ -273,25 +279,38 @@ const MainRouter = (): ReactElement => {
 
   const calcSpacesActivity = async () => {
     const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
-    const spacesPromises: Promise<{ talkId: string; messages: MessageData[] }>[] = [];
+    const spacesPromises: Promise<MessageData[]>[] = [];
+    const preLoadedTalks: TalkComments[] = [];
+    const talkIds: string[] = [];
     try {
       for (let i = 0; i < spacesSessions.length; i++) {
         const rawTalkTopic = getTopic(spacesSessions[i].id);
-        const signer = new PrivateKey(rawTalkTopic);
-        spacesPromises.push(loadLatestComments(rawTalkTopic, signer.publicKey().address.toString(), process.env.BEE_API_URL, MAX_COMMENTS_LOADED));
+        const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
+        spacesPromises.push(
+          loadLatestComments(rawTalkTopic, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
+        );
+        talkIds.push(rawTalkTopic);
       }
 
-      const tmpActivity = new Map<string, number>();
+      const activityMap = new Map<string, number>();
       await Promise.allSettled(spacesPromises).then((results) => {
         results.forEach((result, i) => {
           if (result.status === "fulfilled") {
-            tmpActivity.set(spacesSessions[i].id, result.value.messages.length);
+            const activity = Number(getActivityHelper(result.value, true));
+            activityMap.set(spacesSessions[i].id, activity);
+
+            preLoadedTalks.push({
+              talkId: talkIds[i],
+              messages: result.value,
+            });
           } else {
             console.error(`fetching user count of talks error: `, result.reason);
           }
         });
       });
-      setSpacesActivity(tmpActivity);
+
+      setLoadedTalks(preLoadedTalks);
+      setSpacesActivity(activityMap);
     } catch (error) {
       console.error("fetching user count of talks error: ", error);
     }
@@ -323,7 +342,9 @@ const MainRouter = (): ReactElement => {
     await Promise.allSettled(feedPromises).then((results) => {
       results.forEach((result) => {
         if (result.status === "fulfilled") {
-          notesArray.push(result.value);
+          if (result.value.length > 0) {
+            notesArray.push(result.value);
+          }
         } else {
           console.error(`fetching note data error: `, result.reason);
         }

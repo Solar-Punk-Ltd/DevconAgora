@@ -1,5 +1,4 @@
-import { PrivateKey } from "@ethersphere/bee-js";
-import { MessageData } from "@solarpunkltd/comment-system";
+import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-system";
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import React, { useEffect, useState } from "react";
 
@@ -7,7 +6,15 @@ import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
-import { CATEGORIES, DUMMY_STAMP, MAX_CHARACTER_COUNT, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS, STAGES_MAP } from "../../utils/constants";
+import {
+  CATEGORIES,
+  DEFAULT_URL,
+  DUMMY_STAMP,
+  MAX_CHARACTER_COUNT,
+  MAX_COMMENTS_LOADED,
+  MAX_PRELOADED_TALKS,
+  STAGES_MAP,
+} from "../../utils/constants";
 import { dateToTime } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
@@ -25,7 +32,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const rawTalkTopic = getTopic(session.id);
-  const signer = new PrivateKey(rawTalkTopic);
+  const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
 
   // update the loaded talk comments with the newly read/written comment
   // if the talk is not found, then replace the oldest talk with the new one
@@ -86,7 +93,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     if (loadedTalks) {
       // update active visitors of the talk
       let tmpActivity: Map<string, number>;
-      const isSpacesTalk = CATEGORIES.find((c) => c === session.id);
+      const isSpacesTalk = CATEGORIES.find((c) => c.includes(session.id));
       if (!isSpacesTalk) {
         tmpActivity = new Map(talkActivity);
       } else {
@@ -130,13 +137,13 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           stamp={process.env.STAMP || DUMMY_STAMP}
           topic={rawTalkTopic}
           signer={signer}
-          beeApiUrl={process.env.BEE_API_URL}
+          beeApiUrl={process.env.BEE_API_URL || DEFAULT_URL}
           username={username}
-          preloadedCommnets={comments}
+          preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
           filterEnabled={isContentFilterEnabled}
-          numOfComments={MAX_COMMENTS_LOADED}
+          numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
         />
       )}

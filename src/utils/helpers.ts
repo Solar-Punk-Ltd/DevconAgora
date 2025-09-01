@@ -156,5 +156,5 @@ export const getActivityHelper = (messages: MessageData[] | undefined, last: boo
   const index = last ? validMessages.length - 1 : 0;
   const parsedIndex = indexStrToBigint(validMessages[index].index);
 
-  return parsedIndex ?? 0n;
+  return parsedIndex !== undefined ? parsedIndex + 1n : 0n;
 };
