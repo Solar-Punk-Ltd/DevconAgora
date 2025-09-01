@@ -15,22 +15,23 @@
   transition: border-color 0.25s;
   z-index: 1;
   position: relative;
+  justify-self: center;
 }
 
 .welcome-button--filled {
   border: none;
   color: #ffffff;
-  background: linear-gradient(0deg, var(--bbw-blue) 0%, #367aff 100%);
+  background-color: var(--bbw-blue);
 }
 
 .welcome-button--filled:active {
-  background: linear-gradient(0deg, #367aff, #367aff);
+  background: linear-gradient(0deg, var(--bbw-blue), var(--bbw-blue));
 }
 
 .welcome-button--outlined {
-  border: 1px solid var(--bbw-blue);
-  color: var(--bbw-blue);
-  background: #ffffff;
+  background-color: #000;
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
 }
 
 .welcome-button--white {
