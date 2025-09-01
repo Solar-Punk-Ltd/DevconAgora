@@ -61,8 +61,7 @@ const StayUpdated: React.FC = () => {
 
   return (
     <div className="stay-updated">
-      <div className="stay-updated__background">
-        {/* <img src={HomeBackground} alt="" className="stay-updated__background__img" /> */}
+      <div className="stay-updated__background grid">
       </div>
 
       <div className="stay-updated__header">Stay updated!</div>

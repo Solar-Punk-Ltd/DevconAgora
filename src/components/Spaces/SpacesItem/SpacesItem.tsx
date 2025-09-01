@@ -21,7 +21,7 @@ const SpacesItem: React.FC<RecentRoomsItemProps> = ({ title, numberOfActiveUsers
       </div>
       <div className="recent-rooms-item__right">
         {numberOfActiveUsers > 0 ? <ActiveVisitors number={numberOfActiveUsers} withIcon={true} /> : null}
-        <RightArrowIcon />
+        <RightArrowIcon color="#FFF" />
       </div>
     </div>
   );

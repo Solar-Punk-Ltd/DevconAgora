@@ -22,8 +22,7 @@ const Profile: React.FC = () => {
           <ProfilePicture name={monogram} version="big" />
         </div>
         <div className="profile__content__datas">
-          <div className="profile__content__background">
-            {/* <img src={HomeBackground} alt="" className="profile__content__background__image" /> */}
+          <div className="profile__content__background grid">
           </div>
           <div className="profile__content__datas__user">
             <div className="profile-creation__username">Nickname</div>

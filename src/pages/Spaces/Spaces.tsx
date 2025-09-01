@@ -16,8 +16,7 @@ const Spaces: React.FC = () => {
   return (
     <div className={SPACES_KEY}>
       <NavigationFooter />
-      <div className="spaces__background">
-        {/* <img src={HomeBackground} alt="" width="100%" height="100%" className="spaces__background__img" /> */}
+      <div className="spaces__background grid">
       </div>
 
       <div className="spaces__content">

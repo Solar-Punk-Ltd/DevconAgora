@@ -34,7 +34,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({ backgroundColor, to
     <div className="navigation-header__wrapper" style={{ backgroundColor: backgroundColor }}>
       <div className="navigation-header" onClick={handleNavigation}>
         <div className="navigation-header__link">
-          <LeftNavigationIcon />
+          <LeftNavigationIcon color="#FFF" />
         </div>
         <div className="navigation-header__text">{formattedTo}</div>
       </div>

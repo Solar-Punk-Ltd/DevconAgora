@@ -23,8 +23,7 @@ const TACOnboarding: React.FC = () => {
   return (
     <>
       <div className="terms-and-conditions-onboarding-page">
-        <div className="terms-and-conditions-onboarding-page__background">
-          {/* <img src={HomeBackground} alt="" className="terms-and-conditions-onboarding-page__background__image" /> */}
+        <div className="terms-and-conditions-onboarding-page__background grid">
         </div>
         <div className="terms-and-conditions-onboarding-page__header">Terms and Conditions</div>
         <TermsAndConditions

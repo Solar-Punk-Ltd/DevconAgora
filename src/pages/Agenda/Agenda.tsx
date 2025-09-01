@@ -69,10 +69,7 @@ const Agenda: React.FC = () => {
           {renderTabPanelItems(["All", ...Array.from(DATE_TO_DEVCON_DAY.values())], setActiveDayTab)}
         </TabPanel>
       </div>
-      <div className="agenda-page__content__wrapper">
-        <div className="agenda-page__content__background">
-          {/* <img src={HomeBackground} alt="" width="100%" height="100%" className="agenda-page__content__background__img" /> */}
-        </div>
+      <div className="agenda-page__content__background grid">
       </div>
       <div
         className={clsx("agenda-page__content", {

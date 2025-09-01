@@ -7,8 +7,10 @@
   gap: 6px;
   padding: 8px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: #000000;
+  border: 2px solid var(--bbw-blue);
   z-index: 1;
+  color: #FFF
 }
 
 .agenda-item__comment-version {
