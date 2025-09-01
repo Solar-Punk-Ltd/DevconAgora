@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
 import AgendaBanner from "../../assets/side-event-banner.png";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
@@ -71,7 +71,7 @@ const Agenda: React.FC = () => {
       </div>
       <div className="agenda-page__content__wrapper">
         <div className="agenda-page__content__background">
-          <img src={HomeBackground} alt="" width="100%" height="100%" className="agenda-page__content__background__img" />
+          {/* <img src={HomeBackground} alt="" width="100%" height="100%" className="agenda-page__content__background__img" /> */}
         </div>
       </div>
       <div

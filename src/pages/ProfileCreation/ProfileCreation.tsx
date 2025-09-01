@@ -117,7 +117,7 @@ const ProfileCreation: React.FC = () => {
         <div className="profile-creation__top">
           <div className="welcome-page__header">
             Create <br />
-            <span style={{ color: "var(--default-purple)" }}>Your profile</span>
+            <span style={{ color: "var(--bbw-blue)" }}>Your profile</span>
           </div>
           <div className="profile-creation__background-effect">
             <img src={createYourProfileEffect} alt="" className="profile-creation__backgorund-effect__img" />

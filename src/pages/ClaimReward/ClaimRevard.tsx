@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import HomeBackground from "../../assets/registration-glass-effect.png";
+// import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
@@ -77,7 +77,7 @@ const ClaimReward: React.FC = () => {
   return (
     <div className="claim-reward">
       <div className="claim-reward__background">
-        <img src={HomeBackground} alt="" className="claim-reward__background__img" />
+        {/* <img src={HomeBackground} alt="" className="claim-reward__background__img" /> */}
       </div>
       <div className="claim-reward__main-content">
         <div className="claim-reward__main-content__header">

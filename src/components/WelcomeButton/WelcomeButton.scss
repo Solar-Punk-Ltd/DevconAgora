@@ -20,16 +20,16 @@
 .welcome-button--filled {
   border: none;
   color: #ffffff;
-  background: linear-gradient(0deg, var(--default-purple) 0%, #873de7 100%);
+  background: linear-gradient(0deg, var(--bbw-blue) 0%, #367aff 100%);
 }
 
 .welcome-button--filled:active {
-  background: linear-gradient(0deg, #8223ff, #8223ff);
+  background: linear-gradient(0deg, #367aff, #367aff);
 }
 
 .welcome-button--outlined {
-  border: 1px solid var(--default-purple);
-  color: var(--default-purple);
+  border: 1px solid var(--bbw-blue);
+  color: var(--bbw-blue);
   background: #ffffff;
 }
 

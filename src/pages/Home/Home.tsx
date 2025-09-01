@@ -1,6 +1,6 @@
 import React from "react";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
@@ -21,7 +21,7 @@ const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   return (
     <div className="home-page">
       <div className="home-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
+        {/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}
       </div>
 
       <HomeHeader points={points} withGamification={withGamification} />

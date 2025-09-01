@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ContentFilterBox from "../../components/ContentFilterBox/ContentFilterBox";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
@@ -13,7 +13,7 @@ const ContentFilter: React.FC = () => {
     <>
       <div className="content-filter-page">
         <div className="content-filter-page__background">
-          <img src={HomeBackground} alt="" className="content-filter-page__background__image" />
+          {/* <img src={HomeBackground} alt="" className="content-filter-page__background__image" /> */}
         </div>
         <div className="content-filter-page__top">
           <div className="content-filter-page__header">User Side Content Visibility&nbsp;Sanitizer</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
@@ -23,7 +23,7 @@ const Profile: React.FC = () => {
         </div>
         <div className="profile__content__datas">
           <div className="profile__content__background">
-            <img src={HomeBackground} alt="" className="profile__content__background__image" />
+            {/* <img src={HomeBackground} alt="" className="profile__content__background__image" /> */}
           </div>
           <div className="profile__content__datas__user">
             <div className="profile-creation__username">Nickname</div>
