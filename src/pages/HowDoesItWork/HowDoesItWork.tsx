@@ -2,7 +2,7 @@ import React from "react";
 
 import CollectPointsImg from "../../assets/collect-points.png";
 import ProfileGetBZZImg from "../../assets/profile-get-BZZ.png";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 
 import "./HowDoesItWork.scss";
@@ -17,7 +17,7 @@ const HowDoesItWork: React.FC<HowDoesItWorkProps> = ({ toText }) => {
       <NavigationHeader toText={toText} />
       <div className="how-does-it-work-page__content">
         <div className="how-does-it-work-page__content__background">
-          <img src={HomeBackground} alt="" className="how-does-it-work-page__box__img" />
+          {/* <img src={HomeBackground} alt="" className="how-does-it-work-page__box__img" /> */}
         </div>
         <div className="how-does-it-work-page__box">
           <div className="how-does-it-work-page__box__header">Comments</div>

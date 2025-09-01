@@ -3,7 +3,7 @@ import { getPrivateKeyFromIdentifier } from "@solarpunkltd/comment-system";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
@@ -171,7 +171,7 @@ const FullNotePage: React.FC = () => {
   return (
     <div className="full-note-page">
       <div className="full-note-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
+        {/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}
       </div>
       {showRemovePopUp && (
         <PopUpQuestion

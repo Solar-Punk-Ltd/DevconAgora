@@ -33,10 +33,10 @@ const SettingsIcon: React.FC<SettingsIconProps> = ({ color, open }) => {
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor={color ? color : "var(--default-purple)"} />
+          <stop stopColor={color ? color : "var(--bbw-blue)"} />
           <stop
             offset="1"
-            stopColor={color ? color : "var(--lighter-purple)"}
+            stopColor={color ? color : "var(--bbw-blue)"}
           />
         </linearGradient>
       </defs>
@@ -68,8 +68,8 @@ const SettingsIcon: React.FC<SettingsIconProps> = ({ color, open }) => {
           y2="0"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="var(--default-purple)" />
-          <stop offset="1" stopColor="var(--lighter-purple)" />
+          <stop stopColor="var(--bbw-blue)" />
+          <stop offset="1" stopColor="var(--bbw-blue)" />
         </linearGradient>
       </defs>
     </svg>

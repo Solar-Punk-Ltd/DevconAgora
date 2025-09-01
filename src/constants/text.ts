@@ -1,3 +1,3 @@
 export const TEXTS = {
-  APP_NAME: "Devcon.Buzz",
+  APP_NAME: "BBW2025.BUZZ",
 };
