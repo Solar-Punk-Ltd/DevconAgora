@@ -48,15 +48,14 @@ const MainRouter = (): ReactElement => {
     }
   }, [sessions, filterRecentSessions]);
 
-  const { preLoadTalks, calcActivity, calcSpacesActivity } = usePreloadTalks();
+  const { calcActivity, calcSpacesActivity } = usePreloadTalks();
 
   useEffect(() => {
     if (isBeeRunning && sessions && sessions.size > 0) {
-      preLoadTalks();
       calcActivity();
       calcSpacesActivity();
     }
-  }, [isBeeRunning, sessions, preLoadTalks, calcActivity, calcSpacesActivity]);
+  }, [isBeeRunning, sessions]);
 
   const { prevLocation } = usePrevLocation(location);
 

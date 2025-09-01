@@ -37,13 +37,6 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "src"),
       },
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // SCSS preprocessing options can be added here if needed
-        },
-      },
-    },
     server: {
       watch: {
         usePolling: true,

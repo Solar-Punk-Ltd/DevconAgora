@@ -29,7 +29,9 @@ export const useNotes = () => {
     const results = await Promise.allSettled(feedPromises);
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        notesArray.push(result.value);
+        if (result.value.length > 0) {
+          notesArray.push(result.value);
+        }
       } else {
         console.error(`fetching note data error: `, result.reason);
       }
