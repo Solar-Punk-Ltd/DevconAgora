@@ -1,8 +1,8 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { CommentsWithIndex } from "@solarpunkltd/comment-system";
+import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-system";
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { Wallet } from "ethers";
+import { ReactElement, useCallback, useEffect, useState } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import Gamification from "./components/Gamification/Gamification";
 import { NoteItemProps } from "./components/NoteItem/NoteItem";
@@ -32,19 +32,15 @@ import { getFeedUpdate, getTopic } from "./utils/bee";
 import {
   ADDRESS_HEX_LENGTH,
   CATEGORIES,
+  DEFAULT_URL,
   FIVE_MINUTES,
   MAX_COMMENTS_LOADED,
   MAX_SESSIONS_SHOWN,
   ROUTES,
   SELF_NOTE_TOPIC,
+  SPACES_KEY,
 } from "./utils/constants";
-import {
-  findSlotStartIx,
-  getPrivateKey,
-  getSessionsByDay,
-  getWallet,
-  isUserRegistered,
-} from "./utils/helpers";
+import { findSlotStartIx, getActivityHelper, getLocalPrivateKey, getSessionsByDay, isUserRegistered } from "./utils/helpers";
 
 const MainRouter = (): ReactElement => {
   const {
@@ -94,17 +90,15 @@ const MainRouter = (): ReactElement => {
 
   const checkBee = async () => {
     try {
-      await fetch(
-        process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF
-      );
+      await fetch(process.env.BEE_API_URL + "/bytes/" + process.env.HEALTH_CHECK_DATA_REF);
       if (!isBeeRunning) {
         setBeeRunning(true);
-        console.log("Bee is running");
+        console.debug("Bee is running");
       }
     } catch (error) {
       if (isBeeRunning) {
         setBeeRunning(false);
-        console.log("Bee stopped running, error: ", error);
+        console.error("Bee stopped running, error: ", error);
       }
     }
   };
@@ -112,15 +106,14 @@ const MainRouter = (): ReactElement => {
   const getPoints = async () => {
     try {
       if (isUserRegistered()) {
-        fetch(process.env.BACKEND_API_URL + "/points/" + username).then(
-          (resp) =>
-            resp.text().then((data) => {
-              setPoints(Number(data));
-            })
+        fetch(process.env.BACKEND_API_URL + "/points/" + username).then((resp) =>
+          resp.text().then((data) => {
+            setPoints(Number(data));
+          })
         );
       }
     } catch (error) {
-      console.log("error fetching points: ", error);
+      console.error("error fetching points: ", error);
     }
   };
 
@@ -143,11 +136,11 @@ const MainRouter = (): ReactElement => {
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
       const rawFeedTopicSession = "sessions";
-      const dataStr = await getFeedUpdate(
-        process.env.FEED_OWNER_ADDRESS as string,
-        rawFeedTopicSession
-      );
-      const data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
+      const dataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, rawFeedTopicSession);
+      let data: Map<string, Session[]> = new Map();
+      if (dataStr.length > 0) {
+        data = new Map<string, Session[]>(Object.entries(JSON.parse(dataStr)));
+      }
 
       const spacesSessions: Session[] = [];
       for (let i = 0; i < CATEGORIES.length; i++) {
@@ -163,12 +156,12 @@ const MainRouter = (): ReactElement => {
         });
       }
 
-      data.set("spaces", spacesSessions);
+      data.set(SPACES_KEY, spacesSessions);
       if (data.size !== 0) {
-        console.log("session data updated");
+        console.debug("session data updated");
         setSessions(() => data);
       } else {
-        console.log("session data empty");
+        console.debug("session data empty");
       }
     }
   }, [isBeeRunning]);
@@ -199,21 +192,10 @@ const MainRouter = (): ReactElement => {
     const sessionsByDay = getSessionsByDay(sessions, day);
     if (sessionsByDay.length != 0) {
       const mostRecentSessions = new Array<Session>(MAX_SESSIONS_SHOWN);
-      let firstSessionIx = findSlotStartIx(
-        recentSessionIx,
-        sessionsByDay,
-        time
-      );
-      firstSessionIx =
-        firstSessionIx > MAX_SESSIONS_SHOWN - 1
-          ? firstSessionIx
-          : MAX_SESSIONS_SHOWN - 1;
+      let firstSessionIx = findSlotStartIx(recentSessionIx, sessionsByDay, time);
+      firstSessionIx = firstSessionIx > MAX_SESSIONS_SHOWN - 1 ? firstSessionIx : MAX_SESSIONS_SHOWN - 1;
 
-      for (
-        let i = 0;
-        i < MAX_SESSIONS_SHOWN && 0 < sessionsByDay.length - firstSessionIx - i;
-        i++
-      ) {
+      for (let i = 0; i < MAX_SESSIONS_SHOWN && 0 < sessionsByDay.length - firstSessionIx - i; i++) {
         const recentIx = firstSessionIx - i;
         mostRecentSessions[i] = sessionsByDay[recentIx];
       }
@@ -237,32 +219,26 @@ const MainRouter = (): ReactElement => {
   const preLoadTalks = async () => {
     try {
       const preLoadedTalks: TalkComments[] = [];
-      const commentPromises: Promise<CommentsWithIndex>[] = [];
+      const commentPromises: Promise<MessageData[]>[] = [];
       const talkIds: string[] = [];
+      const signerAddresses: string[] = [];
       for (let i = 0; i < recentSessions.length; i++) {
         const sessionId = recentSessions[i].id;
-        const rawTalkTopic = getTopic(sessionId, true);
-        const wallet = getWallet(rawTalkTopic);
+        const rawTalkTopic = getTopic(sessionId);
+        const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
+        const signerAddress = signer.publicKey().address().toString();
         // only load the talks that are not already loaded
         if (loadedTalks) {
           // talkids include a "version" suffix
-          const foundIx = loadedTalks.findIndex((talk) =>
-            talk.talkId.includes(rawTalkTopic)
-          );
+          const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(rawTalkTopic));
           if (foundIx > -1) {
             preLoadedTalks.push(loadedTalks[foundIx]);
             continue;
           }
         }
-        commentPromises.push(
-          loadLatestComments(
-            rawTalkTopic,
-            wallet.address,
-            process.env.BEE_API_URL,
-            MAX_COMMENTS_LOADED
-          )
-        );
+        commentPromises.push(loadLatestComments(rawTalkTopic, signerAddress, process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED));
         talkIds.push(rawTalkTopic);
+        signerAddresses.push(signerAddress);
       }
 
       await Promise.allSettled(commentPromises).then((results) => {
@@ -270,18 +246,17 @@ const MainRouter = (): ReactElement => {
           if (result.status === "fulfilled") {
             preLoadedTalks.push({
               talkId: talkIds[i],
-              comments: result.value.comments,
-              nextIndex: result.value.nextIndex,
+              messages: result.value,
             });
           } else {
-            console.log(`preloading talks error: `, result.reason);
+            console.debug(`preloading talks error: `, result.reason);
           }
         });
       });
 
-      setLoadedTalks(preLoadedTalks.length > 0 ? preLoadedTalks : undefined);
+      setLoadedTalks(preLoadedTalks);
     } catch (error) {
-      console.log("preloading talks error: ", error);
+      console.debug("preloading talks error: ", error);
     }
   };
 
@@ -293,50 +268,51 @@ const MainRouter = (): ReactElement => {
     if (loadedTalks) {
       const tmpActiveVisitors = new Map<string, number>();
       for (let i = 0; i < recentSessions.length; i++) {
-        const foundIx = loadedTalks.findIndex((talk) =>
-          talk.talkId.includes(recentSessions[i].id)
-        );
+        const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(recentSessions[i].id));
         if (foundIx > -1) {
-          tmpActiveVisitors.set(
-            recentSessions[i].id,
-            loadedTalks[foundIx].nextIndex
-          );
+          tmpActiveVisitors.set(recentSessions[i].id, Number(getActivityHelper(loadedTalks[foundIx].messages, true)));
         }
       }
       setTalkActivity(tmpActiveVisitors);
     }
   };
 
-  const calcSapcesActivity = async () => {
-    const spacesSessions = getSessionsByDay(sessions, "spaces");
-    const spacesPromises: Promise<CommentsWithIndex>[] = [];
+  const calcSpacesActivity = async () => {
+    const spacesSessions = getSessionsByDay(sessions, SPACES_KEY);
+    const spacesPromises: Promise<MessageData[]>[] = [];
+    const preLoadedTalks: TalkComments[] = [];
+    const talkIds: string[] = [];
     try {
       for (let i = 0; i < spacesSessions.length; i++) {
-        const rawTalkTopic = getTopic(spacesSessions[i].id, true);
-        const wallet = getWallet(rawTalkTopic);
+        const rawTalkTopic = getTopic(spacesSessions[i].id);
+        const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
         spacesPromises.push(
-          loadLatestComments(
-            rawTalkTopic,
-            wallet.address,
-            process.env.BEE_API_URL,
-            MAX_COMMENTS_LOADED
-          )
+          loadLatestComments(rawTalkTopic, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
         );
+        talkIds.push(rawTalkTopic);
       }
 
-      const tmpActivity = new Map<string, number>();
+      const activityMap = new Map<string, number>();
       await Promise.allSettled(spacesPromises).then((results) => {
         results.forEach((result, i) => {
           if (result.status === "fulfilled") {
-            tmpActivity.set(spacesSessions[i].id, result.value.nextIndex);
+            const activity = Number(getActivityHelper(result.value, true));
+            activityMap.set(spacesSessions[i].id, activity);
+
+            preLoadedTalks.push({
+              talkId: talkIds[i],
+              messages: result.value,
+            });
           } else {
-            console.log(`fetching user count of talks error: `, result.reason);
+            console.error(`fetching user count of talks error: `, result.reason);
           }
         });
       });
-      setSpacesActivity(tmpActivity);
+
+      setLoadedTalks(preLoadedTalks);
+      setSpacesActivity(activityMap);
     } catch (error) {
-      console.log("fetching user count of talks error: ", error);
+      console.error("fetching user count of talks error: ", error);
     }
   };
 
@@ -345,13 +321,13 @@ const MainRouter = (): ReactElement => {
   }, [loadedTalks]);
 
   useEffect(() => {
-    calcSapcesActivity();
+    calcSpacesActivity();
   }, [recentSessions]);
 
   const fetchNotes = async () => {
-    const privKey = getPrivateKey();
+    const privKey = getLocalPrivateKey();
     if (!privKey) {
-      console.log("private key not found - cannot fetch notes");
+      console.error("private key not found - cannot fetch notes");
       return;
     }
 
@@ -366,9 +342,11 @@ const MainRouter = (): ReactElement => {
     await Promise.allSettled(feedPromises).then((results) => {
       results.forEach((result) => {
         if (result.status === "fulfilled") {
-          notesArray.push(result.value);
+          if (result.value.length > 0) {
+            notesArray.push(result.value);
+          }
         } else {
-          console.log(`fetching note data error: `, result.reason);
+          console.error(`fetching note data error: `, result.reason);
         }
       });
     });
@@ -379,7 +357,7 @@ const MainRouter = (): ReactElement => {
       try {
         note = JSON.parse(notesArray[i]) as NoteItemProps;
       } catch (error) {
-        console.log(`error parsing notes[${i}]:\n ${error}`);
+        console.error(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
       const found = notes.find((n) => n.id === note.id);
@@ -394,16 +372,14 @@ const MainRouter = (): ReactElement => {
     });
     setNotes(tmpNotes);
 
-    console.log("self notes updated");
+    console.debug("self notes updated");
   };
 
   useEffect(() => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
       const tmpTopics = selfNoteTopicsStr.split(",");
-      setNoteRawTopics(
-        tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH)
-      );
+      setNoteRawTopics(tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH));
     }
   }, []);
 
@@ -413,14 +389,7 @@ const MainRouter = (): ReactElement => {
 
   useEffect(() => {
     const privKey = localStorage.getItem("privKey");
-    const noRedirectedPaths = [
-      ROUTES.WELCOME1,
-      ROUTES.WELCOME2,
-      ROUTES.WELCOME3,
-      ROUTES.WELCOME4,
-      ROUTES.TACONBOARDING,
-      ROUTES.PROFILECREATION,
-    ];
+    const noRedirectedPaths = [ROUTES.WELCOME1, ROUTES.WELCOME2, ROUTES.WELCOME3, ROUTES.WELCOME4, ROUTES.TACONBOARDING, ROUTES.PROFILECREATION];
     if (!privKey && !noRedirectedPaths.includes(location.pathname as ROUTES)) {
       navigate(ROUTES.APP);
     }
@@ -437,33 +406,19 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route
-          path={ROUTES.HOMEWITHGAMIFICATION}
-          element={<HomePage withGamification={true} />}
-        />
+        <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage withGamification={true} />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />
-        <Route
-          path={ROUTES.HOWDOESITWORK}
-          element={
-            <HowDoesItWork toText={prevLocation ? prevLocation : undefined} />
-          }
-        />
+        <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork toText={prevLocation ? prevLocation : undefined} />} />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
-        <Route
-          path={`${ROUTES.TALKS}/:talkId`}
-          element={<TalkPage toText={prevLocation} />}
-        />
+        <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage toText={prevLocation} />} />
         <Route path={ROUTES.CONTENTFILTER} element={<ContentFilter />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
         <Route path={ROUTES.STAYUPDATED} element={<StayUpdated />} />
-        <Route
-          path={ROUTES.TERMSANDCONDITIONS}
-          element={<TermsAndConditionsPage />}
-        />
+        <Route path={ROUTES.TERMSANDCONDITIONS} element={<TermsAndConditionsPage />} />
       </Routes>
     </>
   );

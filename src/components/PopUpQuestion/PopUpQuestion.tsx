@@ -12,13 +12,7 @@ interface PopUpQuestionProps {
   rightButtonHandler: () => void;
 }
 
-const PopUpQuestion: React.FC<PopUpQuestionProps> = ({
-  question,
-  leftButtonText,
-  leftButtonHandler,
-  rightButtonText,
-  rightButtonHandler,
-}) => {
+const PopUpQuestion: React.FC<PopUpQuestionProps> = ({ question, leftButtonText, leftButtonHandler, rightButtonText, rightButtonHandler }) => {
   return (
     <div className="pop-up-question">
       <div className="pop-up-question__content">

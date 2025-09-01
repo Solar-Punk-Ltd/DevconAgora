@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import clsx from "clsx";
 
 import { ROUTES } from "../../utils/constants";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
@@ -21,8 +21,7 @@ const NavigationFooter: React.FC = () => {
       <Link to={ROUTES.HOME}>
         <div
           className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.HOME,
+            "navigation-footer__item-container__active": location.pathname === ROUTES.HOME,
           })}
         >
           <HomeIcon color={getColor(ROUTES.HOME)} />
@@ -32,8 +31,7 @@ const NavigationFooter: React.FC = () => {
       <Link to={ROUTES.AGENDA}>
         <div
           className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.AGENDA,
+            "navigation-footer__item-container__active": location.pathname === ROUTES.AGENDA,
           })}
         >
           <AgendaIcon color={getColor(ROUTES.AGENDA)} />
@@ -43,8 +41,7 @@ const NavigationFooter: React.FC = () => {
       <Link to={ROUTES.SPACES}>
         <div
           className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.SPACES,
+            "navigation-footer__item-container__active": location.pathname === ROUTES.SPACES,
           })}
         >
           <RoomsIcon color={getColor(ROUTES.SPACES)} />
@@ -54,8 +51,7 @@ const NavigationFooter: React.FC = () => {
       <Link to={ROUTES.NOTES}>
         <div
           className={clsx("navigation-footer__item-container", {
-            "navigation-footer__item-container__active":
-              location.pathname === ROUTES.NOTES,
+            "navigation-footer__item-container__active": location.pathname === ROUTES.NOTES,
           })}
         >
           <NotesIcon color={getColor(ROUTES.NOTES)} />

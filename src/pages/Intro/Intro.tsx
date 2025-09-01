@@ -34,10 +34,7 @@ function Intro() {
           <source src={backgroundVideo} type="video/mp4" />
         </video>
         <div>
-          <img
-            src={videoGlassEffect}
-            className="opening-page__video-glass-effect"
-          />
+          <img src={videoGlassEffect} className="opening-page__video-glass-effect" />
         </div>
         <div style={{}} className="opening-page__text-layer">
           <div className="opening-page__header">

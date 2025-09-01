@@ -13,15 +13,9 @@ const TermsAndConditionsPage: React.FC = () => {
     <>
       <div className="terms-and-conditions-page">
         <div className="terms-and-conditions-page__background">
-          <img
-            src={HomeBackground}
-            alt=""
-            className="terms-and-conditions-page__background__image"
-          />
+          <img src={HomeBackground} alt="" className="terms-and-conditions-page__background__image" />
         </div>
-        <div className="terms-and-conditions-page__header">
-          Terms and Conditions
-        </div>
+        <div className="terms-and-conditions-page__header">Terms and Conditions</div>
         <TermsAndConditions />
         <Link to={ROUTES.PROFILE}>
           <div className="terms-and-conditions-page__bottom">
