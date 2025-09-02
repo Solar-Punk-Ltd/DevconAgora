@@ -37,7 +37,7 @@ export const useNotes = () => {
       }
     });
 
-    const tmpNotes: NoteItemProps[] = [...notes];
+    const tmpNotes: NoteItemProps[] = [];
     for (let i = 0; i < notesArray.length; i++) {
       let note: NoteItemProps | undefined = undefined;
       try {
@@ -46,8 +46,8 @@ export const useNotes = () => {
         console.error(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
-      const found = notes.find((n) => n.id === note.id);
-      if (!found && note !== undefined) {
+      const exists = notes.some((n) => n.id === note.id);
+      if (!exists && note !== undefined) {
         tmpNotes.push(note);
       }
     }
