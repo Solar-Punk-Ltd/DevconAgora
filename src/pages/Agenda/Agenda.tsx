@@ -11,7 +11,7 @@ import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
-import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../utils/constants";
+import { ALL_SESSIONS_KEY, CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../utils/constants";
 import { dateToTime, getSessionsByDay, stringToBoolean } from "../../utils/helpers";
 import Categories from "../Categories/Categories";
 
@@ -36,7 +36,7 @@ const Agenda: React.FC = () => {
   };
 
   useEffect(() => {
-    let day = "all";
+    let day = ALL_SESSIONS_KEY;
     if (activeDayTab > 0) {
       day = Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab - 1];
     }
@@ -51,7 +51,7 @@ const Agenda: React.FC = () => {
         const isYourAgenda = activeAgendaTab === 1 ? isLiked === true : true;
 
         const stageId = Array.from(STAGES_MAP.keys())[activeStageTab];
-        if ((sessionsByDay[i].slot_roomId === stageId || stageId === "all") && isYourAgenda && categoryFilter) {
+        if ((sessionsByDay[i].slot_roomId === stageId || stageId === ALL_SESSIONS_KEY) && isYourAgenda && categoryFilter) {
           items.push(sessionsByDay[i]);
         }
       }

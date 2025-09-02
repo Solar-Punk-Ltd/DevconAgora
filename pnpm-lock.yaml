@@ -14,9 +14,6 @@ importers:
       '@solarpunkltd/comment-system':
         specifier: ^1.8.9
         version: 1.8.9
-      '@solarpunkltd/comment-system-ui':
-        specifier: ^0.3.0
-        version: 0.3.0(rollup@4.50.0)(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))
       '@solarpunkltd/swarm-comment-js':
         specifier: ^0.0.7
         version: 0.0.7
@@ -59,7 +56,7 @@ importers:
         version: 8.41.0(eslint@9.34.0)(typescript@5.9.2)
       '@vitejs/plugin-react':
         specifier: ^5.0.0
-        version: 5.0.2(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))
+        version: 5.0.2(vite@7.1.4(@types/node@24.3.0)(sass@1.91.0))
       eslint:
         specifier: ^9.32.0
         version: 9.34.0
@@ -104,10 +101,10 @@ importers:
         version: 8.41.0(eslint@9.34.0)(typescript@5.9.2)
       vite:
         specifier: ^7.1.0
-        version: 7.1.3(@types/node@24.3.0)(sass@1.91.0)
+        version: 7.1.4(@types/node@24.3.0)(sass@1.91.0)
       vite-plugin-node-polyfills:
         specifier: ^0.24.0
-        version: 0.24.0(rollup@4.50.0)(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))
+        version: 0.24.0(rollup@4.50.0)(vite@7.1.4(@types/node@24.3.0)(sass@1.91.0))
 
 packages:
 
@@ -678,9 +675,6 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@solarpunkltd/comment-system-ui@0.3.0':
-    resolution: {integrity: sha512-oZ6/CBl9e6lmWkRlTQRULjHVcOejqW81Sb+z6XJlAdXzrjtYbkbvuRsHuVOb4URNhHRWKbmmeyONXnsmp0QD/g==}
-
   '@solarpunkltd/comment-system@1.8.9':
     resolution: {integrity: sha512-k/jL9ByzBPHCPP6v02RVKonrmFzxF/+fLkvT1/BRDHO/DcKEsYABgAyVQ+H4kbIbKn/kSLM7xG/NXPJULk4kfw==}
 
@@ -1190,8 +1184,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  electron-to-chromium@1.5.211:
-    resolution: {integrity: sha512-IGBvimJkotaLzFnwIVgW9/UD/AOJ2tByUmeOrtqBfACSbAw5b1G0XpvdaieKyc7ULmbwXVx+4e4Be8pOPBrYkw==}
+  electron-to-chromium@1.5.212:
+    resolution: {integrity: sha512-gE7ErIzSW+d8jALWMcOIgf+IB6lpfsg6NwOhPVwKzDtN2qcBix47vlin4yzSregYDxTCXOUqAZjVY/Z3naS7ww==}
 
   elliptic@6.6.1:
     resolution: {integrity: sha512-RaddvvMatK2LJHqFJ+YA4WysVN5Ita9E35botqIYspQ4TkRAlCicdzKOjlyv/1Za5RyTNn7di//eEV0uTAfe3g==}
@@ -2368,8 +2362,8 @@ packages:
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
-  vite@7.1.3:
-    resolution: {integrity: sha512-OOUi5zjkDxYrKhTV3V7iKsoS37VUM7v40+HuwEmcrsf11Cdx9y3DIr2Px6liIcZFwt3XSRpQvFpL3WVy7ApkGw==}
+  vite@7.1.4:
+    resolution: {integrity: sha512-X5QFK4SGynAeeIt+A7ZWnApdUyHYm+pzv/8/A57LqSGcI88U6R6ipOs3uCesdc6yl7nl+zNO0t8LmqAdXcQihw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2944,22 +2938,6 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@solarpunkltd/comment-system-ui@0.3.0(rollup@4.50.0)(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))':
-    dependencies:
-      '@ethersphere/bee-js': 10.0.0
-      '@solarpunkltd/comment-system': 1.8.9
-      clsx: 2.1.1
-      react: 19.1.1
-      react-dom: 19.1.1(react@19.1.1)
-      uuid: 11.1.0
-      vite-plugin-node-polyfills: 0.24.0(rollup@4.50.0)(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))
-    transitivePeerDependencies:
-      - bufferutil
-      - rollup
-      - supports-color
-      - utf-8-validate
-      - vite
-
   '@solarpunkltd/comment-system@1.8.9':
     dependencies:
       '@ethersphere/bee-js': 10.0.0
@@ -3183,7 +3161,7 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vitejs/plugin-react@5.0.2(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0))':
+  '@vitejs/plugin-react@5.0.2(vite@7.1.4(@types/node@24.3.0)(sass@1.91.0))':
     dependencies:
       '@babel/core': 7.28.3
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.3)
@@ -3191,7 +3169,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.34
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.1.3(@types/node@24.3.0)(sass@1.91.0)
+      vite: 7.1.4(@types/node@24.3.0)(sass@1.91.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -3388,7 +3366,7 @@ snapshots:
   browserslist@4.25.4:
     dependencies:
       caniuse-lite: 1.0.30001739
-      electron-to-chromium: 1.5.211
+      electron-to-chromium: 1.5.212
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.4)
 
@@ -3588,7 +3566,7 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  electron-to-chromium@1.5.211: {}
+  electron-to-chromium@1.5.212: {}
 
   elliptic@6.6.1:
     dependencies:
@@ -5061,15 +5039,15 @@ snapshots:
 
   uuid@11.1.0: {}
 
-  vite-plugin-node-polyfills@0.24.0(rollup@4.50.0)(vite@7.1.3(@types/node@24.3.0)(sass@1.91.0)):
+  vite-plugin-node-polyfills@0.24.0(rollup@4.50.0)(vite@7.1.4(@types/node@24.3.0)(sass@1.91.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.50.0)
       node-stdlib-browser: 1.3.1
-      vite: 7.1.3(@types/node@24.3.0)(sass@1.91.0)
+      vite: 7.1.4(@types/node@24.3.0)(sass@1.91.0)
     transitivePeerDependencies:
       - rollup
 
-  vite@7.1.3(@types/node@24.3.0)(sass@1.91.0):
+  vite@7.1.4(@types/node@24.3.0)(sass@1.91.0):
     dependencies:
       esbuild: 0.25.9
       fdir: 6.5.0(picomatch@4.0.3)

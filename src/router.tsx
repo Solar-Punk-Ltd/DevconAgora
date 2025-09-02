@@ -7,7 +7,7 @@ import { useBeePing } from "./hooks/useBeePing";
 import { useGamification } from "./hooks/useGamification";
 import { useNotes } from "./hooks/useNotes";
 import { usePoints } from "./hooks/usePoints";
-import { usePreloadTalks } from "./hooks/usePreloadTalks";
+import { usePreloadRecentSessions, usePreloadSpacesSessions } from "./hooks/usePreloadTalks";
 import { usePrevLocation } from "./hooks/usePrevLocation";
 import { useRouteProtection } from "./hooks/useRouteProtection";
 import { useSessionData } from "./hooks/useSessionData";
@@ -34,7 +34,7 @@ import Welcome4 from "./pages/Welcome4/Welcome4";
 import { ROUTES } from "./utils/constants";
 
 const MainRouter = (): ReactElement => {
-  const { showGamification, sessions, points } = useGlobalState();
+  const { showGamification, sessions, points, recentSessions } = useGlobalState();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -47,15 +47,21 @@ const MainRouter = (): ReactElement => {
       filterRecentSessions(sessions);
     }
   }, [sessions, filterRecentSessions]);
-
-  const { calcActivity, calcSpacesActivity } = usePreloadTalks();
+  // not preloading reactions state, it can be loaded on demand
+  const { preloadSpacesSessions } = usePreloadSpacesSessions();
+  const { preloadRecentSessions } = usePreloadRecentSessions();
 
   useEffect(() => {
     if (isBeeRunning && sessions && sessions.size > 0) {
-      calcActivity();
-      calcSpacesActivity();
+      preloadSpacesSessions();
     }
-  }, [isBeeRunning, sessions]);
+  }, [isBeeRunning, sessions, preloadSpacesSessions]);
+
+  useEffect(() => {
+    if (recentSessions && recentSessions.length > 0) {
+      preloadRecentSessions();
+    }
+  }, [recentSessions, preloadRecentSessions]);
 
   const { prevLocation } = usePrevLocation(location);
 
