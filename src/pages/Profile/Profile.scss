@@ -68,7 +68,10 @@
   height: 40px;
   padding: 8px 10px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: #000;
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
+  border-radius: 16px;
 }
 
 .profile__username::selection {

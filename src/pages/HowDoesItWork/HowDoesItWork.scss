@@ -31,6 +31,9 @@
   box-sizing: border-box;
   box-shadow: var(--box-shadow-type2);
   z-index: 1;
+  background-color: #000;
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
 }
 
 .how-does-it-work-page__box__header {

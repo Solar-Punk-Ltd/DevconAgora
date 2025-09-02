@@ -51,10 +51,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
     return storedPoints ? parseInt(storedPoints, 10) : 0;
   });
 
-  const [isContentFilterEnabled, setIsContentFilterEnabled] = useState<boolean>(() => {
-    const storedValue = localStorage.getItem("isContentFilterEnabled");
-    return storedValue === null ? true : storedValue === "true";
-  });
+  const [isContentFilterEnabled] = useState<boolean>(false);
 
   const [showGamification, setShowGamification] = useState<boolean>(false);
   const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] = useState<boolean>(false);
@@ -117,7 +114,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         loadedTalks,
         setLoadedTalks,
         isContentFilterEnabled,
-        setIsContentFilterEnabled,
+        setIsContentFilterEnabled: () => {},
         isTermsAndConditionsAccepted,
         setIsTermsAndConditionsAccepted,
         notes,

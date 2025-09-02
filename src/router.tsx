@@ -14,7 +14,6 @@ import { useSessionData } from "./hooks/useSessionData";
 import { useViewportHeight } from "./hooks/useViewportHeight";
 import Agenda from "./pages/Agenda/Agenda";
 import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
-import ContentFilter from "./pages/ContentFilter/ContentFilter";
 import FullNotePage from "./pages/FullNote/FullNote";
 import HomePage from "./pages/Home/Home";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
@@ -87,7 +86,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork toText={prevLocation ? prevLocation : undefined} />} />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
         <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage toText={prevLocation} />} />
-        <Route path={ROUTES.CONTENTFILTER} element={<ContentFilter />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />

@@ -10,7 +10,7 @@ import { ROUTES } from "../../utils/constants";
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-page">
+      <div className="welcome-page grid">
         <div className="welcome-page__header">Share your thoughts</div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
