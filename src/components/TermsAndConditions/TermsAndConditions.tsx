@@ -30,7 +30,6 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
   termsAndConditionCheckBoxHandler,
   termsAndConditionCheckBoxValue,
 }) => {
-  const { isContentFilterEnabled, setIsContentFilterEnabled } = useGlobalState();
   return (
     <div className="terms-and-conditions">
       <div className="terms-and-conditions__text__header">{DISCLAIMER_OF_LIABILITY_HEADER}</div>
@@ -44,11 +43,6 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
       <div className="terms-and-conditions__text__header">{ACCEPTANCE_OF_TERMS_HEADER}</div>
       <div className="terms-and-conditions__text">{ACCEPTANCE_OF_TERMS_TEXT}</div>
 
-      {contentFilterCheckBox ? (
-        <div className="terms-and-conditions__checkbox-setting">
-          <CheckBoxIcon checked={isContentFilterEnabled} onClick={() => setIsContentFilterEnabled(!isContentFilterEnabled)} /> USCVS enabled
-        </div>
-      ) : null}
 
       {termsAndConditionCheckBox ? (
         <div className="terms-and-conditions__checkbox-setting">

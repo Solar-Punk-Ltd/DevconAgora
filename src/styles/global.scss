@@ -195,7 +195,7 @@ html {
   justify-content: center;
   box-sizing: border-box;
   bottom: 0px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .welcome-page__bottom__text {
@@ -247,7 +247,7 @@ html {
 .welcome-page__bottom-bottom {
   width: 100%;
   z-index: 2;
-  min-height: 32vh;
+  min-height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -302,60 +302,60 @@ html {
 
 @media (min-height: 400px) {
   .welcome-page__bottom-bottom {
-    min-height: 20vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 450px) {
   .welcome-page__bottom-bottom {
-    min-height: 21vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 500px) {
   .welcome-page__bottom-bottom {
-    min-height: 22vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 550px) {
   .welcome-page__bottom-bottom {
-    min-height: 23vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 600px) {
   .welcome-page__bottom-bottom {
-    min-height: 24vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 650px) {
   .welcome-page__bottom-bottom {
-    min-height: 25vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 710px) {
   .welcome-page__bottom-bottom {
-    min-height: 26vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 810px) {
   .welcome-page__bottom-bottom {
-    min-height: 27vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 910px) {
   .welcome-page__bottom-bottom {
-    min-height: 28vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 1055px) {
   .welcome-page__bottom-bottom {
-    min-height: 29vh;
+    min-height: auto;
   }
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import WelcomeMask from "../../assets/welcome-glass-effect.png";
 import welcome1img from "../../assets/welcome1img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
@@ -15,9 +14,6 @@ const Welcome1: React.FC = () => {
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
             <img src={welcome1img} alt="" className="welcome-page__main-image" />
-            <div className="welcome-page__effect">
-              <img src={WelcomeMask} alt="" className="welcome-page__effect-mask" />
-            </div>
           </div>
         </div>
         <div className="welcome-page__bottom">
