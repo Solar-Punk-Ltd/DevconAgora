@@ -4,11 +4,13 @@
   justify-content: space-between;
   padding: 16px;
   gap: 10%;
-  background-color: #ffffff;
+  background-color: #000;
+  border: 2px solid var(--bbw-blue);
   border-radius: 16px;
   box-sizing: border-box;
   box-shadow: var(--box-shadow-type2);
   z-index: 1;
+  color: #FFF;
 }
 
 .devcon-main-box__border {
@@ -42,12 +44,14 @@
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: var(--grey-primary);
+  background-color: #000;
+  border: 2px solid var(--bbw-blue);
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 60px;
+  color: #FFF;
 }
 
 .profile-box__points-box__ten {

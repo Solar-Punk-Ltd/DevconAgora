@@ -37,7 +37,6 @@ const Profile: React.FC = () => {
             showPoints={true}
             showContent={true}
           />
-          <ProfileBox title="Share the experience with others" linkText="Share referal link" showPoints={false} showContent={true} shareable={true} />
           <Link to={ROUTES.HOWDOESITWORK} className="profile__content__datas__how-does-it-work">
             <ProfileBox title="How does it work?" showPoints={false} showContent={false} />
           </Link>

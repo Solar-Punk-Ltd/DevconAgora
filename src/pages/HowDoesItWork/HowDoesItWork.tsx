@@ -16,7 +16,7 @@ const HowDoesItWork: React.FC<HowDoesItWorkProps> = ({ toText }) => {
     <div className="how-does-it-work-page">
       <NavigationHeader toText={toText} />
       <div className="how-does-it-work-page__content">
-        <div className="how-does-it-work-page__content__background">
+        <div className="how-does-it-work-page__content__background grid">
           {/* <img src={HomeBackground} alt="" className="how-does-it-work-page__box__img" /> */}
         </div>
         <div className="how-does-it-work-page__box">
