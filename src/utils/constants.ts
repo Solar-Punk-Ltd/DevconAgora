@@ -47,7 +47,7 @@ export enum ROUTES {
   HOWDOESITWORK = "/how-does-it-work",
   TALKS = "/talks",
   CLAIMREWARD = "/claim-reward",
-  CONTENTFILTER = "/content-filter",
+  // CONTENTFILTER = "/content-filter",
   TERMSANDCONDITIONS = "/terms-and-conditions",
   TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",

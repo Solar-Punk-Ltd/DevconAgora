@@ -38,6 +38,9 @@
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
 }
 
 .full-note-page__top {

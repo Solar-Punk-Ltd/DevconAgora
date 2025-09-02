@@ -12,7 +12,7 @@ import "./Welcome4.scss";
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-page">
+      <div className="welcome-page grid">
         <div className="welcome-page__header">Stay with Swarm</div>
         <div className="welcome-page__content">
           <div className="welcome-page__content__image">
