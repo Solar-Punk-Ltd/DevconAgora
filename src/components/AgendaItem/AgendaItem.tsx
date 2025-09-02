@@ -1,12 +1,14 @@
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import "./AgendaItem.scss";
-import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
-import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
-import Stage from "../../components/Stage/Stage";
 import { useNavigate } from "react-router-dom";
+
+import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
+import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
+import Stage from "../../components/Stage/Stage";
 import { ROUTES } from "../../utils/constants";
 import { booleanToString, stringToBoolean } from "../../utils/helpers";
-import clsx from "clsx";
+
+import "./AgendaItem.scss";
 
 interface AgendaItemProps {
   id: string;
@@ -21,7 +23,7 @@ interface AgendaItemProps {
   borderRadius?: string;
   paddingRight: string;
   commentVersion?: boolean;
-  isSpacesTalk: boolean;
+  isSpacesTalk?: boolean;
 }
 
 const AgendaItem: React.FC<AgendaItemProps> = ({
@@ -63,8 +65,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
         }
       }}
     >
-      <div className={clsx('agenda-item__main', isSpacesTalk ? 'agenda-item-padded__main' : '')}>
-        {!isSpacesTalk &&
+      <div className={clsx("agenda-item__main", isSpacesTalk ? "agenda-item-padded__main" : "")}>
+        {!isSpacesTalk && (
           <div
             className={clsx("agenda-item__main__time", {
               "agenda-item__main__time__comment-version": commentVersion,
@@ -73,19 +75,17 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
             <div>{startDate}</div>
             <div>{endDate}</div>
           </div>
-        }
+        )}
         <div className="agenda-item__main__content">
           <div className="agenda-item__main__content__title">{title}</div>
           <div className="agenda-item__main__content__tagged">
             {stage ? <Stage name={stage} /> : null}
-            {category ? (
-              <CategoryIndicator name={category || "no track"} />
-            ) : null}
+            {category ? <CategoryIndicator name={category || "no track"} /> : null}
           </div>
         </div>
       </div>
       {/* use debounce if data is saved to swarm: debounce(handleClick, debounceTime) */}
-      {!isSpacesTalk &&
+      {!isSpacesTalk && (
         <div className="agenda-item__content__heart-icon">
           <HeartIcon
             empty={empty}
@@ -93,9 +93,8 @@ const AgendaItem: React.FC<AgendaItemProps> = ({
               handleClick();
             }}
           />
-         </div>
-      }
-     
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React from "react";
-import "./TabPanel.scss";
 import clsx from "clsx";
+import React from "react";
+
+import "./TabPanel.scss";
 
 interface TabPanelProps {
   version?: "underlined" | "filled" | "outlined";
@@ -15,11 +16,7 @@ interface TabPanelItemProps {
   handleClick?: () => void;
 }
 
-const TabPanel: React.FC<TabPanelProps> = ({
-  version,
-  children,
-  activeIndex,
-}) => {
+const TabPanel: React.FC<TabPanelProps> = ({ version, children, activeIndex }) => {
   return (
     <div
       className={clsx("tab-panel", {

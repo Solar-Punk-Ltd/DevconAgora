@@ -1,8 +1,10 @@
 import React from "react";
-import "./NoteItem.scss";
-import { ROUTES } from "../../utils/constants";
 import { Link } from "react-router-dom";
+
+import { ROUTES } from "../../utils/constants";
 import { textExtract } from "../../utils/helpers";
+
+import "./NoteItem.scss";
 
 export interface NoteItemProps {
   id?: string;

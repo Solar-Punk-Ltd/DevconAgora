@@ -1,13 +1,15 @@
 import React from "react";
-import { useGlobalState } from "../../GlobalStateContext";
-import "./HomePage.scss";
-import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
-import RecentSessions from "../../components/RecentSessions/RecentSessions";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
-import HomeHeader from "../../components/HomeHeader/HomeHeader";
+
 import HomeBackground from "../../assets/welcome-glass-effect.png";
+import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
+import HomeHeader from "../../components/HomeHeader/HomeHeader";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import Spaces from "../../components/Spaces/Spaces";
-import { LOBBY_TITLE, CATEGORIES } from "../../utils/constants";
+import { useGlobalState } from "../../GlobalStateContext";
+import { CATEGORIES, LOBBY_TITLE } from "../../utils/constants";
+
+import "./HomePage.scss";
 
 interface HomePageProps {
   withGamification?: boolean;

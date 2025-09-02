@@ -1,5 +1,7 @@
 import React from "react";
+
 import BlogPostBoxItem from "./BlogPostBoxItem/BlogPostBoxItem";
+
 import "./BlogPostBox.scss";
 
 const BlogPostBox: React.FC = () => {

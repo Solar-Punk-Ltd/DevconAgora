@@ -1,8 +1,10 @@
 import React from "react";
-import "./Settings.scss";
-import SettingsIcon from "../icons/SettingsIcon/SettingsIcon";
 import { Link } from "react-router-dom";
+
 import { ROUTES } from "../../utils/constants";
+import SettingsIcon from "../icons/SettingsIcon/SettingsIcon";
+
+import "./Settings.scss";
 const Settings: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   return (
@@ -18,9 +20,7 @@ const Settings: React.FC = () => {
           </Link>
           <hr className="settings__open__content__item__divider" />
           <Link to={ROUTES.TERMSANDCONDITIONS}>
-            <div className="settings__open__content__item">
-              Terms and Conditions
-            </div>
+            <div className="settings__open__content__item">Terms and Conditions</div>
           </Link>
         </div>
       ) : null}

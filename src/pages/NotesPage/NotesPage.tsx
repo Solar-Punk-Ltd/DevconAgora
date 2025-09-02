@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGlobalState } from "../../GlobalStateContext";
-import "./NotesPage.scss";
-import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
+
+import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NoteItem from "../../components/NoteItem/NoteItem";
+import { useGlobalState } from "../../GlobalStateContext";
 import { ROUTES } from "../../utils/constants";
+
+import "./NotesPage.scss";
 
 const NotesPage: React.FC = () => {
   const { notes } = useGlobalState();
@@ -26,15 +28,7 @@ const NotesPage: React.FC = () => {
       </Link>
       <div className="notes-page__note-items">
         {notes.map((note, ix) => {
-          return (
-            <NoteItem
-              key={ix}
-              id={note.id}
-              text={note.text}
-              date={note.date}
-              time={note.time}
-            />
-          );
+          return <NoteItem key={ix} id={note.id} text={note.text} date={note.date} time={note.time} />;
         })}
       </div>
       <NavigationFooter />

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import "./ContentFilter.scss";
+
+import { useGlobalState } from "../../GlobalStateContext";
 import { CONTENT_FILTER_TEXT } from "../../utils/constants";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
-import { useGlobalState } from "../../GlobalStateContext";
+
+import "./ContentFilter.scss";
 
 const ContentFilter: React.FC = () => {
-  const { isContentFilterEnabled, setIsContentFilterEnabled } =
-    useGlobalState();
+  const { isContentFilterEnabled, setIsContentFilterEnabled } = useGlobalState();
 
   const [checked, setIsChecked] = useState<boolean>(isContentFilterEnabled);
 
@@ -18,10 +19,7 @@ const ContentFilter: React.FC = () => {
     <div className="content-filter">
       <div className="content-filter__text">{CONTENT_FILTER_TEXT}</div>
       <div className="content-filter__setting">
-        <CheckBoxIcon
-          checked={checked}
-          onClick={() => handleClick(isContentFilterEnabled, checked)}
-        />
+        <CheckBoxIcon checked={checked} onClick={() => handleClick(isContentFilterEnabled, checked)} />
         <div className="content-filter__text__header">USCVS enabled</div>
       </div>
     </div>
