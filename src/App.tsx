@@ -1,52 +1,18 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 
-import bySolarPunk from "./assets/by-solar-punk.png";
-import backgroundVideo from "./assets/opening.mp4";
-import videoGlassEffect from "./assets/video-glass-effect.png";
-import { TEXTS } from "./constants/text";
-import { ROUTES } from "./utils/constants";
-import { isUserRegistered } from "./utils/helpers";
+import { GlobalStateProvider } from "./contexts/global";
+import MainRouter from "./router";
 
-import "./App.css";
-import "../src/styles/global.scss";
+import "./styles/global.scss";
 
-function App() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      // Check if user is already registered
-      if (isUserRegistered()) {
-        navigate(ROUTES.HOME);
-      } else {
-        navigate(ROUTES.WELCOME1);
-      }
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [navigate]);
-  return (
-    <>
-      <div className="opening-page">
-        <video autoPlay muted loop className="opening-page__video-background">
-          <source src={backgroundVideo} type="video/mp4" />
-        </video>
-        <div>
-          <img src={videoGlassEffect} className="opening-page__video-glass-effect" />
-        </div>
-        <div style={{}} className="opening-page__text-layer">
-          <div className="opening-page__header">
-            <div>{TEXTS.APP_NAME}</div>
-
-            <img src={bySolarPunk} alt="" height="30px" width="104px" />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default App;
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <GlobalStateProvider>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <MainRouter />
+      </BrowserRouter>
+    </GlobalStateProvider>
+  </React.StrictMode>
+);

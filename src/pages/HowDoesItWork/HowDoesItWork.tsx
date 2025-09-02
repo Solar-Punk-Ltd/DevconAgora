@@ -6,7 +6,6 @@ import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 
 import "./HowDoesItWork.scss";
-// import { ROUTES } from "../../utils/constants";
 
 interface HowDoesItWorkProps {
   toText?: string;

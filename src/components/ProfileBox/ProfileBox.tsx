@@ -32,13 +32,13 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({ title, linkText, link, points =
           url: window.location.origin,
         })
         .then(() => {
-          console.log("Content shared successfully");
+          console.debug("Content shared successfully");
         })
         .catch((error) => {
           console.error("Error sharing content:", error);
         });
     } else {
-      console.log("Web Share API not supported in this browser");
+      console.info("Web Share API not supported in this browser");
     }
   };
   return (

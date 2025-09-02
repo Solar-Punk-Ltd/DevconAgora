@@ -1,5 +1,5 @@
 .pop-up-question__content {
-  background-color: white;
+  background-color: #ffffff;
   padding: 16px;
   box-sizing: border-box;
   border-radius: 16px;
@@ -17,11 +17,11 @@
   box-sizing: border-box;
   height: calc(var(--vh, 1vh) * 100);
   z-index: 2;
-  background-color: rgba(21, 21, 21, 0.6);
+  background-color: var(--strongly-dark-purple);
   backdrop-filter: blur(3px);
 }
 .pop-up-question__header {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
 }

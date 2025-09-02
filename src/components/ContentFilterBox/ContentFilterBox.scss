@@ -1,0 +1,29 @@
+.content-filter {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--box-shadow-type2);
+  overflow-y: scroll;
+  z-index: 1;
+  position: relative;
+}
+
+.content-filter__text__header {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.content-filter__text {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 30px;
+}
+
+.content-filter__setting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

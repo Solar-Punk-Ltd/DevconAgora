@@ -17,7 +17,7 @@ const OkIcon: React.FC<OkIconProps> = ({ color, onClick }) => {
       >
         <path
           d="M5.92336 14L1 9.20463L3.24366 7.0193L5.92336 9.63707L13.7563 2L16 4.18533L5.92336 14Z"
-          fill={color ? color : "#16161B"}
+          fill={color ? color : "var(--ok-edit-icon-color)"}
         />
       </svg>
     </div>

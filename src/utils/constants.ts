@@ -1,16 +1,4 @@
-export const BATCH_ID_HEX_LENGTH = 64;
-export const ADDRESS_HEX_LENGTH = 64;
-export const FIVE_MINUTES = 1000 * 60 * 5;
-export const FEEDTYPE_SEQUENCE = "sequence";
-export const DEFAULT_URL = "http://localhost:1633/";
-export const DUMMY_STAMP = "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
-export const SELF_NOTE_TOPIC = "selfNoteTopics";
-export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
-export const MAX_PRELOADED_TALKS = 11;
-export const MAX_COMMENTS_LOADED = 15;
-export const MAX_SESSIONS_SHOWN = 9;
-export const LOBBY_TITLE = "Lobby";
-export const MAX_CHARACTER_COUNT = 4096;
+import { FeedIndex, NULL_ADDRESS, Reference } from "@ethersphere/bee-js";
 
 import AppliedCryptography from "../assets/category-applied-cryptography.png";
 import Coordination from "../assets/category-coordination.png";
@@ -23,6 +11,25 @@ import Layer2s from "../assets/category-layer-2s.png";
 import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
 import Security from "../assets/category-security.png";
 import Usability from "../assets/category-usability.png";
+
+export const BATCH_ID_HEX_LENGTH = 64;
+export const ADDRESS_HEX_LENGTH = 64;
+export const FIVE_MINUTES = 1000 * 60 * 5;
+export const FIVE_SECONDS = 5000;
+export const DEFAULT_URL = "http://localhost:1633/";
+export const DUMMY_STAMP = "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
+export const SELF_NOTE_TOPIC = "selfNoteTopics";
+export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
+export const MAX_PRELOADED_TALKS = 15;
+export const MAX_COMMENTS_LOADED = 15n;
+export const MAX_SESSIONS_SHOWN = 9;
+export const LOBBY_TITLE = "Lobby";
+export const MAX_CHARACTER_COUNT = 4096;
+export const SWARM_ZERO_ADDRESS = new Reference(NULL_ADDRESS);
+export const FEED_INDEX_ZERO = FeedIndex.fromBigInt(0n);
+export const RAW_FEED_TOPIC_SESSIONS = "sessions";
+export const DEFAULT_POLL_INTERVAL_5_SECONDS = 5000;
+export const SPACES_KEY = "spaces";
 
 export enum ROUTES {
   APP = "/",
