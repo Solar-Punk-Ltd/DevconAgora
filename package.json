@@ -14,9 +14,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ethersphere/bee-js": "^9.8.1",
-    "@solarpunkltd/comment-system": "^1.8.8",
-    "@solarpunkltd/swarm-comment-js": "^0.0.6",
+    "@ethersphere/bee-js": "^10.0.0",
+    "@solarpunkltd/comment-system": "^1.8.9",
+    "@solarpunkltd/swarm-comment-js": "^0.0.7",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
     "emoji-picker-react": "^4.13.2",
@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
-    "@types/react": "^19.1.9",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
     "@vitejs/plugin-react": "^5.0.0",

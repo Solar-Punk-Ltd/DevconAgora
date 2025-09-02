@@ -29,13 +29,15 @@ export const useNotes = () => {
     const results = await Promise.allSettled(feedPromises);
     results.forEach((result) => {
       if (result.status === "fulfilled") {
-        notesArray.push(result.value);
+        if (result.value.length > 0) {
+          notesArray.push(result.value);
+        }
       } else {
         console.error(`fetching note data error: `, result.reason);
       }
     });
 
-    const tmpNotes: NoteItemProps[] = [...notes];
+    const tmpNotes: NoteItemProps[] = [];
     for (let i = 0; i < notesArray.length; i++) {
       let note: NoteItemProps | undefined = undefined;
       try {
@@ -44,8 +46,8 @@ export const useNotes = () => {
         console.error(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
-      const found = notes.find((n) => n.id === note.id);
-      if (!found && note !== undefined) {
+      const exists = notes.some((n) => n.id === note.id);
+      if (!exists && note !== undefined) {
         tmpNotes.push(note);
       }
     }
