@@ -1,8 +1,10 @@
-import React from "react";
-import "./ProfileBox.scss";
-import { useNavigate } from "react-router-dom";
-import ReferalQRIcon from "../../assets/referal-qr.svg";
 import clsx from "clsx";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
+import ReferalQRIcon from "../../assets/referal-qr.svg";
+
+import "./ProfileBox.scss";
 
 interface ProfileBoxProps {
   title?: string;
@@ -16,15 +18,7 @@ interface ProfileBoxProps {
   shareable?: boolean;
 }
 
-const ProfileBox: React.FC<ProfileBoxProps> = ({
-  title,
-  linkText,
-  link,
-  points = 10,
-  showPoints,
-  showContent,
-  shareable,
-}) => {
+const ProfileBox: React.FC<ProfileBoxProps> = ({ title, linkText, link, points = 10, showPoints, showContent, shareable }) => {
   const navigate = useNavigate();
   const handleNavigation = (path: string) => {
     navigate(path);
@@ -59,10 +53,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({
 
         {linkText && link && points >= 10 && !shareable ? (
           <div>
-            <div
-              className="profile-box__link"
-              onClick={() => handleNavigation(link)}
-            >
+            <div className="profile-box__link" onClick={() => handleNavigation(link)}>
               {linkText}
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./BlogPostBoxItem.scss";
 
 const BlogPostBoxItem: React.FC = () => {

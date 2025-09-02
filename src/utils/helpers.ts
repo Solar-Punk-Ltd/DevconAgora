@@ -1,11 +1,9 @@
-import { Wallet, hexlify } from "ethers";
+import { Data, Signer, Utils } from "@ethersphere/bee-js";
+import { hexlify, Wallet } from "ethers";
+import React from "react";
+
 import { Session } from "../types/session";
-import {
-  CATEGORY_NAMES_TO_ID_MAP,
-  DATE_TO_DEVCON_DAY,
-  RESOURCE_IDS,
-} from "../utils/constants";
-import { Signer, Utils, Data } from "@ethersphere/bee-js";
+import { DATE_TO_DEVCON_DAY } from "../utils/constants";
 
 export function shortenTitle(title?: string, maxTitleLength?: number): string {
   let shortTitle = title || "No title";
@@ -28,10 +26,7 @@ export function dateToTime(date?: string): string {
   });
 }
 
-export function getSessionsByDay(
-  sessions: Map<string, Session[]>,
-  day: string
-): Session[] {
+export function getSessionsByDay(sessions: Map<string, Session[]>, day: string): Session[] {
   if (day === "all") {
     return Array.from(sessions.values()).flat();
   }
@@ -57,8 +52,7 @@ export function formatTime(timestamp: number) {
       hour12: false,
     });
 
-  const formatDate = (date: Date) =>
-    date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const formatDate = (date: Date) => date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
   if (isSameDay(date, now)) {
     return formatHM(date);
@@ -129,20 +123,6 @@ export function getWallet(input: string): Wallet {
   return new Wallet(hexlify(privateKey));
 }
 
-export const getResourceId = (category: string) => {
-  const categoryId = CATEGORY_NAMES_TO_ID_MAP.get(category);
-  if (categoryId) {
-    const result = RESOURCE_IDS.get(categoryId);
-    if (result) {
-      return result;
-    } else {
-      return "";
-    }
-  } else {
-    return "";
-  }
-};
-
 export function getSigner(wallet: Wallet): Signer {
   const signer: Signer = {
     address: Utils.hexToBytes(wallet.address.slice(2)),
@@ -153,11 +133,7 @@ export function getSigner(wallet: Wallet): Signer {
   return signer;
 }
 
-export const handleKeyDown = (
-  e: React.KeyboardEvent,
-  key: string,
-  callback: () => void
-) => {
+export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () => void) => {
   if (e.key === key) {
     callback();
   }
@@ -170,11 +146,7 @@ export function isEmpty(obj?: object) {
   return Object.keys(obj).length === 0;
 }
 
-export const findSlotStartIx = (
-  startIx: number,
-  sessionsByDay: Session[],
-  time: number
-): number => {
+export const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time: number): number => {
   for (let i = startIx; i < sessionsByDay.length; i++) {
     const slotStart = sessionsByDay[i].slot_start;
     if (slotStart && new Date(slotStart).getTime() > time) {
@@ -196,12 +168,6 @@ export const getPrivateKey = () => {
 export const isUserRegistered = () => {
   const privKey = getPrivateKey();
   const username = localStorage.getItem("username");
-  if (
-    privKey &&
-    privKey.slice(2).length === 64 &&
-    username &&
-    username.length > 0
-  )
-    return true;
+  if (privKey && privKey.slice(2).length === 64 && username && username.length > 0) return true;
   else return false;
 };

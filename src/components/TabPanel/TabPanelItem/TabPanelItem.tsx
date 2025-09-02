@@ -1,6 +1,7 @@
-import React from "react";
-import "./TabPanelItem.scss";
 import clsx from "clsx";
+import React from "react";
+
+import "./TabPanelItem.scss";
 
 interface TabPanelItemProps {
   label: string;
@@ -10,18 +11,12 @@ interface TabPanelItemProps {
   handleClick?: () => void;
 }
 
-const TabPanelItem: React.FC<TabPanelItemProps> = ({
-  label,
-  active,
-  version,
-  handleClick,
-}) => {
+const TabPanelItem: React.FC<TabPanelItemProps> = ({ label, active, version, handleClick }) => {
   return (
     <div
       className={clsx("tab-panel-item", "flex-center", {
         "tab-panel-item__underlined": version === "underlined",
-        "tab-panel-item__underlined__active":
-          active && version === "underlined",
+        "tab-panel-item__underlined__active": active && version === "underlined",
         "tab-panel-item__filled": version === "filled",
         "tab-panel-item__filled__active": active && version === "filled",
         "tab-panel-item__outlined": version === "outlined",

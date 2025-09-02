@@ -1,6 +1,7 @@
-import React from "react";
-import "./WelcomeButton.scss";
 import clsx from "clsx";
+import React from "react";
+
+import "./WelcomeButton.scss";
 
 interface WelcomeButtonProps {
   children: string;
@@ -9,12 +10,7 @@ interface WelcomeButtonProps {
   onClick?: () => void;
 }
 
-const WelcomeButton: React.FC<WelcomeButtonProps> = ({
-  children,
-  version,
-  type,
-  onClick,
-}) => {
+const WelcomeButton: React.FC<WelcomeButtonProps> = ({ children, version, type, onClick }) => {
   return (
     <button
       disabled={version === "inactive"}

@@ -1,22 +1,16 @@
-import { Bee, Signer, Reference } from "@ethersphere/bee-js";
-import {
-  FEEDTYPE_SEQUENCE,
-  ADDRESS_HEX_LENGTH,
-  DEFAULT_URL,
-} from "../utils/constants";
+import { Bee, Reference, Signer } from "@ethersphere/bee-js";
 
-export async function getFeedUpdate(
-  owner: string,
-  rawTopic: string
-): Promise<string> {
+import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEEDTYPE_SEQUENCE } from "../utils/constants";
+
+export async function getFeedUpdate(owner: string, rawTopic: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   const topic = bee.makeFeedTopic(rawTopic);
   const feedReader = bee.makeFeedReader(FEEDTYPE_SEQUENCE, topic, owner);
   try {
     const feedUpdateRes = await feedReader.download();
     const { feedIndex, feedIndexNext, ...data } = feedUpdateRes;
-    console.log("feedIndex: ", feedIndex.toString())
-    console.log("feedIndexNext: ", feedIndexNext.toString())
+    console.log("feedIndex: ", feedIndex.toString());
+    console.log("feedIndexNext: ", feedIndexNext.toString());
     return JSON.stringify(data);
   } catch (e) {
     console.log("feed download error", e);
@@ -40,10 +34,7 @@ export async function getData(ref: string): Promise<string> {
   }
 }
 
-export async function uploadData(
-  stamp: string,
-  data: string | Uint8Array
-): Promise<string> {
+export async function uploadData(stamp: string, data: string | Uint8Array): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   try {
     console.log("uploading data to swarm");
@@ -55,22 +46,11 @@ export async function uploadData(
   }
 }
 
-export async function updateFeed(
-  owner: string,
-  signer: Signer,
-  rawTopic: string,
-  stamp: string,
-  ref: string
-): Promise<string> {
+export async function updateFeed(owner: string, signer: Signer, rawTopic: string, stamp: string, ref: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   const topic = bee.makeFeedTopic(rawTopic);
   try {
-    const feedManif = await bee.createFeedManifest(
-      stamp,
-      FEEDTYPE_SEQUENCE,
-      topic,
-      owner
-    );
+    const feedManif = await bee.createFeedManifest(stamp, FEEDTYPE_SEQUENCE, topic, owner);
     console.log("created feed manifest", feedManif.reference);
     const feedWriter = bee.makeFeedWriter(FEEDTYPE_SEQUENCE, topic, signer);
     const feedUpdateRes = await feedWriter.upload(stamp, ref as Reference);

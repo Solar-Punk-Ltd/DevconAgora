@@ -1,6 +1,8 @@
 import React from "react";
-import "./PopUpQuestion.scss";
+
 import WelcomeButton from "../WelcomeButton/WelcomeButton";
+
+import "./PopUpQuestion.scss";
 
 interface PopUpQuestionProps {
   question: string;
@@ -10,13 +12,7 @@ interface PopUpQuestionProps {
   rightButtonHandler: () => void;
 }
 
-const PopUpQuestion: React.FC<PopUpQuestionProps> = ({
-  question,
-  leftButtonText,
-  leftButtonHandler,
-  rightButtonText,
-  rightButtonHandler,
-}) => {
+const PopUpQuestion: React.FC<PopUpQuestionProps> = ({ question, leftButtonText, leftButtonHandler, rightButtonText, rightButtonHandler }) => {
   return (
     <div className="pop-up-question">
       <div className="pop-up-question__content">

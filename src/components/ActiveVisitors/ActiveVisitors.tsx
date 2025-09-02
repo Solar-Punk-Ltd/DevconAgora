@@ -1,17 +1,16 @@
-import React from "react";
-import "./ActiveVisitors.scss";
-import VisitorsIcon from "../icons/VisitorsIcon/VisitorsIcon";
 import clsx from "clsx";
+import React from "react";
+
+import VisitorsIcon from "../icons/VisitorsIcon/VisitorsIcon";
+
+import "./ActiveVisitors.scss";
 
 interface ActiveVisitorsProps {
   number?: number;
   withIcon?: boolean;
 }
 
-const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({
-  number,
-  withIcon,
-}) => {
+const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({ number, withIcon }) => {
   return (
     <div
       className={clsx("active-visitors", {

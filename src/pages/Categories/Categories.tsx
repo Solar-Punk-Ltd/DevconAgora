@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import "./Categories.scss";
-import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
-import { CATEGORIES } from "../../utils/constants";
-import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
+
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
+import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
+import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
+import { CATEGORIES } from "../../utils/constants";
+
+import "./Categories.scss";
 
 interface CategoriesProps {
   display: boolean;
@@ -11,13 +13,8 @@ interface CategoriesProps {
   handleCategories: (a: boolean, selectedIndex: number | null) => void;
 }
 
-const Categories: React.FC<CategoriesProps> = ({
-  handleCategories,
-  selectedCategoryIndex,
-}) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(
-    selectedCategoryIndex
-  );
+const Categories: React.FC<CategoriesProps> = ({ handleCategories, selectedCategoryIndex }) => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(selectedCategoryIndex);
 
   const handleClose = () => {
     handleCategories(false, selectedCategoryIndex);
@@ -43,11 +40,7 @@ const Categories: React.FC<CategoriesProps> = ({
       </div>
       <div className="categories_page__content">
         {CATEGORIES.map((category, index) => (
-          <div
-            key={category}
-            className="categories-page__content__item"
-            onClick={() => handleCategorySelect(index)}
-          >
+          <div key={category} className="categories-page__content__item" onClick={() => handleCategorySelect(index)}>
             <RadioButtonIcon checked={index === selectedIndex} /> {category}
           </div>
         ))}
