@@ -1,25 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import welcome2img from "../../assets/welcome2img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import { ROUTES } from "../../utils/constants";
 
+import "./Welcome2.scss";
+
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-page grid">
+      <div className="welcome-page welcome4-page">
         <div className="welcome-page__header">Share your thoughts</div>
         <div className="welcome-page__content">
-          <div className="welcome-page__content__image">
-            <img src={welcome2img} alt="" className="welcome-page__main-image" />
-          </div>
+          <div>Comment, start discussions and exchange ideas</div>
         </div>
         <div className="welcome-page__bottom">
-          <div className="welcome-page__bottom__text">
-            <div>Comment, start discussions and exchange ideas</div>
-          </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={1} />
             <div className="welcome-page_bottom-bottom__buttons">

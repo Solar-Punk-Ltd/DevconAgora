@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
 import AgendaBanner from "../../assets/side-event-banner.png";
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
@@ -82,20 +81,10 @@ const Agenda: React.FC = () => {
           onClick={(index) => setActiveStageTab(index)}
           changesWhenOpen={changesWhenOpenDropdown}
         />
-        <a href="https://lu.ma/mq50gvnn">
+        <a href="https://luma.com/yqfm7arf">
           <div className="agenda-page__content__banner">
             <img src={AgendaBanner} alt="" className="agenda-page__content__banner__img" />
             <div className="agenda-page__content__banner__text">
-              <div className="agenda-page__content__banner__text__main-text">
-                <b>Rooftop</b>
-                <span className="agenda-page__content__banner__text__main-text-regular">.Buzz</span>
-              </div>
-              <div className="agenda-page__content__banner__text__sub-text">
-                Sunset &&nbsp;
-                <span className="agenda-page__content__banner__text__sub-text-bold">
-                  <b>Chill</b>
-                </span>
-              </div>
               <div className="agenda-page__content__banner__text__register-button">Register now!</div>
             </div>
           </div>
