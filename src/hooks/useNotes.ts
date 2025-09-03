@@ -1,4 +1,3 @@
-import { Wallet } from "ethers";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
@@ -6,6 +5,7 @@ import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
 import { ADDRESS_HEX_LENGTH, SELF_NOTE_TOPIC } from "../utils/constants";
 import { getLocalPrivateKey } from "../utils/helpers";
+import { PrivateKey } from "@ethersphere/bee-js";
 
 export const useNotes = () => {
   const { notes, setNotes } = useGlobalState();
@@ -18,11 +18,11 @@ export const useNotes = () => {
       return;
     }
 
-    const wallet = new Wallet(privKey); // TODO: remove wallet and use PrivateKey everywhere
+    const wallet = new PrivateKey(privKey);
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
+      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic));
     }
 
     const notesArray: string[] = [];
