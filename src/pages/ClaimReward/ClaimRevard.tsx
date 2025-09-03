@@ -75,7 +75,7 @@ const ClaimReward: React.FC = () => {
     }
   };
   return (
-    <div className="claim-reward">
+    <div className="claim-reward grid">
       <div className="claim-reward__background">
         {/* <img src={HomeBackground} alt="" className="claim-reward__background__img" /> */}
       </div>
@@ -111,9 +111,6 @@ const ClaimReward: React.FC = () => {
               }}
             >
               Back
-            </WelcomeButton>
-            <WelcomeButton type="orange" onClick={() => (window.location.href = `${window.location.origin}/subscription.html`)}>
-              Keep in touch
             </WelcomeButton>
           </div>
         </div>

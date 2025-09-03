@@ -156,6 +156,17 @@ html {
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
+  justify-content: center;
+  color: #FFF;
+  padding: 10px;
+  font-size: 22px;
+  
+  & div {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1em;
+    border-radius: 8px;
+  }
 }
 
 .welcome-page__content__color-effect {
@@ -195,7 +206,7 @@ html {
   justify-content: center;
   box-sizing: border-box;
   bottom: 0px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 
 .welcome-page__bottom__text {
@@ -277,7 +288,7 @@ html {
     font-weight: 400;
     width: 84%;
     box-sizing: border-box;
-    color: #000000;
+    color: #FFF;
     z-index: 1;
     display: flex;
     align-items: end;
@@ -292,7 +303,6 @@ html {
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    background-color: #ffffff;
     text-align: center;
     box-sizing: border-box;
     padding: 40px 0px;

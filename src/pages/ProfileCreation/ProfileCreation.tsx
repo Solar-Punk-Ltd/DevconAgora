@@ -184,7 +184,7 @@ const ProfileCreation: React.FC = () => {
                 saveUsername();
               }}
             >
-              Start Building Your Community
+              Private chat ON
             </WelcomeButton>
           </Link>
         </div>

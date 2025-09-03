@@ -28,8 +28,8 @@ const Home: React.FC<HomePageProps> = ({ withGamification }) => {
 
       <div className="home-page__content">
         <DevConMainBox
-          title="BBW buzz space"
-          content="Share your thoughts, chat with anyone without moderation, and collect your reward."
+          title="BBW2025 Space"
+          content="Share your thoughts, engage in open conversations & earn reward for your participation!"
           showActiveVisitors={lobbyActivity > 0}
           activeVisitors={lobbyActivity}
           bordered={true}
