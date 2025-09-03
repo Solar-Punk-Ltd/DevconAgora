@@ -1,7 +1,6 @@
 .profile-picture {
   width: 121px;
   height: 121px;
-  background-color: var(--grey-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +10,8 @@
   color: var(--bbw-blue);
   z-index: 1;
   overflow-wrap: anywhere;
+  border: 2px solid var(--bbw-blue);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .profile-picture--big {

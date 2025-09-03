@@ -44,7 +44,7 @@ const RadioButtonIcon: React.FC<RightArrowIconProps> = ({ color, checked }) => {
         width="22.5"
         height="22.5"
         rx="11.25"
-        fill="white"
+        fill="transparent"
       />
       <rect
         x="0.75"

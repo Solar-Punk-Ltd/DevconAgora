@@ -84,9 +84,7 @@ const Agenda: React.FC = () => {
         <a href="https://luma.com/yqfm7arf">
           <div className="agenda-page__content__banner">
             <img src={AgendaBanner} alt="" className="agenda-page__content__banner__img" />
-            <div className="agenda-page__content__banner__text">
-              <div className="agenda-page__content__banner__text__register-button">Register now!</div>
-            </div>
+            <div className="agenda-page__content__banner__text__register-button">Register now!</div>
           </div>
         </a>
         {activeAgendaItems.length > 0 ? (

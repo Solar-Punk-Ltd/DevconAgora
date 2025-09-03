@@ -29,7 +29,7 @@
 }
 
 .welcome-button--outlined {
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--bbw-blue);
   color: #FFF;
 }
@@ -48,7 +48,7 @@
 
 .welcome-button--inactive {
   border: none;
-  color: var(--lighter-color);
-  background: var(--background-color-primary);
+  color: var(--bbw-disabled-gray);
+  background: var(--bbw-disabled-blue-gray);
   cursor: not-allowed;
 }

@@ -10,7 +10,7 @@
   margin-right: 15px;
   padding: 8px;
   box-sizing: border-box;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--bbw-blue);
   color: #FFF;
 }
@@ -30,6 +30,7 @@
   text-overflow: ellipsis;
   height: calc(18px * 3);
   line-height: 18px;
+  color: #FFF;
 }
 
 .recent-sessions-item__stage {
