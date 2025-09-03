@@ -9,9 +9,9 @@ import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
-import { createMonogram, getPrivateKey, handleKeyDown } from "../../utils/helpers";
+import { createMonogram, getLocalPrivateKey, handleKeyDown } from "../../utils/helpers";
 
 import "./ProfileCreation.scss";
 
@@ -67,11 +67,11 @@ const ProfileCreation: React.FC = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, key: getPrivateKey() }),
+        body: JSON.stringify({ username, key: getLocalPrivateKey() }),
       });
     } catch (error) {
       setUserNameSetError(true);
-      console.log("error saving username: ", error);
+      console.error("error saving username: ", error);
     }
   };
 
@@ -98,7 +98,7 @@ const ProfileCreation: React.FC = () => {
         setButtonActive(false);
         setError(true);
         setOtherError(true);
-        console.log(`error fetching username "${username}" :`, err);
+        console.error(`error fetching username "${username}" :`, err);
       }
     } else {
       setButtonActive(false);
@@ -107,7 +107,6 @@ const ProfileCreation: React.FC = () => {
   };
 
   const validateInput = (name: string) => {
-    // const regex = /^[a-zA-Z0-9 ]*$/;
     const regex = /^(?!.* {2})(?!(?:.* ){3})(?=.*[a-zA-Z0-9])?[a-zA-Z0-9 ]*$/;
     return regex.test(name);
   };
@@ -118,7 +117,7 @@ const ProfileCreation: React.FC = () => {
         <div className="profile-creation__top">
           <div className="welcome-page__header">
             Create <br />
-            <span style={{ color: "var(--purple-to-text-color)" }}>Your profile</span>
+            <span style={{ color: "var(--default-purple)" }}>Your profile</span>
           </div>
           <div className="profile-creation__background-effect">
             <img src={createYourProfileEffect} alt="" className="profile-creation__backgorund-effect__img" />

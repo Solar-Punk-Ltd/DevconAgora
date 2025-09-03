@@ -31,7 +31,7 @@
   top: 62px;
   right: 44px;
   padding: 16px;
-  background-color: white;
+  background-color: #ffffff;
   z-index: 3;
   border-radius: 16px;
 }
@@ -41,12 +41,12 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 12px;
 }
 
 .settings__open__content__item__divider {
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-color);
 }

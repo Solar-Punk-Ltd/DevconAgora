@@ -14,9 +14,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ethersphere/bee-js": "8.3.1",
-    "@solarpunkltd/comment-system": "1.5.1",
-    "@solarpunkltd/comment-system-ui": "0.2.0",
+    "@ethersphere/bee-js": "^10.0.0",
+    "@solarpunkltd/comment-system": "^1.8.9",
+    "@solarpunkltd/comment-system-ui": "^0.3.0",
+    "@solarpunkltd/swarm-comment-js": "^0.0.7",
     "clsx": "^2.1.1",
     "dotenv": "^17.2.1",
     "emoji-picker-react": "^4.13.2",

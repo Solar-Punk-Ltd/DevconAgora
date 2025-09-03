@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import GamificationBackgroundOne from "../../assets/gamification-first-point.png";
 import GamificationBackgroundFive from "../../assets/gamification-five-points.png";
 import GamificationBackgroundTen from "../../assets/gamification-ten-points.png";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
 import ClaimRewardExplanation from "../ClaimRewardExplanation/ClaimRewardExplanation";
 import CloseIcon from "../icons/CloseIcon/CloseIcon";

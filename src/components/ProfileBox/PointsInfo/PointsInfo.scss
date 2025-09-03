@@ -1,21 +1,21 @@
 .points-info {
   font-size: 12px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
 }
 
 .points-info__points-emphasize {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 16px;
-  color: #8c72ae;
+  color: var(--default-purple);
 }
 
 .points-info__BZZ-emphasize {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-weight: 700;
   font-size: 16px;
-  color: #ff8a50;
+  color: var(--swarm-color);
 }

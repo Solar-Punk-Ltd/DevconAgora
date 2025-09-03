@@ -5,10 +5,10 @@
   padding: 0px 8px;
   box-sizing: border-box;
   min-height: 24px;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-family-base);
   font-size: 10px;
   font-weight: 400;
-  border: 1px solid var(--primary-accent-color);
+  border: 1px solid var(--accent-color-primary);
   border-radius: 30px;
   gap: 4px;
 }

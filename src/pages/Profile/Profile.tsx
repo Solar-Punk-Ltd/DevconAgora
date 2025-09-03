@@ -6,7 +6,7 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import Settings from "../../components/Settings/Settings";
-import { useGlobalState } from "../../GlobalStateContext";
+import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
 
 import "./Profile.scss";
