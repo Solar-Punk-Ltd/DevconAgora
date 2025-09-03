@@ -20,9 +20,6 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points, withGamification }) => 
       <div className="home-header__name">DEVCON.BUZZ</div>
       <div className="home-header--right">
         <div style={withGamification ? { display: "flex" } : { display: "none" }}>
-          <div style={{ fontSize: "10px", display: "flex", alignItems: "center" }}>
-            Version: {process.env.PR_NUMBER} - {process.env.PR_TIMESTAMP}
-          </div>
           <button onClick={() => setPoints(1)}>1</button>
           <button onClick={() => setPoints(5)}>5</button>
           <button onClick={() => setPoints(10)}>10</button>

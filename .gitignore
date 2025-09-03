@@ -25,6 +25,8 @@ dist-ssr
 
 # Environment variables
 .env
+.env.develop
+.env.main
 
 # TypeScript
 *.tsbuildinfo
