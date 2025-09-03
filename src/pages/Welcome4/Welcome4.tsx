@@ -13,7 +13,7 @@ const Welcome1: React.FC = () => {
       <div className="welcome-page welcome4-page">
         <div className="welcome-page__header">Stay with Swarm</div>
         <div className="welcome-page__content">
-          <div>With your magic code you can start your own node the easiest way possible</div>
+          <div>With your BZZ reward you can start your own node the easiest way possible</div>
         </div>
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom-bottom">

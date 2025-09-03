@@ -41,7 +41,7 @@ const Categories: React.FC<CategoriesProps> = ({ handleCategories, selectedCateg
       <div className="categories_page__content">
         {CATEGORIES.map((category, index) => (
           <div key={category} className="categories-page__content__item" onClick={() => handleCategorySelect(index)}>
-            <RadioButtonIcon checked={index === selectedIndex} /> {category}
+            <RadioButtonIcon checked={index === selectedIndex} color="var(--bbw-blue)" /> {category}
           </div>
         ))}
       </div>

@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 16px;
   gap: 10%;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--bbw-blue);
   border-radius: 16px;
   box-sizing: border-box;
@@ -44,7 +44,7 @@
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--bbw-blue);
   height: 100%;
   display: flex;

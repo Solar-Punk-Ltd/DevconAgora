@@ -69,7 +69,8 @@ const MainRouter = (): ReactElement => {
 
   return (
     <>
-      {showGamification ? <Gamification points={points} /> : null}
+      {/* {showGamification ? <Gamification points={points} /> : null} */}
+      <Gamification points={points} />
       <Routes>
         <Route path={ROUTES.APP} element={<Intro />} />
         <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
