@@ -68,8 +68,7 @@ const Agenda: React.FC = () => {
           {renderTabPanelItems(["All", ...Array.from(DATE_TO_DEVCON_DAY.values())], setActiveDayTab)}
         </TabPanel>
       </div>
-      <div className="agenda-page__content__background grid">
-      </div>
+      <div className="agenda-page__content__background grid"></div>
       <div
         className={clsx("agenda-page__content", {
           "not-scroll": isDropdownOpen,

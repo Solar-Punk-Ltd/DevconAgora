@@ -20,9 +20,7 @@ const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
   return (
     <div className="home-page">
-      <div className="home-page__background grid">
-        {/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}
-      </div>
+      <div className="home-page__background grid">{/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}</div>
 
       <HomeHeader points={points} withGamification={withGamification} />
 

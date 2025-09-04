@@ -12,8 +12,7 @@ const TermsAndConditionsPage: React.FC = () => {
   return (
     <>
       <div className="terms-and-conditions-page">
-        <div className="terms-and-conditions-page__background grid">
-        </div>
+        <div className="terms-and-conditions-page__background grid"></div>
         <div className="terms-and-conditions-page__header">Terms and Conditions</div>
         <TermsAndConditions />
         <Link to={ROUTES.PROFILE}>

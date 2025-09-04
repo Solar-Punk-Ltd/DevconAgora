@@ -76,9 +76,7 @@ const ClaimReward: React.FC = () => {
   };
   return (
     <div className="claim-reward grid">
-      <div className="claim-reward__background">
-        {/* <img src={HomeBackground} alt="" className="claim-reward__background__img" /> */}
-      </div>
+      <div className="claim-reward__background">{/* <img src={HomeBackground} alt="" className="claim-reward__background__img" /> */}</div>
       <div className="claim-reward__main-content">
         <div className="claim-reward__main-content__header">
           Claim <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>

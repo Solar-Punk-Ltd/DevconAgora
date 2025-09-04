@@ -16,8 +16,7 @@ const Spaces: React.FC = () => {
   return (
     <div className={SPACES_KEY}>
       <NavigationFooter />
-      <div className="spaces__background grid">
-      </div>
+      <div className="spaces__background grid"></div>
 
       <div className="spaces__content">
         {CATEGORIES.map((c) => (

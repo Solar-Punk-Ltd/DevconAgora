@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";

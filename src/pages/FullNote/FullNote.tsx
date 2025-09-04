@@ -1,19 +1,18 @@
+import { Topic } from "@ethersphere/bee-js";
 import { getPrivateKeyFromIdentifier } from "@solarpunkltd/comment-system";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
-import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
+import { DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
 import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 
 import "./FullNote.scss";
-import { Topic } from "@ethersphere/bee-js";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();

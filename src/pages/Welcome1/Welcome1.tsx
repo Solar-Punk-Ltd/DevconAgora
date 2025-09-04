@@ -13,7 +13,7 @@ const Welcome1: React.FC = () => {
       <div className="welcome-page welcome1-page">
         <div className="welcome-page__header">Privacy first communication platform</div>
         <div className="welcome-page__content">
-            <div>Be part of the event without revealing your identity</div>
+          <div>Be part of the event without revealing your identity</div>
         </div>
         <div className="welcome-page__bottom">
           <div className="welcome-page__bottom-bottom">

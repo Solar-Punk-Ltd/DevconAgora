@@ -34,10 +34,14 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
       <div className="terms-and-conditions__text__header">{PERSONAL_DATA_HEADER}</div>
       <div className="terms-and-conditions__text">{PERSONAL_DATA_TEXT}</div>
       <div className="terms-and-conditions__text__header">{DATA_STORAGE_HEADER}</div>
-      <div className="terms-and-conditions__text">{DATA_STORAGE_TEXT}<a id='data-storage-link' target="_blank" rel="noopener noreferrer" href={DATA_STORAGE_LOCATION}>{DATA_STORAGE_LOCATION}</a></div>
+      <div className="terms-and-conditions__text">
+        {DATA_STORAGE_TEXT}
+        <a id="data-storage-link" target="_blank" rel="noopener noreferrer" href={DATA_STORAGE_LOCATION}>
+          {DATA_STORAGE_LOCATION}
+        </a>
+      </div>
       <div className="terms-and-conditions__text__header">{ACCEPTANCE_OF_TERMS_HEADER}</div>
       <div className="terms-and-conditions__text">{ACCEPTANCE_OF_TERMS_TEXT}</div>
-
 
       {termsAndConditionCheckBox ? (
         <div className="terms-and-conditions__checkbox-setting">

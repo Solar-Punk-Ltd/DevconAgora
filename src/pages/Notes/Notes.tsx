@@ -16,8 +16,7 @@ const Notes: React.FC = () => {
 
   return (
     <div className="notes-page">
-      <div className="notes-page__background grid">
-      </div>
+      <div className="notes-page__background grid"></div>
       <div className="notes-page__header">Notes</div>
       <Link to={`${ROUTES.NOTES}${ROUTES.NEW_NOTE}`}>
         <ActionButton>

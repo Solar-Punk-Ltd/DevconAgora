@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import bySolarPunk from "../../assets/by-solar-punk.png";
 import bbwIntro from "../../assets/bbw-intro.png";
+import bySolarPunk from "../../assets/by-solar-punk.png";
 import { TEXTS } from "../../constants/text";
 import { ROUTES } from "../../utils/constants";
 import { isUserRegistered } from "../../utils/helpers";
