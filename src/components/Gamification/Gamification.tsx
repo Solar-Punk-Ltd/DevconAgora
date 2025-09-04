@@ -73,22 +73,21 @@ const Gamification: React.FC<GamificationProps> = ({ points }) => {
                 <div className="gamification__modal__content__header">
                   {points === 1 ? (
                     <>
-                      You&nbsp;have&nbsp;just&nbsp;made&nbsp;your&nbsp;first&nbsp;comment and your first step towards your&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">magic&nbsp;code.</span>
-                      &nbsp;Still 9 to go.
+                      You&nbsp;have&nbsp;just&nbsp;made&nbsp;your&nbsp;first&nbsp;comment! 9 more to claim your reward!
                     </>
                   ) : points === 5 ? (
                     <>
-                      Five comments made brought you to the half of your road. There is{" "}
-                      <span className="gamification__modal__content__header__emphasize">only&nbsp;5&nbsp;more</span> to&nbsp;get&nbsp;your&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">magic&nbsp;code.</span>
+                      5 comments, halfway to your BZZ reward!
+                    </>
+                  ) : points === 10 ? (
+                    <>
+                      Congratulations, you’ve made 10 comments and earned your BZZ. Start your own node and participate in the Swarm network!
+                    </>
+                  ) : points > 10 ? (
+                    <>
                     </>
                   ) : (
-                    <>
-                      You&nbsp;have&nbsp;
-                      <span className="gamification__modal__content__header__emphasize">unlocked your magic code!</span> You can start your own node
-                      and participate yourself in the Swarm network.
-                    </>
+                    <></>
                   )}
                 </div>
                 {points >= 10 ? (
