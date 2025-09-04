@@ -9,6 +9,11 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+
+  const basePath = env.BASE_URL ?? "/";
+  const isRelativePath = basePath === "./" || basePath.startsWith("./");
+  const routerBasename = isRelativePath ? "" : basePath;
+
   return {
     define: {
       "process.env.FEED_OWNER_ADDRESS": JSON.stringify(env.FEED_OWNER_ADDRESS) ?? JSON.stringify("1b3fdde3cf9e2b76ea620756040effc3b3276d4f"),
@@ -20,7 +25,11 @@ export default defineConfig(({ mode }) => {
         JSON.stringify(env.BACKEND_API_URL) ?? JSON.stringify("https://devcon-backend-1074429022647.asia-southeast1.run.app/"),
       "process.versions": JSON.stringify({ node: "browser-mock" }), // Mocking process.versions.node
       "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
-      "import.meta.env.BASE_URL": JSON.stringify(env.BASE_URL) ?? JSON.stringify("/"),
+      "process.env.ROUTER_BASENAME": JSON.stringify(routerBasename),
+      "process.env.POPPINS_FONT_HASH": JSON.stringify(env.POPPINS_FONT_HASH) ?? JSON.stringify(""),
+      "process.env.INTER_FONT_HASH": JSON.stringify(env.INTER_FONT_HASH) ?? JSON.stringify(""),
+      "process.env.PUBLICSANS_FONT_HASH": JSON.stringify(env.PUBLICSANS_FONT_HASH) ?? JSON.stringify(""),
+      "process.env.BEBAS_FONT_HASH": JSON.stringify(env.BEBAS_FONT_HASH) ?? JSON.stringify(""),
     },
     plugins: [
       react(),
@@ -28,7 +37,7 @@ export default defineConfig(({ mode }) => {
         globals: { process: true, Buffer: true },
       }),
     ],
-    base: env.BASE_URL ?? "/",
+    base: basePath,
     resolve: {
       alias: {
         stream: "stream-browserify",
