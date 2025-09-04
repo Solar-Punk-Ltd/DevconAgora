@@ -45,7 +45,7 @@
 }
 
 .own .avatar-monogram {
-    color: #FFF;
-    background-color: #000;
+    color: #FFF !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
     border: 2px solid var(--bbw-blue);
 }
