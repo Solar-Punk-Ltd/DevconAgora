@@ -55,20 +55,7 @@ export enum ROUTES {
   HOMEWITHGAMIFICATION = "/home-with-gamification",
 }
 
-export const CATEGORIES = [
-  "Layer 2",
-  "Core Protocol",
-  "Cypherpunk & Privacy",
-  "Usability",
-  "Real World Ethereum",
-  "Applied Cryptography",
-  "Cryptoeconomics",
-  "Coordination",
-  "Developer Experience",
-  "Security",
-  "Entertainment",
-  "Lobby",
-];
+export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025"];
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-12").toDateString(), "Day 1"],
