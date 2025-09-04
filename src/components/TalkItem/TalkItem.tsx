@@ -16,6 +16,7 @@ import {
   STAGES_MAP,
 } from "../../utils/constants";
 import { dateToTime, getActivityHelper } from "../../utils/helpers";
+import { addPointsForUser } from "../../utils/points";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
@@ -26,8 +27,17 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity, isContentFilterEnabled } =
-    useGlobalState();
+  const {
+    username,
+    loadedTalks,
+    setLoadedTalks,
+    talkActivity,
+    setTalkActivity,
+    spacesActivity,
+    setSpacesActivity,
+    isContentFilterEnabled,
+    setPoints,
+  } = useGlobalState();
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -69,8 +79,17 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     setLoadedTalks(newLoadedTalks);
   };
 
-  const handleOnComment = (newComment: MessageData) => {
+  const handleOnComment = async (newComment: MessageData) => {
     updateTalks([newComment], false);
+
+    if (username) {
+      try {
+        const updatedPoints = await addPointsForUser(username);
+        setPoints(updatedPoints);
+      } catch (error) {
+        console.error("Failed to add points for comment:", error);
+      }
+    }
   };
 
   const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {
