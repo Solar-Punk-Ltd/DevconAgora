@@ -17,7 +17,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ points, withGamification }) => 
   const { monogram, setPoints } = useGlobalState();
   return (
     <div className="home-header">
-      <div className="home-header__name">DEVCON.BUZZ</div>
+      <div className="home-header__name">BBW2025.BUZZ</div>
       <div className="home-header--right">
         <div style={withGamification ? { display: "flex" } : { display: "none" }}>
           <button onClick={() => setPoints(1)}>1</button>

@@ -15,22 +15,23 @@
   transition: border-color 0.25s;
   z-index: 1;
   position: relative;
+  justify-self: center;
 }
 
 .welcome-button--filled {
   border: none;
   color: #ffffff;
-  background: linear-gradient(0deg, var(--default-purple) 0%, #873de7 100%);
+  background-color: var(--bbw-blue);
 }
 
 .welcome-button--filled:active {
-  background: linear-gradient(0deg, #8223ff, #8223ff);
+  background: linear-gradient(0deg, var(--bbw-blue), var(--bbw-blue));
 }
 
 .welcome-button--outlined {
-  border: 1px solid var(--default-purple);
-  color: var(--default-purple);
-  background: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
 }
 
 .welcome-button--white {
@@ -47,7 +48,7 @@
 
 .welcome-button--inactive {
   border: none;
-  color: var(--lighter-color);
-  background: var(--background-color-primary);
+  color: var(--bbw-disabled-gray);
+  background: var(--bbw-disabled-blue-gray);
   cursor: not-allowed;
 }

@@ -1,29 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import WelcomeMask from "../../assets/welcome-glass-effect.png";
-import welcome1img from "../../assets/welcome1img.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
 import { ROUTES } from "../../utils/constants";
 
+import "./Welcome1.scss";
+
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-page">
+      <div className="welcome-page welcome1-page">
         <div className="welcome-page__header">Privacy first communication platform</div>
         <div className="welcome-page__content">
-          <div className="welcome-page__content__image">
-            <img src={welcome1img} alt="" className="welcome-page__main-image" />
-            <div className="welcome-page__effect">
-              <img src={WelcomeMask} alt="" className="welcome-page__effect-mask" />
-            </div>
-          </div>
+            <div>Be part of the event without revealing your identity</div>
         </div>
         <div className="welcome-page__bottom">
-          <div className="welcome-page__bottom__text">
-            <div>Be part of the community without revealing your identity</div>
-          </div>
           <div className="welcome-page__bottom-bottom">
             <WelcomeProgressIndicator active={0} />
             <div className="welcome-page_bottom-bottom__buttons">

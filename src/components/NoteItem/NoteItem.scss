@@ -1,5 +1,6 @@
 .note-item {
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
   position: relative;
   padding: 16px;
   z-index: 3;
@@ -7,27 +8,25 @@
   display: flex;
   justify-content: space-between;
   box-shadow: var(--box-shadow-type1);
+  color: #FFF;
 }
 
 .note-item__extract {
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
-  color: var(--darker-purple-secondary);
 }
 
 .note-item__timestamp__date {
   font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 400;
-  color: var(--darker-purple);
 }
 
 .note-item__timestamp__time {
   font-family: var(--font-family-base);
   font-size: 12px;
   font-weight: 700;
-  color: var(--darker-purple-secondary);
   display: flex;
   justify-content: end;
 }

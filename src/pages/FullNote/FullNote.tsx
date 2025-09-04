@@ -1,9 +1,8 @@
-import { Topic } from "@ethersphere/bee-js";
 import { getPrivateKeyFromIdentifier } from "@solarpunkltd/comment-system";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
@@ -14,6 +13,7 @@ import { ADDRESS_HEX_LENGTH, DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE
 import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 
 import "./FullNote.scss";
+import { Topic } from "@ethersphere/bee-js";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
@@ -38,29 +38,29 @@ const FullNotePage: React.FC = () => {
 
   // calculate the topic from the note text
   // if note has an id, use it as topic
-  const calcRawNoteTopic = (): string => {
-    let rawNoteTopic = "";
+  const calcNoteTopic = (): string => {
+    let noteTopic = "";
     if (currentNote.id && currentNote.id.length > 0) {
-      rawNoteTopic = currentNote.id;
+      noteTopic = currentNote.id;
     } else {
       if (currentNote.text && currentNote.text.length > 0) {
-        rawNoteTopic = new Topic(currentNote.text).toString();
+        noteTopic = currentNote.text;
       }
     }
-    return rawNoteTopic;
+    return Topic.fromString(noteTopic).toString();
   };
 
   const handleRemove = async () => {
     setShowRemovePopUp(false);
-    const rawNoteTopic = calcRawNoteTopic();
-    if (rawNoteTopic.length > 0) {
+    const noteTopic = calcNoteTopic();
+    if (noteTopic.length > 0) {
       const remove = true;
       const tmpNote = { ...currentNote };
       tmpNote.text = "";
       setCurrentNote(tmpNote);
-      addRemoveTopicToLocalStore(rawNoteTopic, remove);
-      saveNote(rawNoteTopic, remove);
-      const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
+      addRemoveTopicToLocalStore(noteTopic, remove);
+      saveNote(noteTopic, remove);
+      const foundIx = notes.findIndex((n) => n.id === noteTopic);
       if (foundIx > -1) {
         const tmpNotes = [...notes];
         tmpNotes.splice(foundIx, 1);
@@ -91,14 +91,11 @@ const FullNotePage: React.FC = () => {
     );
   }
 
-  const addRemoveTopicToLocalStore = (rawNoteTopic: string, remove: boolean) => {
-    if (rawNoteTopic.length !== ADDRESS_HEX_LENGTH) {
-      console.error("invalid topic: ", rawNoteTopic);
-      return;
-    }
+  const addRemoveTopicToLocalStore = (noteTopic: string, remove: boolean) => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC) || "";
     const topicsArray = selfNoteTopicsStr.split(",");
-    const index = topicsArray.indexOf(rawNoteTopic);
+
+    const index = topicsArray.indexOf(noteTopic);
     if (index > -1 || remove) {
       if (remove) {
         topicsArray.splice(index, 1);
@@ -106,21 +103,21 @@ const FullNotePage: React.FC = () => {
       }
       return;
     }
-    // only add a new topc if not present
-    topicsArray.push(rawNoteTopic);
+    // only add a new topic if not present
+    topicsArray.push(noteTopic);
     localStorage.setItem(SELF_NOTE_TOPIC, topicsArray.join(","));
   };
 
   const handleSave = async () => {
-    const rawNoteTopic = calcRawNoteTopic();
-    if (rawNoteTopic.length > 0) {
+    const noteTopic = calcNoteTopic();
+    if (noteTopic.length > 0) {
       const remove = false;
-      addRemoveTopicToLocalStore(rawNoteTopic, remove);
-      saveNote(rawNoteTopic, remove);
+      addRemoveTopicToLocalStore(noteTopic, remove);
+      saveNote(noteTopic, remove);
     }
   };
 
-  const saveNote = async (rawNoteTopic: string, remove: boolean) => {
+  const saveNote = async (topic: string, remove: boolean) => {
     let text = currentNote.text;
     if (remove) {
       text = "";
@@ -133,7 +130,7 @@ const FullNotePage: React.FC = () => {
 
     const date = new Date();
     const noteObj: NoteItemProps = {
-      id: rawNoteTopic,
+      id: topic,
       text: text,
       date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
       time: dateToTime(date.toISOString()),
@@ -141,9 +138,9 @@ const FullNotePage: React.FC = () => {
     setSaving(true);
     const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
     const signer = getPrivateKeyFromIdentifier(privKey);
-    await updateFeed(signer.publicKey().address().toString(), signer, rawNoteTopic, process.env.STAMP || DUMMY_STAMP, dataRef);
+    await updateFeed(signer, new Topic(topic), process.env.STAMP || DUMMY_STAMP, dataRef);
 
-    const foundIx = notes.findIndex((n) => n.id === rawNoteTopic);
+    const foundIx = notes.findIndex((n) => n.id === topic);
     const tmpNotes = [...notes];
     if (!remove) {
       if (foundIx > -1) {
@@ -154,6 +151,7 @@ const FullNotePage: React.FC = () => {
       setNotes(tmpNotes);
       setCurrentNote(noteObj);
     }
+
     setSaving(false);
     setSaved(true);
   };
@@ -170,9 +168,7 @@ const FullNotePage: React.FC = () => {
 
   return (
     <div className="full-note-page">
-      <div className="full-note-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
-      </div>
+      <div className="full-note-page__background">{/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}</div>
       {showRemovePopUp && (
         <PopUpQuestion
           question="Do you want to remove your note?"

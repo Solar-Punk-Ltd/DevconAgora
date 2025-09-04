@@ -17,7 +17,7 @@ const FilterIcon: React.FC<FilterIconProps> = ({
     <div
       className="filter-icon"
       onClick={onClick}
-      style={{ backgroundColor: backgroundColor || "var(--default-purple)" }}
+      style={{ backgroundColor: backgroundColor || "var(--bbw-blue)" }}
     >
       <svg
         width="16"
