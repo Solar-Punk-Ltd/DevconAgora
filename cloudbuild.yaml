@@ -11,8 +11,6 @@ steps:
       - "--build-arg"
       - "BEE_API_URL=${_BEE_API_URL}"
       - "--build-arg"
-      - "DEVCON6_SESSSIONS_HASH=${_DEVCON6_SESSSIONS_HASH}"
-      - "--build-arg"
       - "BASE_URL=${_BASE_URL}"
       - "--build-arg"
       - "HEALTH_CHECK_DATA_REF=${_HEALTH_CHECK_DATA_REF}"
@@ -21,7 +19,7 @@ steps:
       - "--build-arg"
       - "BACKEND_API_URL=${_BACKEND_API_URL}"
       - "--build-arg"
-      - "GATEWAY=${_GATEWAY}"
+      - "ENV=${_ENV}"
     id: Build
   - name: gcr.io/cloud-builders/docker
     args:

@@ -1,3 +1,4 @@
+import { PrivateKey } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
@@ -5,7 +6,6 @@ import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
 import { ADDRESS_HEX_LENGTH, SELF_NOTE_TOPIC } from "../utils/constants";
 import { getLocalPrivateKey } from "../utils/helpers";
-import { PrivateKey } from "@ethersphere/bee-js";
 
 export const useNotes = () => {
   const { notes, setNotes } = useGlobalState();
