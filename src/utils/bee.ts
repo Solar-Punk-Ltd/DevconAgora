@@ -1,4 +1,4 @@
-import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Topic } from "@ethersphere/bee-js";
+import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
 
 import { FeedResultWithIndex } from "../types/common";
 import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
@@ -67,26 +67,25 @@ export async function getData(ref: string): Promise<string> {
   }
 }
 
-export async function uploadData(stamp: string, data: string | Uint8Array): Promise<string> {
+export async function uploadData(stamp: string, data: string | Uint8Array): Promise<Reference> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
   try {
     console.debug("uploading data to swarm");
     const sessionsReference = await bee.uploadData(stamp, data);
-    return sessionsReference.reference.toString();
+    return sessionsReference.reference;
   } catch (error) {
     console.error("error data upload", error);
-    return "";
+    return SWARM_ZERO_ADDRESS;
   }
 }
 
-export async function updateFeed(owner: string, signer: PrivateKey, rawTopic: string, stamp: string, ref: string): Promise<string> {
+export async function updateFeed(signer: PrivateKey, topic: Topic, stamp: string, ref: Reference): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
-  const topicBytes = Topic.fromString(rawTopic);
 
   try {
-    await bee.createFeedManifest(stamp, topicBytes, owner);
-    const feedWriter = bee.makeFeedWriter(topicBytes, signer);
-    const uploadReferenceResult = await feedWriter.uploadReference(stamp, ref);
+    await bee.createFeedManifest(stamp, topic.toUint8Array(), signer.publicKey().address().toUint8Array());
+    const feedWriter = bee.makeFeedWriter(topic.toUint8Array(), signer);
+    const uploadReferenceResult = await feedWriter.upload(stamp, ref.toUint8Array());
     return uploadReferenceResult.reference.toString();
   } catch (error) {
     console.error("error feed update: ", error);
