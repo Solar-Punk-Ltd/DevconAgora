@@ -64,27 +64,7 @@ export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-15").toDateString(), "Day 4"],
 ]);
 
-export const STAGES_MAP = new Map([
-  ["stage-1", "Stage 1"],
-  ["stage-2", "Stage 2"],
-  ["stage-3", "Stage 3"],
-  ["stage-4", "Stage 4"],
-  ["stage-5", "Stage 5"],
-  ["stage-6", "Stage 6"],
-  ["breakout-1", "Breakout 1"],
-  ["breakout-2", "Breakout 2"],
-  ["breakout-3", "Breakout 3"],
-  ["classroom-a", "Classroom A"],
-  ["classroom-b", "Classroom B"],
-  ["classroom-c", "Classroom C"],
-  ["classroom-d", "Classroom D"],
-  ["classroom-e", "Classroom E"],
-  ["decompression-room", "Decompression Room"],
-  // ["keynote", "Keynote"], // not used
-  ["main-stage", "Main Stage"],
-  ["music-stage", "Music stage"],
-  ["all", "All stages"],
-]);
+export const STAGES_MAP = new Map([["main-stage", "Main Stage"]]);
 
 export const CATEGORY_IMAGES_MAP = new Map([
   ["Layer 2", Layer2s],
