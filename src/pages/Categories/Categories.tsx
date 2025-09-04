@@ -34,16 +34,18 @@ const Categories: React.FC<CategoriesProps> = ({ handleCategories, selectedCateg
 
   return (
     <div className="categories-page">
-      <div className="categories-page__header">
-        Categories
-        <CloseIcon onClick={handleClose} />
-      </div>
-      <div className="categories_page__content">
-        {CATEGORIES.map((category, index) => (
-          <div key={category} className="categories-page__content__item" onClick={() => handleCategorySelect(index)}>
-            <RadioButtonIcon checked={index === selectedIndex} /> {category}
-          </div>
-        ))}
+      <div>
+        <div className="categories-page__header">
+          Categories
+          <CloseIcon onClick={handleClose} />
+        </div>
+        <div className="categories_page__content">
+          {CATEGORIES.map((category, index) => (
+            <div key={category} className="categories-page__content__item" onClick={() => handleCategorySelect(index)}>
+              <RadioButtonIcon checked={index === selectedIndex} color="var(--bbw-blue)" /> {category}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="categories-page__buttons">
         <DefaultButton version="outlined" onClick={handleClearFilters}>

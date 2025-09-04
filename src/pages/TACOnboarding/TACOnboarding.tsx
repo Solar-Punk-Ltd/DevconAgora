@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
+// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
@@ -23,9 +23,7 @@ const TACOnboarding: React.FC = () => {
   return (
     <>
       <div className="terms-and-conditions-onboarding-page">
-        <div className="terms-and-conditions-onboarding-page__background">
-          <img src={HomeBackground} alt="" className="terms-and-conditions-onboarding-page__background__image" />
-        </div>
+        <div className="terms-and-conditions-onboarding-page__background grid"></div>
         <div className="terms-and-conditions-onboarding-page__header">Terms and Conditions</div>
         <TermsAndConditions
           contentFilterCheckBox={true}

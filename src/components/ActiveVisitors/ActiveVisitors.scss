@@ -1,13 +1,14 @@
 .active-visitors {
   font-family: var(--font-family-base);
-  color: var(--darker-purple);
-  background-color: var(--grey-primary);
+  color: var(--bbw-blue);
   padding: 4px 12px;
   font-size: 12px;
   font-weight: 400;
   display: inline-flex;
   align-self: flex-start;
   border-radius: 6px;
+  background-color: #000;
+  color: #FFF;
 }
 
 .active-visitors__with-icon {

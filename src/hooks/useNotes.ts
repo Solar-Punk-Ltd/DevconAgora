@@ -1,4 +1,4 @@
-import { Wallet } from "ethers";
+import { PrivateKey } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
@@ -18,11 +18,11 @@ export const useNotes = () => {
       return;
     }
 
-    const wallet = new Wallet(privKey); // TODO: remove wallet and use PrivateKey everywhere
+    const wallet = new PrivateKey(privKey);
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
+      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic));
     }
 
     const notesArray: string[] = [];

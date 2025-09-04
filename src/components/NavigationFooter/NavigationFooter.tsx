@@ -14,7 +14,7 @@ const NavigationFooter: React.FC = () => {
   const location = useLocation();
 
   const getColor = (path: string) => {
-    return location.pathname === path ? "var(--default-purple)" : "black";
+    return location.pathname === path ? "var(--bbw-blue)" : "#FFF";
   };
   return (
     <div className="navigation-footer">

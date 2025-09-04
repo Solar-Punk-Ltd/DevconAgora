@@ -20,14 +20,14 @@ const RadioButtonIcon: React.FC<RightArrowIconProps> = ({ color, checked }) => {
         width="22.5"
         height="22.5"
         rx="11.25"
-        stroke="var(--default-purple)"
+        stroke="var(--bbw-blue)"
         strokeWidth="1.5"
       />
       <circle
         cx="12"
         cy="12.5"
         r="6"
-        fill={color ? color : "var(--default-purple)"}
+        fill={color ? color : "var(--bbw-blue)"}
       />
     </svg>
   ) : (
@@ -44,7 +44,7 @@ const RadioButtonIcon: React.FC<RightArrowIconProps> = ({ color, checked }) => {
         width="22.5"
         height="22.5"
         rx="11.25"
-        fill="white"
+        fill="transparent"
       />
       <rect
         x="0.75"
@@ -52,7 +52,7 @@ const RadioButtonIcon: React.FC<RightArrowIconProps> = ({ color, checked }) => {
         width="22.5"
         height="22.5"
         rx="11.25"
-        stroke={color ? color : "var(--default-purple)"}
+        stroke={color ? color : "var(--bbw-blue)"}
         strokeWidth="1.5"
       />
     </svg>

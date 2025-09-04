@@ -15,7 +15,7 @@ import {
   MAX_PRELOADED_TALKS,
   STAGES_MAP,
 } from "../../utils/constants";
-import { dateToTime } from "../../utils/helpers";
+import { dateToTime, getActivityHelper } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
@@ -101,7 +101,8 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
       }
       const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
       if (foundIx > -1) {
-        tmpActivity.set(session.id, loadedTalks[foundIx].messages?.length ?? 0);
+        const activity = Number(getActivityHelper(loadedTalks[foundIx].messages, true));
+        tmpActivity.set(session.id, activity);
       }
 
       if (!isSpacesTalk) {

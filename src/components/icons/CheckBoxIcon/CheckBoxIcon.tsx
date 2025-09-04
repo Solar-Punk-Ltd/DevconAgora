@@ -31,12 +31,12 @@ const CloseIcon: React.FC<CloseIconProps> = ({ checked, color, onClick }) => {
             width="22.5"
             height="22.5"
             rx="1.25"
-            stroke={color ? color : "var(--default-purple)"}
+            stroke={color ? color : "var(--bbw-blue)"}
             strokeWidth="1.5"
           />
           <path
             d="M9.00004 20.4209L2.79004 14.2109L5.62004 11.3809L9.00004 14.7709L18.88 4.88086L21.71 7.71086L9.00004 20.4209Z"
-            fill={color ? color : "var(--default-purple)"}
+            fill={color ? color : "var(--bbw-blue)"}
           />
         </svg>
       ) : (
@@ -61,7 +61,7 @@ const CloseIcon: React.FC<CloseIconProps> = ({ checked, color, onClick }) => {
             width="22.5"
             height="22.5"
             rx="1.25"
-            stroke={color ? color : "var(--default-purple)"}
+            stroke={color ? color : "var(--bbw-blue)"}
             strokeWidth="1.5"
           />
         </svg>

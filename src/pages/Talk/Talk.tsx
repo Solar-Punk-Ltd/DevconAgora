@@ -64,11 +64,13 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
   }, [talkId, sessions]);
 
   return (
-    <div className="talk">
-      <NavigationHeader toText={toTextFixed ? toTextFixed : ""} backgroundColor="var(--chat-and-talk-background-color)" />
-      <div className="talk__content">{session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}</div>
+    <>
+      <div className="talk grid">
+        <NavigationHeader toText={toTextFixed ? toTextFixed : ""} backgroundColor="var(--chat-and-talk-background-color)" />
+        <div className="talk__content">{session && <TalkItem session={session} isSpacesTalk={isSpacesTalk} />}</div>
+      </div>
       <NavigationFooter />
-    </div>
+    </>
   );
 };
 

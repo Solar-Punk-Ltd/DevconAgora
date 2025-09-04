@@ -8,7 +8,8 @@
   align-items: center;
   height: 56px;
   width: 100%;
-  background-color: var(--grey-primary);
+  // background-color: var(--grey-primary);
+  background: linear-gradient(90deg, #06070e, #12224e, #06070e);
   padding: 8px 20px;
   box-sizing: border-box;
   box-shadow: 0px -2px 7px 0px #1f1f233d;
@@ -24,7 +25,11 @@
   font-weight: 400;
 }
 
+.navigation-footer__item-container {
+  color: #FFF;
+}
+
 .navigation-footer__item-container__active {
-  color: var(--default-purple);
+  color: var(--bbw-blue);
   font-weight: 700;
 }

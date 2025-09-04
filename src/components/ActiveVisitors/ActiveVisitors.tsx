@@ -18,8 +18,8 @@ const ActiveVisitors: React.FC<ActiveVisitorsProps> = ({ number, withIcon }) => 
       })}
     >
       {withIcon ? <VisitorsIcon /> : null}
+      {!withIcon ? "Activity: " : null}
       {number}
-      {!withIcon ? " activity" : null}
     </div>
   );
 };

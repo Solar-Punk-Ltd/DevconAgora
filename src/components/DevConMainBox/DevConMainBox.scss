@@ -1,6 +1,8 @@
 .devcon-main-box {
   padding: 10px;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #FFF;
   border-radius: 16px;
   box-sizing: border-box;
   box-shadow: var(--box-shadow-type2);
@@ -9,7 +11,7 @@
 }
 
 .devcon-main-box__border {
-  border: 2px solid var(--default-purple);
+  border: 2px solid var(--bbw-blue);
 }
 
 .devcon-main-box__title {
