@@ -9,11 +9,9 @@ export const usePoints = () => {
   const getPoints = useCallback(async () => {
     try {
       if (isUserRegistered()) {
-        fetch(process.env.BACKEND_API_URL + "/points/" + username).then((resp) =>
-          resp.text().then((data) => {
-            setPoints(Number(data));
-          })
-        );
+        const resp = await fetch(process.env.BACKEND_API_URL + "/points/" + username);
+        const data = await resp.text();
+        setPoints(Number(data));
       }
     } catch (error) {
       console.error("error fetching points: ", error);
