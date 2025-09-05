@@ -56,9 +56,10 @@ const FullNotePage: React.FC = () => {
       const tmpNote = { ...currentNote };
       tmpNote.text = "";
       setCurrentNote(tmpNote);
-      addRemoveTopicToLocalStore(noteTopic, remove);
+      addRemoveTopicToLocalStore(currentNote.id!, remove);
       saveNote(noteTopic, remove);
-      const foundIx = notes.findIndex((n) => n.id === noteTopic);
+
+      const foundIx = notes.findIndex((n) => n.id === currentNote.id!);
       if (foundIx > -1) {
         const tmpNotes = [...notes];
         tmpNotes.splice(foundIx, 1);
