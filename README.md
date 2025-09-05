@@ -120,7 +120,7 @@ pnpm run lint:fix
 ### Key Hooks
 
 - `useSessionData` - Manages conference session data
-- `usePreloadTalks` - Preloads and caches talk comments
+- `usePreload` - Preloads and caches talk and space comments
 - `useGamification` - Handles point system and rewards
 - `useNotes` - Personal note management
 - `useBeePing` - Swarm network connectivity
