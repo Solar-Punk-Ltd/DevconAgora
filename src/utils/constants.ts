@@ -12,10 +12,7 @@ import RealWorldEthereum from "../assets/category-real-world-ethereum.png";
 import Security from "../assets/category-security.png";
 import Usability from "../assets/category-usability.png";
 
-export const BATCH_ID_HEX_LENGTH = 64;
-export const ADDRESS_HEX_LENGTH = 64;
 export const FIVE_MINUTES = 1000 * 60 * 5;
-export const FIVE_SECONDS = 5000;
 export const DEFAULT_URL = "http://localhost:1633/";
 export const DUMMY_STAMP = "f07a4b8b5a502edbf36cc1a4859b1ea54c0c6890068fb3bb80c681943f1f625d";
 export const SELF_NOTE_TOPIC = "selfNoteTopics";
@@ -28,7 +25,7 @@ export const MAX_CHARACTER_COUNT = 4096;
 export const SWARM_ZERO_ADDRESS = new Reference(NULL_ADDRESS);
 export const FEED_INDEX_ZERO = FeedIndex.fromBigInt(0n);
 export const RAW_FEED_TOPIC_SESSIONS = "sessions";
-export const DEFAULT_POLL_INTERVAL_5_SECONDS = 5000;
+export const DEFAULT_POLL_INTERVAL = 1 * 1000;
 export const SPACES_KEY = "spaces";
 
 export enum ROUTES {
@@ -97,27 +94,5 @@ export const CONTENT_FILTER_TEXT =
 export const ACCEPTANCE_OF_TERMS_HEADER = "Acceptance of Terms";
 export const ACCEPTANCE_OF_TERMS_TEXT =
   "By accessing or using this application, you acknowledge that you have read, understood and agreed to be bound by these terms. If you do not accept these terms, you must refrain from using the application.";
-
-export const HOW_DOES_IT_WORK = "How does it work?";
-
-export const COLLECTED_ALL = "You've collected all your points.";
-
-export const GET_EXTRA = "For each active registration, you get an extra";
-
-export const GET_YOUR_BZZ_TOKEN = "Get your BZZ token.";
-
-export const CLAIM_REWARD = "Claim reward";
-
-export const SHARE_REFERAL = "Share referal link";
-
-export const POINTS = "Points";
-
-export const GET_REFERAL_POINTS = "Get referal points";
-
-export const MORE_POINTS = "more points";
-
-export const GET_BZZ_TOKEN = "Get your BZZ token";
-
-export const BZZ_TOKENS = "BZZ Tokens";
 
 export const GIFTCODE_KEY = "giftcode";

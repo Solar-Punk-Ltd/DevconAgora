@@ -8,6 +8,7 @@ import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
 import {
   CATEGORIES,
+  DEFAULT_POLL_INTERVAL,
   DEFAULT_URL,
   DUMMY_STAMP,
   MAX_CHARACTER_COUNT,
@@ -165,6 +166,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           filterEnabled={isContentFilterEnabled}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
+          pollInterval={DEFAULT_POLL_INTERVAL}
         />
       )}
     </>
