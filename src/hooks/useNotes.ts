@@ -66,9 +66,10 @@ export const useNotes = () => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
       const tmpTopics = selfNoteTopicsStr.split(",");
-      setNoteRawTopics(tmpTopics.filter((t) => t.length === Topic.LENGTH));
+      const filteredTopics = tmpTopics.filter((t) => t.length === Topic.LENGTH * 2);
+      setNoteRawTopics(filteredTopics);
     }
-  }, []);
+  }, [setNoteRawTopics]);
 
   useEffect(() => {
     fetchNotes();
