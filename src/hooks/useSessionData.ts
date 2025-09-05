@@ -3,46 +3,13 @@ import { useCallback, useEffect, useState } from "react";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
-import { CATEGORIES, FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS, SPACES_KEY } from "../utils/constants";
-import { findSlotStartIx, getSessionsByDay } from "../utils/helpers";
+import { FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS } from "../utils/constants";
+import { findSlotStartIx,  getSessionsByDay } from "../utils/helpers";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
-
-  const fetchFeedUpdate = useCallback(async () => {
-    if (isBeeRunning) {
-      // TODO: unnecessary payload.tostring() then back to json
-      const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
-      let sessionData: Map<string, Session[]> = new Map();
-      if (sessionDataStr.length > 0) {
-        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
-      }
-
-      const spacesSessions: Session[] = [];
-      for (let i = 0; i < CATEGORIES.length; i++) {
-        const cat = CATEGORIES[i];
-        spacesSessions.push({
-          id: cat,
-          sourceId: cat,
-          title: cat,
-          track: cat,
-          slot_start: new Date().toLocaleString(),
-          slot_end: new Date().toLocaleString(),
-          slot_roomId: cat,
-        });
-      }
-      // todo: spaces can be separate from global session -> optimize performance
-      sessionData.set(SPACES_KEY, spacesSessions);
-      if (sessionData.size !== 0) {
-        console.debug("session data updated");
-        setSessions(sessionData);
-      } else {
-        console.debug("session data empty");
-      }
-    }
-  }, [isBeeRunning, setSessions]);
 
   const filterRecentSessions = useCallback(
     (sessions: Map<string, Session[]>) => {
@@ -61,8 +28,28 @@ export const useSessionData = (isBeeRunning: boolean) => {
         setRecentSessions(mostRecentSessions);
       }
     },
-    [time, setRecentSessions]
+    [recentSessionIx, time, setRecentSessions]
   );
+
+  const fetchFeedUpdate = useCallback(async () => {
+    if (isBeeRunning) {
+      // TODO: unnecessary payload.tostring() then back to json
+      const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
+      let sessionData: Map<string, Session[]> = new Map();
+      if (sessionDataStr.length > 0) {
+        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
+      }
+
+      if (sessionData.size !== 0) {
+        console.debug("session data updated");
+        setSessions(sessionData);
+        // Automatically filter recent sessions when new session data is fetched
+        filterRecentSessions(sessionData);
+      } else {
+        console.debug("session data empty");
+      }
+    }
+  }, [isBeeRunning, setSessions, filterRecentSessions]);
 
   useEffect(() => {
     fetchFeedUpdate();

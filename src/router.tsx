@@ -7,7 +7,7 @@ import { useBeePing } from "./hooks/useBeePing";
 import { useGamification } from "./hooks/useGamification";
 import { useNotes } from "./hooks/useNotes";
 import { usePoints } from "./hooks/usePoints";
-import { usePreloadTalks } from "./hooks/usePreloadTalks";
+import { usePreload } from "./hooks/usePreload";
 import { usePrevLocation } from "./hooks/usePrevLocation";
 import { useRouteProtection } from "./hooks/useRouteProtection";
 import { useSessionData } from "./hooks/useSessionData";
@@ -29,31 +29,44 @@ import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
-import { ROUTES } from "./utils/constants";
+import { CATEGORIES, ROUTES } from "./utils/constants";
+import { Space } from "./types/space";
 
 const MainRouter = (): ReactElement => {
-  const { showGamification, sessions, points } = useGlobalState();
+  const { showGamification, sessions, points, setSpaces, recentSessions } = useGlobalState();
   const location = useLocation();
   const navigate = useNavigate();
 
   const { isBeeRunning } = useBeePing();
 
-  const { filterRecentSessions } = useSessionData(isBeeRunning);
+  useEffect(() => {
+    const tmpSpaces: Space[] = [];
+    CATEGORIES.forEach((cat) => {
+      tmpSpaces.push({
+        id: cat,
+        title: cat,
+        track: cat,
+      });
+    });
+
+    setSpaces(tmpSpaces);
+  }, []);
+
+  useSessionData(isBeeRunning);
+
+  const { calcTalksActivity, calcSpacesActivity } = usePreload();
 
   useEffect(() => {
-    if (sessions) {
-      filterRecentSessions(sessions);
-    }
-  }, [sessions, filterRecentSessions]);
-
-  const { calcActivity, calcSpacesActivity } = usePreloadTalks();
-
-  useEffect(() => {
-    if (isBeeRunning && sessions && sessions.size > 0) {
-      calcActivity();
+    if (isBeeRunning) {
       calcSpacesActivity();
     }
-  }, [isBeeRunning, sessions]);
+  }, [isBeeRunning, calcSpacesActivity]);
+
+  useEffect(() => {
+    if (isBeeRunning && sessions && sessions.size > 0 && recentSessions && recentSessions.length > 0) {
+      calcTalksActivity();
+    }
+  }, [isBeeRunning, sessions, recentSessions, calcTalksActivity]);
 
   const { prevLocation } = usePrevLocation(location);
 
