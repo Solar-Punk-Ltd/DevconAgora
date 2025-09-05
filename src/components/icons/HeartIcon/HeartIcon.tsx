@@ -24,7 +24,7 @@ const HeartIcon: React.FC<HeartIconProps> = ({ color, empty, onClick }) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_d_2991_948)">
-            <rect x="4" y="2" width="32" height="32" rx="16" fill="white" />
+            <rect x="4" y="2" width="32" height="32" rx="16" fill="transparent" />
             <rect
               x="4.5"
               y="2.5"
@@ -85,7 +85,7 @@ const HeartIcon: React.FC<HeartIconProps> = ({ color, empty, onClick }) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_d_2991_890)">
-            <rect x="4" y="2" width="32" height="32" rx="16" fill="white" />
+            <rect x="4" y="2" width="32" height="32" rx="16" fill="transparent" />
             <rect
               x="4.5"
               y="2.5"

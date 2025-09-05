@@ -1,5 +1,5 @@
 .notes-page {
-  padding: 0px 16px 10px;
+  padding: 16px 16px 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -21,6 +21,7 @@
   font-family: var(--font-family-base);
   font-size: 14px;
   font-weight: 700;
+  color: #FFF;
 }
 
 .notes-page__button-text {
