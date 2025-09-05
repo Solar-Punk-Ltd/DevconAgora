@@ -22,8 +22,8 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({ backgroundColor, to
   const formattedTo = decodedTo
     ? decodedTo.charAt(1).toUpperCase() + decodedTo.slice(2)
     : decodedToText
-    ? decodedToText.charAt(1).toUpperCase() + decodedToText.slice(2)
-    : "";
+      ? decodedToText.charAt(1).toUpperCase() + decodedToText.slice(2)
+      : "";
 
   const handleNavigation = () => {
     if (saveQuestionBeforeLeave) {
