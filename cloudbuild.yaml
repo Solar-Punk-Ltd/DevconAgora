@@ -19,7 +19,7 @@ steps:
       - "--build-arg"
       - "BACKEND_API_URL=${_BACKEND_API_URL}"
       - "--build-arg"
-      - "BACKEND_API_KEY=${BACKEND_API_KEY}"
+      - "BACKEND_API_KEY=${_BACKEND_API_KEY}"
       - "--build-arg"
       - "ENV=${_ENV}"
     id: Build
