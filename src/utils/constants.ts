@@ -23,7 +23,7 @@ export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
 export const MAX_PRELOADED_TALKS = 15;
 export const MAX_COMMENTS_LOADED = 15n;
 export const MAX_SESSIONS_SHOWN = 9;
-export const LOBBY_TITLE = "Lobby";
+export const LOBBY_TITLE = "BBW Lobby";
 export const MAX_CHARACTER_COUNT = 4096;
 export const SWARM_ZERO_ADDRESS = new Reference(NULL_ADDRESS);
 export const FEED_INDEX_ZERO = FeedIndex.fromBigInt(0n);
@@ -55,7 +55,7 @@ export enum ROUTES {
   HOMEWITHGAMIFICATION = "/home-with-gamification",
 }
 
-export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025"];
+export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025", LOBBY_TITLE];
 
 export const DATE_TO_DEVCON_DAY = new Map([
   [new Date("2024-11-12").toDateString(), "Day 1"],

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
 
@@ -15,7 +14,7 @@ declare global {
     jQuery: unknown;
   }
 }
-
+// TODO: remove comepletely later if not needed
 const StayUpdated: React.FC = () => {
   const [emailText, setEmailText] = React.useState<string>("");
   const [emailError, setEmailError] = React.useState<boolean>(false);
