@@ -20,6 +20,7 @@ import { addPointsForUser } from "../../utils/points";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
+
 import { Space } from "@/types/space";
 
 interface TalkItemProps {
@@ -78,11 +79,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           talkId: rawTalkTopic,
           messages: updatedComments,
         };
-        // push the new talk with comments if buffer is not full
+
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
           newLoadedTalks.push(newTalk);
         } else {
-          // otherwise replace the first talk with the new one
           newLoadedTalks.splice(0, 1, newTalk);
         }
       }

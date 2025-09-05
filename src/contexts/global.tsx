@@ -4,6 +4,7 @@ import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { Session } from "../types/session";
 import { TalkComments } from "../types/talkComment";
 import { createMonogram } from "../utils/helpers";
+
 import { Space } from "@/types/space";
 
 interface GlobalState {

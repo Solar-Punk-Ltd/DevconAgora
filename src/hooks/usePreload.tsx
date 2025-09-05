@@ -10,11 +10,9 @@ import { getTopic } from "@/utils/bee";
 import { DEFAULT_URL, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/utils/constants";
 import { getActivityHelper } from "@/utils/helpers";
 
-// TODO: will be refactored later, works for now
 export const usePreload = () => {
   const { setLoadedSpaces, setSpacesActivity, spaces, recentSessions, setLoadedTalks, setTalkActivity } = useGlobalState();
 
-  // Generic function to calculate activity for any type of session/space
   const calcActivity = useCallback(
     async (
       items: (Session | Space)[],

@@ -16,7 +16,7 @@ const ClaimReward: React.FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   let nonceRequested = false;
-
+  // TODO: refactor logic, async await
   useEffect(() => {
     const code = localStorage.getItem(GIFTCODE_KEY);
     if (code !== null && inputRef.current) {
@@ -31,7 +31,7 @@ const ClaimReward: React.FC = () => {
           resp.text().then(async (data) => {
             console.debug("nonce fetched", data);
             if (isUserRegistered()) {
-              const wallet = new ethers.Wallet(getLocalPrivateKey()); // TODO: use PrivateKey
+              const wallet = new ethers.Wallet(getLocalPrivateKey());
               const flatSig = await wallet.signMessage(data);
               try {
                 fetch(process.env.BACKEND_API_URL + "/redeem", {

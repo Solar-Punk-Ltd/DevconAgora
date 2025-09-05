@@ -4,7 +4,7 @@ import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
 import { FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS } from "../utils/constants";
-import { findSlotStartIx,  getSessionsByDay } from "../utils/helpers";
+import { findSlotStartIx, getSessionsByDay } from "../utils/helpers";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
