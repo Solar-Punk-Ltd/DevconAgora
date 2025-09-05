@@ -16,6 +16,10 @@
   }
 }
 
+.swarm-comment-system-comment-list {
+  overflow: auto;
+}
+
 .swarm-comment-system-comment-list__no-comment {
   color: #FFF;
 }
@@ -42,4 +46,14 @@
     border: 2px solid var(--bbw-blue);
     background-color: rgba(0, 0, 0, 0.5);
   }
+}
+
+.swarm-comment__avatar-side .avatar-monogram {
+  background-color: var(--bbw-blue) !important;
+  color: #FFF !important;
+}
+
+.own .avatar-monogram {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid var(--bbw-blue);
 }

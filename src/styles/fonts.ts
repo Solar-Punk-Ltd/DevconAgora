@@ -61,9 +61,9 @@ export function initializeFonts(): void {
   const beeUrl = process.env.BEE_API_URL;
 
   if (beeUrl && hasSwarmHashes) {
-    console.log("Fetch fonts from Swarm");
+    console.debug("Fetch fonts from Swarm");
     loadSwarmFonts(beeUrl);
   } else {
-    console.log("Using local font fallbacks");
+    console.debug("Using local font fallbacks");
   }
 }

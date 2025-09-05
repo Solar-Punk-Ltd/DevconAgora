@@ -22,7 +22,7 @@ export const useNotes = () => {
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic));
+      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic, true));
     }
 
     const notesArray: string[] = [];
