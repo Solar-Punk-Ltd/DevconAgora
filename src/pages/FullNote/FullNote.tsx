@@ -1,5 +1,4 @@
-import { Topic } from "@ethersphere/bee-js";
-import { getPrivateKeyFromIdentifier } from "@solarpunkltd/comment-system";
+import { PrivateKey, Topic } from "@ethersphere/bee-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -136,7 +135,7 @@ const FullNotePage: React.FC = () => {
     };
     setSaving(true);
     const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
-    const signer = getPrivateKeyFromIdentifier(privKey);
+    const signer = new PrivateKey(privKey);
     await updateFeed(signer, new Topic(topic), process.env.STAMP || DUMMY_STAMP, dataRef);
 
     const foundIx = notes.findIndex((n) => n.id === topic);

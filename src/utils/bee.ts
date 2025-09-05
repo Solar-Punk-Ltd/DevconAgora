@@ -5,17 +5,22 @@ import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } 
 
 import { isNotFoundError } from "./helpers";
 
-export async function getFeedUpdate(owner: string, rawTopic: string): Promise<string> {
-  const { payload } = await getFeedData(owner, rawTopic);
+export async function getFeedUpdate(owner: string, topic: string, raw?: boolean): Promise<string> {
+  let feedTopic: string = topic;
+  if (!raw) {
+    feedTopic = Topic.fromString(topic).toString();
+  }
+
+  const { payload } = await getFeedData(owner, feedTopic.toString());
   if (SWARM_ZERO_ADDRESS.equals(payload)) {
-    console.error("feed data is empty for topic: ", rawTopic);
+    console.error("feed data is empty for topic: ", feedTopic.toString());
     return "";
   }
 
   return JSON.stringify(payload.toJSON());
 }
 
-export async function getFeedData(owner: string, rawTopic: string, index?: bigint, options?: BeeRequestOptions): Promise<FeedResultWithIndex> {
+export async function getFeedData(owner: string, topic: string, index?: bigint, options?: BeeRequestOptions): Promise<FeedResultWithIndex> {
   if (!process.env.BEE_API_URL) {
     console.error("BEE_API_URL is not configured.");
     return {
@@ -27,8 +32,7 @@ export async function getFeedData(owner: string, rawTopic: string, index?: bigin
   const bee = new Bee(process.env.BEE_API_URL);
 
   try {
-    const topic = Topic.fromString(rawTopic);
-    const feedReader = bee.makeFeedReader(topic.toUint8Array(), owner, options);
+    const feedReader = bee.makeFeedReader(topic, owner, options);
     const data = await feedReader.download(index ? { index: FeedIndex.fromBigInt(index) } : {});
 
     return {
@@ -83,9 +87,8 @@ export async function updateFeed(signer: PrivateKey, topic: Topic, stamp: string
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
 
   try {
-    await bee.createFeedManifest(stamp, topic.toUint8Array(), signer.publicKey().address().toUint8Array());
     const feedWriter = bee.makeFeedWriter(topic.toUint8Array(), signer);
-    const uploadReferenceResult = await feedWriter.upload(stamp, ref.toUint8Array());
+    const uploadReferenceResult = await feedWriter.upload(stamp, ref, { index: undefined });
     return uploadReferenceResult.reference.toString();
   } catch (error) {
     console.error("error feed update: ", error);
