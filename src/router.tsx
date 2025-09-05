@@ -82,7 +82,10 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />
-        <Route path={ROUTES.HOWDOESITWORK} element={<HowDoesItWork toText={prevLocation ? prevLocation : undefined} />} />
+        <Route
+          path={ROUTES.HOWDOESITWORK}
+          element={<HowDoesItWork to={prevLocation ? prevLocation : undefined} toText={prevLocation ? prevLocation : undefined} />}
+        />
         <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
         <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage toText={prevLocation} />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />

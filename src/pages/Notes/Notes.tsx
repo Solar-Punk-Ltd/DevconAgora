@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";

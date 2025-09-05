@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";

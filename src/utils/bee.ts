@@ -1,7 +1,7 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
 
 import { FeedResultWithIndex } from "../types/common";
-import { ADDRESS_HEX_LENGTH, DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
+import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
 
 import { isNotFoundError } from "./helpers";
 
@@ -57,12 +57,11 @@ export async function getFeedData(owner: string, topic: string, index?: bigint, 
 
 export async function getData(ref: string): Promise<string> {
   const bee = new Bee(process.env.BEE_API_URL || DEFAULT_URL);
-  if (ref.length !== ADDRESS_HEX_LENGTH) {
-    console.debug("session hash invalid");
-    return "";
-  }
 
   try {
+    //validate reference
+    new Reference(ref);
+
     const data = (await bee.downloadData(ref)).toString();
     return data;
   } catch (e) {
