@@ -21,7 +21,7 @@ const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({ id, title, stag
       <div className="recent-sessions-item__stage">
         <Stage name={stage} />
       </div>
-      <ActiveVisitors number={activity} />
+      {activity !== undefined && activity > 0 && <ActiveVisitors number={activity} withIcon={true} />}
     </Link>
   );
 };

@@ -4,7 +4,7 @@ import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 import React from "react";
 
 import { Session } from "../types/session";
-import { DATE_TO_DEVCON_DAY, SPACES_KEY } from "../utils/constants";
+import { DATE_TO_DEVCON_DAY } from "../utils/constants";
 
 export const shortenTitle = (title?: string, maxTitleLength?: number): string => {
   let shortTitle = title || "No title";
@@ -31,9 +31,7 @@ export const getSessionsByDay = (sessions: Map<string, Session[]>, day: string):
   if (day === "all") {
     return Array.from(sessions.values()).flat();
   }
-  if (day === SPACES_KEY) {
-    return sessions.get(SPACES_KEY) || [];
-  }
+
   return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
 };
 

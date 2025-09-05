@@ -5,6 +5,8 @@ import { Session } from "../types/session";
 import { TalkComments } from "../types/talkComment";
 import { createMonogram } from "../utils/helpers";
 
+import { Space } from "@/types/space";
+
 interface GlobalState {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
@@ -16,10 +18,14 @@ interface GlobalState {
   setShowGamification: React.Dispatch<React.SetStateAction<boolean>>;
   sessions: Map<string, Session[]>;
   setSessions: React.Dispatch<React.SetStateAction<Map<string, Session[]>>>;
+  spaces: Space[];
+  setSpaces: React.Dispatch<React.SetStateAction<Space[]>>;
   recentSessions: Session[];
   setRecentSessions: React.Dispatch<React.SetStateAction<Session[]>>;
   loadedTalks: TalkComments[] | undefined;
   setLoadedTalks: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
+  loadedSpaces: TalkComments[] | undefined;
+  setLoadedSpaces: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
   isContentFilterEnabled: boolean;
   setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   isTermsAndConditionsAccepted: boolean;
@@ -58,9 +64,13 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
 
   const [sessions, setSessions] = useState<Map<string, Session[]>>(new Map<string, Session[]>());
 
+  const [spaces, setSpaces] = useState<Space[]>([]);
+
   const [recentSessions, setRecentSessions] = useState<Session[]>([]);
 
   const [loadedTalks, setLoadedTalks] = useState<TalkComments[] | undefined>();
+
+  const [loadedSpaces, setLoadedSpaces] = useState<TalkComments[] | undefined>();
 
   const [notes, setNotes] = useState<NoteItemProps[]>([]);
 
@@ -113,6 +123,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         setRecentSessions,
         loadedTalks,
         setLoadedTalks,
+        loadedSpaces,
+        setLoadedSpaces,
         isContentFilterEnabled,
         setIsContentFilterEnabled: () => {},
         isTermsAndConditionsAccepted,
@@ -123,6 +135,8 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         setTalkActivity,
         spacesActivity,
         setSpacesActivity,
+        spaces,
+        setSpaces,
       }}
     >
       {children}
