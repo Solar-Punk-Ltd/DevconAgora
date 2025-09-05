@@ -112,6 +112,30 @@ body {
   margin: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 20px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bbw-blue);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: darkblue;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bbw-blue) black;
+  scrollbar-gutter: stable;
+}
+
 a,
 a:hover,
 a:visited {
