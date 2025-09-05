@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";

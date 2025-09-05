@@ -1,6 +1,5 @@
 import React from "react";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";

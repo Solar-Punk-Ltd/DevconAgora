@@ -2,7 +2,6 @@ import { ethers } from "ethers";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";

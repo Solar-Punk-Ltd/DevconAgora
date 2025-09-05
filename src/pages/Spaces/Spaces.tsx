@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
 import { useGlobalState } from "../../contexts/global";

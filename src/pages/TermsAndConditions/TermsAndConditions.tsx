@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import HomeBackground from "../../assets/welcome-glass-effect.png";
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";

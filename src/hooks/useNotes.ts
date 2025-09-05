@@ -1,10 +1,10 @@
-import { PrivateKey } from "@ethersphere/bee-js";
+import { PrivateKey, Topic } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
-import { ADDRESS_HEX_LENGTH, SELF_NOTE_TOPIC } from "../utils/constants";
+import { SELF_NOTE_TOPIC } from "../utils/constants";
 import { getLocalPrivateKey } from "../utils/helpers";
 
 export const useNotes = () => {
@@ -66,7 +66,7 @@ export const useNotes = () => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
       const tmpTopics = selfNoteTopicsStr.split(",");
-      setNoteRawTopics(tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH));
+      setNoteRawTopics(tmpTopics.filter((t) => t.length === Topic.LENGTH));
     }
   }, []);
 
