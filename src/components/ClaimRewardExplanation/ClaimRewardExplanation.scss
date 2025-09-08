@@ -49,6 +49,11 @@
   z-index: 2;
 }
 
+.claim-reward-explanation__content a,
+.claim-reward-explanation__content a.text-decoration-underline {
+  color: #ffffff !important;
+}
+
 .claim-reward-explanation__claim-button-wrapper {
   display: flex;
   justify-content: center;
