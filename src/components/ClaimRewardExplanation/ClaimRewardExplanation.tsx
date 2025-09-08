@@ -28,7 +28,10 @@ const ClaimRewardExplanation: React.FC = () => {
         <div className="claim-reward-explanation__content">
           <b>Make use of it and experience how to upload and download from Swarm, the infrastructure behind devcon.buzz.</b>
           <br />
-          1. Download and install Swarm Desktop from <span className="text-decoration-underline">https://desktop.ethswarm.org/</span>
+          1. Download and install Swarm Desktop from{" "}
+          <a href="https://desktop.ethswarm.org/" target="_blank" rel="noopener noreferrer" className="text-decoration-underline">
+            https://desktop.ethswarm.org/
+          </a>
           .
           <br />
           2. Open Swarm Desktop and ensure your node is connected (look for the “Node OK” status at the bottom left).
