@@ -46,3 +46,9 @@
 .terms-and-conditions-onboarding-page__bottom__back-button {
   width: 100%;
 }
+
+@media (max-width: 500px) {
+  .terms-and-conditions-onboarding-page__bottom {
+    padding-bottom: 40px;
+  }
+}
