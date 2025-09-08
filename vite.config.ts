@@ -25,7 +25,6 @@ export default defineConfig(({ mode }) => {
         JSON.stringify(env.BACKEND_API_URL) ?? JSON.stringify("https://devcon-backend-1074429022647.asia-southeast1.run.app/"),
       "process.versions": JSON.stringify({ node: "browser-mock" }), // Mocking process.versions.node
       "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
-      "process.env.BACKEND_API_KEY": JSON.stringify(env.BACKEND_API_KEY) ?? JSON.stringify(""),
       "process.env.ROUTER_BASENAME": JSON.stringify(routerBasename),
       "process.env.POPPINS_FONT_HASH": JSON.stringify(env.POPPINS_FONT_HASH) ?? JSON.stringify(""),
       "process.env.INTER_FONT_HASH": JSON.stringify(env.INTER_FONT_HASH) ?? JSON.stringify(""),
