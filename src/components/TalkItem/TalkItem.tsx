@@ -16,12 +16,12 @@ import {
   STAGES_MAP,
 } from "../../utils/constants";
 import { dateToTime, getActivityHelper } from "../../utils/helpers";
-import { addPointsForUser } from "../../utils/points";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
 import { Space } from "@/types/space";
+import { fetchPoints } from "@/hooks/usePoints";
 
 interface TalkItemProps {
   session: Session | Space;
@@ -98,12 +98,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     updateTalks([newComment], false);
 
     if (username) {
-      try {
-        const updatedPoints = await addPointsForUser(username);
-        setPoints(updatedPoints);
-      } catch (error) {
-        console.error("Failed to add points for comment:", error);
-      }
+      await fetchPoints(username, setPoints);
     }
   };
 
