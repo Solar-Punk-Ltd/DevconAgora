@@ -37,15 +37,14 @@ const FullNotePage: React.FC = () => {
   // calculate the topic from the note text
   // if note has an id, use it as topic
   const calcNoteTopic = (): string => {
-    let noteTopic = "";
     if (currentNote.id && currentNote.id.length > 0) {
-      noteTopic = currentNote.id;
+      return currentNote.id;
     } else {
       if (currentNote.text && currentNote.text.length > 0) {
-        noteTopic = currentNote.text;
+        return Topic.fromString(currentNote.text).toString();
       }
     }
-    return Topic.fromString(noteTopic).toString();
+    return "";
   };
 
   const handleRemove = async () => {
