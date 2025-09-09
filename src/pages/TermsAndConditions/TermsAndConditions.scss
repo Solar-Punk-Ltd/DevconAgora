@@ -35,3 +35,9 @@
   height: calc(100vh - 84px);
   gap: 20px;
 }
+
+@media (max-width: 500px) {
+  .terms-and-conditions-page__bottom {
+    padding-bottom: 55px;
+  }
+}
