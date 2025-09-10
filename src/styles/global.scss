@@ -27,7 +27,7 @@
   --ok-edit-icon-color: #16161b;
   --chat-and-talk-background-color: #f1f2f4;
   --bbw-blue: #367aff;
-  --bbw-disabled-blue-gray: #455A64;
+  --bbw-disabled-blue-gray: #455a64;
   --bbw-disabled-gray: #212121;
 
   /* Typography */
@@ -169,7 +169,7 @@ html {
   line-height: 36px;
   font-weight: 700;
   font-size: 32px;
-  color: #FFF;
+  color: #fff;
 }
 
 .welcome-page__content {
@@ -182,10 +182,10 @@ html {
   overflow: hidden;
   box-sizing: border-box;
   justify-content: center;
-  color: #FFF;
+  color: #fff;
   padding: 10px;
   font-size: 22px;
-  
+
   & div {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -199,11 +199,7 @@ html {
   width: 100%;
   z-index: 0;
   height: calc(var(--vh, 1vh) * 100);
-  background: linear-gradient(
-    rgb(255 255 255 / -46%) 45.52%,
-    rgba(130, 35, 255, 18%) 62.52%,
-    rgb(255 255 255 / 26%) 67.83%
-  );
+  background: linear-gradient(rgb(255 255 255 / -46%) 45.52%, rgba(130, 35, 255, 18%) 62.52%, rgb(255 255 255 / 26%) 67.83%);
 }
 
 .welcome-page__content__image {
@@ -237,7 +233,7 @@ html {
 .welcome-page__bottom__text {
   position: relative;
   top: 4px;
-  color: #FFF;
+  color: #fff;
 }
 
 .welcome-page_bottom-bottom__buttons {
@@ -260,7 +256,7 @@ html {
 .welcome-page__bottom-text {
   margin-top: 24px;
   line-height: 20px;
-  color: #FFF;
+  color: #fff;
 }
 
 .welcome-page__bottom-text__skip {
@@ -313,7 +309,7 @@ html {
     font-weight: 400;
     width: 84%;
     box-sizing: border-box;
-    color: #FFF;
+    color: #fff;
     z-index: 1;
     display: flex;
     align-items: end;

@@ -13,7 +13,7 @@ export const fetchPoints = async (username: string, cb: (points: number) => void
   } catch (error) {
     console.error("error fetching points: ", error);
   }
-}
+};
 
 export const usePoints = () => {
   const { username, setPoints } = useGlobalState();
