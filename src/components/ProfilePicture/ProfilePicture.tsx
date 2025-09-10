@@ -14,6 +14,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ name, version }) => {
       className={clsx("profile-picture", {
         "profile-picture--big": version === "big",
         "profile-picture--small": version === "small",
+        "long-name": name.length >= 3,
       })}
     >
       {name}

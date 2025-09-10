@@ -5,12 +5,14 @@
   height: 136px;
   min-width: 164px;
   border-radius: 8px;
-  background-color: #ffffff;
   margin-bottom: 4px;
   box-shadow: var(--box-shadow-type2);
   margin-right: 15px;
   padding: 8px;
   box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #fff;
 }
 
 .recent-sessions-item__title {
@@ -28,6 +30,7 @@
   text-overflow: ellipsis;
   height: calc(18px * 3);
   line-height: 18px;
+  color: #fff;
 }
 
 .recent-sessions-item__stage {

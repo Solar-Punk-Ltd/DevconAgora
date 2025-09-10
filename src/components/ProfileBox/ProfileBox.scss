@@ -4,15 +4,17 @@
   justify-content: space-between;
   padding: 16px;
   gap: 10%;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
   border-radius: 16px;
   box-sizing: border-box;
   box-shadow: var(--box-shadow-type2);
   z-index: 1;
+  color: #fff;
 }
 
 .devcon-main-box__border {
-  border: 2px solid var(--default-purple);
+  border: 2px solid var(--bbw-blue);
 }
 
 .profile-box__title {
@@ -42,12 +44,14 @@
   font-weight: 700;
   font-size: 48px;
   border-radius: 12px;
-  background-color: var(--grey-primary);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 60px;
+  color: #fff;
 }
 
 .profile-box__points-box__ten {
@@ -66,7 +70,7 @@
 
 .profile-box__content__points-emphasize {
   font-weight: 700;
-  color: var(--default-purple);
+  color: var(--bbw-blue);
 }
 
 .profile-box__left-content {

@@ -26,6 +26,9 @@
   --background-color-secondary: #f1f2f4;
   --ok-edit-icon-color: #16161b;
   --chat-and-talk-background-color: #f1f2f4;
+  --bbw-blue: #367aff;
+  --bbw-disabled-blue-gray: #455a64;
+  --bbw-disabled-gray: #212121;
 
   /* Typography */
   --font-family-base: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -79,6 +82,16 @@ body,
 #root {
   height: 100%;
   overflow: hidden;
+  background: #06080b url("/bbw-background.png") repeat-x 50%;
+  background-size: cover;
+  padding: 0;
+  position: relative;
+}
+
+.grid {
+  backdrop-filter: opacity(0.7);
+  background: #0000 url("/bbw-grid.png") repeat top;
+  background-size: cover;
 }
 
 @media (min-width: 500px) {
@@ -97,6 +110,29 @@ body,
 
 body {
   margin: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 20px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bbw-blue);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: darkblue;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--bbw-blue) black;
 }
 
 a,
@@ -119,7 +155,6 @@ html {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  background-color: #ffffff;
   text-align: center;
   box-sizing: border-box;
   padding: 40px 0px;
@@ -134,6 +169,7 @@ html {
   line-height: 36px;
   font-weight: 700;
   font-size: 32px;
+  color: #fff;
 }
 
 .welcome-page__content {
@@ -145,6 +181,17 @@ html {
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
+  justify-content: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 22px;
+
+  & div {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 1em;
+    border-radius: 8px;
+  }
 }
 
 .welcome-page__content__color-effect {
@@ -152,11 +199,7 @@ html {
   width: 100%;
   z-index: 0;
   height: calc(var(--vh, 1vh) * 100);
-  background: linear-gradient(
-    rgb(255 255 255 / -46%) 45.52%,
-    rgba(130, 35, 255, 18%) 62.52%,
-    rgb(255 255 255 / 26%) 67.83%
-  );
+  background: linear-gradient(rgb(255 255 255 / -46%) 45.52%, rgba(130, 35, 255, 18%) 62.52%, rgb(255 255 255 / 26%) 67.83%);
 }
 
 .welcome-page__content__image {
@@ -171,8 +214,7 @@ html {
 }
 
 .welcome-page__bottom {
-  background-color: #ffffff;
-  box-shadow: 0px -11px 30px 26px #ffffff;
+  // box-shadow: 0px -11px 30px 26px #ffffff;
   width: 100%;
   position: absolute;
   display: flex;
@@ -191,6 +233,7 @@ html {
 .welcome-page__bottom__text {
   position: relative;
   top: 4px;
+  color: #fff;
 }
 
 .welcome-page_bottom-bottom__buttons {
@@ -213,12 +256,13 @@ html {
 .welcome-page__bottom-text {
   margin-top: 24px;
   line-height: 20px;
+  color: #fff;
 }
 
 .welcome-page__bottom-text__skip {
   text-decoration: underline;
   font-weight: bold;
-  color: #8c72ae;
+  color: var(--bbw-blue);
 }
 
 .welcome-page__main-image {
@@ -235,7 +279,7 @@ html {
 .welcome-page__bottom-bottom {
   width: 100%;
   z-index: 2;
-  min-height: 32vh;
+  min-height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -265,7 +309,7 @@ html {
     font-weight: 400;
     width: 84%;
     box-sizing: border-box;
-    color: #000000;
+    color: #fff;
     z-index: 1;
     display: flex;
     align-items: end;
@@ -280,7 +324,6 @@ html {
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    background-color: #ffffff;
     text-align: center;
     box-sizing: border-box;
     padding: 40px 0px;
@@ -290,60 +333,60 @@ html {
 
 @media (min-height: 400px) {
   .welcome-page__bottom-bottom {
-    min-height: 20vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 450px) {
   .welcome-page__bottom-bottom {
-    min-height: 21vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 500px) {
   .welcome-page__bottom-bottom {
-    min-height: 22vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 550px) {
   .welcome-page__bottom-bottom {
-    min-height: 23vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 600px) {
   .welcome-page__bottom-bottom {
-    min-height: 24vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 650px) {
   .welcome-page__bottom-bottom {
-    min-height: 25vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 710px) {
   .welcome-page__bottom-bottom {
-    min-height: 26vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 810px) {
   .welcome-page__bottom-bottom {
-    min-height: 27vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 910px) {
   .welcome-page__bottom-bottom {
-    min-height: 28vh;
+    min-height: auto;
   }
 }
 
 @media (min-height: 1055px) {
   .welcome-page__bottom-bottom {
-    min-height: 29vh;
+    min-height: auto;
   }
 }

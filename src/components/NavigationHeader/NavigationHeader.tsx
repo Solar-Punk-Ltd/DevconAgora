@@ -15,7 +15,15 @@ interface NavigationHeaderProps {
 
 const NavigationHeader: React.FC<NavigationHeaderProps> = ({ backgroundColor, to, toText, saveQuestionBeforeLeave, handlerInCaseOfSave }) => {
   const navigate = useNavigate();
-  const formattedTo = to ? to.charAt(1).toUpperCase() + to.slice(2) : toText ? toText.charAt(1).toUpperCase() + toText.slice(2) : "";
+
+  const decodedTo = to ? decodeURIComponent(to) : undefined;
+  const decodedToText = toText ? decodeURIComponent(toText) : undefined;
+
+  const formattedTo = decodedTo
+    ? decodedTo.charAt(1).toUpperCase() + decodedTo.slice(2)
+    : decodedToText
+      ? decodedToText.charAt(1).toUpperCase() + decodedToText.slice(2)
+      : "";
 
   const handleNavigation = () => {
     if (saveQuestionBeforeLeave) {
@@ -34,7 +42,7 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({ backgroundColor, to
     <div className="navigation-header__wrapper" style={{ backgroundColor: backgroundColor }}>
       <div className="navigation-header" onClick={handleNavigation}>
         <div className="navigation-header__link">
-          <LeftNavigationIcon />
+          <LeftNavigationIcon color="#FFF" />
         </div>
         <div className="navigation-header__text">{formattedTo}</div>
       </div>

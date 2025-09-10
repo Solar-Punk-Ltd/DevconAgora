@@ -1,6 +1,5 @@
 import React from "react";
 
-import HomeBackground from "../../assets/welcome-glass-effect.png";
 import DevConMainBox from "../../components/DevConMainBox/DevConMainBox";
 import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
@@ -20,16 +19,14 @@ const Home: React.FC<HomePageProps> = ({ withGamification }) => {
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
   return (
     <div className="home-page">
-      <div className="home-page__background">
-        <img src={HomeBackground} alt="" width="100%" height="100%" />
-      </div>
+      <div className="home-page__background grid">{/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}</div>
 
       <HomeHeader points={points} withGamification={withGamification} />
 
       <div className="home-page__content">
         <DevConMainBox
-          title="Devcon buzz space"
-          content="Share your thoughts, chat with anyone without moderation, and collect your reward."
+          title="BBW2025 Space"
+          content="Share your thoughts, engage in open conversations & earn reward for your participation!"
           showActiveVisitors={lobbyActivity > 0}
           activeVisitors={lobbyActivity}
           bordered={true}

@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import HomeBackground from "../../assets/registration-glass-effect.png";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../utils/constants";
 
@@ -15,7 +14,7 @@ declare global {
     jQuery: unknown;
   }
 }
-
+// TODO: remove comepletely later if not needed
 const StayUpdated: React.FC = () => {
   const [emailText, setEmailText] = React.useState<string>("");
   const [emailError, setEmailError] = React.useState<boolean>(false);
@@ -61,9 +60,7 @@ const StayUpdated: React.FC = () => {
 
   return (
     <div className="stay-updated">
-      <div className="stay-updated__background">
-        <img src={HomeBackground} alt="" className="stay-updated__background__img" />
-      </div>
+      <div className="stay-updated__background grid"></div>
 
       <div className="stay-updated__header">Stay updated!</div>
       <div className="stay-updated__main-content">

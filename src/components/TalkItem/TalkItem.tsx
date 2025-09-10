@@ -7,7 +7,7 @@ import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
 import {
-  CATEGORIES,
+  DEFAULT_POLL_INTERVAL,
   DEFAULT_URL,
   DUMMY_STAMP,
   MAX_CHARACTER_COUNT,
@@ -20,22 +20,46 @@ import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
+import { fetchPoints } from "@/hooks/usePoints";
+import { Space } from "@/types/space";
+
 interface TalkItemProps {
-  session: Session;
+  session: Session | Space;
   isSpacesTalk: boolean;
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username, loadedTalks, setLoadedTalks, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity, isContentFilterEnabled } =
-    useGlobalState();
+  const {
+    username,
+    loadedTalks,
+    setLoadedTalks,
+    loadedSpaces,
+    setLoadedSpaces,
+    talkActivity,
+    setTalkActivity,
+    spacesActivity,
+    setSpacesActivity,
+    isContentFilterEnabled,
+    setPoints,
+  } = useGlobalState();
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
   const rawTalkTopic = getTopic(session.id);
   const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
 
-  // update the loaded talk comments with the newly read/written comment
-  // if the talk is not found, then replace the oldest talk with the new one
+  const currentLoadedTalks = isSpacesTalk ? loadedSpaces : loadedTalks;
+  const setCurrentLoadedTalks = isSpacesTalk ? setLoadedSpaces : setLoadedTalks;
+  const currentActivity = isSpacesTalk ? spacesActivity : talkActivity;
+  const setCurrentActivity = isSpacesTalk ? setSpacesActivity : setTalkActivity;
+
+  const updateActivity = (messages: MessageData[]) => {
+    const activity = Number(getActivityHelper(messages, true));
+    const tmpActivity = new Map(currentActivity);
+    tmpActivity.set(session.id, activity);
+    setCurrentActivity(tmpActivity);
+  };
+
   const updateTalks = (newComments: MessageData[], isHistory: boolean) => {
     let updatedComments: MessageData[] = [];
     if (isHistory) {
@@ -43,11 +67,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     } else {
       updatedComments = [...(comments || []), ...newComments];
     }
-    const newLoadedTalks = [...(loadedTalks || [])];
-    if (loadedTalks && loadedTalks.length > 0) {
-      const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
 
-      // update the already loaded talk
+    const newLoadedTalks = [...(currentLoadedTalks || [])];
+    if (newLoadedTalks && newLoadedTalks.length > 0) {
+      const foundIx = newLoadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
+
       if (foundIx > -1) {
         newLoadedTalks[foundIx].messages = updatedComments;
       } else {
@@ -55,69 +79,47 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           talkId: rawTalkTopic,
           messages: updatedComments,
         };
-        // push the new talk with comments if buffer is not full
+
         if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
           newLoadedTalks.push(newTalk);
         } else {
-          // otherwise replace the first talk with the new one
           newLoadedTalks.splice(0, 1, newTalk);
         }
       }
     }
 
     setComments(updatedComments);
-    setLoadedTalks(newLoadedTalks);
+    setCurrentLoadedTalks(newLoadedTalks);
+
+    updateActivity(updatedComments);
   };
 
-  const handleOnComment = (newComment: MessageData) => {
+  const handleOnComment = async (newComment: MessageData) => {
     updateTalks([newComment], false);
+
+    if (username) {
+      await fetchPoints(username, setPoints);
+    }
   };
 
   const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {
     updateTalks(newComments, isHistory);
   };
 
-  // find whether the talk is already loaded the first time the component is rendered
   useEffect(() => {
-    if (loadedTalks) {
-      const talk = loadedTalks.find((talk) => talk.talkId.includes(session.id));
-      // get the already loaded talk
+    if (currentLoadedTalks) {
+      const talk = currentLoadedTalks.find((talk) => talk.talkId.includes(session.id));
       if (talk) {
         setComments(talk.messages ?? []);
       }
     }
     setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    if (loadedTalks) {
-      // update active visitors of the talk
-      let tmpActivity: Map<string, number>;
-      const isSpacesTalk = CATEGORIES.find((c) => c.includes(session.id));
-      if (!isSpacesTalk) {
-        tmpActivity = new Map(talkActivity);
-      } else {
-        tmpActivity = new Map(spacesActivity);
-      }
-      const foundIx = loadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
-      if (foundIx > -1) {
-        const activity = Number(getActivityHelper(loadedTalks[foundIx].messages, true));
-        tmpActivity.set(session.id, activity);
-      }
-
-      if (!isSpacesTalk) {
-        setTalkActivity(tmpActivity);
-      } else {
-        setSpacesActivity(tmpActivity);
-      }
-    }
-  }, [comments]);
+  }, [currentLoadedTalks, session.id]);
 
   return (
     <>
       {session && (
         <AgendaItem
-          key={session.id}
           id={session.id}
           title={session.title}
           startDate={dateToTime(session.slot_start)}
@@ -146,6 +148,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           filterEnabled={isContentFilterEnabled}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
+          pollInterval={DEFAULT_POLL_INTERVAL}
         />
       )}
     </>

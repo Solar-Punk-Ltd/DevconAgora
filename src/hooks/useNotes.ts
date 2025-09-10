@@ -1,10 +1,10 @@
-import { Wallet } from "ethers";
+import { PrivateKey, Topic } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
-import { ADDRESS_HEX_LENGTH, SELF_NOTE_TOPIC } from "../utils/constants";
+import { SELF_NOTE_TOPIC } from "../utils/constants";
 import { getLocalPrivateKey } from "../utils/helpers";
 
 export const useNotes = () => {
@@ -18,11 +18,11 @@ export const useNotes = () => {
       return;
     }
 
-    const wallet = new Wallet(privKey); // TODO: remove wallet and use PrivateKey everywhere
+    const wallet = new PrivateKey(privKey);
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.address, rawTopic));
+      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic, true));
     }
 
     const notesArray: string[] = [];
@@ -66,9 +66,10 @@ export const useNotes = () => {
     const selfNoteTopicsStr = localStorage.getItem(SELF_NOTE_TOPIC);
     if (selfNoteTopicsStr) {
       const tmpTopics = selfNoteTopicsStr.split(",");
-      setNoteRawTopics(tmpTopics.filter((t) => t.length === ADDRESS_HEX_LENGTH));
+      const filteredTopics = tmpTopics.filter((t) => t.length === Topic.LENGTH * 2);
+      setNoteRawTopics(filteredTopics);
     }
-  }, []);
+  }, [setNoteRawTopics]);
 
   useEffect(() => {
     fetchNotes();

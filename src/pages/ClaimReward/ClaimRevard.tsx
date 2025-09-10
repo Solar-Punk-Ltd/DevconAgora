@@ -2,7 +2,6 @@ import { ethers } from "ethers";
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import HomeBackground from "../../assets/registration-glass-effect.png";
 import CopyIcon from "../../components/icons/CopyIcon/CopyIcon";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
@@ -17,7 +16,7 @@ const ClaimReward: React.FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   let nonceRequested = false;
-
+  // TODO: refactor logic, async await
   useEffect(() => {
     const code = localStorage.getItem(GIFTCODE_KEY);
     if (code !== null && inputRef.current) {
@@ -32,7 +31,7 @@ const ClaimReward: React.FC = () => {
           resp.text().then(async (data) => {
             console.debug("nonce fetched", data);
             if (isUserRegistered()) {
-              const wallet = new ethers.Wallet(getLocalPrivateKey()); // TODO: use PrivateKey
+              const wallet = new ethers.Wallet(getLocalPrivateKey());
               const flatSig = await wallet.signMessage(data);
               try {
                 fetch(process.env.BACKEND_API_URL + "/redeem", {
@@ -75,10 +74,8 @@ const ClaimReward: React.FC = () => {
     }
   };
   return (
-    <div className="claim-reward">
-      <div className="claim-reward__background">
-        <img src={HomeBackground} alt="" className="claim-reward__background__img" />
-      </div>
+    <div className="claim-reward grid">
+      <div className="claim-reward__background">{/* <img src={HomeBackground} alt="" className="claim-reward__background__img" /> */}</div>
       <div className="claim-reward__main-content">
         <div className="claim-reward__main-content__header">
           Claim <span className="claim-reward__text-emphasize">Your&nbsp;Reward</span>
@@ -111,9 +108,6 @@ const ClaimReward: React.FC = () => {
               }}
             >
               Back
-            </WelcomeButton>
-            <WelcomeButton type="orange" onClick={() => (window.location.href = `${window.location.origin}/subscription.html`)}>
-              Keep in touch
             </WelcomeButton>
           </div>
         </div>

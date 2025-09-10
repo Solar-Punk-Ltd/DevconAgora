@@ -47,11 +47,10 @@
   border-radius: 16px;
   color: #ffffff;
   z-index: 2;
-  background-color: #000000e6;
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  padding: 8px;
+  padding: 12px;
   line-height: 30px;
 }
 
@@ -72,6 +71,7 @@
 .claim-reward__background {
   position: absolute;
   left: 0px;
+  background-image: linear-gradient(90deg, #437dff, #b2d6ff, #87cdff, #437dff);
 }
 
 .claim-reward__background__img {
