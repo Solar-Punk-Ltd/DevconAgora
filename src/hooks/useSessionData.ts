@@ -4,7 +4,8 @@ import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
 import { FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS } from "../utils/constants";
-import { findSlotStartIx, getSessionsByDay } from "../utils/helpers";
+import { findSlotStartIx, getSessionsByDay, mapSessionFromPretalxSlot } from "../utils/helpers";
+import { PretalxTalkSlot } from "@/types/pretalx";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
@@ -36,8 +37,14 @@ export const useSessionData = (isBeeRunning: boolean) => {
       // TODO: unnecessary payload.tostring() then back to json
       const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
       let sessionData: Map<string, Session[]> = new Map();
+      const pretalxSessions: [string, PretalxTalkSlot[]][] = Object.entries(JSON.parse(sessionDataStr));
+      const sessions: [string, Session[]][] = [];
+      pretalxSessions.forEach((pretalxSession) => {
+        sessions.push([pretalxSession[0], pretalxSession[1].map((item: PretalxTalkSlot) => mapSessionFromPretalxSlot(item) as Session)]);
+      });
+
       if (sessionDataStr.length > 0) {
-        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
+        sessionData = new Map<string, Session[]>(sessions);
       }
 
       if (sessionData.size !== 0) {
