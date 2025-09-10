@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import createYourProfileEffect from "../../assets/create-your-profile-effect.png";
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import EditIcon from "../../components/icons/EditIcon/EditIcon";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
@@ -113,14 +112,11 @@ const ProfileCreation: React.FC = () => {
 
   return (
     <>
-      <div className="welcome-page">
+      <div className="welcome-page grid">
         <div className="profile-creation__top">
           <div className="welcome-page__header">
             Create <br />
-            <span style={{ color: "var(--default-purple)" }}>Your profile</span>
-          </div>
-          <div className="profile-creation__background-effect">
-            <img src={createYourProfileEffect} alt="" className="profile-creation__backgorund-effect__img" />
+            <span style={{ color: "var(--bbw-blue)" }}>Your profile</span>
           </div>
           <div className="profile-creation__main-content">
             <ProfilePicture name={monogram ? monogram : createMonogram(username)} />
@@ -184,7 +180,7 @@ const ProfileCreation: React.FC = () => {
                 saveUsername();
               }}
             >
-              Start Building Your Community
+              Enter private chat
             </WelcomeButton>
           </Link>
         </div>

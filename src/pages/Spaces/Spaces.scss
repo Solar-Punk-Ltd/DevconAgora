@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   height: calc(100% - 56px);
+  justify-content: center;
 }
 .spaces__content {
-  overflow: scroll;
+  overflow: auto;
   padding: 16px;
   position: relative;
   z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .spaces__background {

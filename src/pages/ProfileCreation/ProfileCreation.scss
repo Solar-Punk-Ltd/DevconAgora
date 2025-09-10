@@ -21,7 +21,7 @@ profile-creation .profile-creation {
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-tertiary);
+  color: #fff;
   text-align: center;
 }
 
@@ -49,22 +49,18 @@ profile-creation .profile-creation {
   color: #000000;
   text-align: center;
   border: none;
-  border-bottom: 1px solid var(--border-color);
   width: 267px;
   height: 40px;
   padding: 8px 10px;
   box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #fff;
 }
 
 .profile-creation__user-input__input::selection {
   color: #ffffff;
-  background: var(--default-purple);
-}
-
-.profile-creation__user-input__input__disabled {
-  background-color: var(--background-color-primary);
-  color: var(--grey-secondary);
-  border-bottom: 1px solid var(--border-color);
+  background: var(--bbw-blue);
 }
 
 .profile-creation__user-input__input::placeholder {

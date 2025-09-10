@@ -1,5 +1,7 @@
 .terms-and-conditions {
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #fff;
   border-radius: 16px;
   padding: 16px;
   height: 100%;
@@ -15,6 +17,7 @@
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 6px;
+  color: #fff;
 }
 
 .terms-and-conditions__text {
@@ -33,4 +36,12 @@
   font-family: "Public Sans", sans-serif;
   font-weight: 700;
   font-size: 14px;
+}
+
+#data-storage-link {
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
 }

@@ -31,7 +31,7 @@
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: var(--text-tertiary);
+  color: #fff;
   text-align: center;
 }
 
@@ -68,12 +68,16 @@
   height: 40px;
   padding: 8px 10px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
+  color: #fff;
+  border-radius: 16px;
 }
 
 .profile__username::selection {
   color: #ffffff;
-  background: var(--default-purple);
+  // background: var(--bbw-blue);
+  background-image: linear-gradient(90deg, #437dff, #b2d6ff, #87cdff, #437dff);
 }
 
 .profile__content__background {

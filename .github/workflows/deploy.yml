@@ -50,8 +50,9 @@ jobs:
           BEE_API_URL: ${{ secrets.BEE_API_URL }}
           FEED_OWNER_ADDRESS: ${{ secrets.FEED_OWNER_ADDRESS }}
           HEALTH_CHECK_DATA_REF: ${{ secrets.HEALTH_CHECK_DATA_REF }}
-          PR_NUMBER: ${{ github.event.number }}
-          PR_TIMESTAMP: ${{ steps.date.outputs.date }}
+          ENV: ${{ secrets.ENV }}
+          BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
+          BASE_URL: ${{ secrets.BASE_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

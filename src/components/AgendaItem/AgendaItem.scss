@@ -7,12 +7,14 @@
   gap: 6px;
   padding: 8px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--bbw-blue);
   z-index: 1;
+  color: #fff;
 }
 
 .agenda-item__comment-version {
-  background-color: var(--background-color-secondary);
+  background: linear-gradient(90deg, #06070e, #12224e, #06070e);
   box-shadow: none;
   border-radius: 0px;
   width: 100%;

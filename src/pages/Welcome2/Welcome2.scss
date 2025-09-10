@@ -1,64 +1,6 @@
 .welcome2-page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: calc(var(--vh, 1vh) * 100);
-  background-color: #ffffff;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 40px 16px;
-}
-
-@media (min-width: 600px) {
-  .welcome2-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: calc(var(--vh, 1vh) * 100);
-    background-color: #ffffff;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 40px 0px;
-  }
-}
-
-.welcome2-page__header {
-  font-family: var(--font-family-secondary);
-  padding: 0px 20px;
-  line-height: 36px;
-  font-weight: 700;
-  font-size: 32px;
-}
-
-.welcome2-page__content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.welcome2-page__content__image {
-  height: 358px;
-  overflow: hidden;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-.welcome2-page__content__text {
-  font-weight: 400;
-  font-size: 16px;
-  font-family: var(--font-family-base);
-  z-index: 1;
-}
-
-.welcome2-page__bottom-text {
-  font-family: var(--font-family-base);
-  font-size: 16px;
-  font-weight: 400;
-  color: #000000;
+  background-image: url("/onboarding_2.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

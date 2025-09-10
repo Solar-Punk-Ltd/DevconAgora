@@ -7,6 +7,7 @@
   padding: 0px 100px;
   text-align: center;
   line-height: 36px;
+  color: #FFF;
 }
 
 .terms-and-conditions-onboarding-page__background {
@@ -44,4 +45,10 @@
 
 .terms-and-conditions-onboarding-page__bottom__back-button {
   width: 100%;
+}
+
+@media (max-width: 500px) {
+  .terms-and-conditions-onboarding-page__bottom {
+    padding-bottom: 40px;
+  }
 }

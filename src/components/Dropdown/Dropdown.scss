@@ -11,7 +11,7 @@
   border-radius: 8px;
   color: #ffffff;
   padding: 8px;
-  background-color: var(--darker-purple);
+  background-color: var(--bbw-blue);
   box-shadow: var(--box-shadow-type1);
   position: relative;
   z-index: 3;
@@ -29,13 +29,14 @@
 .dropdown__open__items-container {
   width: 100%;
   position: absolute;
-  background-color: #ffffff;
+  background: linear-gradient(90deg, #06070e, #12224e, #06070e);
   border-radius: 16px;
   padding: 0px 16px;
   box-sizing: border-box;
   top: 42px;
   left: 0px;
   z-index: 2;
+  color: #fff;
 }
 
 .dropdown__open__item {
@@ -48,7 +49,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 2px;
-  color: #000000;
+  color: #fff;
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
 }
@@ -58,7 +59,7 @@
 }
 
 .dropdown__open__item__active {
-  color: var(--default-purple);
+  color: var(--bbw-blue);
 }
 
 .dropdown__open__background {
