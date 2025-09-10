@@ -21,7 +21,7 @@ profile-creation .profile-creation {
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 14px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
 }
 
@@ -55,14 +55,13 @@ profile-creation .profile-creation {
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid var(--bbw-blue);
-  color: #FFF;
+  color: #fff;
 }
 
 .profile-creation__user-input__input::selection {
   color: #ffffff;
   background: var(--bbw-blue);
 }
-
 
 .profile-creation__user-input__input::placeholder {
   font-family: var(--font-family-base);

@@ -10,7 +10,6 @@
   overflow: hidden;
   height: 100%;
   position: relative;
-  
   & .agenda-item__comment-version {
     border: none;
   }
@@ -21,17 +20,17 @@
 }
 
 .swarm-comment-system-comment-list__no-comment {
-  color: #FFF;
+  color: #fff;
 }
 
 .swarm-comment-input {
-  border-color: #FFF;
+  border-color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .swarm-comment-input__input {
   background-color: transparent;
-  color: #FFF;
+  color: #fff;
 }
 
 .swarm-comment__message-side__name.own {
@@ -40,8 +39,8 @@
 
 .swarm-comment__message-side__text {
   background-color: rgba(0, 0, 0, 0.5);
-  border-color: #FFF;
-  
+  border-color: #fff;
+
   &.own {
     border: 2px solid var(--bbw-blue);
     background-color: rgba(0, 0, 0, 0.5);
@@ -50,10 +49,10 @@
 
 .swarm-comment__avatar-side .avatar-monogram {
   background-color: var(--bbw-blue) !important;
-  color: #FFF !important;
+  color: #fff !important;
 }
 
 .own .avatar-monogram {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    border: 2px solid var(--bbw-blue);
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  border: 2px solid var(--bbw-blue);
 }

@@ -20,8 +20,8 @@ import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
-import { Space } from "@/types/space";
 import { fetchPoints } from "@/hooks/usePoints";
+import { Space } from "@/types/space";
 
 interface TalkItemProps {
   session: Session | Space;
