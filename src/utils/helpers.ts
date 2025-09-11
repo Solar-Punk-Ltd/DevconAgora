@@ -5,6 +5,7 @@ import React from "react";
 
 import { Session } from "../types/session";
 import { DATE_TO_DEVCON_DAY } from "../utils/constants";
+import { PretalxTalkSlot } from "@/types/pretalx";
 
 export const shortenTitle = (title?: string, maxTitleLength?: number): string => {
   let shortTitle = title || "No title";
@@ -156,3 +157,12 @@ export const getActivityHelper = (messages: MessageData[] | undefined, last: boo
 
   return parsedIndex !== undefined ? parsedIndex + 1n : 0n;
 };
+
+export const mapSessionFromPretalxSlot = (item: PretalxTalkSlot): Partial<Session> => ({
+  id: item.id.toString(),
+  slot_start: item.start,
+  slot_end: item.end,
+  title: item.description["en"],
+  slot_roomId: item.room.name["en"],
+  track: item.submission.track.name["en"],
+});
