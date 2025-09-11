@@ -5,7 +5,14 @@
     <title>BBW2025.BUZZ</title>
     <script type="text/javascript">
       var l = window.location;
-      l.replace(l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") + "/#" + l.pathname.slice(1) + l.search);
+      var isSwarm =
+        l.hostname.includes("gateway") || l.hostname.includes("eth.link") || l.hostname.includes("eth.limo") || l.pathname.startsWith("/bzz");
+
+      if (isSwarm) {
+        l.replace(l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") + "/#" + l.pathname.slice(1) + l.search);
+      } else {
+        l.replace(l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") + "/DevconAgora/");
+      }
     </script>
   </head>
   <body></body>
