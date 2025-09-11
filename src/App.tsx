@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter, BrowserRouter } from "react-router-dom";
 
 import { GlobalStateProvider } from "./contexts/global";
 import { initializeFonts } from "./styles/fonts";
@@ -10,12 +10,14 @@ import "./styles/global.scss";
 
 initializeFonts();
 
+const Router = process.env.SWARM === "true" ? HashRouter : BrowserRouter;
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <GlobalStateProvider>
-      <BrowserRouter basename={process.env.ROUTER_BASENAME}>
+      <Router basename={process.env.SWARM === "true" ? undefined : process.env.ROUTER_BASENAME}>
         <MainRouter />
-      </BrowserRouter>
+      </Router>
     </GlobalStateProvider>
   </React.StrictMode>
 );
