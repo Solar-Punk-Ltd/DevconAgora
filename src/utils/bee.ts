@@ -1,7 +1,7 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
 
 import { FeedResultWithIndex } from "../types/bee";
-import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
+import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
 
 
 export async function getFeedUpdate(owner: string, topic: string, raw?: boolean): Promise<string> {

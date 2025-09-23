@@ -1,6 +1,6 @@
 
 import { Session } from "@/types/session";
-import { DATE_TO_DEVCON_DAY } from "./constants";
+import { DATE_TO_DEVCON_DAY } from "../constants/categories";
 import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 import { MessageData } from "@solarpunkltd/comment-system";
 

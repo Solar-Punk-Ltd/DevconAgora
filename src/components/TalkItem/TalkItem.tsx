@@ -8,13 +8,15 @@ import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
 import {
   DEFAULT_POLL_INTERVAL,
-  DEFAULT_URL,
-  DUMMY_STAMP,
   MAX_CHARACTER_COUNT,
   MAX_COMMENTS_LOADED,
   MAX_PRELOADED_TALKS,
-  STAGES_MAP,
-} from "../../utils/constants";
+} from "../../constants/app";
+import { STAGES_MAP } from "../../constants/categories";
+import {
+  DEFAULT_URL,
+  DUMMY_STAMP,
+} from "../../constants/network";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";

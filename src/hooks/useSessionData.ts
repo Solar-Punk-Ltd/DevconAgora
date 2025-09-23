@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
-import { FIVE_MINUTES, MAX_SESSIONS_SHOWN, RAW_FEED_TOPIC_SESSIONS } from "../utils/constants";
+import { FIVE_MINUTES, MAX_SESSIONS_SHOWN } from "../constants/app";
+import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
 import { getSessionsByDay } from "@/utils/session";
 
 export const useSessionData = (isBeeRunning: boolean) => {

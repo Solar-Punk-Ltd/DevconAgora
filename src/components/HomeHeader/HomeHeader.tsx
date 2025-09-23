@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import swarmIcon from "../../assets/swarm-icon.png";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
 import "./HomeHeader.scss";

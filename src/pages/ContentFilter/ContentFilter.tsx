@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import ContentFilterBox from "../../components/ContentFilterBox/ContentFilterBox";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./ContentFilter.scss";
 

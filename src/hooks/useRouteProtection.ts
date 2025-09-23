@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Location, NavigateFunction } from "react-router-dom";
 
-import { ROUTES } from "../utils/constants";
+import { ROUTES } from "../constants/routes";
 import { useUserContext } from "@/contexts/user";
 
 export const useRouteProtection = (location: Location, navigate: NavigateFunction) => {

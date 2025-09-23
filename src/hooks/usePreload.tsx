@@ -7,7 +7,8 @@ import { Session } from "@/types/session";
 import { Space } from "@/types/space";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { DEFAULT_URL, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/utils/constants";
+import { MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/constants/app";
+import { DEFAULT_URL } from "@/constants/network";
 import { determineActivityNumByMessage } from "@/utils/session";
 
 export const usePreload = () => {

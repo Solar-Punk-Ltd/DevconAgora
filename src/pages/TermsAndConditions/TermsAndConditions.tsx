@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./TermsAndConditions.scss";
 

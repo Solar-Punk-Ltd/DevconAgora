@@ -5,7 +5,7 @@ import bbwIntro from "../../assets/bbw-intro.png";
 import bySolarPunk from "../../assets/by-solar-punk.png";
 import { TEXTS } from "../../constants/text";
 import { useUserContext } from "../../contexts/user";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./Intro.scss";
 

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndicator";
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import Stage from "../../components/Stage/Stage";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./AgendaItem.scss";
 import { booleanToString, stringToBoolean } from "@/utils/common";

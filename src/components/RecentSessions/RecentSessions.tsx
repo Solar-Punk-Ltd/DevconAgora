@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useGlobalState } from "../../contexts/global";
-import { ROUTES, STAGES_MAP } from "../../utils/constants";
+import { STAGES_MAP } from "../../constants/categories";
+import { ROUTES } from "../../constants/routes";
 
 import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
 

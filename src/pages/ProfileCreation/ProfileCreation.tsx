@@ -5,7 +5,7 @@ import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
 import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 import { useUserContext } from "@/contexts/user";
 import { handleKeyDown } from "@/utils/common";
 import { createMonogram } from "@/utils/user";

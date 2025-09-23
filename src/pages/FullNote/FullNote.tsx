@@ -8,7 +8,9 @@ import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
-import { DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
+import { MAX_CHARACTER_COUNT } from "../../constants/app";
+import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../constants/network";
+import { ROUTES } from "../../constants/routes";
 
 import "./FullNote.scss";
 import { dateToTime } from "@/utils/date";

@@ -10,7 +10,7 @@ import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
-import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../utils/constants";
+import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../constants/categories";
 import Categories from "../Categories/Categories";
 
 import "./Agenda.scss";

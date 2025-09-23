@@ -25,7 +25,8 @@ import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import { Space } from "./types/space";
-import { CATEGORIES, ROUTES } from "./utils/constants";
+import { CATEGORIES } from "./constants/categories";
+import { ROUTES } from "./constants/routes";
 
 const MainRouter = (): ReactElement => {
   const {  sessions, setSpaces, recentSessions } = useGlobalState();

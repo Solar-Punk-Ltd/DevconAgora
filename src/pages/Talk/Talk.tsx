@@ -7,7 +7,8 @@ import TalkItem from "../../components/TalkItem/TalkItem";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { Space } from "../../types/space";
-import { DATE_TO_DEVCON_DAY, ROUTES } from "../../utils/constants";
+import { DATE_TO_DEVCON_DAY } from "../../constants/categories";
+import { ROUTES } from "../../constants/routes";
 
 import "./Talk.scss";
 import { getSessionsByDay } from "@/utils/session";

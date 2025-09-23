@@ -6,7 +6,7 @@ import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NoteItem from "../../components/NoteItem/NoteItem";
 import { useGlobalState } from "../../contexts/global";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./Notes.scss";
 

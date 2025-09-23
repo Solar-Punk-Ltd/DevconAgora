@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useGlobalState } from "../../contexts/global";
-import { CONTENT_FILTER_TEXT } from "../../utils/constants";
+import { CONTENT_FILTER_TEXT } from "../../constants/legal";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
 
 import "./ContentFilterBox.scss";

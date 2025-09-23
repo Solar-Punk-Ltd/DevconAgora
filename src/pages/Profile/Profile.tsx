@@ -3,7 +3,7 @@ import React from "react";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import Settings from "../../components/Settings/Settings";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import { useUserContext } from "@/contexts/user";
 import { createMonogram } from "@/utils/user";

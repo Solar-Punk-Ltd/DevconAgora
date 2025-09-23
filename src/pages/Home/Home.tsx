@@ -6,7 +6,7 @@ import NavigationFooter from "../../components/NavigationFooter/NavigationFooter
 import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import Spaces from "../../components/Spaces/Spaces";
 import { useGlobalState } from "../../contexts/global";
-import { CATEGORIES, LOBBY_TITLE } from "../../utils/constants";
+import { CATEGORIES, LOBBY_TITLE } from "../../constants/categories";
 
 import "./Home.scss";
 
