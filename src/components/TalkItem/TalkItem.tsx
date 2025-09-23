@@ -17,6 +17,7 @@ import { useUserContext } from "@/contexts/user";
 import { Space } from "@/types/space";
 import { dateToTime } from "@/utils/date";
 import { determineActivityNumByMessage } from "@/utils/session";
+import { createUniqueUsername } from "../../utils/user";
 
 interface TalkItemProps {
   session: Session | Space;
@@ -35,7 +36,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     setSpacesActivity,
     isContentFilterEnabled,
   } = useGlobalState();
-  const { username } = useUserContext();
+  const { username, keys } = useUserContext();
 
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
@@ -83,10 +84,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
       }
     }
 
-    setComments(updatedComments);
+    const transformedComments = updatedComments.map((c) => ({ ...c, username: createUniqueUsername(c.username, c.address) }));
+    setComments(transformedComments);
     setCurrentLoadedTalks(newLoadedTalks);
 
-    updateActivity(updatedComments);
+    updateActivity(transformedComments);
   };
 
   const handleOnComment = async (newComment: MessageData) => {
@@ -101,7 +103,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     if (currentLoadedTalks) {
       const talk = currentLoadedTalks.find((talk) => talk.talkId.includes(session.id));
       if (talk) {
-        setComments(talk.messages ?? []);
+        setComments(talk.messages?.map((c) => ({ ...c, username: createUniqueUsername(c.username, c.address) })) ?? []);
       }
     }
     setLoading(false);
@@ -132,7 +134,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           topic={rawTalkTopic}
           signer={signer}
           beeApiUrl={process.env.BEE_API_URL || DEFAULT_URL}
-          username={username}
+          username={createUniqueUsername(username, keys.public)}
           preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}

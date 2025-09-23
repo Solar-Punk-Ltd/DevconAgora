@@ -111,6 +111,17 @@ export const createMonogram = (name: string): string => {
   return initials.join("").toUpperCase();
 };
 
+export const createUniqueUsername = (name: string, publicKey: string): string => {
+  const cleanPubKey = publicKey.startsWith("0x") ? publicKey.slice(2) : publicKey;
+
+  const keyIdentifier = cleanPubKey.slice(-6).toLowerCase();
+
+  const part1 = keyIdentifier.slice(0, 3);
+  const part2 = keyIdentifier.slice(3, 6);
+
+  return `${name} ${part1}:${part2}`;
+};
+
 function getSigner(input: string): PrivateKey {
   const normalized = input.trim().toLowerCase();
 
