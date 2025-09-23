@@ -31,7 +31,7 @@ const TACOnboarding: React.FC = () => {
         />
         <div className="terms-and-conditions-onboarding-page__bottom">
           <div className="terms-and-conditions-onboarding-page__bottom__back-button">
-            <Link to={ROUTES.WELCOME4}>
+            <Link to={ROUTES.WELCOME3}>
               <WelcomeButton version="outlined">Back</WelcomeButton>
             </Link>
           </div>

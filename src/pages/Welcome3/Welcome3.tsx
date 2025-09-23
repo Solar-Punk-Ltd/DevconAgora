@@ -24,7 +24,7 @@ const Welcome1: React.FC = () => {
               <Link to={ROUTES.WELCOME2} className="welcome-page__navigation-button-link">
                 <WelcomeButton version="outlined">Back</WelcomeButton>
               </Link>
-              <div className="welcome-page_bottom-bottom__buttons welcome4-bottom">
+              <div className="welcome-page_bottom-bottom__buttons welcome2-bottom">
                 <Link to={ROUTES.TACONBOARDING} className="welcome-page__navigation-button-link">
                   <WelcomeButton version="filled">Next</WelcomeButton>
                 </Link>

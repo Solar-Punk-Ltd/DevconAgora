@@ -33,7 +33,6 @@ export enum ROUTES {
   WELCOME1 = "/welcome1",
   WELCOME2 = "/welcome2",
   WELCOME3 = "/welcome3",
-  WELCOME4 = "/welcome4",
   PROFILECREATION = "/profilecreation",
   HOME = "/home",
   PROFILE = "/profile",
