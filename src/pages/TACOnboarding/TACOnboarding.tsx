@@ -25,14 +25,13 @@ const TACOnboarding: React.FC = () => {
         <div className="terms-and-conditions-onboarding-page__background grid"></div>
         <div className="terms-and-conditions-onboarding-page__header">Terms and Conditions</div>
         <TermsAndConditions
-          contentFilterCheckBox={true}
           termsAndConditionCheckBox={true}
           termsAndConditionCheckBoxHandler={() => setIsTermsAndConditionsChecked(!isTermsAndConditionsChecked)}
           termsAndConditionCheckBoxValue={isTermsAndConditionsChecked}
         />
         <div className="terms-and-conditions-onboarding-page__bottom">
           <div className="terms-and-conditions-onboarding-page__bottom__back-button">
-            <Link to={ROUTES.WELCOME4}>
+            <Link to={ROUTES.WELCOME3}>
               <WelcomeButton version="outlined">Back</WelcomeButton>
             </Link>
           </div>

@@ -25,17 +25,8 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const {
-    loadedTalks,
-    setLoadedTalks,
-    loadedSpaces,
-    setLoadedSpaces,
-    talkActivity,
-    setTalkActivity,
-    spacesActivity,
-    setSpacesActivity,
-    isContentFilterEnabled,
-  } = useGlobalState();
+  const { loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } =
+    useGlobalState();
   const { username, keys } = useUserContext();
 
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
@@ -138,7 +129,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
-          filterEnabled={isContentFilterEnabled}
+          filterEnabled={false}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
           pollInterval={DEFAULT_POLL_INTERVAL}

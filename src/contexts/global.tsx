@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { Session } from "../types/session";
@@ -17,8 +17,6 @@ interface GlobalState {
   setLoadedTalks: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
   loadedSpaces: TalkComments[] | undefined;
   setLoadedSpaces: React.Dispatch<React.SetStateAction<TalkComments[] | undefined>>;
-  isContentFilterEnabled: boolean;
-  setIsContentFilterEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   isTermsAndConditionsAccepted: boolean;
   setIsTermsAndConditionsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
   notes: NoteItemProps[];
@@ -36,8 +34,6 @@ interface GlobalStateProviderProps {
 }
 
 export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
-  const [isContentFilterEnabled] = useState<boolean>(false);
-
   const [isTermsAndConditionsAccepted, setIsTermsAndConditionsAccepted] = useState<boolean>(false);
 
   const [sessions, setSessions] = useState<Map<string, Session[]>>(new Map<string, Session[]>());
@@ -56,10 +52,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
 
   const [spacesActivity, setSpacesActivity] = useState<Map<string, number>>(new Map<string, number>());
 
-  useEffect(() => {
-    localStorage.setItem("isContentFilterEnabled", isContentFilterEnabled.toString());
-  }, [isContentFilterEnabled]);
-
   return (
     <GlobalStateContext.Provider
       value={{
@@ -71,8 +63,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         setLoadedTalks,
         loadedSpaces,
         setLoadedSpaces,
-        isContentFilterEnabled,
-        setIsContentFilterEnabled: () => {},
         isTermsAndConditionsAccepted,
         setIsTermsAndConditionsAccepted,
         notes,

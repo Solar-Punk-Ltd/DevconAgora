@@ -51,7 +51,6 @@ jobs:
           FEED_OWNER_ADDRESS: ${{ secrets.FEED_OWNER_ADDRESS }}
           HEALTH_CHECK_DATA_REF: ${{ secrets.HEALTH_CHECK_DATA_REF }}
           ENV: ${{ secrets.ENV }}
-          BACKEND_API_URL: ${{ secrets.BACKEND_API_URL }}
           BASE_URL: ${{ secrets.BASE_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v4

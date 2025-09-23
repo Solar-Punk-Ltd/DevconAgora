@@ -21,8 +21,6 @@ export default defineConfig(({ mode }) => {
       "process.env.HEALTH_CHECK_DATA_REF":
         JSON.stringify(env.HEALTH_CHECK_DATA_REF) ?? JSON.stringify("2fdbf84ba761d65f3b848f22cf3c0f6899c61ada4347b9a1b3fcf0ea27dde6b3"),
       "process.env.BEE_API_URL": JSON.stringify(env.BEE_API_URL) ?? JSON.stringify("http://localhost:1633/"),
-      "process.env.BACKEND_API_URL":
-        JSON.stringify(env.BACKEND_API_URL) ?? JSON.stringify("https://devcon-backend-1074429022647.asia-southeast1.run.app/"),
       "process.versions": JSON.stringify({ node: "browser-mock" }), // Mocking process.versions.node
       "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
       "process.env.ROUTER_BASENAME": JSON.stringify(routerBasename),

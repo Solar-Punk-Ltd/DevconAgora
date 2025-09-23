@@ -24,15 +24,11 @@ const Welcome1: React.FC = () => {
               <Link to={ROUTES.WELCOME2} className="welcome-page__navigation-button-link">
                 <WelcomeButton version="outlined">Back</WelcomeButton>
               </Link>
-              <Link to={ROUTES.WELCOME4} className="welcome-page__navigation-button-link">
-                <WelcomeButton version="filled">Next</WelcomeButton>
-              </Link>
-            </div>
-            <div className="welcome-page__bottom-text">
-              I know everything{" "}
-              <Link to={ROUTES.TACONBOARDING}>
-                <span className="welcome-page__bottom-text__skip">SKIP</span>
-              </Link>
+              <div className="welcome-page_bottom-bottom__buttons welcome2-bottom">
+                <Link to={ROUTES.TACONBOARDING} className="welcome-page__navigation-button-link">
+                  <WelcomeButton version="filled">Next</WelcomeButton>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

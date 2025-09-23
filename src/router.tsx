@@ -25,7 +25,6 @@ import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndCondition
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
-import Welcome4 from "./pages/Welcome4/Welcome4";
 import { Space } from "./types/space";
 
 const MainRouter = (): ReactElement => {
@@ -79,7 +78,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
         <Route path={ROUTES.WELCOME2} element={<Welcome2 />} />
         <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
-        <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage />} />

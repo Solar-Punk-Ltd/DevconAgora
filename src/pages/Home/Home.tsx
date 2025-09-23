@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       <div className="home-page__content">
         <DevConMainBox
           title="BBW2025 Space"
-          content="Share your thoughts, engage in open conversations & earn reward for your participation!"
+          content="Share your thoughts, engage in open conversations!"
           showActiveVisitors={lobbyActivity > 0}
           activeVisitors={lobbyActivity}
           bordered={true}
