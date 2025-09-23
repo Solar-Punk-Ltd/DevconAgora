@@ -1,8 +1,9 @@
+import { MessageData } from "@solarpunkltd/comment-system";
+import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
+
+import { DATE_TO_DEVCON_DAY } from "../constants/categories";
 
 import { Session } from "@/types/session";
-import { DATE_TO_DEVCON_DAY } from "../constants/categories";
-import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
-import { MessageData } from "@solarpunkltd/comment-system";
 
 export const getSessionsByDay = (sessions: Map<string, Session[]>, day: string): Session[] => {
   if (day === "all") {

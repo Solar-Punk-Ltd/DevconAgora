@@ -11,22 +11,17 @@ export interface UserSession {
 interface CookieOptions {
   expires?: Date;
   secure?: boolean;
-  sameSite?: 'strict';
+  sameSite?: "strict";
   path?: string;
   domain?: string;
 }
 
-const COOKIE_NAME = 'devcon_session';
-const COOKIE_EXPIRY_24_HOURS = 24 * 60 * 60 * 1000;
+const COOKIE_NAME = "devcon_session";
+// Set cookie to expire in ~68 years (effectively infinite)
+const COOKIE_EXPIRY_INFINITE = 68 * 365 * 24 * 60 * 60 * 1000;
 
 export const setCookie = (session: UserSession, options: CookieOptions = {}): void => {
-  const {
-    expires = new Date(Date.now() + COOKIE_EXPIRY_24_HOURS),
-    path = '/',
-    domain,
-    secure = true,
-    sameSite = 'strict',
-  } = options;
+  const { expires = new Date(Date.now() + COOKIE_EXPIRY_INFINITE), path = "/", domain, secure = true, sameSite = "strict" } = options;
 
   const cookieData = JSON.stringify(session);
 
@@ -43,7 +38,7 @@ export const setCookie = (session: UserSession, options: CookieOptions = {}): vo
   }
 
   if (secure) {
-    cookieString += '; secure';
+    cookieString += "; secure";
   }
 
   cookieString += `; samesite=${sameSite}`;
@@ -52,8 +47,8 @@ export const setCookie = (session: UserSession, options: CookieOptions = {}): vo
 };
 
 const getCookie = (name: string): string | null => {
-  const nameEQ = encodeURIComponent(name) + '=';
-  const cookies = document.cookie.split(';');
+  const nameEQ = encodeURIComponent(name) + "=";
+  const cookies = document.cookie.split(";");
 
   for (let cookie of cookies) {
     cookie = cookie.trim();
@@ -65,10 +60,8 @@ const getCookie = (name: string): string | null => {
   return null;
 };
 
-const deleteCookie = (name: string, path: string = '/'): void => {
-  document.cookie = `${encodeURIComponent(
-    name,
-  )}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure; samesite=strict`;
+const deleteCookie = (name: string, path: string = "/"): void => {
+  document.cookie = `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure; samesite=strict`;
 };
 
 export const loadUserSessionFromCookie = (): UserSession | null => {
@@ -82,7 +75,7 @@ export const loadUserSessionFromCookie = (): UserSession | null => {
     const session = JSON.parse(cookieValue);
     return session;
   } catch (error) {
-    console.error('Failed to parse session cookie:', error);
+    console.error("Failed to parse session cookie:", error);
     deleteCookie(COOKIE_NAME);
     return null;
   }
@@ -92,12 +85,12 @@ export const clearUserSessionCookie = (): void => {
   deleteCookie(COOKIE_NAME);
 };
 
-export const userLogin = (name: string): UserSession  => {
+export const userLogin = (name: string): UserSession => {
   const id = crypto.randomUUID();
 
   const signer = getSigner(id);
   if (!signer) {
-    throw new Error('Failed to generate signer');
+    throw new Error("Failed to generate signer");
   }
 
   const privKey = signer.toHex();
@@ -121,7 +114,7 @@ export const createMonogram = (name: string): string => {
 function getSigner(input: string): PrivateKey {
   const normalized = input.trim().toLowerCase();
 
-  const hash = keccak256(Buffer.from(normalized, 'utf-8'));
+  const hash = keccak256(Buffer.from(normalized, "utf-8"));
 
   const privateKeyHex = hash.slice(2);
 

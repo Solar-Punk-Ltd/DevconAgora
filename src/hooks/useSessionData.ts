@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
+import { FIVE_MINUTES, MAX_SESSIONS_SHOWN } from "../constants/app";
+import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
-import { FIVE_MINUTES, MAX_SESSIONS_SHOWN } from "../constants/app";
-import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
+
 import { getSessionsByDay } from "@/utils/session";
 
 export const useSessionData = (isBeeRunning: boolean) => {
@@ -71,7 +72,6 @@ export const useSessionData = (isBeeRunning: boolean) => {
 
   return { filterRecentSessions };
 };
-
 
 const findSlotStartIx = (startIx: number, sessionsByDay: Session[], time: number): number => {
   for (let i = startIx; i < sessionsByDay.length; i++) {

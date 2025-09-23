@@ -6,11 +6,12 @@ import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../constants/routes";
+
+import "./ProfileCreation.scss";
+
 import { useUserContext } from "@/contexts/user";
 import { handleKeyDown } from "@/utils/common";
 import { createMonogram } from "@/utils/user";
-
-import "./ProfileCreation.scss";
 
 const ProfileCreation: React.FC = () => {
   const { login } = useUserContext();
@@ -22,31 +23,31 @@ const ProfileCreation: React.FC = () => {
     if (name.trim().length === 0) {
       return "Please enter a nickname";
     }
-    
+
     if (!/[a-zA-Z0-9]/.test(name)) {
       return "Nickname must include at least one letter or number";
     }
-    
+
     if (!/^[a-zA-Z0-9 ]*$/.test(name)) {
       return "Nickname can only contain letters, numbers, and spaces";
     }
-    
-    if (/  /.test(name)) {
+
+    if (/ {2}/.test(name)) {
       return "Nickname cannot have consecutive spaces";
     }
-    
+
     const spaceCount = (name.match(/ /g) || []).length;
     if (spaceCount > 2) {
       return "Nickname cannot have more than 2 spaces";
     }
-    
+
     return "";
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUsername(value);
-    
+
     if (validationError) {
       setValidationError("");
     }
@@ -54,7 +55,7 @@ const ProfileCreation: React.FC = () => {
 
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
-    
+
     const error = validateUsername(username);
     if (error) {
       setValidationError(error);
@@ -107,14 +108,8 @@ const ProfileCreation: React.FC = () => {
             {validationError && (
               <div className="profile-creation__user-input__error-container">
                 <div className="profile-creation__user-input__error-container__error">
-                  <img 
-                    src={errorAlertIcon} 
-                    alt="" 
-                    className="profile-creation__user-input__error-container__error-icon" 
-                  />
-                  <div className="profile-creation__user-input__error-container__error-text">
-                    {validationError}
-                  </div>
+                  <img src={errorAlertIcon} alt="" className="profile-creation__user-input__error-container__error-icon" />
+                  <div className="profile-creation__user-input__error-container__error-text">{validationError}</div>
                 </div>
               </div>
             )}
@@ -122,10 +117,7 @@ const ProfileCreation: React.FC = () => {
         </div>
       </div>
       <div className="profile-creation__bottom">
-        <WelcomeButton
-          version={isButtonActive ? "filled" : "inactive"}
-          onClick={handleSubmit}
-        >
+        <WelcomeButton version={isButtonActive ? "filled" : "inactive"} onClick={handleSubmit}>
           Enter private chat
         </WelcomeButton>
       </div>

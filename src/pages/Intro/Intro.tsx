@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import bbwIntro from "../../assets/bbw-intro.png";
 import bySolarPunk from "../../assets/by-solar-punk.png";
+import { ROUTES } from "../../constants/routes";
 import { TEXTS } from "../../constants/text";
 import { useUserContext } from "../../contexts/user";
-import { ROUTES } from "../../constants/routes";
 
 import "./Intro.scss";
 

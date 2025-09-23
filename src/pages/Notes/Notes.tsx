@@ -5,8 +5,8 @@ import ActionButton from "../../components/ActionButton/ActionButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NoteItem from "../../components/NoteItem/NoteItem";
-import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../constants/routes";
+import { useGlobalState } from "../../contexts/global";
 
 import "./Notes.scss";
 

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export const stringToBoolean = (str: string | null): boolean => {
   if (!str) {
     return false;
@@ -27,6 +26,3 @@ export const handleKeyDown = (e: React.KeyboardEvent, key: string, callback: () 
     callback();
   }
 };
-
-
-

@@ -1,6 +1,8 @@
 import { ReactElement, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { CATEGORIES } from "./constants/categories";
+import { ROUTES } from "./constants/routes";
 import { useGlobalState } from "./contexts/global";
 import { useBeePing } from "./hooks/useBeePing";
 import { useNotes } from "./hooks/useNotes";
@@ -25,11 +27,9 @@ import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
 import Welcome4 from "./pages/Welcome4/Welcome4";
 import { Space } from "./types/space";
-import { CATEGORIES } from "./constants/categories";
-import { ROUTES } from "./constants/routes";
 
 const MainRouter = (): ReactElement => {
-  const {  sessions, setSpaces, recentSessions } = useGlobalState();
+  const { sessions, setSpaces, recentSessions } = useGlobalState();
   const location = useLocation();
   const navigate = useNavigate();
 

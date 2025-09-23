@@ -6,9 +6,9 @@ import { ROUTES } from "../../constants/routes";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
 import "./HomeHeader.scss";
+
 import { useUserContext } from "@/contexts/user";
 import { createMonogram } from "@/utils/user";
-
 
 const HomeHeader: React.FC = () => {
   const { username } = useUserContext();

@@ -6,15 +6,16 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import { NoteItemProps } from "../../components/NoteItem/NoteItem";
 import PopUpQuestion from "../../components/PopUpQuestion/PopUpQuestion";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../contexts/global";
-import { updateFeed, uploadData } from "../../utils/bee";
 import { MAX_CHARACTER_COUNT } from "../../constants/app";
 import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../constants/network";
 import { ROUTES } from "../../constants/routes";
+import { useGlobalState } from "../../contexts/global";
+import { updateFeed, uploadData } from "../../utils/bee";
 
 import "./FullNote.scss";
-import { dateToTime } from "@/utils/date";
+
 import { useUserContext } from "@/contexts/user";
+import { dateToTime } from "@/utils/date";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();

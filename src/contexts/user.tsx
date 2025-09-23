@@ -1,6 +1,6 @@
-import { clearUserSessionCookie, loadUserSessionFromCookie, setCookie, userLogin, UserSession } from '@/utils/user';
-import { createContext, ReactElement, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, ReactElement, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
+import { clearUserSessionCookie, loadUserSessionFromCookie, setCookie, userLogin, UserSession } from "@/utils/user";
 
 interface ContextInterface {
   keys: {
@@ -16,10 +16,10 @@ interface ContextInterface {
 }
 
 const initialValues: ContextInterface = {
-  keys: { private: '', public: '' },
+  keys: { private: "", public: "" },
   login: async () => {},
   logout: () => {},
-  username: '',
+  username: "",
   isUserLoggedIn: false,
   isLoading: true,
   isUserLoadedFromCookie: () => false,
@@ -30,12 +30,12 @@ export const Consumer = Context.Consumer;
 
 export const useUserContext = () => {
   const context = useContext(Context);
-  if (!context) throw new Error('useAppContext must be used within AppContextProvider');
+  if (!context) throw new Error("useAppContext must be used within AppContextProvider");
   return context;
 };
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Provider({ children }: Props): ReactElement {
@@ -55,7 +55,7 @@ export function Provider({ children }: Props): ReactElement {
 
     if (session.id) {
       setUserSession(session);
-      setCookie(session);;
+      setCookie(session);
     }
   };
 
@@ -64,18 +64,18 @@ export function Provider({ children }: Props): ReactElement {
     clearUserSessionCookie();
   };
 
-  const username = useMemo(() => userSession?.name || '', [userSession]);
+  const username = useMemo(() => userSession?.name || "", [userSession]);
 
   const isUserLoggedIn = useMemo(() => !!userSession, [userSession]);
 
   const keys = useMemo(() => {
     if (!userSession) {
-      return { private: '', public: '' };
+      return { private: "", public: "" };
     }
 
     return {
       private: userSession.privKey,
-      public:  userSession.pubKey,
+      public: userSession.pubKey,
     };
   }, [userSession]);
 

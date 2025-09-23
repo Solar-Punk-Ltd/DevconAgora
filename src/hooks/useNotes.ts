@@ -2,9 +2,10 @@ import { Topic } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
+import { SELF_NOTE_TOPIC } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
-import { SELF_NOTE_TOPIC } from "../constants/network";
+
 import { useUserContext } from "@/contexts/user";
 
 export const useNotes = () => {

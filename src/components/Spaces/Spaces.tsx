@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Room } from "../../types/room";
 import { ROUTES } from "../../constants/routes";
+import { Room } from "../../types/room";
 
 import SpacesItem from "./SpacesItem/SpacesItem";
 

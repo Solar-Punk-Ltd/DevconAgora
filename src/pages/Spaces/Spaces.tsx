@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
-import { useGlobalState } from "../../contexts/global";
 import { CATEGORIES } from "../../constants/categories";
 import { SPACES_KEY } from "../../constants/network";
 import { ROUTES } from "../../constants/routes";
+import { useGlobalState } from "../../contexts/global";
 
 import "./Spaces.scss";
 

@@ -5,10 +5,10 @@ import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import Settings from "../../components/Settings/Settings";
 import { ROUTES } from "../../constants/routes";
 
+import "./Profile.scss";
+
 import { useUserContext } from "@/contexts/user";
 import { createMonogram } from "@/utils/user";
-
-import "./Profile.scss";
 
 const Profile: React.FC = () => {
   const { username } = useUserContext();

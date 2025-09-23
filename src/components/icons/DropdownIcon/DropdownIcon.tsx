@@ -9,13 +9,7 @@ const DropdownIcon: React.FC<DropdownIconProps> = ({ color, isDown }) => {
   return (
     <div style={{ display: "flex" }}>
       {isDown ? (
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_80_439)">
             <path
               fillRule="evenodd"
@@ -26,30 +20,14 @@ const DropdownIcon: React.FC<DropdownIconProps> = ({ color, isDown }) => {
           </g>
           <defs>
             <clipPath id="clip0_80_439">
-              <rect
-                width="15"
-                height="15"
-                fill={color ? color : "white"}
-                transform="matrix(-1 0 0 1 15.5 0.5)"
-              />
+              <rect width="15" height="15" fill={color ? color : "white"} transform="matrix(-1 0 0 1 15.5 0.5)" />
             </clipPath>
           </defs>
         </svg>
       ) : (
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clipPath="url(#clip0_102_896)">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M13 6.5L15.5 9.75H10.5L13 6.5Z"
-              fill={color ? color : "white"}
-            />
+            <path fillRule="evenodd" clipRule="evenodd" d="M13 6.5L15.5 9.75H10.5L13 6.5Z" fill={color ? color : "white"} />
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -59,12 +37,7 @@ const DropdownIcon: React.FC<DropdownIconProps> = ({ color, isDown }) => {
           </g>
           <defs>
             <clipPath id="clip0_102_896">
-              <rect
-                width="15"
-                height="15"
-                fill={color ? color : "white"}
-                transform="matrix(-1 0 0 1 15.5 0.5)"
-              />
+              <rect width="15" height="15" fill={color ? color : "white"} transform="matrix(-1 0 0 1 15.5 0.5)" />
             </clipPath>
           </defs>
         </svg>

@@ -2,13 +2,13 @@ import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { useCallback } from "react";
 
+import { MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/constants/app";
+import { DEFAULT_URL } from "@/constants/network";
 import { useGlobalState } from "@/contexts/global";
 import { Session } from "@/types/session";
 import { Space } from "@/types/space";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/constants/app";
-import { DEFAULT_URL } from "@/constants/network";
 import { determineActivityNumByMessage } from "@/utils/session";
 
 export const usePreload = () => {

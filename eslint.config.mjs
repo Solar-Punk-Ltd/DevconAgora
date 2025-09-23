@@ -85,6 +85,7 @@ export default [
         TextDecoder: "readonly",
         localStorage: "readonly",
         fetch: "readonly",
+        crypto: "readonly",
         HTMLElement: "readonly",
         HTMLInputElement: "readonly",
         HTMLDivElement: "readonly",

@@ -2,29 +2,21 @@ import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import React, { useEffect, useState } from "react";
 
+import { DEFAULT_POLL_INTERVAL, MAX_CHARACTER_COUNT, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "../../constants/app";
+import { STAGES_MAP } from "../../constants/categories";
+import { DEFAULT_URL, DUMMY_STAMP } from "../../constants/network";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
-import {
-  DEFAULT_POLL_INTERVAL,
-  MAX_CHARACTER_COUNT,
-  MAX_COMMENTS_LOADED,
-  MAX_PRELOADED_TALKS,
-} from "../../constants/app";
-import { STAGES_MAP } from "../../constants/categories";
-import {
-  DEFAULT_URL,
-  DUMMY_STAMP,
-} from "../../constants/network";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
-import { Space } from "@/types/space";
-import { determineActivityNumByMessage } from "@/utils/session";
-import { dateToTime } from "@/utils/date";
 import { useUserContext } from "@/contexts/user";
+import { Space } from "@/types/space";
+import { dateToTime } from "@/utils/date";
+import { determineActivityNumByMessage } from "@/utils/session";
 
 interface TalkItemProps {
   session: Session | Space;

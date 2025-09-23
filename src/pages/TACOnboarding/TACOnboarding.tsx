@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../constants/routes";
+import { useGlobalState } from "../../contexts/global";
 
 import "./TACOnboarding.scss";
 
