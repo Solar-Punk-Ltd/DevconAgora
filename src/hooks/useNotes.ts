@@ -1,28 +1,29 @@
-import { PrivateKey, Topic } from "@ethersphere/bee-js";
+import { Topic } from "@ethersphere/bee-js";
 import { useCallback, useEffect, useState } from "react";
 
 import { NoteItemProps } from "../components/NoteItem/NoteItem";
+import { SELF_NOTE_TOPIC } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
-import { SELF_NOTE_TOPIC } from "../utils/constants";
-import { getLocalPrivateKey } from "../utils/helpers";
+
+import { useUserContext } from "@/contexts/user";
 
 export const useNotes = () => {
   const { notes, setNotes } = useGlobalState();
+  const { isUserLoggedIn, keys } = useUserContext();
+
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
 
   const fetchNotes = useCallback(async () => {
-    const privKey = getLocalPrivateKey();
-    if (!privKey) {
-      console.error("private key not found - cannot fetch notes");
+    if (!isUserLoggedIn) {
+      console.debug("User is not logged in, cannot fetch private notes");
       return;
     }
 
-    const wallet = new PrivateKey(privKey);
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(wallet.publicKey().address().toString(), rawTopic, true));
+      feedPromises.push(getFeedUpdate(keys.public, rawTopic, true));
     }
 
     const notesArray: string[] = [];
@@ -59,7 +60,7 @@ export const useNotes = () => {
     setNotes(tmpNotes);
 
     console.debug("self notes updated");
-  }, [noteRawTopics, setNotes]);
+  }, [noteRawTopics, setNotes, isUserLoggedIn, keys.public]);
   // Note: notes intentionally excluded from deps to avoid infinite loop
 
   useEffect(() => {

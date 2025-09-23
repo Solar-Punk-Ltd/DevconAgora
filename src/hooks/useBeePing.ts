@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { FIVE_MINUTES } from "../utils/constants";
+import { FIVE_MINUTES } from "../constants/app";
 
 export const useBeePing = () => {
   const [isBeeRunning, setBeeRunning] = useState<boolean>(false);

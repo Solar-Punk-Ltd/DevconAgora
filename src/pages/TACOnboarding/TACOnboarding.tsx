@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
+import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
-import { ROUTES } from "../../utils/constants";
 
 import "./TACOnboarding.scss";
 
@@ -25,14 +25,13 @@ const TACOnboarding: React.FC = () => {
         <div className="terms-and-conditions-onboarding-page__background grid"></div>
         <div className="terms-and-conditions-onboarding-page__header">Terms and Conditions</div>
         <TermsAndConditions
-          contentFilterCheckBox={true}
           termsAndConditionCheckBox={true}
           termsAndConditionCheckBoxHandler={() => setIsTermsAndConditionsChecked(!isTermsAndConditionsChecked)}
           termsAndConditionCheckBoxValue={isTermsAndConditionsChecked}
         />
         <div className="terms-and-conditions-onboarding-page__bottom">
           <div className="terms-and-conditions-onboarding-page__bottom__back-button">
-            <Link to={ROUTES.WELCOME4}>
+            <Link to={ROUTES.WELCOME3}>
               <WelcomeButton version="outlined">Back</WelcomeButton>
             </Link>
           </div>
