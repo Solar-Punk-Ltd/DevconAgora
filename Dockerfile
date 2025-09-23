@@ -4,7 +4,6 @@ ARG BEE_API_URL
 ARG BASE_URL
 ARG HEALTH_CHECK_DATA_REF
 ARG FEED_OWNER_ADDRESS
-ARG BACKEND_API_URL
 ARG ENV
 
 WORKDIR /app
@@ -20,7 +19,6 @@ RUN echo "BEE_API_URL=$BEE_API_URL" >> .env && \
     echo "BASE_URL=$BASE_URL" >> .env && \
     echo "HEALTH_CHECK_DATA_REF=$HEALTH_CHECK_DATA_REF" >> .env && \
     echo "FEED_OWNER_ADDRESS=$FEED_OWNER_ADDRESS" >> .env && \
-    echo "BACKEND_API_URL=$BACKEND_API_URL" >> .env && \
     echo "ENV=$ENV" >> .env && \
     chmod 644 .env
 

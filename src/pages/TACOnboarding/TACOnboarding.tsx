@@ -25,7 +25,6 @@ const TACOnboarding: React.FC = () => {
         <div className="terms-and-conditions-onboarding-page__background grid"></div>
         <div className="terms-and-conditions-onboarding-page__header">Terms and Conditions</div>
         <TermsAndConditions
-          contentFilterCheckBox={true}
           termsAndConditionCheckBox={true}
           termsAndConditionCheckBoxHandler={() => setIsTermsAndConditionsChecked(!isTermsAndConditionsChecked)}
           termsAndConditionCheckBoxValue={isTermsAndConditionsChecked}

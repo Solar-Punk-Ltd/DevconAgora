@@ -17,8 +17,6 @@ steps:
       - "--build-arg"
       - "FEED_OWNER_ADDRESS=${_FEED_OWNER_ADDRESS}"
       - "--build-arg"
-      - "BACKEND_API_URL=${_BACKEND_API_URL}"
-      - "--build-arg"
       - "ENV=${_ENV}"
     id: Build
   - name: gcr.io/cloud-builders/docker

@@ -14,7 +14,6 @@ function Intro() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Check if user is already registered
       if (isUserRegistered()) {
         navigate(ROUTES.HOME);
       } else {

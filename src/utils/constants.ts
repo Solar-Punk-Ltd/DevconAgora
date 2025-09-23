@@ -37,19 +37,14 @@ export enum ROUTES {
   PROFILECREATION = "/profilecreation",
   HOME = "/home",
   PROFILE = "/profile",
-  GAMIFICATION = "/gamification",
   AGENDA = "/agenda",
   CATEGORIES = "/categories",
   SPACES = "/spaces",
-  HOWDOESITWORK = "/how-does-it-work",
   TALKS = "/talks",
-  CLAIMREWARD = "/claim-reward",
-  // CONTENTFILTER = "/content-filter",
   TERMSANDCONDITIONS = "/terms-and-conditions",
   TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",
   NEW_NOTE = "/new",
-  HOMEWITHGAMIFICATION = "/home-with-gamification",
 }
 
 export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025", LOBBY_TITLE];

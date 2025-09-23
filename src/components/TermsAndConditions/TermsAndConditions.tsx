@@ -16,7 +16,6 @@ import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
 import "./TermsAndConditions.scss";
 
 interface TermsAndConditionsProps {
-  contentFilterCheckBox?: boolean;
   termsAndConditionCheckBox?: boolean;
   termsAndConditionCheckBoxHandler?: () => void;
   termsAndConditionCheckBoxValue?: boolean;

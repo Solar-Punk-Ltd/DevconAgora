@@ -20,7 +20,6 @@ import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
-import { fetchPoints } from "@/hooks/usePoints";
 import { Space } from "@/types/space";
 
 interface TalkItemProps {
@@ -29,19 +28,8 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const {
-    username,
-    loadedTalks,
-    setLoadedTalks,
-    loadedSpaces,
-    setLoadedSpaces,
-    talkActivity,
-    setTalkActivity,
-    spacesActivity,
-    setSpacesActivity,
-    isContentFilterEnabled,
-    setPoints,
-  } = useGlobalState();
+  const { username, loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } =
+    useGlobalState();
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -96,10 +84,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
 
   const handleOnComment = async (newComment: MessageData) => {
     updateTalks([newComment], false);
-
-    if (username) {
-      await fetchPoints(username, setPoints);
-    }
   };
 
   const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {
@@ -145,7 +129,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
-          filterEnabled={isContentFilterEnabled}
+          filterEnabled={false}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
           pollInterval={DEFAULT_POLL_INTERVAL}
