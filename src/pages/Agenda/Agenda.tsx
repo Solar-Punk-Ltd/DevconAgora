@@ -8,7 +8,7 @@ import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
-import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../constants/categories";
+import { CATEGORIES, DATE_TO_EVENT_DAY, STAGES_MAP } from "../../constants/categories";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import Categories from "../Categories/Categories";
@@ -40,7 +40,7 @@ const Agenda: React.FC = () => {
   useEffect(() => {
     let day = "all";
     if (activeDayTab > 0) {
-      day = Array.from(DATE_TO_DEVCON_DAY.keys())[activeDayTab - 1];
+      day = Array.from(DATE_TO_EVENT_DAY.keys())[activeDayTab - 1];
     }
     const sessionsByDay = getSessionsByDay(sessions, day);
 
@@ -68,7 +68,7 @@ const Agenda: React.FC = () => {
           {renderTabPanelItems(["Agenda", "My Agenda"], setActiveAgendaTab)}
         </TabPanel>
         <TabPanel version="filled" activeIndex={activeDayTab}>
-          {renderTabPanelItems(["All", ...Array.from(DATE_TO_DEVCON_DAY.values())], setActiveDayTab)}
+          {renderTabPanelItems(["All", ...Array.from(DATE_TO_EVENT_DAY.values())], setActiveDayTab)}
         </TabPanel>
       </div>
       <div className="agenda-page__content__background grid"></div>

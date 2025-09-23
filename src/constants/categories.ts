@@ -15,11 +15,11 @@ export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
 
 export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025", LOBBY_TITLE];
 
-export const DATE_TO_DEVCON_DAY = new Map([
-  [new Date("2024-11-12").toDateString(), "Day 1"],
-  [new Date("2024-11-13").toDateString(), "Day 2"],
-  [new Date("2024-11-14").toDateString(), "Day 3"],
-  [new Date("2024-11-15").toDateString(), "Day 4"],
+export const DATE_TO_EVENT_DAY = new Map([
+  [new Date("2025-09-16").toDateString(), "Day 1"],
+  [new Date("2025-09-17").toDateString(), "Day 2"],
+  [new Date("2025-09-18").toDateString(), "Day 3"],
+  [new Date("2025-09-19").toDateString(), "Day 4"],
 ]);
 
 export const STAGES_MAP = new Map([["main-stage", "Main Stage"]]);

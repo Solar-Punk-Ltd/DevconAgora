@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NavigationHeader from "../../components/NavigationHeader/NavigationHeader";
 import TalkItem from "../../components/TalkItem/TalkItem";
-import { DATE_TO_DEVCON_DAY } from "../../constants/categories";
+import { DATE_TO_EVENT_DAY } from "../../constants/categories";
 import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
@@ -33,7 +33,7 @@ const Talk: React.FC<TalkPageProps> = ({ toText }) => {
     talk: Session | Space;
   } | null => {
     for (let i = 0; i < sessions.size; i++) {
-      const sessionsByDay = getSessionsByDay(sessions, Array.from(DATE_TO_DEVCON_DAY.keys())[i]);
+      const sessionsByDay = getSessionsByDay(sessions, Array.from(DATE_TO_EVENT_DAY.keys())[i]);
       const daySession = sessionsByDay.find((s) => s.id === id);
       if (daySession) {
         return {

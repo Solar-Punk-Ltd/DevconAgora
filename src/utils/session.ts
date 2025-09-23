@@ -1,7 +1,7 @@
 import { MessageData } from "@solarpunkltd/comment-system";
 import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 
-import { DATE_TO_DEVCON_DAY } from "../constants/categories";
+import { DATE_TO_EVENT_DAY } from "../constants/categories";
 
 import { Session } from "@/types/session";
 
@@ -10,7 +10,7 @@ export const getSessionsByDay = (sessions: Map<string, Session[]>, day: string):
     return Array.from(sessions.values()).flat();
   }
 
-  return sessions.get(DATE_TO_DEVCON_DAY.get(day) || "Day 1") || [];
+  return sessions.get(DATE_TO_EVENT_DAY.get(day) || "Day 1") || [];
 };
 
 export const determineActivityNumByMessage = (messages: MessageData[] | undefined, last: boolean): bigint => {
