@@ -1,19 +1,15 @@
 import { ReactElement, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import Gamification from "./components/Gamification/Gamification";
 import { useGlobalState } from "./contexts/global";
 import { useBeePing } from "./hooks/useBeePing";
-import { useGamification } from "./hooks/useGamification";
 import { useNotes } from "./hooks/useNotes";
-import { usePoints } from "./hooks/usePoints";
 import { usePreload } from "./hooks/usePreload";
 import { usePrevLocation } from "./hooks/usePrevLocation";
 import { useRouteProtection } from "./hooks/useRouteProtection";
 import { useSessionData } from "./hooks/useSessionData";
 import { useViewportHeight } from "./hooks/useViewportHeight";
 import Agenda from "./pages/Agenda/Agenda";
-import ClaimRewardPage from "./pages/ClaimReward/ClaimRevard";
 import FullNotePage from "./pages/FullNote/FullNote";
 import HomePage from "./pages/Home/Home";
 import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
@@ -33,7 +29,7 @@ import { Space } from "./types/space";
 import { CATEGORIES, ROUTES } from "./utils/constants";
 
 const MainRouter = (): ReactElement => {
-  const { showGamification, sessions, points, setSpaces, recentSessions } = useGlobalState();
+  const {  sessions, setSpaces, recentSessions } = useGlobalState();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -72,17 +68,12 @@ const MainRouter = (): ReactElement => {
 
   useViewportHeight();
 
-  usePoints();
-
   useNotes();
-
-  useGamification();
 
   useRouteProtection(location, navigate);
 
   return (
     <>
-      {showGamification ? <Gamification points={points} /> : null}
       <Routes>
         <Route path={ROUTES.APP} element={<Intro />} />
         <Route path={ROUTES.WELCOME1} element={<Welcome1 />} />
@@ -95,11 +86,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />
-        <Route
-          path={ROUTES.HOWDOESITWORK}
-          element={<HowDoesItWork to={prevLocation ? prevLocation : undefined} toText={prevLocation ? prevLocation : undefined} />}
-        />
-        <Route path={ROUTES.CLAIMREWARD} element={<ClaimRewardPage />} />
         <Route path={`${ROUTES.TALKS}/:talkId`} element={<TalkPage toText={prevLocation} />} />
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />

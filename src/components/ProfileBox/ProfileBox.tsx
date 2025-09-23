@@ -20,9 +20,11 @@ interface ProfileBoxProps {
 
 const ProfileBox: React.FC<ProfileBoxProps> = ({ title, linkText, link, points = 10, showPoints, showContent, shareable }) => {
   const navigate = useNavigate();
+
   const handleNavigation = (path: string) => {
     navigate(path);
   };
+
   const handleShare = () => {
     if (navigator.share) {
       navigator
@@ -41,6 +43,7 @@ const ProfileBox: React.FC<ProfileBoxProps> = ({ title, linkText, link, points =
       console.info("Web Share API not supported in this browser");
     }
   };
+
   return (
     <div className="profile-box">
       <div

@@ -15,13 +15,14 @@ import {
   MAX_PRELOADED_TALKS,
   STAGES_MAP,
 } from "../../utils/constants";
-import { dateToTime, getActivityHelper } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
-import { fetchPoints } from "@/hooks/usePoints";
 import { Space } from "@/types/space";
+import { determineActivityNumByMessage } from "@/utils/session";
+import { dateToTime } from "@/utils/date";
+import { useUserContext } from "@/contexts/user";
 
 interface TalkItemProps {
   session: Session | Space;
@@ -30,7 +31,6 @@ interface TalkItemProps {
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const {
-    username,
     loadedTalks,
     setLoadedTalks,
     loadedSpaces,
@@ -40,8 +40,9 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     spacesActivity,
     setSpacesActivity,
     isContentFilterEnabled,
-    setPoints,
   } = useGlobalState();
+  const { username } = useUserContext();
+
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -54,7 +55,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const setCurrentActivity = isSpacesTalk ? setSpacesActivity : setTalkActivity;
 
   const updateActivity = (messages: MessageData[]) => {
-    const activity = Number(getActivityHelper(messages, true));
+    const activity = Number(determineActivityNumByMessage(messages, true));
     const tmpActivity = new Map(currentActivity);
     tmpActivity.set(session.id, activity);
     setCurrentActivity(tmpActivity);
@@ -96,10 +97,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
 
   const handleOnComment = async (newComment: MessageData) => {
     updateTalks([newComment], false);
-
-    if (username) {
-      await fetchPoints(username, setPoints);
-    }
   };
 
   const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {

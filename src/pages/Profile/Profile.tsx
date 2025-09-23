@@ -5,20 +5,23 @@ import NavigationHeader from "../../components/NavigationHeader/NavigationHeader
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import Settings from "../../components/Settings/Settings";
-import { useGlobalState } from "../../contexts/global";
 import { ROUTES } from "../../utils/constants";
+
+import { useUserContext } from "@/contexts/user";
+import { createMonogram } from "@/utils/user";
 
 import "./Profile.scss";
 
 const Profile: React.FC = () => {
-  const { username, monogram, points } = useGlobalState();
+  const { username } = useUserContext();
+
   return (
     <div className="profile">
       <Settings />
       <NavigationHeader to={ROUTES.HOME} />
       <div className="profile__content">
         <div>
-          <ProfilePicture name={monogram} version="big" />
+          <ProfilePicture name={createMonogram(username)} version="big" />
         </div>
         <div className="profile__content__datas">
           <div className="profile__content__background grid"></div>
@@ -30,10 +33,9 @@ const Profile: React.FC = () => {
             title="Points"
             linkText="Claim your reward"
             link={ROUTES.CLAIMREWARD}
-            points={points}
+            showContent
+            showPoints={false}
             shareable={false}
-            showPoints={true}
-            showContent={true}
           />
           <Link to={ROUTES.HOWDOESITWORK} className="profile__content__datas__how-does-it-work">
             <ProfileBox title="How does it work?" showPoints={false} showContent={false} />
