@@ -10,7 +10,6 @@ DevconAgora is a progressive web application designed to enhance the conference 
 - **Interactive Session Engagement**: Real-time commenting system for talks and presentations
 - **Dynamic Agenda Management**: Browse, filter, and create personalized agendas
 - **Decentralized Architecture**: Built on Ethereum Swarm for censorship-resistant communication
-- **Gamification**: Point-based reward system for active participation
 - **Social Features**: Profile creation, note-taking, and community interaction
 
 ## Features
@@ -27,11 +26,6 @@ DevconAgora is a progressive web application designed to enhance the conference 
 - Decentralized commenting system powered by Swarm
 - Live activity tracking for each session
 - Message persistence across devices
-
-### Gamification
-
-- Point-based reward system for participation
-- Achievement notifications (at given milestones)
 
 ### Personal Features
 
@@ -121,7 +115,6 @@ pnpm run lint:fix
 
 - `useSessionData` - Manages conference session data
 - `usePreload` - Preloads and caches talk and space comments
-- `useGamification` - Handles point system and rewards
 - `useNotes` - Personal note management
 - `useBeePing` - Swarm network connectivity
 
@@ -132,7 +125,6 @@ Global state managed through React Context API with the following key states:
 - Sessions and agenda data
 - User profile and authentication
 - Comments and activity tracking
-- Gamification points and progress
 
 ## Data Sources
 

@@ -1,22 +1,3 @@
-.profile-creation__header {
-  font-size: 24px;
-  font-weight: 700;
-}
-profile-creation .profile-creation {
-  height: calc(var(--vh, 1vh) * 100);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 35px;
-}
-
-@media (min-width: 600px) {
-  .profile-creation__header {
-    margin-top: 0px;
-  }
-}
 .profile-creation__username {
   font-family: var(--font-family-base);
   font-weight: 400;
@@ -86,19 +67,6 @@ profile-creation .profile-creation {
   position: relative;
   align-content: end;
   bottom: 0px;
-}
-
-.profile-creation__background-effect {
-  position: absolute;
-  z-index: 0;
-  height: calc(var(--vh, 1vh) * 100);
-  width: 100%;
-  top: 0px;
-}
-
-.profile-creation__backgorund-effect__img {
-  height: 100%;
-  width: 100%;
 }
 
 .profile-creation__main-content {

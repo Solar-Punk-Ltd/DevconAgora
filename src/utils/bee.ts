@@ -1,9 +1,7 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
 
-import { FeedResultWithIndex } from "../types/common";
-import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../utils/constants";
-
-import { isNotFoundError } from "./helpers";
+import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
+import { FeedResultWithIndex } from "../types/bee";
 
 export async function getFeedUpdate(owner: string, topic: string, raw?: boolean): Promise<string> {
   let feedTopic: string = topic;
@@ -99,3 +97,7 @@ export async function updateFeed(signer: PrivateKey, topic: Topic, stamp: string
 export function getTopic(topic: string): string {
   return topic + process.env.ENV;
 }
+
+const isNotFoundError = (error: any): boolean => {
+  return error.stack?.includes("404") || error.message?.includes("Not Found") || error.message?.includes("404");
+};

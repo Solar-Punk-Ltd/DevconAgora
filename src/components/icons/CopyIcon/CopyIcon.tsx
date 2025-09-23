@@ -8,13 +8,7 @@ interface CloseIconProps {
 const CopyIcon: React.FC<CloseIconProps> = ({ color, onClick }) => {
   return (
     <div onClick={onClick} style={{ display: "flex" }}>
-      <svg
-        width="21"
-        height="20"
-        viewBox="0 0 21 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M12.5 6H2.5C1.397 6 0.5 6.897 0.5 8V18C0.5 19.103 1.397 20 2.5 20H12.5C13.603 20 14.5 19.103 14.5 18V8C14.5 6.897 13.603 6 12.5 6Z"
           fill={color ? color : "white"}

@@ -2,26 +2,21 @@ import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-
 import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
 import React, { useEffect, useState } from "react";
 
+import { DEFAULT_POLL_INTERVAL, MAX_CHARACTER_COUNT, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "../../constants/app";
+import { STAGES_MAP } from "../../constants/categories";
+import { DEFAULT_URL, DUMMY_STAMP } from "../../constants/network";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { TalkComments } from "../../types/talkComment";
 import { getTopic } from "../../utils/bee";
-import {
-  DEFAULT_POLL_INTERVAL,
-  DEFAULT_URL,
-  DUMMY_STAMP,
-  MAX_CHARACTER_COUNT,
-  MAX_COMMENTS_LOADED,
-  MAX_PRELOADED_TALKS,
-  STAGES_MAP,
-} from "../../utils/constants";
-import { dateToTime, getActivityHelper } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
 
 import "./TalkItem.scss";
 
-import { fetchPoints } from "@/hooks/usePoints";
+import { useUserContext } from "@/contexts/user";
 import { Space } from "@/types/space";
+import { dateToTime } from "@/utils/date";
+import { determineActivityNumByMessage } from "@/utils/session";
 
 interface TalkItemProps {
   session: Session | Space;
@@ -29,19 +24,10 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const {
-    username,
-    loadedTalks,
-    setLoadedTalks,
-    loadedSpaces,
-    setLoadedSpaces,
-    talkActivity,
-    setTalkActivity,
-    spacesActivity,
-    setSpacesActivity,
-    isContentFilterEnabled,
-    setPoints,
-  } = useGlobalState();
+  const { loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } =
+    useGlobalState();
+  const { username, keys } = useUserContext();
+
   const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -54,7 +40,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const setCurrentActivity = isSpacesTalk ? setSpacesActivity : setTalkActivity;
 
   const updateActivity = (messages: MessageData[]) => {
-    const activity = Number(getActivityHelper(messages, true));
+    const activity = Number(determineActivityNumByMessage(messages, true));
     const tmpActivity = new Map(currentActivity);
     tmpActivity.set(session.id, activity);
     setCurrentActivity(tmpActivity);
@@ -96,10 +82,6 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
 
   const handleOnComment = async (newComment: MessageData) => {
     updateTalks([newComment], false);
-
-    if (username) {
-      await fetchPoints(username, setPoints);
-    }
   };
 
   const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {
@@ -142,10 +124,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           signer={signer}
           beeApiUrl={process.env.BEE_API_URL || DEFAULT_URL}
           username={username}
+          userKey={keys.public}
           preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
-          filterEnabled={isContentFilterEnabled}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
           pollInterval={DEFAULT_POLL_INTERVAL}

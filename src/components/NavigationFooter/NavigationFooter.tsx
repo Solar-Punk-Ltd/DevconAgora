@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 import AgendaIcon from "../icons/AgendaIcon/AgendaIcon";
 import HomeIcon from "../icons/HomeIcon/HomeIcon";
 import NotesIcon from "../icons/NotesIcon/NotesIcon";
