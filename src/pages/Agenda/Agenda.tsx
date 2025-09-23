@@ -11,10 +11,12 @@ import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { CATEGORIES, DATE_TO_DEVCON_DAY, STAGES_MAP } from "../../utils/constants";
-import { dateToTime, getSessionsByDay, stringToBoolean } from "../../utils/helpers";
 import Categories from "../Categories/Categories";
 
 import "./Agenda.scss";
+import { getSessionsByDay } from "@/utils/session";
+import { stringToBoolean } from "@/utils/common";
+import { dateToTime } from "@/utils/date";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();

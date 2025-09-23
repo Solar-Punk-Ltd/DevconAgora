@@ -6,9 +6,9 @@ import CategoryIndicator from "../../components/CategoryIndicator/CategoryIndica
 import HeartIcon from "../../components/icons/HeartIcon/HeartIcon";
 import Stage from "../../components/Stage/Stage";
 import { ROUTES } from "../../utils/constants";
-import { booleanToString, stringToBoolean } from "../../utils/helpers";
 
 import "./AgendaItem.scss";
+import { booleanToString, stringToBoolean } from "@/utils/common";
 
 interface AgendaItemProps {
   id: string;

@@ -9,14 +9,18 @@ import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
 import { DUMMY_STAMP, MAX_CHARACTER_COUNT, ROUTES, SELF_NOTE_TOPIC } from "../../utils/constants";
-import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 
 import "./FullNote.scss";
+import { dateToTime } from "@/utils/date";
+import { useUserContext } from "@/contexts/user";
 
 const FullNotePage: React.FC = () => {
   const navigate = useNavigate();
   const { noteId } = useParams();
+
   const { notes, setNotes } = useGlobalState();
+  const { isUserLoggedIn, keys } = useUserContext();
+
   const [currentNote, setCurrentNote] = useState<NoteItemProps>({});
   const [showRemovePopUp, setShowRemovePopUp] = useState<boolean>(false);
   const [showUnsavedPopUp, setShowUnsavedPopUp] = useState<boolean>(false);
@@ -79,12 +83,11 @@ const FullNotePage: React.FC = () => {
     navigate(ROUTES.NOTES);
   };
 
-  const privKey = getLocalPrivateKey();
-  if (!privKey) {
+  if (!isUserLoggedIn) {
     return (
       <div className="full-note-page__top__header">
         <NavigationHeader to={ROUTES.NOTES} />
-        No private key found
+        <div>Please log in to view your notes.</div>
       </div>
     );
   }
@@ -135,7 +138,7 @@ const FullNotePage: React.FC = () => {
     };
     setSaving(true);
     const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
-    const signer = new PrivateKey(privKey);
+    const signer = new PrivateKey(keys.private);
     await updateFeed(signer, new Topic(topic), process.env.STAMP || DUMMY_STAMP, dataRef);
 
     const foundIx = notes.findIndex((n) => n.id === topic);

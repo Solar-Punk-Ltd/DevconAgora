@@ -8,9 +8,9 @@ import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
 import { Space } from "../../types/space";
 import { DATE_TO_DEVCON_DAY, ROUTES } from "../../utils/constants";
-import { getSessionsByDay } from "../../utils/helpers";
 
 import "./Talk.scss";
+import { getSessionsByDay } from "@/utils/session";
 
 interface TalkPageProps {
   toText: string | null;

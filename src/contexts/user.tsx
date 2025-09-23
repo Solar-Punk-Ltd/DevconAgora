@@ -12,6 +12,7 @@ interface ContextInterface {
   username: string;
   isUserLoggedIn: boolean;
   isLoading: boolean;
+  isUserLoadedFromCookie: () => boolean;
 }
 
 const initialValues: ContextInterface = {
@@ -21,6 +22,7 @@ const initialValues: ContextInterface = {
   username: '',
   isUserLoggedIn: false,
   isLoading: true,
+  isUserLoadedFromCookie: () => false,
 };
 
 export const Context = createContext<ContextInterface>(initialValues);
@@ -77,6 +79,10 @@ export function Provider({ children }: Props): ReactElement {
     };
   }, [userSession]);
 
+  const isUserLoadedFromCookie = () => {
+    return !!loadUserSessionFromCookie();
+  };
+
   return (
     <Context.Provider
       value={{
@@ -86,15 +92,10 @@ export function Provider({ children }: Props): ReactElement {
         username,
         isUserLoggedIn,
         isLoading,
+        isUserLoadedFromCookie,
       }}
     >
       {children}
     </Context.Provider>
   );
 }
-
-
-  // username: string;
-  // setUsername: React.Dispatch<React.SetStateAction<string>>;
-  // monogram: string;
-  // setMonogram: React.Dispatch<React.SetStateAction<string>>;

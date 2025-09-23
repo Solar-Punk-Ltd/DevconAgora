@@ -10,18 +10,14 @@ import { CATEGORIES, LOBBY_TITLE } from "../../utils/constants";
 
 import "./Home.scss";
 
-interface HomePageProps {
-  withGamification?: boolean;
-}
-
-const Home: React.FC<HomePageProps> = ({ withGamification }) => {
-  const { points, spacesActivity } = useGlobalState();
+const Home: React.FC = () => {
+  const { spacesActivity } = useGlobalState();
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
   return (
     <div className="home-page">
       <div className="home-page__background grid">{/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}</div>
 
-      <HomeHeader points={points} withGamification={withGamification} />
+      <HomeHeader />
 
       <div className="home-page__content">
         <DevConMainBox

@@ -12,7 +12,6 @@ import { useViewportHeight } from "./hooks/useViewportHeight";
 import Agenda from "./pages/Agenda/Agenda";
 import FullNotePage from "./pages/FullNote/FullNote";
 import HomePage from "./pages/Home/Home";
-import HowDoesItWork from "./pages/HowDoesItWork/HowDoesItWork";
 import Intro from "./pages/Intro/Intro";
 import NotesPage from "./pages/Notes/Notes";
 import Profile from "./pages/Profile/Profile";
@@ -82,7 +81,7 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME4} element={<Welcome4 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage withGamification={true} />} />
+        <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />
