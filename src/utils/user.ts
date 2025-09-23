@@ -1,6 +1,8 @@
 import { PrivateKey } from "@ethersphere/bee-js";
 import { keccak256 } from "ethers";
 
+import { FIRST_NAMES, LAST_NAMES } from "../constants/names";
+
 export interface UserSession {
   id: string;
   name: string;
@@ -109,6 +111,12 @@ export const userLogin = (name: string): UserSession => {
 export const createMonogram = (name: string): string => {
   const initials = name.split(" ").map((n) => n[0]);
   return initials.join("").toUpperCase();
+};
+
+export const generateRandomUsername = (): string => {
+  const randomFirstName = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
+  const randomLastName = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
+  return `${randomFirstName} ${randomLastName}`;
 };
 
 export const createUniqueUsername = (name: string, publicKey: string): string => {

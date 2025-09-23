@@ -17,7 +17,6 @@ import { useUserContext } from "@/contexts/user";
 import { Space } from "@/types/space";
 import { dateToTime } from "@/utils/date";
 import { determineActivityNumByMessage } from "@/utils/session";
-import { createUniqueUsername } from "../../utils/user";
 
 interface TalkItemProps {
   session: Session | Space;
@@ -75,11 +74,10 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
       }
     }
 
-    const transformedComments = updatedComments.map((c) => ({ ...c, username: createUniqueUsername(c.username, c.address) }));
-    setComments(transformedComments);
+    setComments(updatedComments);
     setCurrentLoadedTalks(newLoadedTalks);
 
-    updateActivity(transformedComments);
+    updateActivity(updatedComments);
   };
 
   const handleOnComment = async (newComment: MessageData) => {
@@ -94,7 +92,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     if (currentLoadedTalks) {
       const talk = currentLoadedTalks.find((talk) => talk.talkId.includes(session.id));
       if (talk) {
-        setComments(talk.messages?.map((c) => ({ ...c, username: createUniqueUsername(c.username, c.address) })) ?? []);
+        setComments(talk.messages ?? []);
       }
     }
     setLoading(false);
@@ -125,11 +123,11 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           topic={rawTalkTopic}
           signer={signer}
           beeApiUrl={process.env.BEE_API_URL || DEFAULT_URL}
-          username={createUniqueUsername(username, keys.public)}
+          username={username}
+          userKey={keys.public}
           preloadedComments={comments}
           onComment={handleOnComment}
           onRead={handleOnRead}
-          filterEnabled={false}
           numOfComments={Number(MAX_COMMENTS_LOADED)}
           maxCharacterCount={MAX_CHARACTER_COUNT}
           pollInterval={DEFAULT_POLL_INTERVAL}

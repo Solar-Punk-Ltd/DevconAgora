@@ -11,7 +11,6 @@ export enum ROUTES {
   CATEGORIES = "/categories",
   SPACES = "/spaces",
   TALKS = "/talks",
-  // CONTENTFILTER = "/content-filter",
   TERMSANDCONDITIONS = "/terms-and-conditions",
   TACONBOARDING = "/terms-and-conditions-onboarding",
   NOTES = "/notes",

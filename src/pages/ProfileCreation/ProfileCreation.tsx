@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
-import EnterIcon from "../../components/icons/EnterIcon/EnterIcon";
 import ProfilePicture from "../../components/ProfilePicture/ProfilePicture";
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import { ROUTES } from "../../constants/routes";
@@ -11,12 +10,12 @@ import "./ProfileCreation.scss";
 
 import { useUserContext } from "@/contexts/user";
 import { handleKeyDown } from "@/utils/common";
-import { createMonogram } from "@/utils/user";
+import { createMonogram, generateRandomUsername } from "@/utils/user";
 
 const ProfileCreation: React.FC = () => {
   const { login } = useUserContext();
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>("");
+  const [username, setUsername] = useState<string>(() => generateRandomUsername());
   const [validationError, setValidationError] = useState<string>("");
 
   const validateUsername = (name: string): string => {
@@ -103,7 +102,6 @@ const ProfileCreation: React.FC = () => {
                   autoFocus
                 />
               </div>
-              <EnterIcon onClick={handleSubmit} />
             </div>
             {validationError && (
               <div className="profile-creation__user-input__error-container">

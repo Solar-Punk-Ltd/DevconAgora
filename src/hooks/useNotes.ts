@@ -16,7 +16,7 @@ export const useNotes = () => {
 
   const fetchNotes = useCallback(async () => {
     if (!isUserLoggedIn) {
-      console.error("User is not logged in, cannot fetch private notes");
+      console.debug("User is not logged in, cannot fetch private notes");
       return;
     }
 
@@ -60,7 +60,7 @@ export const useNotes = () => {
     setNotes(tmpNotes);
 
     console.debug("self notes updated");
-  }, [noteRawTopics, setNotes]);
+  }, [noteRawTopics, setNotes, isUserLoggedIn, keys.public]);
   // Note: notes intentionally excluded from deps to avoid infinite loop
 
   useEffect(() => {

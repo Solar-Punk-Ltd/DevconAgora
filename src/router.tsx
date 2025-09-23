@@ -80,7 +80,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />

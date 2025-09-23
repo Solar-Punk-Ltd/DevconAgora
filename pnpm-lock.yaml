@@ -15,8 +15,8 @@ importers:
         specifier: ^1.8.9
         version: 1.8.9
       '@solarpunkltd/comment-system-ui':
-        specifier: ^0.3.3
-        version: 0.3.3(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))
+        specifier: file:../comment-system-ui
+        version: file:../comment-system-ui(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))
       '@solarpunkltd/swarm-comment-js':
         specifier: ^0.0.7
         version: 0.0.7
@@ -673,8 +673,8 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@solarpunkltd/comment-system-ui@0.3.3':
-    resolution: {integrity: sha512-3eGv2rGyoKACU30nHJarfWl52Tmy9iPq/CQMcPYwroTefDGt2EhKfesT3OlWK4T39MCKfxV8svJ/gqYuaLzA2A==}
+  '@solarpunkltd/comment-system-ui@file:../comment-system-ui':
+    resolution: {directory: ../comment-system-ui, type: directory}
 
   '@solarpunkltd/comment-system@1.8.9':
     resolution: {integrity: sha512-k/jL9ByzBPHCPP6v02RVKonrmFzxF/+fLkvT1/BRDHO/DcKEsYABgAyVQ+H4kbIbKn/kSLM7xG/NXPJULk4kfw==}
@@ -2937,7 +2937,7 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@solarpunkltd/comment-system-ui@0.3.3(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))':
+  '@solarpunkltd/comment-system-ui@file:../comment-system-ui(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))':
     dependencies:
       '@ethersphere/bee-js': 10.0.0
       '@solarpunkltd/comment-system': 1.8.9

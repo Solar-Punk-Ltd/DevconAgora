@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import swarmIcon from "../../assets/swarm-icon.png";
 import { ROUTES } from "../../constants/routes";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
@@ -17,9 +16,6 @@ const HomeHeader: React.FC = () => {
     <div className="home-header">
       <div className="home-header__name">BBW2025.BUZZ</div>
       <div className="home-header--right">
-        <div className="home-header__points">
-          <img src={swarmIcon} alt="" width="15px" height="15px" />
-        </div>
         <Link to={ROUTES.PROFILE}>
           <div className="home-header__profile">
             <ProfilePicture name={createMonogram(username)} version="small" />
