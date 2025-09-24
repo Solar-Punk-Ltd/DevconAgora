@@ -1,6 +1,6 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
-import { purgeUserSession, restoreUserSession, persistUserSession, userLogin, UserSession } from "@/utils/user";
+import { persistUserSession, purgeUserSession, restoreUserSession, userLogin, UserSession } from "@/utils/user";
 
 interface ContextInterface {
   keys: {

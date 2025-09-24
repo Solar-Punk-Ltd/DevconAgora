@@ -85,7 +85,12 @@ const attemptSetCookie = async (session: UserSession, options: CookieOptions = {
 };
 
 export const persistUserSession = async (session: UserSession, options: CookieOptions = {}): Promise<void> => {
-  const cookieSuccess = await attemptSetCookie(session, options);
+  const isEnsGateway = window.location.hostname.includes("eth.link") || window.location.hostname.includes("eth.limo");
+  let cookieSuccess = false;
+
+  if (!isEnsGateway) {
+    cookieSuccess = await attemptSetCookie(session, options);
+  }
 
   if (!cookieSuccess) {
     console.log("Cookie setting failed, falling back to localStorage");
@@ -127,15 +132,19 @@ const deleteCookie = (name: string, path: string = "/"): void => {
 };
 
 export const restoreUserSession = (): UserSession | null => {
-  const cookieValue = getCookie(SESSION_KEY);
+  const isEnsGateway = window.location.hostname.includes("eth.link") || window.location.hostname.includes("eth.limo");
 
-  if (cookieValue) {
-    try {
-      const session = JSON.parse(cookieValue);
-      return session;
-    } catch (error) {
-      console.error("Failed to parse session cookie:", error);
-      deleteCookie(SESSION_KEY);
+  if (!isEnsGateway) {
+    const cookieValue = getCookie(SESSION_KEY);
+
+    if (cookieValue) {
+      try {
+        const session = JSON.parse(cookieValue);
+        return session;
+      } catch (error) {
+        console.error("Failed to parse session cookie:", error);
+        deleteCookie(SESSION_KEY);
+      }
     }
   }
 
