@@ -92,7 +92,6 @@ export const persistUserSession = async (session: UserSession, options: CookieOp
 
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-      console.log("Session saved to localStorage");
     } catch (error) {
       console.error("Both cookie and localStorage failed:", error);
     }
@@ -133,7 +132,6 @@ export const restoreUserSession = (): UserSession | null => {
   if (cookieValue) {
     try {
       const session = JSON.parse(cookieValue);
-      console.log("Session loaded from cookie");
       return session;
     } catch (error) {
       console.error("Failed to parse session cookie:", error);
@@ -145,7 +143,6 @@ export const restoreUserSession = (): UserSession | null => {
     const storedValue = localStorage.getItem(SESSION_KEY);
     if (storedValue) {
       const session = JSON.parse(storedValue);
-      console.log("Session loaded from localStorage");
       return session;
     }
   } catch (error) {
