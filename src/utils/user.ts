@@ -13,39 +13,89 @@ export interface UserSession {
 interface CookieOptions {
   expires?: Date;
   secure?: boolean;
-  sameSite?: "strict";
+  sameSite?: "strict" | "lax" | "none";
   path?: string;
   domain?: string;
 }
 
-const COOKIE_NAME = "devcon_session";
+const SESSION_KEY = "devcon_session";
 // Set cookie to expire in ~68 years (effectively infinite)
 const COOKIE_EXPIRY_INFINITE = 68 * 365 * 24 * 60 * 60 * 1000;
 
-export const setCookie = (session: UserSession, options: CookieOptions = {}): void => {
-  const { expires = new Date(Date.now() + COOKIE_EXPIRY_INFINITE), path = "/", domain, secure = true, sameSite = "strict" } = options;
+const attemptSetCookie = (session: UserSession, options: CookieOptions = {}): boolean => {
+  const isHTTPS = window.location.protocol === "https:";
 
-  const cookieData = JSON.stringify(session);
+  //  Try more permissive settings if on problematic gateways
+  const strategies = [
+    // Strategy 0: Strict sameSite, secure if HTTPS
+    { sameSite: "strict" as const, secure: isHTTPS },
+    // Strategy 1: Lax sameSite, no domain
+    { sameSite: "lax" as const, secure: isHTTPS },
+    // Strategy 2: None sameSite (requires secure)
+    { sameSite: "none" as const, secure: true },
+    // Strategy 3: No sameSite attribute (legacy mode)
+    { sameSite: undefined, secure: isHTTPS },
+  ];
 
-  let cookieString = `${encodeURIComponent(COOKIE_NAME)}=${encodeURIComponent(cookieData)}`;
+  for (const strategy of strategies) {
+    try {
+      const {
+        expires = new Date(Date.now() + COOKIE_EXPIRY_INFINITE),
+        path = "/",
+        domain, // Never set domain for problematic gateways
+        ...strategyOptions
+      } = { ...options, ...strategy };
 
-  if (expires) {
-    cookieString += `; expires=${expires.toUTCString()}`;
+      const cookieData = JSON.stringify(session);
+      let cookieString = `${encodeURIComponent(SESSION_KEY)}=${encodeURIComponent(cookieData)}`;
+
+      if (expires) {
+        cookieString += `; expires=${expires.toUTCString()}`;
+      }
+
+      cookieString += `; path=${path}`;
+
+      if (domain) {
+        cookieString += `; domain=${domain}`;
+      }
+
+      if (strategyOptions.secure) {
+        cookieString += "; secure";
+      }
+
+      if (strategyOptions.sameSite) {
+        cookieString += `; samesite=${strategyOptions.sameSite}`;
+      }
+
+      console.log(`Attempting to set cookie with strategy:`, strategyOptions);
+      document.cookie = cookieString;
+
+      const verification = getCookie(SESSION_KEY);
+      if (verification) {
+        console.log("Cookie set successfully with strategy:", strategyOptions);
+        return true;
+      }
+    } catch (error) {
+      console.warn("Cookie strategy failed:", error);
+    }
   }
 
-  cookieString += `; path=${path}`;
+  return false;
+};
 
-  if (domain) {
-    cookieString += `; domain=${domain}`;
+export const persistUserSession = (session: UserSession, options: CookieOptions = {}): void => {
+  const cookieSuccess = attemptSetCookie(session, options);
+
+  if (!cookieSuccess) {
+    console.log("Cookie setting failed, falling back to localStorage");
+
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      console.log("Session saved to localStorage");
+    } catch (error) {
+      console.error("Both cookie and localStorage failed:", error);
+    }
   }
-
-  if (secure) {
-    cookieString += "; secure";
-  }
-
-  cookieString += `; samesite=${sameSite}`;
-
-  document.cookie = cookieString;
 };
 
 const getCookie = (name: string): string | null => {
@@ -63,28 +113,57 @@ const getCookie = (name: string): string | null => {
 };
 
 const deleteCookie = (name: string, path: string = "/"): void => {
-  document.cookie = `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure; samesite=strict`;
+  // Try multiple deletion strategies for problematic gateways
+  const strategies = [
+    `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}`,
+    `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure`,
+    `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure; samesite=lax`,
+    `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}; secure; samesite=none`,
+  ];
+
+  for (const strategy of strategies) {
+    document.cookie = strategy;
+  }
 };
 
-export const loadUserSessionFromCookie = (): UserSession | null => {
-  const cookieValue = getCookie(COOKIE_NAME);
+export const restoreUserSession = (): UserSession | null => {
+  const cookieValue = getCookie(SESSION_KEY);
 
-  if (!cookieValue) {
-    return null;
+  if (cookieValue) {
+    try {
+      const session = JSON.parse(cookieValue);
+      console.log("Session loaded from cookie");
+      return session;
+    } catch (error) {
+      console.error("Failed to parse session cookie:", error);
+      deleteCookie(SESSION_KEY);
+    }
   }
 
   try {
-    const session = JSON.parse(cookieValue);
-    return session;
+    const storedValue = localStorage.getItem(SESSION_KEY);
+    if (storedValue) {
+      const session = JSON.parse(storedValue);
+      console.log("Session loaded from localStorage");
+      return session;
+    }
   } catch (error) {
-    console.error("Failed to parse session cookie:", error);
-    deleteCookie(COOKIE_NAME);
-    return null;
+    console.error("Failed to load from localStorage:", error);
   }
+
+  return null;
 };
 
-export const clearUserSessionCookie = (): void => {
-  deleteCookie(COOKIE_NAME);
+export const purgeUserSession = (): void => {
+  deleteCookie(SESSION_KEY);
+
+  try {
+    localStorage.removeItem(SESSION_KEY);
+  } catch (error) {
+    console.error("Failed to clear localStorage:", error);
+  }
+
+  console.log("Session cleared from all storage methods");
 };
 
 export const userLogin = (name: string): UserSession => {
