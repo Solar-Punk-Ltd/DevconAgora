@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
 import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
-import { CATEGORIES } from "../../utils/constants";
+import { CATEGORIES } from "../../constants/categories";
 
 import "./Categories.scss";
 

@@ -10,13 +10,12 @@ import {
   DISCLAIMER_OF_LIABILITY_TEXT,
   PERSONAL_DATA_HEADER,
   PERSONAL_DATA_TEXT,
-} from "../../utils/constants";
+} from "../../constants/legal";
 import CheckBoxIcon from "../icons/CheckBoxIcon/CheckBoxIcon";
 
 import "./TermsAndConditions.scss";
 
 interface TermsAndConditionsProps {
-  contentFilterCheckBox?: boolean;
   termsAndConditionCheckBox?: boolean;
   termsAndConditionCheckBoxHandler?: () => void;
   termsAndConditionCheckBoxValue?: boolean;

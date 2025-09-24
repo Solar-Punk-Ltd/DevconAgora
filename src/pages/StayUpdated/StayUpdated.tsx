@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./StayUpdated.scss";
 

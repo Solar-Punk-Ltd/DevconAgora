@@ -1,36 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import swarmIcon from "../../assets/swarm-icon.png";
-import { useGlobalState } from "../../contexts/global";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
 import "./HomeHeader.scss";
 
-interface HomeHeaderProps {
-  points?: number;
-  withGamification?: boolean;
-}
+import { useUserContext } from "@/contexts/user";
+import { createMonogram } from "@/utils/user";
 
-const HomeHeader: React.FC<HomeHeaderProps> = ({ points, withGamification }) => {
-  const { monogram, setPoints } = useGlobalState();
+const HomeHeader: React.FC = () => {
+  const { username } = useUserContext();
+
   return (
     <div className="home-header">
       <div className="home-header__name">BBW2025.BUZZ</div>
       <div className="home-header--right">
-        <div style={withGamification ? { display: "flex" } : { display: "none" }}>
-          <button onClick={() => setPoints(1)}>1</button>
-          <button onClick={() => setPoints(5)}>5</button>
-          <button onClick={() => setPoints(10)}>10</button>
-        </div>
-        <div className="home-header__points">
-          {points ? points : 0}
-          <img src={swarmIcon} alt="" width="15px" height="15px" />
-        </div>
         <Link to={ROUTES.PROFILE}>
           <div className="home-header__profile">
-            <ProfilePicture name={monogram} version="small" />
+            <ProfilePicture name={createMonogram(username)} version="small" />
           </div>
         </Link>
       </div>

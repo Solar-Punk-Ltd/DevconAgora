@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import ProfileIndicator from "../../components/ProfileIndicator/ProfileIndicator";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./Header.scss";
 

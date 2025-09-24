@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ROUTES } from "../../utils/constants";
-import { textExtract } from "../../utils/helpers";
+import { ROUTES } from "../../constants/routes";
 
 import "./NoteItem.scss";
+
+import { textExtract } from "@/utils/common";
 
 export interface NoteItemProps {
   id?: string;

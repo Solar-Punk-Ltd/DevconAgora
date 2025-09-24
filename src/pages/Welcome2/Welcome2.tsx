@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 import WelcomeButton from "../../components/WelcomeButton/WelcomeButton";
 import WelcomeProgressIndicator from "../../components/WelcomeProgressIndicator/WelcomeProgressIndicator";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES } from "../../constants/routes";
 
 import "./Welcome2.scss";
 
 const Welcome1: React.FC = () => {
   return (
     <>
-      <div className="welcome-page welcome4-page">
+      <div className="welcome-page welcome2-page">
         <div className="welcome-page__header">Share your thoughts</div>
         <div className="welcome-page__content">
           <div>Comment, start discussions and exchange ideas</div>

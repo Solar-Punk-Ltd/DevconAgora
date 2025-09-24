@@ -2,13 +2,14 @@ import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-
 import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
 import { useCallback } from "react";
 
+import { MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/constants/app";
+import { DEFAULT_URL } from "@/constants/network";
 import { useGlobalState } from "@/contexts/global";
 import { Session } from "@/types/session";
 import { Space } from "@/types/space";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
-import { DEFAULT_URL, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/utils/constants";
-import { getActivityHelper } from "@/utils/helpers";
+import { determineActivityNumByMessage } from "@/utils/session";
 
 export const usePreload = () => {
   const { setLoadedSpaces, setSpacesActivity, spaces, recentSessions, setLoadedTalks, setTalkActivity } = useGlobalState();
@@ -41,7 +42,7 @@ export const usePreload = () => {
         await Promise.allSettled(promises).then((results) => {
           results.forEach((result, i) => {
             if (result.status === "fulfilled") {
-              const activity = Number(getActivityHelper(result.value, true));
+              const activity = Number(determineActivityNumByMessage(result.value, true));
               activityMap.set(itemsToProcess[i].id, activity);
 
               preLoadedItems.push({

@@ -2,7 +2,8 @@ import clsx from "clsx";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { LOBBY_TITLE, ROUTES } from "../../utils/constants";
+import { LOBBY_TITLE } from "../../constants/categories";
+import { ROUTES } from "../../constants/routes";
 import ActiveVisitors from "../ActiveVisitors/ActiveVisitors";
 
 import "./DevConMainBox.scss";
