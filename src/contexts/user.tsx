@@ -1,6 +1,6 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
-import { clearUserSessionCookie, loadUserSessionFromCookie, setCookie, userLogin, UserSession } from "@/utils/user";
+import { persistUserSession, purgeUserSession, restoreUserSession, userLogin, UserSession } from "@/utils/user";
 
 interface ContextInterface {
   keys: {
@@ -12,7 +12,6 @@ interface ContextInterface {
   username: string;
   isUserLoggedIn: boolean;
   isLoading: boolean;
-  isUserLoadedFromCookie: () => boolean;
 }
 
 const initialValues: ContextInterface = {
@@ -22,7 +21,6 @@ const initialValues: ContextInterface = {
   username: "",
   isUserLoggedIn: false,
   isLoading: true,
-  isUserLoadedFromCookie: () => false,
 };
 
 export const Context = createContext<ContextInterface>(initialValues);
@@ -43,7 +41,7 @@ export function Provider({ children }: Props): ReactElement {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const savedSession = loadUserSessionFromCookie();
+    const savedSession = restoreUserSession();
     if (savedSession) {
       setUserSession(savedSession);
     }
@@ -55,13 +53,13 @@ export function Provider({ children }: Props): ReactElement {
 
     if (session.id) {
       setUserSession(session);
-      setCookie(session);
+      await persistUserSession(session);
     }
   };
 
   const logout = () => {
     setUserSession(null);
-    clearUserSessionCookie();
+    purgeUserSession();
   };
 
   const username = useMemo(() => userSession?.name || "", [userSession]);
@@ -79,10 +77,6 @@ export function Provider({ children }: Props): ReactElement {
     };
   }, [userSession]);
 
-  const isUserLoadedFromCookie = () => {
-    return !!loadUserSessionFromCookie();
-  };
-
   return (
     <Context.Provider
       value={{
@@ -92,7 +86,6 @@ export function Provider({ children }: Props): ReactElement {
         username,
         isUserLoggedIn,
         isLoading,
-        isUserLoadedFromCookie,
       }}
     >
       {children}
