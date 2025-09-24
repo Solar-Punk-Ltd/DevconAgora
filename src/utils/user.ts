@@ -22,7 +22,7 @@ const SESSION_KEY = "devcon_session";
 // Set cookie to expire in ~68 years (effectively infinite)
 const COOKIE_EXPIRY_INFINITE = 68 * 365 * 24 * 60 * 60 * 1000;
 
-const attemptSetCookie = (session: UserSession, options: CookieOptions = {}): boolean => {
+const attemptSetCookie = async (session: UserSession, options: CookieOptions = {}): Promise<boolean> => {
   const isHTTPS = window.location.protocol === "https:";
 
   //  Try more permissive settings if on problematic gateways
@@ -67,12 +67,13 @@ const attemptSetCookie = (session: UserSession, options: CookieOptions = {}): bo
         cookieString += `; samesite=${strategyOptions.sameSite}`;
       }
 
-      console.log(`Attempting to set cookie with strategy:`, strategyOptions);
       document.cookie = cookieString;
+
+      // Delay to allow browser to process the cookie
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
       const verification = getCookie(SESSION_KEY);
       if (verification) {
-        console.log("Cookie set successfully with strategy:", strategyOptions);
         return true;
       }
     } catch (error) {
@@ -83,8 +84,8 @@ const attemptSetCookie = (session: UserSession, options: CookieOptions = {}): bo
   return false;
 };
 
-export const persistUserSession = (session: UserSession, options: CookieOptions = {}): void => {
-  const cookieSuccess = attemptSetCookie(session, options);
+export const persistUserSession = async (session: UserSession, options: CookieOptions = {}): Promise<void> => {
+  const cookieSuccess = await attemptSetCookie(session, options);
 
   if (!cookieSuccess) {
     console.log("Cookie setting failed, falling back to localStorage");

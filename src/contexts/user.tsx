@@ -53,7 +53,7 @@ export function Provider({ children }: Props): ReactElement {
 
     if (session.id) {
       setUserSession(session);
-      persistUserSession(session);
+      await persistUserSession(session);
     }
   };
 
