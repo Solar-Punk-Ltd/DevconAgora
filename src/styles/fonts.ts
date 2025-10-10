@@ -50,7 +50,7 @@ export function loadSwarmFonts(beeUrl: string): void {
   document.head.appendChild(styleElement);
 }
 
-export function initializeFonts(): void {
+export function initializeFonts(isSwarm: boolean): void {
   const hasSwarmHashes = !!(
     process.env.POPPINS_FONT_HASH &&
     process.env.INTER_FONT_HASH &&
@@ -60,7 +60,7 @@ export function initializeFonts(): void {
 
   const beeUrl = process.env.BEE_API_URL;
 
-  if (beeUrl && hasSwarmHashes) {
+  if (beeUrl && hasSwarmHashes && isSwarm) {
     console.debug("Fetch fonts from Swarm");
     loadSwarmFonts(beeUrl);
   } else {

@@ -9,15 +9,17 @@ import MainRouter from "./router";
 
 import "./styles/global.scss";
 
-initializeFonts();
+const isSwarm = process.env.SWARM === "true";
 
-const Router = process.env.SWARM === "true" ? HashRouter : BrowserRouter;
+initializeFonts(isSwarm);
+
+const Router = isSwarm ? HashRouter : BrowserRouter;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <GlobalStateProvider>
       <UserProvider>
-        <Router basename={process.env.SWARM === "true" ? undefined : process.env.ROUTER_BASENAME}>
+        <Router basename={isSwarm ? undefined : process.env.ROUTER_BASENAME}>
           <MainRouter />
         </Router>
       </UserProvider>
