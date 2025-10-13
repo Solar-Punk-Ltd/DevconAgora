@@ -1,107 +1,35 @@
-import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-system";
-import { SwarmCommentSystem } from "@solarpunkltd/comment-system-ui";
-import React, { useEffect, useState } from "react";
+import { PrivateKey } from "@ethersphere/bee-js";
+import React from "react";
 
-import { DEFAULT_POLL_INTERVAL, MAX_CHARACTER_COUNT, MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "../../constants/app";
-import { STAGES_MAP } from "../../constants/categories";
-import { DEFAULT_URL, DUMMY_STAMP } from "../../constants/network";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
-import { TalkComments } from "../../types/talkComment";
-import { getTopic } from "../../utils/bee";
+import { STAGES_MAP } from "../../utils/constants";
+import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
 import AgendaItem from "../AgendaItem/AgendaItem";
+import { Comment } from "../Comment/Comment";
 
 import "./TalkItem.scss";
 
-import { useUserContext } from "@/contexts/user";
-import { Space } from "@/types/space";
-import { dateToTime } from "@/utils/date";
-import { determineActivityNumByMessage } from "@/utils/session";
-
 interface TalkItemProps {
-  session: Session | Space;
+  session: Session;
   isSpacesTalk: boolean;
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, talkActivity, setTalkActivity, spacesActivity, setSpacesActivity } =
-    useGlobalState();
-  const { username, keys } = useUserContext();
+  const { username } = useGlobalState();
 
-  const [comments, setComments] = useState<MessageData[] | undefined>(undefined);
-  const [loading, setLoading] = useState<boolean>(true);
+  const privKey = getLocalPrivateKey();
+  if (!privKey) {
+    return null;
+  }
 
-  const rawTalkTopic = getTopic(session.id);
-  const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
-
-  const currentLoadedTalks = isSpacesTalk ? loadedSpaces : loadedTalks;
-  const setCurrentLoadedTalks = isSpacesTalk ? setLoadedSpaces : setLoadedTalks;
-  const currentActivity = isSpacesTalk ? spacesActivity : talkActivity;
-  const setCurrentActivity = isSpacesTalk ? setSpacesActivity : setTalkActivity;
-
-  const updateActivity = (messages: MessageData[]) => {
-    const activity = Number(determineActivityNumByMessage(messages, true));
-    const tmpActivity = new Map(currentActivity);
-    tmpActivity.set(session.id, activity);
-    setCurrentActivity(tmpActivity);
-  };
-
-  const updateTalks = (newComments: MessageData[], isHistory: boolean) => {
-    let updatedComments: MessageData[] = [];
-    if (isHistory) {
-      updatedComments = [...newComments, ...(comments || [])];
-    } else {
-      updatedComments = [...(comments || []), ...newComments];
-    }
-
-    const newLoadedTalks = [...(currentLoadedTalks || [])];
-    if (newLoadedTalks && newLoadedTalks.length > 0) {
-      const foundIx = newLoadedTalks.findIndex((talk) => talk.talkId.includes(session.id));
-
-      if (foundIx > -1) {
-        newLoadedTalks[foundIx].messages = updatedComments;
-      } else {
-        const newTalk: TalkComments = {
-          talkId: rawTalkTopic,
-          messages: updatedComments,
-        };
-
-        if (newLoadedTalks.length < MAX_PRELOADED_TALKS) {
-          newLoadedTalks.push(newTalk);
-        } else {
-          newLoadedTalks.splice(0, 1, newTalk);
-        }
-      }
-    }
-
-    setComments(updatedComments);
-    setCurrentLoadedTalks(newLoadedTalks);
-
-    updateActivity(updatedComments);
-  };
-
-  const handleOnComment = async (newComment: MessageData) => {
-    updateTalks([newComment], false);
-  };
-
-  const handleOnRead = (newComments: MessageData[], isHistory: boolean) => {
-    updateTalks(newComments, isHistory);
-  };
-
-  useEffect(() => {
-    if (currentLoadedTalks) {
-      const talk = currentLoadedTalks.find((talk) => talk.talkId.includes(session.id));
-      if (talk) {
-        setComments(talk.messages ?? []);
-      }
-    }
-    setLoading(false);
-  }, [currentLoadedTalks, session.id]);
+  const userSigner = new PrivateKey(privKey);
 
   return (
     <>
       {session && (
         <AgendaItem
+          key={session.id}
           id={session.id}
           title={session.title}
           startDate={dateToTime(session.slot_start)}
@@ -115,24 +43,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           isSpacesTalk={isSpacesTalk}
         />
       )}
-      {/* either use a local stamp from the env or a dummy can be sent to the
-      gateway */}
-      {!loading && (
-        <SwarmCommentSystem
-          stamp={process.env.STAMP || DUMMY_STAMP}
-          topic={rawTalkTopic}
-          signer={signer}
-          beeApiUrl={process.env.BEE_API_URL || DEFAULT_URL}
-          username={username}
-          userKey={keys.public}
-          preloadedComments={comments}
-          onComment={handleOnComment}
-          onRead={handleOnRead}
-          numOfComments={Number(MAX_COMMENTS_LOADED)}
-          maxCharacterCount={MAX_CHARACTER_COUNT}
-          pollInterval={DEFAULT_POLL_INTERVAL}
-        />
-      )}
+      {<Comment sessionId={session.id} signer={userSigner} username={username} />}
     </>
   );
 };

@@ -1,0 +1,82 @@
+.reaction-toolbar {
+  margin-left: auto;
+  position: relative;
+  margin-bottom: 4px;
+
+  &.expanded {
+    .EmojiPickerReact {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .close-picker-button {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      z-index: 1001;
+      background: rgba(28, 28, 28, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #efefef;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
+
+.EmojiPickerReact {
+  --epr-emoji-size: 20px !important;
+}
+
+.epr-main {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.reaction-toolbar.expanded .epr-main {
+  background: #222222 !important;
+}
+
+.epr-emoji {
+  &:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: none !important;
+  }
+
+  &:active {
+    transform: scale(0.95) !important;
+  }
+}
+
+.epr-emoji-native {
+  transform: none !important;
+}
+
+/* Style for the plus button */
+button[aria-label="Show all Emojis"] {
+  &:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    transform: none !important;
+  }
+}

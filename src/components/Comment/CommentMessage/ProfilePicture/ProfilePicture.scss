@@ -1,0 +1,45 @@
+@use "@/styles/global.scss";
+
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  color: #efefef;
+  box-shadow: 0 5px 10px 0 #0000001a;
+  backdrop-filter: blur(20px);
+
+  &::after {
+    content: attr(data-username);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    z-index: 10;
+    margin-bottom: 2px;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  &.own-message::after {
+    left: auto;
+    right: 0;
+  }
+}

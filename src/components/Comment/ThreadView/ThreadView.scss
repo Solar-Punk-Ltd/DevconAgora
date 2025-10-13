@@ -1,0 +1,74 @@
+.thread-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .button {
+    background-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    padding: 4px 8px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.thread-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+}
+
+.back-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  min-width: auto;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.thread-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #efefef;
+}
+
+.original-message-container {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+}
+
+.thread-messages-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  min-height: 0;
+}
+
+.no-thread-messages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.thread-view .message-sender {
+  flex-shrink: 0;
+}
