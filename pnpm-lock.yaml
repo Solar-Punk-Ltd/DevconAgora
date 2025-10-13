@@ -14,9 +14,6 @@ importers:
       '@solarpunkltd/comment-system':
         specifier: ^1.8.9
         version: 1.8.9
-      '@solarpunkltd/comment-system-ui':
-        specifier: ^0.3.4
-        version: 0.3.4(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))
       '@solarpunkltd/swarm-comment-js':
         specifier: ^0.0.7
         version: 0.0.7
@@ -672,9 +669,6 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
-
-  '@solarpunkltd/comment-system-ui@0.3.4':
-    resolution: {integrity: sha512-nPAypqs7ejFMyJL2HhqMEv95AQ4mzDTch+LkJRHLaTGL5joQSRqcvTmzUEERMVA74LbecCy6zl+BbWMQocSvMg==}
 
   '@solarpunkltd/comment-system@1.8.9':
     resolution: {integrity: sha512-k/jL9ByzBPHCPP6v02RVKonrmFzxF/+fLkvT1/BRDHO/DcKEsYABgAyVQ+H4kbIbKn/kSLM7xG/NXPJULk4kfw==}
@@ -2937,22 +2931,6 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@solarpunkltd/comment-system-ui@0.3.4(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))':
-    dependencies:
-      '@ethersphere/bee-js': 10.0.0
-      '@solarpunkltd/comment-system': 1.8.9
-      clsx: 2.1.1
-      react: 19.1.1
-      react-dom: 19.1.1(react@19.1.1)
-      uuid: 11.1.0
-      vite-plugin-node-polyfills: 0.24.0(rollup@4.50.1)(vite@7.1.5(@types/node@24.3.1)(sass@1.92.1))
-    transitivePeerDependencies:
-      - bufferutil
-      - rollup
-      - supports-color
-      - utf-8-validate
-      - vite
-
   '@solarpunkltd/comment-system@1.8.9':
     dependencies:
       '@ethersphere/bee-js': 10.0.0
@@ -3766,7 +3744,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0)(eslint@9.35.0))(eslint@9.35.0):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4)(eslint@9.35.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -3788,7 +3766,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.35.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0)(eslint@9.35.0))(eslint@9.35.0)
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4)(eslint@9.35.0)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
