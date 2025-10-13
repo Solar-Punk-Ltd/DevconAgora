@@ -5,12 +5,12 @@ import "./Comment.scss";
 
 import { Button } from "@/components/Button/Button";
 import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessage";
-import { MessageSender } from "@/components/Comment/MessageSender/MessageSender";
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
 import { getTopic } from "@/utils/bee";
 import { DEFAULT_POLL_INTERVAL } from "@/utils/constants";
+import { MessageSender } from "../MessageSender/MessageSender";
 
 interface CommentProps {
   sessionId: string;

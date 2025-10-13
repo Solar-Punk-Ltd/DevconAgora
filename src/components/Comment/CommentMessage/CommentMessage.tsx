@@ -2,13 +2,13 @@ import clsx from "clsx";
 import { useState } from "react";
 
 import { MessageActions } from "./MessageActions/MessageActions";
-import { MessageReactionsWrapper } from "./MessageReactionsWrapper/MessageReactionsWrapper";
 import { MessageThreadWrapper } from "./MessageThreadWrapper/MessageThreadWrapper";
 import { ProfilePicture } from "./ProfilePicture/ProfilePicture";
 
 import "./CommentMessage.scss";
 
 import { ReactionData } from "@/hooks/useSwarmComment";
+import { MessageReactionsWrapper } from "./MessageRectionsWrapper/MessageReactionsWrapper";
 
 interface CommentMessageProps {
   message: string;

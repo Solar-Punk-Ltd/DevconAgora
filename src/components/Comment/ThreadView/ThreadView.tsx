@@ -2,8 +2,8 @@ import "./ThreadView.scss";
 
 import { Button } from "@/components/Button/Button";
 import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessage";
-import { MessageSender } from "@/components/Comment/MessageSender/MessageSender";
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
+import { MessageSender } from "@/components/MessageSender/MessageSender";
 import { ReactionData, VisibleMessage } from "@/hooks/useSwarmComment";
 
 interface ThreadViewProps {
