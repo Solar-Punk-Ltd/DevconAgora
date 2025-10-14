@@ -7,4 +7,3 @@ export const FEED_INDEX_ZERO = FeedIndex.fromBigInt(0n);
 export const RAW_FEED_TOPIC_SESSIONS = "sessions";
 export const SELF_NOTE_TOPIC = "selfNoteTopics";
 export const SPACES_KEY = "spaces";
-export const GIFTCODE_KEY = "giftcode";

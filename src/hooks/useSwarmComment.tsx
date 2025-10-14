@@ -2,9 +2,10 @@ import { MessageData, MessageType } from "@solarpunkltd/comment-system";
 import { CommentSettings, EVENTS, PreloadOptions, SwarmComment } from "@solarpunkltd/swarm-comment-js";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { MAX_PRELOADED_TALKS } from "@/constants/app";
+import { CATEGORIES } from "@/constants/categories";
 import { useGlobalState } from "@/contexts/global";
-import { CATEGORIES, MAX_PRELOADED_TALKS } from "@/utils/constants";
-import { getActivityHelper } from "@/utils/helpers";
+import { getActivityHelper } from "@/utils/bee";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;

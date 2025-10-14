@@ -1,10 +1,12 @@
 import { ReactElement, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import { CATEGORIES } from "./constants/categories";
+import { ROUTES } from "./constants/routes";
 import { useGlobalState } from "./contexts/global";
 import { useBeePing } from "./hooks/useBeePing";
 import { useNotes } from "./hooks/useNotes";
-import { usePreloadRecentSessions, usePreloadSpacesSessions } from "./hooks/usePreloadTalks";
+import { usePreload } from "./hooks/usePreload";
 import { usePrevLocation } from "./hooks/usePrevLocation";
 import { useRouteProtection } from "./hooks/useRouteProtection";
 import { useSessionData } from "./hooks/useSessionData";
@@ -17,44 +19,49 @@ import NotesPage from "./pages/Notes/Notes";
 import Profile from "./pages/Profile/Profile";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import Spaces from "./pages/Spaces/Spaces";
-import StayUpdated from "./pages/StayUpdated/StayUpdated";
 import TACOnboardingPage from "./pages/TACOnboarding/TACOnboarding";
 import TalkPage from "./pages/Talk/Talk";
 import TermsAndConditionsPage from "./pages/TermsAndConditions/TermsAndConditions";
 import Welcome1 from "./pages/Welcome1/Welcome1";
 import Welcome2 from "./pages/Welcome2/Welcome2";
 import Welcome3 from "./pages/Welcome3/Welcome3";
-import { ROUTES } from "./utils/constants";
+import { Space } from "./types/space";
 
 const MainRouter = (): ReactElement => {
-  const { sessions, recentSessions } = useGlobalState();
+  const { sessions, setSpaces, recentSessions } = useGlobalState();
   const location = useLocation();
   const navigate = useNavigate();
 
   const { isBeeRunning } = useBeePing();
 
-  const { filterRecentSessions } = useSessionData(isBeeRunning);
+  useEffect(() => {
+    const tmpSpaces: Space[] = [];
+    CATEGORIES.forEach((cat) => {
+      tmpSpaces.push({
+        id: cat,
+        title: cat,
+        track: cat,
+      });
+    });
+
+    setSpaces(tmpSpaces);
+  }, []);
+
+  useSessionData(isBeeRunning);
+
+  const { calcTalksActivity, calcSpacesActivity } = usePreload();
 
   useEffect(() => {
-    if (sessions) {
-      filterRecentSessions(sessions);
+    if (isBeeRunning) {
+      calcSpacesActivity();
     }
-  }, [sessions, filterRecentSessions]);
-  // not preloading reactions state, it can be loaded on demand
-  const { preloadSpacesSessions } = usePreloadSpacesSessions();
-  const { preloadRecentSessions } = usePreloadRecentSessions();
+  }, [isBeeRunning, calcSpacesActivity]);
 
   useEffect(() => {
-    if (isBeeRunning && sessions && sessions.size > 0) {
-      preloadSpacesSessions();
+    if (isBeeRunning && sessions && sessions.size > 0 && recentSessions && recentSessions.length > 0) {
+      calcTalksActivity();
     }
-  }, [isBeeRunning, sessions, preloadSpacesSessions]);
-
-  useEffect(() => {
-    if (recentSessions && recentSessions.length > 0) {
-      preloadRecentSessions();
-    }
-  }, [recentSessions, preloadRecentSessions]);
+  }, [isBeeRunning, sessions, recentSessions, calcTalksActivity]);
 
   const { prevLocation } = usePrevLocation(location);
 
@@ -73,7 +80,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.WELCOME3} element={<Welcome3 />} />
         <Route path={ROUTES.PROFILECREATION} element={<ProfileCreation />} />
         <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.HOMEWITHGAMIFICATION} element={<HomePage />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.AGENDA} element={<Agenda />} />
         <Route path={ROUTES.SPACES} element={<Spaces />} />
@@ -81,7 +87,6 @@ const MainRouter = (): ReactElement => {
         <Route path={ROUTES.NOTES} element={<NotesPage />} />
         <Route path={`${ROUTES.NOTES}/:noteId`} element={<FullNotePage />} />
         <Route path={ROUTES.TACONBOARDING} element={<TACOnboardingPage />} />
-        <Route path={ROUTES.STAYUPDATED} element={<StayUpdated />} />
         <Route path={ROUTES.TERMSANDCONDITIONS} element={<TermsAndConditionsPage />} />
       </Routes>
     </>

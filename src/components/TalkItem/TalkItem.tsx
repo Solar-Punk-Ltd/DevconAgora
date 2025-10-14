@@ -1,14 +1,15 @@
 import { PrivateKey } from "@ethersphere/bee-js";
 import React from "react";
 
-import { useGlobalState } from "../../contexts/global";
+import { STAGES_MAP } from "../../constants/categories";
 import { Session } from "../../types/session";
-import { STAGES_MAP } from "../../utils/constants";
-import { dateToTime, getLocalPrivateKey } from "../../utils/helpers";
+import { dateToTime } from "../../utils/date";
 import AgendaItem from "../AgendaItem/AgendaItem";
 import { Comment } from "../Comment/Comment";
 
 import "./TalkItem.scss";
+
+import { useUserContext } from "@/contexts/user";
 
 interface TalkItemProps {
   session: Session;
@@ -16,14 +17,13 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username } = useGlobalState();
+  const { username, keys } = useUserContext();
 
-  const privKey = getLocalPrivateKey();
-  if (!privKey) {
+  if (!keys.private) {
     return null;
   }
 
-  const userSigner = new PrivateKey(privKey);
+  const userSigner = new PrivateKey(keys.private);
 
   return (
     <>
