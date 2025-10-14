@@ -15,7 +15,7 @@ interface TalkItemProps {
   session: Session;
   isSpacesTalk: boolean;
 }
-
+// TODO: pass isSpacesTalk to TalkIItem and use loadedSpaces as well?
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
   const { username, keys } = useUserContext();
 

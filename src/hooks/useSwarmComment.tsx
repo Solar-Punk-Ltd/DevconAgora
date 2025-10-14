@@ -83,7 +83,7 @@ const calculateActiveReactions = (
 
 export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: string) => {
   const commentRef = useRef<SwarmComment | null>(null);
-  const { loadedTalks, setLoadedTalks, setTalkActivity, setSpacesActivity } = useGlobalState();
+  const { loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, setTalkActivity, setSpacesActivity } = useGlobalState();
 
   const preloadedData = useMemo(() => {
     if (loadedTalks) {
@@ -94,6 +94,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
         isPreloaded: true,
       };
     }
+
     return {
       messages: [],
       reactions: [],
