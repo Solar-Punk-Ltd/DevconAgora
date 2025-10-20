@@ -3,6 +3,7 @@ import "./ThreadView.scss";
 import { Button } from "@/components/Button/Button";
 import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessage";
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
+import LeftNavigationIcon from "@/components/icons/LeftNavigationIcon/LeftNavigationIcon";
 import { MessageSender } from "@/components/MessageSender/MessageSender";
 import { ReactionData, VisibleMessage } from "@/hooks/useSwarmComment";
 
@@ -39,7 +40,7 @@ export function ThreadView({
     <div className="thread-view">
       <div className="thread-header">
         <Button onClick={onBack} className="back-button">
-          ←
+          <LeftNavigationIcon color="white" />
         </Button>
         <h3 className="thread-title">Thread</h3>
       </div>

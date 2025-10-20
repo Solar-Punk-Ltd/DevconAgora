@@ -1,13 +1,13 @@
 @use "@/styles/global.scss";
 
-.profile-picture {
+.comment-profile-picture {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   flex-shrink: 0;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -15,6 +15,11 @@
   color: #efefef;
   box-shadow: 0 5px 10px 0 #0000001a;
   backdrop-filter: blur(20px);
+
+  &.own-message {
+    background-color: transparent !important;
+    border: 2px solid var(--bbw-blue);
+  }
 
   &::after {
     content: attr(data-username);

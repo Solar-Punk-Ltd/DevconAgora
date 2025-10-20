@@ -1,8 +1,9 @@
 .comment-message {
   position: relative;
   display: flex;
+  gap: 8px;
   width: 100%;
-  padding: 4px;
+
   overflow: visible;
 
   &.own-message {
@@ -11,6 +12,11 @@
     .comment-message-text {
       align-items: flex-end;
       text-align: right;
+    }
+
+    .message {
+      border: 2px solid var(--bbw-blue);
+      border-bottom-left-radius: 0px;
     }
   }
 
@@ -26,8 +32,8 @@
   align-items: flex-start;
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
-  color: #333333;
-  max-width: 70%;
+  color: white;
+  width: 100%;
   word-wrap: break-word;
   line-height: 1.4;
   position: relative;
@@ -51,15 +57,22 @@
     }
   }
 
+  .message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+
   .message {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
+    width: 100%;
+    background-color: #00000080;
+    border: 1px solid #e1dde9;
     padding: 8px 12px;
     border-radius: 8px;
-    margin-right: 4px;
-    margin-left: 4px;
-    margin-bottom: 2px;
+    border-bottom-right-radius: 0px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
   }
 }
 

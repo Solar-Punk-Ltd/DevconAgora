@@ -4,11 +4,11 @@ import { useState } from "react";
 import { MessageActions } from "./MessageActions/MessageActions";
 import { MessageReactionsWrapper } from "./MessageRectionsWrapper/MessageReactionsWrapper";
 import { MessageThreadWrapper } from "./MessageThreadWrapper/MessageThreadWrapper";
-import { ProfilePicture } from "./ProfilePicture/ProfilePicture";
 
 import "./CommentMessage.scss";
 
 import { ReactionData } from "@/hooks/useSwarmComment";
+import { CommentProfilePicture } from "./CommentProfilePicture/CommentProfilePicture";
 
 interface CommentMessageProps {
   message: string;
@@ -47,7 +47,7 @@ export function CommentMessage({
 
   return (
     <div className={clsx("comment-message", { "own-message": ownMessage })} onClick={() => setIsHovered((prev) => !prev)}>
-      <ProfilePicture name={name} color={profileColor} ownMessage={ownMessage} />
+      <CommentProfilePicture name={name} ownMessage={ownMessage} />
 
       <div
         className={clsx("comment-message-text", {
@@ -55,7 +55,10 @@ export function CommentMessage({
           "not-received": !received,
         })}
       >
-        <span className="message">{message}</span>
+        <div className="message-container">
+          <div>{name}</div>
+          <div className="message">{message}</div>
+        </div>
 
         {error && onRetry && (
           <button className="retry-button" onClick={onRetry}>

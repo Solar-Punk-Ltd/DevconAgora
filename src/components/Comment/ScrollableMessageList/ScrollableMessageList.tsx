@@ -25,7 +25,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
     if (!containerRef.current) return true;
 
     const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    const threshold = 100; // pixels from bottom
+    const threshold = 200; // pixels from bottom
     return scrollTop + clientHeight >= scrollHeight - threshold;
   };
 

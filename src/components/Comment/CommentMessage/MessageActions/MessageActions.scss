@@ -3,12 +3,13 @@
   visibility: hidden;
   right: -200px;
   border-radius: 8px;
-  padding: 2px;
   transition: all 0.3s ease-in-out;
   z-index: 10;
 
   &.visible {
     visibility: visible;
+    border-radius: 12px;
+    background-color: white;
     right: 0;
   }
 
@@ -32,7 +33,6 @@
   background: transparent;
   border: none;
   border-radius: 6px;
-  padding: 6px 8px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -56,11 +56,11 @@
   }
 
   &.emoji-button {
-    font-size: 14px;
+    font-size: 18px;
   }
 
   &.thread-button {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 

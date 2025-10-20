@@ -17,6 +17,7 @@ interface CommentProps {
   sessionId: string;
   username: string;
   signer: PrivateKey;
+  isSpacesTalk: boolean;
 }
 
 const profileColors = [
@@ -37,7 +38,7 @@ function getColorForName(name: string): string {
   return profileColors[hash % profileColors.length];
 }
 
-export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username }) => {
+export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, isSpacesTalk }) => {
   const [selectedMessage, setSelectedMessage] = useState<VisibleMessage | null>(null);
   const [isThreadView, setIsThreadView] = useState(false);
   const [reactionLoadingState, setReactionLoadingState] = useState<Record<string, string>>({});
@@ -54,6 +55,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
   }
 
   const topic = getTopic(sessionId);
+
   const commentConfig = useMemo(
     () => ({
       user: {
@@ -84,11 +86,12 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username })
     retrySendMessage,
     error,
     isSwarmCommentReady,
-  } = useSwarmComment(commentConfig, sessionId);
+  } = useSwarmComment(commentConfig, sessionId, isSpacesTalk);
 
   const shouldShowLoadMore = useMemo(() => {
-    return !commentLoading && isSwarmCommentReady && hasPreviousMessages();
-  }, [commentLoading, isSwarmCommentReady, hasPreviousMessages]);
+    return !commentLoading && isSwarmCommentReady && !messagesLoading && hasPreviousMessages();
+  }, [commentLoading, isSwarmCommentReady, hasPreviousMessages, messagesLoading]);
+
   const handleMessageSending = async (text: string) => {
     if (!isSwarmCommentReady) return;
 

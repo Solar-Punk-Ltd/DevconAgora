@@ -1,6 +1,7 @@
 .thread-view {
   display: flex;
   flex-direction: column;
+  gap: 24px;
   height: 100%;
   overflow: hidden;
 
@@ -20,7 +21,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 10px;
+  padding: 0px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.02);
   flex-shrink: 0;
@@ -44,7 +45,7 @@
 }
 
 .original-message-container {
-  padding: 16px 20px;
+  padding: 0px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.02);
   flex-shrink: 0;

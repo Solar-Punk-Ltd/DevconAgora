@@ -43,7 +43,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           isSpacesTalk={isSpacesTalk}
         />
       )}
-      {<Comment sessionId={session.id} signer={userSigner} username={username} />}
+      {<Comment sessionId={session.id} signer={userSigner} username={username} isSpacesTalk={isSpacesTalk} />}
     </>
   );
 };

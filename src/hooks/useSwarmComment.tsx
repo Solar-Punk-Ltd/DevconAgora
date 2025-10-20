@@ -81,13 +81,15 @@ const calculateActiveReactions = (
   return newReactions;
 };
 
-export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: string) => {
+export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: string, isSpacesTalk: boolean) => {
   const commentRef = useRef<SwarmComment | null>(null);
   const { loadedTalks, setLoadedTalks, loadedSpaces, setLoadedSpaces, setTalkActivity, setSpacesActivity } = useGlobalState();
 
   const preloadedData = useMemo(() => {
-    if (loadedTalks) {
-      const talk = loadedTalks.find((t) => t.talkId === infra.topic);
+    const talks = isSpacesTalk ? loadedSpaces : loadedTalks;
+    if (talks) {
+      const talk = talks.find((t) => t.talkId === infra.topic);
+
       return {
         messages: talk?.messages ?? [],
         reactions: talk?.reactions ?? [],
@@ -100,7 +102,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
       reactions: [],
       isPreloaded: false,
     };
-  }, [loadedTalks, infra.topic]);
+  }, [loadedTalks, infra.topic, loadedSpaces]);
 
   const initialMessages = useMemo(() => {
     const allMessages: VisibleMessage[] = [
@@ -167,7 +169,9 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
   const updateLoadedTalks = useCallback(
     (messages: VisibleMessage[]) => {
-      setLoadedTalks((prevLoadedTalks) => {
+      const setTalks = isSpacesTalk ? setLoadedSpaces : setLoadedTalks;
+
+      setTalks((prevLoadedTalks) => {
         const currentLoadedTalks = [...(prevLoadedTalks || [])];
         const existingTalkIndex = currentLoadedTalks.findIndex((talk) => talk.talkId === infra.topic);
 
@@ -188,6 +192,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
         return currentLoadedTalks;
       });
     },
+
     [infra.topic]
   );
 

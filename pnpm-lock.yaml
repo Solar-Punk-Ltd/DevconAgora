@@ -15,8 +15,8 @@ importers:
         specifier: ^1.9.0
         version: 1.9.0
       '@solarpunkltd/swarm-comment-js':
-        specifier: ^0.0.8
-        version: 0.0.8
+        specifier: ^0.0.9
+        version: 0.0.9
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -678,8 +678,8 @@ packages:
   '@solarpunkltd/comment-system@1.9.0':
     resolution: {integrity: sha512-sHJRoHTo74971CDiOf1R2Rjrfe18m6/fbzvB2xwuI0Dh4RjtfSJFodtMcxwXqQsey+rffksC032M3XM196zxgg==}
 
-  '@solarpunkltd/swarm-comment-js@0.0.8':
-    resolution: {integrity: sha512-bbBeahsqH/hQgTY/D3/7EgKFxyFpFXiUlxbrUOEjZVZKkDVZCn6+5+vkZGPhEorbzO//Va3KRa7OMxLbJjOWtA==}
+  '@solarpunkltd/swarm-comment-js@0.0.9':
+    resolution: {integrity: sha512-a/OrZ4g4aTp2WkcXICQoN1cs4zqcKa4gN4FdsAGSi9887uLsVXAaUEVWoo0IC3XvAVtN0FFitTFnPzDL9L+h8w==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -2953,7 +2953,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@solarpunkltd/swarm-comment-js@0.0.8':
+  '@solarpunkltd/swarm-comment-js@0.0.9':
     dependencies:
       '@ethersphere/bee-js': 10.1.1
       '@solarpunkltd/comment-system': 1.9.0
@@ -3749,7 +3749,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.46.1(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0))(eslint@9.37.0):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.46.1(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -3771,7 +3771,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.37.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.46.1(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4(eslint-plugin-import@2.32.0)(eslint@9.37.0))(eslint@9.37.0)
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.46.1(eslint@9.37.0)(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@4.4.4)(eslint@9.37.0)
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3

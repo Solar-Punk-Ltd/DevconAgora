@@ -27,6 +27,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
           mostRecentSessions[i] = sessionsByDay[recentIx];
         }
         setRecentSessionIx(firstSessionIx);
+
         setRecentSessions(mostRecentSessions);
       }
     },

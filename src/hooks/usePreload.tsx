@@ -58,6 +58,7 @@ export const usePreload = () => {
 
         for (let i = 0; i < itemsToProcess.length; i++) {
           const talkId = getTopic(itemsToProcess[i].id);
+
           const signer = getPrivateKeyFromIdentifier(talkId);
           promises.push(
             loadFeedItems(signer, talkId, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
@@ -71,6 +72,7 @@ export const usePreload = () => {
           results.forEach((result, i) => {
             if (result.status === "fulfilled") {
               const activity = Number(determineActivityNumByMessage(result.value, true));
+
               activityMap.set(itemsToProcess[i].id, activity);
 
               preLoadedItems.push({
