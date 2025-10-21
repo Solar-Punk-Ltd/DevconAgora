@@ -7,12 +7,19 @@ import RecentSessions from "../../components/RecentSessions/RecentSessions";
 import Spaces from "../../components/Spaces/Spaces";
 import { CATEGORIES, LOBBY_TITLE } from "../../constants/categories";
 import { useGlobalState } from "../../contexts/global";
+import { usePreload } from "../../hooks/usePreload";
 
 import "./Home.scss";
 
 const Home: React.FC = () => {
   const { spacesActivity } = useGlobalState();
+  const { calcSpacesActivity } = usePreload();
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
+
+  const handleSpacesRefresh = async () => {
+    console.log("Refreshing spaces...");
+    await calcSpacesActivity();
+  };
   return (
     <div className="home-page">
       <div className="home-page__background grid">{/* <img src={HomeBackground} alt="" width="100%" height="100%" /> */}</div>
@@ -33,6 +40,7 @@ const Home: React.FC = () => {
             topic: c,
             userCount: spacesActivity.get(c) || 0,
           }))}
+          onRefresh={handleSpacesRefresh}
         />
       </div>
 
