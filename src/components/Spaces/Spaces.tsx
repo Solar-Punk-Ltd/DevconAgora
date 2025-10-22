@@ -13,7 +13,6 @@ interface SpacesProps {
   onRefresh?: () => Promise<void>;
 }
 
-/** Ordered Spaces list (ordered by activity) */
 const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,7 +22,6 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
 
-  // Touch events (mobil)
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!containerRef.current) return;
 
