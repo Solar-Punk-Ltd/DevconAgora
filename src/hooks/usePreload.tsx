@@ -30,9 +30,8 @@ const loadFeedItems = async (signer: PrivateKey, talkId: string, address: string
 
   const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
 
-  // TODO: debug
   if (!messages) {
-    console.error(`preloading talks: no comments found for talkId: ${talkId}`);
+    console.debug(`preloading talks: no comments found for talkId: ${talkId}`);
     return [];
   }
 
@@ -80,7 +79,7 @@ export const usePreload = () => {
                 messages: result.value,
               });
             } else {
-              console.error(`fetching user count error: `, result.reason);
+              console.debug(`fetching user count error: `, result.reason);
             }
           });
         });
@@ -88,7 +87,7 @@ export const usePreload = () => {
         setLoadedItems(preLoadedItems);
         setActivity(activityMap);
       } catch (error) {
-        console.error("fetching user count error: ", error);
+        console.debug("fetching user count error: ", error);
       }
     },
     []

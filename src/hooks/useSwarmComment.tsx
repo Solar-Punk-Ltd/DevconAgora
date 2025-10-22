@@ -144,32 +144,27 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     return calculateActiveReactions(reactionGroups, user.nickname);
   }, [reactionMessages, user.nickname]);
 
-  // todo: does a reaction count as an activity or just the comment ?
-  const updateTalkActivity = useCallback(
-    (messages: VisibleMessage[]) => {
-      const activity = getActivityHelper(messages, true);
-      const isSpacesTalk = CATEGORIES.includes(sessionId);
-
-      if (!isSpacesTalk) {
-        setTalkActivity((prevActivity) => {
-          const newActivity = new Map(prevActivity);
-          newActivity.set(infra.topic, Number(activity));
-          return newActivity;
-        });
-      } else {
-        setSpacesActivity((prevActivity) => {
-          const newActivity = new Map(prevActivity);
-          newActivity.set(sessionId, Number(activity));
-          return newActivity;
-        });
-      }
-    },
-    [sessionId, setTalkActivity, setSpacesActivity]
-  );
-
   const updateLoadedTalks = useCallback(
     (messages: VisibleMessage[]) => {
-      const setTalks = isSpacesTalk ? setLoadedSpaces : setLoadedTalks;
+      const activity = getActivityHelper(messages, true);
+      let setTalks = undefined;
+      let id = infra.topic;
+      let setActivity = undefined;
+      if (isSpacesTalk) {
+        id = sessionId;
+        setActivity = setSpacesActivity;
+        setTalks = setLoadedSpaces;
+      } else {
+        id = infra.topic;
+        setActivity = setTalkActivity;
+        setTalks = setLoadedTalks;
+      }
+
+      setActivity((prevActivity) => {
+        const newActivity = new Map(prevActivity);
+        newActivity.set(id, Number(activity));
+        return newActivity;
+      });
 
       setTalks((prevLoadedTalks) => {
         const currentLoadedTalks = [...(prevLoadedTalks || [])];
@@ -193,7 +188,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
       });
     },
 
-    [infra.topic]
+    [infra.topic, isSpacesTalk, sessionId, setLoadedSpaces, setLoadedTalks, setSpacesActivity, setTalkActivity]
   );
 
   const addMessage = useCallback((newMessage: VisibleMessage) => {
@@ -216,9 +211,8 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
     if (receivedMessages.length > 0) {
       updateLoadedTalks(receivedMessages);
-      updateTalkActivity(receivedMessages);
     }
-  }, [messages, updateLoadedTalks, updateTalkActivity]);
+  }, [messages, updateLoadedTalks]);
 
   useEffect(() => {
     if (commentRef.current) return;

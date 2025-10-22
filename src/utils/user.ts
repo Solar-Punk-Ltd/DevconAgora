@@ -98,7 +98,7 @@ export const persistUserSession = async (session: UserSession, options: CookieOp
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
     } catch (error) {
-      console.error("Both cookie and localStorage failed:", error);
+      console.debug("Both cookie and localStorage failed:", error);
     }
   }
 };
@@ -142,7 +142,7 @@ export const restoreUserSession = (): UserSession | null => {
         const session = JSON.parse(cookieValue);
         return session;
       } catch (error) {
-        console.error("Failed to parse session cookie:", error);
+        console.debug("Failed to parse session cookie:", error);
         deleteCookie(SESSION_KEY);
       }
     }
@@ -155,7 +155,7 @@ export const restoreUserSession = (): UserSession | null => {
       return session;
     }
   } catch (error) {
-    console.error("Failed to load from localStorage:", error);
+    console.debug("Failed to load from localStorage:", error);
   }
 
   return null;
@@ -167,7 +167,7 @@ export const purgeUserSession = (): void => {
   try {
     localStorage.removeItem(SESSION_KEY);
   } catch (error) {
-    console.error("Failed to clear localStorage:", error);
+    console.debug("Failed to clear localStorage:", error);
   }
 
   console.log("Session cleared from all storage methods");
