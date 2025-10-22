@@ -34,7 +34,7 @@ export const useNotes = () => {
           notesArray.push(result.value);
         }
       } else {
-        console.error(`fetching note data error: `, result.reason);
+        console.debug(`fetching note data error: `, result.reason);
       }
     });
 
@@ -44,7 +44,7 @@ export const useNotes = () => {
       try {
         note = JSON.parse(notesArray[i]) as NoteItemProps;
       } catch (error) {
-        console.error(`error parsing notes[${i}]:\n ${error}`);
+        console.debug(`error parsing notes[${i}]:\n ${error}`);
         continue;
       }
       const exists = notes.some((n) => n.id === note.id);
