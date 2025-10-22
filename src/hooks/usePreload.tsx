@@ -1,5 +1,6 @@
-import { getPrivateKeyFromIdentifier, MessageData } from "@solarpunkltd/comment-system";
-import { loadLatestComments } from "@solarpunkltd/comment-system-ui";
+import { FeedIndex, PrivateKey, Topic } from "@ethersphere/bee-js";
+import { getPrivateKeyFromIdentifier, MessageData, Options, readCommentsInRange, readSingleComment } from "@solarpunkltd/comment-system";
+import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 import { useCallback } from "react";
 
 import { MAX_COMMENTS_LOADED, MAX_PRELOADED_TALKS } from "@/constants/app";
@@ -10,6 +11,32 @@ import { Space } from "@/types/space";
 import { TalkComments } from "@/types/talkComment";
 import { getTopic } from "@/utils/bee";
 import { determineActivityNumByMessage } from "@/utils/session";
+
+const loadFeedItems = async (signer: PrivateKey, talkId: string, address: string, beeApiUrl: string, maxComments: bigint): Promise<MessageData[]> => {
+  const options: Options = {
+    identifier: Topic.fromString(talkId).toString(),
+    address,
+    beeApiUrl,
+    signer,
+  };
+
+  const latestComment = await readSingleComment(undefined, options);
+  const latestIx = indexStrToBigint(latestComment?.index);
+  if (!latestComment || latestIx === undefined) {
+    return [];
+  }
+
+  const startIx = latestIx > maxComments ? latestIx - maxComments : 0n;
+
+  const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
+
+  if (!messages) {
+    console.debug(`preloading talks: no comments found for talkId: ${talkId}`);
+    return [];
+  }
+
+  return messages;
+};
 
 export const usePreload = () => {
   const { setLoadedSpaces, setSpacesActivity, spaces, recentSessions, setLoadedTalks, setTalkActivity } = useGlobalState();
@@ -29,13 +56,14 @@ export const usePreload = () => {
         const itemsToProcess = items.slice(0, maxItems);
 
         for (let i = 0; i < itemsToProcess.length; i++) {
-          const rawTalkTopic = getTopic(itemsToProcess[i].id);
-          const signer = getPrivateKeyFromIdentifier(rawTalkTopic);
+          const talkId = getTopic(itemsToProcess[i].id);
+
+          const signer = getPrivateKeyFromIdentifier(talkId);
           promises.push(
-            loadLatestComments(rawTalkTopic, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
+            loadFeedItems(signer, talkId, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
           );
 
-          talkIds.push(rawTalkTopic);
+          talkIds.push(talkId);
         }
 
         const activityMap = new Map<string, number>();
@@ -43,6 +71,7 @@ export const usePreload = () => {
           results.forEach((result, i) => {
             if (result.status === "fulfilled") {
               const activity = Number(determineActivityNumByMessage(result.value, true));
+
               activityMap.set(itemsToProcess[i].id, activity);
 
               preLoadedItems.push({
@@ -50,7 +79,7 @@ export const usePreload = () => {
                 messages: result.value,
               });
             } else {
-              console.error(`fetching user count error: `, result.reason);
+              console.debug(`fetching user count error: `, result.reason);
             }
           });
         });
@@ -58,7 +87,7 @@ export const usePreload = () => {
         setLoadedItems(preLoadedItems);
         setActivity(activityMap);
       } catch (error) {
-        console.error("fetching user count error: ", error);
+        console.debug("fetching user count error: ", error);
       }
     },
     []

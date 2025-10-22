@@ -1,4 +1,6 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
+import { MessageData } from "@solarpunkltd/comment-system";
+import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 
 import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
 import { FeedResultWithIndex } from "../types/bee";
@@ -100,4 +102,17 @@ export function getTopic(topic: string): string {
 
 const isNotFoundError = (error: any): boolean => {
   return error.stack?.includes("404") || error.message?.includes("Not Found") || error.message?.includes("404");
+};
+
+export const getActivityHelper = (messages: MessageData[] | undefined, last: boolean): bigint => {
+  if (!messages || messages.length === 0) return 0n;
+
+  const validMessages = messages.filter((msg) => msg.index !== undefined);
+
+  if (validMessages.length === 0) return 0n;
+
+  const index = last ? validMessages.length - 1 : 0;
+  const parsedIndex = indexStrToBigint(validMessages[index].index);
+
+  return parsedIndex !== undefined ? parsedIndex + 1n : 0n;
 };

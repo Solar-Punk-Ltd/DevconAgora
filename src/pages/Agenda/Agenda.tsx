@@ -2,22 +2,23 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 
 import AgendaBanner from "../../assets/side-event-banner.png";
+import HomeBackground from "../../assets/welcome-glass-effect.png";
 import AgendaItem from "../../components/AgendaItem/AgendaItem";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import FilterIcon from "../../components/icons/FilterIcon/FilterIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import TabPanel from "../../components/TabPanel/TabPanel";
 import TabPanelItem from "../../components/TabPanel/TabPanelItem/TabPanelItem";
+import { ALL_SESSIONS_KEY } from "../../constants/app";
 import { CATEGORIES, DATE_TO_EVENT_DAY, STAGES_MAP } from "../../constants/categories";
 import { useGlobalState } from "../../contexts/global";
 import { Session } from "../../types/session";
+import { stringToBoolean } from "../../utils/common";
+import { dateToTime } from "../../utils/date";
+import { getSessionsByDay } from "../../utils/session";
 import Categories from "../Categories/Categories";
 
 import "./Agenda.scss";
-
-import { stringToBoolean } from "@/utils/common";
-import { dateToTime } from "@/utils/date";
-import { getSessionsByDay } from "@/utils/session";
 
 const Agenda: React.FC = () => {
   const { sessions } = useGlobalState();
@@ -38,7 +39,7 @@ const Agenda: React.FC = () => {
   };
 
   useEffect(() => {
-    let day = "all";
+    let day = ALL_SESSIONS_KEY;
     if (activeDayTab > 0) {
       day = Array.from(DATE_TO_EVENT_DAY.keys())[activeDayTab - 1];
     }
@@ -53,7 +54,7 @@ const Agenda: React.FC = () => {
         const isYourAgenda = activeAgendaTab === 1 ? isLiked === true : true;
 
         const stageId = Array.from(STAGES_MAP.keys())[activeStageTab];
-        if ((sessionsByDay[i].slot_roomId === stageId || stageId === "all") && isYourAgenda && categoryFilter) {
+        if ((sessionsByDay[i].slot_roomId === stageId || stageId === ALL_SESSIONS_KEY) && isYourAgenda && categoryFilter) {
           items.push(sessionsByDay[i]);
         }
       }
@@ -71,7 +72,11 @@ const Agenda: React.FC = () => {
           {renderTabPanelItems(["All", ...Array.from(DATE_TO_EVENT_DAY.values())], setActiveDayTab)}
         </TabPanel>
       </div>
-      <div className="agenda-page__content__background grid"></div>
+      <div className="agenda-page__content__wrapper">
+        <div className="agenda-page__content__background">
+          <img src={HomeBackground} alt="" width="100%" height="100%" className="agenda-page__content__background__img" />
+        </div>
+      </div>
       <div
         className={clsx("agenda-page__content", {
           "not-scroll": isDropdownOpen,
@@ -83,10 +88,22 @@ const Agenda: React.FC = () => {
           onClick={(index) => setActiveStageTab(index)}
           changesWhenOpen={changesWhenOpenDropdown}
         />
-        <a href="https://luma.com/yqfm7arf">
+        <a href="https://lu.ma/mq50gvnn">
           <div className="agenda-page__content__banner">
             <img src={AgendaBanner} alt="" className="agenda-page__content__banner__img" />
-            <div className="agenda-page__content__banner__text__register-button">Register now!</div>
+            <div className="agenda-page__content__banner__text">
+              <div className="agenda-page__content__banner__text__main-text">
+                <b>Rooftop</b>
+                <span className="agenda-page__content__banner__text__main-text-regular">.Buzz</span>
+              </div>
+              <div className="agenda-page__content__banner__text__sub-text">
+                Sunset &&nbsp;
+                <span className="agenda-page__content__banner__text__sub-text-bold">
+                  <b>Chill</b>
+                </span>
+              </div>
+              <div className="agenda-page__content__banner__text__register-button">Register now!</div>
+            </div>
           </div>
         </a>
         {activeAgendaItems.length > 0 ? (
