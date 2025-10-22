@@ -19,3 +19,44 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+.spaces-container {
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.pull-refresh-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  z-index: 1000;
+  border-radius: 8px 8px 0 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

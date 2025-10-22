@@ -41,6 +41,7 @@ function Intro() {
           <img src={bbwIntro} className="opening-page__intro" />
         </div>
       </div>
+      <div className="opening-page__hidden">{TEXTS.APP_NAME}</div>
     </>
   );
 }

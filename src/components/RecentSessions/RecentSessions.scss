@@ -22,7 +22,41 @@
   color: #fff;
 }
 
+.recent-sessions-container {
+  position: relative;
+}
+
 .recent-sessions__item-container {
   display: flex;
-  overflow-y: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.recent-sessions__item-container::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-pull-refresh-indicator {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: white;
+  font-size: 12px;
+  z-index: 1000;
+  border-radius: 8px 0 0 8px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.horizontal-pull-refresh-indicator .spinner {
+  writing-mode: initial;
+  text-orientation: initial;
 }
