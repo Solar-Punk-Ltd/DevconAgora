@@ -71,7 +71,6 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
       e.preventDefault();
       setPullDistance(Math.min(diff, 67));
       setHasDragged(true);
-      console.log("Mouse pull distance:", Math.min(diff, 67));
     }
   };
 
@@ -88,14 +87,11 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handlePullEnd = async (currentPullDistance: number) => {
-    console.log("handlePullEnd called with pullDistance:", currentPullDistance); // Debug log
     if (currentPullDistance > 66 && onRefresh && !isRefreshing) {
-      console.log("Starting refresh...");
       setIsRefreshing(true);
       try {
         await onRefresh();
       } catch (error) {
-        console.error("Refresh failed:", error);
       } finally {
         setIsRefreshing(false);
       }

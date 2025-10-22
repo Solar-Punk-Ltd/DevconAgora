@@ -17,7 +17,6 @@ const Home: React.FC = () => {
   const lobbyActivity = spacesActivity.get(LOBBY_TITLE) || 0;
 
   const handleSpacesRefresh = async () => {
-    console.log("Refreshing spaces...");
     await calcSpacesActivity();
   };
   return (

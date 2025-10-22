@@ -30,7 +30,7 @@ const RecentSessions: React.FC = () => {
     setHasDragged(false);
 
     const isAtRightEnd = scrollLeft + clientWidth >= scrollWidth - 10;
-    console.log("Touch start - isAtRightEnd:", isAtRightEnd, "scrollLeft:", scrollLeft, "clientWidth:", clientWidth, "scrollWidth:", scrollWidth); // Debug
+
     if (!isAtRightEnd) {
       setStartX(0);
     }
@@ -51,10 +51,7 @@ const RecentSessions: React.FC = () => {
     const currentX = e.touches[0].clientX;
     const diff = startX - currentX;
 
-    console.log("Touch move - diff:", diff, "isAtRightEnd:", isAtRightEnd); // Debug
-
     if (diff > 0 && isAtRightEnd) {
-      console.log("Pull-to-refresh activated!");
       e.preventDefault();
       setPullDistance(Math.min(diff, 50));
       setHasDragged(true);
@@ -162,7 +159,7 @@ const RecentSessions: React.FC = () => {
       try {
         await calcTalksActivity();
       } catch (error) {
-        console.error("Talks refresh failed:", error);
+        console.debug("Talks refresh failed:", error);
       } finally {
         setIsRefreshing(false);
       }
@@ -201,14 +198,11 @@ const RecentSessions: React.FC = () => {
               <div
                 key={session.id}
                 onClick={(e) => {
-                  console.log("Click attempt, hasDragged:", hasDragged);
                   if (hasDragged) {
-                    console.log("Click prevented due to drag");
                     e.preventDefault();
                     e.stopPropagation();
                     return;
                   }
-                  console.log("Click allowed, navigating...");
                 }}
               >
                 <RecentSessionsItem

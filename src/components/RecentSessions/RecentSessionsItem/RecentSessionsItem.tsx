@@ -18,12 +18,10 @@ interface RecentSessionsItemProps {
 const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({ id, title, stage, activity, disabled }: RecentSessionsItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     if (disabled) {
-      console.log("RecentSessionsItem click prevented - disabled:", disabled);
       e.preventDefault();
       e.stopPropagation();
       return;
     }
-    console.log("RecentSessionsItem click allowed, navigating to:", id);
   };
 
   return (
