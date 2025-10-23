@@ -21,12 +21,10 @@ import Categories from "../Categories/Categories";
 import "./Agenda.scss";
 
 const Agenda: React.FC = () => {
-  const { sessions } = useGlobalState();
+  const { sessions, dayIndexFilter, setDayIndexFilter, categoryIndexFilter, setCategoryIndexFilter } = useGlobalState();
   const [activeAgendaItems, setActiveAgendaItems] = useState<Session[]>([]);
   const [showCategories, setShowCategories] = useState<boolean>(false);
-  const [categoryIndex, setCategoryIndex] = useState<number | null>(null);
   const [activeAgendaTab, setActiveAgendaTab] = useState<number>(0);
-  const [activeDayTab, setActiveDayTab] = useState<number>(0);
   const [activeStageTab, setActiveStageTab] = useState<number>(STAGES_MAP.size - 1);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
@@ -40,15 +38,15 @@ const Agenda: React.FC = () => {
 
   useEffect(() => {
     let day = ALL_SESSIONS_KEY;
-    if (activeDayTab > 0) {
-      day = Array.from(DATE_TO_EVENT_DAY.keys())[activeDayTab - 1];
+    if (dayIndexFilter > 0) {
+      day = Array.from(DATE_TO_EVENT_DAY.keys())[dayIndexFilter - 1];
     }
     const sessionsByDay = getSessionsByDay(sessions, day);
 
     const items: Session[] = [];
     if (sessionsByDay.length > 0) {
       for (let i = 0; i < sessionsByDay.length; i++) {
-        const categoryFilter = categoryIndex !== null ? sessionsByDay[i].track === CATEGORIES[categoryIndex] : true;
+        const categoryFilter = categoryIndexFilter !== null ? sessionsByDay[i].track === CATEGORIES[categoryIndexFilter] : true;
         const isLiked = stringToBoolean(localStorage.getItem(sessionsByDay[i].id));
         sessionsByDay[i].liked = isLiked;
         const isYourAgenda = activeAgendaTab === 1 ? isLiked === true : true;
@@ -60,7 +58,7 @@ const Agenda: React.FC = () => {
       }
     }
     setActiveAgendaItems(items);
-  }, [sessions, activeDayTab, activeStageTab, activeAgendaTab, categoryIndex]);
+  }, [sessions, dayIndexFilter, activeStageTab, activeAgendaTab, categoryIndexFilter]);
 
   return !showCategories ? (
     <div className="agenda-page">
@@ -68,8 +66,8 @@ const Agenda: React.FC = () => {
         <TabPanel version="underlined" activeIndex={activeAgendaTab}>
           {renderTabPanelItems(["Agenda", "My Agenda"], setActiveAgendaTab)}
         </TabPanel>
-        <TabPanel version="filled" activeIndex={activeDayTab}>
-          {renderTabPanelItems(["All", ...Array.from(DATE_TO_EVENT_DAY.values())], setActiveDayTab)}
+        <TabPanel version="filled" activeIndex={dayIndexFilter}>
+          {renderTabPanelItems(["All", ...Array.from(DATE_TO_EVENT_DAY.values())], setDayIndexFilter)}
         </TabPanel>
       </div>
       <div className="agenda-page__content__wrapper">
@@ -136,9 +134,9 @@ const Agenda: React.FC = () => {
       display={showCategories}
       handleCategories={(a: boolean, selectedCategoryIndex: number | null) => {
         setShowCategories(a);
-        setCategoryIndex(selectedCategoryIndex);
+        setCategoryIndexFilter(selectedCategoryIndex);
       }}
-      selectedCategoryIndex={categoryIndex}
+      selectedCategoryIndex={categoryIndexFilter}
     />
   );
 };
