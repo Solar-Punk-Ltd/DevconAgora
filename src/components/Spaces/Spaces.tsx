@@ -132,21 +132,24 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
           cursor: isDragging ? "grabbing" : "grab",
         }}
       >
-        {list.map((room) => (
-          <div
-            key={room.topic}
-            onClick={(e) => {
-              if (hasDragged) {
-                e.preventDefault();
-                e.stopPropagation();
-                return;
-              }
-              navigate(`${ROUTES.TALKS}/${room.topic}`);
-            }}
-          >
-            <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
-          </div>
-        ))}
+        {list.map((room) => {
+          if (room.topic === "testsolarpunk") return null;
+          return (
+            <div
+              key={room.topic}
+              onClick={(e) => {
+                if (hasDragged) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  return;
+                }
+                navigate(`${ROUTES.TALKS}/${room.topic}`);
+              }}
+            >
+              <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

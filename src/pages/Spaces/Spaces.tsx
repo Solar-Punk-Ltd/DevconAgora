@@ -20,11 +20,15 @@ const Spaces: React.FC = () => {
       <div className="spaces__background grid"></div>
 
       <div className="spaces__content">
-        {CATEGORIES.map((c) => (
-          <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
-            <SpacesItem title={c} numberOfActiveUsers={spacesActivity.get(c) || 0} />
-          </div>
-        ))}
+        {CATEGORIES.map((c) => {
+          if (c !== "testsolarpunk") {
+            return (
+              <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
+                <SpacesItem title={c} numberOfActiveUsers={spacesActivity.get(c) || 0} />
+              </div>
+            );
+          }
+        })}
       </div>
     </div>
   );
