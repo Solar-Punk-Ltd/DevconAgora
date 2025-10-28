@@ -51,7 +51,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
     } else if (hasNewItems) {
       previousItemsLengthRef.current = count;
     }
-  }, []);
+  }, [items]);
 
   return (
     <div className="comment-messages-container" ref={containerRef}>

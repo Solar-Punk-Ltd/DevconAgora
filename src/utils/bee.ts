@@ -1,5 +1,5 @@
 import { Bee, BeeRequestOptions, FeedIndex, PrivateKey, Reference, Topic } from "@ethersphere/bee-js";
-import { MessageData } from "@solarpunkltd/comment-system";
+import { MessageData, MessageType } from "@solarpunkltd/comment-system";
 import { indexStrToBigint } from "@solarpunkltd/swarm-comment-js";
 
 import { DEFAULT_URL, FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
@@ -107,7 +107,7 @@ const isNotFoundError = (error: any): boolean => {
 export const getActivityHelper = (messages: MessageData[] | undefined, last: boolean): bigint => {
   if (!messages || messages.length === 0) return 0n;
 
-  const validMessages = messages.filter((msg) => msg.index !== undefined);
+  const validMessages = messages.filter((msg) => msg.index !== undefined && msg.type !== MessageType.REACTION);
 
   if (validMessages.length === 0) return 0n;
 

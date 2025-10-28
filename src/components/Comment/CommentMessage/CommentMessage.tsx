@@ -25,6 +25,7 @@ interface CommentMessageProps {
   isReactionLoading?: boolean;
   loadingReactionEmoji?: string;
   disabled?: boolean;
+  timeStamp?: number;
 }
 
 export function CommentMessage({
@@ -42,6 +43,7 @@ export function CommentMessage({
   isReactionLoading = false,
   loadingReactionEmoji = "",
   disabled = false,
+  timeStamp,
 }: CommentMessageProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -56,7 +58,10 @@ export function CommentMessage({
         })}
       >
         <div className="message-container">
-          <div>{name}</div>
+          <div>
+            {name} {timeStamp ? new Date(timeStamp).toLocaleString() : ""}
+          </div>
+
           <div className="message">{message}</div>
         </div>
 
