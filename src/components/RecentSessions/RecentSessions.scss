@@ -65,28 +65,22 @@
   text-orientation: initial;
 }
 
-// Vertical pull-to-refresh wrapper
 .recent-sessions-vertical-wrapper {
   position: relative;
 }
 
-// Vertical pull-to-refresh indicator for recent sessions
 .recent-sessions-vertical-indicator {
   position: fixed;
   top: 0px;
   transform: translateX(-50%);
-  // background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 16px;
-  // border-radius: 20px;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   width: 100%;
-  // backdrop-filter: blur(10px);
-  // border: 1px solid rgba(255, 255, 255, 0.1);
 
   .spinner {
     width: 16px;
