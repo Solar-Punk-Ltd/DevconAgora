@@ -12,8 +12,15 @@ import Usability from "../assets/category-usability.png";
 
 export const LOBBY_TITLE = "BBW Lobby";
 export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
-
-export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025", LOBBY_TITLE];
+export const TEST_CATEGORY = "testsolarpunk";
+export const CATEGORIES = [
+  TEST_CATEGORY,
+  "Deeptech Day",
+  "Kripteus Professional Day",
+  "Swarm Decentralized AI Forum",
+  "Polkadot Day 2025",
+  LOBBY_TITLE,
+];
 
 export const DATE_TO_EVENT_DAY = new Map([
   [new Date("2025-09-16").toDateString(), "Day 1"],
