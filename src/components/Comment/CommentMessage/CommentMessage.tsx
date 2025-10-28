@@ -65,17 +65,21 @@ export function CommentMessage({
             Retry
           </button>
         )}
-
-        <MessageReactionsWrapper
-          reactions={reactions}
-          onEmojiClick={onEmojiReaction}
-          ownMessage={ownMessage}
-          isLoading={isReactionLoading}
-          loadingEmoji={loadingReactionEmoji}
-          disabled={disabled}
-        />
-
-        <MessageThreadWrapper threadCount={threadCount} onThreadClick={onThreadReply} disabled={disabled} />
+        <div style={{ display: "flex", alignItems: "center", marginTop: "4px", justifyContent: "space-between", width: "100%" }}>
+          <div style={{ width: "50%", display: "flex", justifyContent: "flex-start" }}>
+            <MessageReactionsWrapper
+              reactions={reactions}
+              onEmojiClick={onEmojiReaction}
+              ownMessage={ownMessage}
+              isLoading={isReactionLoading}
+              loadingEmoji={loadingReactionEmoji}
+              disabled={disabled}
+            />
+          </div>
+          <div style={{ width: "50%", display: "flex", justifyContent: "flex-end" }}>
+            <MessageThreadWrapper threadCount={threadCount} onThreadClick={onThreadReply} disabled={disabled} />
+          </div>
+        </div>
       </div>
 
       <MessageActions

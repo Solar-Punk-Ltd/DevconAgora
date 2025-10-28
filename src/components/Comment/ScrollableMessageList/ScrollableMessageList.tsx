@@ -16,6 +16,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
   const hasInitiallyScrolledRef = useRef<boolean>(false);
 
   const scrollToBottom = () => {
+    console.log("ScrollableMessageList: scrollToBottom");
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
@@ -25,11 +26,12 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
     if (!containerRef.current) return true;
 
     const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    const threshold = 200; // pixels from bottom
+    const threshold = 200;
     return scrollTop + clientHeight >= scrollHeight - threshold;
   };
 
   useEffect(() => {
+    console.log("ScrollableMessageList: useEffect triggered");
     const count = items.length;
     const hasNewItems = count > previousItemsLengthRef.current;
     const isInitialRender = !hasInitiallyScrolledRef.current && count > 0;
@@ -49,7 +51,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
     } else if (hasNewItems) {
       previousItemsLengthRef.current = count;
     }
-  }, [items]);
+  }, []);
 
   return (
     <div className="comment-messages-container" ref={containerRef}>

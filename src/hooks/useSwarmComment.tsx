@@ -3,7 +3,6 @@ import { CommentSettings, EVENTS, PreloadOptions, SwarmComment } from "@solarpun
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { MAX_PRELOADED_TALKS } from "@/constants/app";
-import { CATEGORIES } from "@/constants/categories";
 import { useGlobalState } from "@/contexts/global";
 import { getActivityHelper } from "@/utils/bee";
 
