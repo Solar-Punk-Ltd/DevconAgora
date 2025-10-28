@@ -7,6 +7,7 @@ import { Room } from "../../types/room";
 import SpacesItem from "./SpacesItem/SpacesItem";
 
 import "./Spaces.scss";
+import { TEST_CATEGORY } from "@/constants/categories";
 
 interface SpacesProps {
   list: Room[];
@@ -133,7 +134,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
         }}
       >
         {list.map((room) => {
-          if (room.topic === "testsolarpunk") return null;
+          if (room.topic === TEST_CATEGORY) return null;
           return (
             <div
               key={room.topic}

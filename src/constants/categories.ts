@@ -12,9 +12,9 @@ import Usability from "../assets/category-usability.png";
 
 export const LOBBY_TITLE = "BBW Lobby";
 export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
-
+export const TEST_CATEGORY = "testsolarpunk";
 export const CATEGORIES = [
-  "testsolarpunk",
+  TEST_CATEGORY,
   "Deeptech Day",
   "Kripteus Professional Day",
   "Swarm Decentralized AI Forum",

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import SpacesItem from "../../components/Spaces/SpacesItem/SpacesItem";
-import { CATEGORIES } from "../../constants/categories";
+import { CATEGORIES, TEST_CATEGORY } from "../../constants/categories";
 import { SPACES_KEY } from "../../constants/network";
 import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
@@ -21,7 +21,7 @@ const Spaces: React.FC = () => {
 
       <div className="spaces__content">
         {CATEGORIES.map((c) => {
-          if (c !== "testsolarpunk") {
+          if (c !== TEST_CATEGORY) {
             return (
               <div key={c} onClick={() => navigate(`${ROUTES.TALKS}/${c}`)}>
                 <SpacesItem title={c} numberOfActiveUsers={spacesActivity.get(c) || 0} />
