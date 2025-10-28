@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import DefaultButton from "../../components/DefaultButton/DefaultButton";
 import CloseIcon from "../../components/icons/CloseIcon/CloseIcon";
 import RadioButtonIcon from "../../components/icons/RadioButtonIcon/RadioButtonIcon";
-import { CATEGORIES } from "../../constants/categories";
+import { CATEGORIES, TEST_CATEGORY } from "../../constants/categories";
 
 import "./Categories.scss";
 
@@ -41,7 +41,7 @@ const Categories: React.FC<CategoriesProps> = ({ handleCategories, selectedCateg
         </div>
         <div className="categories_page__content">
           {CATEGORIES.map((category, index) => {
-            if (category === "testsolarpunk") return null;
+            if (category === TEST_CATEGORY) return null;
             return (
               <div key={category} className="categories-page__content__item" onClick={() => handleCategorySelect(index)}>
                 <RadioButtonIcon checked={index === selectedIndex} color="var(--bbw-blue)" /> {category}
