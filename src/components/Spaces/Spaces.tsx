@@ -91,7 +91,6 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
       setIsRefreshing(true);
       try {
         await onRefresh();
-      } catch (_) {
       } finally {
         setIsRefreshing(false);
       }

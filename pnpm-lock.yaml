@@ -15,8 +15,8 @@ importers:
         specifier: ^1.9.1
         version: 1.9.1
       '@solarpunkltd/swarm-comment-js':
-        specifier: ^0.0.10
-        version: 0.0.10
+        specifier: ^0.0.11
+        version: 0.0.11
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -678,8 +678,8 @@ packages:
   '@solarpunkltd/comment-system@1.9.1':
     resolution: {integrity: sha512-dK/YxnBvgzC2ScwrXgoAEPEx1LoWWjkhIMx6eriZ3k8WNALaRBsnQaP+2BnaqQYmJ5+T1GAm23dclJGcexlSJg==}
 
-  '@solarpunkltd/swarm-comment-js@0.0.10':
-    resolution: {integrity: sha512-Fx5LTZfcSrgyTyCkMnbmJ4zoEXHjOQX1b0Rsd73KJDYLau+WIdvY6UTyNTQUEoI1h2UvTcq/9kAq1pV4rrHp3w==}
+  '@solarpunkltd/swarm-comment-js@0.0.11':
+    resolution: {integrity: sha512-HZTFTjFzAgPENnPdzht//8CRg069AQVcZXnWyJbiqBNYxw5bmt5SrLgnS0ApImaorqPgIAbhT+2+tu17yHDx6g==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -2956,7 +2956,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@solarpunkltd/swarm-comment-js@0.0.10':
+  '@solarpunkltd/swarm-comment-js@0.0.11':
     dependencies:
       '@ethersphere/bee-js': 10.1.1
       '@solarpunkltd/comment-system': 1.9.1

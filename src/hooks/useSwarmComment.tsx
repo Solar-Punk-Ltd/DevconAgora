@@ -152,7 +152,14 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
   const updateLoadedTalks = useCallback(
     (messages: VisibleMessage[]) => {
-      const activity = getMessageIndexes(messages).latestIndex + 1n;
+      const lastIndex = getMessageIndexes(messages).latestIndex;
+      let activity: number;
+      if (lastIndex === undefined) {
+        activity = 0;
+      } else {
+        activity = Number(lastIndex + 1n);
+      }
+
       let setTalks = undefined;
       let id = infra.topic;
       let setActivity = undefined;
@@ -271,7 +278,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     const preloadOptions: PreloadOptions = {};
     if (preloadedData.isPreloaded && initialMessages.length > 0) {
       const indexes = getMessageIndexes(initialMessages);
-      if (indexes.latestIndex > 0n) {
+      if (indexes.latestIndex !== undefined) {
         preloadOptions.firstIndex = indexes.firstIndex;
         preloadOptions.latestIndex = indexes.latestIndex;
       }

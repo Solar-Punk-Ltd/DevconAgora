@@ -248,7 +248,6 @@ const RecentSessions: React.FC = () => {
       setIsVerticalRefreshing(true);
       try {
         await calcTalksActivity();
-      } catch (_) {
       } finally {
         setIsVerticalRefreshing(false);
       }

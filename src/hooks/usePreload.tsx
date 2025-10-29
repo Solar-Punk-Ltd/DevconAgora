@@ -68,8 +68,13 @@ export const usePreload = () => {
         await Promise.allSettled(promises).then((results) => {
           results.forEach((result, i) => {
             if (result.status === "fulfilled") {
+              let activity: number;
               const lastIndex = getMessageIndexes(result.value).latestIndex;
-              const activity = Number(lastIndex ? lastIndex + 1n : 0n);
+              if (lastIndex === undefined) {
+                activity = 0;
+              } else {
+                activity = Number(lastIndex + 1n);
+              }
 
               activityMap.set(itemsToProcess[i].id, activity);
 
