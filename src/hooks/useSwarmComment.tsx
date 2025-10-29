@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { MAX_PRELOADED_TALKS } from "@/constants/app";
 import { useGlobalState } from "@/contexts/global";
-import { getActivityHelper } from "@/utils/bee";
+import { getMessageIndexes } from "@/utils/bee";
 
 export interface VisibleMessage extends MessageData {
   requested?: boolean;
@@ -118,6 +118,13 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   const [error, setError] = useState<any | null>(null);
   const [isSwarmCommentReady, setIsSwarmCommentReady] = useState<boolean>(false);
 
+  // Update messages state when initialMessages changes (important for preloaded data)
+  useEffect(() => {
+    if (initialMessages.length > 0 && messages.length === 0 && preloadedData.isPreloaded) {
+      setMessages(initialMessages);
+    }
+  }, [initialMessages, messages.length, preloadedData.isPreloaded]);
+
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
 
   const simpleMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.TEXT), [messages]);
@@ -145,7 +152,7 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
 
   const updateLoadedTalks = useCallback(
     (messages: VisibleMessage[]) => {
-      const activity = getActivityHelper(messages, true);
+      const activity = getMessageIndexes(messages).latestIndex + 1n;
       let setTalks = undefined;
       let id = infra.topic;
       let setActivity = undefined;
@@ -262,9 +269,12 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
     on(EVENTS.CRITICAL_ERROR, (err: any) => setError(err));
 
     const preloadOptions: PreloadOptions = {};
-    if (preloadedData.isPreloaded) {
-      preloadOptions.firstIndex = getActivityHelper(preloadedData.messages, false);
-      preloadOptions.latestIndex = getActivityHelper(preloadedData.messages, true);
+    if (preloadedData.isPreloaded && initialMessages.length > 0) {
+      const indexes = getMessageIndexes(initialMessages);
+      if (indexes.latestIndex > 0n) {
+        preloadOptions.firstIndex = indexes.firstIndex;
+        preloadOptions.latestIndex = indexes.latestIndex;
+      }
     }
 
     commentRef.current.start(preloadOptions);

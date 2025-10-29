@@ -9,8 +9,7 @@ import { useGlobalState } from "@/contexts/global";
 import { Session } from "@/types/session";
 import { Space } from "@/types/space";
 import { TalkComments } from "@/types/talkComment";
-import { getTopic } from "@/utils/bee";
-import { determineActivityNumByMessage } from "@/utils/session";
+import { getMessageIndexes, getTopic } from "@/utils/bee";
 
 const loadFeedItems = async (signer: PrivateKey, talkId: string, address: string, beeApiUrl: string, maxComments: bigint): Promise<MessageData[]> => {
   const options: Options = {
@@ -57,7 +56,6 @@ export const usePreload = () => {
 
         for (let i = 0; i < itemsToProcess.length; i++) {
           const talkId = getTopic(itemsToProcess[i].id);
-
           const signer = getPrivateKeyFromIdentifier(talkId);
           promises.push(
             loadFeedItems(signer, talkId, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
@@ -70,7 +68,7 @@ export const usePreload = () => {
         await Promise.allSettled(promises).then((results) => {
           results.forEach((result, i) => {
             if (result.status === "fulfilled") {
-              const activity = Number(determineActivityNumByMessage(result.value, true));
+              const activity = Number(getMessageIndexes(result.value).latestIndex + 1n);
 
               activityMap.set(itemsToProcess[i].id, activity);
 

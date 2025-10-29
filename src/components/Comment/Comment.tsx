@@ -191,7 +191,6 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
               items={simpleMessages}
               renderItem={(item) => (
                 <CommentMessage
-                  key={item.id}
                   timeStamp={item.timestamp}
                   message={item.message}
                   received={Boolean(item.received)}

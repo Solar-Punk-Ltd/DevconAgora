@@ -53,7 +53,9 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
 
   return (
     <div className="comment-messages-container" ref={containerRef}>
-      {items.map(renderItem)}
+      {items.map((item, index) => (
+        <div key={`${item.id}-${index}`}>{renderItem(item)}</div>
+      ))}
     </div>
   );
 }
