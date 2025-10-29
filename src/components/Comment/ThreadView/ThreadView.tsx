@@ -69,7 +69,6 @@ export function ThreadView({
             items={threadMessages}
             renderItem={(item) => (
               <CommentMessage
-                key={item.id}
                 message={item.message}
                 received={Boolean(item.received)}
                 error={Boolean(item.error)}

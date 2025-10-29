@@ -25,7 +25,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
     if (!containerRef.current) return true;
 
     const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-    const threshold = 200; // pixels from bottom
+    const threshold = 200;
     return scrollTop + clientHeight >= scrollHeight - threshold;
   };
 
@@ -53,7 +53,9 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
 
   return (
     <div className="comment-messages-container" ref={containerRef}>
-      {items.map(renderItem)}
+      {items.map((item, index) => (
+        <div key={`${item.id}-${index}`}>{renderItem(item)}</div>
+      ))}
     </div>
   );
 }

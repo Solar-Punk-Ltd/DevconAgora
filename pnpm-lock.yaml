@@ -12,11 +12,11 @@ importers:
         specifier: ^10.1.1
         version: 10.1.1
       '@solarpunkltd/comment-system':
-        specifier: ^1.9.0
-        version: 1.9.0
+        specifier: ^1.9.1
+        version: 1.9.1
       '@solarpunkltd/swarm-comment-js':
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.0.10
+        version: 0.0.10
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -675,11 +675,11 @@ packages:
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
-  '@solarpunkltd/comment-system@1.9.0':
-    resolution: {integrity: sha512-sHJRoHTo74971CDiOf1R2Rjrfe18m6/fbzvB2xwuI0Dh4RjtfSJFodtMcxwXqQsey+rffksC032M3XM196zxgg==}
+  '@solarpunkltd/comment-system@1.9.1':
+    resolution: {integrity: sha512-dK/YxnBvgzC2ScwrXgoAEPEx1LoWWjkhIMx6eriZ3k8WNALaRBsnQaP+2BnaqQYmJ5+T1GAm23dclJGcexlSJg==}
 
-  '@solarpunkltd/swarm-comment-js@0.0.9':
-    resolution: {integrity: sha512-a/OrZ4g4aTp2WkcXICQoN1cs4zqcKa4gN4FdsAGSi9887uLsVXAaUEVWoo0IC3XvAVtN0FFitTFnPzDL9L+h8w==}
+  '@solarpunkltd/swarm-comment-js@0.0.10':
+    resolution: {integrity: sha512-Fx5LTZfcSrgyTyCkMnbmJ4zoEXHjOQX1b0Rsd73KJDYLau+WIdvY6UTyNTQUEoI1h2UvTcq/9kAq1pV4rrHp3w==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -1022,6 +1022,9 @@ packages:
 
   cafe-utility@32.2.0:
     resolution: {integrity: sha512-Pz1XZ9HCG0oVEfM/iAmefkaKoSJxPfJh1d7a7sFM/WqXf2Yg4bqoRioFdy+awEtFCJjC7XJzKtG0w0y57x2K0Q==}
+
+  cafe-utility@33.3.1:
+    resolution: {integrity: sha512-V2+o4ttQrW1rvzOT4qtxN1zmW2H59w4rygMxZikNQnr3GsNwo8amCYBZlJo+wcbVWve1Q11kkQpId2PvwGyZbQ==}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -2942,10 +2945,10 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@solarpunkltd/comment-system@1.9.0':
+  '@solarpunkltd/comment-system@1.9.1':
     dependencies:
       '@ethersphere/bee-js': 10.1.1
-      cafe-utility: 32.2.0
+      cafe-utility: 33.3.1
       ethers: 6.15.0
       uuid: 11.1.0
     transitivePeerDependencies:
@@ -2953,11 +2956,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@solarpunkltd/swarm-comment-js@0.0.9':
+  '@solarpunkltd/swarm-comment-js@0.0.10':
     dependencies:
       '@ethersphere/bee-js': 10.1.1
-      '@solarpunkltd/comment-system': 1.9.0
-      cafe-utility: 32.2.0
+      '@solarpunkltd/comment-system': 1.9.1
+      cafe-utility: 33.3.1
       uuid: 11.1.0
       zod: 4.1.12
     transitivePeerDependencies:
@@ -3386,6 +3389,8 @@ snapshots:
   builtin-status-codes@3.0.0: {}
 
   cafe-utility@32.2.0: {}
+
+  cafe-utility@33.3.1: {}
 
   call-bind-apply-helpers@1.0.2:
     dependencies:

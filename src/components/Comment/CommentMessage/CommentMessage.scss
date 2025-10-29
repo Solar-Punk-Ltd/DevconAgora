@@ -76,6 +76,26 @@
   }
 }
 
+.comment-message-reaction-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comment-message-reaction-wrapper__left {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.comment-message-reaction-wrapper__right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .retry-button {
   margin-top: 6px;
   align-self: flex-start;

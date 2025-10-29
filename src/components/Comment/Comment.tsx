@@ -88,9 +88,9 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
     isSwarmCommentReady,
   } = useSwarmComment(commentConfig, sessionId, isSpacesTalk);
 
-  const shouldShowLoadMore = useMemo(() => {
+  const shouldShowLoadMore = () => {
     return !commentLoading && isSwarmCommentReady && !messagesLoading && hasPreviousMessages();
-  }, [commentLoading, isSwarmCommentReady, hasPreviousMessages, messagesLoading]);
+  };
 
   const handleMessageSending = async (text: string) => {
     if (!isSwarmCommentReady) return;
@@ -179,7 +179,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
               <div className="comment-loading">Loading comments...</div>
             </div>
           )}
-          {shouldShowLoadMore && !messagesLoading && (
+          {shouldShowLoadMore() && (
             <Button onClick={fetchPreviousMessages} className="comment-load-more">
               Load more messages
             </Button>
@@ -191,7 +191,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
               items={simpleMessages}
               renderItem={(item) => (
                 <CommentMessage
-                  key={item.id}
+                  timeStamp={item.timestamp}
                   message={item.message}
                   received={Boolean(item.received)}
                   error={Boolean(item.error)}
