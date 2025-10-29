@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ActionButton from "../../components/ActionButton/ActionButton";
+import NewNoteButton from "../../components/NewNoteButton/NewNoteButton";
 import PlusIcon from "../../components/icons/PlusIcon/PlusIcon";
 import NavigationFooter from "../../components/NavigationFooter/NavigationFooter";
 import NoteItem from "../../components/NoteItem/NoteItem";
@@ -18,10 +18,12 @@ const Notes: React.FC = () => {
       <div className="notes-page__background grid"></div>
       <div className="notes-page__header">Notes</div>
       <Link to={`${ROUTES.NOTES}${ROUTES.NEW_NOTE}`}>
-        <ActionButton>
-          <PlusIcon />
-          <span className="notes-page__button-text">New note</span>
-        </ActionButton>
+        <div className="notes-page__new-note-button">
+          <NewNoteButton>
+            <PlusIcon />
+            <span className="notes-page__button-text">New note</span>
+          </NewNoteButton>
+        </div>
       </Link>
       <div className="notes-page__note-items">
         {notes.map((note, ix) => {
