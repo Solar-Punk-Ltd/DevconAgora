@@ -13,10 +13,10 @@
 
 @keyframes grow {
   from {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0.6);
   }
   to {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(0.8);
   }
 }
 
