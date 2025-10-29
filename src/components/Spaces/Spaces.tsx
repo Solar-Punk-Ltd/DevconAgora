@@ -7,6 +7,7 @@ import { Room } from "../../types/room";
 import SpacesItem from "./SpacesItem/SpacesItem";
 
 import "./Spaces.scss";
+
 import { TEST_CATEGORY } from "@/constants/categories";
 
 interface SpacesProps {
@@ -90,7 +91,8 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
       setIsRefreshing(true);
       try {
         await onRefresh();
-      } catch (error) {
+      } catch (_) {
+        /** */
       } finally {
         setIsRefreshing(false);
       }

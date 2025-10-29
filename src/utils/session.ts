@@ -1,7 +1,7 @@
 import { AgendaDays, DATE_TO_EVENT_DAY } from "../constants/categories";
 
-import { Session } from "@/types/session";
 import { ALL_SESSIONS_KEY } from "@/constants";
+import { Session } from "@/types/session";
 
 export const getSessionsByDay = (sessions: Map<string, Session[]>, day: string): Session[] => {
   if (day === ALL_SESSIONS_KEY) {

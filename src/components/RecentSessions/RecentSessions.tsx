@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { STAGES_MAP } from "../../constants/categories";
@@ -248,7 +248,8 @@ const RecentSessions: React.FC = () => {
       setIsVerticalRefreshing(true);
       try {
         await calcTalksActivity();
-      } catch (error) {
+      } catch (_) {
+        /** */
       } finally {
         setIsVerticalRefreshing(false);
       }

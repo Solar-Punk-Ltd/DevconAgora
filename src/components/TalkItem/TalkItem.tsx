@@ -10,9 +10,10 @@ import { Comment } from "../Comment/Comment";
 import "./TalkItem.scss";
 
 import { useUserContext } from "@/contexts/user";
+import { Space } from "@/types/space";
 
 interface TalkItemProps {
-  session: Session;
+  session: Session | Space;
   isSpacesTalk: boolean;
 }
 

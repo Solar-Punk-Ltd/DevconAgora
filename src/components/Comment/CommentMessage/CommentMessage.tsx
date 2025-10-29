@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 
+import { CommentProfilePicture } from "./CommentProfilePicture/CommentProfilePicture";
 import { MessageActions } from "./MessageActions/MessageActions";
 import { MessageReactionsWrapper } from "./MessageRectionsWrapper/MessageReactionsWrapper";
 import { MessageThreadWrapper } from "./MessageThreadWrapper/MessageThreadWrapper";
@@ -8,7 +9,6 @@ import { MessageThreadWrapper } from "./MessageThreadWrapper/MessageThreadWrappe
 import "./CommentMessage.scss";
 
 import { ReactionData } from "@/hooks/useSwarmComment";
-import { CommentProfilePicture } from "./CommentProfilePicture/CommentProfilePicture";
 
 interface CommentMessageProps {
   message: string;
@@ -31,7 +31,6 @@ interface CommentMessageProps {
 export function CommentMessage({
   message,
   name,
-  profileColor,
   ownMessage = false,
   received,
   error,
