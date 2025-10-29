@@ -44,8 +44,11 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
       }
 
       requestAnimationFrame(() => {
-        scrollToBottom();
+        requestAnimationFrame(() => {
+          scrollToBottom();
+        });
       });
+      scrollToBottom();
     } else if (hasNewItems) {
       previousItemsLengthRef.current = count;
     }
