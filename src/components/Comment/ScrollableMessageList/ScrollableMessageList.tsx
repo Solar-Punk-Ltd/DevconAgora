@@ -16,6 +16,7 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
   const hasInitiallyScrolledRef = useRef<boolean>(false);
 
   const scrollToBottom = () => {
+    console.log("Scrolling to bottom");
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
@@ -44,8 +45,11 @@ export function ScrollableMessageList({ items, renderItem }: ScrollableMessageLi
       }
 
       requestAnimationFrame(() => {
-        scrollToBottom();
+        requestAnimationFrame(() => {
+          scrollToBottom();
+        });
       });
+      scrollToBottom();
     } else if (hasNewItems) {
       previousItemsLengthRef.current = count;
     }
