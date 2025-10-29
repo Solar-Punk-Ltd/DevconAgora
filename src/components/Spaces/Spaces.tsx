@@ -137,6 +137,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
       >
         {list.map((room) => {
           if (room.topic === TEST_CATEGORY) return null;
+
           return (
             <div
               key={room.topic}
