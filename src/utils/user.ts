@@ -173,9 +173,53 @@ export const purgeUserSession = (): void => {
   console.log("Session cleared from all storage methods");
 };
 
-export const userLogin = (name: string): UserSession => {
-  const id = crypto.randomUUID();
+// Generated fallback
+const generateSecureId = (): string => {
+  try {
+    // Próbáljuk a modern crypto.randomUUID() API-t
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+  } catch (error) {
+    console.warn("crypto.randomUUID() not available, using fallback");
+  }
 
+  try {
+    // Próbáljuk a crypto.getRandomValues() API-t
+    if (typeof crypto !== "undefined" && crypto.getRandomValues) {
+      const array = new Uint8Array(16);
+      crypto.getRandomValues(array);
+
+      // UUID v4 formátum generálása
+      array[6] = (array[6] & 0x0f) | 0x40; // Version 4
+      array[8] = (array[8] & 0x3f) | 0x80; // Variant bits
+
+      const hex = Array.from(array)
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+
+      return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`;
+    }
+  } catch (error) {
+    console.warn("crypto.getRandomValues() not available, using fallback");
+  }
+
+  // Fallback Math.random() használatával
+  console.warn("Using Math.random() fallback for ID generation");
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+// fallback end
+export const userLogin = (name: string): UserSession => {
+  // Generated fallback
+  // origin: const id = crypto.randomUUID();
+
+  // Generated fallback
+  const id = generateSecureId();
+  // fallback end
   const signer = getSigner(id);
   if (!signer) {
     throw new Error("Failed to generate signer");
@@ -199,12 +243,41 @@ export const createMonogram = (name: string): string => {
   return initials.join("").toUpperCase();
 };
 
+// Generated fallback
+const getSecureRandom = (max: number): number => {
+  try {
+    // Próbáljuk a crypto.getRandomValues() API-t
+    if (typeof crypto !== "undefined" && crypto.getRandomValues) {
+      const array = new Uint32Array(1);
+      crypto.getRandomValues(array);
+      return array[0] % max;
+    }
+  } catch (error) {
+    console.warn("crypto.getRandomValues() not available for random selection, using Math.random()");
+  }
+
+  // Fallback Math.random() használatával
+  return Math.floor(Math.random() * max);
+};
+// fallback end
 export const generateRandomUsername = (): string => {
+  // Generated fallbac k origin:
   const randomFirstName = FIRST_NAMES[Math.floor(Math.random() * FIRST_NAMES.length)];
   const randomLastName = LAST_NAMES[Math.floor(Math.random() * LAST_NAMES.length)];
   return `${randomFirstName} ${randomLastName}`;
-};
 
+  // Generated fallback
+  try {
+    const randomFirstName = FIRST_NAMES[getSecureRandom(FIRST_NAMES.length)];
+    const randomLastName = LAST_NAMES[getSecureRandom(LAST_NAMES.length)];
+    return `${randomFirstName} ${randomLastName}`;
+  } catch (error) {
+    console.error("Failed to generate random username:", error);
+    // Ultimate fallback
+    return `User ${Math.floor(Math.random() * 10000)}`;
+  }
+};
+// fallback end
 export const createUniqueUsername = (name: string, publicKey: string): string => {
   const cleanPubKey = publicKey.startsWith("0x") ? publicKey.slice(2) : publicKey;
 

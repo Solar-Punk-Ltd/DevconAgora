@@ -14,6 +14,14 @@ interface MessageActionsProps {
   disabled?: boolean;
 }
 
+const resetViewportZoom = () => {
+  // Reset viewport zoom to initial scale while preserving zoom capability
+  const viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement;
+  if (viewport) {
+    viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes";
+  }
+};
+
 export function MessageActions({
   onEmojiClick,
   onThreadClick,
@@ -43,6 +51,7 @@ export function MessageActions({
         !emojiButtonRef.current.contains(event.target as Node)
       ) {
         setShowEmojiPicker(false);
+        resetViewportZoom();
       }
     };
 
@@ -113,6 +122,9 @@ export function MessageActions({
 
     onEmojiClick?.(emojiData.emoji);
     setShowEmojiPicker(false);
+
+    // Reset viewport zoom after emoji selection
+    resetViewportZoom();
   };
 
   return (

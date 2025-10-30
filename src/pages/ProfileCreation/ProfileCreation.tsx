@@ -15,7 +15,23 @@ import { createMonogram, generateRandomUsername } from "@/utils/user";
 const ProfileCreation: React.FC = () => {
   const { login } = useUserContext();
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>(() => generateRandomUsername());
+  // Generated fallback
+  const [username, setUsername] = useState<string>(() => {
+    console.log("🔍 Crypto API check:");
+    console.log("- crypto object:", typeof crypto !== "undefined" ? "available" : "NOT available");
+    console.log("- crypto.randomUUID:", typeof crypto?.randomUUID === "function" ? "available" : "NOT available");
+    console.log("- crypto.getRandomValues:", typeof crypto?.getRandomValues === "function" ? "available" : "NOT available");
+
+    try {
+      const generatedUsername = generateRandomUsername();
+      console.log("✅ Generated username:", generatedUsername);
+      return generatedUsername;
+    } catch (error) {
+      console.error("❌ Username generation failed:", error);
+      return "User" + Math.floor(Math.random() * 1000);
+    }
+  });
+  // fallback end
   const [validationError, setValidationError] = useState<string>("");
 
   const validateUsername = (name: string): string => {
@@ -54,15 +70,19 @@ const ProfileCreation: React.FC = () => {
 
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
+    console.log("🚀 Starting login process with username:", trimmedUsername);
 
     const error = validateUsername(username);
     if (error) {
+      console.log("❌ Validation error:", error);
       setValidationError(error);
       return;
     }
 
     try {
+      console.log("📞 Calling login function...");
       await login(trimmedUsername);
+      console.log("✅ Login successful, navigating to home");
       navigate(ROUTES.HOME);
     } catch (err) {
       console.error(`Error logging in with username "${trimmedUsername}":`, err);
