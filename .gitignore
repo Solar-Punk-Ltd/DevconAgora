@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 pnpm-workspace.yaml
+helpers.sh
 
 # Editor directories and files
 .vscode/*
