@@ -93,7 +93,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh, isParentScrolledDown =
       try {
         await onRefresh();
       } catch (error) {
-        console.error("Refresh failed:", error);
+        console.debug("Refresh failed:", error);
       } finally {
         setIsRefreshing(false);
       }

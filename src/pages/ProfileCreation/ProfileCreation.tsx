@@ -54,22 +54,17 @@ const ProfileCreation: React.FC = () => {
 
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
-    console.log("🚀 Starting login process with username:", trimmedUsername);
 
     const error = validateUsername(username);
     if (error) {
-      console.log("❌ Validation error:", error);
       setValidationError(error);
       return;
     }
 
     try {
-      console.log("📞 Calling login function...");
       await login(trimmedUsername);
-      console.log("✅ Login successful, navigating to home");
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.error(`Error logging in with username "${trimmedUsername}":`, err);
       setValidationError("Something went wrong. Please try again.");
     }
   };

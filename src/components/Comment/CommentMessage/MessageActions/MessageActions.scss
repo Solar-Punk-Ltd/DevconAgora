@@ -69,8 +69,24 @@
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
   .EmojiPickerReact {
     background: rgba(28, 28, 28, 0.95) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  input {
+    font-size: 16px !important;
+    transform: scale(1) !important;
+  }
+
+  button {
+    font-size: 16px !important;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
   }
 }

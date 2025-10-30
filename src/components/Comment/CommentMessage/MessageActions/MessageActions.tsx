@@ -15,10 +15,17 @@ interface MessageActionsProps {
 }
 
 const resetViewportZoom = () => {
-  // Reset viewport zoom to initial scale while preserving zoom capability
   const viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement;
   if (viewport) {
-    viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes";
+    const originalContent = viewport.content;
+    viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+
+    setTimeout(() => {
+      viewport.content = originalContent;
+      setTimeout(() => {
+        viewport.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+      }, 10);
+    }, 10);
   }
 };
 
@@ -67,45 +74,40 @@ export function MessageActions({
   const handleEmojiButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
 
-    // Prevent opening picker while reaction is loading or globally disabled
     if (isReactionLoading || disabled) return;
+
+    resetViewportZoom();
 
     if (!showEmojiPicker && emojiButtonRef.current) {
       const buttonRect = emojiButtonRef.current.getBoundingClientRect();
       const pickerWidth = 300;
       const pickerHeight = 350;
 
-      // Detect Safari for specific adjustments
       const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-      let top = buttonRect.bottom + 4; // Start below the button
+      let top = buttonRect.bottom + 4;
       let left = buttonRect.left;
 
-      // For non-own messages (other users), adjust left positioning to ensure picker is visible
       if (!ownMessage) {
         left = buttonRect.right - pickerWidth;
-        // If that would make it go off the left edge, position it at the button's left
+
         if (left < 16) {
           left = buttonRect.left;
         }
       }
 
-      // Check if picker would go off-screen vertically
       if (top + pickerHeight > window.innerHeight) {
-        top = buttonRect.top - pickerHeight - 4; // Place above the button
+        top = buttonRect.top - pickerHeight - 4;
       }
 
-      // Check if picker would go off-screen horizontally
       if (left + pickerWidth > window.innerWidth) {
-        left = window.innerWidth - pickerWidth - 16; // Adjust to fit on screen
+        left = window.innerWidth - pickerWidth - 16;
       }
 
-      // Ensure minimum distance from edges
       top = Math.max(16, top);
       left = Math.max(16, left);
 
       if (isSafari) {
-        // Add extra buffer for Safari's rendering quirks
         top = Math.max(20, top);
         left = Math.max(20, Math.min(left, window.innerWidth - pickerWidth - 20));
       }
@@ -117,13 +119,11 @@ export function MessageActions({
   };
 
   const handleEmojiClick = (emojiData: EmojiClickData) => {
-    // Prevent multiple clicks while loading or globally disabled
     if (isReactionLoading || disabled) return;
 
     onEmojiClick?.(emojiData.emoji);
     setShowEmojiPicker(false);
 
-    // Reset viewport zoom after emoji selection
     resetViewportZoom();
   };
 

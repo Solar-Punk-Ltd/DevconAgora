@@ -106,7 +106,6 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
   const handleEmojiReaction = async (messageId: string, emoji: string) => {
     if (!isSwarmCommentReady) return;
 
-    // Prevent multiple reactions on the same message-emoji combination
     const loadingKey = `${messageId}-${emoji}`;
     if (reactionLoadingState[loadingKey]) return;
 
@@ -114,7 +113,6 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
       setReactionLoadingState((prev) => ({ ...prev, [loadingKey]: emoji }));
       await sendReaction(messageId, emoji);
     } finally {
-      // Clear loading state after a short delay to prevent rapid clicking
       setTimeout(() => {
         setReactionLoadingState((prev) => {
           const { [loadingKey]: _, ...rest } = prev;
