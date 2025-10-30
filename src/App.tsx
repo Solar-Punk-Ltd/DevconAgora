@@ -4,14 +4,11 @@ import { BrowserRouter, HashRouter } from "react-router-dom";
 
 import { GlobalStateProvider } from "./contexts/global";
 import { Provider as UserProvider } from "./contexts/user";
-import { initializeFonts } from "./styles/fonts";
 import MainRouter from "./router";
 
 import "./styles/global.scss";
 
 const isSwarm = process.env.SWARM === "true";
-
-initializeFonts(isSwarm);
 
 const Router = isSwarm ? HashRouter : BrowserRouter;
 
