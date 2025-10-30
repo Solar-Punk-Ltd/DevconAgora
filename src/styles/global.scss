@@ -1,5 +1,4 @@
-// Font faces are loaded dynamically via fonts.ts for Swarm compatibility
-// For local development, fallback fonts will be used unless fonts.scss is manually imported
+@use "./fonts.scss";
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

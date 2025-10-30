@@ -25,10 +25,6 @@ export default defineConfig(({ mode }) => {
       "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
       "process.env.ROUTER_BASENAME": JSON.stringify(routerBasename),
       "process.env.SWARM": JSON.stringify(env.SWARM) ?? JSON.stringify("false"),
-      "process.env.POPPINS_FONT_HASH": JSON.stringify(env.POPPINS_FONT_HASH) ?? JSON.stringify(""),
-      "process.env.INTER_FONT_HASH": JSON.stringify(env.INTER_FONT_HASH) ?? JSON.stringify(""),
-      "process.env.PUBLICSANS_FONT_HASH": JSON.stringify(env.PUBLICSANS_FONT_HASH) ?? JSON.stringify(""),
-      "process.env.BEBAS_FONT_HASH": JSON.stringify(env.BEBAS_FONT_HASH) ?? JSON.stringify(""),
     },
     plugins: [
       react(),
