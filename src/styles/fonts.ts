@@ -1,4 +1,6 @@
 // Dynamic font loading with Swarm hashes
+const beeApiEndpoint = "bytes"
+
 export function loadSwarmFonts(beeUrl: string): void {
   const styleElement = document.createElement("style");
   styleElement.id = "swarm-fonts";
@@ -7,7 +9,7 @@ export function loadSwarmFonts(beeUrl: string): void {
 
   // Poppins
   if (process.env.POPPINS_FONT_HASH) {
-    const fontUrl = `${beeUrl}/bzz/${process.env.POPPINS_FONT_HASH}/`;
+    const fontUrl = `${beeUrl}/${beeApiEndpoint}/${process.env.POPPINS_FONT_HASH}/`;
     cssText += `
 @font-face {
   font-family: "Poppins";
@@ -21,7 +23,7 @@ export function loadSwarmFonts(beeUrl: string): void {
 
   // Inter - normal and bold
   if (process.env.INTER_FONT_HASH) {
-    const fontUrl = `${beeUrl}/bzz/${process.env.INTER_FONT_HASH}/`;
+    const fontUrl = `${beeUrl}/${beeApiEndpoint}/${process.env.INTER_FONT_HASH}/`;
     cssText += `
 @font-face {
   font-family: "Inter";
@@ -43,7 +45,7 @@ export function loadSwarmFonts(beeUrl: string): void {
 
   // Public Sans - normal, 600, 700
   if (process.env.PUBLICSANS_FONT_HASH) {
-    const fontUrl = `${beeUrl}/bzz/${process.env.PUBLICSANS_FONT_HASH}/`;
+    const fontUrl = `${beeUrl}/${beeApiEndpoint}/${process.env.PUBLICSANS_FONT_HASH}/`;
     cssText += `
 @font-face {
   font-family: "Public Sans";
@@ -73,7 +75,7 @@ export function loadSwarmFonts(beeUrl: string): void {
 
   // Bebas Neue
   if (process.env.BEBAS_FONT_HASH) {
-    const fontUrl = `${beeUrl}/bzz/${process.env.BEBAS_FONT_HASH}/`;
+    const fontUrl = `${beeUrl}/${beeApiEndpoint}/${process.env.BEBAS_FONT_HASH}/`;
     cssText += `
 @font-face {
   font-family: "Bebas Neue";
