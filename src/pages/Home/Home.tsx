@@ -31,10 +31,42 @@ const Home: React.FC = () => {
       setIsScrolledDown(nowScrolledDown);
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!contentRef.current) return;
+
+      const element = contentRef.current;
+      const scrollTop = element.scrollTop;
+
+      if (scrollTop === 0) {
+        const touch = e.touches[0];
+        const startY = touch.clientY;
+
+        setTimeout(() => {
+          const currentTouch = e.touches[0];
+          if (currentTouch && currentTouch.clientY > startY) {
+            e.preventDefault();
+          }
+        }, 10);
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!contentRef.current) return;
+
+      const element = contentRef.current;
+      const scrollTop = element.scrollTop;
+
+      if (scrollTop === 0 && e.deltaY < 0) {
+        e.preventDefault();
+      }
+    };
+
     const element = contentRef.current;
 
     if (element) {
       element.addEventListener("scroll", handleScroll);
+      element.addEventListener("touchmove", handleTouchMove, { passive: false });
+      element.addEventListener("wheel", handleWheel, { passive: false });
     }
 
     window.addEventListener("scroll", handleScroll);
@@ -47,6 +79,8 @@ const Home: React.FC = () => {
     return () => {
       if (element) {
         element.removeEventListener("scroll", handleScroll);
+        element.removeEventListener("touchmove", handleTouchMove);
+        element.removeEventListener("wheel", handleWheel);
       }
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("scroll", handleScroll);
