@@ -13,9 +13,10 @@ import { TEST_CATEGORY } from "@/constants/categories";
 interface SpacesProps {
   list: Room[];
   onRefresh?: () => Promise<void>;
+  isParentScrolledDown?: boolean;
 }
 
-const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
+const Spaces: React.FC<SpacesProps> = ({ list, onRefresh, isParentScrolledDown = false }) => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -25,7 +26,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   const [hasDragged, setHasDragged] = useState(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     if (containerRef.current.scrollTop === 0) {
       setStartY(e.touches[0].clientY);
@@ -34,14 +35,14 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!containerRef.current || startY === 0) return;
+    if (!containerRef.current || startY === 0 || isParentScrolledDown) return;
 
     const currentY = e.touches[0].clientY;
     const diff = currentY - startY;
 
     if (diff > 0 && containerRef.current.scrollTop === 0) {
       e.preventDefault();
-      setPullDistance(Math.min(diff, 51));
+      setPullDistance(Math.min(diff, 31));
       setHasDragged(true);
     }
   };
@@ -51,7 +52,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     if (containerRef.current.scrollTop === 0) {
       setIsDragging(true);
@@ -62,14 +63,14 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || !isDragging || startY === 0) return;
+    if (!containerRef.current || !isDragging || startY === 0 || isParentScrolledDown) return;
 
     const currentY = e.clientY;
     const diff = currentY - startY;
 
     if (diff > 0 && containerRef.current.scrollTop === 0) {
       e.preventDefault();
-      setPullDistance(Math.min(diff, 67));
+      setPullDistance(Math.min(diff, 31));
       setHasDragged(true);
     }
   };
@@ -87,10 +88,12 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handlePullEnd = async (currentPullDistance: number) => {
-    if (currentPullDistance > 66 && onRefresh && !isRefreshing) {
+    if (currentPullDistance > 30 && onRefresh && !isRefreshing) {
       setIsRefreshing(true);
       try {
         await onRefresh();
+      } catch (error) {
+        console.error("Refresh failed:", error);
       } finally {
         setIsRefreshing(false);
       }
@@ -110,11 +113,11 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
         <div
           className="pull-refresh-indicator"
           style={{
-            opacity: Math.min(pullDistance / 66, 1),
-            transform: `translateY(-${66 - pullDistance}px)`,
+            opacity: Math.min(pullDistance / 31, 1),
+            transform: `translateY(-${31 - pullDistance}px)`,
           }}
         >
-          {isRefreshing ? <div className="spinner"></div> : pullDistance > 66 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
+          {isRefreshing ? <div className="spinner"></div> : pullDistance > 25 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
         </div>
       )}
       <div
