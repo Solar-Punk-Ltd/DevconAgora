@@ -13,9 +13,10 @@ import { TEST_CATEGORY } from "@/constants/categories";
 interface SpacesProps {
   list: Room[];
   onRefresh?: () => Promise<void>;
+  isParentScrolledDown?: boolean;
 }
 
-const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
+const Spaces: React.FC<SpacesProps> = ({ list, onRefresh, isParentScrolledDown = false }) => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -25,7 +26,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   const [hasDragged, setHasDragged] = useState(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     if (containerRef.current.scrollTop === 0) {
       setStartY(e.touches[0].clientY);
@@ -34,14 +35,14 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!containerRef.current || startY === 0) return;
+    if (!containerRef.current || startY === 0 || isParentScrolledDown) return;
 
     const currentY = e.touches[0].clientY;
     const diff = currentY - startY;
 
     if (diff > 0 && containerRef.current.scrollTop === 0) {
       e.preventDefault();
-      setPullDistance(Math.min(diff, 51));
+      setPullDistance(Math.min(diff, 31));
       setHasDragged(true);
     }
   };
@@ -51,7 +52,7 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     if (containerRef.current.scrollTop === 0) {
       setIsDragging(true);
@@ -62,14 +63,14 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || !isDragging || startY === 0) return;
+    if (!containerRef.current || !isDragging || startY === 0 || isParentScrolledDown) return;
 
     const currentY = e.clientY;
     const diff = currentY - startY;
 
     if (diff > 0 && containerRef.current.scrollTop === 0) {
       e.preventDefault();
-      setPullDistance(Math.min(diff, 67));
+      setPullDistance(Math.min(diff, 31));
       setHasDragged(true);
     }
   };
@@ -87,10 +88,12 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
   };
 
   const handlePullEnd = async (currentPullDistance: number) => {
-    if (currentPullDistance > 66 && onRefresh && !isRefreshing) {
+    if (currentPullDistance > 30 && onRefresh && !isRefreshing) {
       setIsRefreshing(true);
       try {
         await onRefresh();
+      } catch (error) {
+        console.debug("Refresh failed:", error);
       } finally {
         setIsRefreshing(false);
       }
@@ -106,52 +109,55 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh }) => {
         <div className="recent-rooms__title">Buzz spaces</div>
       </div>
 
-      {pullDistance > 0 && (
+      <div className="spaces-wrapper">
         <div
-          className="pull-refresh-indicator"
+          ref={containerRef}
+          className="spaces-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
           style={{
-            opacity: Math.min(pullDistance / 66, 1),
-            transform: `translateY(-${66 - pullDistance}px)`,
+            transform: pullDistance > 0 ? `translateY(${pullDistance}px)` : "none",
+            transition: pullDistance === 0 ? "transform 0.2s ease-out" : "none",
+            cursor: isDragging ? "grabbing" : "grab",
           }}
         >
-          {isRefreshing ? <div className="spinner"></div> : pullDistance > 66 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
-        </div>
-      )}
-      <div
-        ref={containerRef}
-        className="spaces-container"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform: pullDistance > 0 ? `translateY(${pullDistance}px)` : "none",
-          transition: pullDistance === 0 ? "transform 0.2s ease-out" : "none",
-          cursor: isDragging ? "grabbing" : "grab",
-        }}
-      >
-        {list.map((room) => {
-          if (room.topic === TEST_CATEGORY) return null;
+          {list.map((room) => {
+            if (room.topic === TEST_CATEGORY) return null;
 
-          return (
-            <div
-              key={room.topic}
-              onClick={(e) => {
-                if (hasDragged) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  return;
-                }
-                navigate(`${ROUTES.TALKS}/${room.topic}`);
-              }}
-            >
-              <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={room.topic}
+                onClick={(e) => {
+                  if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                  }
+                  navigate(`${ROUTES.TALKS}/${room.topic}`);
+                }}
+              >
+                <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
+              </div>
+            );
+          })}
+        </div>
+
+        {pullDistance > 0 && (
+          <div
+            className="pull-refresh-indicator"
+            style={{
+              opacity: Math.min(pullDistance / 31, 1),
+              transform: `translateY(-${31 - pullDistance}px)`,
+            }}
+          >
+            {isRefreshing ? <div className="spinner"></div> : pullDistance > 25 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
+          </div>
+        )}
       </div>
     </div>
   );

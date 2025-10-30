@@ -65,7 +65,6 @@ const ProfileCreation: React.FC = () => {
       await login(trimmedUsername);
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.error(`Error logging in with username "${trimmedUsername}":`, err);
       setValidationError("Something went wrong. Please try again.");
     }
   };

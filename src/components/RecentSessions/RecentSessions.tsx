@@ -10,7 +10,11 @@ import RecentSessionsItem from "./RecentSessionsItem/RecentSessionsItem";
 
 import "./RecentSessions.scss";
 
-const RecentSessions: React.FC = () => {
+interface RecentSessionsProps {
+  isParentScrolledDown?: boolean;
+}
+
+const RecentSessions: React.FC<RecentSessionsProps> = ({ isParentScrolledDown = false }) => {
   const { recentSessions, talkActivity } = useGlobalState();
   const { calcTalksActivity } = usePreload();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -28,10 +32,9 @@ const RecentSessions: React.FC = () => {
   const [startY, setStartY] = useState(0);
   const [isVerticalDragging, setIsVerticalDragging] = useState(false);
   const [hasVerticalDragged, setHasVerticalDragged] = useState(false);
-  const [initialScrollTop, setInitialScrollTop] = useState(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
     setInitialScrollLeft(scrollLeft);
@@ -46,7 +49,7 @@ const RecentSessions: React.FC = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
 
@@ -76,7 +79,7 @@ const RecentSessions: React.FC = () => {
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isParentScrolledDown) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
     setInitialScrollLeft(scrollLeft);
@@ -180,41 +183,22 @@ const RecentSessions: React.FC = () => {
   };
 
   const handleVerticalTouchStart = (e: React.TouchEvent) => {
-    if (!verticalContainerRef.current) {
-      return;
-    }
+    if (!verticalContainerRef.current || isParentScrolledDown) return;
 
-    const parentScrollTop = window.scrollY || document.documentElement.scrollTop;
-    setInitialScrollTop(parentScrollTop);
     setStartY(e.touches[0].clientY);
     setHasVerticalDragged(false);
-
-    if (parentScrollTop > 10) {
-      setStartY(0);
-    }
   };
 
   const handleVerticalTouchMove = (e: React.TouchEvent) => {
-    if (!verticalContainerRef.current) return;
+    if (!verticalContainerRef.current || startY === 0 || isParentScrolledDown) return;
 
-    const parentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-    if (Math.abs(parentScrollTop - initialScrollTop) > 5) {
-      setHasVerticalDragged(true);
-    }
-
-    if (startY === 0) {
-      return;
-    }
-
-    const isAtTop = parentScrollTop <= 10;
     const currentY = e.touches[0].clientY;
     const diff = currentY - startY;
 
-    if (diff > 0 && isAtTop && Math.abs(diff) > 10) {
+    if (diff > 0 && Math.abs(diff) > 10) {
       e.preventDefault();
       e.stopPropagation();
-      setVerticalPullDistance(Math.min(diff, 60));
+      setVerticalPullDistance(Math.min(diff, 30));
       setHasVerticalDragged(true);
     }
   };
@@ -228,23 +212,16 @@ const RecentSessions: React.FC = () => {
   };
 
   const handleVerticalMouseDown = (e: React.MouseEvent) => {
-    if (!verticalContainerRef.current) return;
+    if (!verticalContainerRef.current || isParentScrolledDown) return;
 
-    const parentScrollTop = window.scrollY || document.documentElement.scrollTop;
-    setInitialScrollTop(parentScrollTop);
     setHasVerticalDragged(false);
-
-    const isAtTop = parentScrollTop <= 10;
-
-    if (isAtTop) {
-      setIsVerticalDragging(true);
-      setStartY(e.clientY);
-      e.preventDefault();
-    }
+    setIsVerticalDragging(true);
+    setStartY(e.clientY);
+    e.preventDefault();
   };
 
   const handleVerticalPullEnd = async (currentVerticalPullDistance: number) => {
-    if (currentVerticalPullDistance > 59 && !isVerticalRefreshing) {
+    if (currentVerticalPullDistance > 29 && !isVerticalRefreshing) {
       setIsVerticalRefreshing(true);
       try {
         await calcTalksActivity();
@@ -260,15 +237,8 @@ const RecentSessions: React.FC = () => {
 
   useEffect(() => {
     const handleVerticalGlobalMouseMove = (e: MouseEvent) => {
-      if (!verticalContainerRef.current || !isVerticalDragging || startY === 0) return;
+      if (!verticalContainerRef.current || !isVerticalDragging || startY === 0 || isParentScrolledDown) return;
 
-      const parentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-      if (Math.abs(parentScrollTop - initialScrollTop) > 5) {
-        setHasVerticalDragged(true);
-      }
-
-      const isAtTop = parentScrollTop <= 10;
       const currentY = e.clientY;
       const diff = currentY - startY;
 
@@ -276,9 +246,9 @@ const RecentSessions: React.FC = () => {
         setHasVerticalDragged(true);
       }
 
-      if (diff > 0 && isAtTop) {
+      if (diff > 0) {
         e.preventDefault();
-        setVerticalPullDistance(Math.min(diff, 60));
+        setVerticalPullDistance(Math.min(diff, 30));
       }
     };
 
@@ -301,7 +271,7 @@ const RecentSessions: React.FC = () => {
       document.removeEventListener("mousemove", handleVerticalGlobalMouseMove);
       document.removeEventListener("mouseup", handleVerticalGlobalMouseUp);
     };
-  }, [isVerticalDragging, startY, verticalPullDistance, initialScrollTop, isVerticalRefreshing]);
+  }, [isVerticalDragging, startY, verticalPullDistance, isVerticalRefreshing]);
 
   return (
     <div className="recent-sessions-wrapper">
@@ -385,15 +355,15 @@ const RecentSessions: React.FC = () => {
 
         {verticalPullDistance > 0 && (
           <div
-            className="vertical-pull-refresh-indicator recent-sessions-vertical-indicator"
+            className="recent-sessions-vertical-indicator"
             style={{
-              opacity: Math.min(verticalPullDistance / 60, 1),
-              transform: `translateY(${-60}px)`,
+              opacity: Math.min(verticalPullDistance / 30, 1),
+              transform: `translateY(${-45}px)`,
             }}
           >
             {isVerticalRefreshing ? (
               <div className="spinner"></div>
-            ) : verticalPullDistance > 59 ? (
+            ) : verticalPullDistance > 25 ? (
               <div>↻ Release to refresh</div>
             ) : (
               <div>↓ Pull down to refresh</div>

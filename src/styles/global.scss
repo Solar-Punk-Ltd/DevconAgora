@@ -33,7 +33,7 @@
   /* Typography */
   --font-family-base: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   --font-family-secondary: "Poppins", sans-serif;
-  --font-family-tertiary: "Bebas Neue", sans-serif;
+  --font-family-tertiary: "Bebas Neue";
   --font-size-base: 16px;
   --font-size-small: 14px;
   --font-size-large: 18px;
@@ -86,6 +86,9 @@ body,
   background-size: cover;
   padding: 0;
   position: relative;
+
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
 }
 
 .grid {
