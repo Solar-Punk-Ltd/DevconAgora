@@ -1,50 +1,151 @@
 // Dynamic font loading with Swarm hashes
 export function loadSwarmFonts(beeUrl: string): void {
-  const fonts = [
-    {
-      family: "Poppins",
-      hash: process.env.POPPINS_FONT_HASH,
-      weights: ["normal"],
-    },
-    {
-      family: "Inter",
-      hash: process.env.INTER_FONT_HASH,
-      weights: ["normal", "bold"],
-    },
-    {
-      family: "Public Sans",
-      hash: process.env.PUBLICSANS_FONT_HASH,
-      weights: ["normal", "600", "700"],
-    },
-    {
-      family: "Bebas Neue",
-      hash: process.env.BEBAS_FONT_HASH,
-      weights: ["400"],
-    },
-  ];
-
   const styleElement = document.createElement("style");
   styleElement.id = "swarm-fonts";
 
   let cssText = "";
 
-  fonts.forEach((font) => {
-    if (font.hash) {
-      const fontUrl = `${beeUrl}/bzz/${font.hash}/`;
-
-      font.weights.forEach((weight) => {
-        cssText += `
+  // Poppins
+  if (process.env.POPPINS_FONT_HASH) {
+    const fontUrl = `${beeUrl}/bzz/${process.env.POPPINS_FONT_HASH}/`;
+    cssText += `
 @font-face {
-  font-family: "${font.family}";
+  font-family: "Poppins";
   src: url("${fontUrl}") format("truetype");
-  font-weight: ${weight};
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 `;
-      });
-    }
-  });
+  }
+
+  // Inter - normal and bold
+  if (process.env.INTER_FONT_HASH) {
+    const fontUrl = `${beeUrl}/bzz/${process.env.INTER_FONT_HASH}/`;
+    cssText += `
+@font-face {
+  font-family: "Inter";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+`;
+  }
+
+  // Public Sans - normal, 600, 700
+  if (process.env.PUBLICSANS_FONT_HASH) {
+    const fontUrl = `${beeUrl}/bzz/${process.env.PUBLICSANS_FONT_HASH}/`;
+    cssText += `
+@font-face {
+  font-family: "Public Sans";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+`;
+  }
+
+  // Bebas Neue
+  if (process.env.BEBAS_FONT_HASH) {
+    const fontUrl = `${beeUrl}/bzz/${process.env.BEBAS_FONT_HASH}/`;
+    cssText += `
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("${fontUrl}") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+`;
+  }
+
+  styleElement.textContent = cssText;
+  document.head.appendChild(styleElement);
+}
+
+// Local font loading for development/non-Swarm builds
+export function loadLocalFonts(): void {
+  const styleElement = document.createElement("style");
+  styleElement.id = "local-fonts";
+
+  // Dynamically create font-face rules for local fonts
+  // This avoids Vite processing the fonts.scss during build
+  const cssText = `
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"), local("Poppins-Bold");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), local("Inter-Variable");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), local("Inter-Variable");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: local("Public Sans"), local("PublicSans");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: local("Public Sans"), local("PublicSans");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: local("Public Sans"), local("PublicSans");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: local("Bebas Neue"), local("BebasNeue-Regular");
+  font-weight: 400;
+  font-style: normal;
+}
+  `;
 
   styleElement.textContent = cssText;
   document.head.appendChild(styleElement);
@@ -64,6 +165,7 @@ export function initializeFonts(isSwarm: boolean): void {
     console.debug("Fetch fonts from Swarm");
     loadSwarmFonts(beeUrl);
   } else {
-    console.debug("Using local font fallbacks");
+    console.debug("Using local system fonts");
+    loadLocalFonts();
   }
 }
