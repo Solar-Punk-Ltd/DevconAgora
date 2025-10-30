@@ -109,52 +109,55 @@ const Spaces: React.FC<SpacesProps> = ({ list, onRefresh, isParentScrolledDown =
         <div className="recent-rooms__title">Buzz spaces</div>
       </div>
 
-      {pullDistance > 0 && (
+      <div className="spaces-wrapper">
         <div
-          className="pull-refresh-indicator"
+          ref={containerRef}
+          className="spaces-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
           style={{
-            opacity: Math.min(pullDistance / 31, 1),
-            transform: `translateY(-${31 - pullDistance}px)`,
+            transform: pullDistance > 0 ? `translateY(${pullDistance}px)` : "none",
+            transition: pullDistance === 0 ? "transform 0.2s ease-out" : "none",
+            cursor: isDragging ? "grabbing" : "grab",
           }}
         >
-          {isRefreshing ? <div className="spinner"></div> : pullDistance > 25 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
-        </div>
-      )}
-      <div
-        ref={containerRef}
-        className="spaces-container"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform: pullDistance > 0 ? `translateY(${pullDistance}px)` : "none",
-          transition: pullDistance === 0 ? "transform 0.2s ease-out" : "none",
-          cursor: isDragging ? "grabbing" : "grab",
-        }}
-      >
-        {list.map((room) => {
-          if (room.topic === TEST_CATEGORY) return null;
+          {list.map((room) => {
+            if (room.topic === TEST_CATEGORY) return null;
 
-          return (
-            <div
-              key={room.topic}
-              onClick={(e) => {
-                if (hasDragged) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  return;
-                }
-                navigate(`${ROUTES.TALKS}/${room.topic}`);
-              }}
-            >
-              <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={room.topic}
+                onClick={(e) => {
+                  if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                  }
+                  navigate(`${ROUTES.TALKS}/${room.topic}`);
+                }}
+              >
+                <SpacesItem title={room.topic} numberOfActiveUsers={room.userCount || 0} />
+              </div>
+            );
+          })}
+        </div>
+
+        {pullDistance > 0 && (
+          <div
+            className="pull-refresh-indicator"
+            style={{
+              opacity: Math.min(pullDistance / 31, 1),
+              transform: `translateY(-${31 - pullDistance}px)`,
+            }}
+          >
+            {isRefreshing ? <div className="spinner"></div> : pullDistance > 25 ? <div>↻ Release to refresh</div> : <div>↓ Pull down to refresh</div>}
+          </div>
+        )}
       </div>
     </div>
   );
