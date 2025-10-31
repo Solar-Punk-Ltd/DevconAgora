@@ -30,7 +30,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
     <>
       {session && (
         <AgendaItem
-          key={session.id}
+          key={`agenda-${session.id}`}
           id={session.id}
           title={session.title}
           startDate={dateToTime(session.slot_start)}
@@ -44,7 +44,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           isSpacesTalk={isSpacesTalk}
         />
       )}
-      {<Comment sessionId={session.id} signer={userSigner} username={username} isSpacesTalk={isSpacesTalk} />}
+      {<Comment key={`comment-${session.id}`} sessionId={session.id} signer={userSigner} username={username} isSpacesTalk={isSpacesTalk} />}
     </>
   );
 };
