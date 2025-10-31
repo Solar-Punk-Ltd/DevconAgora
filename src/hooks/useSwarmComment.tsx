@@ -118,7 +118,6 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   const [error, setError] = useState<any | null>(null);
   const [isSwarmCommentReady, setIsSwarmCommentReady] = useState<boolean>(false);
 
-  // Set preloaded messages when available
   useEffect(() => {
     if (preloadedData.isPreloaded && initialMessages.length > 0 && messages.length === 0) {
       setMessages(initialMessages);
