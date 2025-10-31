@@ -118,12 +118,12 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   const [error, setError] = useState<any | null>(null);
   const [isSwarmCommentReady, setIsSwarmCommentReady] = useState<boolean>(false);
 
-  // Update messages state when initialMessages changes (important for preloaded data)
   useEffect(() => {
-    if (initialMessages.length > 0 && messages.length === 0 && preloadedData.isPreloaded) {
+    if (preloadedData.isPreloaded && initialMessages.length > 0 && messages.length === 0) {
       setMessages(initialMessages);
+      setCommentLoading(false);
     }
-  }, [initialMessages, messages.length, preloadedData.isPreloaded]);
+  }, [preloadedData.isPreloaded, initialMessages.length, messages.length]);
 
   const reactionMessages = useMemo(() => messages.filter((msg) => msg.type === MessageType.REACTION && msg.targetMessageId), [messages]);
 
@@ -228,7 +228,16 @@ export const useSwarmComment = ({ user, infra }: CommentSettings, sessionId: str
   }, [messages, updateLoadedTalks]);
 
   useEffect(() => {
-    if (commentRef.current) return;
+    if (commentRef.current) {
+      setMessages([]);
+      setCommentLoading(!preloadedData.isPreloaded);
+      setMessagesLoading(false);
+      setError(null);
+      setIsSwarmCommentReady(false);
+
+      commentRef.current.stop();
+      commentRef.current = null;
+    }
 
     commentRef.current = new SwarmComment({ user, infra });
 
