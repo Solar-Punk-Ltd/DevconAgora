@@ -25,6 +25,10 @@ interface GlobalState {
   setTalkActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
   spacesActivity: Map<string, number>;
   setSpacesActivity: React.Dispatch<React.SetStateAction<Map<string, number>>>;
+  dayIndexFilter: number;
+  setDayIndexFilter: React.Dispatch<React.SetStateAction<number>>;
+  categoryIndexFilter: number | null;
+  setCategoryIndexFilter: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
@@ -52,6 +56,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
 
   const [spacesActivity, setSpacesActivity] = useState<Map<string, number>>(new Map<string, number>());
 
+  const [dayIndexFilter, setDayIndexFilter] = useState<number>(0);
+
+  const [categoryIndexFilter, setCategoryIndexFilter] = useState<number | null>(null);
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -73,6 +81,10 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         setSpacesActivity,
         spaces,
         setSpaces,
+        dayIndexFilter,
+        setDayIndexFilter,
+        categoryIndexFilter,
+        setCategoryIndexFilter,
       }}
     >
       {children}

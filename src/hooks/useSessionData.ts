@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { FIVE_MINUTES, MAX_SESSIONS_SHOWN } from "../constants/app";
+import { ALL_SESSIONS_KEY, FIVE_MINUTES, MAX_SESSIONS_SHOWN } from "../constants/app";
 import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
@@ -15,7 +15,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
 
   const filterRecentSessions = useCallback(
     (sessions: Map<string, Session[]>) => {
-      const day = "all";
+      const day = ALL_SESSIONS_KEY;
       const sessionsByDay = getSessionsByDay(sessions, day);
       if (sessionsByDay.length != 0) {
         const mostRecentSessions = new Array<Session>(MAX_SESSIONS_SHOWN);
@@ -27,6 +27,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
           mostRecentSessions[i] = sessionsByDay[recentIx];
         }
         setRecentSessionIx(firstSessionIx);
+
         setRecentSessions(mostRecentSessions);
       }
     },

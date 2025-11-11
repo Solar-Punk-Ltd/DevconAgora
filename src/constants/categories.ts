@@ -12,14 +12,28 @@ import Usability from "../assets/category-usability.png";
 
 export const LOBBY_TITLE = "BBW Lobby";
 export const MOCK_START_TIME = new Date("2024-11-12T02:45:00.000Z");
+export const TEST_CATEGORY = "testsolarpunk";
+export const CATEGORIES = [
+  TEST_CATEGORY,
+  "Deeptech Day",
+  "Kripteus Professional Day",
+  "Swarm Decentralized AI Forum",
+  "Polkadot Day 2025",
+  LOBBY_TITLE,
+];
 
-export const CATEGORIES = ["Deeptech Day", "Kripteus Professional Day", "Swarm Decentralized AI Forum", "Polkadot Day 2025", LOBBY_TITLE];
+export enum AgendaDays {
+  DAY1 = "Day 1",
+  DAY2 = "Day 2",
+  DAY3 = "Day 3",
+  DAY4 = "Day 4",
+}
 
 export const DATE_TO_EVENT_DAY = new Map([
-  [new Date("2025-09-16").toDateString(), "Day 1"],
-  [new Date("2025-09-17").toDateString(), "Day 2"],
-  [new Date("2025-09-18").toDateString(), "Day 3"],
-  [new Date("2025-09-19").toDateString(), "Day 4"],
+  [new Date("2025-09-16").toDateString(), AgendaDays.DAY1],
+  [new Date("2025-09-17").toDateString(), AgendaDays.DAY2],
+  [new Date("2025-09-18").toDateString(), AgendaDays.DAY3],
+  [new Date("2025-09-19").toDateString(), AgendaDays.DAY4],
 ]);
 
 export const STAGES_MAP = new Map([["main-stage", "Main Stage"]]);

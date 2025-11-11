@@ -1,0 +1,92 @@
+.message-actions {
+  position: absolute;
+  visibility: hidden;
+  right: -200px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+
+  &.visible {
+    visibility: visible;
+    border-radius: 12px;
+    background-color: white;
+    right: 0;
+  }
+
+  &.own-message {
+    right: auto;
+    left: -200px;
+
+    &.visible {
+      right: auto;
+      left: 0;
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.action-button {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  &.emoji-button {
+    font-size: 18px;
+  }
+
+  &.thread-button {
+    font-size: 18px;
+  }
+}
+
+.emoji-picker-fixed {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  .EmojiPickerReact {
+    background: rgba(28, 28, 28, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  input {
+    font-size: 16px !important;
+    transform: scale(1) !important;
+  }
+
+  button {
+    font-size: 16px !important;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+  }
+}

@@ -1,0 +1,36 @@
+.message-thread-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+  gap: 4px;
+  justify-content: flex-start;
+
+  &.own-message {
+    justify-content: flex-end;
+  }
+}
+
+.thread-reply-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  gap: 4px;
+  padding: 4px 0px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.885);
+  transition: all 0.2s ease;
+
+  .thread-text {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .thread-icon {
+    font-size: 14px;
+  }
+}

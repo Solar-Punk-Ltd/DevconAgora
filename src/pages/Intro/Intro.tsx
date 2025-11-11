@@ -32,15 +32,18 @@ function Intro() {
   return (
     <>
       <div className="opening-page grid">
-        <div style={{}} className="opening-page__text-layer">
+        <div className="opening-page__text-layer">
           <div className="opening-page__header">
             <div>{TEXTS.APP_NAME}</div>
 
             <img src={bySolarPunk} alt="" height="30px" width="104px" />
           </div>
+        </div>
+        <div className="opening-page__image-wrapper">
           <img src={bbwIntro} className="opening-page__intro" />
         </div>
       </div>
+      <div className="opening-page__hidden">{TEXTS.APP_NAME}</div>
     </>
   );
 }

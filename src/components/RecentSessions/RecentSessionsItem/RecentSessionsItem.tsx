@@ -12,11 +12,20 @@ interface RecentSessionsItemProps {
   title: string;
   stage?: string;
   activity?: number;
+  disabled?: boolean;
 }
 
-const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({ id, title, stage, activity }) => {
+const RecentSessionsItem: React.FC<RecentSessionsItemProps> = ({ id, title, stage, activity, disabled }: RecentSessionsItemProps) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (disabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+  };
+
   return (
-    <Link to={`${ROUTES.TALKS}/${id}`} className="recent-sessions-item">
+    <Link to={`${ROUTES.TALKS}/${id}`} className="recent-sessions-item" onClick={handleClick}>
       <div className="recent-sessions-item__title">{title}</div>
       <div className="recent-sessions-item__stage">
         <Stage name={stage} />

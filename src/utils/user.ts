@@ -98,7 +98,7 @@ export const persistUserSession = async (session: UserSession, options: CookieOp
     try {
       localStorage.setItem(SESSION_KEY, JSON.stringify(session));
     } catch (error) {
-      console.error("Both cookie and localStorage failed:", error);
+      console.debug("Both cookie and localStorage failed:", error);
     }
   }
 };
@@ -142,7 +142,7 @@ export const restoreUserSession = (): UserSession | null => {
         const session = JSON.parse(cookieValue);
         return session;
       } catch (error) {
-        console.error("Failed to parse session cookie:", error);
+        console.debug("Failed to parse session cookie:", error);
         deleteCookie(SESSION_KEY);
       }
     }
@@ -155,7 +155,7 @@ export const restoreUserSession = (): UserSession | null => {
       return session;
     }
   } catch (error) {
-    console.error("Failed to load from localStorage:", error);
+    console.debug("Failed to load from localStorage:", error);
   }
 
   return null;
@@ -167,14 +167,31 @@ export const purgeUserSession = (): void => {
   try {
     localStorage.removeItem(SESSION_KEY);
   } catch (error) {
-    console.error("Failed to clear localStorage:", error);
+    console.debug("Failed to clear localStorage:", error);
   }
 
   console.log("Session cleared from all storage methods");
 };
 
+const generateSecureId = (): string => {
+  try {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+  } catch (error) {
+    console.debug("crypto.randomUUID() not available, using fallback");
+  }
+
+  console.debug("Using Math.random() fallback for ID generation");
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0;
+    const v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+};
+
 export const userLogin = (name: string): UserSession => {
-  const id = crypto.randomUUID();
+  const id = generateSecureId();
 
   const signer = getSigner(id);
   if (!signer) {
