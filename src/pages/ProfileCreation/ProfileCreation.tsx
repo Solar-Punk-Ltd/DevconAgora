@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
@@ -13,7 +13,7 @@ import { handleKeyDown } from "@/utils/common";
 import { createMonogram, generateRandomUsername } from "@/utils/user";
 
 const ProfileCreation: React.FC = () => {
-  const { login } = useUserContext();
+  const { login, isUserLoggedIn, isSwarmEnabled, isSwarmInitialized } = useUserContext();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>(() => generateRandomUsername());
   const [validationError, setValidationError] = useState<string>("");
@@ -52,6 +52,12 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      navigate(ROUTES.HOME);
+    }
+  }, [isUserLoggedIn, navigate]);
+
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
 
@@ -63,13 +69,15 @@ const ProfileCreation: React.FC = () => {
 
     try {
       await login(trimmedUsername);
-      navigate(ROUTES.HOME);
+      if (!isSwarmEnabled) {
+        navigate(ROUTES.HOME);
+      }
     } catch (err) {
       setValidationError("Something went wrong. Please try again.");
     }
   };
 
-  const isButtonActive = username.trim().length > 0 && !validationError;
+  const isButtonActive = username.trim().length > 0 && !validationError && (!isSwarmEnabled || isSwarmInitialized);
 
   return (
     <div className="welcome-page grid">

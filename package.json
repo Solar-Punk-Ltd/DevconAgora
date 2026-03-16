@@ -23,7 +23,8 @@
     "ethers": "^6.13.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.7.1",
+    "swarm-id": "file:../swarm-id"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
