@@ -1,4 +1,3 @@
-import { PrivateKey } from "@ethersphere/bee-js";
 import React, { useMemo, useState } from "react";
 
 import { MessageSender } from "../MessageSender/MessageSender";
@@ -10,13 +9,13 @@ import { CommentMessage } from "@/components/Comment/CommentMessage/CommentMessa
 import { ScrollableMessageList } from "@/components/Comment/ScrollableMessageList/ScrollableMessageList";
 import { ThreadView } from "@/components/Comment/ThreadView/ThreadView";
 import { DEFAULT_POLL_INTERVAL } from "@/constants/app";
+import { useUserContext } from "@/contexts/user";
 import { useSwarmComment, VisibleMessage } from "@/hooks/useSwarmComment";
 import { getTopic } from "@/utils/bee";
+import { deriveStableKey } from "@/utils/user";
 
 interface CommentProps {
   sessionId: string;
-  username: string;
-  signer: PrivateKey;
   isSpacesTalk: boolean;
 }
 
@@ -38,7 +37,8 @@ function getColorForName(name: string): string {
   return profileColors[hash % profileColors.length];
 }
 
-export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, isSpacesTalk }) => {
+export const Comment: React.FC<CommentProps> = ({ sessionId, isSpacesTalk }) => {
+  const { username, keys, isSwarmEnabled, identity } = useUserContext();
   const [selectedMessage, setSelectedMessage] = useState<VisibleMessage | null>(null);
   const [isThreadView, setIsThreadView] = useState(false);
   const [reactionLoadingState, setReactionLoadingState] = useState<Record<string, string>>({});
@@ -56,11 +56,30 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
 
   const topic = getTopic(sessionId);
 
+  // When Swarm is enabled and no local key is available, derive a stable
+  // placeholder key purely for SwarmComment initialization (read-only display).
+  // This key is NEVER used to send messages — sending is gated below.
+  const commentPrivateKey = useMemo(() => {
+    if (keys.private) return keys.private;
+    if (isSwarmEnabled && identity?.id) return deriveStableKey(identity.id);
+    return "";
+  }, [keys.private, isSwarmEnabled, identity?.id]);
+
+  // Resolve the current user's Ethereum address for own-message highlighting.
+  // Legacy path: derived from keys.public. Swarm path: from identity.
+  const userAddress = isSwarmEnabled
+    ? (identity?.address ?? "")
+    : keys.public;
+
+  // Sending is only available on the legacy (direct Bee) path.
+  // Phase 4 will enable sending via SwarmIdClient SOC writer.
+  const canComment = !isSwarmEnabled && Boolean(keys.private);
+
   const commentConfig = useMemo(
     () => ({
       user: {
         nickname: username,
-        privateKey: signer.toHex(),
+        privateKey: commentPrivateKey,
       },
       infra: {
         beeUrl,
@@ -69,7 +88,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
         pollInterval: DEFAULT_POLL_INTERVAL,
       },
     }),
-    [username, signer, topic, beeUrl]
+    [username, commentPrivateKey, topic, beeUrl]
   );
 
   const {
@@ -93,7 +112,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
   };
 
   const handleMessageSending = async (text: string) => {
-    if (!isSwarmCommentReady) return;
+    if (!isSwarmCommentReady || !canComment) return;
 
     try {
       setIsSendingMessage(true);
@@ -104,7 +123,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
   };
 
   const handleEmojiReaction = async (messageId: string, emoji: string) => {
-    if (!isSwarmCommentReady) return;
+    if (!isSwarmCommentReady || !canComment) return;
 
     const loadingKey = `${messageId}-${emoji}`;
     if (reactionLoadingState[loadingKey]) return;
@@ -133,7 +152,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
   };
 
   const handleThreadMessageSending = async (text: string) => {
-    if (!isSwarmCommentReady || !selectedMessage) return;
+    if (!isSwarmCommentReady || !canComment || !selectedMessage) return;
 
     try {
       setIsSendingThreadMessage(true);
@@ -166,7 +185,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
           onEmojiReaction={handleEmojiReaction}
           onRetry={retrySendMessage}
           getColorForName={getColorForName}
-          currentUserAddress={signer.publicKey().address().toString()}
+          currentUserAddress={userAddress}
           reactionLoadingState={reactionLoadingState}
           disabled={isAnyOperationLoading}
         />
@@ -195,7 +214,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
                   error={Boolean(item.error)}
                   name={item.username}
                   profileColor={getColorForName(item.username)}
-                  ownMessage={item.address === signer.publicKey().address().toString()}
+                  ownMessage={Boolean(userAddress) && item.address === userAddress}
                   reactions={groupedReactions[item.id] || []}
                   threadCount={getThreadMessages(item.id).count}
                   onRetry={() => retrySendMessage(item)}
@@ -209,7 +228,7 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, signer, username, i
             />
           )}
 
-          {!commentLoading && <MessageSender onSend={handleMessageSending} disabled={isAnyOperationLoading} />}
+          {!commentLoading && canComment && <MessageSender onSend={handleMessageSending} disabled={isAnyOperationLoading} />}
         </>
       )}
     </div>

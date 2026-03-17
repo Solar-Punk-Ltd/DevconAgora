@@ -20,6 +20,7 @@ interface ContextInterface {
   isSwarmInitialized: boolean;
   canUpload: boolean;
   identity?: ConnectionInfo["identity"];
+  swarmClient: SwarmIdClient | null;
 }
 
 const initialValues: ContextInterface = {
@@ -35,6 +36,7 @@ const initialValues: ContextInterface = {
   isSwarmInitialized: false,
   canUpload: false,
   identity: undefined,
+  swarmClient: null,
 };
 
 export const Context = createContext<ContextInterface>(initialValues);
@@ -80,9 +82,12 @@ export function Provider({ children }: Props): ReactElement {
   };
 
   useEffect(() => {
-    const savedSession = restoreUserSession();
-    if (savedSession) {
-      setUserSession(savedSession);
+    // Phase 2: Only restore local session if Swarm is NOT enabled (legacy path)
+    if (!isSwarmEnabled) {
+      const savedSession = restoreUserSession();
+      if (savedSession) {
+        setUserSession(savedSession);
+      }
     }
 
     if (!isSwarmEnabled || !iframeOrigin) {
@@ -154,11 +159,12 @@ export function Provider({ children }: Props): ReactElement {
   }, []);
 
   const login = async (username: string) => {
-    const session = userLogin(username);
+    // Phase 2: Only use local session if Swarm is NOT enabled (legacy path)
+    if (!isSwarmEnabled) {
+      const session = userLogin(username);
 
-    if (session.id) {
-      setUserSession(session);
-      if (!isSwarmEnabled) {
+      if (session.id) {
+        setUserSession(session);
         await persistUserSession(session);
       }
     }
@@ -199,7 +205,11 @@ export function Provider({ children }: Props): ReactElement {
     setUserSession(null);
     setConnectionInfo(null);
     setIsSwarmAuthenticated(false);
-    purgeUserSession();
+
+    // Phase 2: Only purge local session storage if Swarm is NOT enabled (legacy path)
+    if (!isSwarmEnabled) {
+      purgeUserSession();
+    }
   };
 
   const username = useMemo(() => {
@@ -217,6 +227,12 @@ export function Provider({ children }: Props): ReactElement {
   }, [isSwarmAuthenticated, isSwarmEnabled, userSession]);
 
   const keys = useMemo(() => {
+    // Phase 2: When Swarm is enabled, do not expose local keys
+    // Components must migrate to SwarmIdClient in Phase 3-4
+    if (isSwarmEnabled) {
+      return { private: "", public: "" };
+    }
+
     if (!userSession) {
       return { private: "", public: "" };
     }
@@ -225,7 +241,7 @@ export function Provider({ children }: Props): ReactElement {
       private: userSession.privKey,
       public: userSession.pubKey,
     };
-  }, [userSession]);
+  }, [userSession, isSwarmEnabled]);
 
   return (
     <Context.Provider
@@ -242,6 +258,7 @@ export function Provider({ children }: Props): ReactElement {
         isSwarmInitialized,
         canUpload: connectionInfo?.canUpload ?? false,
         identity: connectionInfo?.identity,
+        swarmClient,
       }}
     >
       {children}

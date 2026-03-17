@@ -11,6 +11,7 @@ import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../constants/network";
 import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
+import { swarmIdUploadToFeed } from "../../utils/swarmId";
 
 import "./FullNote.scss";
 
@@ -22,7 +23,7 @@ const FullNotePage: React.FC = () => {
   const { noteId } = useParams();
 
   const { notes, setNotes } = useGlobalState();
-  const { isUserLoggedIn, keys } = useUserContext();
+  const { isUserLoggedIn, keys, isSwarmEnabled, swarmClient } = useUserContext();
 
   const [currentNote, setCurrentNote] = useState<NoteItemProps>({});
   const [showRemovePopUp, setShowRemovePopUp] = useState<boolean>(false);
@@ -140,23 +141,34 @@ const FullNotePage: React.FC = () => {
       time: dateToTime(date.toISOString()),
     };
     setSaving(true);
-    const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
-    const signer = new PrivateKey(keys.private);
-    await updateFeed(signer, new Topic(topic), process.env.STAMP || DUMMY_STAMP, dataRef);
 
-    const foundIx = notes.findIndex((n) => n.id === topic);
-    const tmpNotes = [...notes];
-    if (!remove) {
-      if (foundIx > -1) {
-        tmpNotes[foundIx] = noteObj;
+    try {
+      if (isSwarmEnabled && swarmClient) {
+        // Phase 3: Use SwarmIdClient for upload and feed update
+        await swarmIdUploadToFeed(swarmClient, topic, JSON.stringify(noteObj));
       } else {
-        tmpNotes.push(noteObj);
+        // Legacy path: Use Bee SDK directly
+        const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
+        const signer = new PrivateKey(keys.private);
+        await updateFeed(signer, new Topic(topic), process.env.STAMP || DUMMY_STAMP, dataRef);
       }
-      setNotes(tmpNotes);
-      setCurrentNote(noteObj);
-    }
 
-    setSaving(false);
+      const foundIx = notes.findIndex((n) => n.id === topic);
+      const tmpNotes = [...notes];
+      if (!remove) {
+        if (foundIx > -1) {
+          tmpNotes[foundIx] = noteObj;
+        } else {
+          tmpNotes.push(noteObj);
+        }
+        setNotes(tmpNotes);
+        setCurrentNote(noteObj);
+      }
+    } catch (error) {
+      console.error("Failed to save note", error);
+    } finally {
+      setSaving(false);
+    }
     setSaved(true);
   };
 

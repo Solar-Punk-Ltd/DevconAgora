@@ -1,4 +1,3 @@
-import { PrivateKey } from "@ethersphere/bee-js";
 import React from "react";
 
 import { STAGES_MAP } from "../../constants/categories";
@@ -9,7 +8,6 @@ import { Comment } from "../Comment/Comment";
 
 import "./TalkItem.scss";
 
-import { useUserContext } from "@/contexts/user";
 import { Space } from "@/types/space";
 
 interface TalkItemProps {
@@ -18,14 +16,6 @@ interface TalkItemProps {
 }
 
 const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
-  const { username, keys } = useUserContext();
-
-  if (!keys.private) {
-    return null;
-  }
-
-  const userSigner = new PrivateKey(keys.private);
-
   return (
     <>
       {session && (
@@ -44,7 +34,7 @@ const TalkItem: React.FC<TalkItemProps> = ({ session, isSpacesTalk }) => {
           isSpacesTalk={isSpacesTalk}
         />
       )}
-      {<Comment key={`comment-${session.id}`} sessionId={session.id} signer={userSigner} username={username} isSpacesTalk={isSpacesTalk} />}
+      {<Comment key={`comment-${session.id}`} sessionId={session.id} isSpacesTalk={isSpacesTalk} />}
     </>
   );
 };

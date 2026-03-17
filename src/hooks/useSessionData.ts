@@ -5,11 +5,14 @@ import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
+import { swarmIdGetFeedUpdate } from "../utils/swarmId";
 
+import { useUserContext } from "@/contexts/user";
 import { getSessionsByDay } from "@/utils/session";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
+  const { isSwarmEnabled, swarmClient } = useUserContext();
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
 
@@ -36,8 +39,20 @@ export const useSessionData = (isBeeRunning: boolean) => {
 
   const fetchFeedUpdate = useCallback(async () => {
     if (isBeeRunning) {
-      // TODO: unnecessary payload.tostring() then back to json
-      const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
+      let sessionDataStr = "";
+      
+      if (isSwarmEnabled && swarmClient) {
+        // Phase 3: Use SwarmIdClient to read public feed
+        sessionDataStr = await swarmIdGetFeedUpdate(
+          swarmClient,
+          RAW_FEED_TOPIC_SESSIONS,
+          process.env.FEED_OWNER_ADDRESS,
+        );
+      } else {
+        // Legacy path: Use Bee SDK directly
+        sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
+      }
+      
       let sessionData: Map<string, Session[]> = new Map();
       if (sessionDataStr.length > 0) {
         sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
@@ -52,7 +67,7 @@ export const useSessionData = (isBeeRunning: boolean) => {
         console.debug("session data empty");
       }
     }
-  }, [isBeeRunning, setSessions, filterRecentSessions]);
+  }, [isBeeRunning, setSessions, filterRecentSessions, isSwarmEnabled, swarmClient]);
 
   useEffect(() => {
     fetchFeedUpdate();

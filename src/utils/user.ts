@@ -211,6 +211,17 @@ export const userLogin = (name: string): UserSession => {
   return session;
 };
 
+/**
+ * Derive a deterministic hex private key from any string input.
+ * Used to produce a stable read-only placeholder key for SwarmComment
+ * when the real private key is not available (Swarm ID mode).
+ * The derived key MUST NOT be used for signing real transactions.
+ */
+export const deriveStableKey = (input: string): string => {
+  const hash = keccak256(Buffer.from(input.trim().toLowerCase(), "utf-8"));
+  return hash.slice(2); // strip 0x
+};
+
 export const createMonogram = (name: string): string => {
   const initials = name.split(" ").map((n) => n[0]);
   return initials.join("").toUpperCase();
