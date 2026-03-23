@@ -9,6 +9,7 @@ import { swarmIdGetFeedUpdate } from "../utils/swarmId";
 
 import { useUserContext } from "@/contexts/user";
 import { getSessionsByDay } from "@/utils/session";
+import { Topic } from "@ethersphere/bee-js";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
@@ -38,34 +39,39 @@ export const useSessionData = (isBeeRunning: boolean) => {
   );
 
   const fetchFeedUpdate = useCallback(async () => {
-    if (isBeeRunning) {
-      let sessionDataStr = "";
-      
-      if (isSwarmEnabled && swarmClient) {
-        // Phase 3: Use SwarmIdClient to read public feed
-        sessionDataStr = await swarmIdGetFeedUpdate(
-          swarmClient,
-          RAW_FEED_TOPIC_SESSIONS,
-          process.env.FEED_OWNER_ADDRESS,
-        );
-      } else {
-        // Legacy path: Use Bee SDK directly
-        sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
-      }
-      
-      let sessionData: Map<string, Session[]> = new Map();
-      if (sessionDataStr.length > 0) {
-        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
-      }
+    try {
+      if (isBeeRunning) {
+        let sessionDataStr = "";
 
-      if (sessionData.size !== 0) {
-        console.debug("session data updated");
-        setSessions(sessionData);
-        // Automatically filter recent sessions when new session data is fetched
-        filterRecentSessions(sessionData);
-      } else {
-        console.debug("session data empty");
-      }
+        if (isSwarmEnabled && swarmClient && false) {
+          const topicHex = Topic.fromString(RAW_FEED_TOPIC_SESSIONS).toString();
+          // Phase 3: Use SwarmIdClient to read public feed
+          sessionDataStr = await swarmIdGetFeedUpdate(
+            swarmClient!,
+            topicHex,
+            process.env.FEED_OWNER_ADDRESS,
+          );
+        } else {
+          // Legacy path: Use Bee SDK directly
+          sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
+        }
+        
+        let sessionData: Map<string, Session[]> = new Map();
+        if (sessionDataStr.length > 0) {
+          sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
+        }
+
+        if (sessionData.size !== 0) {
+          console.debug("session data updated");
+          setSessions(sessionData);
+          // Automatically filter recent sessions when new session data is fetched
+          filterRecentSessions(sessionData);
+        } else {
+          console.debug("session data empty");
+        }
+      } 
+    } catch (ex) {
+      debugger;
     }
   }, [isBeeRunning, setSessions, filterRecentSessions, isSwarmEnabled, swarmClient]);
 

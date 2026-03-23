@@ -77,7 +77,7 @@ export async function swarmIdGetFeedUpdate(
     if (index !== undefined) {
       downloadOptions.index = index;
     }
-
+    debugger;
     const result = await reader.downloadPayload(
       encryptionKey || "",
       downloadOptions,

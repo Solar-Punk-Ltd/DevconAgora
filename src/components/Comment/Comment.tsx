@@ -60,8 +60,14 @@ export const Comment: React.FC<CommentProps> = ({ sessionId, isSpacesTalk }) => 
   // placeholder key purely for SwarmComment initialization (read-only display).
   // This key is NEVER used to send messages — sending is gated below.
   const commentPrivateKey = useMemo(() => {
-    if (keys.private) return keys.private;
-    if (isSwarmEnabled && identity?.id) return deriveStableKey(identity.id);
+    if (keys.private) {
+      return keys.private;
+    }
+
+    if (isSwarmEnabled && identity?.id) {
+      return deriveStableKey(identity.id);
+    }
+
     return "";
   }, [keys.private, isSwarmEnabled, identity?.id]);
 

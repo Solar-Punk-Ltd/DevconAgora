@@ -9,7 +9,7 @@ interface ContextInterface {
     private: string;
     public: string;
   };
-  login: (username: string) => Promise<void>;
+  login: () => Promise<void>;
   logout: () => Promise<void>;
   connect: () => Promise<void>;
   disconnect: () => Promise<void>;
@@ -54,6 +54,7 @@ interface Props {
 
 export function Provider({ children }: Props): ReactElement {
   const iframeOrigin = process.env.SWARM_ID_IFRAME_ORIGIN;
+  const proxyPath = process.env.SWARM_ID_IFRAME_PROXY_PATH;
   const isSwarmEnabled = Boolean(iframeOrigin);
 
   const [userSession, setUserSession] = useState<UserSession | null>(null);
@@ -64,6 +65,9 @@ export function Provider({ children }: Props): ReactElement {
   const [connectionInfo, setConnectionInfo] = useState<ConnectionInfo | null>(null);
 
   const refreshSwarmAuth = async (client: SwarmIdClient) => {
+    if (!client) {
+      return;
+    }
     try {
       const status = await client.checkAuthStatus();
       setIsSwarmAuthenticated(status.authenticated);
@@ -82,7 +86,6 @@ export function Provider({ children }: Props): ReactElement {
   };
 
   useEffect(() => {
-    // Phase 2: Only restore local session if Swarm is NOT enabled (legacy path)
     if (!isSwarmEnabled) {
       const savedSession = restoreUserSession();
       if (savedSession) {
@@ -97,13 +100,23 @@ export function Provider({ children }: Props): ReactElement {
 
     const client = new SwarmIdClient({
       iframeOrigin,
+      iframePath: proxyPath,
+      timeout: 60000,
+      initializationTimeout: 120000,
       metadata: {
         name: "DevconAgora",
         description: "Decentralized conference companion app",
       },
+      buttonConfig: {
+        connectText: 'Connect',
+        disconnectText: 'Disconnect',
+        loadingText: 'Loading...',
+        backgroundColor: '#367aff',
+        color: 'white',
+      },
+      containerId: "swarm-id-container",
       onAuthChange: async (authenticated) => {
         setIsSwarmAuthenticated(authenticated);
-
         if (authenticated) {
           try {
             const info = await client.getConnectionInfo();
@@ -158,10 +171,9 @@ export function Provider({ children }: Props): ReactElement {
     };
   }, []);
 
-  const login = async (username: string) => {
-    // Phase 2: Only use local session if Swarm is NOT enabled (legacy path)
+  const login = async (username?: string) => {
     if (!isSwarmEnabled) {
-      const session = userLogin(username);
+      const session = userLogin(username ?? "");
 
       if (session.id) {
         setUserSession(session);
@@ -174,12 +186,13 @@ export function Provider({ children }: Props): ReactElement {
     }
   };
 
+
   const connect = async () => {
     if (!swarmClient) {
       return;
     }
 
-    swarmClient.connect({ popupMode: "popup" });
+    // swarmClient.connect({ popupMode: "popup" });
     await refreshSwarmAuth(swarmClient);
   };
 
@@ -206,7 +219,6 @@ export function Provider({ children }: Props): ReactElement {
     setConnectionInfo(null);
     setIsSwarmAuthenticated(false);
 
-    // Phase 2: Only purge local session storage if Swarm is NOT enabled (legacy path)
     if (!isSwarmEnabled) {
       purgeUserSession();
     }

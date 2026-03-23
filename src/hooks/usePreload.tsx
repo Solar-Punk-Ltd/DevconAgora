@@ -98,7 +98,7 @@ export const usePreload = () => {
   );
 
   const calcSpacesActivity = useCallback(async (): Promise<void> => {
-    return calcActivity(spaces, spaces.length, setLoadedSpaces, setSpacesActivity);
+    // return calcActivity(spaces, spaces.length, setLoadedSpaces, setSpacesActivity);
   }, [spaces, setLoadedSpaces, setSpacesActivity, calcActivity]);
 
   const calcTalksActivity = useCallback(async (): Promise<void> => {

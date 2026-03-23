@@ -103,6 +103,7 @@ body,
     position: relative;
     background-color: #ffffff;
   }
+
   html {
     display: flex;
     justify-content: center;
@@ -160,7 +161,7 @@ html {
   height: 100%;
   text-align: center;
   box-sizing: border-box;
-  padding: 40px 0px;
+  padding: 70px 0px 40px 0px;
   overflow: hidden;
 }
 
@@ -329,7 +330,6 @@ html {
     height: 100%;
     text-align: center;
     box-sizing: border-box;
-    padding: 40px 0px;
     overflow: hidden;
   }
 }

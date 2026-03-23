@@ -53,6 +53,10 @@ const ProfileCreation: React.FC = () => {
   };
 
   useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
     if (isUserLoggedIn) {
       navigate(ROUTES.HOME);
     }
@@ -60,7 +64,6 @@ const ProfileCreation: React.FC = () => {
 
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
-
     const error = validateUsername(username);
     if (error) {
       setValidationError(error);
@@ -68,7 +71,7 @@ const ProfileCreation: React.FC = () => {
     }
 
     try {
-      await login(trimmedUsername);
+      await login();
       if (!isSwarmEnabled) {
         navigate(ROUTES.HOME);
       }
@@ -122,7 +125,10 @@ const ProfileCreation: React.FC = () => {
         </div>
       </div>
       <div className="profile-creation__bottom">
-        <WelcomeButton version={isButtonActive ? "filled" : "inactive"} onClick={handleSubmit}>
+        <WelcomeButton
+          version={isButtonActive ? "filled" : "inactive"}
+          onClick={handleSubmit}
+        >
           Enter private chat
         </WelcomeButton>
       </div>

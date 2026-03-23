@@ -25,6 +25,8 @@ export default defineConfig(({ mode }) => {
       "process.env.ENV": JSON.stringify(env.ENV) ?? JSON.stringify("dev"),
       "process.env.ROUTER_BASENAME": JSON.stringify(routerBasename),
       "process.env.SWARM": JSON.stringify(env.SWARM) ?? JSON.stringify("false"),
+      "process.env.SWARM_ID_IFRAME_ORIGIN": JSON.stringify(env.SWARM_ID_IFRAME_ORIGIN) ?? JSON.stringify("false"),
+      "process.env.SWARM_ID_IFRAME_PROXY_PATH": JSON.stringify(env.SWARM_ID_IFRAME_PROXY_PATH) ?? JSON.stringify("false"),
     },
     plugins: [
       react(),
