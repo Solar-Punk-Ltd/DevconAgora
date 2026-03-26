@@ -33,7 +33,7 @@ export async function getFeedData(owner: string, topic: string, index?: bigint, 
 
   try {
     const feedReader = bee.makeFeedReader(topic, owner, options);
-    const data = await feedReader.download(index ? { index: FeedIndex.fromBigInt(index) } : {});
+    const data = await feedReader.downloadPayload(index ? { index: FeedIndex.fromBigInt(index) } : {});
 
     return {
       feedIndex: data.feedIndex,

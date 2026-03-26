@@ -13,7 +13,7 @@ import { handleKeyDown } from "@/utils/common";
 import { createMonogram, generateRandomUsername } from "@/utils/user";
 
 const ProfileCreation: React.FC = () => {
-  const { login, isUserLoggedIn, isSwarmEnabled, isSwarmInitialized } = useUserContext();
+  const { login, isUserLoggedIn, isSwarmEnabled } = useUserContext();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>(() => generateRandomUsername());
   const [validationError, setValidationError] = useState<string>("");
@@ -71,7 +71,7 @@ const ProfileCreation: React.FC = () => {
     }
 
     try {
-      await login();
+      await login(trimmedUsername);
       if (!isSwarmEnabled) {
         navigate(ROUTES.HOME);
       }
@@ -80,7 +80,7 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
-  const isButtonActive = username.trim().length > 0 && !validationError && (!isSwarmEnabled || isSwarmInitialized);
+  const isButtonActive = username.trim().length > 0 && !validationError;
 
   return (
     <div className="welcome-page grid">

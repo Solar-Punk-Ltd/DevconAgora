@@ -124,6 +124,7 @@ const FullNotePage: React.FC = () => {
 
   const saveNote = async (topic: string, remove: boolean) => {
     let text = currentNote.text;
+
     if (remove) {
       text = "";
     } else {
@@ -144,8 +145,8 @@ const FullNotePage: React.FC = () => {
 
     try {
       if (isSwarmEnabled && swarmClient) {
-        // Phase 3: Use SwarmIdClient for upload and feed update
-        await swarmIdUploadToFeed(swarmClient, topic, JSON.stringify(noteObj));
+        // Use SwarmIdClient for upload and feed update
+        await swarmIdUploadToFeed(swarmClient!, topic, JSON.stringify(noteObj));
       } else {
         // Legacy path: Use Bee SDK directly
         const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
@@ -232,7 +233,7 @@ const FullNotePage: React.FC = () => {
           Remove
         </WelcomeButton>
         <WelcomeButton version={saving || saved ? "inactive" : "filled"} onClick={() => handleSave()}>
-          Save
+          Save1
         </WelcomeButton>
       </div>
     </div>

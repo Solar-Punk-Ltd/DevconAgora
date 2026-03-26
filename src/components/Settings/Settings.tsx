@@ -32,7 +32,9 @@ const Settings: React.FC = () => {
           <Link to={ROUTES.TERMSANDCONDITIONS}>
             <div className="settings__open__content__item">Terms and Conditions</div>
           </Link>
-          <div className="settings__open__content__item" onClick={handleLogoutClick}>Logout</div>
+          {
+            isSwarmEnabled && <div className="settings__open__content__item" onClick={handleLogoutClick}>Logout</div>
+          }
         </div>
       ) : null}
     </>

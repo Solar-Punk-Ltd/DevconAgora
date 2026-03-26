@@ -57,7 +57,6 @@ export async function swarmIdUploadData(
  * @param client SwarmIdClient instance
  * @param topic Feed topic (32-byte hex string or readable string)
  * @param owner Optional owner address; if omitted, uses authenticated user or proxy-resolved owner
- * @param encryptionKey Optional encryption key if the feed is encrypted
  * @param index Optional feed index to read from (defaults to latest)
  * @returns JSON string of the feed payload
  */
@@ -65,7 +64,6 @@ export async function swarmIdGetFeedUpdate(
   client: SwarmIdClient,
   topic: string,
   owner?: string,
-  encryptionKey?: string,
   index?: bigint,
 ): Promise<string> {
   try {
@@ -77,12 +75,9 @@ export async function swarmIdGetFeedUpdate(
     if (index !== undefined) {
       downloadOptions.index = index;
     }
-    debugger;
-    const result = await reader.downloadPayload(
-      encryptionKey || "",
+    const result = await reader.downloadRawPayload(
       downloadOptions,
     );
-
     if (!result.payload || result.payload.length === 0) {
       console.debug(`No payload found in feed ${topic} at index ${index}`);
       return "";
@@ -113,6 +108,7 @@ export async function swarmIdUpdateFeed(
     const result = await writer.uploadReference(dataReference, {
       index: index !== undefined ? index : undefined,
       encrypt: false, // Store reference unencrypted for public feeds
+      deferred: false,
     });
 
     return result.reference || "";
@@ -120,6 +116,9 @@ export async function swarmIdUpdateFeed(
     console.error(`Failed to update feed ${topic} via SwarmIdClient`, error);
     return "";
   }
+  // const topic1 = '0000000000000000000000000000000000000000000000000000000000000001';
+  // const writer = client.makeSequentialFeedWriter({ topic: topic1 })
+  // const result = await writer.uploadPayload('hello world', { deferred: false,
 }
 
 /**

@@ -9,7 +9,7 @@ interface ContextInterface {
     private: string;
     public: string;
   };
-  login: () => Promise<void>;
+  login: (username?: string) => Promise<void>;
   logout: () => Promise<void>;
   connect: () => Promise<void>;
   disconnect: () => Promise<void>;
@@ -56,7 +56,6 @@ export function Provider({ children }: Props): ReactElement {
   const iframeOrigin = process.env.SWARM_ID_IFRAME_ORIGIN;
   const proxyPath = process.env.SWARM_ID_IFRAME_PROXY_PATH;
   const isSwarmEnabled = Boolean(iframeOrigin);
-
   const [userSession, setUserSession] = useState<UserSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [swarmClient, setSwarmClient] = useState<SwarmIdClient | null>(null);
