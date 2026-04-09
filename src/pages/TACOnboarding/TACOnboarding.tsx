@@ -20,9 +20,9 @@ const TACOnboarding: React.FC = () => {
     }
 
     setIsTermsAndConditionsAccepted(true);
-
     if (!isSwarmInitialized) {
       navigate(ROUTES.PROFILECREATION);
+      return;
     }
 
     try {

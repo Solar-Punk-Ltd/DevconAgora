@@ -5,10 +5,10 @@
  * These functions accept a SwarmIdClient instance and delegate operations to it.
  */
 
-import { SwarmIdClient } from "swarm-id/lib/src/index.ts";
 import { FeedResultWithIndex } from "../types/bee.ts";
 import { FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
 import { FeedIndex } from "@ethersphere/bee-js";
+import { SwarmIdClient } from "swarm-id";
 
 /**
  * Download data via SwarmIdClient
@@ -37,7 +37,6 @@ export async function swarmIdGetData(client: SwarmIdClient, ref: string): Promis
  */
 export async function swarmIdUploadData(
   client: SwarmIdClient,
-  _stamp: string,
   data: string | Uint8Array,
 ): Promise<string> {
   try {
@@ -116,9 +115,6 @@ export async function swarmIdUpdateFeed(
     console.error(`Failed to update feed ${topic} via SwarmIdClient`, error);
     return "";
   }
-  // const topic1 = '0000000000000000000000000000000000000000000000000000000000000001';
-  // const writer = client.makeSequentialFeedWriter({ topic: topic1 })
-  // const result = await writer.uploadPayload('hello world', { deferred: false,
 }
 
 /**

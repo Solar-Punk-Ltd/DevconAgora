@@ -1,8 +1,7 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
-import { SwarmIdClient, type ConnectionInfo } from "swarm-id/lib/src/index.ts";
-
 import { persistUserSession, purgeUserSession, restoreUserSession, userLogin, UserSession } from "@/utils/user";
+import { ConnectionInfo, SwarmIdClient } from "swarm-id";
 
 interface ContextInterface {
   keys: {
@@ -100,7 +99,7 @@ export function Provider({ children }: Props): ReactElement {
     const client = new SwarmIdClient({
       iframeOrigin,
       iframePath: proxyPath,
-      timeout: 60000,
+      timeout: 120000,
       initializationTimeout: 120000,
       metadata: {
         name: "DevconAgora",
@@ -191,7 +190,7 @@ export function Provider({ children }: Props): ReactElement {
       return;
     }
 
-    // swarmClient.connect({ popupMode: "popup" });
+    swarmClient.connect({ popupMode: "popup" });
     await refreshSwarmAuth(swarmClient);
   };
 

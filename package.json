@@ -24,7 +24,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.7.1",
-    "swarm-id": "file:../swarm-id"
+    "swarm-id": "file:../swarm-id/lib"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",

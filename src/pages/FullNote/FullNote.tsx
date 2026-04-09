@@ -11,7 +11,7 @@ import { DUMMY_STAMP, SELF_NOTE_TOPIC } from "../../constants/network";
 import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
 import { updateFeed, uploadData } from "../../utils/bee";
-import { swarmIdUploadToFeed } from "../../utils/swarmId";
+import { swarmIdUploadData, swarmIdUploadToFeed } from "../../utils/swarmId";
 
 import "./FullNote.scss";
 
@@ -144,9 +144,11 @@ const FullNotePage: React.FC = () => {
     setSaving(true);
 
     try {
-      if (isSwarmEnabled && swarmClient) {
+      const useSwarmClient = isSwarmEnabled && Boolean(swarmClient);
+      if (useSwarmClient) {
         // Use SwarmIdClient for upload and feed update
-        await swarmIdUploadToFeed(swarmClient!, topic, JSON.stringify(noteObj));
+        const dataRef = await swarmIdUploadData(swarmClient!, JSON.stringify(noteObj));
+        await swarmIdUploadToFeed(swarmClient!, topic, dataRef);
       } else {
         // Legacy path: Use Bee SDK directly
         const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
@@ -233,7 +235,7 @@ const FullNotePage: React.FC = () => {
           Remove
         </WelcomeButton>
         <WelcomeButton version={saving || saved ? "inactive" : "filled"} onClick={() => handleSave()}>
-          Save1
+          Save
         </WelcomeButton>
       </div>
     </div>
