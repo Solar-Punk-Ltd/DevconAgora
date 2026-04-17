@@ -20,6 +20,7 @@ RUN echo "BEE_API_URL=$BEE_API_URL" >> .env && \
     echo "HEALTH_CHECK_DATA_REF=$HEALTH_CHECK_DATA_REF" >> .env && \
     echo "FEED_OWNER_ADDRESS=$FEED_OWNER_ADDRESS" >> .env && \
     echo "SWARM_ID_IFRAME_ORIGIN=$SWARM_ID_IFRAME_ORIGIN" >> .env && \
+    echo "SWARM_SUBSIDISED_GATEWAY_URL=$SWARM_SUBSIDISED_GATEWAY_URL" >> .env && \
     echo "SWARM_ID_IFRAME_PROXY_PATH=$SWARM_ID_IFRAME_PROXY_PATH" >> .env && \
     echo "ENV=$ENV" >> .env && \
     chmod 644 .env

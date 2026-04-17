@@ -24,10 +24,9 @@ export const useNotes = () => {
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      
+
       if (isSwarmEnabled && swarmClient) {
-        // Phase 3: Use SwarmIdClient to read user's own feed
-        feedPromises.push(swarmIdGetFeedUpdate(swarmClient, rawTopic));
+        feedPromises.push(swarmIdGetFeedUpdate(swarmClient, rawTopic, true));
       } else {
         // Legacy path: Use Bee SDK with keys.public
         feedPromises.push(getFeedUpdate(keys.public, rawTopic, true));

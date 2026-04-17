@@ -43,21 +43,6 @@ export const useSessionData = (isBeeRunning: boolean) => {
       if (isBeeRunning) {
         let sessionDataStr = "";
 
-        // if (isSwarmEnabled && swarmClient ) {
-        //   const topicHex = Topic.fromString(RAW_FEED_TOPIC_SESSIONS).toString();
-        //   // Phase 3: Use SwarmIdClient to read public feed
-        //   sessionDataStr = await swarmIdGetFeedUpdate(
-        //     swarmClient!,
-        //     topicHex,
-        //     process.env.FEED_OWNER_ADDRESS,
-        //   );
-        // } else if (!isSwarmEnabled) {
-        //   // Legacy path: Use Bee SDK directly
-        //   sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
-        // } else {
-        //   return;
-        // }
-
         sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
 
         let sessionData: Map<string, Session[]> = new Map();

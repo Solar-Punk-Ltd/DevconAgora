@@ -1,13 +1,11 @@
 /**
- * SwarmIdClient adapter utilities (Phase 3)
- * 
  * Mirrors bee.ts interface but uses SwarmIdClient instead of raw Bee SDK.
  * These functions accept a SwarmIdClient instance and delegate operations to it.
  */
 
 import { FeedResultWithIndex } from "../types/bee.ts";
 import { FEED_INDEX_ZERO, SWARM_ZERO_ADDRESS } from "../constants/network";
-import { FeedIndex } from "@ethersphere/bee-js";
+import { FeedIndex, Topic } from "@ethersphere/bee-js";
 import { SwarmIdClient } from "swarm-id";
 
 /**
@@ -62,11 +60,16 @@ export async function swarmIdUploadData(
 export async function swarmIdGetFeedUpdate(
   client: SwarmIdClient,
   topic: string,
-  owner?: string,
+  raw?: boolean,
   index?: bigint,
 ): Promise<string> {
   try {
-    const reader = client.makeSequentialFeedReader({ topic, owner });
+    let feedTopic: string = topic;
+    if (!raw) {
+      feedTopic = Topic.fromString(topic).toString();
+    }
+    
+    const reader = client.makeSequentialFeedReader({ topic: feedTopic });
 
     // Download payload at index or latest
     // Only pass encryptionKey if provided
@@ -103,7 +106,6 @@ export async function swarmIdUpdateFeed(
 ): Promise<string> {
   try {
     const writer = client.makeSequentialFeedWriter({ topic });
-
     const result = await writer.uploadReference(dataReference, {
       index: index !== undefined ? index : undefined,
       encrypt: false, // Store reference unencrypted for public feeds
@@ -129,13 +131,11 @@ export async function swarmIdUploadToFeed(
 ): Promise<{ payload: string; dataReference: string }> {
   try {
     const payload = typeof data === "string" ? new TextEncoder().encode(data) : data;
-    const writer = client.makeSequentialFeedWriter({ topic });
-
+    const writer = client.makeSequentialFeedWriter({ topic: new Topic(topic).toUint8Array() });
     const result = await writer.uploadPayload(payload, {
       index: index !== undefined ? index : undefined,
       encrypt: false,
     });
-
     return {
       dataReference: result.reference,
       payload: new TextDecoder().decode(payload),

@@ -53,6 +53,7 @@ interface Props {
 
 export function Provider({ children }: Props): ReactElement {
   const iframeOrigin = process.env.SWARM_ID_IFRAME_ORIGIN;
+  const subsidisedGatewayUrl = process.env.SWARM_SUBSIDISED_GATEWAY_URL;
   const proxyPath = process.env.SWARM_ID_IFRAME_PROXY_PATH;
   const isSwarmEnabled = Boolean(iframeOrigin);
   const [userSession, setUserSession] = useState<UserSession | null>(null);
@@ -98,6 +99,7 @@ export function Provider({ children }: Props): ReactElement {
 
     const client = new SwarmIdClient({
       iframeOrigin,
+      subsidisedGatewayUrl,
       iframePath: proxyPath,
       timeout: 120000,
       initializationTimeout: 120000,
@@ -237,8 +239,6 @@ export function Provider({ children }: Props): ReactElement {
   }, [isSwarmAuthenticated, isSwarmEnabled, userSession]);
 
   const keys = useMemo(() => {
-    // Phase 2: When Swarm is enabled, do not expose local keys
-    // Components must migrate to SwarmIdClient in Phase 3-4
     if (isSwarmEnabled) {
       return { private: "", public: "" };
     }
