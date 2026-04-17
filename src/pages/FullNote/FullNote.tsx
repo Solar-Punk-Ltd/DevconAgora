@@ -118,7 +118,7 @@ const FullNotePage: React.FC = () => {
     if (noteTopic.length > 0) {
       const remove = false;
       addRemoveTopicToLocalStore(noteTopic, remove);
-      saveNote(noteTopic, remove);
+      await saveNote(noteTopic, remove);
     }
   };
 
@@ -146,9 +146,7 @@ const FullNotePage: React.FC = () => {
     try {
       const useSwarmClient = isSwarmEnabled && Boolean(swarmClient);
       if (useSwarmClient) {
-        // Use SwarmIdClient for upload and feed update
-        const dataRef = await swarmIdUploadData(swarmClient!, JSON.stringify(noteObj));
-        await swarmIdUploadToFeed(swarmClient!, topic, dataRef);
+        await swarmIdUploadToFeed(swarmClient!, topic, JSON.stringify(noteObj));
       } else {
         // Legacy path: Use Bee SDK directly
         const dataRef = await uploadData(process.env.STAMP || DUMMY_STAMP, JSON.stringify(noteObj));
