@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import TermsAndConditions from "../../components/TermsAndConditions/TermsAndConditions";
@@ -7,17 +7,35 @@ import { ROUTES } from "../../constants/routes";
 import { useGlobalState } from "../../contexts/global";
 
 import "./TACOnboarding.scss";
+import { useUserContext } from "@/contexts/user";
 
 const TACOnboarding: React.FC = () => {
   const navigate = useNavigate();
+  const { login, isSwarmInitialized, isUserLoggedIn } = useUserContext();
   const { setIsTermsAndConditionsAccepted } = useGlobalState();
   const [isTermsAndConditionsChecked, setIsTermsAndConditionsChecked] = useState<boolean>(false);
-  const handleOkClick = () => {
-    if (isTermsAndConditionsChecked) {
-      setIsTermsAndConditionsAccepted(true);
+  const handleOkClick = async () => {
+    if (!isTermsAndConditionsChecked) {
+      return;
+    }
+
+    setIsTermsAndConditionsAccepted(true);
+    if (!isSwarmInitialized) {
       navigate(ROUTES.PROFILECREATION);
+      return;
+    }
+
+    try {
+      await login();
+    } catch (err) {
     }
   };
+
+  useEffect(() => {
+    if (isSwarmInitialized && isTermsAndConditionsChecked && isUserLoggedIn) {
+      navigate(ROUTES.HOME);
+    }
+  }, [isUserLoggedIn]);
 
   return (
     <>

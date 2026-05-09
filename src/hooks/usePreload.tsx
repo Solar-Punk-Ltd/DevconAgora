@@ -16,7 +16,7 @@ const loadFeedItems = async (signer: PrivateKey, talkId: string, address: string
     identifier: Topic.fromString(talkId).toString(),
     address,
     beeApiUrl,
-    signer,
+    signer: signer as any,
   };
 
   const latestComment = await readSingleComment(undefined, options);
@@ -27,7 +27,7 @@ const loadFeedItems = async (signer: PrivateKey, talkId: string, address: string
 
   const startIx = latestIx > maxComments ? latestIx - maxComments : 0n;
 
-  const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx), FeedIndex.fromBigInt(latestIx), options);
+  const messages = await readCommentsInRange(FeedIndex.fromBigInt(startIx) as any, FeedIndex.fromBigInt(latestIx) as any, options);
 
   if (!messages) {
     console.debug(`preloading talks: no comments found for talkId: ${talkId}`);
@@ -58,7 +58,7 @@ export const usePreload = () => {
           const talkId = getTopic(itemsToProcess[i].id);
           const signer = getPrivateKeyFromIdentifier(talkId);
           promises.push(
-            loadFeedItems(signer, talkId, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
+            loadFeedItems(signer as any, talkId, signer.publicKey().address().toString(), process.env.BEE_API_URL || DEFAULT_URL, MAX_COMMENTS_LOADED)
           );
 
           talkIds.push(talkId);
@@ -98,7 +98,7 @@ export const usePreload = () => {
   );
 
   const calcSpacesActivity = useCallback(async (): Promise<void> => {
-    return calcActivity(spaces, spaces.length, setLoadedSpaces, setSpacesActivity);
+    // return calcActivity(spaces, spaces.length, setLoadedSpaces, setSpacesActivity);
   }, [spaces, setLoadedSpaces, setSpacesActivity, calcActivity]);
 
   const calcTalksActivity = useCallback(async (): Promise<void> => {

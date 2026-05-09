@@ -5,12 +5,13 @@ import { NoteItemProps } from "../components/NoteItem/NoteItem";
 import { SELF_NOTE_TOPIC } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { getFeedUpdate } from "../utils/bee";
+import { swarmIdGetFeedUpdate } from "../utils/swarmId";
 
 import { useUserContext } from "@/contexts/user";
 
 export const useNotes = () => {
   const { notes, setNotes } = useGlobalState();
-  const { isUserLoggedIn, keys } = useUserContext();
+  const { isUserLoggedIn, keys, isSwarmEnabled, swarmClient } = useUserContext();
 
   const [noteRawTopics, setNoteRawTopics] = useState<string[]>([]);
 
@@ -23,7 +24,13 @@ export const useNotes = () => {
     const feedPromises: Promise<string>[] = [];
     for (let i = 0; i < noteRawTopics.length; i++) {
       const rawTopic = noteRawTopics[i];
-      feedPromises.push(getFeedUpdate(keys.public, rawTopic, true));
+
+      if (isSwarmEnabled && swarmClient) {
+        feedPromises.push(swarmIdGetFeedUpdate(swarmClient, rawTopic, true));
+      } else {
+        // Legacy path: Use Bee SDK with keys.public
+        feedPromises.push(getFeedUpdate(keys.public, rawTopic, true));
+      }
     }
 
     const notesArray: string[] = [];
@@ -60,7 +67,7 @@ export const useNotes = () => {
     setNotes(tmpNotes);
 
     console.debug("self notes updated");
-  }, [noteRawTopics, setNotes, isUserLoggedIn, keys.public]);
+  }, [noteRawTopics, setNotes, isUserLoggedIn, keys.public, isSwarmEnabled, swarmClient]);
   // Note: notes intentionally excluded from deps to avoid infinite loop
 
   useEffect(() => {

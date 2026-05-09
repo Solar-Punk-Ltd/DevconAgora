@@ -52,6 +52,9 @@ jobs:
           HEALTH_CHECK_DATA_REF: ${{ secrets.HEALTH_CHECK_DATA_REF }}
           ENV: ${{ secrets.ENV }}
           BASE_URL: ${{ secrets.BASE_URL }}
+          SWARM_ID_IFRAME_ORIGIN: ${{ secrets.SWARM_ID_IFRAME_ORIGIN }}
+          SWARM_SUBSIDISED_GATEWAY_URL: ${{ secrets.SWARM_SUBSIDISED_GATEWAY_URL }}
+          SWARM_ID_IFRAME_PROXY_PATH: ${{ secrets.SWARM_ID_IFRAME_PROXY_PATH }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

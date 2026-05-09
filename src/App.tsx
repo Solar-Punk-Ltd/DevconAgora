@@ -14,6 +14,10 @@ const Router = isSwarm ? HashRouter : BrowserRouter;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <div id="swarm-id-container" style={{
+      position: "absolute",
+      display: "none"
+    }}></div>
     <GlobalStateProvider>
       <UserProvider>
         <Router basename={isSwarm ? undefined : process.env.ROUTER_BASENAME}>

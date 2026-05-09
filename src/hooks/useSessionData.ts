@@ -5,11 +5,15 @@ import { RAW_FEED_TOPIC_SESSIONS } from "../constants/network";
 import { useGlobalState } from "../contexts/global";
 import { Session } from "../types/session";
 import { getFeedUpdate } from "../utils/bee";
+// import { swarmIdGetFeedUpdate } from "../utils/swarmId";
 
+import { useUserContext } from "@/contexts/user";
 import { getSessionsByDay } from "@/utils/session";
+// import { Topic } from "@ethersphere/bee-js";
 
 export const useSessionData = (isBeeRunning: boolean) => {
   const { setSessions, setRecentSessions } = useGlobalState();
+  const { isSwarmEnabled, swarmClient } = useUserContext();
   const [recentSessionIx, setRecentSessionIx] = useState<number>(0);
   const [time, setTime] = useState<number>(new Date().getTime());
 
@@ -35,24 +39,29 @@ export const useSessionData = (isBeeRunning: boolean) => {
   );
 
   const fetchFeedUpdate = useCallback(async () => {
-    if (isBeeRunning) {
-      // TODO: unnecessary payload.tostring() then back to json
-      const sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
-      let sessionData: Map<string, Session[]> = new Map();
-      if (sessionDataStr.length > 0) {
-        sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
-      }
+    try {
+      if (isBeeRunning) {
+        let sessionDataStr = "";
 
-      if (sessionData.size !== 0) {
-        console.debug("session data updated");
-        setSessions(sessionData);
-        // Automatically filter recent sessions when new session data is fetched
-        filterRecentSessions(sessionData);
-      } else {
-        console.debug("session data empty");
-      }
+        sessionDataStr = await getFeedUpdate(process.env.FEED_OWNER_ADDRESS as string, RAW_FEED_TOPIC_SESSIONS, false);
+
+        let sessionData: Map<string, Session[]> = new Map();
+        if (sessionDataStr.length > 0) {
+          sessionData = new Map<string, Session[]>(Object.entries(JSON.parse(sessionDataStr)));
+        }
+
+        if (sessionData.size !== 0) {
+          console.debug("session data updated");
+          setSessions(sessionData);
+          // Automatically filter recent sessions when new session data is fetched
+          filterRecentSessions(sessionData);
+        } else {
+          console.debug("session data empty");
+        }
+      } 
+    } catch (ex) {
     }
-  }, [isBeeRunning, setSessions, filterRecentSessions]);
+  }, [isBeeRunning, setSessions, filterRecentSessions, isSwarmEnabled, swarmClient]);
 
   useEffect(() => {
     fetchFeedUpdate();

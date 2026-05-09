@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import errorAlertIcon from "../../assets/input-validation-alert-icon.png";
@@ -13,7 +13,7 @@ import { handleKeyDown } from "@/utils/common";
 import { createMonogram, generateRandomUsername } from "@/utils/user";
 
 const ProfileCreation: React.FC = () => {
-  const { login } = useUserContext();
+  const { login, isUserLoggedIn, isSwarmEnabled } = useUserContext();
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>(() => generateRandomUsername());
   const [validationError, setValidationError] = useState<string>("");
@@ -52,9 +52,18 @@ const ProfileCreation: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      navigate(ROUTES.HOME);
+    }
+  }, [isUserLoggedIn, navigate]);
+
   const handleSubmit = async () => {
     const trimmedUsername = username.trim();
-
     const error = validateUsername(username);
     if (error) {
       setValidationError(error);
@@ -63,7 +72,9 @@ const ProfileCreation: React.FC = () => {
 
     try {
       await login(trimmedUsername);
-      navigate(ROUTES.HOME);
+      if (!isSwarmEnabled) {
+        navigate(ROUTES.HOME);
+      }
     } catch (err) {
       setValidationError("Something went wrong. Please try again.");
     }
@@ -114,7 +125,10 @@ const ProfileCreation: React.FC = () => {
         </div>
       </div>
       <div className="profile-creation__bottom">
-        <WelcomeButton version={isButtonActive ? "filled" : "inactive"} onClick={handleSubmit}>
+        <WelcomeButton
+          version={isButtonActive ? "filled" : "inactive"}
+          onClick={handleSubmit}
+        >
           Enter private chat
         </WelcomeButton>
       </div>

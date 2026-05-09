@@ -1,26 +1,41 @@
 import { createContext, ReactElement, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 
 import { persistUserSession, purgeUserSession, restoreUserSession, userLogin, UserSession } from "@/utils/user";
+import { ConnectionInfo, SwarmIdClient } from "swarm-id";
 
 interface ContextInterface {
   keys: {
     private: string;
     public: string;
   };
-  login: (username: string) => Promise<void>;
-  logout: () => void;
+  login: (username?: string) => Promise<void>;
+  logout: () => Promise<void>;
+  connect: () => Promise<void>;
+  disconnect: () => Promise<void>;
   username: string;
   isUserLoggedIn: boolean;
   isLoading: boolean;
+  isSwarmEnabled: boolean;
+  isSwarmInitialized: boolean;
+  canUpload: boolean;
+  identity?: ConnectionInfo["identity"];
+  swarmClient: SwarmIdClient | null;
 }
 
 const initialValues: ContextInterface = {
   keys: { private: "", public: "" },
-  login: async () => {},
-  logout: () => {},
+  login: async () => { },
+  logout: async () => { },
+  connect: async () => { },
+  disconnect: async () => { },
   username: "",
   isUserLoggedIn: false,
   isLoading: true,
+  isSwarmEnabled: false,
+  isSwarmInitialized: false,
+  canUpload: false,
+  identity: undefined,
+  swarmClient: null,
 };
 
 export const Context = createContext<ContextInterface>(initialValues);
@@ -37,36 +52,197 @@ interface Props {
 }
 
 export function Provider({ children }: Props): ReactElement {
+  const iframeOrigin = process.env.SWARM_ID_IFRAME_ORIGIN;
+  const subsidisedGatewayUrl = process.env.SWARM_SUBSIDISED_GATEWAY_URL;
+  const proxyPath = process.env.SWARM_ID_IFRAME_PROXY_PATH;
+  const isSwarmEnabled = Boolean(iframeOrigin);
   const [userSession, setUserSession] = useState<UserSession | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [swarmClient, setSwarmClient] = useState<SwarmIdClient | null>(null);
+  const [isSwarmInitialized, setIsSwarmInitialized] = useState(false);
+  const [isSwarmAuthenticated, setIsSwarmAuthenticated] = useState(false);
+  const [connectionInfo, setConnectionInfo] = useState<ConnectionInfo | null>(null);
+
+  const refreshSwarmAuth = async (client: SwarmIdClient) => {
+    if (!client) {
+      return;
+    }
+    try {
+      const status = await client.checkAuthStatus();
+      setIsSwarmAuthenticated(status.authenticated);
+
+      if (status.authenticated) {
+        const info = await client.getConnectionInfo();
+        setConnectionInfo(info);
+      } else {
+        setConnectionInfo(null);
+      }
+    } catch (error) {
+      console.error("Failed to refresh Swarm ID auth state", error);
+      setIsSwarmAuthenticated(false);
+      setConnectionInfo(null);
+    }
+  };
 
   useEffect(() => {
-    const savedSession = restoreUserSession();
-    if (savedSession) {
-      setUserSession(savedSession);
+    if (!isSwarmEnabled) {
+      const savedSession = restoreUserSession();
+      if (savedSession) {
+        setUserSession(savedSession);
+      }
     }
-    setIsLoading(false);
+
+    if (!isSwarmEnabled || !iframeOrigin) {
+      setIsLoading(false);
+      return;
+    }
+
+    const client = new SwarmIdClient({
+      iframeOrigin,
+      subsidisedGatewayUrl,
+      iframePath: proxyPath,
+      timeout: 120000,
+      initializationTimeout: 120000,
+      metadata: {
+        name: "DevconAgora",
+        description: "Decentralized conference companion app",
+      },
+      buttonConfig: {
+        connectText: 'Connect',
+        disconnectText: 'Disconnect',
+        loadingText: 'Loading...',
+        backgroundColor: '#367aff',
+        color: 'white',
+      },
+      containerId: "swarm-id-container",
+      onAuthChange: async (authenticated) => {
+        setIsSwarmAuthenticated(authenticated);
+        if (authenticated) {
+          try {
+            const info = await client.getConnectionInfo();
+            setConnectionInfo(info);
+          } catch (error) {
+            console.error("Failed to fetch Swarm ID connection info", error);
+            setConnectionInfo(null);
+          }
+        } else {
+          setConnectionInfo(null);
+        }
+      },
+    });
+
+    let isDisposed = false;
+
+    const bootstrapSwarm = async () => {
+      try {
+        await client.initialize();
+        if (isDisposed) {
+          client.destroy();
+          return;
+        }
+
+        setSwarmClient(client);
+        setIsSwarmInitialized(true);
+        await refreshSwarmAuth(client);
+      } catch (error) {
+        console.error("Failed to initialize Swarm ID client", error);
+        setIsSwarmInitialized(false);
+        setIsSwarmAuthenticated(false);
+      } finally {
+        if (!isDisposed) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    bootstrapSwarm();
+
+    return () => {
+      isDisposed = true;
+      try {
+        client.destroy();
+      } catch (error) {
+        console.debug("Swarm client destroy error", error);
+      }
+      setSwarmClient(null);
+      setIsSwarmInitialized(false);
+      setIsSwarmAuthenticated(false);
+      setConnectionInfo(null);
+    };
   }, []);
 
-  const login = async (username: string) => {
-    const session = userLogin(username);
+  const login = async (username?: string) => {
+    if (!isSwarmEnabled) {
+      const session = userLogin(username ?? "");
 
-    if (session.id) {
-      setUserSession(session);
-      await persistUserSession(session);
+      if (session.id) {
+        setUserSession(session);
+        await persistUserSession(session);
+      }
+    }
+
+    if (isSwarmEnabled && swarmClient) {
+      swarmClient.connect({ popupMode: "popup" });
     }
   };
 
-  const logout = () => {
-    setUserSession(null);
-    purgeUserSession();
+
+  const connect = async () => {
+    if (!swarmClient) {
+      return;
+    }
+
+    swarmClient.connect({ popupMode: "popup" });
+    await refreshSwarmAuth(swarmClient);
   };
 
-  const username = useMemo(() => userSession?.name || "", [userSession]);
+  const disconnect = async () => {
+    if (!swarmClient) {
+      return;
+    }
 
-  const isUserLoggedIn = useMemo(() => !!userSession, [userSession]);
+    await swarmClient.disconnect();
+    setIsSwarmAuthenticated(false);
+    setConnectionInfo(null);
+  };
+
+  const logout = async () => {
+    if (swarmClient) {
+      try {
+        await swarmClient.disconnect();
+      } catch (error) {
+        console.debug("Swarm disconnect failed during logout", error);
+      }
+    }
+
+    setUserSession(null);
+    setConnectionInfo(null);
+    setIsSwarmAuthenticated(false);
+
+    if (!isSwarmEnabled) {
+      purgeUserSession();
+    }
+  };
+
+  const username = useMemo(() => {
+    if (connectionInfo?.identity?.name) {
+      return connectionInfo.identity.name;
+    }
+    return userSession?.name || "";
+  }, [connectionInfo?.identity?.name, userSession]);
+
+  const isUserLoggedIn = useMemo(() => {
+    if (isSwarmEnabled) {
+      return isSwarmAuthenticated;
+    }
+    return !!userSession;
+  }, [isSwarmAuthenticated, isSwarmEnabled, userSession]);
 
   const keys = useMemo(() => {
+    if (isSwarmEnabled) {
+      return { private: "", public: "" };
+    }
+
     if (!userSession) {
       return { private: "", public: "" };
     }
@@ -75,7 +251,7 @@ export function Provider({ children }: Props): ReactElement {
       private: userSession.privKey,
       public: userSession.pubKey,
     };
-  }, [userSession]);
+  }, [userSession, isSwarmEnabled]);
 
   return (
     <Context.Provider
@@ -83,9 +259,16 @@ export function Provider({ children }: Props): ReactElement {
         keys,
         login,
         logout,
+        connect,
+        disconnect,
         username,
         isUserLoggedIn,
         isLoading,
+        isSwarmEnabled,
+        isSwarmInitialized,
+        canUpload: connectionInfo?.canUpload ?? false,
+        identity: connectionInfo?.identity,
+        swarmClient,
       }}
     >
       {children}

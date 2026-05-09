@@ -14,7 +14,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ethersphere/bee-js": "^10.1.1",
+    "@ethersphere/bee-js": "^11.1.1",
     "@solarpunkltd/comment-system": "^1.9.1",
     "@solarpunkltd/swarm-comment-js": "^0.0.11",
     "clsx": "^2.1.1",
@@ -23,7 +23,8 @@
     "ethers": "^6.13.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.7.1"
+    "react-router-dom": "^7.7.1",
+    "swarm-id": "file:../swarm-id/lib"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
